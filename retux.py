@@ -28,7 +28,9 @@ import json
 import math
 import os
 import random
+import shutil
 import sys
+import tempfile
 import warnings
 import weakref
 
@@ -43,9 +45,20 @@ import xsge_tmx
 if getattr(sys, "frozen", False):
     __file__ = sys.executable
 
-DATA = os.path.join(os.path.dirname(__file__), "data")
+DATA = tempfile.mkdtemp("retux-data")
 CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
 JOYSTICK_THRESHOLD = 0.7
+
+dirs = [os.path.join(os.path.dirname(__file__), "data"),
+        os.path.join(CONFIG, "data")]
+for d in dirs:
+    for fname in os.listdir(d):
+        fp = os.path.join(d, fname)
+        if os.path.isdir(fp):
+            shutil.copytree(fp, DATA)
+        elif os.path.exists(fp):
+            shutil.copy2(fp, DATA)
+del dirs
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -6134,3 +6147,5 @@ if __name__ == '__main__':
 
         with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
             json.dump(save_slots, f)
+
+        shutil.rmtree(DATA)
