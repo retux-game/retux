@@ -48,7 +48,11 @@
     <property name="dest" value="retux-1.tmx:map_exit"/>
    </properties>
   </object>
-  <object gid="62" x="352" y="128"/>
+  <object gid="62" x="352" y="128">
+   <properties>
+    <property name="level" value="retux-12.tmx"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Objects">
   <object gid="61" x="576" y="416"/>
