@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="512"/>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Leap of Faith"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="342" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt27ENACAMA0HYijFg/2WYACkdMtxJ7lN9l9YAAAAAAAAAAAD+s/rtCwBqpl4BIfQKSKFXQAq9AlLoFZBCr4AUp16N4gAAAAAAAAAAAAAAAAAA4Fd+bgEAeNEGBKAFKg==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztm7lOAzEURZ2atUJibZGAiio/AD1iaahYGiqWX+ULoIOvwKPECjKQzNhv3viZc6SrKUCK87APHi/OAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQKm8+bwrft6Sz1goV4rtBoDh+fD5VPy8TZ8Vodw7nAVQK5fu5xzldZpFc5k1oTbs+2wL5cXlOUt7bgkA7WhcdefS5zK7Qu2Q9FWus7TnlgCwmOCqZ5fuhUOhtkj76ruzuq5/tZ1bSuRi1K4+43a/BlAlEq4q3VfBWVLrYkMH4D8i5SoLvqopAJZJPQMg5Sp8ha9ghsSZnHP1VuvQ1GbZpb1XSLkKX+ErmCFxJufG59bV5a3gqi03/BjCV/gKJkj04UefJ1eGt6TOcJfiKnyFr3Ko7ZybZB+OvTXE+WepM9yluApf4ascajvn1kcfDt4a4s6GxTF54nP6S66nP8dXeqkNfNU+uXc2UrA4Jv/y0YObOAtf6aU0ctc34nO54W7XevSUWEfRGOd99+HgLK01LYtjcp6PGmedZdTjOxZro52SyNmfXnS3ay96SqyjaMxNNPpw4yyttXiLY1Jq/rQIi7XRTin0tT8d+tpR9JToG6l3s7rc59fqw1p7iBbHZDNfXx05d9DynlsqFmujHYm95Xj8pbxr9bU/3aevmqTczepyn1+7D8feku4bFsdk46sN76rjUf7/n3lYrI12JN+5AinvWn3tT/ftq5w2tWGodgZvSfcNi2Nyp+N3TMVibSwmHn8l1R1flVH/Wr5P7t9zHjXWRjpfuXtXDg==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="896" width="576" height="64"/>
+  <object x="672" y="896" width="1152" height="64"/>
+  <object x="1088" y="864" width="736" height="32"/>
+  <object x="1120" y="832" width="704" height="32"/>
+  <object x="1152" y="800" width="672" height="32"/>
+  <object x="1664" y="768" width="64" height="32"/>
+  <object x="1856" y="800" width="32" height="160"/>
+  <object x="1920" y="800" width="32" height="160"/>
+  <object x="1984" y="800" width="544" height="160"/>
+  <object x="2528" y="864" width="480" height="96"/>
+  <object x="3328" y="608" width="544" height="352"/>
+  <object x="3872" y="896" width="1024" height="64"/>
+  <object x="4992" y="672" width="1696" height="32"/>
+  <object x="4992" y="896" width="1728" height="64"/>
+  <object x="4992" y="704" width="1472" height="192"/>
+  <object x="6688" y="416" width="32" height="352"/>
+  <object x="5568" y="640" width="1120" height="32"/>
+  <object x="5600" y="608" width="1088" height="32"/>
+  <object x="5632" y="576" width="1056" height="32"/>
+  <object x="6240" y="416" width="448" height="160"/>
+  <object x="6368" y="384" width="64" height="32"/>
+  <object x="7264" y="480" width="2336" height="480"/>
+  <object x="8384" y="448" width="64" height="32"/>
+  <object x="7264" y="352" width="608" height="128"/>
+  <object x="3872" y="704" width="192" height="192"/>
+  <object x="4064" y="800" width="96" height="96"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="moving_platform_path" x="6816" y="384">
+   <polyline points="0,0 224,0 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="3104" y="896">
+   <polyline points="0,0 0,-320 0,0"/>
+  </object>
+  <object type="slope_topright" x="4160" y="800" width="192" height="96"/>
+  <object type="slope_topright" x="4064" y="704" width="96" height="96"/>
+  <object type="slope_topright" x="3872" y="608" width="192" height="96"/>
+  <object type="slope_topright" x="2528" y="800" width="64" height="64"/>
+  <object type="solid_top" x="1664" y="672" width="64" height="32"/>
+  <object type="slope_topleft" x="6080" y="416" width="160" height="160"/>
+  <object type="solid_top" x="6368" y="320" width="64" height="32"/>
+  <object type="slope_bottomleft" x="6624" y="704" width="64" height="64"/>
+  <object type="solid_right" x="6496" y="832" width="32" height="64"/>
+  <object type="slope_topright" x="7872" y="352" width="128" height="128"/>
+  <object type="solid_top" x="8384" y="384" width="64" height="32"/>
+  <object type="level_end" x="9088" y="0" width="32" height="480"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="6528" y="864">
+   <polyline points="0,0 -96,0 -128,-32 -128,-544"/>
+  </object>
+  <object gid="323" x="6624" y="800"/>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="330" x="4832" y="896"/>
+  <object gid="324" x="6560" y="384"/>
+  <object gid="324" x="6528" y="384"/>
+  <object gid="324" x="6592" y="384"/>
+  <object gid="324" x="6624" y="352"/>
+  <object gid="324" x="6656" y="384"/>
+  <object gid="324" x="6656" y="352"/>
+  <object gid="324" x="6656" y="320"/>
+  <object gid="324" x="6592" y="320"/>
+  <object gid="324" x="6560" y="320"/>
+  <object gid="324" x="6528" y="320"/>
+  <object gid="324" x="6496" y="352"/>
+  <object gid="321" x="6592" y="800"/>
+  <object gid="323" x="6272" y="320"/>
+  <object gid="315" x="5056" y="576"/>
+  <object gid="315" x="5088" y="576"/>
+  <object gid="315" x="5120" y="576"/>
+  <object gid="315" x="224" y="800"/>
+  <object gid="315" x="288" y="800"/>
+  <object gid="315" x="416" y="800"/>
+  <object gid="315" x="480" y="800"/>
+  <object gid="322" x="320" y="800"/>
+  <object gid="322" x="352" y="800"/>
+  <object gid="322" x="384" y="800"/>
+  <object gid="322" x="256" y="800"/>
+  <object gid="322" x="448" y="800"/>
+  <object gid="314" x="320" y="672"/>
+  <object gid="315" x="384" y="672"/>
+  <object gid="322" x="352" y="672"/>
+  <object gid="322" x="288" y="672"/>
+  <object gid="322" x="416" y="672"/>
+  <object gid="315" x="1408" y="704"/>
+  <object gid="315" x="1440" y="704"/>
+  <object gid="315" x="1504" y="704"/>
+  <object gid="315" x="1536" y="704"/>
+  <object gid="322" x="1472" y="704"/>
+  <object gid="315" x="3392" y="512"/>
+  <object gid="315" x="3424" y="512"/>
+  <object gid="315" x="3456" y="512"/>
+  <object gid="315" x="3520" y="512"/>
+  <object gid="315" x="3552" y="512"/>
+  <object gid="315" x="3584" y="512"/>
+  <object gid="315" x="3648" y="512"/>
+  <object gid="315" x="3680" y="512"/>
+  <object gid="315" x="3712" y="512"/>
+  <object gid="315" x="3520" y="384"/>
+  <object gid="315" x="3488" y="384"/>
+  <object gid="315" x="3584" y="384"/>
+  <object gid="315" x="3616" y="384"/>
+  <object gid="315" x="3456" y="384"/>
+  <object gid="315" x="3648" y="384"/>
+  <object gid="322" x="3616" y="512"/>
+  <object gid="322" x="3488" y="512"/>
+  <object gid="323" x="3552" y="384"/>
+  <object gid="322" x="7328" y="256"/>
+  <object gid="322" x="7360" y="256"/>
+  <object gid="322" x="7392" y="256"/>
+  <object gid="322" x="7424" y="256"/>
+  <object gid="322" x="7456" y="256"/>
+  <object gid="322" x="7488" y="256"/>
+  <object gid="322" x="7520" y="256"/>
+  <object gid="322" x="7552" y="256"/>
+  <object gid="322" x="7552" y="224"/>
+  <object gid="322" x="7552" y="192"/>
+  <object gid="322" x="7552" y="160"/>
+  <object gid="322" x="7296" y="224"/>
+  <object gid="322" x="7296" y="192"/>
+  <object gid="322" x="7296" y="160"/>
+  <object gid="322" x="7296" y="128"/>
+  <object gid="322" x="7360" y="128"/>
+  <object gid="322" x="7392" y="128"/>
+  <object gid="322" x="7424" y="128"/>
+  <object gid="322" x="7456" y="128"/>
+  <object gid="322" x="7488" y="128"/>
+  <object gid="322" x="7520" y="128"/>
+  <object gid="322" x="7552" y="128"/>
+  <object gid="324" x="7488" y="192"/>
+  <object gid="324" x="7424" y="192"/>
+  <object gid="324" x="7360" y="192"/>
+  <object gid="322" x="7328" y="128"/>
+  <object gid="322" x="7296" y="256"/>
+  <object gid="324" x="7328" y="224"/>
+  <object gid="324" x="7392" y="224"/>
+  <object gid="324" x="7456" y="224"/>
+  <object gid="324" x="7520" y="224"/>
+  <object gid="324" x="7328" y="160"/>
+  <object gid="324" x="7392" y="160"/>
+  <object gid="324" x="7456" y="160"/>
+  <object gid="324" x="7520" y="160"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="2" x="1184" y="800"/>
+  <object gid="2" x="1248" y="800"/>
+  <object gid="4" x="2208" y="800"/>
+  <object gid="4" x="2336" y="800"/>
+  <object gid="4" x="2464" y="800"/>
+  <object gid="2" x="2944" y="864"/>
+  <object gid="2" x="2880" y="864"/>
+  <object gid="2" x="2816" y="864"/>
+  <object gid="3" x="1056" y="896"/>
+  <object gid="3" x="992" y="896"/>
+  <object gid="4" x="4192" y="800"/>
+  <object gid="4" x="4096" y="704"/>
+  <object gid="4" x="3968" y="640"/>
+  <object gid="3" x="4480" y="896"/>
+  <object gid="3" x="4544" y="896"/>
+  <object gid="3" x="4608" y="896"/>
+  <object gid="2" x="4864" y="896"/>
+  <object gid="2" x="4800" y="896"/>
+  <object gid="2" x="5696" y="576"/>
+  <object gid="2" x="5760" y="576"/>
+  <object gid="3" x="5216" y="672"/>
+  <object gid="3" x="5280" y="672"/>
+  <object gid="3" x="5344" y="672"/>
+  <object gid="3" x="7712" y="352"/>
+  <object gid="3" x="7776" y="352"/>
+  <object gid="3" x="7840" y="352"/>
+  <object gid="2" x="8352" y="480"/>
+  <object gid="2" x="8288" y="480"/>
+  <object gid="2" x="8128" y="480"/>
+  <object gid="2" x="8064" y="480"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="64" y="896"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1DENACAQBMHHIRT4t4IDQkcuP6Ngq60CAAAAAAAAAADoa43fBQBvpl8BIfwKSOFXQAq/AlL4FZDCr4AUt19tLwMAAAAAAAAAAAAAAAAAAAAAaOEAxX8C4A==
+  </data>
+ </layer>
+</map>
