@@ -5728,9 +5728,10 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
-         "flying_snowball_path": FlyingSnowballPath, "warp_spawn": WarpSpawn,
-         "object_warp_spawn": ObjectWarpSpawn, "map_player": MapPlayer,
-         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
+         "flying_snowball_path": FlyingSnowballPath, "spawn": Spawn,
+         "warp_spawn": WarpSpawn, "object_warp_spawn": ObjectWarpSpawn,
+         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
+         "map_path": MapPath}
 
 
 print("Initializing game system...")

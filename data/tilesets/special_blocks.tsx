@@ -144,4 +144,10 @@
   </properties>
   <image width="32" height="32" source="../images/objects/bonus/tuxdoll.png"/>
  </tile>
+ <tile id="23">
+  <properties>
+   <property name="cls" value="spawn"/>
+  </properties>
+  <image width="16" height="32" source="../images/misc/spawn_point.png"/>
+ </tile>
 </tileset>
