@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="14" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
@@ -23,7 +23,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmc1qwzAQhJVzKDmXkHOhvZVSchR5sMT34neuSlJwFkleW7v683ywBGTLGq1XI4sYAwAAAAAAAAAAALBNri5uLsbH71BUDQDL+K9fGmOgfRAcxzfG2ueDZfyUFgCAIDnqGWsmTmgvmdtTON6P3PvB92ebwK/qJyV/yH0c5OeZ6d453SeHgpqm+N6X9JkuVhO1nh+pLqoppx741R2Nd9JzfjTXbSm4mnKumZbzVNvYNeZSCom59ZyfP1qunU8XX6Qtt1/5NEiOpQX8qj44Z4O5bzD6jL2Lc2J873j6z7zbkmi5dqyLC2nL7Vc+DZJjaZFDU8jLW645DmvPMZy5zd1Dr7+6eMkYqd54SJz/mr6a/w9NsaZfv5rLISePsVzmWPfW+HPTu1/5kPAizj30+puLo3C8R66l+t0pcf4afaVqzpp+/WqpDs65NNRXC2u261f0fdTmVzHPKRkfifPX6Au/kmGpjlBfLazZrl9Z8zz32vxK65vrFyF6oRo=
+   eJztmU9LAzEQxdOzSM8iPYpgbyLSY/CD6d6l37kRFbbDJJlsJn/7fjAUspvNy+zsS0KNAQAAAAAAAAAAALhNPl18uTj//S5N1QCQxn/90jh72hfFcbgxtj4fpPHdWgAAitSoZ3wzYXxrSWxNkXg/cs+D/eeYwK/6Jyd/yH0Y5Oea9dq5XieXhprWcO9L+0wXqolez49UF9VUUw/86pcS72Tm/JT8blsh1VTzmxk5T72N3WMutdCY28z5+WHk2nl18UbaavsVp0FzrFLAr/pDcjaI7cHoM+5cnDLjfSfTf5LdlsXItWNdfJC22n7FadAcqxQ1NPm8fOSak7D1HCOZW+weev3BxX3FyPXGfeb8t/Qt+f/QGmvm9atYDiV5DOUypukpMTis4XMzu19xaHiR5B56/dnFo3K8BK7l+t0hc/4l+mrVnDXz+lWqDsm51NeXI2Vd9tWYNbfrV/R99OZXIc9pGcfM+ZfoC7/SIVWHry9HyrrsqzGfphI1l7of1A6KNddz782vSu25LuQhqY4=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -63,6 +63,8 @@
   <object type="solid_top" x="7904" y="224" width="288" height="32"/>
   <object type="solid_top" x="8512" y="160" width="160" height="32"/>
   <object type="solid_top" x="8192" y="288" width="288" height="32"/>
+  <object type="spike_top" x="6464" y="416" width="1024" height="32"/>
+  <object type="spike_top" x="5056" y="352" width="384" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
