@@ -36,7 +36,11 @@
     <property name="level" value="retux-10.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="576" y="128"/>
+  <object gid="62" x="576" y="128">
+   <properties>
+    <property name="level" value="retux-13.tmx"/>
+   </properties>
+  </object>
   <object gid="63" x="704" y="96">
    <properties>
     <property name="ID" value="map_exit"/>
