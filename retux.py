@@ -106,6 +106,13 @@ ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
 
+FIREBALL_AMMO = 20
+FIREBALL_SPEED = 8
+FIREBALL_GRAVITY = 0.5
+FIREBALL_FALL_SPEED = 5
+FIREBALL_BOUNCE_HEIGHT = TILE_SIZE * 1 / 2
+FIREBALL_BOUNCE_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_BOUNCE_HEIGHT)
+
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
 
@@ -1143,6 +1150,8 @@ class Player(xsge_physics.Collider):
                     warp.warp(self)
 
     def event_physics_collision_top(self, other, move_loss):
+        top_touching = self.get_top_touching_wall()
+
         xv = self.xvelocity
         for i in six.moves.range(CEILING_LAX):
             self.x -= 1
@@ -1160,7 +1169,7 @@ class Player(xsge_physics.Collider):
                 self.x -= CEILING_LAX
                 self.yvelocity = 0
 
-        for block in self.get_top_touching_wall():
+        for block in top_touching:
             if isinstance(block, HittableBlock):
                 block.hit(self)
             elif isinstance(block, HurtBottom):
@@ -1782,7 +1791,7 @@ class FireFlower(FallingObject):
         self.x += self.image_origin_x
         self.y += self.image_origin_y
 
-        self.ammo = 15
+        self.ammo = FIREBALL_AMMO
 
     def touch(self, other):
         if other.pickup(self):
@@ -1798,15 +1807,119 @@ class FireFlower(FallingObject):
             self.parent = None
             self.gravity = self.__class__.gravity
 
-    def kick(self):
+    def kick(self, up=False):
         if self.parent is not None:
+            d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
-                # TODO: Create bullet
+                yv = -FIREBALL_BOUNCE_SPEED if up else FIREBALL_FALL_SPEED
+                Fireball.create(self.x, self.y, self.parent.z,
+                                xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
+                                image_xscale=self.image_xscale)
                 self.ammo -= 1
                 shoot_sound.play()
+
+                self.sprite = fire_flower_sprite.copy()
+                lightness = int((self.ammo / FIREBALL_AMMO) * 230 + 25)
+                darkener = sge.Sprite(width=self.sprite.width,
+                                      height=self.sprite.height)
+                darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
+                                        fill=sge.Color([lightness] * 3))
+                self.sprite.draw_sprite(darkener, 0, 0, 0,
+                                        blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
-                # TODO: Throw flower
+                self.parent.kick_object()
+                kick_sound.play()
+                ThrownFireFlower.create(self.parent, self.x, self.y, self.z,
+                                        sprite=self.sprite,
+                                        xvelocity=(FIREBALL_SPEED * d),
+                                        yvelocity=-FIREBALL_BOUNCE_SPEED,
+                                        image_xscale=self.image_xscale)
+                self.parent = None
+                self.destroy()
                 pass
+
+    def kick_up(self):
+        self.kick(True)
+
+    def event_end_step(self, time_passed, delta_mult):
+        if self.parent is not None:
+            direction = -1 if self.parent.image_xscale < 0 else 1
+            self.image_xscale = abs(self.image_xscale) * direction
+
+
+class ThrownFireFlower(FallingObject):
+
+    gravity = FIREBALL_GRAVITY
+    fall_speed = FIREBALL_FALL_SPEED
+
+    def __init__(self, thrower, *args, **kwargs):
+        self.thrower = thrower
+        super(ThrownFireFlower, self).__init__(*args, **kwargs)
+
+    def stop_left(self):
+        stomp_sound.play()
+        self.destroy()
+
+    def stop_right(self):
+        stomp_sound.play()
+        self.destroy()
+
+    def stop_up(self):
+        stomp_sound.play()
+        self.destroy()
+
+    def stop_down(self):
+        stomp_sound.play()
+        self.destroy()
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, KnockableObject):
+            other.knock(self)
+            stomp_sound.play()
+            self.destroy()
+        elif isinstance(other, Coin):
+            other.event_collision(self.thrower, -xdirection, -ydirection)
+
+        super(ThrownFireFlower, self).event_collision(other, xdirection,
+                                                      ydirection)
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.destroy()
+
+
+class Fireball(FallingObject):
+
+    gravity = FIREBALL_GRAVITY
+    fall_speed = FIREBALL_FALL_SPEED
+
+    def event_create(self):
+        self.sprite = fire_bullet_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+
+    def stop_left(self):
+        self.destroy()
+
+    def stop_right(self):
+        self.destroy()
+
+    def stop_down(self):
+        self.yvelocity = -FIREBALL_BOUNCE_SPEED
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.destroy()
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, BurnableObject):
+            other.burn()
+            self.destroy()
+
+        super(Fireball, self).event_collision(other, xdirection, ydirection)
 
 
 class HittableBlock(xsge_physics.SolidBottom, Tile):
@@ -2442,8 +2555,8 @@ bonus_empty_sprite = sge.Sprite("bonus_empty", d)
 bonus_full_sprite = sge.Sprite("bonus_full", d, fps=8)
 brick_sprite = sge.Sprite("brick", d)
 coin_sprite = sge.Sprite("coin", d, fps=8)
-fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=0, origin_y=8,
-                                fps=8, bbox_x=8, bbox_y=0, bbox_width=16,
+fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=8,
+                                fps=8, bbox_x=-8, bbox_y=0, bbox_width=16,
                                 bbox_height=24)
 
 d = os.path.join(DATA, "images", "objects", "decoration")
@@ -2453,6 +2566,9 @@ goal_sprite = sge.Sprite("goal", d, fps=8)
 goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
 
 d = os.path.join(DATA, "images", "misc")
+fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
+                                fps=8)
+ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
