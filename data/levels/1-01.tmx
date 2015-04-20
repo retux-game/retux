@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="14" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="14" tilewidth="32" tileheight="32">
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="16" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="25" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="29" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="31" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="119" source="../tilesets/snow.tsx"/>
- <tileset firstgid="259" source="../tilesets/special_blocks.tsx"/>
- <layer name="Back Tiles" width="200" height="14">
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="10" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="150" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="165" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="253" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="274" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="278" source="../tilesets/igloo.tsx"/>
+ <layer name="Back Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LENgDAMRcGsAQvA4BmUFFSRnA45RnfS7908twYAAAAA3zizD4CNHdkHwMb0ATF9QEwfENNHXdfYnX3Ez+mjrv6usj4tw+rPRH3Md0cD1h4BqAuo
+   eJzt0zEKgDAQRNF4hXiYnNqcUQurgCg2ceQ9mH5Z+KUAAADAN63L7AuAt6p+IZZ+IZd+IZd+IZd+IZd+IZd+823H+uwjfiDxj/rN184la8N45q7f8a9XA7LtBRIG5g==
   </data>
  </layer>
- <layer name="Middle Tiles" width="200" height="14">
+ <layer name="Middle Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmUsKwjAURROwOJDqCkRnukPxM/U7FXQsuBJX4Apciwn6MD6SWJrU/u6BS7BESPtyEmOFAAAAAEBdGKmMyx4EAIEMpDshTFSmUUYIQDmk8ndc/X9dhx8gD4maQx35aptMW/3oSv9nADRt9YPowwvgoSl+xDiLgfKYqVyNLD199V5PKZom+GF6AUfikTjOF3Q9le4+HL1P+/bqtcrcyEL4HfkX5Af3V+fm+V6vpvMwkd/1TVmdm37erCpHla2RnaiGI+QH91fnLvyOgA94jxQG98N0hK/brnCXbGt+3lws43uI+jhi+z/7nxT9OzVWnasac/6dxLcjfN12Zc+emW3Nz5uNZWymI3nvm5xevduYTlP4u6Cya501Q5EN3TdWnasamn8hObPnZtuTYoZceQTcNzl9eLcxnW5Tnqu/ACI=
+   eJztmUtOwzAQhicr3rBDvLpFgjUSJ+EEnKBXigQ7OGKDLdnqdORHajuxGc8n/YqURq1jz2c7KYAgCIIgCEIffKl8126EIDDnbPAnhx+V3yItFATBxckQj+/62HnxV+DIpLIzR86IvzwYTYS+6N3f08znjxYYQfztFS7+lngX8B8ZQfxdg3OVd5TrwLXDsM/ScPAXe9uTw9TdXvyNPdNOJvo9zzTjeo3eh4X2YncqlyhXEHZ4Lay/dH7R+cj8bldN1a6xCQ7H1wafX+I3Q+8bMXP38y53a/ctZ55VHlAeoQ2Hrb90ftH5hHSHfTXFtc7W/B/d5y7Hfm0F6i92mK57vlDXXWtmat4c7dtCmsOhmlqq1mLr2tLosVhjLg65W9PfUnXYarAfL3DoMF33fHkifeZaM1Nz72gbdnjuffpq6sYc6Wcl+pbuTWuM7wUcNxenJOZuqf60uZ05H+prS9Vhq7F+5OSV9JtrTS8Z6/I2477tnLMxx5JzTkvR43vMXMwtf9FmiUA=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="0" y="416" width="2368" height="32"/>
-  <object x="6336" y="288" width="64" height="128"/>
+  <object x="7616" y="288" width="64" height="128"/>
   <object x="1792" y="384" width="576" height="32"/>
   <object x="1792" y="352" width="224" height="32"/>
   <object x="1792" y="320" width="192" height="32"/>
@@ -32,10 +32,27 @@
   <object x="2464" y="384" width="608" height="32"/>
   <object x="3072" y="320" width="160" height="96"/>
   <object x="3840" y="416" width="32" height="32"/>
-  <object x="3904" y="416" width="2496" height="32"/>
+  <object x="3904" y="416" width="3776" height="32"/>
+  <object x="3648" y="384" width="160" height="32"/>
+  <object x="3680" y="352" width="128" height="32"/>
+  <object x="3712" y="320" width="96" height="32"/>
+  <object x="3744" y="288" width="64" height="32"/>
+  <object x="3904" y="288" width="32" height="32"/>
+  <object x="3904" y="320" width="64" height="32"/>
+  <object x="3904" y="352" width="96" height="32"/>
+  <object x="3904" y="384" width="128" height="32"/>
+  <object x="6432" y="384" width="288" height="32"/>
+  <object x="6464" y="352" width="256" height="32"/>
+  <object x="6496" y="320" width="224" height="32"/>
+  <object x="6528" y="288" width="192" height="32"/>
+  <object x="6560" y="256" width="160" height="32"/>
+  <object x="6592" y="224" width="128" height="32"/>
+  <object x="6624" y="192" width="96" height="32"/>
+  <object x="6656" y="160" width="64" height="32"/>
+  <object x="5632" y="384" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="level_end" x="5888" y="0" width="32" height="416"/>
+  <object type="level_end" x="7104" y="0" width="32" height="416"/>
   <object type="slope_topright" x="3232" y="320" width="96" height="96"/>
   <object type="solid_top" x="3008" y="64" width="64" height="32"/>
   <object type="solid_top" x="5632" y="320" width="64" height="32"/>
@@ -56,34 +73,35 @@
  </objectgroup>
  <objectgroup name="Items"/>
  <objectgroup name="NPCs">
-  <object gid="17" x="1280" y="416"/>
-  <object gid="17" x="1888" y="288"/>
-  <object gid="17" x="1824" y="288"/>
-  <object gid="17" x="2944" y="384"/>
-  <object gid="17" x="2880" y="384"/>
-  <object gid="17" x="2816" y="384"/>
-  <object gid="18" x="2688" y="384"/>
-  <object gid="17" x="3328" y="416"/>
-  <object gid="17" x="3392" y="416"/>
-  <object gid="17" x="3520" y="416"/>
-  <object gid="17" x="3584" y="416"/>
-  <object gid="17" x="4128" y="416"/>
-  <object gid="18" x="4192" y="416"/>
-  <object gid="17" x="4352" y="416"/>
-  <object gid="17" x="4416" y="416"/>
-  <object gid="17" x="4480" y="416"/>
-  <object gid="17" x="4896" y="416"/>
-  <object gid="17" x="4960" y="288"/>
-  <object gid="18" x="5056" y="416"/>
-  <object gid="17" x="5152" y="288"/>
-  <object gid="17" x="5216" y="416"/>
+  <object gid="2" x="1184" y="416"/>
+  <object gid="2" x="1888" y="288"/>
+  <object gid="2" x="1824" y="288"/>
+  <object gid="2" x="2944" y="384"/>
+  <object gid="2" x="2880" y="384"/>
+  <object gid="2" x="2816" y="384"/>
+  <object gid="3" x="2688" y="384"/>
+  <object gid="2" x="3520" y="416"/>
+  <object gid="2" x="4128" y="416"/>
+  <object gid="3" x="4192" y="416"/>
+  <object gid="2" x="4352" y="416"/>
+  <object gid="2" x="4416" y="416"/>
+  <object gid="2" x="4480" y="416"/>
+  <object gid="2" x="4896" y="416"/>
+  <object gid="2" x="4960" y="288"/>
+  <object gid="2" x="5152" y="288"/>
+  <object gid="2" x="5216" y="416"/>
+  <object gid="2" x="3584" y="416"/>
+  <object gid="2" x="5056" y="288"/>
+  <object gid="2" x="5952" y="416"/>
+  <object gid="2" x="6016" y="416"/>
+  <object gid="2" x="6240" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
-  <object gid="16" x="224" y="416"/>
+  <object gid="1" x="224" y="416"/>
  </objectgroup>
- <layer name="Front Tiles" width="200" height="14">
+ <layer name="Front Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07ERABAUBUFtEOi/TBU8Gf6Y3QouudYAAAAA4KzxOgAK668DoDB/QOYPyPwBmT8g8wdkuz/mtQr4zwLSgQDo
+   eJzt07ERABAUBcGvBQL9d6oFI+GZ3QouuSoAAAB422i3C4BT3b8Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qa+ff6XH41gI5YQDY
   </data>
  </layer>
 </map>
