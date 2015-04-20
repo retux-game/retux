@@ -80,6 +80,7 @@ BLOCK_HIT_SPEED = 2
 BLOCK_HIT_GRAVITY = 0.25
 COIN_COLLECT_TIME = 30
 COIN_COLLECT_SPEED = 2
+ITEM_SPAWN_SPEED = 1
 
 SECOND_POINTS = 100
 COIN_POINTS = 100
@@ -773,8 +774,9 @@ class Player(xsge_physics.Collider):
 
         if self.held_object is not None:
             obj_sprite = self.held_object.sprite
+            obj_image_index = self.held_object.image_index
 
-            i = (id(body_sprite), id(obj_sprite))
+            i = (id(body_sprite), id(obj_sprite), obj_image_index)
             if i in tux_grab_sprites:
                 return tux_grab_sprites[i]
             else:
@@ -800,7 +802,7 @@ class Player(xsge_physics.Collider):
                     grab_sprite.append_frame()
                 grab_sprite.draw_lock()
                 for j in six.moves.range(grab_sprite.frames):
-                    grab_sprite.draw_sprite(obj_sprite, j,
+                    grab_sprite.draw_sprite(obj_sprite, obj_image_index,
                                             origin_x + obj_sprite.origin_x,
                                             origin_y, j)
                     grab_sprite.draw_sprite(body_sprite, j, origin_x, origin_y,
@@ -1386,7 +1388,7 @@ class FallingObject(InteractiveCollider):
     def move(self):
         on_floor = self.get_bottom_touching_wall()
         on_slope = self.get_bottom_touching_slope()
-        if self.was_on_floor and (on_floor or on_slope):
+        if self.was_on_floor and (on_floor or on_slope) and self.yvelocity >= 0:
             self.yacceleration = 0
             if on_floor:
                 self.yvelocity = 0
@@ -1766,6 +1768,47 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject):
         self.destroy()
 
 
+class FireFlower(FallingObject):
+
+    def event_create(self):
+        self.sprite = fire_flower_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+        self.ammo = 15
+
+    def touch(self, other):
+        if other.pickup(self):
+            self.parent = other
+            self.gravity = 0
+
+    def knock(self, other=None):
+        self.yvelocity = -ENEMY_HIT_BELOW_SPEED
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick(self):
+        if self.parent is not None:
+            if self.ammo > 0:
+                # TODO: Create bullet
+                self.ammo -= 1
+                shoot_sound.play()
+            else:
+                # TODO: Throw flower
+                pass
+
+
 class HittableBlock(xsge_physics.SolidBottom, Tile):
 
     hit_sprite = None
@@ -1872,9 +1915,13 @@ class HiddenItemBlock(HittableBlock):
         self.hit_sprite = bonus_empty_sprite
 
     def event_hit(self, other):
-        if self.item:
-            # TODO: Create a spawner for that item
-            pass
+        if self.item and self.item in TYPES:
+            obj = TYPES[self.item].create(self.x, self.y, z=(self.z - 0.5))
+            obj.bbox_left = self.bbox_left
+            obj.x = (self.x - self.image_origin_x + self.sprite.width / 2 +
+                     obj.image_origin_x - obj.sprite.width / 2)
+            obj.bbox_bottom = self.bbox_top
+            find_powerup_sound.play()
         else:
             CoinCollect.create(self.x, self.y, z=(self.z + 0.5))
             other.coins += 1
@@ -2274,7 +2321,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "creatures": get_object, "hazards": get_object,
          "special_blocks": get_object, "decoration_small": get_object,
          "player": Player, "walking_snowball": WalkingSnowball,
-         "walking_iceblock": WalkingIceblock, "brick": Brick,
+         "walking_iceblock": WalkingIceblock, "fireflower": FireFlower,
+         "brick": Brick,
          "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
          "infoblock": InfoBlock, "lava": Lava, "lava_surface": LavaSurface,
@@ -2394,6 +2442,9 @@ bonus_empty_sprite = sge.Sprite("bonus_empty", d)
 bonus_full_sprite = sge.Sprite("bonus_full", d, fps=8)
 brick_sprite = sge.Sprite("brick", d)
 coin_sprite = sge.Sprite("coin", d, fps=8)
+fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=0, origin_y=8,
+                                fps=8, bbox_x=8, bbox_y=0, bbox_width=16,
+                                bbox_height=24)
 
 d = os.path.join(DATA, "images", "objects", "decoration")
 lava_body_sprite = sge.Sprite("lava_body", d, transparent=False, fps=5)
@@ -2477,7 +2528,6 @@ kill_sound = sge.Sound(os.path.join(DATA, "sounds", "kill.wav"))
 brick_sound = sge.Sound(os.path.join(DATA, "sounds", "brick.wav"))
 coin_sound = sge.Sound(os.path.join(DATA, "sounds", "coin.wav"))
 find_powerup_sound = sge.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
-get_ammo_sound = sge.Sound(os.path.join(DATA, "sounds", "fire-flower.wav"))
 heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
 shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
 squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))

@@ -9,16 +9,16 @@
  <tileset firstgid="150" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="165" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="253" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="274" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="278" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="273" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="277" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0zEKgDAQRNF4hXiYnNqcUQurgCg2ceQ9mH5Z+KUAAADAN63L7AuAt6p+IZZ+IZd+IZd+IZd+IZd+IZd+823H+uwjfiDxj/rN184la8N45q7f8a9XA7LtBRIG5g==
+   eJzt07ENgDAQBEG7BNOMq8Y1QkBuRGIOZqTLXy9tKQAAAPBOW119AfBU0y/E0i/k0i/k0i/k0i/k0i/k0m++/dxYfcQHJP5Rv/n6Nf5n1m+/OSDbAbI4BgA=
   </data>
  </layer>
  <layer name="Middle Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmUtOwzAQhicr3rBDvLpFgjUSJ+EEnKBXigQ7OGKDLdnqdORHajuxGc8n/YqURq1jz2c7KYAgCIIgCEIffKl8126EIDDnbPAnhx+V3yItFATBxckQj+/62HnxV+DIpLIzR86IvzwYTYS+6N3f08znjxYYQfztFS7+lngX8B8ZQfxdg3OVd5TrwLXDsM/ScPAXe9uTw9TdXvyNPdNOJvo9zzTjeo3eh4X2YncqlyhXEHZ4Lay/dH7R+cj8bldN1a6xCQ7H1wafX+I3Q+8bMXP38y53a/ctZ55VHlAeoQ2Hrb90ftH5hHSHfTXFtc7W/B/d5y7Hfm0F6i92mK57vlDXXWtmat4c7dtCmsOhmlqq1mLr2tLosVhjLg65W9PfUnXYarAfL3DoMF33fHkifeZaM1Nz72gbdnjuffpq6sYc6Wcl+pbuTWuM7wUcNxenJOZuqf60uZ05H+prS9Vhq7F+5OSV9JtrTS8Z6/I2477tnLMxx5JzTkvR43vMXMwtf9FmiUA=
+   eJztmUsKwjAQhsetz5XgcyvoWvAknsATeKWC7vSMJtBIHJLapmnz6P/BTxeKpJP5ZhYSAQAAAAAMg4fIM/QhAABOvETeoQ8BAHAC/gKQLvA3D4oyYFjA3/QpCP4OFfibNgXB3z4Yi1y0zMMe5wv8TRfuLvztjpXIVMuM4nBY+cvni8y15W+bego95geTu6htdxxENlq2FIfDyl8+X2Ru5O6wrady7bM+/0e3uZtjXWOB+6s7zPeeLdx10850zdlwvju5OVzVU7n2mryLPmZxlbsha+qrD2ON7seRfh3me8+WHauZaWe6Zm04m+5w3fe09dSifPLPQt+Lr0yo2Sx2yT93fddzOaJayO/66sNYo/xokxOrm2mn+4xy+d7ivdXM2ZdPnzMnpsj7bTKLc8sHcyd5qw==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -71,7 +71,68 @@
    <polyline points="0,0 0,-64"/>
   </object>
  </objectgroup>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="257" x="2144" y="288"/>
+  <object gid="257" x="2176" y="288"/>
+  <object gid="257" x="2208" y="288"/>
+  <object gid="255" x="1152" y="320"/>
+  <object gid="255" x="1216" y="320"/>
+  <object gid="262" x="1184" y="320"/>
+  <object gid="255" x="864" y="320"/>
+  <object gid="255" x="1248" y="320"/>
+  <object gid="255" x="1120" y="320"/>
+  <object gid="254" x="1184" y="192"/>
+  <object gid="263" x="1536" y="320"/>
+  <object gid="263" x="1568" y="320"/>
+  <object gid="262" x="2272" y="160"/>
+  <object gid="262" x="2304" y="160"/>
+  <object gid="262" x="2336" y="160"/>
+  <object gid="262" x="2368" y="160"/>
+  <object gid="262" x="2400" y="160"/>
+  <object gid="262" x="2432" y="160"/>
+  <object gid="262" x="2464" y="160"/>
+  <object gid="262" x="2496" y="160"/>
+  <object gid="262" x="2528" y="160"/>
+  <object gid="262" x="2688" y="160"/>
+  <object gid="262" x="2880" y="160"/>
+  <object gid="262" x="2656" y="160"/>
+  <object gid="262" x="2720" y="160"/>
+  <object gid="262" x="2848" y="160"/>
+  <object gid="262" x="2912" y="160"/>
+  <object gid="264" x="2304" y="128"/>
+  <object gid="264" x="2336" y="128"/>
+  <object gid="264" x="2368" y="128"/>
+  <object gid="264" x="2400" y="128"/>
+  <object gid="264" x="2432" y="128"/>
+  <object gid="264" x="2464" y="128"/>
+  <object gid="264" x="2496" y="128"/>
+  <object gid="262" x="4576" y="416"/>
+  <object gid="262" x="4608" y="416"/>
+  <object gid="262" x="4608" y="384"/>
+  <object gid="262" x="4640" y="384"/>
+  <object gid="262" x="4640" y="416"/>
+  <object gid="262" x="4672" y="416"/>
+  <object gid="264" x="4576" y="288"/>
+  <object gid="264" x="4608" y="256"/>
+  <object gid="264" x="4640" y="256"/>
+  <object gid="264" x="4672" y="288"/>
+  <object gid="263" x="5056" y="224"/>
+  <object gid="262" x="5024" y="320"/>
+  <object gid="262" x="5056" y="320"/>
+  <object gid="262" x="5088" y="320"/>
+  <object gid="255" x="5120" y="320"/>
+  <object gid="255" x="5152" y="320"/>
+  <object gid="255" x="5184" y="320"/>
+  <object gid="255" x="4992" y="320"/>
+  <object gid="255" x="4960" y="320"/>
+  <object gid="255" x="4928" y="320"/>
+  <object gid="263" x="6208" y="320"/>
+  <object gid="262" x="5984" y="320"/>
+  <object gid="262" x="5952" y="320"/>
+  <object gid="262" x="5920" y="320"/>
+  <object gid="262" x="5888" y="320"/>
+  <object gid="255" x="5856" y="320"/>
+ </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1184" y="416"/>
   <object gid="2" x="1888" y="288"/>
@@ -101,7 +162,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07ERABAUBcGvBQL9d6oFI+GZ3QouuSoAAAB422i3C4BT3b8Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qa+ff6XH41gI5YQDY
+   eJzt07ERABAUBcGvBAL9l6oFI+GZ3QouuSoAAAB422i3C4BT3b8Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qa+ff6XH41gJkigDN
   </data>
  </layer>
 </map>

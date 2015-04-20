@@ -10,16 +10,16 @@
  <tileset firstgid="170" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="185" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="273" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="294" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="293" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="297" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowAB1Blpb4faqB2jdtDRDnMSMT0AAMoNA84=
+   eJxjYBgFowAB1Bhpb4fqqB2jdtDRDnMSMT0AALm9A8Y=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhAczJwFqMpNnBQwcMAEbxBCM=
+   eJxjYBgFo2AUjIKhAczJwJqMpNnBQwcMAEZdBCI=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -37,7 +37,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowATqDPS3g61UTtG7aCzHdp0sJ8YAACSvQFm
+   eJxjYBgFowATqDHS3g7VUTtG7aCzHVp0sJ8YAACCJQFd
   </data>
  </layer>
 </map>
