@@ -1,0 +1,142 @@
+This file lists the licenses, authors, and sources for all the
+non-functional data files found in this directory.
+
+========================================================================
+
+bigjump.wav
+coin.wav
+flip.wav
+invincible_start.ogg
+jump.wav
+rain.wav
+skid.wav
+trampoline.wav
+willowisp.wav
+
+Author: wansti
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+brick.wav
+
+Author: Yaniel
+License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+dartfire.wav
+darthit.wav
+ticking.wav
+
+Author: sommer
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+door.wav
+mr_tree.ogg
+mr_treehit.ogg
+phone.wav
+
+Author: gwater
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+fall.wav
+lifeup.wav
+shoot.wav
+
+Author: Nathan McCoy
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+fire-flower.wav
+lava.wav
+waterfall.wav
+
+Author: Bastian Zapf
+License: GNU GPL <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+fireworks.wav
+warp.wav
+
+Author: Ricardo Cruz
+License: GNU GPL <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+fizz.wav
+
+Author: WolfgangB
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+flame.wav
+hurt.wav
+kill.wav
+tree_howling.ogg
+tree_suck.ogg
+willocatch.wav
+yeti_finish.ogg
+yeti_gna.wav
+yeti_roar.wav
+
+Author: MatzeB
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+hop.ogg
+locked.ogg
+splash.ogg
+switch.ogg
+totem.ogg
+turnkey.ogg
+
+Author: WolfgangB
+License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+iceblock_bump.wav
+kick.wav
+lightning.wav
+squish.wav
+stomp.wav
+thunder.wav
+
+Author: Some_Person
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+saw.wav
+
+Author: Paulo Morfeo
+License: CC BY-SA 2.0 <http://creativecommons.org/licenses/by-sa/2.0/>
+Source: http://svn.berlios.de/viewcvs/lincity-ng/trunk/data/sounds/Mill1.wav
+
+------------------------------------------------------------------------
+
+upgrade.wav
+
+Authors: SuperTux development team <http://supertux.lethargik.org>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3

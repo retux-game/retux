@@ -1,0 +1,495 @@
+This file lists the licenses, authors, and sources for all the
+non-functional data files found in this directory.
+
+========================================================================
+
+images/backgrounds/arctis1-bottom.png
+images/backgrounds/arctis1-middle.png
+images/backgrounds/arctis2-bottom.png
+images/backgrounds/arctis2-middle.png
+images/backgrounds/arctis3.png
+images/backgrounds/bluemountain1-bottom.png
+images/backgrounds/bluemountain1-middle.png
+images/backgrounds/bluemountain1-top.png
+images/backgrounds/castle.png
+images/backgrounds/cave-edge.png
+images/backgrounds/cave-middle.png
+images/backgrounds/nightsky1.png
+images/backgrounds/nightsky1-bottom.png
+images/backgrounds/nightsky1-middle.png
+images/backgrounds/nightsky1-top.png
+images/backgrounds/nightsky2.png
+images/misc/bonusblock_light.png
+images/misc/cursor.png
+images/misc/explosion-0.png
+images/misc/explosion-1.png
+images/misc/fire_bullet-0.png
+images/misc/fire_bullet-1.png
+images/misc/fire_bullet-2.png
+images/misc/fire_bullet-3.png
+images/misc/font.png
+images/misc/font_big.png
+images/misc/font_small.png
+images/misc/ice_bullet.png
+images/misc/icon.ico
+images/misc/icon.png
+images/misc/lightmap_light.png
+images/objects/bonus/bonus_empty.png
+images/objects/bonus/bonus_full-0.png
+images/objects/bonus/bonus_full-1.png
+images/objects/bonus/bonus_full-2.png
+images/objects/bonus/bonus_full-3.png
+images/objects/bonus/bonus_full-4.png
+images/objects/bonus/bonus_full-5.png
+images/objects/bonus/bonus_full-6.png
+images/objects/bonus/bonus_full-7.png
+images/objects/bonus/brick.png
+images/objects/bonus/coin-0.png
+images/objects/bonus/coin-1.png
+images/objects/bonus/coin-2.png
+images/objects/bonus/coin-3.png
+images/objects/bonus/coin-4.png
+images/objects/bonus/coin-5.png
+images/objects/bonus/coin-6.png
+images/objects/bonus/coin-7.png
+images/objects/bonus/fire_flower-0.png
+images/objects/bonus/fire_flower-1.png
+images/objects/bonus/fire_flower-2.png
+images/objects/bonus/fire_flower-3.png
+images/objects/bonus/ice_flower-0.png
+images/objects/bonus/ice_flower-1.png
+images/objects/bonus/ice_flower-2.png
+images/objects/bonus/ice_flower-3.png
+images/objects/bonus/star-0.png
+images/objects/bonus/star-1.png
+images/objects/bonus/star-2.png
+images/objects/bonus/star-3.png
+images/objects/bonus/star-4.png
+images/objects/bonus/star-5.png
+images/objects/bonus/star-6.png
+images/objects/bonus/star-7.png
+images/objects/bonus/tileset_bonus.png
+images/objects/bonus/tileset_brick.png
+images/objects/bonus/tuxdoll.png
+images/objects/enemies/bomb-0.png
+images/objects/enemies/bomb-1.png
+images/objects/enemies/bomb-2.png
+images/objects/enemies/bomb-3.png
+images/objects/enemies/bomb_iced.png
+images/objects/enemies/bomb_ticking-0.png
+images/objects/enemies/bomb_ticking-1.png
+images/objects/enemies/bomb_ticking-2.png
+images/objects/enemies/bomb_ticking-3.png
+images/objects/enemies/bomb_ticking-4.png
+images/objects/enemies/bouncing_snowball-0.png
+images/objects/enemies/bouncing_snowball-1.png
+images/objects/enemies/bouncing_snowball-2.png
+images/objects/enemies/bouncing_snowball-3.png
+images/objects/enemies/bouncing_snowball-4.png
+images/objects/enemies/bouncing_snowball-5.png
+images/objects/enemies/fish_down.png
+images/objects/enemies/fish_iced_down.png
+images/objects/enemies/fish_iced_up.png
+images/objects/enemies/fish_up-0.png
+images/objects/enemies/fish_up-1.png
+images/objects/enemies/flying_snowball-0.png
+images/objects/enemies/flying_snowball-1.png
+images/objects/enemies/flying_snowball_squished.png
+images/objects/enemies/haywire-0.png
+images/objects/enemies/haywire-1.png
+images/objects/enemies/haywire-2.png
+images/objects/enemies/haywire-3.png
+images/objects/enemies/haywire_iced.png
+images/objects/enemies/haywire_ticking-0.png
+images/objects/enemies/haywire_ticking-1.png
+images/objects/enemies/haywire_ticking-2.png
+images/objects/enemies/haywire_ticking-3.png
+images/objects/enemies/haywire_ticking-4.png
+images/objects/enemies/haywire_ticking-5.png
+images/objects/enemies/haywire_ticking-6.png
+images/objects/enemies/haywire_ticking-7.png
+images/objects/enemies/iceblock-0.png
+images/objects/enemies/iceblock-1.png
+images/objects/enemies/iceblock-2.png
+images/objects/enemies/iceblock-3.png
+images/objects/enemies/iceblock_flat.png
+images/objects/enemies/jumpy.png
+images/objects/enemies/jumpy_bounce.png
+images/objects/enemies/jumpy_iced.png
+images/objects/enemies/krosh.png
+images/objects/enemies/krush.png
+images/objects/enemies/lava_fish_down.png
+images/objects/enemies/lava_fish_up-0.png
+images/objects/enemies/lava_fish_up-1.png
+images/objects/enemies/raccot_hop.png
+images/objects/enemies/raccot_jump.png
+images/objects/enemies/raccot_stand.png
+images/objects/enemies/raccot_stomp.png
+images/objects/enemies/raccot_walk-0.png
+images/objects/enemies/raccot_walk-1.png
+images/objects/enemies/raccot_walk-2.png
+images/objects/enemies/raccot_walk-3.png
+images/objects/enemies/raccot_walk-4.png
+images/objects/enemies/raccot_walk-5.png
+images/objects/enemies/raccot_walk-6.png
+images/objects/enemies/sawblade-0.png
+images/objects/enemies/sawblade-1.png
+images/objects/enemies/sawblade-2.png
+images/objects/enemies/sawblade-3.png
+images/objects/enemies/snowball-0.png
+images/objects/enemies/snowball-1.png
+images/objects/enemies/snowball-2.png
+images/objects/enemies/snowball-3.png
+images/objects/enemies/snowball_squished.png
+images/objects/enemies/spiky-0.png
+images/objects/enemies/spiky-1.png
+images/objects/enemies/spiky-2.png
+images/objects/enemies/spiky-3.png
+images/objects/enemies/spiky_iced.png
+images/objects/misc/door-0.png
+images/objects/misc/door-1.png
+images/objects/misc/door-2.png
+images/objects/misc/door-3.png
+images/objects/misc/door-4.png
+images/objects/misc/door-5.png
+images/objects/misc/door-6.png
+images/objects/misc/door-7.png
+images/objects/misc/infoblock.png
+images/objects/misc/lantern-1.png
+images/objects/misc/lantern-2.png
+images/objects/misc/lantern-3.png
+images/objects/misc/lantern-4.png
+images/objects/misc/platform.png
+images/objects/misc/rock.png
+images/objects/misc/thin_ice-0.png
+images/objects/misc/thin_ice-1.png
+images/objects/misc/thin_ice-2.png
+images/objects/misc/thin_ice-3.png
+images/objects/misc/thin_ice-4.png
+images/objects/misc/thin_ice-5.png
+images/objects/misc/thin_ice_break-0.png
+images/objects/misc/thin_ice_break-1.png
+images/objects/misc/thin_ice_break-2.png
+images/objects/misc/thin_ice_break-3.png
+images/objects/spring/fixed_spring.png
+images/objects/spring/fixed_spring_compress-0.png
+images/objects/spring/fixed_spring_compress-1.png
+images/objects/spring/fixed_spring_compress-2.png
+images/objects/spring/fixed_spring_expand-0.png
+images/objects/spring/fixed_spring_expand-1.png
+images/objects/spring/rusty_spring.png
+images/objects/spring/rusty_spring_compress-0.png
+images/objects/spring/rusty_spring_compress-1.png
+images/objects/spring/rusty_spring_compress-2.png
+images/objects/spring/rusty_spring_dead.png
+images/objects/spring/rusty_spring_expand-0.png
+images/objects/spring/rusty_spring_expand-1.png
+images/objects/spring/rusty_spring_expand-2.png
+images/objects/spring/rusty_spring_expand-3.png
+images/objects/spring/rusty_spring_expand-4.png
+images/objects/spring/rusty_spring_expand-5.png
+images/objects/spring/spring.png
+images/objects/spring/spring_compress-0.png
+images/objects/spring/spring_compress-1.png
+images/objects/spring/spring_compress-2.png
+images/objects/spring/spring_expand-0.png
+images/objects/spring/spring_expand-1.png
+images/objects/tux/tux_arms_fall.png
+images/objects/tux/tux_arms_grab.png
+images/objects/tux/tux_arms_jump.png
+images/objects/tux/tux_arms_kick.png
+images/objects/tux/tux_arms_run.png
+images/objects/tux/tux_arms_skid.png
+images/objects/tux/tux_arms_stand.png
+images/objects/tux/tux_arms_walk-0.png
+images/objects/tux/tux_arms_walk-1.png
+images/objects/tux/tux_arms_walk-2.png
+images/objects/tux/tux_arms_walk-3.png
+images/objects/tux/tux_arms_walk-4.png
+images/objects/tux/tux_arms_walk-5.png
+images/objects/tux/tux_arms_walk-6.png
+images/objects/tux/tux_arms_walk-7.png
+images/objects/tux/tux_body_idle-0.png
+images/objects/tux/tux_body_idle-1.png
+images/objects/tux/tux_body_jump.png
+images/objects/tux/tux_body_kick.png
+images/objects/tux/tux_body_run-0.png
+images/objects/tux/tux_body_run-1.png
+images/objects/tux/tux_body_run-2.png
+images/objects/tux/tux_body_run-3.png
+images/objects/tux/tux_body_run-4.png
+images/objects/tux/tux_body_run-5.png
+images/objects/tux/tux_body_run-6.png
+images/objects/tux/tux_body_run-7.png
+images/objects/tux/tux_body_skid.png
+images/objects/tux/tux_body_stand.png
+images/objects/tux/tux_body_walk-0.png
+images/objects/tux/tux_body_walk-1.png
+images/objects/tux/tux_body_walk-2.png
+images/objects/tux/tux_body_walk-3.png
+images/objects/tux/tux_body_walk-4.png
+images/objects/tux/tux_body_walk-5.png
+images/objects/tux/tux_body_walk-6.png
+images/objects/tux/tux_body_walk-7.png
+images/objects/tux/tux_die-0.png
+images/objects/tux/tux_die-1.png
+images/tiles/tileset_blocks.png
+images/tiles/tileset_castle.png
+images/tiles/tileset_cave.png
+images/tiles/tileset_ice.png
+images/tiles/tileset_pipes.png
+images/tiles/tileset_snow.png
+images/tiles/tileset_spikes.png
+sounds/kill.wav
+
+Authors: SuperTux development team <http://supertux.lethargik.org>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
+
+------------------------------------------------------------------------
+
+images/misc/heart_empty.png
+images/misc/heart_full.png
+images/misc/heart_half.png
+
+Author: C.Nilsson <http://opengameart.org/users/cnilsson>
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://opengameart.org/content/simple-small-pixel-hearts
+
+------------------------------------------------------------------------
+
+images/misc/logo.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  onpon4 <https://onpon4.github.io>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Details:
+  SuperTux logo is by the SuperTux development team.  Letters from the
+  SuperTux logo were re-arranged to spell "reTux" by onpon4.
+
+------------------------------------------------------------------------
+
+objecttypes.xml
+images/backgrounds/castle-bottom.png
+levels/base.tmx
+levels/1-01.tmx
+levels/1-01b.tmx
+tilesets/blocks.tsx
+tilesets/cave.tsx
+tilesets/creatures.tsx
+tilesets/decoration_small.tsx
+tilesets/igloo.tsx
+tilesets/pipes.tsx
+tilesets/snow.tsx
+tilesets/special_blocks.tsx
+
+Author: onpon4 <https://onpon4.github.io>
+License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
+
+------------------------------------------------------------------------
+
+music/bonuscave.ogg
+music/bossattack.ogg
+music/bossattack-start.ogg
+music/cave.ogg
+music/credits.ogg
+music/fortress.ogg
+music/fortress-start.ogg
+music/ghostforest2.ogg
+music/intro.ogg
+music/invincible.ogg
+music/leveldone.ogg
+music/theme.ogg
+music/theme-start.ogg
+music/treeboss.ogg
+music/treeboss-start.ogg
+music/wisphunt.ogg
+music/wisphunt-start.ogg
+
+Author: wansti
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+music/chipdisko.ogg
+music/chipdisko-start.ogg
+
+Authors:
+  Lukas Nystrand
+  Mortimer Twang
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+
+------------------------------------------------------------------------
+
+music/greatgigantic.ogg
+
+Authors:
+  Chris Huelsbeck
+  SuperTux development team <http://supertux.lethargik.org>
+License: GNU GPL <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+
+------------------------------------------------------------------------
+
+music/salcon.ogg
+music/salcon-start.ogg
+
+Authors:
+  Mystical
+  SuperTux development team <http://supertux.lethargik.org>
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Details:
+  Original Salsa Con Carne by Mystical. This is a remix done by someone
+  in the SuperTux development team.
+
+------------------------------------------------------------------------
+
+sounds/bigjump.wav
+sounds/coin.wav
+sounds/flip.wav
+sounds/invincible_start.ogg
+sounds/jump.wav
+sounds/rain.wav
+sounds/skid.wav
+sounds/trampoline.wav
+sounds/willowisp.wav
+
+Author: wansti
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/brick.wav
+
+Author: Yaniel
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/dartfire.wav
+sounds/darthit.wav
+sounds/ticking.wav
+
+Author: sommer
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/door.wav
+sounds/mr_tree.ogg
+sounds/mr_treehit.ogg
+sounds/phone.wav
+
+Author: gwater
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/fall.wav
+sounds/heal.wav
+sounds/shoot.wav
+
+Author: Nathan McCoy
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/fire-flower.wav
+sounds/lava.wav
+sounds/waterfall.wav
+
+Author: Bastian Zapf
+License: GNU GPL <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/fireworks.wav
+sounds/warp.wav
+
+Author: Ricardo Cruz
+License: GNU GPL <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/fizz.wav
+
+Author: WolfgangB
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/flame.wav
+sounds/hurt.wav
+sounds/tree_howling.ogg
+sounds/tree_suck.ogg
+sounds/willocatch.wav
+sounds/yeti_finish.ogg
+sounds/yeti_gna.wav
+sounds/yeti_roar.wav
+
+Author: MatzeB
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/hop.ogg
+sounds/locked.ogg
+sounds/splash.ogg
+sounds/switch.ogg
+sounds/totem.ogg
+sounds/turnkey.ogg
+
+Author: WolfgangB
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/iceblock_bump.wav
+sounds/kick.wav
+sounds/lightning.wav
+sounds/squish.wav
+sounds/stomp.wav
+sounds/thunder.wav
+
+Author: Some_Person
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/pipe.ogg
+
+Author: cameron
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: https://github.com/FluXy/SMC/blob/master/smc/data/sounds/player/powerdown.ogg
+
+------------------------------------------------------------------------
+
+sounds/saw.wav
+
+Author: Paulo Morfeo
+License: CC BY-SA 2.0 <http://creativecommons.org/licenses/by-sa/2.0/>
+Source: http://svn.berlios.de/viewcvs/lincity-ng/trunk/data/sounds/Mill1.wav
+
+------------------------------------------------------------------------
+
+sounds/upgrade.wav
+
+Authors: SuperTux development team <http://supertux.lethargik.org>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3

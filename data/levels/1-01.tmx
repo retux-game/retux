@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="16" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="25" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="29" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="31" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="119" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="259" source="../tilesets/special_blocks.tsx"/>
+ <layer name="Back Tiles" width="200" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt1LENgDAMRcGsAQvA4BmUFFSRnA45RnfS7908twYAAAAA3zizD4CNHdkHwMb0ATF9QEwfENNHXdfYnX3Ez+mjrv6usj4tw+rPRH3Md0cD1h4BqAuo
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="200" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztmUsKwjAURROwOJDqCkRnukPxM/U7FXQsuBJX4Apciwn6MD6SWJrU/u6BS7BESPtyEmOFAAAAAEBdGKmMyx4EAIEMpDshTFSmUUYIQDmk8ndc/X9dhx8gD4maQx35aptMW/3oSv9nADRt9YPowwvgoSl+xDiLgfKYqVyNLD199V5PKZom+GF6AUfikTjOF3Q9le4+HL1P+/bqtcrcyEL4HfkX5Af3V+fm+V6vpvMwkd/1TVmdm37erCpHla2RnaiGI+QH91fnLvyOgA94jxQG98N0hK/brnCXbGt+3lws43uI+jhi+z/7nxT9OzVWnasac/6dxLcjfN12Zc+emW3Nz5uNZWymI3nvm5xevduYTlP4u6Cya501Q5EN3TdWnasamn8hObPnZtuTYoZceQTcNzl9eLcxnW5Tnqu/ACI=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="416" width="2368" height="32"/>
+  <object x="6336" y="288" width="64" height="128"/>
+  <object x="1792" y="384" width="576" height="32"/>
+  <object x="1792" y="352" width="224" height="32"/>
+  <object x="1792" y="320" width="192" height="32"/>
+  <object x="1792" y="288" width="160" height="32"/>
+  <object x="2464" y="416" width="1344" height="32"/>
+  <object x="2464" y="384" width="608" height="32"/>
+  <object x="3072" y="320" width="160" height="96"/>
+  <object x="3840" y="416" width="32" height="32"/>
+  <object x="3904" y="416" width="2496" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="level_end" x="5888" y="0" width="32" height="416"/>
+  <object type="slope_topright" x="3232" y="320" width="96" height="96"/>
+  <object type="solid_top" x="3008" y="64" width="64" height="32"/>
+  <object type="solid_top" x="5632" y="320" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="3040" y="64">
+   <properties>
+    <property name="dest" value="1-01b.tmx:bonus_enter"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object type="warp_spawn" x="5664" y="384">
+   <properties>
+    <property name="spawn_id" value="bonus_exit"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs">
+  <object gid="17" x="1280" y="416"/>
+  <object gid="17" x="1888" y="288"/>
+  <object gid="17" x="1824" y="288"/>
+  <object gid="17" x="2944" y="384"/>
+  <object gid="17" x="2880" y="384"/>
+  <object gid="17" x="2816" y="384"/>
+  <object gid="18" x="2688" y="384"/>
+  <object gid="17" x="3328" y="416"/>
+  <object gid="17" x="3392" y="416"/>
+  <object gid="17" x="3520" y="416"/>
+  <object gid="17" x="3584" y="416"/>
+  <object gid="17" x="4128" y="416"/>
+  <object gid="18" x="4192" y="416"/>
+  <object gid="17" x="4352" y="416"/>
+  <object gid="17" x="4416" y="416"/>
+  <object gid="17" x="4480" y="416"/>
+  <object gid="17" x="4896" y="416"/>
+  <object gid="17" x="4960" y="288"/>
+  <object gid="18" x="5056" y="416"/>
+  <object gid="17" x="5152" y="288"/>
+  <object gid="17" x="5216" y="416"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="16" x="224" y="416"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="200" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt07ERABAUBUFtEOi/TBU8Gf6Y3QouudYAAAAA4KzxOgAK668DoDB/QOYPyPwBmT8g8wdkuz/mtQr4zwLSgQDo
+  </data>
+ </layer>
+</map>

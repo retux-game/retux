@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="background_x" value="-352"/>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="bonuscave.ogg"/>
+  <property name="spawn" value="enter"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="16" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="25" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="29" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="31" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="119" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="259" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="280" source="../tilesets/cave.tsx"/>
+ <layer name="Back Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiaQB2INQbaEaNgFIwCgkCSkTQMA/lA7M8wPPM5AHT1Am4=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxTZWRgUANidQYGBg0gVgGyVWmAQXYoAs1XAtkDZGtSAWsxoroXZAc1AbYwQbaDHwsbRKOLY+PDxMi1gxiaHv6g1A5q+wObGYTsJiU+qAGItYOXkTRMTzvSgdgdhx0SQCyJhEm1QxINS2HJ5wpArEhFrMRIu7IPGwYAsDgdew==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="64" y="384" width="672" height="64"/>
+  <object x="64" y="0" width="672" height="64"/>
+  <object x="0" y="0" width="64" height="448"/>
+  <object x="736" y="0" width="64" height="448"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_left" x="640" y="320" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object type="warp_spawn" x="96" y="128">
+   <properties>
+    <property name="spawn_id" value="bonus_enter"/>
+   </properties>
+   <polyline points="0,-128 0,-64"/>
+  </object>
+  <object x="640" y="352">
+   <properties>
+    <property name="dest" value="1-01.tmx:bonus_exit"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="16" x="64" y="384"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+  </data>
+ </layer>
+</map>

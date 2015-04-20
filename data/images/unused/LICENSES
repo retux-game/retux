@@ -1,0 +1,80 @@
+This file lists the licenses, authors, and sources for all the
+non-functional data files found in this directory.
+
+========================================================================
+
+bigtux_duck.png
+bugtux_idle-0.png
+bigtux_idle-1.png
+bigtux_jump.png
+bigtux_kick.png
+bigtux_skid.png
+bigtux_stand.png
+bigtux_walk-0.png
+bigtux_walk-1.png
+bigtux_walk-2.png
+bigtux_walk-3.png
+bigtux_walk-4.png
+bigtux_walk-5.png
+cursor.png
+icon.ico
+icon.png
+solid.png
+tux_die-0.png
+tux_die-1.png
+tux_grow-0.png
+tux_grow-1.png
+tux_grow-2.png
+tux_grow-3.png
+tux_grow-4.png
+tux_grow-5.png
+tux_grow-6.png
+tux_idle-0.png
+tux_idle-1.png
+tux_jump.png
+tux_kick.png
+tux_skid.png
+tux_stand.png
+tux_walk-0.png
+tux_walk-1.png
+tux_walk-2.png
+tux_walk-3.png
+tux_walk-4.png
+tux_walk-5.png
+tux_walk-6.png
+tux_walk-7.png
+
+Authors: SuperTux development team <http://supertux.lethargik.org>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+
+------------------------------------------------------------------------
+
+heart_empty.png
+heart_full.png
+heart_half.png
+
+Author: C.Nilsson <http://opengameart.org/users/cnilsson>
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://opengameart.org/content/simple-small-pixel-hearts
+
+------------------------------------------------------------------------
+
+logo.png
+logo2.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  onpon4 <http://onpon4.comule.com>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Details:
+  SuperTux logo is by the SuperTux development team.  Letters from the
+  SuperTux logo were re-arranged to spell "reTux" by onpon4.
+
+------------------------------------------------------------------------
+
+unknown.png
+
+Author: onpon4 <http://onpon4.comule.com>
+License: CC0 <http://creativecommons.org/publicdomain/zero/1.0/>

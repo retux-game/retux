@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="solid" color="#000000"/>
+ <objecttype name="solid_top" color="#ffff00"/>
+ <objecttype name="solid_bottom" color="#ffff00"/>
+ <objecttype name="solid_left" color="#ffff00"/>
+ <objecttype name="solid_right" color="#ffff00"/>
+ <objecttype name="slope_topleft" color="#0000ff"/>
+ <objecttype name="slope_topright" color="#0000ff"/>
+ <objecttype name="slope_bottomleft" color="#0000ff"/>
+ <objecttype name="slope_bottomright" color="#0000ff"/>
+ <objecttype name="warp" color="#55ff00"/>
+ <objecttype name="warp_spawn" color="#005500"/>
+ <objecttype name="spike_left" color="#ffaa00"/>
+ <objecttype name="spike_right" color="#ffaa00"/>
+ <objecttype name="spike_top" color="#ffaa00"/>
+ <objecttype name="spike_bottom" color="#ffaa00"/>
+ <objecttype name="death" color="#ff0000"/>
+ <objecttype name="level_end" color="#55007f"/>
+</objecttypes>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="10" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="150" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="170" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="185" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="273" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="294" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
+ <layer name="Back Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowAB1Blpb4faqB2jdtDRDnMSMT0AAMoNA84=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKhAczJwFqMpNnBQwcMAEbxBCM=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="416" width="800" height="32"/>
+  <object x="704" y="288" width="64" height="128"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="level_end" x="256" y="0" width="32" height="416"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="32" y="416"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowATqDPS3g61UTtG7aCzHdp0sJ8YAACSvQFm
+  </data>
+ </layer>
+</map>
