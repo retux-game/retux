@@ -110,8 +110,10 @@ FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
 FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
-FIREBALL_BOUNCE_HEIGHT = TILE_SIZE * 1 / 2
+FIREBALL_BOUNCE_HEIGHT = TILE_SIZE * 0.5
 FIREBALL_BOUNCE_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_BOUNCE_HEIGHT)
+FIREBALL_UP_HEIGHT = TILE_SIZE * 1.5
+FIREBALL_UP_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_UP_HEIGHT)
 
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
@@ -1811,7 +1813,7 @@ class FireFlower(FallingObject):
         if self.parent is not None:
             d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
-                yv = -FIREBALL_BOUNCE_SPEED if up else FIREBALL_FALL_SPEED
+                yv = -FIREBALL_UP_SPEED if up else FIREBALL_FALL_SPEED
                 Fireball.create(self.x, self.y, self.parent.z,
                                 xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
@@ -1832,7 +1834,7 @@ class FireFlower(FallingObject):
                 ThrownFireFlower.create(self.parent, self.x, self.y, self.z,
                                         sprite=self.sprite,
                                         xvelocity=(FIREBALL_SPEED * d),
-                                        yvelocity=-FIREBALL_BOUNCE_SPEED,
+                                        yvelocity=-FIREBALL_UP_SPEED,
                                         image_xscale=self.image_xscale)
                 self.parent = None
                 self.destroy()
