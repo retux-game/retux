@@ -1249,6 +1249,12 @@ class Corpse(xsge_physics.Collider):
             self.destroy()
 
 
+class Smoke(sge.Object):
+
+    def event_animation_end(self):
+        self.destroy()
+
+
 class InteractiveObject(sge.Object):
 
     active_range = ENEMY_ACTIVE_RANGE
@@ -1888,6 +1894,9 @@ class ThrownFireFlower(FallingObject):
     def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
 
+    def event_destroy(self):
+        Smoke.create(self.x, self.y, self.z, sprite=smoke_puff_sprite)
+
 
 class Fireball(FallingObject):
 
@@ -1922,6 +1931,9 @@ class Fireball(FallingObject):
             self.destroy()
 
         super(Fireball, self).event_collision(other, xdirection, ydirection)
+
+    def event_destroy(self):
+        Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
 
 
 class HittableBlock(xsge_physics.SolidBottom, Tile):
@@ -2571,6 +2583,10 @@ d = os.path.join(DATA, "images", "misc")
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
+smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=32, height=32,
+                               origin_x=16, origin_y=16, fps=24)
+fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
+                                   origin_x=8, origin_y=8, fps=30)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
