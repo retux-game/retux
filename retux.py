@@ -110,6 +110,9 @@ FLOWER_GRAVITY = 0.1
 FLOWER_FALL_SPEED = 5
 FLOWER_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
+FLOWER_THROW_SPEED = 8
+FLOWER_UP_HEIGHT = TILE_SIZE * 0.25
+FLOWER_UP_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_UP_HEIGHT)
 
 FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
@@ -1845,11 +1848,11 @@ class FireFlower(FallingObject):
             else:
                 self.parent.kick_object()
                 kick_sound.play()
-                ThrownFireFlower.create(self.parent, self.x, self.y, self.z,
-                                        sprite=self.sprite,
-                                        xvelocity=(FIREBALL_SPEED * d),
-                                        yvelocity=-FIREBALL_UP_SPEED,
-                                        image_xscale=self.image_xscale)
+                ThrownFlower.create(self.parent, self.x, self.y, self.z,
+                                    sprite=self.sprite,
+                                    xvelocity=(FIREBALL_SPEED * d),
+                                    yvelocity=-FLOWER_UP_SPEED,
+                                    image_xscale=self.image_xscale)
                 self.parent = None
                 self.destroy()
                 pass
@@ -1863,14 +1866,14 @@ class FireFlower(FallingObject):
             self.image_xscale = abs(self.image_xscale) * direction
 
 
-class ThrownFireFlower(FallingObject):
+class ThrownFlower(FallingObject):
 
-    gravity = FIREBALL_GRAVITY
-    fall_speed = FIREBALL_FALL_SPEED
+    gravity = FLOWER_GRAVITY
+    fall_speed = FLOWER_FALL_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
         self.thrower = thrower
-        super(ThrownFireFlower, self).__init__(*args, **kwargs)
+        super(ThrownFlower, self).__init__(*args, **kwargs)
 
     def stop_left(self):
         stomp_sound.play()
@@ -1896,8 +1899,7 @@ class ThrownFireFlower(FallingObject):
         elif isinstance(other, Coin):
             other.event_collision(self.thrower, -xdirection, -ydirection)
 
-        super(ThrownFireFlower, self).event_collision(other, xdirection,
-                                                      ydirection)
+        super(ThrownFlower, self).event_collision(other, xdirection, ydirection)
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
