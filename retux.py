@@ -425,12 +425,12 @@ class Level(sge.Room):
             elif key in ("enter", "p"):
                 if not self.won:
                     sge.Music.pause()
-                    ticking_sound.play()
-                    sge.game.pause()
+                    pause_sound.play()
+                    sge.game.pause(pause_sprite)
 
     def event_paused_key_press(self, key, char):
         if key in ("enter", "p"):
-            ticking_sound.play()
+            pause_sound.play()
             sge.Music.unpause()
             sge.game.unpause()
         else:
@@ -2671,13 +2671,21 @@ for i in list(backgrounds.keys()):
                                                         backgrounds[i].color)
 
 # Load fonts
+chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 128)] +
+         [six.unichr(i) for i in six.moves.range(160, 384)])
+
 font_sprite = sge.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font.png"), columns=16, rows=20,
     width=16, height=18)
-
-chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 128)] +
-         [six.unichr(i) for i in six.moves.range(160, 384)])
 font = sge.Font.from_sprite(font_sprite, chars, size=18)
+
+font_big_sprite = sge.Sprite.from_tileset(
+    os.path.join(DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
+    width=20, height=22)
+font_big = sge.Font.from_sprite(font_big_sprite, chars, size=22)
+
+pause_sprite = sge.Sprite.from_text(font_big, "Paused",
+                                    color=sge.Color("white"))
 
 # Load sounds
 jump_sound = sge.Sound(os.path.join(DATA, "sounds", "jump.wav"))
@@ -2696,7 +2704,7 @@ iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
-ticking_sound = sge.Sound(os.path.join(DATA, "sounds", "ticking.wav"))
+pause_sound = sge.Sound(os.path.join(DATA, "sounds", "pause.ogg"))
 
 # Load music
 invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
