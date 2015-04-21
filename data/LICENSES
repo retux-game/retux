@@ -240,6 +240,7 @@ images/tiles/tileset_ice.png
 images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
 images/tiles/tileset_spikes.png
+sounds/bell.wav
 sounds/kill.wav
 sounds/upgrade.wav
 

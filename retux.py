@@ -129,7 +129,8 @@ COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
 
 ENEMY_ACTIVE_RANGE = 32
-TILE_ACTIVE_RANGE = 128
+ICEBLOCK_ACTIVE_RANGE = 800
+TILE_ACTIVE_RANGE = 928
 DEATHZONE = 2 * TILE_SIZE
 
 DEATH_FADE_TIME = 3000
@@ -423,10 +424,14 @@ class Level(sge.Room):
                 sge.game.event_close()
             elif key in ("enter", "p"):
                 if not self.won:
+                    sge.Music.pause()
+                    ticking_sound.play()
                     sge.game.pause()
 
     def event_paused_key_press(self, key, char):
         if key in ("enter", "p"):
+            ticking_sound.play()
+            sge.Music.unpause()
             sge.game.unpause()
         else:
             self.event_key_press(key, char)
@@ -1691,6 +1696,7 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
 
 class ThrownIceblock(FallingObject, KnockableObject, BurnableObject):
 
+    active_range = ICEBLOCK_ACTIVE_RANGE
     fall_speed = ICEBLOCK_FALL_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
@@ -1751,6 +1757,7 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject):
 
 class DashingIceblock(WalkingObject, KnockableObject, BurnableObject):
 
+    active_range = ICEBLOCK_ACTIVE_RANGE
     walk_speed = ICEBLOCK_DASH_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
@@ -2689,6 +2696,7 @@ iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
+ticking_sound = sge.Sound(os.path.join(DATA, "sounds", "ticking.wav"))
 
 # Load music
 invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
