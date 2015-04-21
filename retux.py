@@ -2047,6 +2047,8 @@ class HiddenItemBlock(HittableBlock):
             obj.x = (self.x - self.image_origin_x + self.sprite.width / 2 +
                      obj.image_origin_x - obj.sprite.width / 2)
             obj.bbox_bottom = self.bbox_top
+            Smoke.create(obj.x, obj.y, obj.z + 0.5,
+                         sprite=item_spawn_cloud_sprite)
             find_powerup_sound.play()
         else:
             CoinCollect.create(self.x, self.y, z=(self.z + 0.5))
@@ -2569,8 +2571,8 @@ bonus_empty_sprite = sge.Sprite("bonus_empty", d)
 bonus_full_sprite = sge.Sprite("bonus_full", d, fps=8)
 brick_sprite = sge.Sprite("brick", d)
 coin_sprite = sge.Sprite("coin", d, fps=8)
-fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=8,
-                                fps=8, bbox_x=-8, bbox_y=0, bbox_width=16,
+fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=16,
+                                fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                 bbox_height=24)
 
 d = os.path.join(DATA, "images", "objects", "decoration")
@@ -2583,10 +2585,12 @@ d = os.path.join(DATA, "images", "misc")
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
-smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=32, height=32,
-                               origin_x=16, origin_y=16, fps=24)
+smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
+                               origin_x=24, origin_y=24, fps=24)
 fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
                                    origin_x=8, origin_y=8, fps=30)
+item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=64, height=64,
+                                     origin_x=32, origin_y=32, fps=30)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
