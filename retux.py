@@ -744,6 +744,7 @@ class Player(xsge_physics.Collider):
         if self.held_object is None:
             other.visible = False
             self.held_object = other
+            other.parent = self
             return True
         else:
             return False
@@ -1632,7 +1633,6 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
 
     def touch(self, other):
         if other.pickup(self):
-            self.parent = other
             self.gravity = 0
             if other.action_pressed:
                 other.action()
@@ -1803,7 +1803,6 @@ class FireFlower(FallingObject):
 
     def touch(self, other):
         if other.pickup(self):
-            self.parent = other
             self.gravity = 0
 
     def knock(self, other=None):
@@ -2261,11 +2260,12 @@ class WarpSpawn(xsge_path.Path):
                             nobj.hp = cobj.hp
                             nobj.coins = cobj.coins
 
-                            if cobj.held_object is not None:
-                                nobj.held_object = cobj.held_object
-                                cr.remove(cobj.held_object)
-                                nobj.held_object.parent = nobj
-                                level.add(nobj.held_object)
+                            held_object = cobj.held_object
+                            if held_object is not None:
+                                cobj.drop_object()
+                                cr.remove(held_object)
+                                level.add(held_object)
+                                nobj.pickup(held_object)
 
                             break
 
