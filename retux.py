@@ -2648,23 +2648,62 @@ backgrounds["arctis"] = sge.Background(layers, sge.Color((109, 92, 230)))
 cave_edge_spr = sge.Sprite("cave-edge", d)
 layers = [
     sge.BackgroundLayer(
-        sge.Sprite("cave-middle", d), 0, 128, -100000, xscroll_rate=0.9,
-        yscroll_rate=0.9, repeat_left=True, repeat_right=True),
+        sge.Sprite("cave-middle", d), 0, 128, -100000, xscroll_rate=0.7,
+        yscroll_rate=0.7, repeat_left=True, repeat_right=True),
     sge.BackgroundLayer(
-        cave_edge_spr, 0, 0, -100000, xscroll_rate=0.9, yscroll_rate=0.9,
+        cave_edge_spr, 0, 0, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
         repeat_left=True, repeat_right=True, repeat_up=True),
     sge.BackgroundLayer(
-        cave_edge_spr, 0, 256, -100000, xscroll_rate=0.9, yscroll_rate=0.9,
+        cave_edge_spr, 0, 256, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
         repeat_left=True, repeat_right=True, repeat_down=True)]
 del cave_edge_spr
 backgrounds["cave"] = sge.Background(layers, sge.Color("black"))
 
+nightsky_bottom_spr = sge.Sprite("nightsky-bottom", d)
+layers = [
+    sge.BackgroundLayer(
+        sge.Sprite("nightsky1-middle", d), 0, 306, -100000, xscroll_rate=0.5,
+        yscroll_rate=0.5, repeat_left=True, repeat_right=True),
+    sge.BackgroundLayer(
+        nightsky_bottom_spr, 0, 664, -100000, xscroll_rate=0.5,
+        yscroll_rate=0.5, repeat_left=True, repeat_right=True,
+        repeat_down=True),
+    sge.BackgroundLayer(
+        sge.Sprite("nightsky2-middle", d), 0, 0, -100010, xscroll_rate=0.25,
+        yscroll_rate=0.25, repeat_left=True, repeat_right=True),
+    sge.BackgroundLayer(
+        sge.Sprite("nightsky2-top", d), 0, -600, -100010, xscroll_rate=0.25,
+        yscroll_rate=0.25, repeat_left=True, repeat_right=True,
+        repeat_up=True),
+    sge.BackgroundLayer(
+        nightsky_bottom_spr, 0, 600, -100010, xscroll_rate=0.25,
+        yscroll_rate=0.25, repeat_left=True, repeat_right=True,
+        repeat_down=True)]
+del nightsky_bottom_spr
+backgrounds["nightsky"] = sge.Background(layers, sge.Color("black"))
+
+layers = [
+    sge.BackgroundLayer(
+        sge.Sprite("bluemountain-middle", d), 0, -128, -100000,
+        xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
+        repeat_right=True),
+    sge.BackgroundLayer(
+        sge.Sprite("bluemountain-top", d), 0, -704, -100000, xscroll_rate=0.1,
+        yscroll_rate=0.1, repeat_left=True, repeat_right=True, repeat_up=True),
+    sge.BackgroundLayer(
+        sge.Sprite("bluemountain-bottom", d), 0, 448, -100000,
+        xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
+        repeat_right=True, repeat_down=True)]
+backgrounds["bluemountain"] = sge.Background(layers, sge.Color((86, 142, 206)))
+
 for i in list(backgrounds.keys()):
     layers = backgrounds[i].layers + [
         sge.BackgroundLayer(sge.Sprite("castle", d), 0, -64, -99000,
+                            xscroll_rate=0.75, yscroll_rate=0.75,
                             repeat_left=True, repeat_right=True,
                             repeat_up=True),
         sge.BackgroundLayer(sge.Sprite("castle-bottom", d), 0, 536, -99000,
+                            xscroll_rate=0.75, yscroll_rate=0.75,
                             repeat_left=True, repeat_right=True,
                             repeat_down=True)]
 
