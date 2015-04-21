@@ -241,6 +241,7 @@ images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
 images/tiles/tileset_spikes.png
 sounds/kill.wav
+sounds/upgrade.wav
 
 Authors: SuperTux development team <http://supertux.lethargik.org>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
@@ -513,11 +514,3 @@ sounds/saw.wav
 Author: Paulo Morfeo
 License: CC BY-SA 2.0 <http://creativecommons.org/licenses/by-sa/2.0/>
 Source: http://svn.berlios.de/viewcvs/lincity-ng/trunk/data/sounds/Mill1.wav
-
-------------------------------------------------------------------------
-
-sounds/upgrade.wav
-
-Authors: SuperTux development team <http://supertux.lethargik.org>
-License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
