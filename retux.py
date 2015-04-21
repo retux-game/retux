@@ -41,7 +41,7 @@ DEFAULT_LEVEL_TIME_BONUS = 30000
 
 TUX_ORIGIN_X = 28
 TUX_ORIGIN_Y = 16
-TUX_KICK_TIME = 5
+TUX_KICK_TIME = 10
 
 PLAYER_WALK_SPEED = 2
 PLAYER_RUN_SPEED = 4
@@ -98,13 +98,18 @@ ENEMY_GRAVITY = 0.5
 ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
-ENEMY_HIT_BELOW_SPEED = math.sqrt(2 * PLAYER_GRAVITY * ENEMY_HIT_BELOW_HEIGHT)
+ENEMY_HIT_BELOW_SPEED = math.sqrt(2 * ENEMY_GRAVITY * ENEMY_HIT_BELOW_HEIGHT)
 ENEMY_KILL_POINTS = 50
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 KICK_UP_SPEED = math.sqrt(2 * ENEMY_GRAVITY * KICK_UP_HEIGHT)
 ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
+
+FLOWER_GRAVITY = 0.1
+FLOWER_FALL_SPEED = 5
+FLOWER_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
+FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
 
 FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
@@ -1787,6 +1792,10 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject):
 
 class FireFlower(FallingObject):
 
+    gravity = FLOWER_GRAVITY
+    fall_speed = FLOWER_FALL_SPEED
+    slide_speed = 0
+
     def event_create(self):
         self.sprite = fire_flower_sprite
         self.image_fps = None
@@ -1806,7 +1815,7 @@ class FireFlower(FallingObject):
             self.gravity = 0
 
     def knock(self, other=None):
-        self.yvelocity = -ENEMY_HIT_BELOW_SPEED
+        self.yvelocity = -FLOWER_HIT_BELOW_SPEED
 
     def drop(self):
         if self.parent is not None:
@@ -2589,8 +2598,8 @@ smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
                                origin_x=24, origin_y=24, fps=24)
 fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
                                    origin_x=8, origin_y=8, fps=30)
-item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=64, height=64,
-                                     origin_x=32, origin_y=32, fps=30)
+item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=80, height=80,
+                                     origin_x=40, origin_y=40, fps=30)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
