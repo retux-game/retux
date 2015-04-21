@@ -30,6 +30,7 @@
   <object type="level_end" x="256" y="0" width="32" height="416"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
