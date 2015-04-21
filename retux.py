@@ -2612,6 +2612,7 @@ fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
                                    origin_x=8, origin_y=8, fps=30)
 item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=80, height=80,
                                      origin_x=40, origin_y=40, fps=30)
+item_spawn_cloud_sprite.delete_frame(0)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
