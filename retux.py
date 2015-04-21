@@ -106,13 +106,15 @@ ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
 
-FLOWER_GRAVITY = 0.1
+FLOWER_GRAVITY = 0.25
 FLOWER_FALL_SPEED = 5
 FLOWER_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
 FLOWER_THROW_SPEED = 8
-FLOWER_UP_HEIGHT = TILE_SIZE * 0.25
-FLOWER_UP_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_UP_HEIGHT)
+FLOWER_THROW_HEIGHT = TILE_SIZE * 0.5
+FLOWER_THROW_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_HEIGHT)
+FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 1.5
+FLOWER_THROW_UP_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_UP_HEIGHT)
 
 FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
@@ -1846,12 +1848,13 @@ class FireFlower(FallingObject):
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
+                yv = -FLOWER_THROW_UP_VSPEED if up else -FLOWER_THROW_VSPEED
                 self.parent.kick_object()
                 kick_sound.play()
                 ThrownFlower.create(self.parent, self.x, self.y, self.z,
                                     sprite=self.sprite,
                                     xvelocity=(FIREBALL_SPEED * d),
-                                    yvelocity=-FLOWER_UP_SPEED,
+                                    yvelocity=yv,
                                     image_xscale=self.image_xscale)
                 self.parent = None
                 self.destroy()
