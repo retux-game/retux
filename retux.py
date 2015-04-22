@@ -16,6 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import division
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
+
 __version__ = "0.1a1"
 
 import os
@@ -111,18 +116,18 @@ FLOWER_FALL_SPEED = 5
 FLOWER_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
 FLOWER_THROW_SPEED = 8
-FLOWER_THROW_HEIGHT = TILE_SIZE * 0.5
+FLOWER_THROW_HEIGHT = TILE_SIZE / 2
 FLOWER_THROW_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_HEIGHT)
-FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 1.5
+FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
 FLOWER_THROW_UP_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_UP_HEIGHT)
 
 FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
 FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
-FIREBALL_BOUNCE_HEIGHT = TILE_SIZE * 0.5
+FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
 FIREBALL_BOUNCE_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_BOUNCE_HEIGHT)
-FIREBALL_UP_HEIGHT = TILE_SIZE * 1.5
+FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
 FIREBALL_UP_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_UP_HEIGHT)
 
 COINBRICK_COINS = 20
@@ -446,6 +451,17 @@ class Level(sge.Room):
             r.fname = fname
             current_areas[fname] = r
             return r
+
+
+class Worldmap(sge.Room):
+
+    """Handles worldmaps."""
+
+    def __init__(self, objects=(), width=None, height=None, views=None,
+                 background=None, background_x=0, background_y=0, music=None):
+        self.music = music
+        super(Worldmap, self).__init__(objects, width, height, views,
+                                       background, background_x, background_y)
 
 
 class Tile(sge.Object):
