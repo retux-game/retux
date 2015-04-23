@@ -36,6 +36,63 @@ import xsge_path
 import xsge_physics
 import xsge_tmx
 
+__all__ = [
+    "DATA", "SCREEN_SIZE", "TILE_SIZE", "FPS",
+
+    "DEFAULT_LEVEL_TIME_BONUS",
+
+    "TUX_ORIGIN_X", "TUX_ORIGIN_Y", "TUX_KICK_TIME",
+
+    "PLAYER_WALK_SPEED", "PLAYER_RUN_SPEED", "PLAYER_MAX_SPEED",
+    "PLAYER_ACCELERATION", "PLAYER_AIR_ACCELERATION", "PLAYER_FRICTION",
+    "PLAYER_AIR_FRICTION", "PLAYER_JUMP_HEIGHT", "PLAYER_RUN_JUMP_HEIGHT",
+    "PLAYER_STOMP_HEIGHT", "PLAYER_GRAVITY", "PLAYER_FALL_SPEED",
+    "PLAYER_SLIDE_ACCEL", "PLAYER_SLIDE_SPEED", "PLAYER_WALK_FRAMES_PER_PIXEL",
+    "PLAYER_RUN_IMAGE_SPEED", "PLAYER_HITSTUN", "PLAYER_DIE_HEIGHT",
+    "PLAYER_DIE_FALL_SPEED",
+
+    "MAX_HP", "TIMER_FRAMES", "HEAL_COINS",
+
+    "CEILING_LAX", "STOMP_LAX",
+
+    "BLOCK_HIT_SPEED", "BLOCK_HIT_GRAVITY", "COIN_COLLECT_TIME",
+    "COIN_COLLECT_SPEED", "ITEM_SPAWN_SPEED",
+
+    "SECOND_POINTS", "COIN_POINTS",
+
+    "CAMERA_SPEED_FACTOR", "CAMERA_OFFSET_FACTOR", "CAMERA_MARGIN_TOP",
+    "CAMERA_MARGIN_BOTTOM",
+
+    "WARP_LAX", "WARP_SPEED",
+
+    "ENEMY_WALK_SPEED", "ENEMY_GRAVITY", "ENEMY_FALL_SPEED",
+    "ENEMY_SLIDE_SPEED", "ENEMY_HIT_BELOW_HEIGHT", "ENEMY_KILL_POINTS",
+    "KICK_UP_HEIGHT", "ICEBLOCK_FALL_SPEED", "ICEBLOCK_FRICTION",
+    "ICEBLOCK_DASH_SPEED",
+
+    "FLOWER_GRAVITY", "FLOWER_FALL_SPEED", "FLOWER_HIT_BELOW_HEIGHT",
+    "FLOWER_THROW_SPEED", "FLOWER_THROW_HEIGHT", "FLOWER_THROW_UP_HEIGHT",
+
+    "FIREBALL_AMMO", "FIREBALL_SPEED", "FIREBALL_GRAVITY",
+    "FIREBALL_FALL_SPEED", "FIREBALL_BOUNCE_HEIGHT", "FIREBALL_UP_HEIGHT",
+
+    "PLAYER_JUMP_SPEED", "PLAYER_RUN_JUMP_SPEED", "PLAYER_STOMP_SPEED",
+    "PLAYER_DIE_SPEED", "FLOWER_HIT_BELOW_SPEED", "FLOWER_THROW_VSPEED",
+    "FLOWER_THROW_UP_VSPEED", "FIREBALL_BOUNCE_SPEED", "FIREBALL_UP_SPEED",
+
+    "COINBRICK_COINS", "COINBRICK_DECAY_TIME",
+
+    "ENEMY_ACTIVE_RANGE", "ICEBLOCK_ACTIVE_RANGE", "TILE_ACTIVE_RANGE",
+    "DEATHZONE",
+
+    "DEATH_FADE_TIME", "DEATH_RESTART_WAIT",
+
+    "WIN_COUNT_START_TIME", "WIN_COUNT_CONTINUE_TIME", "WIN_COUNT_MULT",
+    "WIN_COUNT_AMOUNT", "WIN_FINISH_DELAY",
+
+    "TITLE_MUSIC", "BOSS_MUSIC", "FINAL_BOSS_MUSIC",
+    ]
+
 DATA = os.path.join(os.path.dirname(__file__), "data")
 
 SCREEN_SIZE = [800, 448]
@@ -67,12 +124,6 @@ PLAYER_RUN_IMAGE_SPEED = 0.25
 PLAYER_HITSTUN = 120
 PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
 PLAYER_DIE_FALL_SPEED = 8
-
-# Using a kinematic equation: v[f]^2 = v[i]^2 + 2ad
-PLAYER_JUMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_JUMP_HEIGHT)
-PLAYER_RUN_JUMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_RUN_JUMP_HEIGHT)
-PLAYER_STOMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_STOMP_HEIGHT)
-PLAYER_DIE_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_DIE_HEIGHT)
 
 MAX_HP = 5
 TIMER_FRAMES = 40
@@ -114,20 +165,26 @@ ICEBLOCK_DASH_SPEED = 7
 FLOWER_GRAVITY = 0.25
 FLOWER_FALL_SPEED = 5
 FLOWER_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
-FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
 FLOWER_THROW_SPEED = 8
 FLOWER_THROW_HEIGHT = TILE_SIZE / 2
-FLOWER_THROW_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_HEIGHT)
 FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
-FLOWER_THROW_UP_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_UP_HEIGHT)
 
 FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
 FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
 FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
-FIREBALL_BOUNCE_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_BOUNCE_HEIGHT)
 FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
+
+# Using a kinematic equation: v[f]^2 = v[i]^2 + 2ad
+PLAYER_JUMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_JUMP_HEIGHT)
+PLAYER_RUN_JUMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_RUN_JUMP_HEIGHT)
+PLAYER_STOMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_STOMP_HEIGHT)
+PLAYER_DIE_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_DIE_HEIGHT)
+FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
+FLOWER_THROW_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_HEIGHT)
+FLOWER_THROW_UP_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_UP_HEIGHT)
+FIREBALL_BOUNCE_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_BOUNCE_HEIGHT)
 FIREBALL_UP_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_UP_HEIGHT)
 
 COINBRICK_COINS = 20
@@ -2421,6 +2478,11 @@ class Warp(WarpSpawn):
             sge.game.current_room.warps.remove(self)
 
 
+class MapPath(xsge_path.Path):
+
+    pass
+
+
 def get_object(x, y, cls=None, **kwargs):
     cls = TYPES.get(cls, sge.Object)
     return cls(x, y, **kwargs)
@@ -2486,14 +2548,14 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "spike_bottom": SpikeBottom, "death": Death, "level_end": LevelEnd,
          "creatures": get_object, "hazards": get_object,
          "special_blocks": get_object, "decoration_small": get_object,
-         "player": Player, "walking_snowball": WalkingSnowball,
+         "map_objects": get_object, "player": Player,
+         "walking_snowball": WalkingSnowball,
          "walking_iceblock": WalkingIceblock, "fireflower": FireFlower,
-         "brick": Brick,
-         "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
+         "brick": Brick, "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
          "infoblock": InfoBlock, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
-         "warp_spawn": WarpSpawn}
+         "warp_spawn": WarpSpawn, "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,

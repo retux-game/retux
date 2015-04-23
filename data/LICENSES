@@ -236,9 +236,13 @@ images/tiles/tileset_blocks.png
 images/tiles/tileset_castle.png
 images/tiles/tileset_cave.png
 images/tiles/tileset_ice.png
+images/tiles/tileset_icyisland.png
 images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
 images/tiles/tileset_spikes.png
+images/worldmap/level_complete.png
+images/worldmap/level_incomplete.png
+images/worldmap/tux.png
 sounds/bell.wav
 sounds/kill.wav
 sounds/upgrade.wav
@@ -308,10 +312,14 @@ tilesets/blocks.tsx
 tilesets/cave.tsx
 tilesets/creatures.tsx
 tilesets/decoration_small.tsx
+tilesets/icyisland.tsx
 tilesets/igloo.tsx
+tilesets/map_objects.tsx
 tilesets/pipes.tsx
 tilesets/snow.tsx
 tilesets/special_blocks.tsx
+worldmaps/base.tmx
+worldmaps/test.tmx
 
 Author: onpon4 <https://onpon4.github.io>
 License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
