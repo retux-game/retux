@@ -43,13 +43,91 @@
  </objectgroup>
  <objectgroup color="#ffff00" name="map_path">
   <object x="64" y="96">
-   <polyline points="0,0 0,64 64,64 64,128 160,128 160,192 320,192 576,192 576,256 64,256"/>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="64" y="160">
+   <polyline points="0,0 64,0"/>
   </object>
   <object x="128" y="160">
-   <polyline points="0,0 0,-64 256,-64 256,0 512,0 512,128"/>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="128" y="96">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="192" y="96">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="256" y="96">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="320" y="96">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="384" y="96">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="384" y="160">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="448" y="160">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="512" y="160">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="576" y="160">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="640" y="160">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="640" y="224">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="640" y="288">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="640" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="576" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="512" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="448" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="384" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="320" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="256" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="192" y="352">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="128" y="160">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="128" y="224">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object x="224" y="224">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="224" y="288">
+   <polyline points="0,0 160,0"/>
   </object>
   <object x="384" y="160">
    <polyline points="0,0 0,128"/>
+  </object>
+  <object x="384" y="288">
+   <polyline points="0,0 256,0"/>
   </object>
  </objectgroup>
 </map>

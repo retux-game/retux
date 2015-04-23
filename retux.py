@@ -250,10 +250,11 @@ class Level(sge.Room):
     """Handles levels."""
 
     def __init__(self, objects=(), width=None, height=None, views=None,
-                 background=None, background_x=0, background_y=0,
+                 background=None, background_x=0, background_y=0, name=None,
                  bgname=None, music=None, time_bonus=DEFAULT_LEVEL_TIME_BONUS,
                  spawn=None, timeline=None):
         self.fname = None
+        self.name = name
         self.music = music
         self.time_bonus = time_bonus
         self.spawn = spawn
@@ -2480,7 +2481,19 @@ class Warp(WarpSpawn):
 
 class MapPath(xsge_path.Path):
 
-    pass
+    forward = True
+
+    def event_create(self):
+        if self.points:
+            x, y = self.points[-1]
+            rp = self.points[1:]
+            rp.sort(reverse=True)
+            rp.append((self.x, self.y))
+            m = MapPath.create(self.x + x, self.y + y, rp)
+            m.forward = False
+        else:
+            print("Warning: MapPath at ({}, {}) has only one point!".format(
+                self.x, self.y))
 
 
 def get_object(x, y, cls=None, **kwargs):
