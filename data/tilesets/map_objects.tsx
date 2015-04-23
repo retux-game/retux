@@ -4,6 +4,6 @@
   <image width="32" height="32" source="../images/worldmap/tux.png"/>
  </tile>
  <tile id="1">
-  <image width="32" height="32" source="../images/worldmap/level_incomplete.png"/>
+  <image width="32" height="32" source="../images/worldmap/level_complete.png"/>
  </tile>
 </tileset>

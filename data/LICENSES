@@ -241,7 +241,9 @@ images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
 images/tiles/tileset_spikes.png
 images/worldmap/level_complete.png
-images/worldmap/level_incomplete.png
+images/worldmap/level_incomplete-01.png
+images/worldmap/level_incomplete-02.png
+images/worldmap/level_incomplete-03.png
 images/worldmap/tux.png
 sounds/bell.wav
 sounds/kill.wav

@@ -124,10 +124,13 @@
    <polyline points="0,0 160,0"/>
   </object>
   <object x="384" y="160">
-   <polyline points="0,0 0,128"/>
+   <polyline points="0,0 0,64"/>
   </object>
   <object x="384" y="288">
    <polyline points="0,0 256,0"/>
+  </object>
+  <object x="384" y="224">
+   <polyline points="0,0 0,64"/>
   </object>
  </objectgroup>
 </map>

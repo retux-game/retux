@@ -2479,6 +2479,206 @@ class Warp(WarpSpawn):
             sge.game.current_room.warps.remove(self)
 
 
+class MapPlayer(sge.Object):
+
+    moving = False
+
+    def get_space(self):
+        return MapSpace.get_at(self.x, self.y)
+
+    def event_key_press(self, key, char):
+        space = self.get_space()
+
+        if key in left_key:
+            path = space.get_left_exit()
+            if path is not None:
+                if path.points:
+                    x, y = path.points[-1]
+                else:
+                    x = 0
+                    y = 0
+                target_space = MapSpace.get_at(path.x + x, path.y + y)
+                if space.cleared or target_space.cleared:
+                    self.moving = True
+                    path.follow_start(self, MAP_SPEED)
+        elif key in right_key:
+            path = space.get_right_exit()
+            if path is not None:
+                if path.points:
+                    x, y = path.points[-1]
+                else:
+                    x = 0
+                    y = 0
+                target_space = MapSpace.get_at(path.x + x, path.y + y)
+                if space.cleared or target_space.cleared:
+                    self.moving = True
+                    path.follow_start(self, MAP_SPEED)
+        elif key in up_key:
+            path = space.get_up_exit()
+            if path is not None:
+                if path.points:
+                    x, y = path.points[-1]
+                else:
+                    x = 0
+                    y = 0
+                target_space = MapSpace.get_at(path.x + x, path.y + y)
+                if space.cleared or target_space.cleared:
+                    self.moving = True
+                    path.follow_start(self, MAP_SPEED)
+        elif key in down_key:
+            path = space.get_down_exit()
+            if path is not None:
+                if path.points:
+                    x, y = path.points[-1]
+                else:
+                    x = 0
+                    y = 0
+                target_space = MapSpace.get_at(path.x + x, path.y + y)
+                if space.cleared or target_space.cleared:
+                    self.moving = True
+                    path.follow_start(self, MAP_SPEED)
+        elif key in jump_key or key in action_key:
+            level = Level.load(space.level)
+            level.start()
+
+    def event_stop(self):
+        self.moving = False
+
+
+class MapSpace(sge.Object):
+
+    def __init__(self, x, y, level=None, **kwargs):
+        super(MapSpace, self).__init__(x, y, **kwargs)
+        self.level = level
+
+    @property
+    def cleared(self):
+        # TODO
+        return True
+
+    def event_create(self):
+        if self.cleared:
+            self.sprite = worldmap_level_complete_sprite
+        else:
+            self.sprite = worldmap_level_incomplete_sprite
+            self.image_fps = None
+
+    def get_exits(self):
+        """
+        Return the exits of this space as a tuple in the form:
+        (up, right, down, left)
+        """
+        exits = []
+        diagonal_exits = []
+        left_exit = None
+        right_exit = None
+        up_exit = None
+        down_exit = None
+
+        for obj in sge.game.current_room.objects:
+            if (isinstance(obj, MapPath) and obj.points and
+                    abs(self.x - obj.x) < 1 and abs(self.y - obj.y) < 1):
+                exits.append(obj)
+
+        # First do exits that are unambiguously one direction
+        for obj in exits:
+            x, y = obj.points[0]
+            if x == 0:
+                if y > 0:
+                    if down_exit is None:
+                        down_exit = obj
+                elif y < 0:
+                    if up_exit is None:
+                        up_exit = obj
+                else:
+                    warnings.warn("Path at ({}, {}) has no direction!".format(
+                        obj.x, obj.y))
+            elif y == 0:
+                if x > 0:
+                    if right_exit is None:
+                        right_exit = obj
+                elif x < 0:
+                    if left_exit is None:
+                        left_exit = obj
+                else:
+                    warnings.warn("Path at ({}, {}) has no direction!".format(
+                        obj.x, obj.y))
+            else:
+                diagonal_exits.append(obj)
+
+        # And now do diagonal exits
+        for obj in diagonal_exits:
+            x, y = obj.points[0]
+            assert x and y
+            if abs(y) > abs(x):
+                # Mostly vertical
+                if y > 0:
+                    if down_exit is None:
+                        down_exit = obj
+                    else:
+                        if x > 0:
+                            if right_exit is None:
+                                right_exit = obj
+                        else:
+                            if left_exit is None:
+                                left_exit = obj
+                else:
+                    if up_exit is None:
+                        up_exit = obj
+                    else:
+                        if x > 0:
+                            if right_exit is None:
+                                right_exit = obj
+                        else:
+                            if left_exit is None:
+                                left_exit = obj
+            else:
+                # Mostly horizontal, or equal
+                if x > 0:
+                    if right_exit is None:
+                        right_exit = obj
+                    else:
+                        if y > 0:
+                            if down_exit is None:
+                                down_exit = obj
+                        else:
+                            if up_exit is None:
+                                up_exit = obj
+                else:
+                    if left_exit is None:
+                        left_exit = obj
+                    else:
+                        if y > 0:
+                            if down_exit is None:
+                                down_exit = obj
+                        else:
+                            if up_exit is None:
+                                up_exit = obj
+
+        return (up_exit, right_exit, down_exit, left_exit)
+
+    def get_left_exit(self):
+        return self.get_exits()[3]
+
+    def get_right_exit(self):
+        return self.get_exits()[1]
+
+    def get_up_exit(self):
+        return self.get_exits()[0]
+
+    def get_down_exit(self):
+        return self.get_exits()[2]
+
+    @classmethod
+    def get_at(cls, x, y):
+        for obj in sge.game.current_room.objects:
+            if (isinstance(obj, MapSpace) and abs(x - obj.x) < 1 and
+                    abs(y - obj.y) < 1):
+                return obj
+
+        return None
+
+
 class MapPath(xsge_path.Path):
 
     forward = True
@@ -2492,8 +2692,19 @@ class MapPath(xsge_path.Path):
             m = MapPath.create(self.x + x, self.y + y, rp)
             m.forward = False
         else:
-            print("Warning: MapPath at ({}, {}) has only one point!".format(
+            warnings.warn("MapPath at ({}, {}) has only one point!".format(
                 self.x, self.y))
+
+    def event_follow_end(self, obj):
+        if self.points:
+            x, y = self.points[-1]
+        else:
+            x = 0
+            y = 0
+
+        obj.x = self.x + x
+        obj.y = self.y + y
+        obj.moving = False
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -2712,6 +2923,11 @@ coin_icon_sprite = coin_sprite.copy()
 coin_icon_sprite.width = 16
 coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
+
+d = os.path.join(DATA, "images", "worldmap")
+worldmap_tux_sprite = sge.Sprite("tux", d)
+worldmap_level_complete_sprite = sge.Sprite("level_complete", d)
+worldmap_level_incomplete_sprite = sge.Sprite("level_incomplete", d, fps=8)
 
 # Load backgrounds
 d = os.path.join(DATA, "images", "backgrounds")
