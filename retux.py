@@ -221,6 +221,7 @@ loaded_music = {}
 tux_grab_sprites = {}
 
 levels = []
+cleared_levels = []
 current_level = None
 current_areas = {}
 main_area = None
@@ -2567,15 +2568,17 @@ class MapSpace(sge.Object):
 
     @property
     def cleared(self):
-        # TODO
-        return True
+        return (self.level is None or self.level in cleared_levels)
 
     def update_sprite(self):
-        if self.cleared:
-            self.sprite = worldmap_level_complete_sprite
+        if self.level is not None:
+            if self.cleared:
+                self.sprite = worldmap_level_complete_sprite
+            else:
+                self.sprite = worldmap_level_incomplete_sprite
+                self.image_fps = None
         else:
-            self.sprite = worldmap_level_incomplete_sprite
-            self.image_fps = None
+            self.sprite = None
 
     def get_exits(self):
         """
