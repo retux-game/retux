@@ -224,6 +224,7 @@ levels = []
 current_level = None
 current_areas = {}
 main_area = None
+level_cleared = False
 
 score = 0
 
@@ -520,6 +521,22 @@ class Worldmap(sge.Room):
         self.music = music
         super(Worldmap, self).__init__(objects, width, height, views,
                                        background, background_x, background_y)
+
+    def event_room_start(self):
+        self.event_room_resume()
+
+    def event_room_resume(self):
+        global level_cleared
+
+        play_music(self.music)
+        for obj in self.objects:
+            if isinstance(obj, MapSpace):
+                obj.update_sprite()
+            elif isinstance(obj, MapPlayer):
+                if level_cleared:
+                    obj.move_forward()
+
+        level_cleared = False
 
 
 class Tile(sge.Object):
@@ -2483,60 +2500,57 @@ class MapPlayer(sge.Object):
 
     moving = False
 
-    def get_space(self):
-        return MapSpace.get_at(self.x, self.y)
+    def _follow_path(self, space, path):
+        if path is not None:
+            if path.points:
+                x, y = path.points[-1]
+            else:
+                x = 0
+                y = 0
+            target_space = MapSpace.get_at(path.x + x, path.y + y)
+            if space.cleared or target_space.cleared:
+                self.moving = True
+                path.follow_start(self, MAP_SPEED)
+
+    def move_left(self):
+        space = MapSpace.get_at(self.x, self.y)
+        path = space.get_left_exit()
+        self._follow_path(space, path)
+
+    def move_right(self):
+        space = MapSpace.get_at(self.x, self.y)
+        path = space.get_right_exit()
+        self._follow_path(space, path)
+
+    def move_up(self):
+        space = MapSpace.get_at(self.x, self.y)
+        path = space.get_up_exit()
+        self._follow_path(space, path)
+
+    def move_down(self):
+        space = MapSpace.get_at(self.x, self.y)
+        path = space.get_down_exit()
+        self._follow_path(space, path)
+
+    def move_forward(self):
+        space = MapSpace.get_at(self.x, self.y)
+        paths = []
+        for path in space.get_exits():
+            if path.forward:
+                paths.append(path)
+
+        if len(paths) == 1:
+            self._follow_path(space, paths[0])
 
     def event_key_press(self, key, char):
-        space = self.get_space()
-
         if key in left_key:
-            path = space.get_left_exit()
-            if path is not None:
-                if path.points:
-                    x, y = path.points[-1]
-                else:
-                    x = 0
-                    y = 0
-                target_space = MapSpace.get_at(path.x + x, path.y + y)
-                if space.cleared or target_space.cleared:
-                    self.moving = True
-                    path.follow_start(self, MAP_SPEED)
+            self.move_left()
         elif key in right_key:
-            path = space.get_right_exit()
-            if path is not None:
-                if path.points:
-                    x, y = path.points[-1]
-                else:
-                    x = 0
-                    y = 0
-                target_space = MapSpace.get_at(path.x + x, path.y + y)
-                if space.cleared or target_space.cleared:
-                    self.moving = True
-                    path.follow_start(self, MAP_SPEED)
+            self.move_right()
         elif key in up_key:
-            path = space.get_up_exit()
-            if path is not None:
-                if path.points:
-                    x, y = path.points[-1]
-                else:
-                    x = 0
-                    y = 0
-                target_space = MapSpace.get_at(path.x + x, path.y + y)
-                if space.cleared or target_space.cleared:
-                    self.moving = True
-                    path.follow_start(self, MAP_SPEED)
+            self.move_up()
         elif key in down_key:
-            path = space.get_down_exit()
-            if path is not None:
-                if path.points:
-                    x, y = path.points[-1]
-                else:
-                    x = 0
-                    y = 0
-                target_space = MapSpace.get_at(path.x + x, path.y + y)
-                if space.cleared or target_space.cleared:
-                    self.moving = True
-                    path.follow_start(self, MAP_SPEED)
+            self.move_down()
         elif key in jump_key or key in action_key:
             level = Level.load(space.level)
             level.start()
@@ -2556,7 +2570,7 @@ class MapSpace(sge.Object):
         # TODO
         return True
 
-    def event_create(self):
+    def update_sprite(self):
         if self.cleared:
             self.sprite = worldmap_level_complete_sprite
         else:
