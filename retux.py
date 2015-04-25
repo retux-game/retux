@@ -524,6 +524,7 @@ class Worldmap(sge.Room):
                                        background, background_x, background_y)
 
     def event_room_start(self):
+        self.level_text = None
         self.event_room_resume()
 
     def event_room_resume(self):
@@ -538,6 +539,17 @@ class Worldmap(sge.Room):
                     obj.move_forward()
 
         level_cleared = False
+
+    def event_step(self, time_passed, delta_mult):
+        if self.level_text:
+            x = sge.game.width / 2
+            y = sge.game.height - font.size
+            sge.game.project_text(font, self.level_text, x + 2, y + 2,
+                                  color=sge.Color("black"), halign="center",
+                                  valign="bottom")
+            sge.game.project_text(font, self.level_text, x, y,
+                                  color=sge.Color("white"), halign="center",
+                                  valign="bottom")
 
 
 class Tile(sge.Object):
@@ -2515,33 +2527,65 @@ class MapPlayer(sge.Object):
 
     def move_left(self):
         space = MapSpace.get_at(self.x, self.y)
-        path = space.get_left_exit()
-        self._follow_path(space, path)
+        if space is not None:
+            path = space.get_left_exit()
+            self._follow_path(space, path)
 
     def move_right(self):
         space = MapSpace.get_at(self.x, self.y)
-        path = space.get_right_exit()
-        self._follow_path(space, path)
+        if space is not None:
+            path = space.get_right_exit()
+            self._follow_path(space, path)
 
     def move_up(self):
         space = MapSpace.get_at(self.x, self.y)
-        path = space.get_up_exit()
-        self._follow_path(space, path)
+        if space is not None:
+            path = space.get_up_exit()
+            self._follow_path(space, path)
 
     def move_down(self):
         space = MapSpace.get_at(self.x, self.y)
-        path = space.get_down_exit()
-        self._follow_path(space, path)
+        if space is not None:
+            path = space.get_down_exit()
+            self._follow_path(space, path)
 
     def move_forward(self):
         space = MapSpace.get_at(self.x, self.y)
-        paths = []
-        for path in space.get_exits():
-            if path.forward:
-                paths.append(path)
+        if space is not None:
+            paths = []
+            for path in space.get_exits():
+                if path.forward:
+                    paths.append(path)
 
-        if len(paths) == 1:
-            self._follow_path(space, paths[0])
+            if len(paths) == 1:
+                self._follow_path(space, paths[0])
+
+    def start_level(self):
+        space = MapSpace.get_at(self.x, self.y)
+        if space is not None and space.level:
+            level = Level.load(space.level)
+            level.start(transition="iris_in")
+
+    def event_step(self, time_passed, delta_mult):
+        room = sge.game.current_room
+
+        space = MapSpace.get_at(self.x, self.y)
+        if space is not None and space.level:
+            name = Level.load(space.level).name
+            if name:
+                room.level_text = name
+            elif space.level in levels:
+                room.level_text = "Level {}".format(
+                    levels.index(level) + 1)
+            else:
+                room.level_text = "???"
+        else:
+            room.level_text = None
+
+        if room.views:
+            view = room.views[0]
+            view.x = self.x - view.width / 2 + self.sprite.width / 2
+            view.y = self.y - view.height / 2 + self.sprite.height / 2
 
     def event_key_press(self, key, char):
         if key in left_key:
@@ -2553,8 +2597,7 @@ class MapPlayer(sge.Object):
         elif key in down_key:
             self.move_down()
         elif key in jump_key or key in action_key:
-            level = Level.load(space.level)
-            level.start()
+            self.start_level()
 
     def event_stop(self):
         self.moving = False
