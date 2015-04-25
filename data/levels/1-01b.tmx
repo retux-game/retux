@@ -42,7 +42,7 @@
   </object>
   <object x="640" y="352">
    <properties>
-    <property name="dest" value="1-01.tmx:bonus_exit"/>
+    <property name="dest" value="__main__:bonus_exit"/>
    </properties>
    <polyline points="0,0 64,0"/>
   </object>
