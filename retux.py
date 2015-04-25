@@ -2841,7 +2841,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
          "infoblock": InfoBlock, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
-         "warp_spawn": WarpSpawn, "map_path": MapPath}
+         "warp_spawn": WarpSpawn, "map_player": MapPlayer,
+         "map_level": MapSpace, "map_warp": MapSpace, "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
@@ -2990,6 +2991,7 @@ d = os.path.join(DATA, "images", "worldmap")
 worldmap_tux_sprite = sge.Sprite("tux", d)
 worldmap_level_complete_sprite = sge.Sprite("level_complete", d)
 worldmap_level_incomplete_sprite = sge.Sprite("level_incomplete", d, fps=8)
+worldmap_warp_sprite = sge.Sprite("warp", d, fps=3)
 
 # Load backgrounds
 d = os.path.join(DATA, "images", "backgrounds")
