@@ -223,11 +223,13 @@ sneak_key = ["shift_left"]
 worldmaps = []
 levels = []
 cleared_levels = []
-current_level = None
-current_areas = {}
+current_worldmap = None
+current_worldmap_space = None
+current_level = 0
 
 score = 0
 
+current_areas = {}
 main_area = None
 level_cleared = False
 
@@ -365,6 +367,7 @@ class Level(sge.Room):
                         spawn_point.follow_start(player, WARP_SPEED)
 
     def event_step(self, time_passed, delta_mult):
+        global current_level
         global score
         global current_areas
         global main_area
@@ -458,8 +461,17 @@ class Level(sge.Room):
                 current_areas = {}
                 main_area = None
 
-                # TODO: Next level or worldmap
-                sge.game.end()
+                if current_worldmap:
+                    m = Worldmap.load(current_worldmap)
+                    m.start(transition="iris_out", transition_time=750)
+                else:
+                    current_level += 1
+                    if current_level < len(levels):
+                        level = Level.load(levels[current_level])
+                        level.start(transition="fade")
+                    else:
+                        # TODO: Ending
+                        sge.game.end()
 
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
@@ -552,6 +564,12 @@ class Worldmap(sge.Room):
             sge.game.project_text(font, self.level_text, x, y,
                                   color=sge.Color("white"), halign="center",
                                   valign="bottom")
+
+    @classmethod
+    def load(cls, fname):
+        r = xsge_tmx.load(os.path.join(DATA, "worldmaps", fname), cls=cls,
+                          types=TYPES)
+        return r
 
 
 class Tile(sge.Object):
@@ -2373,32 +2391,38 @@ class WarpSpawn(xsge_path.Path):
             self.warps_out.remove(obj)
 
     def event_follow_end(self, obj):
-        if self.dest and ":" in self.dest:
-            cr = sge.game.current_room
-            level_f, spawn = self.dest.split(":", 1)
-            level = Level.load(level_f)
-            level.spawn = spawn
-            level.points = cr.points
-            level.time_bonus = cr.time_bonus
+        if self.dest and (":" in self.dest or self.dest == "__map__"):
+            if self.dest == "__map__":
+                m = Worldmap.load(current_worldmap)
+                m.start(transition="iris_out", transition_time=750)
+            else:
+                cr = sge.game.current_room
+                level_f, spawn = self.dest.split(":", 1)
+                if level_f == "__main__":
+                    level_f = main_area
+                level = Level.load(level_f)
+                level.spawn = spawn
+                level.points = cr.points
+                level.time_bonus = cr.time_bonus
 
-            for nobj in level.objects:
-                if isinstance(nobj, Player):
-                    for cobj in cr.objects:
-                        if (isinstance(cobj, Player) and
-                                cobj.player == nobj.player):
-                            nobj.hp = cobj.hp
-                            nobj.coins = cobj.coins
+                for nobj in level.objects:
+                    if isinstance(nobj, Player):
+                        for cobj in cr.objects:
+                            if (isinstance(cobj, Player) and
+                                    cobj.player == nobj.player):
+                                nobj.hp = cobj.hp
+                                nobj.coins = cobj.coins
 
-                            held_object = cobj.held_object
-                            if held_object is not None:
-                                cobj.drop_object()
-                                cr.remove(held_object)
-                                level.add(held_object)
-                                nobj.pickup(held_object)
+                                held_object = cobj.held_object
+                                if held_object is not None:
+                                    cobj.drop_object()
+                                    cr.remove(held_object)
+                                    level.add(held_object)
+                                    nobj.pickup(held_object)
 
-                            break
+                                break
 
-            level.start()
+                level.start()
         else:
             pipe_sound.play()
             self.warps_out.append(obj)
@@ -2564,9 +2588,16 @@ class MapPlayer(sge.Object):
 
     def start_level(self):
         space = MapSpace.get_at(self.x, self.y)
-        if space is not None and space.level:
-            level = Level.load(space.level)
-            level.start(transition="iris_in")
+        if space is not None:
+            space.start_level()
+
+    def event_create(self):
+        if current_worldmap_space is not None:
+            for obj in sge.game.current_room.objects:
+                if (isinstance(obj, MapSpace) and
+                        obj.ID == current_worldmap_space):
+                    self.x = obj.x
+                    self.y = obj.y
 
     def event_step(self, time_passed, delta_mult):
         room = sge.game.current_room
@@ -2607,9 +2638,10 @@ class MapPlayer(sge.Object):
 
 class MapSpace(sge.Object):
 
-    def __init__(self, x, y, level=None, **kwargs):
+    def __init__(self, x, y, level=None, ID=None, **kwargs):
         super(MapSpace, self).__init__(x, y, **kwargs)
         self.level = level
+        self.ID = ID if ID is not None else level
 
     @property
     def cleared(self):
@@ -2731,6 +2763,11 @@ class MapSpace(sge.Object):
     def get_down_exit(self):
         return self.get_exits()[2]
 
+    def start_level(self):
+        if self.level:
+            level = Level.load(self.level)
+            level.start(transition="iris_in", transition_time=750)
+
     @classmethod
     def get_at(cls, x, y):
         for obj in sge.game.current_room.objects:
@@ -2739,6 +2776,34 @@ class MapSpace(sge.Object):
                 return obj
 
         return None
+
+
+class MapWarp(MapSpace):
+
+    def __init__(self, x, y, dest=None, **kwargs):
+        super(MapWarp, self).__init__(x, y, **kwargs)
+        self.dest = dest
+
+    def update_sprite(self):
+        self.sprite = worldmap_warp_sprite
+        self.image_fps = None
+
+    def start_level(self):
+        global current_worldmap
+        global current_worldmap_space
+
+        if self.dest and ":" in self.dest:
+            map_f, spawn = self.dest.split(":", 1)
+            current_worldmap = self.dest
+            current_worldmap_space = spawn
+
+        if self.level:
+            level = Level.load(self.level)
+            level.start(transition="iris_in", transition_time=750)
+        else:
+            m = Worldmap.load(current_worldmap)
+            m.start(transition="dissolve", transition_time=750)
+            warp_sound.play()
 
 
 class MapPath(xsge_path.Path):
@@ -2758,6 +2823,8 @@ class MapPath(xsge_path.Path):
                 self.x, self.y))
 
     def event_follow_end(self, obj):
+        global current_worldmap_space
+
         if self.points:
             x, y = self.points[-1]
         else:
@@ -2767,6 +2834,10 @@ class MapPath(xsge_path.Path):
         obj.x = self.x + x
         obj.y = self.y + y
         obj.moving = False
+
+        space = MapSpace.get_at(obj.x, obj.y)
+        if space is not None and space.ID is not None:
+            current_worldmap_space = space.ID
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -2842,7 +2913,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "infoblock": InfoBlock, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "warp_spawn": WarpSpawn, "map_player": MapPlayer,
-         "map_level": MapSpace, "map_warp": MapSpace, "map_path": MapPath}
+         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
@@ -3116,6 +3187,7 @@ iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 pause_sound = sge.Sound(os.path.join(DATA, "sounds", "pause.ogg"))
+warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
 
 # Load music
 invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
