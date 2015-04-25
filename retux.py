@@ -204,9 +204,13 @@ WIN_COUNT_MULT = 111
 WIN_COUNT_AMOUNT = 1
 WIN_FINISH_DELAY = 120
 
+MAP_SPEED = 5
+
 TITLE_MUSIC = "theme.ogg"
-BOSS_MUSIC = "bossattack.ogg"
-FINAL_BOSS_MUSIC = "treeboss.ogg"
+
+backgrounds = {}
+loaded_music = {}
+tux_grab_sprites = {}
 
 left_key = ["left"]
 right_key = ["right"]
@@ -216,18 +220,16 @@ jump_key = ["space"]
 action_key = ["ctrl_left"]
 sneak_key = ["shift_left"]
 
-backgrounds = {}
-loaded_music = {}
-tux_grab_sprites = {}
-
+worldmaps = []
 levels = []
 cleared_levels = []
 current_level = None
 current_areas = {}
-main_area = None
-level_cleared = False
 
 score = 0
+
+main_area = None
+level_cleared = False
 
 
 class Game(sge.Game):
