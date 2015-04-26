@@ -3,6 +3,7 @@
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="1-1 (?)"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="10" source="../tilesets/snow.tsx"/>
@@ -60,7 +61,7 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="3040" y="64">
    <properties>
-    <property name="dest" value="1-01b.tmx:bonus_enter"/>
+    <property name="dest" value="bonus1.tmx:bonus_enter"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>

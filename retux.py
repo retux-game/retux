@@ -2896,6 +2896,43 @@ def play_music(music, force_restart=False):
         sge.Music.stop()
 
 
+def load_levelset(fname):
+    global worldmaps
+    global levels
+    global cleared_levels
+    global current_worldmap
+    global current_worldmap_space
+    global current_level
+    global score
+    global current_areas
+    global main_area
+
+    with open(os.path.join(DATA, "levelsets", fname), "r") as f:
+        data = json.load(f)
+
+    worldmaps = data.get("worldmaps", [])
+    levels = data.get("levels", [])
+    cleared_levels = []
+    current_worldmap = None
+    current_worldmap_space = None
+    current_level = 0
+    score = 0
+    current_areas = {}
+    main_area = None
+
+    if worldmaps:
+        current_worldmap = worldmaps[0]
+
+
+def start_levelset():
+    if worldmaps:
+        m = Worldmap.load(current_worldmap)
+        m.start()
+    elif levels:
+        level = Level.load(levels[0])
+        level.start()
+
+
 TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "solid_top": SolidTop, "solid_bottom": SolidBottom, "solid": Solid,
          "slope_topleft": SlopeTopLeft, "slope_topright": SlopeTopRight,
@@ -3204,7 +3241,7 @@ bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
                              tangible=False)
 
 # Create rooms
-sge.game.start_room = Level.load("1-01.tmx")
+sge.game.start_room = Level.load("1-1.tmx")
 
 sge.game.mouse.visible = False
 

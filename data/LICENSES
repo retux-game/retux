@@ -312,8 +312,8 @@ Source: http://powstudios.com/content/smoke-animation-pack-1
 objecttypes.xml
 images/backgrounds/castle-bottom.png
 levels/base.tmx
-levels/1-01.tmx
-levels/1-01b.tmx
+levels/1-1.tmx
+levels/bonus1.tmx
 tilesets/blocks.tsx
 tilesets/cave.tsx
 tilesets/creatures.tsx
@@ -325,7 +325,6 @@ tilesets/pipes.tsx
 tilesets/snow.tsx
 tilesets/special_blocks.tsx
 worldmaps/base.tmx
-worldmaps/test.tmx
 
 Author: onpon4 <https://onpon4.github.io>
 License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
