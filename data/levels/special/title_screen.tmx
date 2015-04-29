@@ -14,12 +14,12 @@
  <tileset firstgid="297" source="../../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1bENgEAQA0F/SP/VQAadENIF18MLvU7MSM6dbQIAAAAAAPCdvXasPgEATDlr1+oTAMAUPQeA/vQcAPrTcwDoT88BoLcxkjt6DgCdbdXzJ3oOAAAAAAAA8BcvUlEMXQ==
+   eJztw0EJAAAIBLBrZf9mfi+CyAZLAAAAAAAAAAAAAAAAAAAAAAAAAOCuqQAAAAAAAAD8t9uxAKY=
   </data>
  </layer>
  <layer name="Middle Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt2rlOxDAUhWHXbDVbidgKoGCZAngAoBkkWhbRsoj3b7gpIpkQ+zrxjZNI/yedCk3G8UgcO7FzAAAAAAAA07ciuUrM00hjBAAAcZuStcS8OzodAIAp2pdsJ+bH0ekAAExRlz73Oz32XH6j6B20W0oexx4EAACFaH1+IDl0/zs99lx+3Y3X6VWPP0teJK+SN2e31mieNZjCugUAUIZ23mzsTqj7/Mi19/mF5DLwt1B2XPlO93v8Q/Ip+ZJ8u79rjd2M72ieNci5FgBgPqouX3XxvWxqJ1xLbrzcGo2x6/P2rp2eenZeW+fE1kXNHo+N69hwrnKuBQCYh7rLt5xNv9xJ7r08GI3Tos9De/uq01PPzmvrnNg5/FCPt42LPgeA+em7N7SI1uV116R2wonk1MtZwmeWCeM8j4xxzDTnxeo5Qm6f+2sE+hwAyui7N7SI3+Wh/etQneC/S+4yzpKJzYnW59pnY9+3kOz1THPts1B+BwCAjT49UjpVJ1g+F9DeJWv3nzs/VvM71P485x1Ac+2Tc606AABd7v/+lG7K2StadULKu+S5JPQeYqhze6XuJxQAgO4XIuhurQ==
+   eJzt2rlOxDAUheE7JWvNViK2AihYpgAeAGgGiZZFtCzi8aCDN6HkLbgRGsmY8TKx4yTS/0mnQpNxPBLHTiwCAAAAAADQfbOa48hctzRGAAAw2ZvmXbOkmY/Mg9DpAAB0yYfmU7OhWYnMq9DpAAB0SZ0+Nzvd91x+seB9uIw0V20PAgCAhsX2+aZmS/53uu+5/IK01+lVj99objV3mnvJt9awzxp0Yd0CACgjdN6srU6w+3xbJvf5oebI8TdXVqV8p5s9/qh50jxrXuTvWmMt4TvsswYp1wIA9EfV5XPi38vGdsKJ5tTIWeLY6j5vn7bTY8/Oh9Y5vnWR3eO+ce0kzJk9VynXAgD0w7jLlyVPv5xrLoxcJoxtMBD5knx97trbV50ee3Y+tM7xncN39fikcdHnANA/dfeGORLq8nHXxHbCrmbPyH7EZ0aOsc1on3/Lb58feMbYZux5yfUcIbXPzTUCfQ4AZdTdG+aI2eWu/WtTnWC+S55mnCXjm5NQn4c+6/u+oWa9Zuy1zzDwOwAA8qjTI6VTdULO5wKhd8mh+0+dn1zz29T+POUdgL32SbnWOACAsNT//THdlLJXzNUJMe+S+xLXe4imzu2Vuh9XAABhP5l5emQ=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">

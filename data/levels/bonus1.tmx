@@ -16,12 +16,12 @@
  <tileset firstgid="279" source="../tilesets/cave.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBiaQB2INQbaEaNgFIwCmoF8IPZnGJ75HAA/YgE2
+   eJxjYBiaQB2INQbaEaNgFIwCmgEJRgiWZBxol1AfAAC8QACc
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxTYWRgUAVidQYGBg0gVgayVWiAQXYoAs1XAmJ1IFuDCliTEdW9IDuoCbCFyagdo3aM2sHAkA7E7jjsEAdiCSpiSSz5XB6IFaiIFRlpV/ZhwwAtEBmO
+   eJxTYWRgUAVidQYGBg0gVgayVWiAQXYoAs1XAmJ1IFuDCliTEdW9IDuoCbCFyagdo3aM2sHAkA7E7jjsEAdiCSrgfKDZ/jjskAdiBSpiRUbalX3YMACwIxoo
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
