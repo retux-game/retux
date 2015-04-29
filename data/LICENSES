@@ -314,6 +314,7 @@ images/backgrounds/castle-bottom.png
 levels/base.tmx
 levels/1-1.tmx
 levels/bonus1.tmx
+levels/special/title_screen.tmx
 tilesets/blocks.tsx
 tilesets/cave.tsx
 tilesets/creatures.tsx
@@ -345,7 +346,6 @@ music/intro.ogg
 music/invincible.ogg
 music/leveldone.ogg
 music/theme.ogg
-music/theme-start.ogg
 music/treeboss.ogg
 music/treeboss-start.ogg
 music/wisphunt.ogg

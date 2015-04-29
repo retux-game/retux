@@ -3241,7 +3241,7 @@ bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
                              tangible=False)
 
 # Create rooms
-sge.game.start_room = Level.load("1-1.tmx")
+sge.game.start_room = Level.load(os.path.join("special", "title_screen.tmx"))
 
 sge.game.mouse.visible = False
 

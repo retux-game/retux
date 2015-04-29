@@ -4,14 +4,14 @@
   <property name="bgname" value="arctis"/>
   <property name="music" value="theme.ogg"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="10" source="../tilesets/snow.tsx"/>
- <tileset firstgid="150" source="../tilesets/cave.tsx"/>
- <tileset firstgid="170" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="185" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="273" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="293" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="297" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="1" source="../../tilesets/creatures.tsx"/>
+ <tileset firstgid="10" source="../../tilesets/snow.tsx"/>
+ <tileset firstgid="150" source="../../tilesets/cave.tsx"/>
+ <tileset firstgid="170" source="../../tilesets/blocks.tsx"/>
+ <tileset firstgid="185" source="../../tilesets/pipes.tsx"/>
+ <tileset firstgid="273" source="../../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="293" source="../../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="297" source="../../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
    eJzt1bENgEAQA0F/SP/VQAadENIF18MLvU7MSM6dbQIAAAAAAPCdvXasPgEATDlr1+oTAMAUPQeA/vQcAPrTcwDoT88BoLcxkjt6DgCdbdXzJ3oOAAAAAAAA8BcvUlEMXQ==
@@ -80,8 +80,8 @@
   <object gid="2" x="1664" y="416"/>
   <object gid="2" x="1728" y="288"/>
   <object gid="2" x="1792" y="416"/>
-  <object gid="2" x="2560" y="96"/>
-  <object gid="2" x="2624" y="96"/>
+  <object gid="2" x="2752" y="160"/>
+  <object gid="2" x="2816" y="192"/>
   <object gid="3" x="3328" y="288"/>
   <object gid="2" x="4064" y="192"/>
   <object gid="2" x="4000" y="224"/>
