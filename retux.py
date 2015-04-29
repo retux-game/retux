@@ -3077,7 +3077,7 @@ goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
 
 d = os.path.join(DATA, "images", "misc")
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
-                                fps=8)
+                                fps=8, bbox_x=-16, bbox_width=32)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
 smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
                                origin_x=24, origin_y=24, fps=24)

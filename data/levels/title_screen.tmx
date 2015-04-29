@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="theme.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="10" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="150" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="170" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="185" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="273" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="293" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="297" source="../tilesets/igloo.tsx"/>
+ <layer name="Back Tiles" width="500" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt1bENgEAQA0F/SP/VQAadENIF18MLvU7MSM6dbQIAAAAAAPCdvXasPgEATDlr1+oTAMAUPQeA/vQcAPrTcwDoT88BoLcxkjt6DgCdbdXzJ3oOAAAAAAAA8BcvUlEMXQ==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="500" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt2rlOxDAUhWHXbDVbidgKoGCZAngAoBkkWhbRsoj3b7gpIpkQ+zrxjZNI/yedCk3G8UgcO7FzAAAAAAAA07ciuUrM00hjBAAAcZuStcS8OzodAIAp2pdsJ+bH0ekAAExRlz73Oz32XH6j6B20W0oexx4EAACFaH1+IDl0/zs99lx+3Y3X6VWPP0teJK+SN2e31mieNZjCugUAUIZ23mzsTqj7/Mi19/mF5DLwt1B2XPlO93v8Q/Ip+ZJ8u79rjd2M72ieNci5FgBgPqouX3XxvWxqJ1xLbrzcGo2x6/P2rp2eenZeW+fE1kXNHo+N69hwrnKuBQCYh7rLt5xNv9xJ7r08GI3Tos9De/uq01PPzmvrnNg5/FCPt42LPgeA+em7N7SI1uV116R2wonk1MtZwmeWCeM8j4xxzDTnxeo5Qm6f+2sE+hwAyui7N7SI3+Wh/etQneC/S+4yzpKJzYnW59pnY9+3kOz1THPts1B+BwCAjT49UjpVJ1g+F9DeJWv3nzs/VvM71P485x1Ac+2Tc606AABd7v/+lG7K2StadULKu+S5JPQeYqhze6XuJxQAgO4XIuhurQ==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="416" width="3584" height="32"/>
+  <object x="0" y="352" width="1344" height="64"/>
+  <object x="992" y="320" width="352" height="32"/>
+  <object x="1024" y="288" width="320" height="32"/>
+  <object x="1056" y="256" width="288" height="32"/>
+  <object x="2080" y="352" width="1504" height="64"/>
+  <object x="2336" y="288" width="1248" height="64"/>
+  <object x="2336" y="256" width="768" height="32"/>
+  <object x="2336" y="224" width="736" height="32"/>
+  <object x="2336" y="192" width="704" height="32"/>
+  <object x="2336" y="96" width="352" height="96"/>
+  <object x="3680" y="288" width="608" height="160"/>
+  <object x="4160" y="224" width="128" height="64"/>
+  <object x="4736" y="224" width="160" height="160"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_top" x="1632" y="288" width="160" height="32"/>
+  <object type="slope_topright" x="2688" y="96" width="96" height="96"/>
+  <object type="slope_topleft" x="1952" y="352" width="128" height="64"/>
+  <object type="slope_topleft" x="3904" y="192" width="192" height="96"/>
+  <object type="slope_topright" x="4096" y="192" width="64" height="32"/>
+  <object type="spike_top" x="4288" y="352" width="448" height="32"/>
+  <object type="solid_top" x="2272" y="96" width="64" height="32"/>
+  <object type="solid_left" x="2240" y="288" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="2240" y="320">
+   <polyline points="0,0 64,0 64,-224"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="289" x="4288" y="256"/>
+  <object gid="289" x="4320" y="256"/>
+  <object gid="289" x="4352" y="256"/>
+  <object gid="289" x="4384" y="256"/>
+  <object gid="289" x="4416" y="256"/>
+  <object gid="289" x="4448" y="256"/>
+  <object gid="289" x="4480" y="256"/>
+  <object gid="289" x="4512" y="256"/>
+  <object gid="289" x="4544" y="256"/>
+  <object gid="289" x="4576" y="256"/>
+  <object gid="289" x="4608" y="256"/>
+  <object gid="289" x="4640" y="256"/>
+  <object gid="289" x="4672" y="256"/>
+  <object gid="289" x="4704" y="256"/>
+  <object gid="275" x="352" y="256"/>
+  <object gid="275" x="480" y="256"/>
+  <object gid="275" x="608" y="256"/>
+  <object gid="285" x="1184" y="256"/>
+  <object gid="275" x="3328" y="192"/>
+  <object gid="275" x="3360" y="192"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="2" x="1664" y="416"/>
+  <object gid="2" x="1728" y="288"/>
+  <object gid="2" x="1792" y="416"/>
+  <object gid="2" x="2560" y="96"/>
+  <object gid="2" x="2624" y="96"/>
+  <object gid="3" x="3328" y="288"/>
+  <object gid="2" x="4064" y="192"/>
+  <object gid="2" x="4000" y="224"/>
+  <object gid="2" x="3936" y="256"/>
+  <object gid="2" x="4160" y="224"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="64" y="352"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="500" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
+  </data>
+ </layer>
+</map>
