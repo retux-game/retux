@@ -805,6 +805,9 @@ class Player(xsge_physics.Collider):
 
     def jump(self):
         if not self.warping and (self.on_floor or self.was_on_floor):
+            for thin_ice in self.collision(ThinIce, y=(self.y + 1)):
+                thin_ice.crack()
+
             if abs(self.xvelocity) >= PLAYER_RUN_SPEED:
                 self.yvelocity = -PLAYER_RUN_JUMP_SPEED
             else:
@@ -2239,9 +2242,7 @@ class ThinIce(xsge_physics.Solid):
                 self.crack_time += delta_mult
                 while self.crack_time >= ICE_CRACK_TIME:
                     self.crack_time -= ICE_CRACK_TIME
-                    if self.image_index + 1 < self.sprite.frames:
-                        random.choice(ice_crack_sounds).play()
-                    self.image_index += 1
+                    self.crack()
             elif self.image_index > 0:
                 rfa = delta_mult * ICE_REFREEZE_RATE
                 self.crack_time -= rfa
@@ -2264,6 +2265,12 @@ class ThinIce(xsge_physics.Solid):
             ice_shatter_sound.play()
         else:
             self.destroy()
+
+    def crack(self):
+        if self.image_index + 1 < self.sprite.frames:
+            random.choice(ice_crack_sounds).play()
+        self.image_index += 1
+        self.freeze_time = 0
 
 
 class Lava(xsge_tmx.Decoration):
