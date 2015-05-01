@@ -103,6 +103,9 @@
   <image width="32" height="32" source="../images/objects/misc/rock.png"/>
  </tile>
  <tile id="16">
+  <properties>
+   <property name="cls" value="thin_ice"/>
+  </properties>
   <image width="32" height="32" source="../images/objects/misc/thin_ice-2.png"/>
  </tile>
  <tile id="17">

@@ -25,6 +25,7 @@ __version__ = "0.1a1"
 
 import os
 import math
+import random
 import json
 import warnings
 import weakref
@@ -189,6 +190,9 @@ FIREBALL_UP_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_UP_HEIGHT)
 
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
+
+ICE_CRACK_TIME = 60
+ICE_REFREEZE_RATE = 2/3
 
 ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 800
@@ -2219,6 +2223,49 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
         self.text = text
 
 
+class ThinIce(xsge_physics.Solid):
+
+    def event_create(self):
+        super(ThinIce, self).event_create()
+        self.sprite = thin_ice_sprite
+        self.image_index = 0
+        self.image_fps = 0
+        self.crack_time = 0
+        self.freeze_time = 0
+
+    def event_step(self, time_passed, delta_mult):
+        if self.sprite is thin_ice_sprite:
+            if self.collision(Player, y=(self.y - 1)):
+                self.crack_time += delta_mult
+                while self.crack_time >= ICE_CRACK_TIME:
+                    self.crack_time -= ICE_CRACK_TIME
+                    if self.image_index + 1 < self.sprite.frames:
+                        random.choice(ice_crack_sounds).play()
+                    self.image_index += 1
+            elif self.image_index > 0:
+                rfa = delta_mult * ICE_REFREEZE_RATE
+                self.crack_time -= rfa
+                self.rfa = max(0, -self.crack_time)
+                self.crack_time = max(0, self.crack_time)
+                self.freeze_time += rfa
+                while self.freeze_time >= ICE_CRACK_TIME:
+                    self.freeze_time -= ICE_CRACK_TIME
+                    if self.image_index > 0:
+                        self.image_index -= 1
+            else:
+                self.crack_time -= delta_mult * ICE_REFREEZE_RATE
+                self.crack_time = max(0, self.crack_time)
+
+    def event_animation_end(self):
+        if self.sprite is thin_ice_sprite:
+            self.sprite = thin_ice_break_sprite
+            self.image_index = 0
+            self.image_fps = None
+            ice_shatter_sound.play()
+        else:
+            self.destroy()
+
+
 class Lava(xsge_tmx.Decoration):
 
     def event_create(self):
@@ -2947,7 +2994,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_iceblock": WalkingIceblock, "fireflower": FireFlower,
          "brick": Brick, "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
-         "infoblock": InfoBlock, "lava": Lava, "lava_surface": LavaSurface,
+         "infoblock": InfoBlock, "thin_ice": ThinIce, "lava": Lava,
+         "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "warp_spawn": WarpSpawn, "map_player": MapPlayer,
          "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
@@ -3074,6 +3122,10 @@ lava_body_sprite = sge.Sprite("lava_body", d, transparent=False, fps=5)
 lava_surface_sprite = sge.Sprite("lava_surface", d, fps=5)
 goal_sprite = sge.Sprite("goal", d, fps=8)
 goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
+
+d = os.path.join(DATA, "images", "objects", "misc")
+thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
+thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 
 d = os.path.join(DATA, "images", "misc")
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
@@ -3214,6 +3266,11 @@ kill_sound = sge.Sound(os.path.join(DATA, "sounds", "kill.wav"))
 brick_sound = sge.Sound(os.path.join(DATA, "sounds", "brick.wav"))
 coin_sound = sge.Sound(os.path.join(DATA, "sounds", "coin.wav"))
 find_powerup_sound = sge.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
+ice_crack_sounds = [sge.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
+                    sge.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav")),
+                    sge.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav")),
+                    sge.Sound(os.path.join(DATA, "sounds", "ice_crack-3.wav"))]
+ice_shatter_sound = sge.Sound(os.path.join(DATA, "sounds", "ice_shatter.wav"))
 heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
 shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
 squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))

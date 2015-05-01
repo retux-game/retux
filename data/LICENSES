@@ -515,6 +515,26 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
 
+sounds/ice_crack-0.wav
+sounds/ice_crack-1.wav
+sounds/ice_crack-2.wav
+sounds/ice_crack-3.wav
+
+Author: theundecided <http://freesound.org/people/theundecided/>
+License: CC BY 3.0 <http://creativecommons.org/licenses/by/3.0/>
+Source: http://freesound.org/people/theundecided/sounds/91903/
+Changes: Isolated the individual cracking sounds at the beginning.
+
+------------------------------------------------------------------------
+
+sounds/ice_shatter.wav
+
+Author: RMAudio <http://freesound.org/people/RMAudio/>
+License: CC BY 3.0 <http://creativecommons.org/licenses/by/3.0/>
+Source: http://freesound.org/people/RMAudio/sounds/264420/
+
+------------------------------------------------------------------------
+
 sounds/pause.ogg
 
 Author: NenadSimic <http://opengameart.org/users/nenadsimic>
