@@ -143,7 +143,7 @@ SECOND_POINTS = 100
 COIN_POINTS = 100
 
 CAMERA_SPEED_FACTOR = 1 / 2
-CAMERA_OFFSET_FACTOR = 8
+CAMERA_OFFSET_FACTOR = 10
 CAMERA_MARGIN_TOP = 4 * TILE_SIZE
 CAMERA_MARGIN_BOTTOM = 5 * TILE_SIZE
 
@@ -288,6 +288,7 @@ class Level(sge.Room):
 
         super(Level, self).__init__(objects, width, height, views, background,
                                     background_x, background_y)
+        self.add(gui_handler)
 
     def add_timeline_object(self, obj):
         if obj.ID is not None:
@@ -471,7 +472,7 @@ class Level(sge.Room):
                 else:
                     current_level += 1
                     if current_level < len(levels):
-                        level = Level.load(levels[current_level])
+                        level = self.__class__.load(levels[current_level])
                         level.start(transition="fade")
                     else:
                         # TODO: Ending
@@ -488,7 +489,7 @@ class Level(sge.Room):
             self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "death":
             if main_area is not None:
-                r = Level.load(main_area)
+                r = self.__class__.load(main_area)
                 r.time_bonus = self.time_bonus
                 r.start()
         elif alarm_id == "win_count_points":
@@ -529,6 +530,24 @@ class Level(sge.Room):
             r.fname = fname
             current_areas[fname] = r
             return r
+
+
+class TitleScreen(Level):
+
+    def show_hud(self):
+        pass
+
+    def event_room_resume(self):
+        super(TitleScreen, self).event_room_resume()
+        MainMenu.create()
+
+    def event_key_press(self, key, char):
+        if self.death_time is not None or "death" in self.alarms:
+            sge.Music.stop()
+            self.alarms["death"] = 0
+        else:
+            if key == "f11":
+                sge.game.fullscreen = not sge.game.fullscreen
 
 
 class Worldmap(sge.Room):
@@ -751,7 +770,7 @@ class Player(xsge_physics.Collider):
                  xdeceleration=0, ydeceleration=0, image_index=0,
                  image_origin_x=None, image_origin_y=None, image_fps=None,
                  image_xscale=1, image_yscale=1, image_rotation=0,
-                 image_alpha=255, image_blend=None, ID="player", player=0,
+                 image_alpha=255, image_blend=None, ID=None, player=0,
                  human=True, lose_on_death=True):
         self.ID = ID
         self.player = player
@@ -2456,7 +2475,7 @@ class WarpSpawn(xsge_path.Path):
                 level_f, spawn = self.dest.split(":", 1)
                 if level_f == "__main__":
                     level_f = main_area
-                level = Level.load(level_f)
+                level = sge.game.current_room.__class__.load(level_f)
                 level.spawn = spawn
                 level.points = cr.points
                 level.time_bonus = cr.time_bonus
@@ -2896,6 +2915,39 @@ class MapPath(xsge_path.Path):
             current_worldmap_space = space.ID
 
 
+class Menu(xsge_gui.MenuWindow):
+
+    items = []
+
+    @classmethod
+    def create(cls, default=0):
+        if cls.items:
+            self = cls.from_text(
+                gui_handler, sge.game.width / 2, sge.game.height * 2 / 3,
+                cls.items, font_normal=font, color_normal=sge.Color("white"),
+                color_selected=sge.Color((0, 128, 255)),
+                background_color=sge.Color((64, 64, 255, 128)), margin=9,
+                halign="center", valign="middle")
+            default %= len(self.widgets)
+            self.keyboard_selected_widget = self.widgets[default]
+            self.show()
+
+
+class MainMenu(Menu):
+
+    items = ["New Game", "Load Game", "Options", "Quit"]
+
+    def event_choose(self):
+        if self.choice == 0:
+            print("New game")
+        elif self.choice == 1:
+            print("Load game")
+        elif self.choice == 2:
+            print("Options")
+        else:
+            sge.game.end()
+
+
 def get_object(x, y, cls=None, **kwargs):
     cls = TYPES.get(cls, sge.Object)
     return cls(x, y, **kwargs)
@@ -3014,6 +3066,8 @@ Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
      delta_min=15, window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 xsge_gui.init()
+
+gui_handler = xsge_gui.Handler()
 
 # Load sprites
 d = os.path.join(DATA, "images", "objects", "tux")
@@ -3137,6 +3191,7 @@ thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
 thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 
 d = os.path.join(DATA, "images", "misc")
+logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8, bbox_x=-16, bbox_width=32)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
@@ -3307,7 +3362,8 @@ bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
                              tangible=False)
 
 # Create rooms
-sge.game.start_room = Level.load(os.path.join("special", "title_screen.tmx"))
+sge.game.start_room = TitleScreen.load(os.path.join("special",
+                                                    "title_screen.tmx"))
 
 sge.game.mouse.visible = False
 

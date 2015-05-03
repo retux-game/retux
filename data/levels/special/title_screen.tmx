@@ -12,6 +12,11 @@
  <tileset firstgid="273" source="../../tilesets/special_blocks.tsx"/>
  <tileset firstgid="293" source="../../tilesets/decoration_small.tsx"/>
  <tileset firstgid="297" source="../../tilesets/igloo.tsx"/>
+ <tileset firstgid="299" name="Logo" tilewidth="280" tileheight="93">
+  <tile id="0">
+   <image width="280" height="93" source="../../images/misc/logo.png"/>
+  </tile>
+ </tileset>
  <layer name="Back Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
    eJztw0EJAAAIBLBrZf9mfi+CyAZLAAAAAAAAAAAAAAAAAAAAAAAAAOCuqQAAAAAAAAD8t9uxAKY=
@@ -89,11 +94,20 @@
   <object gid="2" x="4160" y="224"/>
  </objectgroup>
  <objectgroup name="Players">
-  <object gid="1" x="64" y="352"/>
+  <object gid="1" x="64" y="352">
+   <properties>
+    <property name="ID" value="player"/>
+    <property name="human" value="1"/>
+    <property name="lose_on_death" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Front Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
   </data>
  </layer>
+ <objectgroup name="Logo">
+  <object gid="299" x="256" y="128"/>
+ </objectgroup>
 </map>
