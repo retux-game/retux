@@ -447,8 +447,8 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
 
-sounds/fire-flower.wav
 sounds/lava.wav
+sounds/tuxdoll.wav
 sounds/waterfall.wav
 
 Author: Bastian Zapf

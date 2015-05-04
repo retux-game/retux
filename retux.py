@@ -141,6 +141,7 @@ ITEM_SPAWN_SPEED = 1
 
 SECOND_POINTS = 100
 COIN_POINTS = 100
+TUXDOLL_POINTS = 5000
 
 CAMERA_SPEED_FACTOR = 1 / 2
 CAMERA_OFFSET_FACTOR = 10
@@ -227,6 +228,8 @@ sneak_key = ["shift_left"]
 worldmaps = []
 levels = []
 cleared_levels = []
+tuxdolls_available = []
+tuxdolls_found = []
 current_worldmap = None
 current_worldmap_space = None
 current_level = 0
@@ -2108,6 +2111,36 @@ class Fireball(FallingObject):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
 
 
+class TuxDoll(FallingObject):
+
+    gravity = FLOWER_GRAVITY
+    fall_speed = FLOWER_FALL_SPEED
+    slide_speed = 0
+
+    def event_create(self):
+        self.sprite = tuxdoll_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def touch(self, other):
+        tuxdoll_sound.play()
+        sge.game.current_room.add_points(TUXDOLL_POINTS)
+        if main_area and main_area not in tuxdolls_found:
+            tuxdolls_found.append(main_area)
+
+        self.destroy()
+
+    def knock(self, other=None):
+        self.yvelocity = -FLOWER_HIT_BELOW_SPEED
+
+
 class HittableBlock(xsge_physics.SolidBottom, Tile):
 
     hit_sprite = None
@@ -2202,25 +2235,28 @@ class EmptyBlock(HittableBlock, xsge_physics.Solid):
     pass
 
 
-class HiddenItemBlock(HittableBlock):
+class ItemBlock(HittableBlock, xsge_physics.Solid):
 
     def __init__(self, x, y, item=None, **kwargs):
-        super(HiddenItemBlock, self).__init__(x, y, **kwargs)
+        super(ItemBlock, self).__init__(x, y, **kwargs)
         self.item = item
 
     def event_create(self):
-        super(HiddenItemBlock, self).event_create()
-        self.sprite = None
+        super(ItemBlock, self).event_create()
+        self.sprite = bonus_full_sprite
+        self.image_fps = None
         self.hit_sprite = bonus_empty_sprite
 
     def event_hit(self, other):
         if self.item and self.item in TYPES:
-            obj = TYPES[self.item].create(self.x, self.y, z=(self.z - 0.5))
-            obj.bbox_left = self.bbox_left
-            obj.x = (self.x - self.image_origin_x + self.sprite.width / 2 +
-                     obj.image_origin_x - obj.sprite.width / 2)
+            obj = TYPES[self.item].create(self.x, self.y, z=self.z)
+            if obj.sprite is not None and self.sprite is not None:
+                obj.x = (self.bbox_left + self.sprite.width / 2 +
+                         obj.image_origin_x - obj.sprite.width / 2)
+            else:
+                obj.bbox_left = self.bbox_left
             obj.bbox_bottom = self.bbox_top
-            Smoke.create(obj.x, obj.y, obj.z + 0.5,
+            Smoke.create(obj.x, obj.y, z=(obj.z + 0.5),
                          sprite=item_spawn_cloud_sprite)
             find_powerup_sound.play()
         else:
@@ -2232,12 +2268,20 @@ class HiddenItemBlock(HittableBlock):
         self.destroy()
 
 
-class ItemBlock(HiddenItemBlock, xsge_physics.Solid):
+class HiddenItemBlock(HittableBlock):
+
+    def __init__(self, x, y, item=None, **kwargs):
+        super(HiddenItemBlock, self).__init__(x, y, **kwargs)
+        self.item = item
 
     def event_create(self):
-        super(ItemBlock, self).event_create()
-        self.sprite = bonus_full_sprite
-        self.image_fps = None
+        super(HiddenItemBlock, self).event_create()
+        self.sprite = None
+
+    def hit(self, other):
+        b = ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
+        b.hit(other)
+        self.destroy()
 
 
 class InfoBlock(HittableBlock, xsge_physics.Solid):
@@ -3067,6 +3111,8 @@ def load_levelset(fname):
     global worldmaps
     global levels
     global cleared_levels
+    global tuxdolls_available
+    global tuxdolls_found
     global current_worldmap
     global current_worldmap_space
     global current_level
@@ -3079,11 +3125,22 @@ def load_levelset(fname):
     worldmaps = data.get("worldmaps", [])
     levels = data.get("levels", [])
     cleared_levels = []
+    tuxdolls_available = []
+    tuxdolls_found = []
     current_worldmap = None
     current_worldmap_space = None
     current_level = 0
     score = 0
     current_areas = {}
+
+    for level in levels:
+        r = Level.load(level)
+        for obj in r.objects:
+            if (isinstance(obj, TuxDoll) or
+                    (isinstance(obj, HiddenItemBlock) and
+                     obj.item == "tuxdoll")):
+                tuxdolls_available.append(level)
+                break
 
     if worldmaps:
         current_worldmap = worldmaps[0]
@@ -3115,6 +3172,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "map_objects": get_object, "player": Player,
          "walking_snowball": WalkingSnowball,
          "walking_iceblock": WalkingIceblock, "fireflower": FireFlower,
+         "tuxdoll": TuxDoll,
          "brick": Brick, "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
          "infoblock": InfoBlock, "thin_ice": ThinIce, "lava": Lava,
@@ -3241,6 +3299,8 @@ coin_sprite = sge.Sprite("coin", d, fps=8)
 fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=16,
                                 fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                 bbox_height=24)
+tuxdoll_sprite = sge.Sprite("tuxdoll", d, origin_x=16, origin_y=16, bbox_x=-16,
+                            bbox_y=-16, bbox_width=32, bbox_height=32)
 
 d = os.path.join(DATA, "images", "objects", "decoration")
 lava_body_sprite = sge.Sprite("lava_body", d, transparent=False, fps=5)
@@ -3392,6 +3452,7 @@ kill_sound = sge.Sound(os.path.join(DATA, "sounds", "kill.wav"))
 brick_sound = sge.Sound(os.path.join(DATA, "sounds", "brick.wav"))
 coin_sound = sge.Sound(os.path.join(DATA, "sounds", "coin.wav"))
 find_powerup_sound = sge.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
+tuxdoll_sound = sge.Sound(os.path.join(DATA, "sounds", "tuxdoll.wav"))
 ice_crack_sounds = [sge.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
                     sge.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav")),
                     sge.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav")),

@@ -3,7 +3,7 @@
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="1-1 (?)"/>
+  <property name="name" value="World 1-1"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="10" source="../tilesets/snow.tsx"/>
@@ -133,6 +133,11 @@
   <object gid="262" x="5920" y="320"/>
   <object gid="262" x="5888" y="320"/>
   <object gid="255" x="5856" y="320"/>
+  <object gid="257" x="5056" y="96">
+   <properties>
+    <property name="item" value="tuxdoll"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1184" y="416"/>
