@@ -3,7 +3,7 @@
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="World 1-1"/>
+  <property name="name" value="1-1...?"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="10" source="../tilesets/snow.tsx"/>

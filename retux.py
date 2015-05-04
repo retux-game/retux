@@ -918,7 +918,7 @@ class Player(xsge_physics.Collider):
         level_win_music.play()
 
     def pickup(self, other):
-        if self.held_object is None:
+        if self.held_object is None and other.parent is None:
             other.visible = False
             self.held_object = other
             other.parent = self
@@ -931,11 +931,17 @@ class Player(xsge_physics.Collider):
             self.held_object.visible = True
             self.held_object = None
 
-    def kick_object(self):
-        self.drop_object()
+    def do_kick(self):
         kick_sound.play()
         self.alarms["fixed_sprite"] = TUX_KICK_TIME
-        self.sprite = tux_kick_sprite
+        if self.held_object is not None:
+            self.sprite = self.get_grab_sprite(tux_body_kick_sprite)
+        else:
+            self.sprite = tux_kick_sprite
+
+    def kick_object(self):
+        self.drop_object()
+        self.do_kick()
 
     def show_hud(self):
         y = 0
@@ -1813,6 +1819,14 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
             self.gravity = 0
             if other.action_pressed:
                 other.action()
+        else:
+            other.do_kick()
+            dib = DashingIceblock.create(other, self.x, self.y, self.z,
+                                         sprite=self.sprite,
+                                         image_xscale=self.image_xscale,
+                                         image_yscale=self.image_yscale)
+            dib.set_direction(-1 if other.image_xscale < 0 else 1)
+            self.destroy()
 
     def knock(self, other=None):
         if self.parent is not None and other is not None:
@@ -1828,7 +1842,6 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            kick_sound.play()
             dib = DashingIceblock.create(self.parent, self.x, self.y, self.z,
                                          sprite=self.sprite,
                                          image_xscale=self.image_xscale,
@@ -3144,7 +3157,7 @@ def load_levelset(fname):
         r = Level.load(level)
         for obj in r.objects:
             if (isinstance(obj, TuxDoll) or
-                    (isinstance(obj, HiddenItemBlock) and
+                    (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
                      obj.item == "tuxdoll")):
                 tuxdolls_available.append(level)
                 break

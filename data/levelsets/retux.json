@@ -3,6 +3,7 @@
     "worldmaps": [
     ],
     "levels": [
-        "1-1.tmx"
+        "1-1.tmx",
+        "2d_better.tmx"
     ]
 }
