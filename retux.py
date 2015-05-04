@@ -312,6 +312,13 @@ class Level(sge.Room):
         sge.game.project_text(font, text, sge.game.width / 2, 0,
                               color=sge.Color("white"), halign="center")
 
+        if main_area in tuxdolls_available:
+            if main_area in tuxdolls_found:
+                s = tuxdoll_sprite
+            else:
+                s = tuxdoll_transparent_sprite
+            sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
+
     def die(self):
         global current_areas
         current_areas = {}
@@ -3301,6 +3308,15 @@ fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=16,
                                 bbox_height=24)
 tuxdoll_sprite = sge.Sprite("tuxdoll", d, origin_x=16, origin_y=16, bbox_x=-16,
                             bbox_y=-16, bbox_width=32, bbox_height=32)
+
+tuxdoll_transparent_sprite = tuxdoll_sprite.copy()
+eraser = sge.Sprite(width=tuxdoll_transparent_sprite.width,
+                    height=tuxdoll_transparent_sprite.height)
+eraser.draw_rectangle(0, 0, eraser.width, eraser.height,
+                      fill=sge.Color((0, 0, 0, 128)))
+tuxdoll_transparent_sprite.draw_sprite(eraser, 0, 0, 0,
+                                       blend_mode=sge.BLEND_RGBA_SUBTRACT)
+del eraser
 
 d = os.path.join(DATA, "images", "objects", "decoration")
 lava_body_sprite = sge.Sprite("lava_body", d, transparent=False, fps=5)
