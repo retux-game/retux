@@ -97,7 +97,7 @@
   <object gid="1" x="64" y="352">
    <properties>
     <property name="ID" value="player"/>
-    <property name="human" value="1"/>
+    <property name="human" value="0"/>
     <property name="lose_on_death" value="0"/>
    </properties>
   </object>
@@ -108,6 +108,6 @@
   </data>
  </layer>
  <objectgroup name="Logo">
-  <object gid="299" x="256" y="128"/>
+  <object gid="299" x="260" y="128"/>
  </objectgroup>
 </map>

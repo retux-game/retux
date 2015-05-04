@@ -2926,7 +2926,7 @@ class Menu(xsge_gui.MenuWindow):
                 gui_handler, sge.game.width / 2, sge.game.height * 2 / 3,
                 cls.items, font_normal=font, color_normal=sge.Color("white"),
                 color_selected=sge.Color((0, 128, 255)),
-                background_color=sge.Color((64, 64, 255, 128)), margin=9,
+                background_color=sge.Color((64, 64, 255, 64)), margin=9,
                 halign="center", valign="middle")
             default %= len(self.widgets)
             self.keyboard_selected_widget = self.widgets[default]
