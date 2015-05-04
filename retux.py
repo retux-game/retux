@@ -210,7 +210,7 @@ WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5
 
-TITLE_MUSIC = "theme.ogg"
+MENU_MAX_ITEMS = 14
 
 backgrounds = {}
 loaded_music = {}
@@ -376,6 +376,7 @@ class Level(sge.Room):
         global score
         global current_areas
         global main_area
+        global level_cleared
 
         self.show_hud()
 
@@ -465,6 +466,7 @@ class Level(sge.Room):
                   "win" not in self.alarms):
                 current_areas = {}
                 main_area = None
+                level_cleared = True
 
                 if current_worldmap:
                     m = Worldmap.load(current_worldmap)
@@ -476,7 +478,7 @@ class Level(sge.Room):
                         level.start(transition="fade")
                     else:
                         # TODO: Ending
-                        sge.game.end()
+                        sge.game.start_room.start()
 
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
@@ -2929,23 +2931,80 @@ class Menu(xsge_gui.MenuWindow):
                 background_color=sge.Color((64, 64, 255, 64)), margin=9,
                 halign="center", valign="middle")
             default %= len(self.widgets)
-            self.keyboard_selected_widget = self.widgets[default]
+            self.keyboard_focused_widget = self.widgets[default]
             self.show()
+            return self
 
 
 class MainMenu(Menu):
 
-    items = ["New Game", "Load Game", "Options", "Quit"]
+    items = ["New Game", "Load Game", "Select Levelset", "Options", "Quit"]
 
     def event_choose(self):
         if self.choice == 0:
             print("New game")
+            start_levelset()
         elif self.choice == 1:
             print("Load game")
         elif self.choice == 2:
+            LevelsetMenu.create_page()
+        elif self.choice == 3:
             print("Options")
         else:
             sge.game.end()
+
+
+class LevelsetMenu(Menu):
+
+    levelsets = []
+    current_levelsets = []
+    page = 0
+
+    @classmethod
+    def create_page(cls, default=0, page=0, refreshlist=False):
+        if refreshlist or not cls.levelsets:
+            cls.levelsets = []
+            for fname in os.listdir(os.path.join(DATA, "levelsets")):
+                try:
+                    with open(os.path.join(DATA, "levelsets", fname), "r") as f:
+                        data = json.load(f)
+                except (IOError, ValueError):
+                    continue
+                else:
+                    cls.levelsets.append((fname, str(data.get("name", "???"))))
+
+            cls.levelsets.sort(key=lambda T: T[1].lower() + T[0].lower())
+
+        cls.current_levelsets = []
+        cls.items = []
+        if cls.levelsets:
+            page_size = MENU_MAX_ITEMS - 2
+            n_pages = math.ceil(len(cls.levelsets) / page_size)
+            page %= n_pages
+            page_start = page * page_size
+            page_end = min(page_start + page_size, len(cls.levelsets))
+            current_page = cls.levelsets[page_start:page_end]
+            cls.current_levelsets = []
+            cls.items = []
+            for fname, name in current_page:
+                cls.current_levelsets.append(fname)
+                cls.items.append(name)
+
+        cls.items.append("Next page")
+        cls.items.append("Back")
+
+        self = cls.create(default)
+        self.page = page
+        return self
+
+    def event_choose(self):
+        if self.choice == len(self.items) - 2:
+            self.create_page(default=-2, page=self.page)
+        else:
+            if self.choice is not None and self.choice < len(self.items) - 2:
+                load_levelset(self.current_levelsets[self.choice])
+
+            MainMenu.create(default=2)
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -3013,7 +3072,6 @@ def load_levelset(fname):
     global current_level
     global score
     global current_areas
-    global main_area
 
     with open(os.path.join(DATA, "levelsets", fname), "r") as f:
         data = json.load(f)
@@ -3026,13 +3084,17 @@ def load_levelset(fname):
     current_level = 0
     score = 0
     current_areas = {}
-    main_area = None
 
     if worldmaps:
         current_worldmap = worldmaps[0]
 
 
 def start_levelset():
+    global main_area
+    global level_cleared
+    main_area = None
+    level_cleared = True
+
     if worldmaps:
         m = Worldmap.load(current_worldmap)
         m.start()
@@ -3366,6 +3428,7 @@ sge.game.start_room = TitleScreen.load(os.path.join("special",
                                                     "title_screen.tmx"))
 
 sge.game.mouse.visible = False
+load_levelset("retux.json")
 
 
 if __name__ == '__main__':
