@@ -609,10 +609,7 @@ class Worldmap(sge.Room):
 
 class Tile(sge.Object):
 
-    # FIXME: It would be very nice to have this optimization, but it's
-    # causing objects to fall through the floor ever since I changed
-    # movement from event_step to event_begin_step in InteractiveObject.
-    def event_step_null(self, time_passed, delta_mult):
+    def event_step(self, time_passed, delta_mult):
         for view in sge.game.current_room.views:
             if (self.bbox_left <= view.x + view.width + TILE_ACTIVE_RANGE and
                     self.bbox_right >= view.x - TILE_ACTIVE_RANGE and
@@ -1584,12 +1581,11 @@ class FallingObject(InteractiveCollider):
     gravity = ENEMY_GRAVITY
     fall_speed = ENEMY_FALL_SPEED
     slide_speed = ENEMY_SLIDE_SPEED
-    was_on_floor = False
 
     def move(self):
         on_floor = self.get_bottom_touching_wall()
         on_slope = self.get_bottom_touching_slope()
-        if self.was_on_floor and (on_floor or on_slope) and self.yvelocity >= 0:
+        if (on_floor or on_slope) and self.yvelocity >= 0:
             self.yacceleration = 0
             if on_floor:
                 self.yvelocity = 0
@@ -1603,8 +1599,6 @@ class FallingObject(InteractiveCollider):
             else:
                 self.yvelocity = self.fall_speed
                 self.yacceleration = 0
-
-        self.was_on_floor = on_floor or on_slope
 
 
 class WalkingObject(FallingObject):
@@ -1742,6 +1736,7 @@ class BurnableObject(InteractiveObject):
 class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject):
 
     def event_create(self):
+        super(WalkingSnowball, self).event_create()
         self.sprite = snowball_walk_sprite
         self.image_fps = None
         self.image_origin_x = None
@@ -1779,6 +1774,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject):
     stayonplatform = True
 
     def event_create(self):
+        super(WalkingIceblock, self).event_create()
         self.sprite = iceblock_walk_sprite
         self.image_fps = None
         self.image_origin_x = None
@@ -1984,6 +1980,7 @@ class FireFlower(FallingObject):
     slide_speed = 0
 
     def event_create(self):
+        super(FireFlower, self).event_create()
         self.sprite = fire_flower_sprite
         self.image_fps = None
         self.image_origin_x = None
