@@ -180,13 +180,15 @@
   <object gid="2" x="5408" y="320"/>
   <object gid="3" x="5120" y="320"/>
   <object gid="3" x="5184" y="320"/>
-  <object gid="3" x="3296" y="672"/>
   <object gid="3" x="3232" y="704"/>
   <object gid="3" x="2816" y="704"/>
   <object gid="3" x="5728" y="896"/>
   <object gid="3" x="5664" y="896"/>
   <object gid="3" x="5600" y="896"/>
   <object gid="3" x="6784" y="992"/>
+  <object gid="2" x="3776" y="576"/>
+  <object gid="2" x="3712" y="576"/>
+  <object gid="2" x="4832" y="288"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="160" y="896"/>
