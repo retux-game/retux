@@ -16,12 +16,12 @@
  <tileset firstgid="297" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4GdTAAAQ==
+   eJzt07EJACAUQ8HvMLqC+2/mBKKNCOEO0qd5VQAAAAAAAAAAAAAAAAAAAAAAAAAAnIz2+wHwWtc5xNM55NM55NM55NM55NM55Nt1Pi8HAGRYb9UDWA==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztmztv1UAQhQfKCFDoCFAARXgUgYJXQWiAJlCAoAaJmkj5XYAEBUTi0fDoyI/KrMBiY13vztg7+7DPJx1dKddee509O3PXs0QAAAAAAAAA0Ab7pW8AAGDOB9bH0jcBwAK4x9oW6L7BtT+xPhu0CwA4yg7rsUBPVpz7lvVOofcrzvX/BqbxhfXVsH3kX3mRxmBJXL7AuhjQOus664Zhf0AafrB+GraP/Csv0hgsictb9NfHvk7Tf59fsu0KSIiFz7sY3v8EcX6xfrOOHxt3vvOm70WNJL71vY84XgdrrDsR7f9T7DiNuhje/+wfd8qu683yh3XAWhvpc4fvxZDn1+lorIZv2+QM60TFOm/X9Wbp8ivpOlZsrSoU35F3z4NN1lmFriqPn6q7FM8Nlhbzv7G+J25z1e9sxO/28Od+f37X+jy3zhFiPgAd/RxO+l4x5PPLrCuB71PGfu21/LavSR8SAAsl5PNbrNuB71Pm80PXesh6FNHT5E8FgHlRe94ei9Whmg+LWksAcjL0e1tL6z4P1XysqrUEQINFLWiJ2OT7XJp7S3LpVIrl5EPrxFgrng8lczaLGrESsWlMPMe6F8hJyZxN63NJ/C8Rm+bmc0l935LfvbdIyZxN63PrvSBjmZvPtfV9JwlenwvaOV4ibc23RY14Ct2keflcO2+5Ohx43YZnNG1sav8ntddwl9QGyfzQSl3Kcxpe03tA8HoOnL9fsl5R3r0Ntb87ak01+zxEaBw4r6N+dhq+v9+wdinvOLP2ee69HWPUryudcs+t+jwU61FXN55U/u6P0dp83sL8Eath1VyrJp+/INv1C+Tyw2j9HRtj/TE61eeSMT11D0erkvS7Fp87j7+m5e1/L71265QyP081zsbEc80ejpo8OFWSfkv2hOeQ8/ie8fOopa++Sq/dOsX8nSIXnUPePuY5lJ57unuW7AnPIWuP19RXX6XHbi4v1OLzFtbfWrhH9EnXt0PQgFDg
+   eJztnDlvFEEQhQtCC5DJMBAAAWACQ8AVAIkhMQQgiEEixpJ/FyBBAJY4Eo4MfpSrZUa0RzvdVTNdfcy8T3paaXeunu3XVdtTvUQAAAAAAAAA0Ab7pS8AAGDOB9bH0hcBwAK4x7ov0AODc39ifTY4LgDgKDusxwI9WbHvW9Y7hd6v2Nd/D0zjC+ur4fGRf+VFGoMlcfkC62JA66zrrBuG7QFp+MH6aXh85F95kcZgSVzeokMf+zpN/31+ybYpICEWPu9ieP8VxPnF+s06fmzc/s6bvhc1kvjW9z7ieB2sse5EtP9Pse006mJ4/7W/3Sm7pjfLH9Zf1tpInzt8L4Y8v05HYzV82yZnWCcq1nm7pjdLl19J57Fic1Wh+I68ex5cZp1VaFO5/VTdpXhusLSY/431PfExV/3ORvxuD3/s98d3rc9z6xwh5gPQ0c/hpM8VQz6/wroa+Dxl7Neeyz/2NelNAmChhHx+i3U78HnKfH7oXA9ZjyJ6mvyuADAvas/bY7E6VPNhUWsJQE6Gfm9rad3noZqPVbWWAGiwqAUtEZt8n0tzb0kunUqxnHxonhhzxfOhZM5mUSNWIjaNieeY9wI5KZmzaX0uif8lYtPcfC6p71vys/cWKZmzaX1uvRZkLHPzuba+7yTB63NBO8ZLpK35tqgRT6GbNC+fa8ctV4cDr9vwjKb1Te13UnsNd0ltkMwPrdSlPKfhOb1tgtdz4Pz9kvWK8q5tqP3ZUWuq2echQv3AeR31s9Pw/f2GtUt5+5m1z3Ov7Rijfl3plGtu1eehWI+6uvGk8ne/j9bm8xbGj1gNq+ZcNfn8BdnOXyCXH0br71gf6/fRqT6X9OmpazhalaTdtfjcefw1LW/9e+m5W6eU+XmqfjYmnmvWcNTkwamStFuyJjyHnMf3jO9HrrZuCv8bxm1beu7WKebvFLnoHPL2Mfeh9NjTXbNkTXgOWXu8prb6Kt13c3mhFp+3MP/WwjWiTbq2HQAeOk7k
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -50,6 +50,7 @@
   <object x="4800" y="288" width="64" height="32"/>
   <object x="5472" y="256" width="192" height="64"/>
   <object x="5568" y="192" width="64" height="64"/>
+  <object x="7936" y="768" width="64" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_topleft" x="1056" y="736" width="320" height="160"/>
@@ -64,6 +65,7 @@
   <object type="solid_top" x="2912" y="544" width="64" height="32"/>
   <object type="solid_top" x="3296" y="608" width="64" height="32"/>
   <object type="solid_top" x="4800" y="192" width="64" height="32"/>
+  <object type="level_end" x="7488" y="0" width="32" height="896"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="32" y="416">
@@ -153,6 +155,13 @@
   <object gid="284" x="5248" y="768"/>
   <object gid="284" x="5184" y="768"/>
   <object gid="284" x="5120" y="768"/>
+  <object gid="275" x="3136" y="576"/>
+  <object gid="275" x="3104" y="576"/>
+  <object gid="283" x="4608" y="224"/>
+  <object gid="275" x="5056" y="192"/>
+  <object gid="275" x="5152" y="192"/>
+  <object gid="275" x="5248" y="192"/>
+  <object gid="283" x="5952" y="320"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1952" y="192"/>
@@ -162,13 +171,29 @@
   <object gid="2" x="1760" y="736"/>
   <object gid="2" x="1696" y="736"/>
   <object gid="3" x="768" y="640"/>
+  <object gid="3" x="6560" y="640"/>
+  <object gid="2" x="7328" y="896"/>
+  <object gid="2" x="7264" y="896"/>
+  <object gid="2" x="7200" y="896"/>
+  <object gid="2" x="5600" y="192"/>
+  <object gid="2" x="5504" y="256"/>
+  <object gid="2" x="5408" y="320"/>
+  <object gid="3" x="5120" y="320"/>
+  <object gid="3" x="5184" y="320"/>
+  <object gid="3" x="3296" y="672"/>
+  <object gid="3" x="3232" y="704"/>
+  <object gid="3" x="2816" y="704"/>
+  <object gid="3" x="5728" y="896"/>
+  <object gid="3" x="5664" y="896"/>
+  <object gid="3" x="5600" y="896"/>
+  <object gid="3" x="6784" y="992"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="160" y="896"/>
  </objectgroup>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4GdTAAAQ==
+   eJzt1LENACAMA8EwDBTsPyAboDQIybqbwM27CgAAAAAAAAAAAAAAAAAAAAAAAACArjV+LwBemzqHeDqHfDqHfDqHfDqHfDqHfLfOtw8AgHgHufABXQ==
   </data>
  </layer>
 </map>
