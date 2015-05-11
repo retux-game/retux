@@ -37,74 +37,21 @@ import xsge_path
 import xsge_physics
 import xsge_tmx
 
-__all__ = [
-    "DATA", "SCREEN_SIZE", "TILE_SIZE", "FPS",
-
-    "DEFAULT_LEVEL_TIME_BONUS",
-
-    "TUX_ORIGIN_X", "TUX_ORIGIN_Y", "TUX_KICK_TIME",
-
-    "PLAYER_WALK_SPEED", "PLAYER_RUN_SPEED", "PLAYER_MAX_SPEED",
-    "PLAYER_ACCELERATION", "PLAYER_AIR_ACCELERATION", "PLAYER_FRICTION",
-    "PLAYER_AIR_FRICTION", "PLAYER_JUMP_HEIGHT", "PLAYER_RUN_JUMP_HEIGHT",
-    "PLAYER_STOMP_HEIGHT", "PLAYER_GRAVITY", "PLAYER_FALL_SPEED",
-    "PLAYER_SLIDE_ACCEL", "PLAYER_SLIDE_SPEED", "PLAYER_WALK_FRAMES_PER_PIXEL",
-    "PLAYER_RUN_IMAGE_SPEED", "PLAYER_HITSTUN", "PLAYER_DIE_HEIGHT",
-    "PLAYER_DIE_FALL_SPEED",
-
-    "MAX_HP", "TIMER_FRAMES", "HEAL_COINS",
-
-    "CEILING_LAX", "STOMP_LAX",
-
-    "BLOCK_HIT_SPEED", "BLOCK_HIT_GRAVITY", "COIN_COLLECT_TIME",
-    "COIN_COLLECT_SPEED", "ITEM_SPAWN_SPEED",
-
-    "SECOND_POINTS", "COIN_POINTS",
-
-    "CAMERA_SPEED_FACTOR", "CAMERA_OFFSET_FACTOR", "CAMERA_MARGIN_TOP",
-    "CAMERA_MARGIN_BOTTOM",
-
-    "WARP_LAX", "WARP_SPEED",
-
-    "ENEMY_WALK_SPEED", "ENEMY_GRAVITY", "ENEMY_FALL_SPEED",
-    "ENEMY_SLIDE_SPEED", "ENEMY_HIT_BELOW_HEIGHT", "ENEMY_KILL_POINTS",
-    "KICK_UP_HEIGHT", "ICEBLOCK_FALL_SPEED", "ICEBLOCK_FRICTION",
-    "ICEBLOCK_DASH_SPEED",
-
-    "FLOWER_GRAVITY", "FLOWER_FALL_SPEED", "FLOWER_HIT_BELOW_HEIGHT",
-    "FLOWER_THROW_SPEED", "FLOWER_THROW_HEIGHT", "FLOWER_THROW_UP_HEIGHT",
-
-    "FIREBALL_AMMO", "FIREBALL_SPEED", "FIREBALL_GRAVITY",
-    "FIREBALL_FALL_SPEED", "FIREBALL_BOUNCE_HEIGHT", "FIREBALL_UP_HEIGHT",
-
-    "PLAYER_JUMP_SPEED", "PLAYER_RUN_JUMP_SPEED", "PLAYER_STOMP_SPEED",
-    "PLAYER_DIE_SPEED", "FLOWER_HIT_BELOW_SPEED", "FLOWER_THROW_VSPEED",
-    "FLOWER_THROW_UP_VSPEED", "FIREBALL_BOUNCE_SPEED", "FIREBALL_UP_SPEED",
-
-    "COINBRICK_COINS", "COINBRICK_DECAY_TIME",
-
-    "ENEMY_ACTIVE_RANGE", "ICEBLOCK_ACTIVE_RANGE", "TILE_ACTIVE_RANGE",
-    "DEATHZONE",
-
-    "DEATH_FADE_TIME", "DEATH_RESTART_WAIT",
-
-    "WIN_COUNT_START_TIME", "WIN_COUNT_CONTINUE_TIME", "WIN_COUNT_MULT",
-    "WIN_COUNT_AMOUNT", "WIN_FINISH_DELAY",
-
-    "TITLE_MUSIC", "BOSS_MUSIC", "FINAL_BOSS_MUSIC",
-    ]
 
 DATA = os.path.join(os.path.dirname(__file__), "data")
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
 FPS = 60
+DELTA_MIN = 20
 
 DEFAULT_LEVEL_TIME_BONUS = 30000
 
 TUX_ORIGIN_X = 28
 TUX_ORIGIN_Y = 16
 TUX_KICK_TIME = 10
+
+GRAVITY = 0.25
 
 PLAYER_WALK_SPEED = 2
 PLAYER_RUN_SPEED = 4
@@ -116,7 +63,6 @@ PLAYER_AIR_FRICTION = 0.03
 PLAYER_JUMP_HEIGHT = 4 * TILE_SIZE + 2
 PLAYER_RUN_JUMP_HEIGHT = 5 * TILE_SIZE + 2
 PLAYER_STOMP_HEIGHT = TILE_SIZE / 2
-PLAYER_GRAVITY = 0.25
 PLAYER_FALL_SPEED = 5
 PLAYER_SLIDE_ACCEL = 0.3
 PLAYER_SLIDE_SPEED = 1
@@ -133,8 +79,8 @@ HEAL_COINS = 20
 CEILING_LAX = 10
 STOMP_LAX = 8
 
-BLOCK_HIT_SPEED = 2
-BLOCK_HIT_GRAVITY = 0.25
+BLOCK_HIT_HEIGHT = 8
+ITEM_HIT_HEIGHT = 16
 COIN_COLLECT_TIME = 30
 COIN_COLLECT_SPEED = 2
 ITEM_SPAWN_SPEED = 1
@@ -152,21 +98,16 @@ WARP_LAX = 12
 WARP_SPEED = 1.5
 
 ENEMY_WALK_SPEED = 1
-ENEMY_GRAVITY = 0.5
 ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
-ENEMY_HIT_BELOW_SPEED = math.sqrt(2 * ENEMY_GRAVITY * ENEMY_HIT_BELOW_HEIGHT)
 ENEMY_KILL_POINTS = 50
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
-KICK_UP_SPEED = math.sqrt(2 * ENEMY_GRAVITY * KICK_UP_HEIGHT)
 ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
 
-FLOWER_GRAVITY = 0.25
 FLOWER_FALL_SPEED = 5
-FLOWER_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 FLOWER_THROW_SPEED = 8
 FLOWER_THROW_HEIGHT = TILE_SIZE / 2
 FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
@@ -177,17 +118,6 @@ FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
 FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
 FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
-
-# Using a kinematic equation: v[f]^2 = v[i]^2 + 2ad
-PLAYER_JUMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_JUMP_HEIGHT)
-PLAYER_RUN_JUMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_RUN_JUMP_HEIGHT)
-PLAYER_STOMP_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_STOMP_HEIGHT)
-PLAYER_DIE_SPEED = math.sqrt(2 * PLAYER_GRAVITY * PLAYER_DIE_HEIGHT)
-FLOWER_HIT_BELOW_SPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_HIT_BELOW_HEIGHT)
-FLOWER_THROW_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_HEIGHT)
-FLOWER_THROW_UP_VSPEED = math.sqrt(2 * FLOWER_GRAVITY * FLOWER_THROW_UP_HEIGHT)
-FIREBALL_BOUNCE_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_BOUNCE_HEIGHT)
-FIREBALL_UP_SPEED = math.sqrt(2 * FIREBALL_GRAVITY * FIREBALL_UP_HEIGHT)
 
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
@@ -837,9 +767,9 @@ class Player(xsge_physics.Collider):
                 thin_ice.crack()
 
             if abs(self.xvelocity) >= PLAYER_RUN_SPEED:
-                self.yvelocity = -PLAYER_RUN_JUMP_SPEED
+                self.yvelocity = get_jump_speed(PLAYER_RUN_JUMP_HEIGHT)
             else:
-                self.yvelocity = -PLAYER_JUMP_SPEED
+                self.yvelocity = get_jump_speed(PLAYER_JUMP_HEIGHT)
             self.on_floor = []
             self.was_on_floor = []
             jump_sound.play()
@@ -859,9 +789,9 @@ class Player(xsge_physics.Collider):
 
     def stomp_jump(self, other):
         if self.jump_pressed:
-            self.yvelocity = -PLAYER_JUMP_SPEED
+            self.yvelocity = get_jump_speed(PLAYER_JUMP_HEIGHT)
         else:
-            self.yvelocity = -PLAYER_STOMP_SPEED
+            self.yvelocity = get_jump_speed(PLAYER_STOMP_HEIGHT)
         T = math.floor(other.bbox_top / TILE_SIZE) * TILE_SIZE
         self.move_y(T - self.bbox_bottom)
 
@@ -882,7 +812,7 @@ class Player(xsge_physics.Collider):
         kill_sound.play()
         if show_fall:
             DeadMan.create(self.x, self.y, 100000, sprite=tux_die_sprite,
-                           yvelocity=-PLAYER_DIE_SPEED)
+                           yvelocity=get_jump_speed(PLAYER_DIE_HEIGHT))
 
         if self.lose_on_death and not sge.game.current_room.won:
             sge.game.current_room.die()
@@ -1090,7 +1020,7 @@ class Player(xsge_physics.Collider):
 
             if not self.on_floor and not self.was_on_floor:
                 if self.yvelocity < PLAYER_FALL_SPEED:
-                    self.yacceleration = PLAYER_GRAVITY
+                    self.yacceleration = GRAVITY
                 else:
                     self.yvelocity = PLAYER_FALL_SPEED
             elif self.on_slope:
@@ -1390,7 +1320,7 @@ class DeadMan(sge.Object):
 
     """Object which falls off the screen, then gets destroyed."""
 
-    gravity = PLAYER_GRAVITY
+    gravity = GRAVITY
     fall_speed = PLAYER_DIE_FALL_SPEED
 
     def event_begin_step(self, time_passed, delta_mult):
@@ -1409,7 +1339,7 @@ class Corpse(xsge_physics.Collider):
 
     """Like DeadMan, but just falls to the floor, not off-screen."""
 
-    gravity = ENEMY_GRAVITY
+    gravity = GRAVITY
     fall_speed = ENEMY_FALL_SPEED
 
     def event_create(self):
@@ -1578,7 +1508,7 @@ class FallingObject(InteractiveCollider):
     based on the steepness of the slope.
     """
 
-    gravity = ENEMY_GRAVITY
+    gravity = GRAVITY
     fall_speed = ENEMY_FALL_SPEED
     slide_speed = ENEMY_SLIDE_SPEED
 
@@ -1702,7 +1632,7 @@ class KnockableObject(InteractiveObject):
         fall_sound.play()
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity,
-                       yvelocity=-ENEMY_HIT_BELOW_SPEED,
+                       yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
                        image_xscale=self.image_xscale,
                        image_yscale=-abs(self.image_yscale))
         self.destroy()
@@ -1850,12 +1780,11 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
         if self.parent is not None:
             self.parent.kick_object()
             kick_sound.play()
-            tib = ThrownIceblock.create(self.parent, self.x, self.y, self.z,
-                                        sprite=self.sprite,
-                                        image_xscale=self.image_xscale,
-                                        image_yscale=self.image_yscale,
-                                        xvelocity=self.parent.xvelocity,
-                                        yvelocity=-KICK_UP_SPEED)
+            tib = ThrownIceblock.create(
+                self.parent, self.x, self.y, self.z, sprite=self.sprite,
+                image_xscale=self.image_xscale, image_yscale=self.image_yscale,
+                xvelocity=self.parent.xvelocity,
+                yvelocity=get_jump_speed(KICK_UP_HEIGHT, self.gravity))
             self.parent = None
             self.destroy()
 
@@ -1975,7 +1904,6 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject):
 
 class FireFlower(FallingObject):
 
-    gravity = FLOWER_GRAVITY
     fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
 
@@ -1999,7 +1927,7 @@ class FireFlower(FallingObject):
             self.gravity = 0
 
     def knock(self, other=None):
-        self.yvelocity = -FLOWER_HIT_BELOW_SPEED
+        self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
     def drop(self):
         if self.parent is not None:
@@ -2011,7 +1939,10 @@ class FireFlower(FallingObject):
         if self.parent is not None:
             d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
-                yv = -FIREBALL_UP_SPEED if up else FIREBALL_FALL_SPEED
+                if up:
+                    yv = get_jump_speed(FIREBALL_UP_HEIGHT, Fireball.gravity)
+                else:
+                    yv = FIREBALL_FALL_SPEED
                 Fireball.create(self.x, self.y, self.parent.z,
                                 xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
@@ -2027,7 +1958,8 @@ class FireFlower(FallingObject):
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
-                yv = -FLOWER_THROW_UP_VSPEED if up else -FLOWER_THROW_VSPEED
+                h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
+                yv = get_jump_speed(h, ThrownFlower.gravity)
                 self.parent.kick_object()
                 kick_sound.play()
                 ThrownFlower.create(self.parent, self.x, self.y, self.z,
@@ -2050,7 +1982,6 @@ class FireFlower(FallingObject):
 
 class ThrownFlower(FallingObject):
 
-    gravity = FLOWER_GRAVITY
     fall_speed = FLOWER_FALL_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
@@ -2112,7 +2043,7 @@ class Fireball(FallingObject):
         self.destroy()
 
     def stop_down(self):
-        self.yvelocity = -FIREBALL_BOUNCE_SPEED
+        self.yvelocity = get_jump_speed(FIREBALL_BOUNCE_HEIGHT, self.gravity)
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
@@ -2130,7 +2061,6 @@ class Fireball(FallingObject):
 
 class TuxDoll(FallingObject):
 
-    gravity = FLOWER_GRAVITY
     fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
 
@@ -2155,7 +2085,7 @@ class TuxDoll(FallingObject):
         self.destroy()
 
     def knock(self, other=None):
-        self.yvelocity = -FLOWER_HIT_BELOW_SPEED
+        self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
 
 class HittableBlock(xsge_physics.SolidBottom, Tile):
@@ -2195,8 +2125,8 @@ class HittableBlock(xsge_physics.SolidBottom, Tile):
         self.visible = False
         self.hit_obj = sge.Object.create(
             self.x, self.y, self.z, sprite=s, tangible=False,
-            yvelocity=(-BLOCK_HIT_SPEED), yacceleration=BLOCK_HIT_GRAVITY,
-            image_index=self.image_index,
+            yvelocity=get_jump_speed(BLOCK_HIT_HEIGHT),
+            yacceleration=GRAVITY, image_index=self.image_index,
             image_origin_x=self.image_origin_x,
             image_origin_y=self.image_origin_y,
             image_fps=self.image_fps, image_xscale=self.image_xscale,
@@ -3087,6 +3017,12 @@ def get_scaled_copy(obj):
     return s
 
 
+def get_jump_speed(height, gravity=GRAVITY):
+    # Get the speed to achieve a given height using a kinematic
+    # equation: v[f]^2 = v[i]^2 + 2ad
+    return -math.sqrt(2 * gravity * height)
+
+
 def play_music(music, force_restart=False):
     """Play the given music file, starting with its start piece."""
     if music:
@@ -3200,7 +3136,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
-     delta_min=15, window_text="reTux {}".format(__version__),
+     delta_min=DELTA_MIN, window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 xsge_gui.init()
 
