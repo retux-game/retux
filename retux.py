@@ -87,6 +87,8 @@ ITEM_SPAWN_SPEED = 1
 
 SECOND_POINTS = 100
 COIN_POINTS = 100
+ENEMY_KILL_POINTS = 50
+AMMO_POINTS = 50
 TUXDOLL_POINTS = 5000
 
 CAMERA_SPEED_FACTOR = 1 / 2
@@ -101,8 +103,8 @@ ENEMY_WALK_SPEED = 1
 ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
-ENEMY_KILL_POINTS = 50
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
+ICEBLOCK_GRAVITY = 0.6
 ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
@@ -820,6 +822,10 @@ class Player(xsge_physics.Collider):
         self.destroy()
 
     def win_level(self):
+        for obj in sge.game.current_room.objects:
+            if isinstance(obj, WinPuffObject) and obj.active:
+                obj.win_puff()
+
         self.human = False
         self.left_pressed = False
         self.right_pressed = False
@@ -1501,6 +1507,23 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
             self.stop_down()
 
 
+class WinPuffObject(InteractiveObject):
+
+    win_puff_score = ENEMY_KILL_POINTS
+
+    def win_puff(self):
+        pop_sound.play()
+        if self.sprite is None:
+            x = self.x
+            y = self.y
+        else:
+            x = self.x - self.image_origin_x + self.sprite.width / 2
+            y = self.y - self.image_origin_y + self.sprite.height / 2
+        Smoke.create(x, y, self.z, sprite=smoke_plume_sprite)
+        self.destroy()
+        sge.game.current_room.add_points(self.win_puff_score)
+
+
 class FallingObject(InteractiveCollider):
 
     """
@@ -1663,7 +1686,8 @@ class BurnableObject(InteractiveObject):
         self.destroy()
 
 
-class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject):
+class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
+                      WinPuffObject):
 
     def event_create(self):
         super(WalkingSnowball, self).event_create()
@@ -1699,7 +1723,8 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject):
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
 
-class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject):
+class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
+                      WinPuffObject):
 
     stayonplatform = True
 
@@ -1738,7 +1763,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject):
 
 
 class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
-                   BurnableObject):
+                   BurnableObject, WinPuffObject):
 
     def touch(self, other):
         if other.pickup(self):
@@ -1784,7 +1809,8 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
                 self.parent, self.x, self.y, self.z, sprite=self.sprite,
                 image_xscale=self.image_xscale, image_yscale=self.image_yscale,
                 xvelocity=self.parent.xvelocity,
-                yvelocity=get_jump_speed(KICK_UP_HEIGHT, self.gravity))
+                yvelocity=get_jump_speed(KICK_UP_HEIGHT,
+                                         ThrownIceblock.gravity))
             self.parent = None
             self.destroy()
 
@@ -1794,9 +1820,11 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
             self.image_xscale = abs(self.image_xscale) * direction
 
 
-class ThrownIceblock(FallingObject, KnockableObject, BurnableObject):
+class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
+                     WinPuffObject):
 
     active_range = ICEBLOCK_ACTIVE_RANGE
+    gravity = ICEBLOCK_GRAVITY
     fall_speed = ICEBLOCK_FALL_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
@@ -1855,8 +1883,10 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject):
                                                     ydirection)
 
 
-class DashingIceblock(WalkingObject, KnockableObject, BurnableObject):
+class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
+                      WinPuffObject):
 
+    gravity = ICEBLOCK_GRAVITY
     active_range = ICEBLOCK_ACTIVE_RANGE
     walk_speed = ICEBLOCK_DASH_SPEED
 
@@ -1902,10 +1932,11 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject):
         self.destroy()
 
 
-class FireFlower(FallingObject):
+class FireFlower(FallingObject, WinPuffObject):
 
     fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
+    win_puff_points = 0
 
     def event_create(self):
         super(FireFlower, self).event_create()
@@ -1973,6 +2004,10 @@ class FireFlower(FallingObject):
 
     def kick_up(self):
         self.kick(True)
+
+    def win_puff(self):
+        super(FireFlower, self).win_puff()
+        sge.game.current_room.add_points(AMMO_POINTS * self.ammo)
 
     def event_end_step(self, time_passed, delta_mult):
         if self.parent is not None:
@@ -2933,12 +2968,12 @@ class MainMenu(Menu):
 
     def event_choose(self):
         if self.choice == 0:
-            print("New game")
+            set_new_game()
             start_levelset()
         elif self.choice == 1:
             print("Load game")
         elif self.choice == 2:
-            LevelsetMenu.create_page()
+            LevelsetMenu.create_page(default=-1)
         elif self.choice == 3:
             print("Options")
         else:
@@ -3077,14 +3112,7 @@ def load_levelset(fname):
 
     worldmaps = data.get("worldmaps", [])
     levels = data.get("levels", [])
-    cleared_levels = []
     tuxdolls_available = []
-    tuxdolls_found = []
-    current_worldmap = None
-    current_worldmap_space = None
-    current_level = 0
-    score = 0
-    current_areas = {}
 
     for level in levels:
         r = Level.load(level)
@@ -3097,6 +3125,24 @@ def load_levelset(fname):
 
     if worldmaps:
         current_worldmap = worldmaps[0]
+
+
+def set_new_game():
+    global cleared_levels
+    global tuxdolls_found
+    global current_worldmap
+    global current_worldmap_space
+    global current_level
+    global score
+    global current_areas
+
+    cleared_levels = []
+    tuxdolls_found = []
+    current_worldmap = None
+    current_worldmap_space = None
+    current_level = 0
+    score = 0
+    current_areas = {}
 
 
 def start_levelset():
@@ -3281,6 +3327,8 @@ fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
 smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
                                origin_x=24, origin_y=24, fps=24)
+smoke_plume_sprite = sge.Sprite("smoke_plume", d, width=64, height=64,
+                                origin_x=32, origin_y=32, fps=30)
 fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
                                    origin_x=8, origin_y=8, fps=30)
 item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=80, height=80,
@@ -3428,6 +3476,7 @@ kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
 iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
+pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 pause_sound = sge.Sound(os.path.join(DATA, "sounds", "pause.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
