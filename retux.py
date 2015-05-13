@@ -2011,7 +2011,7 @@ class FireFlower(FallingObject, WinPuffObject):
 
     def win_puff(self):
         super(FireFlower, self).win_puff()
-        sge.game.current_room.add_points(AMMO_POINTS * self.ammo)
+        sge.game.current_room.add_points(AMMO_POINTS * (self.ammo + 1))
 
     def event_end_step(self, time_passed, delta_mult):
         if self.parent is not None:
@@ -2019,7 +2019,7 @@ class FireFlower(FallingObject, WinPuffObject):
             self.image_xscale = abs(self.image_xscale) * direction
 
 
-class ThrownFlower(FallingObject):
+class ThrownFlower(FallingObject, WinPuffObject):
 
     fall_speed = FLOWER_FALL_SPEED
 
