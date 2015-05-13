@@ -39,8 +39,8 @@
   <object x="2336" y="224" width="736" height="32"/>
   <object x="2336" y="192" width="704" height="32"/>
   <object x="2336" y="96" width="352" height="96"/>
-  <object x="3680" y="288" width="608" height="160"/>
-  <object x="4160" y="224" width="128" height="64"/>
+  <object x="3680" y="288" width="416" height="160"/>
+  <object x="4096" y="224" width="192" height="224"/>
   <object x="4736" y="224" width="160" height="160"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
@@ -60,20 +60,10 @@
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="289" x="4288" y="256"/>
-  <object gid="289" x="4320" y="256"/>
-  <object gid="289" x="4352" y="256"/>
   <object gid="289" x="4384" y="256"/>
   <object gid="289" x="4416" y="256"/>
-  <object gid="289" x="4448" y="256"/>
-  <object gid="289" x="4480" y="256"/>
-  <object gid="289" x="4512" y="256"/>
-  <object gid="289" x="4544" y="256"/>
   <object gid="289" x="4576" y="256"/>
   <object gid="289" x="4608" y="256"/>
-  <object gid="289" x="4640" y="256"/>
-  <object gid="289" x="4672" y="256"/>
-  <object gid="289" x="4704" y="256"/>
   <object gid="275" x="352" y="256"/>
   <object gid="275" x="480" y="256"/>
   <object gid="275" x="608" y="256"/>
