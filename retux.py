@@ -1535,10 +1535,12 @@ class FallingObject(InteractiveCollider):
     fall_speed = ENEMY_FALL_SPEED
     slide_speed = ENEMY_SLIDE_SPEED
 
+    was_on_floor = False
+
     def move(self):
         on_floor = self.get_bottom_touching_wall()
         on_slope = self.get_bottom_touching_slope()
-        if (on_floor or on_slope) and self.yvelocity >= 0:
+        if self.was_on_floor and (on_floor or on_slope) and self.yvelocity >= 0:
             self.yacceleration = 0
             if on_floor:
                 self.yvelocity = 0
@@ -1552,6 +1554,8 @@ class FallingObject(InteractiveCollider):
             else:
                 self.yvelocity = self.fall_speed
                 self.yacceleration = 0
+
+        self.was_on_floor = on_floor or on_slope
 
 
 class WalkingObject(FallingObject):
@@ -3323,7 +3327,7 @@ thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
-                                fps=8, bbox_x=-16, bbox_width=32)
+                                fps=8, bbox_x=-12, bbox_width=24)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
 smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
                                origin_x=24, origin_y=24, fps=24)
