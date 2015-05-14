@@ -103,6 +103,7 @@ ENEMY_WALK_SPEED = 1
 ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
+SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 ICEBLOCK_GRAVITY = 0.6
 ICEBLOCK_FALL_SPEED = 10
@@ -1727,6 +1728,27 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
 
+class BouncingSnowball(WalkingSnowball):
+
+    def event_create(self):
+        super(BouncingSnowball, self).event_create()
+        self.x -= self.image_origin_x
+        self.y -= self.image_origin_y
+        self.sprite = bouncing_snowball_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def stop_down(self):
+        self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
+
+
 class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
                       WinPuffObject):
 
@@ -3174,12 +3196,12 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "special_blocks": get_object, "decoration_small": get_object,
          "map_objects": get_object, "player": Player,
          "walking_snowball": WalkingSnowball,
+         "bouncing_snowball": BouncingSnowball,
          "walking_iceblock": WalkingIceblock, "fireflower": FireFlower,
-         "tuxdoll": TuxDoll,
-         "brick": Brick, "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
-         "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
-         "infoblock": InfoBlock, "thin_ice": ThinIce, "lava": Lava,
-         "lava_surface": LavaSurface,
+         "tuxdoll": TuxDoll, "brick": Brick, "coinbrick": CoinBrick,
+         "emptyblock": EmptyBlock, "itemblock": ItemBlock,
+         "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
+         "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "warp_spawn": WarpSpawn, "map_player": MapPlayer,
          "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
@@ -3284,6 +3306,9 @@ d = os.path.join(DATA, "images", "objects", "enemies")
 snowball_walk_sprite = sge.Sprite("snowball", d, origin_x=19, origin_y=4,
                                   fps=8, bbox_x=-13, bbox_y=0,
                                   bbox_width=26, bbox_height=32)
+bouncing_snowball_sprite = sge.Sprite("bouncing_snowball", d, origin_x=17,
+                                      origin_y=0, fps=8, bbox_x=-13, bbox_y=0,
+                                      bbox_width=26, bbox_height=32)
 snowball_squished_sprite = sge.Sprite("snowball_squished", d, origin_x=17,
                                       origin_y=-19, bbox_x=-13, bbox_y=19,
                                       bbox_width=26, bbox_height=13)

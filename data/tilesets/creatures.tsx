@@ -19,6 +19,9 @@
   <image width="35" height="38" source="../images/objects/enemies/iceblock-1.png"/>
  </tile>
  <tile id="3">
+  <properties>
+   <property name="cls" value="bouncing_snowball"/>
+  </properties>
   <image width="35" height="32" source="../images/objects/enemies/bouncing_snowball-4.png"/>
  </tile>
  <tile id="4">
