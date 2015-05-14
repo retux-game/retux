@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="creatures" tilewidth="49" tileheight="54">
+<tileset name="creatures" tilewidth="49" tileheight="48">
  <tile id="0">
   <properties>
    <property name="cls" value="player"/>
@@ -25,18 +25,18 @@
   <image width="35" height="32" source="../images/objects/enemies/bouncing_snowball-4.png"/>
  </tile>
  <tile id="4">
-  <image width="40" height="43" source="../images/objects/enemies/flying_snowball-1.png"/>
- </tile>
- <tile id="5">
   <image width="43" height="42" source="../images/objects/enemies/spiky-1.png"/>
  </tile>
- <tile id="6">
+ <tile id="5">
   <image width="42" height="40" source="../images/objects/enemies/bomb-1.png"/>
  </tile>
- <tile id="7">
-  <image width="47" height="54" source="../images/objects/enemies/jumpy.png"/>
- </tile>
- <tile id="8">
+ <tile id="6">
   <image width="42" height="40" source="../images/objects/enemies/haywire-1.png"/>
+ </tile>
+ <tile id="7">
+  <properties>
+   <property name="cls" value="jumpy"/>
+  </properties>
+  <image width="47" height="46" source="../images/objects/enemies/jumpy_bounce.png"/>
  </tile>
 </tileset>
