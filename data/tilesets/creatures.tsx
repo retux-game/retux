@@ -25,6 +25,9 @@
   <image width="35" height="32" source="../images/objects/enemies/bouncing_snowball-4.png"/>
  </tile>
  <tile id="4">
+  <properties>
+   <property name="cls" value="spiky"/>
+  </properties>
   <image width="43" height="42" source="../images/objects/enemies/spiky-1.png"/>
  </tile>
  <tile id="5">

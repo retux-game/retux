@@ -1693,7 +1693,7 @@ class BurnableObject(InteractiveObject):
 
 
 class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
-                      WinPuffObject):
+                      FreezableObject, WinPuffObject):
 
     def event_create(self):
         super(WalkingSnowball, self).event_create()
@@ -1728,6 +1728,9 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
         super(WalkingSnowball, self).burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
+    def freeze(self):
+        pass
+
 
 class BouncingSnowball(WalkingSnowball):
 
@@ -1751,7 +1754,7 @@ class BouncingSnowball(WalkingSnowball):
 
 
 class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
-                      WinPuffObject):
+                      FreezableObject, WinPuffObject):
 
     stayonplatform = True
 
@@ -1787,6 +1790,46 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def burn(self):
         super(WalkingIceblock, self).burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def freeze(self):
+        pass
+
+
+class Spiky(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
+            WinPuffObject):
+
+    stayonplatform = True
+
+    def event_create(self):
+        super(Spiky, self).event_create()
+        self.sprite = spiky_walk_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+        self.frozen_sprite = spiky_iced_sprite
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.hurt()
+
+    def knock(self, other=None):
+        super(Spiky, self).knock(other)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def burn(self):
+        pass
+
+    def touch_hurt(self):
+        pass
 
 
 class Jumpy(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
@@ -1831,6 +1874,9 @@ class Jumpy(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
+        pass
+
+    def touch_hurt(self):
         pass
 
     def stop_down(self):
@@ -3246,7 +3292,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "map_objects": get_object, "player": Player,
          "walking_snowball": WalkingSnowball,
          "bouncing_snowball": BouncingSnowball,
-         "walking_iceblock": WalkingIceblock, "jumpy": Jumpy,
+         "walking_iceblock": WalkingIceblock, "spiky": Spiky, "jumpy": Jumpy,
          "fireflower": FireFlower, "tuxdoll": TuxDoll, "brick": Brick,
          "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
@@ -3368,6 +3414,12 @@ iceblock_walk_sprite = sge.Sprite("iceblock", d, origin_x=18, origin_y=6,
 iceblock_flat_sprite = sge.Sprite("iceblock_flat", d, origin_x=18, origin_y=6,
                                   bbox_x=-16, bbox_y=1, bbox_width=31,
                                   bbox_height=28)
+spiky_walk_sprite = sge.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
+                               bbox_x=-13, bbox_y=0, bbox_width=26,
+                               bbox_height=32)
+spiky_iced_sprite = sge.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
+                               fps=8, bbox_x=-13, bbox_y=0, bbox_width=26,
+                               bbox_height=32)
 jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-17,
                           bbox_y=0, bbox_width=33, bbox_height=32)
 jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,
