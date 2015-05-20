@@ -1883,6 +1883,68 @@ class Jumpy(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
         self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
 
 
+class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
+                     BurnableObject, FreezableObject, WinPuffObject):
+
+    def event_create(self):
+        super(FlyingSnowball, self).event_create()
+        self.sprite = flying_snowball_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def move(self):
+        if self.xvelocity:
+            self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
+        else:
+            player = None
+            dist = 0
+            for obj in sge.game.current_room.objects:
+                if isinstance(obj, Player):
+                    ndist = math.hypot(self.x - obj.x, self.y - obj.y)
+                    if player is None or ndist < dist:
+                        player = obj
+                        dist = ndist
+
+            if player is not None:
+                if self.x < player.x:
+                    self.image_xscale = abs(self.image_xscale)
+                else:
+                    self.image_xscale = -abs(self.image_xscale)
+            else:
+                self.set_direction(-1)
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.stomp_jump(self)
+        squish_sound.play()
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        Corpse.create(self.x, self.y, self.z,
+                      sprite=flying_snowball_squished_sprite,
+                      image_xscale=self.image_xscale,
+                      image_yscale=self.image_yscale)
+        self.destroy()
+
+    def knock(self, other=None):
+        super(FlyingSnowball, self).knock(other)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def burn(self):
+        super(FlyingSnowball, self).burn()
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def freeze(self):
+        pass
+
+
 class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
                    BurnableObject, WinPuffObject):
 
@@ -3293,14 +3355,14 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_snowball": WalkingSnowball,
          "bouncing_snowball": BouncingSnowball,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky, "jumpy": Jumpy,
-         "fireflower": FireFlower, "tuxdoll": TuxDoll, "brick": Brick,
-         "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
-         "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
-         "infoblock": InfoBlock, "thin_ice": ThinIce, "lava": Lava,
-         "lava_surface": LavaSurface, "goal": Goal, "goal_top": GoalTop,
-         "coin": Coin, "warp": Warp, "warp_spawn": WarpSpawn,
-         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
-         "map_path": MapPath}
+         "flying_snowball": FlyingSnowball, "fireflower": FireFlower,
+         "tuxdoll": TuxDoll, "brick": Brick, "coinbrick": CoinBrick,
+         "emptyblock": EmptyBlock, "itemblock": ItemBlock,
+         "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
+         "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
+         "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
+         "warp_spawn": WarpSpawn, "map_player": MapPlayer,
+         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
@@ -3428,6 +3490,12 @@ jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,
 jumpy_iced_sprite = sge.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
                                bbox_x=-17, bbox_y=0, bbox_width=33,
                                bbox_height=32)
+flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
+                                    origin_y=11, fps=15, bbox_x=-13,
+                                    bbox_width=26, bbox_height=32)
+flying_snowball_squished_sprite = sge.Sprite(
+    "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
+    bbox_y=11, bbox_width=26, bbox_height=21)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)

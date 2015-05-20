@@ -42,4 +42,10 @@
   </properties>
   <image width="47" height="46" source="../images/objects/enemies/jumpy_bounce.png"/>
  </tile>
+ <tile id="8">
+  <properties>
+   <property name="cls" value="flying_snowball"/>
+  </properties>
+  <image width="40" height="43" source="../images/objects/enemies/flying_snowball-1.png"/>
+ </tile>
 </tileset>
