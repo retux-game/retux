@@ -734,8 +734,6 @@ class Player(xsge_physics.Collider):
         self.facing = 1
         self.view = None
 
-        x += TUX_ORIGIN_X
-        y += TUX_ORIGIN_Y
         super(Player, self).__init__(
             x, y, z=z, sprite=sprite, visible=visible, active=active,
             checks_collisions=checks_collisions, tangible=tangible,
@@ -1705,8 +1703,6 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
     def touch(self, other):
         other.hurt()
@@ -1736,8 +1732,6 @@ class BouncingSnowball(WalkingSnowball):
 
     def event_create(self):
         super(BouncingSnowball, self).event_create()
-        self.x -= self.image_origin_x
-        self.y -= self.image_origin_y
         self.sprite = bouncing_snowball_sprite
         self.image_fps = None
         self.image_origin_x = None
@@ -1746,8 +1740,6 @@ class BouncingSnowball(WalkingSnowball):
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
     def stop_down(self):
         self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
@@ -1768,8 +1760,6 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
     def touch(self, other):
         other.hurt()
@@ -1810,8 +1800,6 @@ class Spiky(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
         self.frozen_sprite = spiky_iced_sprite
 
@@ -1847,8 +1835,6 @@ class Jumpy(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
         self.frozen_sprite = jumpy_iced_sprite
 
@@ -1896,8 +1882,6 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
     def move(self):
         if abs(self.xvelocity) > 0.1:
@@ -2825,8 +2809,6 @@ class FlyingSnowballPath(xsge_path.Path):
 
     def event_create(self):
         obj = FlyingSnowball.create(self.x, self.y, z=self.z)
-        obj.x -= obj.image_origin_x
-        obj.y -= obj.image_origin_x
         self.follow_start(obj, ENEMY_WALK_SPEED, loop=None)
 
 
@@ -3492,6 +3474,8 @@ spiky_walk_sprite = sge.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
 spiky_iced_sprite = sge.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
                                fps=8, bbox_x=-13, bbox_y=0, bbox_width=26,
                                bbox_height=32)
+bomb_walk_sprite = sge.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
+                              bbox_x=13, bbox_width=26, bbox_height=32)
 jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-17,
                           bbox_y=0, bbox_width=33, bbox_height=32)
 jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,

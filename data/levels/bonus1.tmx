@@ -8,20 +8,20 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="16" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="25" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="29" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="31" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="119" source="../tilesets/snow.tsx"/>
- <tileset firstgid="259" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="279" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="31" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="35" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="37" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="125" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="265" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="285" source="../tilesets/cave.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBiaQB2INQbaEaNgFIwCmgEJRgiWZBxol1AfAAC8QACc
+   eJxjYBiaQBeI9QbaEaNgFIwCmgE5RgiWZxxol1AfAAAEZwC6
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxTYWRgUAVidQYGBg0gVgayVWiAQXYoAs1XAmJ1IFuDCliTEdW9IDuoCbCFyagdo3aM2sHAkA7E7jjsEAdiCSrgfKDZ/jjskAdiBSpiRUbalX3YMACwIxoo
+   eJzTYmRg0AZiXQYGBj0g1gSytWiAQXaoA83XAGJdIFuPClifEdW9IDuoCbCFyagdo3aM2sHAkAvEvjjskAViOSrgUqDZoTjsUAViNSpidUbalX3YMABg+B5g
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -48,87 +48,87 @@
   </object>
  </objectgroup>
  <objectgroup name="Items">
-  <object gid="270" x="128" y="128"/>
-  <object gid="270" x="128" y="160"/>
-  <object gid="270" x="128" y="192"/>
-  <object gid="270" x="128" y="224"/>
-  <object gid="270" x="128" y="256"/>
-  <object gid="270" x="160" y="256"/>
-  <object gid="270" x="224" y="256"/>
-  <object gid="270" x="224" y="224"/>
-  <object gid="270" x="224" y="192"/>
-  <object gid="270" x="224" y="160"/>
-  <object gid="270" x="224" y="128"/>
-  <object gid="270" x="288" y="128"/>
-  <object gid="270" x="288" y="160"/>
-  <object gid="270" x="288" y="192"/>
-  <object gid="270" x="288" y="224"/>
-  <object gid="270" x="288" y="256"/>
-  <object gid="270" x="320" y="128"/>
-  <object gid="270" x="352" y="160"/>
-  <object gid="270" x="320" y="192"/>
-  <object gid="270" x="352" y="224"/>
-  <object gid="270" x="320" y="256"/>
-  <object gid="270" x="416" y="128"/>
-  <object gid="270" x="416" y="160"/>
-  <object gid="270" x="416" y="192"/>
-  <object gid="270" x="416" y="224"/>
-  <object gid="270" x="416" y="256"/>
-  <object gid="270" x="448" y="128"/>
-  <object gid="270" x="480" y="160"/>
-  <object gid="270" x="448" y="192"/>
-  <object gid="270" x="480" y="224"/>
-  <object gid="270" x="480" y="256"/>
-  <object gid="270" x="544" y="256"/>
-  <object gid="270" x="544" y="224"/>
-  <object gid="270" x="544" y="192"/>
-  <object gid="270" x="544" y="160"/>
-  <object gid="270" x="544" y="128"/>
-  <object gid="270" x="576" y="128"/>
-  <object gid="270" x="608" y="128"/>
-  <object gid="270" x="576" y="192"/>
-  <object gid="270" x="576" y="256"/>
-  <object gid="270" x="608" y="256"/>
-  <object gid="268" x="192" y="384"/>
-  <object gid="268" x="224" y="384"/>
-  <object gid="268" x="256" y="384"/>
-  <object gid="268" x="288" y="384"/>
-  <object gid="268" x="320" y="384"/>
-  <object gid="268" x="352" y="384"/>
-  <object gid="268" x="384" y="384"/>
-  <object gid="268" x="416" y="384"/>
-  <object gid="268" x="448" y="384"/>
-  <object gid="268" x="480" y="384"/>
-  <object gid="268" x="512" y="384"/>
-  <object gid="268" x="544" y="384"/>
-  <object gid="268" x="544" y="352"/>
-  <object gid="268" x="512" y="352"/>
-  <object gid="268" x="480" y="352"/>
-  <object gid="268" x="448" y="352"/>
-  <object gid="268" x="416" y="352"/>
-  <object gid="268" x="384" y="352"/>
-  <object gid="268" x="352" y="352"/>
-  <object gid="268" x="320" y="352"/>
-  <object gid="268" x="288" y="352"/>
-  <object gid="268" x="256" y="352"/>
-  <object gid="268" x="224" y="352"/>
-  <object gid="268" x="192" y="352"/>
-  <object gid="268" x="544" y="320"/>
-  <object gid="268" x="512" y="320"/>
-  <object gid="268" x="480" y="320"/>
-  <object gid="268" x="448" y="320"/>
-  <object gid="268" x="416" y="320"/>
-  <object gid="268" x="384" y="320"/>
-  <object gid="268" x="352" y="320"/>
-  <object gid="268" x="320" y="320"/>
-  <object gid="268" x="288" y="320"/>
-  <object gid="268" x="256" y="320"/>
-  <object gid="268" x="224" y="320"/>
-  <object gid="268" x="192" y="320"/>
+  <object gid="276" x="128" y="128"/>
+  <object gid="276" x="128" y="160"/>
+  <object gid="276" x="128" y="192"/>
+  <object gid="276" x="128" y="224"/>
+  <object gid="276" x="128" y="256"/>
+  <object gid="276" x="160" y="256"/>
+  <object gid="276" x="224" y="256"/>
+  <object gid="276" x="224" y="224"/>
+  <object gid="276" x="224" y="192"/>
+  <object gid="276" x="224" y="160"/>
+  <object gid="276" x="224" y="128"/>
+  <object gid="276" x="288" y="128"/>
+  <object gid="276" x="288" y="160"/>
+  <object gid="276" x="288" y="192"/>
+  <object gid="276" x="288" y="224"/>
+  <object gid="276" x="288" y="256"/>
+  <object gid="276" x="320" y="128"/>
+  <object gid="276" x="352" y="160"/>
+  <object gid="276" x="320" y="192"/>
+  <object gid="276" x="352" y="224"/>
+  <object gid="276" x="320" y="256"/>
+  <object gid="276" x="416" y="128"/>
+  <object gid="276" x="416" y="160"/>
+  <object gid="276" x="416" y="192"/>
+  <object gid="276" x="416" y="224"/>
+  <object gid="276" x="416" y="256"/>
+  <object gid="276" x="448" y="128"/>
+  <object gid="276" x="480" y="160"/>
+  <object gid="276" x="448" y="192"/>
+  <object gid="276" x="480" y="224"/>
+  <object gid="276" x="480" y="256"/>
+  <object gid="276" x="544" y="256"/>
+  <object gid="276" x="544" y="224"/>
+  <object gid="276" x="544" y="192"/>
+  <object gid="276" x="544" y="160"/>
+  <object gid="276" x="544" y="128"/>
+  <object gid="276" x="576" y="128"/>
+  <object gid="276" x="608" y="128"/>
+  <object gid="276" x="576" y="192"/>
+  <object gid="276" x="576" y="256"/>
+  <object gid="276" x="608" y="256"/>
+  <object gid="274" x="192" y="384"/>
+  <object gid="274" x="224" y="384"/>
+  <object gid="274" x="256" y="384"/>
+  <object gid="274" x="288" y="384"/>
+  <object gid="274" x="320" y="384"/>
+  <object gid="274" x="352" y="384"/>
+  <object gid="274" x="384" y="384"/>
+  <object gid="274" x="416" y="384"/>
+  <object gid="274" x="448" y="384"/>
+  <object gid="274" x="480" y="384"/>
+  <object gid="274" x="512" y="384"/>
+  <object gid="274" x="544" y="384"/>
+  <object gid="274" x="544" y="352"/>
+  <object gid="274" x="512" y="352"/>
+  <object gid="274" x="480" y="352"/>
+  <object gid="274" x="448" y="352"/>
+  <object gid="274" x="416" y="352"/>
+  <object gid="274" x="384" y="352"/>
+  <object gid="274" x="352" y="352"/>
+  <object gid="274" x="320" y="352"/>
+  <object gid="274" x="288" y="352"/>
+  <object gid="274" x="256" y="352"/>
+  <object gid="274" x="224" y="352"/>
+  <object gid="274" x="192" y="352"/>
+  <object gid="274" x="544" y="320"/>
+  <object gid="274" x="512" y="320"/>
+  <object gid="274" x="480" y="320"/>
+  <object gid="274" x="448" y="320"/>
+  <object gid="274" x="416" y="320"/>
+  <object gid="274" x="384" y="320"/>
+  <object gid="274" x="352" y="320"/>
+  <object gid="274" x="320" y="320"/>
+  <object gid="274" x="288" y="320"/>
+  <object gid="274" x="256" y="320"/>
+  <object gid="274" x="224" y="320"/>
+  <object gid="274" x="192" y="320"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
-  <object gid="16" x="64" y="384"/>
+  <object gid="16" x="96" y="384"/>
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
