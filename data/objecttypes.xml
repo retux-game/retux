@@ -17,4 +17,5 @@
  <objecttype name="spike_bottom" color="#ffaa00"/>
  <objecttype name="death" color="#ff0000"/>
  <objecttype name="level_end" color="#55007f"/>
+ <objecttype name="flying_snowball_path" color="#ffff00"/>
 </objecttypes>

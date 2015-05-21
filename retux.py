@@ -1900,7 +1900,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
         self.y += self.image_origin_y
 
     def move(self):
-        if self.xvelocity:
+        if abs(self.xvelocity) > 0.1:
             self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
         else:
             player = None
@@ -2821,6 +2821,15 @@ class Warp(WarpSpawn):
             sge.game.current_room.warps.remove(self)
 
 
+class FlyingSnowballPath(xsge_path.Path):
+
+    def event_create(self):
+        obj = FlyingSnowball.create(self.x, self.y, z=self.z)
+        obj.x -= obj.image_origin_x
+        obj.y -= obj.image_origin_x
+        self.follow_start(obj, ENEMY_WALK_SPEED, loop=None)
+
+
 class MapPlayer(sge.Object):
 
     moving = False
@@ -3361,8 +3370,9 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
          "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
-         "warp_spawn": WarpSpawn, "map_player": MapPlayer,
-         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
+         "flying_snowball_path": FlyingSnowballPath, "warp_spawn": WarpSpawn,
+         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
+         "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
