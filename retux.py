@@ -181,11 +181,7 @@ class Game(sge.Game):
             self.event_close()
 
     def event_close(self):
-        self.mouse.visible = True
-        m = "Are you sure you want to quit?"
-        if xsge_gui.show_message(message=m, buttons=["No", "Yes"], default=0):
-            self.end()
-        self.mouse.visible = False
+        self.end()
 
     def event_paused_close(self):
         self.event_close()
@@ -450,7 +446,12 @@ class Level(sge.Room):
             if key == "f11":
                 sge.game.fullscreen = not sge.game.fullscreen
             elif key == "escape":
-                sge.game.event_close()
+                sge.game.mouse.visible = True
+                m = "Are you sure you want to quit?"
+                if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
+                                         default=0):
+                    sge.game.event_close()
+                sge.game.mouse.visible = False
             elif key in ("enter", "p"):
                 if not self.won:
                     sge.Music.pause()
