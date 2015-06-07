@@ -7,6 +7,7 @@
    eJzTY2Bg0BvFo3gUj+JRTDcMAITEPuU=
   </data>
  </layer>
+ <objectgroup name="Spaces"/>
  <objectgroup name="Objects"/>
  <objectgroup color="#ffff00" name="map_path"/>
 </map>

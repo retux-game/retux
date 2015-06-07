@@ -1,6 +1,7 @@
 {
     "name": "reTux",
     "worldmaps": [
+        "retux-01.tmx"
     ],
     "levels": [
         "1-1.tmx",

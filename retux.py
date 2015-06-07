@@ -406,6 +406,8 @@ class Level(sge.Room):
                 current_areas = {}
                 main_area = None
                 level_cleared = True
+                if self.fname not in cleared_levels:
+                    cleared_levels.append(self.fname)
 
                 if current_worldmap:
                     m = Worldmap.load(current_worldmap)
@@ -2825,9 +2827,13 @@ class MapPlayer(sge.Object):
                 x = 0
                 y = 0
             target_space = MapSpace.get_at(path.x + x, path.y + y)
-            if space.cleared or target_space.cleared:
-                self.moving = True
-                path.follow_start(self, MAP_SPEED)
+            if target_space is not None:
+                if space.cleared or target_space.cleared:
+                    self.moving = True
+                    path.follow_start(self, MAP_SPEED)
+            else:
+                print("Space at position ({}, {}) doesn't exist!".format(
+                    path.x + x, path.y + y))
 
     def move_left(self):
         space = MapSpace.get_at(self.x, self.y)
@@ -2870,6 +2876,9 @@ class MapPlayer(sge.Object):
             space.start_level()
 
     def event_create(self):
+        if MapSpace.get_at(self.x,self.y) is None:
+            MapSpace.create(self.x, self.y)
+
         if current_worldmap_space is not None:
             for obj in sge.game.current_room.objects:
                 if (isinstance(obj, MapSpace) and
@@ -3072,8 +3081,10 @@ class MapWarp(MapSpace):
 
         if self.dest and ":" in self.dest:
             map_f, spawn = self.dest.split(":", 1)
-            current_worldmap = self.dest
+            current_worldmap = map_f
             current_worldmap_space = spawn
+        else:
+            current_worldmap_space = None
 
         if self.level:
             level = Level.load(self.level)
@@ -3090,12 +3101,22 @@ class MapPath(xsge_path.Path):
 
     def event_create(self):
         if self.points:
-            x, y = self.points[-1]
-            rp = self.points[1:]
-            rp.sort(reverse=True)
-            rp.append((self.x, self.y))
-            m = MapPath.create(self.x + x, self.y + y, rp)
-            m.forward = False
+            if self.forward:
+                rx, ry = self.points[-1]
+                rx += self.x
+                ry += self.y
+                rp = []
+                for x, y in sorted(self.points[:-1], reverse=True) + [(0, 0)]:
+                    x = x + self.x - rx
+                    y = y + self.y - ry
+                    rp.append((x, y))
+                # Not using Object.create to prevent infinite recursion.
+                m = MapPath(rx, ry, rp)
+                m.forward = False
+                sge.game.current_room.add(m)
+
+            if MapSpace.get_at(self.x, self.y) is None:
+                MapSpace.create(self.x, self.y)
         else:
             warnings.warn("MapPath at ({}, {}) has only one point!".format(
                 self.x, self.y))
@@ -3298,9 +3319,6 @@ def load_levelset(fname):
                 tuxdolls_available.append(level)
                 break
 
-    if worldmaps:
-        current_worldmap = worldmaps[0]
-
 
 def set_new_game():
     global cleared_levels
@@ -3313,7 +3331,8 @@ def set_new_game():
 
     cleared_levels = []
     tuxdolls_found = []
-    current_worldmap = None
+    if worldmaps:
+        current_worldmap = worldmaps[0]
     current_worldmap_space = None
     current_level = 0
     score = 0
@@ -3327,7 +3346,7 @@ def start_levelset():
     level_cleared = True
 
     if worldmaps:
-        m = Worldmap.load(current_worldmap)
+        m = Worldmap.load(worldmaps[0])
         m.start()
     elif levels:
         level = Level.load(levels[0])

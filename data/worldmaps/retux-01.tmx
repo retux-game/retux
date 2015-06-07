@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="music" value="salcon.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/icyisland.tsx"/>
+ <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
+ <layer name="Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJydkUsLAjEMhKsefMOK1UWtggcPvupB9P//NCNsIYRJEz18h22yM8mkCSE0Ts7ElrEjlhUikRWNC9DzaHo8nsSQ2AC9HnGs0AceL2IC8lgoM7XGzFo9gpy1PAbGzDUPb86toVfz8N6Pa/CdCjPwz5U4EPuOG6utDQ3rNie2Q+4YEe8/d/pyF98P4TH+UR95rJR68ZD5ydwQU5HjHORabpGFfnlLDp8yD5qJa2XWx9+QD9eU/Ul4RaFVIymaVr/s/QCiFCJn
+  </data>
+ </layer>
+ <objectgroup name="Spaces">
+  <object gid="62" x="544" y="352">
+   <properties>
+    <property name="level" value="1-1.tmx"/>
+   </properties>
+  </object>
+  <object gid="62" x="416" y="352">
+   <properties>
+    <property name="level" value="2d_better.tmx"/>
+   </properties>
+  </object>
+  <object gid="62" x="416" y="224">
+   <properties>
+    <property name="level" value="base.tmx"/>
+   </properties>
+  </object>
+  <object gid="62" x="576" y="96">
+   <properties>
+    <property name="level" value="base.tmx"/>
+   </properties>
+  </object>
+  <object gid="62" x="320" y="160">
+   <properties>
+    <property name="level" value="base.tmx"/>
+   </properties>
+  </object>
+  <object gid="63" x="160" y="256"/>
+ </objectgroup>
+ <objectgroup name="Objects">
+  <object gid="61" x="672" y="288"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="map_path">
+  <object x="672" y="256">
+   <polyline points="0,0 0,64 -128,64"/>
+  </object>
+  <object x="544" y="320">
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object x="416" y="320">
+   <polyline points="0,0 0,-128"/>
+  </object>
+  <object x="416" y="192">
+   <polyline points="0,0 160,0 160,-128"/>
+  </object>
+  <object x="576" y="64">
+   <polyline points="0,0 -256,0 -256,64"/>
+  </object>
+  <object x="416" y="192">
+   <polyline points="0,0 0,-64 -96,-64"/>
+  </object>
+  <object x="320" y="128">
+   <polyline points="0,0 0,96 -160,96"/>
+  </object>
+ </objectgroup>
+</map>
