@@ -201,7 +201,6 @@ class Level(sge.Room):
         self.time_bonus = time_bonus
         self.spawn = spawn
         self.points = 0
-        self.finished = False
         self.timeline = {}
         self.timeline_objects = {}
         self.timeline_step = 0
@@ -227,7 +226,7 @@ class Level(sge.Room):
             self.timeline_objects[obj.ID] = weakref.ref(obj)
 
     def add_points(self, x):
-        if not self.finished:
+        if self.fname not in cleared_levels:
             self.points += x
 
     def show_hud(self):
@@ -264,6 +263,9 @@ class Level(sge.Room):
 
     def event_room_resume(self):
         global main_area
+
+        if self.fname in cleared_levels:
+            self.time_bonus = 0
 
         self.won = False
         self.win_count_points = False
