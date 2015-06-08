@@ -160,6 +160,7 @@ sneak_key = ["shift_left"]
 
 worldmaps = []
 levels = []
+level_names = {}
 cleared_levels = []
 tuxdolls_available = []
 tuxdolls_found = []
@@ -277,9 +278,18 @@ class Level(sge.Room):
         if main_area is None:
             main_area = self.fname
 
+        players = []
+        spawn_point = None
+
         for obj in self.objects:
-            if isinstance(obj, Warp) and not obj in self.warps:
-                self.warps.append(obj)
+            if isinstance(obj, WarpSpawn):
+                if self.spawn is not None and obj.spawn_id == self.spawn:
+                    spawn_point = obj
+
+                if isinstance(obj, Warp) and obj not in self.warps:
+                    self.warps.append(obj)
+            elif isinstance(obj, Player):
+                players.append(obj)
 
         del_warps = []
         for warp in self.warps:
@@ -288,29 +298,21 @@ class Level(sge.Room):
         for warp in del_warps:
             self.warps.remove(warp)
 
-        if self.spawn is not None:
-            players = []
-            spawn_point = None
-            for obj in self.objects:
-                if isinstance(obj, Player):
-                    players.append(obj)
-                elif isinstance(obj, WarpSpawn):
-                    if obj.spawn_id == self.spawn:
-                        spawn_point = obj
+        if spawn_point is not None:
+            for player in players:
+                player.x = spawn_point.x
+                player.y = spawn_point.y
+                if player.view is not None:
+                    player.view.x = player.x - player.view.width / 2
+                    player.view.y = player.y - player.view.height / 2
 
-            if spawn_point is not None:
-                for player in players:
-                    player.x = spawn_point.x
-                    player.y = spawn_point.y
-                    if player.view is not None:
-                        player.view.x = player.x - player.view.width / 2
-                        player.view.y = player.y - player.view.height / 2
-
-                    if isinstance(spawn_point, WarpSpawn):
-                        player.visible = False
-                        player.tangible = False
-                        player.warping = True
-                        spawn_point.follow_start(player, WARP_SPEED)
+                # This is deliberate. It's so other kinds of spawn
+                # points can exist, like checkpoints.
+                if isinstance(spawn_point, WarpSpawn):
+                    player.visible = False
+                    player.tangible = False
+                    player.warping = True
+                    spawn_point.follow_start(player, WARP_SPEED)
 
     def event_step(self, time_passed, delta_mult):
         global current_level
@@ -515,16 +517,24 @@ class Worldmap(sge.Room):
         self.event_room_resume()
 
     def event_room_resume(self):
+        global level_names
         global level_cleared
 
-        play_music(self.music)
         for obj in self.objects:
             if isinstance(obj, MapSpace):
-                obj.update_sprite()
-            elif isinstance(obj, MapPlayer):
-                if level_cleared:
-                    obj.move_forward()
+                if obj.level and obj.level not in level_names:
+                    name = Level.load(obj.level).name
+                    if name:
+                        level_names[obj.level] = name
+                    elif obj.level in levels:
+                        level_names[obj.level] = "Level {}".format(
+                            levels.index(level) + 1)
+                    else:
+                        level_names[obj.level] = "???"
 
+                obj.update_sprite()
+
+        play_music(self.music)
         level_cleared = False
 
     def event_step(self, time_passed, delta_mult):
@@ -2870,9 +2880,10 @@ class MapPlayer(sge.Object):
         if space is not None:
             paths = []
             for path in space.get_exits():
-                if path.forward:
+                if path is not None and path.forward:
                     paths.append(path)
 
+            print(paths)
             if len(paths) == 1:
                 self._follow_path(space, paths[0])
 
@@ -2894,19 +2905,26 @@ class MapPlayer(sge.Object):
 
     def event_step(self, time_passed, delta_mult):
         room = sge.game.current_room
-
         space = MapSpace.get_at(self.x, self.y)
-        if space is not None and space.level:
-            name = Level.load(space.level).name
-            if name:
-                room.level_text = name
-            elif space.level in levels:
-                room.level_text = "Level {}".format(
-                    levels.index(level) + 1)
-            else:
-                room.level_text = "???"
-        else:
-            room.level_text = None
+
+        if space is not None:
+            room.level_text = level_names.get(space.level)
+
+            for key in sneak_key:
+                if sge.keyboard.get_pressed(key):
+                    self.move_forward()
+            for key in left_key:
+                if sge.keyboard.get_pressed(key):
+                    self.move_left()
+            for key in right_key:
+                if sge.keyboard.get_pressed(key):
+                    self.move_right()
+            for key in up_key:
+                if sge.keyboard.get_pressed(key):
+                    self.move_up()
+            for key in down_key:
+                if sge.keyboard.get_pressed(key):
+                    self.move_down()
 
         if room.views:
             view = room.views[0]
@@ -2914,15 +2932,7 @@ class MapPlayer(sge.Object):
             view.y = self.y - view.height / 2 + self.sprite.height / 2
 
     def event_key_press(self, key, char):
-        if key in left_key:
-            self.move_left()
-        elif key in right_key:
-            self.move_right()
-        elif key in up_key:
-            self.move_up()
-        elif key in down_key:
-            self.move_down()
-        elif key in jump_key or key in action_key:
+        if key in jump_key or key in action_key or key == "enter":
             self.start_level()
 
     def event_stop(self):
