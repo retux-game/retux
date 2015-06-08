@@ -1122,21 +1122,16 @@ class Player(xsge_physics.Collider):
                     else:
                         if (xm != self.facing or
                                 abs(self.xvelocity) < PLAYER_RUN_SPEED):
-                            if xm == self.facing:
-                                if hands_free:
-                                    self.sprite = tux_walk_sprite
-                                else:
-                                    self.sprite = self.get_grab_sprite(
-                                        tux_body_walk_sprite)
+                            if hands_free:
+                                self.sprite = tux_walk_sprite
                             else:
-                                if hands_free:
-                                    self.sprite = tux_walk_reverse_sprite
-                                else:
-                                    self.sprite = self.get_grab_sprite(
-                                        tux_body_walk_reverse_sprite)
+                                self.sprite = self.get_grab_sprite(
+                                    tux_body_walk_sprite)
 
                             self.image_speed = (speed *
                                                 PLAYER_WALK_FRAMES_PER_PIXEL)
+                            if xm != self.facing:
+                                self.image_speed *= -1
                         else:
                             if hands_free:
                                 self.sprite = tux_run_sprite
@@ -3435,36 +3430,9 @@ tux_arms_skid_grab_sprite = sge.Sprite(
     "tux_arms_skid_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_die_sprite = sge.Sprite("tux_die", d, origin_x=32, origin_y=11, fps=8)
 
-tux_body_walk_reverse_sprite = sge.Sprite(
-    width=tux_body_walk_sprite.width, height=tux_body_walk_sprite.height,
-    origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-i = 0
-while True:
-    tux_body_walk_reverse_sprite.draw_sprite(
-        tux_body_walk_sprite, i, tux_body_walk_sprite.origin_x,
-        tux_body_walk_sprite.origin_y, frame=0)
-    i += 1
-    if i >= tux_body_walk_sprite.frames:
-        break
-    tux_body_walk_reverse_sprite.insert_frame(0)
-
-tux_arms_walk_reverse_sprite = sge.Sprite(
-    width=tux_arms_walk_sprite.width, height=tux_arms_walk_sprite.height,
-    origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-i = 0
-while True:
-    tux_arms_walk_reverse_sprite.draw_sprite(
-        tux_arms_walk_sprite, i, tux_arms_walk_sprite.origin_x,
-        tux_arms_walk_sprite.origin_y, frame=0)
-    i += 1
-    if i >= tux_arms_walk_sprite.frames:
-        break
-    tux_arms_walk_reverse_sprite.insert_frame(0)
-
 tux_stand_sprite = tux_body_stand_sprite.copy()
 tux_idle_sprite = tux_body_idle_sprite.copy()
 tux_walk_sprite = tux_body_walk_sprite.copy()
-tux_walk_reverse_sprite = tux_body_walk_reverse_sprite.copy()
 tux_run_sprite = tux_body_run_sprite.copy()
 tux_skid_sprite = tux_body_skid_sprite.copy()
 tux_jump_sprite = tux_body_jump_sprite.copy()
@@ -3474,7 +3442,6 @@ tux_kick_sprite = tux_body_kick_sprite.copy()
 for bs, a in [(tux_stand_sprite, tux_arms_stand_sprite),
               (tux_idle_sprite, tux_arms_idle_sprite),
               (tux_walk_sprite, tux_arms_walk_sprite),
-              (tux_walk_reverse_sprite, tux_arms_walk_reverse_sprite),
               (tux_run_sprite, tux_arms_run_sprite),
               (tux_skid_sprite, tux_arms_skid_sprite),
               (tux_jump_sprite, tux_arms_jump_sprite),
