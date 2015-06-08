@@ -454,7 +454,7 @@ class Level(sge.Room):
                 m = "Are you sure you want to quit?"
                 if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                          default=0):
-                    sge.game.event_close()
+                    sge.game.start_room.start()
                 sge.game.mouse.visible = False
             elif key in ("enter", "p"):
                 if not self.won:
@@ -537,6 +537,15 @@ class Worldmap(sge.Room):
             sge.game.project_text(font, self.level_text, x, y,
                                   color=sge.Color("white"), halign="center",
                                   valign="bottom")
+
+    def event_key_press(self, key, char):
+        if key == "escape":
+            sge.game.mouse.visible = True
+            m = "Are you sure you want to quit?"
+            if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
+                                     default=0):
+                sge.game.start_room.start()
+            sge.game.mouse.visible = False
 
     @classmethod
     def load(cls, fname):
