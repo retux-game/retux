@@ -1,45 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
  <properties>
-  <property name="background_x" value="-352"/>
   <property name="bgname" value="cave"/>
   <property name="music" value="bonuscave.ogg"/>
-  <property name="spawn" value="enter"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="16" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="31" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="35" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="37" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="125" source="../tilesets/snow.tsx"/>
- <tileset firstgid="265" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="285" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="156" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="176" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="191" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="279" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="299" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="303" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBiaQBeI9QbaEaNgFIwCmgE5RgiWZxxol1AfAAAEZwC6
+   eJxjYBgFo2AUjILBB+ZC8byBdggNAACTwwHZ
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJzTYmRg0AZiXQYGBj0g1gSytWiAQXaoA83XAGJdIFuPClifEdW9IDuoCbCFyagdo3aM2sHAkAvEvjjskAViOSrgUqDZoTjsUAViNSpidUbalX3YMABg+B5g
+   eJxbycDAsAqIjwPxCSBeAcQrKcC4zAKJHwTiQ0C8BojXUoDX4bGDmmDUjlE7Ru3ADtgZGRie47BjDhDPpQLmB9rxHocdS4B4KRXxMgbKyz5SMAAvk3hE
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="64" y="384" width="672" height="64"/>
-  <object x="64" y="0" width="672" height="64"/>
-  <object x="0" y="0" width="64" height="448"/>
-  <object x="736" y="0" width="64" height="448"/>
+  <object x="0" y="0" width="800" height="64"/>
+  <object x="0" y="64" width="64" height="384"/>
+  <object x="64" y="384" width="736" height="64"/>
+  <object x="736" y="64" width="64" height="320"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_left" x="640" y="320" width="32" height="64"/>
+  <object gid="288" x="192" y="320"/>
+  <object gid="288" x="192" y="352"/>
+  <object gid="288" x="192" y="384"/>
+  <object gid="288" x="224" y="384"/>
+  <object gid="288" x="256" y="384"/>
+  <object gid="288" x="288" y="384"/>
+  <object gid="288" x="320" y="384"/>
+  <object gid="288" x="352" y="384"/>
+  <object gid="288" x="384" y="384"/>
+  <object gid="288" x="416" y="384"/>
+  <object gid="288" x="480" y="384"/>
+  <object gid="288" x="448" y="384"/>
+  <object gid="288" x="512" y="384"/>
+  <object gid="288" x="512" y="352"/>
+  <object gid="288" x="480" y="352"/>
+  <object gid="288" x="448" y="352"/>
+  <object gid="288" x="384" y="352"/>
+  <object gid="288" x="416" y="352"/>
+  <object gid="288" x="352" y="352"/>
+  <object gid="288" x="320" y="352"/>
+  <object gid="288" x="288" y="352"/>
+  <object gid="288" x="224" y="352"/>
+  <object gid="288" x="256" y="352"/>
+  <object gid="290" x="224" y="256"/>
+  <object gid="290" x="224" y="224"/>
+  <object gid="290" x="224" y="192"/>
+  <object gid="290" x="224" y="160"/>
+  <object gid="290" x="224" y="128"/>
+  <object gid="290" x="288" y="128"/>
+  <object gid="290" x="288" y="160"/>
+  <object gid="290" x="288" y="224"/>
+  <object gid="290" x="288" y="192"/>
+  <object gid="290" x="288" y="256"/>
+  <object gid="290" x="320" y="128"/>
+  <object gid="290" x="352" y="160"/>
+  <object gid="290" x="320" y="192"/>
+  <object gid="290" x="352" y="224"/>
+  <object gid="290" x="320" y="256"/>
+  <object gid="290" x="416" y="128"/>
+  <object gid="290" x="416" y="160"/>
+  <object gid="290" x="416" y="224"/>
+  <object gid="290" x="416" y="192"/>
+  <object gid="290" x="416" y="256"/>
+  <object gid="290" x="448" y="128"/>
+  <object gid="290" x="480" y="160"/>
+  <object gid="290" x="448" y="192"/>
+  <object gid="290" x="480" y="224"/>
+  <object gid="290" x="480" y="256"/>
+  <object gid="290" x="544" y="256"/>
+  <object gid="290" x="544" y="224"/>
+  <object gid="290" x="544" y="192"/>
+  <object gid="290" x="544" y="160"/>
+  <object gid="290" x="544" y="128"/>
+  <object gid="290" x="576" y="128"/>
+  <object gid="290" x="576" y="192"/>
+  <object gid="290" x="576" y="256"/>
+  <object gid="290" x="608" y="256"/>
+  <object gid="290" x="608" y="128"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
-  <object type="warp_spawn" x="96" y="128">
-   <properties>
-    <property name="spawn_id" value="bonus_enter"/>
-   </properties>
-   <polyline points="0,-128 0,-64"/>
-  </object>
   <object x="640" y="352">
    <properties>
     <property name="dest" value="__main__:bonus_exit"/>
@@ -47,88 +97,38 @@
    <polyline points="0,0 64,0"/>
   </object>
  </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="96" y="64">
+   <properties>
+    <property name="spawn_id" value="bonus_enter"/>
+   </properties>
+   <polyline points="0,-64 0,0"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Items">
-  <object gid="276" x="128" y="128"/>
-  <object gid="276" x="128" y="160"/>
-  <object gid="276" x="128" y="192"/>
-  <object gid="276" x="128" y="224"/>
-  <object gid="276" x="128" y="256"/>
-  <object gid="276" x="160" y="256"/>
-  <object gid="276" x="224" y="256"/>
-  <object gid="276" x="224" y="224"/>
-  <object gid="276" x="224" y="192"/>
-  <object gid="276" x="224" y="160"/>
-  <object gid="276" x="224" y="128"/>
-  <object gid="276" x="288" y="128"/>
-  <object gid="276" x="288" y="160"/>
-  <object gid="276" x="288" y="192"/>
-  <object gid="276" x="288" y="224"/>
-  <object gid="276" x="288" y="256"/>
-  <object gid="276" x="320" y="128"/>
-  <object gid="276" x="352" y="160"/>
-  <object gid="276" x="320" y="192"/>
-  <object gid="276" x="352" y="224"/>
-  <object gid="276" x="320" y="256"/>
-  <object gid="276" x="416" y="128"/>
-  <object gid="276" x="416" y="160"/>
-  <object gid="276" x="416" y="192"/>
-  <object gid="276" x="416" y="224"/>
-  <object gid="276" x="416" y="256"/>
-  <object gid="276" x="448" y="128"/>
-  <object gid="276" x="480" y="160"/>
-  <object gid="276" x="448" y="192"/>
-  <object gid="276" x="480" y="224"/>
-  <object gid="276" x="480" y="256"/>
-  <object gid="276" x="544" y="256"/>
-  <object gid="276" x="544" y="224"/>
-  <object gid="276" x="544" y="192"/>
-  <object gid="276" x="544" y="160"/>
-  <object gid="276" x="544" y="128"/>
-  <object gid="276" x="576" y="128"/>
-  <object gid="276" x="608" y="128"/>
-  <object gid="276" x="576" y="192"/>
-  <object gid="276" x="576" y="256"/>
-  <object gid="276" x="608" y="256"/>
-  <object gid="274" x="192" y="384"/>
-  <object gid="274" x="224" y="384"/>
-  <object gid="274" x="256" y="384"/>
-  <object gid="274" x="288" y="384"/>
-  <object gid="274" x="320" y="384"/>
-  <object gid="274" x="352" y="384"/>
-  <object gid="274" x="384" y="384"/>
-  <object gid="274" x="416" y="384"/>
-  <object gid="274" x="448" y="384"/>
-  <object gid="274" x="480" y="384"/>
-  <object gid="274" x="512" y="384"/>
-  <object gid="274" x="544" y="384"/>
-  <object gid="274" x="544" y="352"/>
-  <object gid="274" x="512" y="352"/>
-  <object gid="274" x="480" y="352"/>
-  <object gid="274" x="448" y="352"/>
-  <object gid="274" x="416" y="352"/>
-  <object gid="274" x="384" y="352"/>
-  <object gid="274" x="352" y="352"/>
-  <object gid="274" x="320" y="352"/>
-  <object gid="274" x="288" y="352"/>
-  <object gid="274" x="256" y="352"/>
-  <object gid="274" x="224" y="352"/>
-  <object gid="274" x="192" y="352"/>
-  <object gid="274" x="544" y="320"/>
-  <object gid="274" x="512" y="320"/>
-  <object gid="274" x="480" y="320"/>
-  <object gid="274" x="448" y="320"/>
-  <object gid="274" x="416" y="320"/>
-  <object gid="274" x="384" y="320"/>
-  <object gid="274" x="352" y="320"/>
-  <object gid="274" x="320" y="320"/>
-  <object gid="274" x="288" y="320"/>
-  <object gid="274" x="256" y="320"/>
-  <object gid="274" x="224" y="320"/>
-  <object gid="274" x="192" y="320"/>
+  <object gid="288" x="544" y="384"/>
+  <object gid="288" x="544" y="352"/>
+  <object gid="288" x="544" y="320"/>
+  <object gid="288" x="512" y="320"/>
+  <object gid="288" x="480" y="320"/>
+  <object gid="288" x="448" y="320"/>
+  <object gid="288" x="416" y="320"/>
+  <object gid="288" x="384" y="320"/>
+  <object gid="288" x="352" y="320"/>
+  <object gid="288" x="320" y="320"/>
+  <object gid="288" x="288" y="320"/>
+  <object gid="288" x="256" y="320"/>
+  <object gid="288" x="224" y="320"/>
+  <object gid="290" x="128" y="160"/>
+  <object gid="290" x="128" y="192"/>
+  <object gid="290" x="128" y="224"/>
+  <object gid="290" x="128" y="256"/>
+  <object gid="290" x="128" y="128"/>
+  <object gid="290" x="160" y="256"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
-  <object gid="16" x="96" y="384"/>
+  <object gid="1" x="96" y="384"/>
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
