@@ -1949,18 +1949,19 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
                    BurnableObject, WinPuffObject):
 
     def touch(self, other):
-        if other.pickup(self):
-            self.gravity = 0
-            if other.action_pressed:
-                other.action()
-        else:
-            other.do_kick()
-            dib = DashingIceblock.create(other, self.x, self.y, self.z,
-                                         sprite=self.sprite,
-                                         image_xscale=self.image_xscale,
-                                         image_yscale=self.image_yscale)
-            dib.set_direction(-1 if other.image_xscale < 0 else 1)
-            self.destroy()
+        if self.parent is not other:
+            if other.pickup(self):
+                self.gravity = 0
+                if other.action_pressed:
+                    other.action()
+            else:
+                other.do_kick()
+                dib = DashingIceblock.create(other, self.x, self.y, self.z,
+                                             sprite=self.sprite,
+                                             image_xscale=self.image_xscale,
+                                             image_yscale=self.image_yscale)
+                dib.set_direction(-1 if other.image_xscale < 0 else 1)
+                self.destroy()
 
     def knock(self, other=None):
         if self.parent is not None and other is not None:
