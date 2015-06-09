@@ -265,9 +265,6 @@ class Level(sge.Room):
     def event_room_resume(self):
         global main_area
 
-        if self.fname in cleared_levels:
-            self.time_bonus = 0
-
         self.won = False
         self.win_count_points = False
         self.win_count_time = False
@@ -2883,7 +2880,6 @@ class MapPlayer(sge.Object):
                 if path is not None and path.forward:
                     paths.append(path)
 
-            print(paths)
             if len(paths) == 1:
                 self._follow_path(space, paths[0])
 
@@ -3069,6 +3065,8 @@ class MapSpace(sge.Object):
     def start_level(self):
         if self.level:
             level = Level.load(self.level)
+            if level.fname in cleared_levels:
+                level.time_bonus = 0
             level.start(transition="iris_in", transition_time=750)
 
     @classmethod
