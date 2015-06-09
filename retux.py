@@ -161,6 +161,7 @@ sneak_key = ["shift_left"]
 worldmaps = []
 levels = []
 level_names = {}
+level_timers = {}
 cleared_levels = []
 tuxdolls_available = []
 tuxdolls_found = []
@@ -235,9 +236,10 @@ class Level(sge.Room):
             score_text = "{}+{}".format(score, self.points)
         else:
             score_text = str(score)
+        time_bonus = level_timers.get(main_area, 0)
         text = "Score\n{}\n\nTime {}\n{}".format(
-            score_text, "Bonus" if self.time_bonus >= 0 else "Penalty",
-            abs(self.time_bonus))
+            score_text, "Bonus" if time_bonus >= 0 else "Penalty",
+            abs(time_bonus))
         sge.game.project_text(font, text, sge.game.width / 2, 0,
                               color=sge.Color("white"), halign="center")
 
@@ -258,8 +260,14 @@ class Level(sge.Room):
         sge.Music.stop(DEATH_FADE_TIME)
 
     def event_room_start(self):
+        global level_timers
+
         self.add(coin_animation)
         self.add(bonus_animation)
+
+        if self.fname not in level_timers:
+            level_timers[self.fname] = self.time_bonus
+
         self.event_room_resume()
 
     def event_room_resume(self):
@@ -312,6 +320,7 @@ class Level(sge.Room):
                     spawn_point.follow_start(player, WARP_SPEED)
 
     def event_step(self, time_passed, delta_mult):
+        global level_timers
         global current_level
         global score
         global current_areas
@@ -389,13 +398,14 @@ class Level(sge.Room):
                     self.win_count_points = False
                     self.alarms["win_count_time"] = WIN_COUNT_CONTINUE_TIME
             elif self.win_count_time:
-                if self.time_bonus:
+                time_bonus = level_timers.setdefault(main_area, 0)
+                if time_bonus:
                     amt = int(math.copysign(
                         min(WIN_COUNT_AMOUNT * delta_mult * WIN_COUNT_MULT,
-                            abs(self.time_bonus)),
-                        self.time_bonus))
+                            abs(time_bonus)),
+                        time_bonus))
                     score += amt
-                    self.time_bonus -= amt
+                    level_timers[main_area] -= amt
                     coin_sound.play()
                 else:
                     self.win_count_time = False
@@ -426,15 +436,16 @@ class Level(sge.Room):
         self.show_hud()
 
     def event_alarm(self, alarm_id):
+        global level_timers
         global score
 
         if alarm_id == "timer":
-            self.time_bonus -= SECOND_POINTS
+            level_timers.setdefault(main_area, 0)
+            level_timers[main_area] -= SECOND_POINTS
             self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "death":
             if main_area is not None:
                 r = self.__class__.load(main_area)
-                r.time_bonus = self.time_bonus
                 r.start()
         elif alarm_id == "win_count_points":
             self.win_count_points = True
@@ -2690,7 +2701,6 @@ class WarpSpawn(xsge_path.Path):
                 level = sge.game.current_room.__class__.load(level_f)
                 level.spawn = spawn
                 level.points = cr.points
-                level.time_bonus = cr.time_bonus
 
                 for nobj in level.objects:
                     if isinstance(nobj, Player):
@@ -3066,8 +3076,6 @@ class MapSpace(sge.Object):
     def start_level(self):
         if self.level:
             level = Level.load(self.level)
-            if level.fname in cleared_levels:
-                level.time_bonus = 0
             level.start(transition="iris_in", transition_time=750)
 
     @classmethod
