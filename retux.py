@@ -574,6 +574,8 @@ class Worldmap(sge.Room):
 
 class Tile(sge.Object):
 
+    out_frames = 0
+
     def event_step(self, time_passed, delta_mult):
         for view in sge.game.current_room.views:
             if (self.bbox_left <= view.x + view.width + TILE_ACTIVE_RANGE and
@@ -581,10 +583,14 @@ class Tile(sge.Object):
                     self.bbox_top <= (view.y + view.height +
                                       TILE_ACTIVE_RANGE) and
                     self.bbox_bottom >= view.y - TILE_ACTIVE_RANGE):
+                self.out_frames = 0
                 self.tangible = True
                 break
         else:
-            self.tangible = False
+            if self.tangible:
+                self.out_frames += 1
+                if self.out_frames >= 3:
+                    self.tangible = False
 
 
 class SolidLeft(xsge_physics.SolidLeft, Tile):
