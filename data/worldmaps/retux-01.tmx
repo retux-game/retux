@@ -7,7 +7,7 @@
  <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
  <layer name="Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJydkUsLAjEMhKsefMOK1UWtggcPvupB9P//NCNsIYRJEz18h22yM8mkCSE0Ts7ElrEjlhUikRWNC9DzaHo8nsSQ2AC9HnGs0AceL2IC8lgoM7XGzFo9gpy1PAbGzDUPb86toVfz8N6Pa/CdCjPwz5U4EPuOG6utDQ3rNie2Q+4YEe8/d/pyF98P4TH+UR95rJR68ZD5ydwQU5HjHORabpGFfnlLDp8yD5qJa2XWx9+QD9eU/Ul4RaFVIymaVr/s/QCiFCJn
+   eJyVkckOwjAMRAsc2KUiCggoSIDYIWyCE///XcwhkSxrnJTDOzRx3zh2nmVZXpEjmAnmYBihAM5wnIivirNKxgs0wZT4amAVoU4y3qBD5jEwepokerbuCzJnax6NRM+xDMu7A3twIA7mi2VYb7+DB3gSh3xToEccZ7AEC8/Fn4/9P2uwAV/iSO1mK97gPC3wSfwXm8tVfd9URvtPP8sYGfchQ89Pzs2iq3bRJ7sJu3DKH87KCjmhH9aTdDlRJ89YjnTq+lJlFcoVozScqXpd+wPxfiMp
   </data>
  </layer>
  <objectgroup name="Spaces">
@@ -21,22 +21,11 @@
     <property name="level" value="2d_better.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="416" y="224">
-   <properties>
-    <property name="level" value="base.tmx"/>
-   </properties>
-  </object>
-  <object gid="62" x="576" y="96">
-   <properties>
-    <property name="level" value="base.tmx"/>
-   </properties>
-  </object>
-  <object gid="62" x="320" y="160">
-   <properties>
-    <property name="level" value="base.tmx"/>
-   </properties>
-  </object>
-  <object gid="63" x="160" y="256"/>
+  <object gid="62" x="416" y="224"/>
+  <object gid="62" x="576" y="96"/>
+  <object gid="62" x="320" y="160"/>
+  <object gid="63" x="128" y="256"/>
+  <object gid="62" x="224" y="256"/>
  </objectgroup>
  <objectgroup name="Objects">
   <object gid="61" x="672" y="288"/>
@@ -61,7 +50,10 @@
    <polyline points="0,0 0,-64 -96,-64"/>
   </object>
   <object x="320" y="128">
-   <polyline points="0,0 0,96 -160,96"/>
+   <polyline points="0,0 0,96 -96,96"/>
+  </object>
+  <object x="224" y="224">
+   <polyline points="0,0 -96,0"/>
   </object>
  </objectgroup>
 </map>
