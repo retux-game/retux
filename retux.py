@@ -158,7 +158,6 @@ jump_key = ["space"]
 action_key = ["ctrl_left"]
 sneak_key = ["shift_left"]
 
-player_name = "Tux"
 worldmaps = []
 levels = []
 level_names = {}
@@ -944,7 +943,7 @@ class Player(xsge_physics.Collider):
 
     def show_hud(self):
         y = 0
-        sge.game.project_text(font, player_name, 0, y, color=sge.Color("white"))
+        sge.game.project_text(font, "Tux", 0, y, color=sge.Color("white"))
 
         x = 0
         y += 36
@@ -3252,18 +3251,13 @@ class MainMenu(Menu):
     def event_choose(self):
         if self.choice == 0:
             set_new_game()
-            if player_name:
-                start_levelset()
-            else:
-                MainMenu.create(default=0)
+            start_levelset()
         elif self.choice == 1:
             print("Load game")
-            MainMenu.create(default=0)
         elif self.choice == 2:
             LevelsetMenu.create_page(default=-1)
         elif self.choice == 3:
             print("Options")
-            MainMenu.create(default=0)
         else:
             sge.game.end()
 
@@ -3413,7 +3407,6 @@ def load_levelset(fname):
 
 
 def set_new_game():
-    global player_name
     global cleared_levels
     global tuxdolls_found
     global current_worldmap
@@ -3421,11 +3414,6 @@ def set_new_game():
     global current_level
     global score
     global current_areas
-
-    sge.game.mouse.visible = True
-    m = "What is your name?"
-    player_name = xsge_gui.get_text_entry(message=m, title="New Game")
-    sge.game.mouse.visible = False
 
     cleared_levels = []
     tuxdolls_found = []
