@@ -2848,6 +2848,7 @@ class FlyingSnowballPath(xsge_path.Path):
 class MapPlayer(sge.Object):
 
     moving = False
+    last_space = None
 
     def _follow_path(self, space, path):
         if path is not None:
@@ -2858,7 +2859,8 @@ class MapPlayer(sge.Object):
                 y = 0
             target_space = MapSpace.get_at(path.x + x, path.y + y)
             if target_space is not None:
-                if space.cleared or target_space.cleared:
+                if space.cleared or target_space is self.last_space:
+                    self.last_space = space
                     self.moving = True
                     path.follow_start(self, MAP_SPEED)
             else:
