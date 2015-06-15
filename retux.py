@@ -255,6 +255,7 @@ class Level(sge.Room):
         global current_areas
         current_areas = {}
         self.death_time = DEATH_FADE_TIME
+        self.death_time_bonus = level_timers.setdefault(main_area, 0)
         if "timer" in self.alarms:
             del self.alarms["timer"]
         sge.Music.clear_queue()
@@ -375,6 +376,18 @@ class Level(sge.Room):
             a = int(255 * (DEATH_FADE_TIME - self.death_time) / DEATH_FADE_TIME)
             sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
                                        fill=sge.Color((0, 0, 0, min(a, 255))))
+
+            time_bonus = level_timers.setdefault(main_area, 0)
+            if time_bonus < 0:
+                amt = int(math.copysign(
+                    min(math.ceil(abs(self.death_time_bonus) * 3 * time_passed /
+                                  DEATH_FADE_TIME),
+                        abs(time_bonus)),
+                    time_bonus))
+                if amt:
+                    score += amt
+                    level_timers[main_area] -= amt
+                    coin_sound.play()
 
             if self.death_time < 0:
                 self.death_time = None
