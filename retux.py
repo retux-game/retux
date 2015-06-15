@@ -3024,6 +3024,7 @@ class MapSpace(sge.Object):
                                 new_space = MapSpace.get_at(space.x + x,
                                                             space.y + y)
                                 if (new_space is not None and
+                                        new_space not in connected_spaces and
                                         new_space not in already_checked):
                                     connected_spaces.append(new_space)
                 return False
