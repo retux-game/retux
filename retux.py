@@ -422,7 +422,22 @@ class Level(sge.Room):
 
                 if current_worldmap:
                     m = Worldmap.load(current_worldmap)
-                    m.start(transition="iris_out", transition_time=750)
+
+                    for obj in m.objects:
+                        if (isinstance(obj, MapSpace) and
+                                obj.level == self.fname):
+                            x = obj.x
+                            y = obj.y
+                            if obj.sprite:
+                                x += obj.sprite.width / 2
+                                y += obj.sprite.height / 2
+                            arg = (x, y)
+                            break
+                    else:
+                        arg = None
+
+                    m.start(transition="iris_out", transition_time=750,
+                            transition_arg=arg)
                 else:
                     current_level += 1
                     if current_level < len(levels):
@@ -2698,7 +2713,22 @@ class WarpSpawn(xsge_path.Path):
         if self.dest and (":" in self.dest or self.dest == "__map__"):
             if self.dest == "__map__":
                 m = Worldmap.load(current_worldmap)
-                m.start(transition="iris_out", transition_time=750)
+
+                for obj in m.objects:
+                    if (isinstance(obj, MapSpace) and
+                            obj.level == self.fname):
+                        x = obj.x
+                        y = obj.y
+                        if obj.sprite:
+                            x += obj.sprite.width / 2
+                            y += obj.sprite.height / 2
+                        arg = (x, y)
+                        break
+                else:
+                    arg = None
+
+                m.start(transition="iris_out", transition_time=750,
+                        transition_arg=arg)
             else:
                 cr = sge.game.current_room
                 level_f, spawn = self.dest.split(":", 1)
@@ -3084,7 +3114,12 @@ class MapSpace(sge.Object):
     def start_level(self):
         if self.level:
             level = Level.load(self.level)
-            level.start(transition="iris_in", transition_time=750)
+            w = worldmap_level_complete_sprite.width / 2
+            h = worldmap_level_complete_sprite.height / 2
+            x = self.x + w
+            y = self.y + h
+            level.start(transition="iris_in", transition_time=750,
+                        transition_arg=(x, y))
 
     @classmethod
     def get_at(cls, x, y):
@@ -3119,7 +3154,12 @@ class MapWarp(MapSpace):
 
         if self.level:
             level = Level.load(self.level)
-            level.start(transition="iris_in", transition_time=750)
+            w = worldmap_level_complete_sprite.width / 2
+            h = worldmap_level_complete_sprite.height / 2
+            x = self.x + w
+            y = self.y + h
+            level.start(transition="iris_in", transition_time=750,
+                        transition_arg=(x, y))
         else:
             m = Worldmap.load(current_worldmap)
             m.start(transition="dissolve", transition_time=750)
