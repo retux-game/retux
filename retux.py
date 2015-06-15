@@ -260,6 +260,24 @@ class Level(sge.Room):
         sge.Music.clear_queue()
         sge.Music.stop(DEATH_FADE_TIME)
 
+    def return_to_map(self):
+        m = Worldmap.load(current_worldmap)
+
+        for obj in m.objects:
+            if (isinstance(obj, MapSpace) and
+                    obj.level == self.fname):
+                x = obj.x
+                y = obj.y
+                if obj.sprite:
+                    x += obj.sprite.width / 2
+                    y += obj.sprite.height / 2
+                arg = (x, y)
+                break
+        else:
+            arg = None
+
+        m.start(transition="iris_out", transition_time=750, transition_arg=arg)
+
     def event_room_start(self):
         global level_timers
 
@@ -434,23 +452,7 @@ class Level(sge.Room):
                     cleared_levels.append(self.fname)
 
                 if current_worldmap:
-                    m = Worldmap.load(current_worldmap)
-
-                    for obj in m.objects:
-                        if (isinstance(obj, MapSpace) and
-                                obj.level == self.fname):
-                            x = obj.x
-                            y = obj.y
-                            if obj.sprite:
-                                x += obj.sprite.width / 2
-                                y += obj.sprite.height / 2
-                            arg = (x, y)
-                            break
-                    else:
-                        arg = None
-
-                    m.start(transition="iris_out", transition_time=750,
-                            transition_arg=arg)
+                    self.return_to_map()
                 else:
                     current_level += 1
                     if current_level < len(levels):
@@ -472,7 +474,9 @@ class Level(sge.Room):
             level_timers[main_area] -= SECOND_POINTS
             self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "death":
-            if main_area is not None:
+            if current_worldmap:
+                self.return_to_map()
+            elif main_area is not None:
                 r = self.__class__.load(main_area)
                 r.start()
         elif alarm_id == "win_count_points":
@@ -482,8 +486,9 @@ class Level(sge.Room):
 
     def event_key_press(self, key, char):
         if self.death_time is not None or "death" in self.alarms:
-            sge.Music.stop()
-            self.alarms["death"] = 0
+            if level_timers.setdefault(main_area, 0) >= 0:
+                sge.Music.stop()
+                self.alarms["death"] = 0
         else:
             if key == "f11":
                 sge.game.fullscreen = not sge.game.fullscreen
@@ -2725,23 +2730,7 @@ class WarpSpawn(xsge_path.Path):
     def event_follow_end(self, obj):
         if self.dest and (":" in self.dest or self.dest == "__map__"):
             if self.dest == "__map__":
-                m = Worldmap.load(current_worldmap)
-
-                for obj in m.objects:
-                    if (isinstance(obj, MapSpace) and
-                            obj.level == self.fname):
-                        x = obj.x
-                        y = obj.y
-                        if obj.sprite:
-                            x += obj.sprite.width / 2
-                            y += obj.sprite.height / 2
-                        arg = (x, y)
-                        break
-                else:
-                    arg = None
-
-                m.start(transition="iris_out", transition_time=750,
-                        transition_arg=arg)
+                sge.game.current_room.return_to_map()
             else:
                 cr = sge.game.current_room
                 level_f, spawn = self.dest.split(":", 1)
@@ -2891,7 +2880,6 @@ class FlyingSnowballPath(xsge_path.Path):
 class MapPlayer(sge.Object):
 
     moving = False
-    last_space = None
 
     def _follow_path(self, space, path):
         if path is not None:
@@ -2902,8 +2890,7 @@ class MapPlayer(sge.Object):
                 y = 0
             target_space = MapSpace.get_at(path.x + x, path.y + y)
             if target_space is not None:
-                if space.cleared or target_space is self.last_space:
-                    self.last_space = space
+                if space.cleared or target_space.cleared:
                     self.moving = True
                     path.follow_start(self, MAP_SPEED)
             else:
@@ -2951,8 +2938,11 @@ class MapPlayer(sge.Object):
             space.start_level()
 
     def event_create(self):
-        if MapSpace.get_at(self.x,self.y) is None:
-            MapSpace.create(self.x, self.y)
+        start_space = MapSpace.get_at(self.x,self.y)
+        if start_space is None:
+            MapSpace.create(self.x, self.y, free=True)
+        else:
+            start_space.free = True
 
         if current_worldmap_space is not None:
             for obj in sge.game.current_room.objects:
@@ -2999,14 +2989,44 @@ class MapPlayer(sge.Object):
 
 class MapSpace(sge.Object):
 
-    def __init__(self, x, y, level=None, ID=None, **kwargs):
+    def __init__(self, x, y, level=None, ID=None, free=False, **kwargs):
         super(MapSpace, self).__init__(x, y, **kwargs)
         self.level = level
         self.ID = ID if ID is not None else level
+        self.free = free
 
     @property
     def cleared(self):
-        return (self.level is None or self.level in cleared_levels)
+        if self.free:
+            return True
+        else:
+            if self.level is not None:
+                return self.level in cleared_levels
+            else:
+                connected_spaces = []
+                already_checked = []
+                for path in self.get_exits():
+                    if path is not None:
+                        x, y = path.points[-1]
+                        space = MapSpace.get_at(self.x + x, self.y + y)
+                        if space is not None:
+                            connected_spaces.append(space)
+
+                while connected_spaces:
+                    space = connected_spaces.pop(0)
+                    already_checked.append(space)
+                    if space.level in cleared_levels:
+                        return True
+                    elif space.level is None:
+                        for path in space.get_exits():
+                            if path is not None:
+                                x, y = path.points[-1]
+                                new_space = MapSpace.get_at(space.x + x,
+                                                            space.y + y)
+                                if (new_space is not None and
+                                        new_space not in already_checked):
+                                    connected_spaces.append(new_space)
+                return False
 
     def update_sprite(self):
         if self.level is not None:
