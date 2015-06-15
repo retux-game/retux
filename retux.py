@@ -3114,10 +3114,11 @@ class MapSpace(sge.Object):
     def start_level(self):
         if self.level:
             level = Level.load(self.level)
-            w = worldmap_level_complete_sprite.width / 2
-            h = worldmap_level_complete_sprite.height / 2
-            x = self.x + w
-            y = self.y + h
+            x = self.x
+            y = self.y
+            if self.sprite:
+                x += self.sprite.width / 2
+                y += self.sprite.height / 2
             level.start(transition="iris_in", transition_time=750,
                         transition_arg=(x, y))
 
@@ -3154,10 +3155,11 @@ class MapWarp(MapSpace):
 
         if self.level:
             level = Level.load(self.level)
-            w = worldmap_level_complete_sprite.width / 2
-            h = worldmap_level_complete_sprite.height / 2
-            x = self.x + w
-            y = self.y + h
+            x = self.x
+            y = self.y
+            if self.sprite:
+                x += self.sprite.width / 2
+                y += self.sprite.height / 2
             level.start(transition="iris_in", transition_time=750,
                         transition_arg=(x, y))
         else:
