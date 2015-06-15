@@ -579,6 +579,19 @@ class Worldmap(sge.Room):
         level_cleared = False
 
     def event_step(self, time_passed, delta_mult):
+        x = (sge.game.width / 2 + tuxdoll_sprite.origin_x -
+             tuxdoll_sprite.width - 8)
+        y = tuxdoll_sprite.origin_y + 16
+        sge.game.project_sprite(tuxdoll_shadow_sprite, 0, x + 2, y + 2)
+        sge.game.project_sprite(tuxdoll_sprite, 0, x, y)
+        text = "{}/{}".format(len(tuxdolls_found), len(tuxdolls_available))
+        x = sge.game.width / 2 + 8
+        sge.game.project_text(font, text, x + 2, y + 2,
+                              color=sge.Color("black"), halign="left",
+                              valign="middle")
+        sge.game.project_text(font, text, x, y, color=sge.Color("white"),
+                              halign="left", valign="middle")
+
         if self.level_text:
             x = sge.game.width / 2
             y = sge.game.height - font.size
@@ -3609,6 +3622,15 @@ eraser.draw_rectangle(0, 0, eraser.width, eraser.height,
 tuxdoll_transparent_sprite.draw_sprite(eraser, 0, 0, 0,
                                        blend_mode=sge.BLEND_RGBA_SUBTRACT)
 del eraser
+
+tuxdoll_shadow_sprite = tuxdoll_sprite.copy()
+darkener = sge.Sprite(width=tuxdoll_shadow_sprite.width,
+                      height=tuxdoll_shadow_sprite.height)
+darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
+                        fill=sge.Color("black"))
+tuxdoll_shadow_sprite.draw_sprite(darkener, 0, 0, 0,
+                                  blend_mode=sge.BLEND_RGB_MINIMUM)
+del darkener
 
 d = os.path.join(DATA, "images", "objects", "decoration")
 lava_body_sprite = sge.Sprite("lava_body", d, transparent=False, fps=5)
