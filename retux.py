@@ -579,13 +579,15 @@ class Worldmap(sge.Room):
         level_cleared = False
 
     def event_step(self, time_passed, delta_mult):
-        x = (sge.game.width / 2 + tuxdoll_sprite.origin_x -
-             tuxdoll_sprite.width - 8)
+        text = " {}/{}".format(len(tuxdolls_found), len(tuxdolls_available))
+        w = tuxdoll_sprite.width + font.get_width(text)
+
+        x = sge.game.width / 2 + tuxdoll_sprite.origin_x - w / 2
         y = tuxdoll_sprite.origin_y + 16
         sge.game.project_sprite(tuxdoll_shadow_sprite, 0, x + 2, y + 2)
         sge.game.project_sprite(tuxdoll_sprite, 0, x, y)
-        text = "{}/{}".format(len(tuxdolls_found), len(tuxdolls_available))
-        x = sge.game.width / 2 + 8
+
+        x += tuxdoll_sprite.width - tuxdoll_sprite.origin_x
         sge.game.project_text(font, text, x + 2, y + 2,
                               color=sge.Color("black"), halign="left",
                               valign="middle")
