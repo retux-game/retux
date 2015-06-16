@@ -3416,14 +3416,7 @@ def play_music(music, force_restart=False):
 def load_levelset(fname):
     global worldmaps
     global levels
-    global cleared_levels
     global tuxdolls_available
-    global tuxdolls_found
-    global current_worldmap
-    global current_worldmap_space
-    global current_level
-    global score
-    global current_areas
 
     with open(os.path.join(DATA, "levelsets", fname), "r") as f:
         data = json.load(f)
@@ -3443,6 +3436,7 @@ def load_levelset(fname):
 
 
 def set_new_game():
+    global level_timers
     global cleared_levels
     global tuxdolls_found
     global current_worldmap
@@ -3451,6 +3445,7 @@ def set_new_game():
     global score
     global current_areas
 
+    level_timers = {}
     cleared_levels = []
     tuxdolls_found = []
     if worldmaps:
