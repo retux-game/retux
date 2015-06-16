@@ -172,6 +172,7 @@ WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5
 
+SAVE_NSLOTS = 10
 MENU_MAX_ITEMS = 14
 
 backgrounds = {}
@@ -195,7 +196,10 @@ down_js = [(0, "axis+", 1)]
 jump_js = [(0, "button", 1)]
 action_js = [(0, "button", 0)]
 sneak_js = [(0, "button", 2)]
+save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
+current_save_slot = None
+current_levelset = "retux.json"
 worldmaps = []
 levels = []
 level_names = {}
@@ -314,6 +318,7 @@ class Level(sge.Room):
         else:
             arg = None
 
+        save_game()
         m.start(transition="iris_out", transition_time=750, transition_arg=arg)
 
     def event_room_start(self):
@@ -493,11 +498,14 @@ class Level(sge.Room):
                     self.return_to_map()
                 else:
                     current_level += 1
+                    save_game()
                     if current_level < len(levels):
                         level = self.__class__.load(levels[current_level])
                         level.start(transition="fade")
                     else:
                         # TODO: Ending
+                        if current_save_slot is not None:
+                            save_slots[current_save_slot] = None
                         sge.game.start_room.start()
 
     def event_paused_step(self, time_passed, delta_mult):
@@ -515,6 +523,7 @@ class Level(sge.Room):
             if current_worldmap:
                 self.return_to_map()
             elif main_area is not None:
+                save_game()
                 r = self.__class__.load(main_area)
                 r.start()
         elif alarm_id == "win_count_points":
@@ -535,6 +544,7 @@ class Level(sge.Room):
                 m = "Are you sure you want to quit?"
                 if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                          default=0):
+                    save_game()
                     sge.game.start_room.start()
                 sge.game.mouse.visible = False
             elif key in ("enter", "p"):
@@ -648,6 +658,7 @@ class Worldmap(sge.Room):
             m = "Are you sure you want to quit?"
             if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                      default=0):
+                save_game()
                 sge.game.start_room.start()
             sge.game.mouse.visible = False
 
@@ -3423,6 +3434,8 @@ class MapPath(xsge_path.Path):
         if space is not None and space.ID is not None:
             current_worldmap_space = space.ID
 
+        save_game()
+
 
 class Menu(xsge_gui.MenuWindow):
 
@@ -3449,17 +3462,73 @@ class MainMenu(Menu):
 
     def event_choose(self):
         if self.choice == 0:
-            set_new_game()
-            start_levelset()
+            NewGameMenu.create_page()
         elif self.choice == 1:
-            print("Load game")
-            MainMenu.create(default=self.choice)
+            LoadGameMenu.create_page()
         elif self.choice == 2:
-            LevelsetMenu.create_page(default=-1)
+            LevelsetMenu.create_page(default=-1, refreshlist=True)
         elif self.choice == 3:
-            OptionsMenu.create_options()
+            OptionsMenu.create_page()
         else:
             sge.game.end()
+
+
+class NewGameMenu(Menu):
+
+    @classmethod
+    def create_page(cls, default=0):
+        cls.items = []
+        for slot in save_slots:
+            if slot is None:
+                cls.items.append("-Empty-")
+            elif slot.get("levelset") is None:
+                cls.items.append("-No Levelset-")
+            else:
+                fname = os.path.join(DATA, "levelsets", slot["levelset"])
+                try:
+                    with open(fname, 'r') as f:
+                        data = json.load(f)
+                except (IOError, ValueError):
+                    cls.items.append("-Corrupt Levelset-")
+                    continue
+                else:
+                    levelset_name = data.get("name", slot["levelset"])
+                    completion = slot.get("completion", 0)
+                    cls.items.append("{} ({}%)".format(levelset_name,
+                                                       completion))
+
+        cls.items.append("Back")
+
+        return cls.create(default)
+
+    def event_choose(self):
+        global current_save_slot
+
+        if self.choice in six.moves.range(len(save_slots)):
+            current_save_slot = self.choice
+            m = "Are you sure to override the existing saved game in this slot? This cannot be undone!"
+            if (save_slots[current_save_slot] is None or
+                    xsge_gui.show_message(message=m, buttons=["No", "Yes"],
+                                          default=0)):
+                set_new_game()
+                start_levelset()
+            else:
+                NewGameMenu.create(default=self.choice)
+        else:
+            MainMenu.create(default=0)
+
+
+class LoadGameMenu(NewGameMenu):
+
+    def event_choose(self):
+        global current_save_slot
+
+        if self.choice in six.moves.range(len(save_slots)):
+            current_save_slot = self.choice
+            load_game()
+            start_levelset()
+        else:
+            MainMenu.create(default=1)
 
 
 class LevelsetMenu(Menu):
@@ -3474,7 +3543,7 @@ class LevelsetMenu(Menu):
             cls.levelsets = []
             for fname in os.listdir(os.path.join(DATA, "levelsets")):
                 try:
-                    with open(os.path.join(DATA, "levelsets", fname), "r") as f:
+                    with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
                         data = json.load(f)
                 except (IOError, ValueError):
                     continue
@@ -3518,13 +3587,13 @@ class LevelsetMenu(Menu):
 class OptionsMenu(Menu):
 
     @classmethod
-    def create_options(cls, default=0):
+    def create_page(cls, default=0):
         cls.items = [
             "Fullscreen: {}".format("On" if sge.game.fullscreen else "Off"),
             "Sound: {}".format("On" if sound_enabled else "Off"),
             "Music: {}".format("On" if music_enabled else "Off"),
             "Configure keyboard", "Configure joysticks", "Back"]
-        cls.create(default)
+        return cls.create(default)
 
     def event_choose(self):
         global fullscreen
@@ -3534,14 +3603,14 @@ class OptionsMenu(Menu):
         if self.choice == 0:
             fullscreen = not fullscreen
             sge.game.fullscreen = fullscreen
-            OptionsMenu.create_options(default=self.choice)
+            OptionsMenu.create_page(default=self.choice)
         elif self.choice == 1:
             sound_enabled = not sound_enabled
-            OptionsMenu.create_options(default=self.choice)
+            OptionsMenu.create_page(default=self.choice)
         elif self.choice == 2:
             music_enabled = not music_enabled
             play_music(sge.game.current_room.music)
-            OptionsMenu.create_options(default=self.choice)
+            OptionsMenu.create_page(default=self.choice)
         elif self.choice == 3:
             KeyboardMenu.create_page()
         elif self.choice == 4:
@@ -3558,7 +3627,6 @@ class KeyboardMenu(Menu):
     def create_page(cls, default=0, page=0):
         page %= min(len(left_key), len(right_key), len(up_key), len(down_key),
                     len(jump_key), len(action_key), len(sneak_key))
-        cls.page = page
         cls.items = ["Player {}".format(page + 1),
                      "Left: {}".format(left_key[page]),
                      "Right: {}".format(right_key[page]),
@@ -3568,7 +3636,9 @@ class KeyboardMenu(Menu):
                      "Action: {}".format(action_key[page]),
                      "Sneak: {}".format(sneak_key[page]),
                      "Back"]
-        cls.create(default)
+        self = cls.create(default)
+        self.page = page
+        return self
 
     def event_choose(self):
         if self.choice == 0:
@@ -3609,7 +3679,7 @@ class KeyboardMenu(Menu):
                 sneak_key[self.page] = k
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
-            OptionsMenu.create_options(default=3)
+            OptionsMenu.create_page(default=3)
 
 
 class JoystickMenu(Menu):
@@ -3620,7 +3690,6 @@ class JoystickMenu(Menu):
     def create_page(cls, default=0, page=0):
         page %= min(len(left_js), len(right_js), len(up_js), len(down_js),
                     len(jump_js), len(action_js), len(sneak_js))
-        cls.page = page
         js_template = "Joystick {} {} {}"
         cls.items = ["Player {}".format(page + 1),
                      "Left: {}".format(js_template.format(*left_js[page])),
@@ -3632,6 +3701,10 @@ class JoystickMenu(Menu):
                      "Sneak: {}".format(js_template.format(*sneak_js[page])),
                      "Back"]
         cls.create(default)
+
+        self = cls.create(default)
+        self.page = page
+        return self
 
     def event_choose(self):
         if self.choice == 0:
@@ -3672,7 +3745,7 @@ class JoystickMenu(Menu):
                 sneak_js[self.page] = js
             JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
-            OptionsMenu.create_options(default=4)
+            OptionsMenu.create_page(default=4)
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -3823,11 +3896,14 @@ def play_music(music, force_restart=False):
 
 
 def load_levelset(fname):
+    global current_levelset
     global worldmaps
     global levels
     global tuxdolls_available
 
-    with open(os.path.join(DATA, "levelsets", fname), "r") as f:
+    current_levelset = fname
+
+    with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
         data = json.load(f)
 
     worldmaps = data.get("worldmaps", [])
@@ -3852,31 +3928,74 @@ def set_new_game():
     global current_worldmap_space
     global current_level
     global score
-    global current_areas
 
     level_timers = {}
     cleared_levels = []
     tuxdolls_found = []
     if worldmaps:
         current_worldmap = worldmaps[0]
+    else:
+        current_worldmap = None
     current_worldmap_space = None
     current_level = 0
     score = 0
-    current_areas = {}
+
+
+def save_game():
+    global save_slots
+
+    if current_save_slot is not None:
+        save_slots[current_save_slot] = {
+            "levelset": current_levelset, "level_timers": level_timers,
+            "cleared_levels": cleared_levels, "tuxdolls_found": tuxdolls_found,
+            "current_worldmap": current_worldmap,
+            "current_worldmap_space": current_worldmap_space,
+            "current_level": current_level, "score": score,
+            "completion": int(100 * (len(cleared_levels) +
+                                     len(tuxdolls_found)) /
+                              (len(levels) + len(tuxdolls_available)))}
+
+
+def load_game():
+    global level_timers
+    global cleared_levels
+    global tuxdolls_found
+    global current_worldmap
+    global current_worldmap_space
+    global current_level
+    global score
+
+    if (current_save_slot is not None and
+            save_slots[current_save_slot].get("levelset") is not None):
+        slot = save_slots[current_save_slot]
+        load_levelset(slot["levelset"])
+        level_timers = slot.get("level_timers", {})
+        cleared_levels = slot.get("cleared_levels", [])
+        tuxdolls_found = slot.get("tuxdolls_found", [])
+        current_worldmap = slot.get("current_worldmap")
+        current_worldmap_space = slot.get("current_worldmap_space")
+        current_level = slot.get("current_level", 0)
+        score = slot.get("score", 0)
+    else:
+        set_new_game()
 
 
 def start_levelset():
     global main_area
     global level_cleared
+    global current_areas
+    current_areas = {}
     main_area = None
     level_cleared = True
 
-    if worldmaps:
-        m = Worldmap.load(worldmaps[0])
+    if current_worldmap:
+        m = Worldmap.load(current_worldmap)
         m.start()
-    elif levels:
-        level = Level.load(levels[0])
+    elif current_level < len(levels):
+        level = Level.load(levels[current_level])
         level.start()
+    else:
+        print("Invalid save file: current level does not exist.")
 
 
 TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
@@ -4229,7 +4348,7 @@ sge.game.start_room = TitleScreen.load(os.path.join("special",
                                                     "title_screen.tmx"))
 
 sge.game.mouse.visible = False
-load_levelset("retux.json")
+load_levelset(current_levelset)
 
 if not os.path.exists(CONFIG):
     os.makedirs(CONFIG)
@@ -4263,6 +4382,15 @@ else:
     action_js = js_cfg.get("action", action_js)
     sneak_js = js_cfg.get("sneak", sneak_js)
 
+try:
+    with open(os.path.join(CONFIG, "save_slots.json")) as f:
+        loaded_slots = json.load(f)
+except (IOError, ValueError):
+    pass
+else:
+    for i in six.moves.range(min(len(loaded_slots), len(save_slots))):
+        save_slots[i] = loaded_slots[i]
+
 
 if __name__ == '__main__':
     try:
@@ -4281,3 +4409,6 @@ if __name__ == '__main__':
 
         with open(os.path.join(CONFIG, "config.json"), 'w') as f:
             json.dump(cfg, f)
+
+        with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
+            json.dump(save_slots, f)
