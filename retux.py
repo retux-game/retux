@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # reTux
-# Copyright (C) 2015 Julian Marchant <onpon4@riseup.net>
+# Copyright (C) 2014, 2015 Julian Marchant <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -428,7 +428,7 @@ class Level(sge.Room):
                 if amt:
                     score += amt
                     level_timers[main_area] -= amt
-                    coin_sound.play()
+                    play_sound(coin_sound)
 
             if self.death_time < 0:
                 self.death_time = None
@@ -448,7 +448,7 @@ class Level(sge.Room):
                         self.points))
                     score += amt
                     self.points -= amt
-                    coin_sound.play()
+                    play_sound(coin_sound)
                 else:
                     self.win_count_points = False
                     self.alarms["win_count_time"] = WIN_COUNT_CONTINUE_TIME
@@ -461,7 +461,7 @@ class Level(sge.Room):
                         time_bonus))
                     score += amt
                     level_timers[main_area] -= amt
-                    coin_sound.play()
+                    play_sound(coin_sound)
                 else:
                     self.win_count_time = False
                     self.alarms["win"] = WIN_FINISH_DELAY
@@ -526,12 +526,12 @@ class Level(sge.Room):
             elif key in ("enter", "p"):
                 if not self.won:
                     sge.Music.pause()
-                    pause_sound.play()
+                    play_sound(pause_sound)
                     sge.game.pause(pause_sprite)
 
     def event_paused_key_press(self, key, char):
         if key in ("enter", "p"):
-            pause_sound.play()
+            play_sound(pause_sound)
             sge.Music.unpause()
             sge.game.unpause()
         else:
@@ -883,7 +883,7 @@ class Player(xsge_physics.Collider):
                 self.yvelocity = get_jump_speed(PLAYER_JUMP_HEIGHT)
             self.on_floor = []
             self.was_on_floor = []
-            jump_sound.play()
+            play_sound(jump_sound)
 
     def jump_release(self):
         if self.yvelocity < 0:
@@ -912,7 +912,7 @@ class Player(xsge_physics.Collider):
             if self.hp <= 0:
                 self.kill()
             else:
-                hurt_sound.play()
+                play_sound(hurt_sound)
                 self.hitstun = True
                 self.image_alpha = 128
                 self.alarms["hitstun"] = PLAYER_HITSTUN
@@ -920,7 +920,7 @@ class Player(xsge_physics.Collider):
     def kill(self, show_fall=True):
         if self.held_object is not None:
             self.held_object.drop()
-        kill_sound.play()
+        play_sound(kill_sound)
         if show_fall:
             DeadMan.create(self.x, self.y, 100000, sprite=tux_die_sprite,
                            yvelocity=get_jump_speed(PLAYER_DIE_HEIGHT))
@@ -957,7 +957,8 @@ class Player(xsge_physics.Collider):
         sge.game.current_room.alarms["win_count_points"] = WIN_COUNT_START_TIME
         sge.Music.clear_queue()
         sge.Music.stop()
-        level_win_music.play()
+        if music_enabled:
+            level_win_music.play()
 
     def pickup(self, other):
         if self.held_object is None and other.parent is None:
@@ -974,7 +975,7 @@ class Player(xsge_physics.Collider):
             self.held_object = None
 
     def do_kick(self):
-        kick_sound.play()
+        play_sound(kick_sound)
         self.alarms["fixed_sprite"] = TUX_KICK_TIME
         if self.held_object is not None:
             self.sprite = self.get_grab_sprite(tux_body_kick_sprite)
@@ -1171,7 +1172,7 @@ class Player(xsge_physics.Collider):
         while self.coins >= HEAL_COINS:
             self.coins -= HEAL_COINS
             self.hp += 1
-            heal_sound.play()
+            play_sound(heal_sound)
 
         self.hp = min(self.hp, MAX_HP)
 
@@ -1205,7 +1206,7 @@ class Player(xsge_physics.Collider):
                         if (not skidding and h_control and
                                 s >= PLAYER_RUN_SPEED):
                             skidding = True
-                            skid_sound.play()
+                            play_sound(skid_sound)
                     else:
                         skidding = False
 
@@ -1535,7 +1536,7 @@ class InteractiveObject(sge.Object):
         self.kick()
 
     def touch_death(self):
-        fall_sound.play()
+        play_sound(fall_sound)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity, yvelocity=0,
                        image_xscale=self.image_xscale,
@@ -1579,7 +1580,7 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
         self.yvelocity = 0
 
     def touch_hurt(self):
-        fall_sound.play()
+        play_sound(fall_sound)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity, yvelocity=0,
                        image_xscale=self.image_xscale,
@@ -1616,7 +1617,7 @@ class WinPuffObject(InteractiveObject):
     win_puff_score = ENEMY_KILL_POINTS
 
     def win_puff(self):
-        pop_sound.play()
+        play_sound(pop_sound)
         if self.sprite is None:
             x = self.x
             y = self.y
@@ -1761,7 +1762,7 @@ class KnockableObject(InteractiveObject):
     """Provides basic knocking behavior."""
 
     def knock(self, other=None):
-        fall_sound.play()
+        play_sound(fall_sound)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity,
                        yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
@@ -1787,7 +1788,7 @@ class BurnableObject(InteractiveObject):
     """Provides basic burn behavior."""
 
     def burn(self):
-        fall_sound.play()
+        play_sound(fall_sound)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity, yvelocity=0,
                        image_xscale=self.image_xscale,
@@ -1814,7 +1815,7 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        squish_sound.play()
+        play_sound(squish_sound)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         Corpse.create(self.x, self.y, self.z, sprite=snowball_squished_sprite,
                       image_xscale=self.image_xscale,
@@ -1871,7 +1872,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        stomp_sound.play()
+        play_sound(stomp_sound)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
                             image_xscale=self.image_xscale,
@@ -2014,7 +2015,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        squish_sound.play()
+        play_sound(squish_sound)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         Corpse.create(self.x, self.y, self.z,
                       sprite=flying_snowball_squished_sprite,
@@ -2077,7 +2078,7 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
     def kick_up(self):
         if self.parent is not None:
             self.parent.kick_object()
-            kick_sound.play()
+            play_sound(kick_sound)
             tib = ThrownIceblock.create(
                 self.parent, self.x, self.y, self.z, sprite=self.sprite,
                 image_xscale=self.image_xscale, image_yscale=self.image_yscale,
@@ -2112,7 +2113,7 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
         fib.touch(other)
 
     def stop_left(self):
-        iceblock_bump_sound.play()
+        play_sound(iceblock_bump_sound)
         self.xvelocity = abs(self.xvelocity)
         self.set_direction(1)
         for block in self.get_left_touching_wall():
@@ -2120,7 +2121,7 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
                 block.hit(self.thrower)
 
     def stop_right(self):
-        iceblock_bump_sound.play()
+        play_sound(iceblock_bump_sound)
         self.xvelocity = -abs(self.xvelocity)
         self.set_direction(-1)
         for block in self.get_right_touching_wall():
@@ -2168,14 +2169,14 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
         super(DashingIceblock, self).__init__(*args, **kwargs)
 
     def stop_left(self):
-        iceblock_bump_sound.play()
+        play_sound(iceblock_bump_sound)
         self.set_direction(1)
         for block in self.get_left_touching_wall():
             if isinstance(block, HittableBlock):
                 block.hit(self.thrower)
 
     def stop_right(self):
-        iceblock_bump_sound.play()
+        play_sound(iceblock_bump_sound)
         self.set_direction(-1)
         for block in self.get_right_touching_wall():
             if isinstance(block, HittableBlock):
@@ -2186,7 +2187,7 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        stomp_sound.play()
+        play_sound(stomp_sound)
         FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
                             image_xscale=self.image_xscale,
                             image_yscale=self.image_yscale)
@@ -2251,7 +2252,7 @@ class FireFlower(FallingObject, WinPuffObject):
                                 xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
                 self.ammo -= 1
-                shoot_sound.play()
+                play_sound(shoot_sound)
 
                 self.sprite = fire_flower_sprite.copy()
                 lightness = int((self.ammo / FIREBALL_AMMO) * 230 + 25)
@@ -2265,7 +2266,7 @@ class FireFlower(FallingObject, WinPuffObject):
                 h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
                 yv = get_jump_speed(h, ThrownFlower.gravity)
                 self.parent.kick_object()
-                kick_sound.play()
+                play_sound(kick_sound)
                 ThrownFlower.create(self.parent, self.x, self.y, self.z,
                                     sprite=self.sprite,
                                     xvelocity=(FIREBALL_SPEED * d),
@@ -2297,25 +2298,25 @@ class ThrownFlower(FallingObject, WinPuffObject):
         super(ThrownFlower, self).__init__(*args, **kwargs)
 
     def stop_left(self):
-        stomp_sound.play()
+        play_sound(stomp_sound)
         self.destroy()
 
     def stop_right(self):
-        stomp_sound.play()
+        play_sound(stomp_sound)
         self.destroy()
 
     def stop_up(self):
-        stomp_sound.play()
+        play_sound(stomp_sound)
         self.destroy()
 
     def stop_down(self):
-        stomp_sound.play()
+        play_sound(stomp_sound)
         self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, KnockableObject):
             other.knock(self)
-            stomp_sound.play()
+            play_sound(stomp_sound)
             self.destroy()
         elif isinstance(other, Coin):
             other.event_collision(self.thrower, -xdirection, -ydirection)
@@ -2385,7 +2386,7 @@ class TuxDoll(FallingObject):
         self.y += self.image_origin_y
 
     def touch(self, other):
-        tuxdoll_sound.play()
+        play_sound(tuxdoll_sound)
         sge.game.current_room.add_points(TUXDOLL_POINTS)
         if main_area and main_area not in tuxdolls_found:
             tuxdolls_found.append(main_area)
@@ -2416,7 +2417,7 @@ class HittableBlock(xsge_physics.SolidBottom, Tile):
                 self.event_hit_end()
 
     def hit(self, other):
-        brick_sound.play()
+        play_sound(brick_sound)
         if self.hit_obj is not None:
             self.hit_obj.destroy()
             self.hit_obj = None
@@ -2513,7 +2514,7 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
             obj.bbox_bottom = self.bbox_top
             Smoke.create(obj.x, obj.y, z=(obj.z + 0.5),
                          sprite=item_spawn_cloud_sprite)
-            find_powerup_sound.play()
+            play_sound(find_powerup_sound)
         else:
             CoinCollect.create(self.x, self.y, z=(self.z + 0.5))
             other.coins += 1
@@ -2584,13 +2585,13 @@ class ThinIce(xsge_physics.Solid):
             self.sprite = thin_ice_break_sprite
             self.image_index = 0
             self.image_fps = None
-            ice_shatter_sound.play()
+            play_sound(ice_shatter_sound)
         else:
             self.destroy()
 
     def crack(self):
         if self.image_index + 1 < self.sprite.frames:
-            random.choice(ice_crack_sounds).play()
+            play_sound(random.choice(ice_crack_sounds))
         self.image_index += 1
         self.freeze_time = 0
 
@@ -2657,7 +2658,7 @@ class CoinCollect(sge.Object):
         self.tangible = False
 
     def event_create(self):
-        coin_sound.play()
+        play_sound(coin_sound)
         sge.game.current_room.add_points(COIN_POINTS)
         self.alarms["destroy"] = COIN_COLLECT_TIME
         self.yvelocity = -COIN_COLLECT_SPEED
@@ -2798,7 +2799,7 @@ class WarpSpawn(xsge_path.Path):
 
                 level.start()
         else:
-            pipe_sound.play()
+            play_sound(pipe_sound)
             self.warps_out.append(obj)
             x, y = self.points[-1]
             x += self.x
@@ -2834,7 +2835,7 @@ class Warp(WarpSpawn):
         self.warps_in = []
 
     def warp(self, other):
-        pipe_sound.play()
+        play_sound(pipe_sound)
         self.warps_in.append(other)
         other.visible = False
         other.tangible = False
@@ -3238,7 +3239,7 @@ class MapWarp(MapSpace):
         else:
             m = Worldmap.load(current_worldmap)
             m.start(transition="dissolve", transition_time=750)
-            warp_sound.play()
+            play_sound(warp_sound)
 
 
 class MapPath(xsge_path.Path):
@@ -3401,15 +3402,77 @@ class OptionsMenu(Menu):
             OptionsMenu.create_options(default=self.choice)
         elif self.choice == 2:
             music_enabled = not music_enabled
+            play_music(sge.game.current_room.music)
             OptionsMenu.create_options(default=self.choice)
         elif self.choice == 3:
-            print("Keys")
-            OptionsMenu.create_options(default=self.choice)
+            KeyboardMenu.create_page()
         elif self.choice == 4:
             print("JS")
             OptionsMenu.create_options(default=self.choice)
         else:
             MainMenu.create(default=3)
+
+
+class KeyboardMenu(Menu):
+
+    page = 0
+
+    @classmethod
+    def create_page(cls, default=0, page=0):
+        page %= min(len(left_key), len(right_key), len(up_key), len(down_key),
+                    len(jump_key), len(action_key), len(sneak_key))
+        cls.page = page
+        cls.items = ["Player {}".format(page + 1),
+                     "Left: {}".format(left_key[page]),
+                     "Right: {}".format(right_key[page]),
+                     "Up: {}".format(up_key[page]),
+                     "Down: {}".format(down_key[page]),
+                     "Jump: {}".format(jump_key[page]),
+                     "Action: {}".format(action_key[page]),
+                     "Sneak: {}".format(sneak_key[page]),
+                     "Back"]
+        cls.create(default)
+
+    def event_choose(self):
+        if self.choice == 0:
+            KeyboardMenu.create_page(default=self.choice, page=(self.page + 1))
+        elif self.choice == 1:
+            k = wait_key()
+            if k is not None:
+                left_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 2:
+            k = wait_key()
+            if k is not None:
+                right_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 3:
+            k = wait_key()
+            if k is not None:
+                up_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 4:
+            k = wait_key()
+            if k is not None:
+                down_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 5:
+            k = wait_key()
+            if k is not None:
+                jump_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 6:
+            k = wait_key()
+            if k is not None:
+                action_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 7:
+            k = wait_key()
+            if k is not None:
+                sneak_key[self.page] = k
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        else:
+            OptionsMenu.create_options(default=3)
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -3437,9 +3500,94 @@ def get_jump_speed(height, gravity=GRAVITY):
     return -math.sqrt(2 * gravity * height)
 
 
+def wait_key():
+    # Wait for a key press and return it.
+    while True:
+        # Input events
+        sge.game.pump_input()
+        while sge.game.input_events:
+            event = sge.game.input_events.pop(0)
+            if isinstance(event, sge.input.KeyPress):
+                sge.game.pump_input()
+                sge.game.input_events = []
+                if event.key == "escape":
+                    return None
+                else:
+                    return event.key
+
+        # Regulate speed
+        sge.game.regulate_speed(fps=10)
+
+        # Project text
+        text = "Press the key you wish to use for this function, or Escape to cancel."
+        sge.game.project_text(font, text, sge.game.width / 2,
+                              sge.game.height / 2, width=sge.game.width,
+                              height=sge.game.height,
+                              color=sge.Color("white"),
+                              halign="center", valign="middle")
+
+        # Refresh
+        sge.game.refresh()
+
+
+def wait_js():
+    # Wait for a joystick press and return it.
+    while True:
+        # Input events
+        sge.game.pump_input()
+        while sge.game.input_events:
+            event = sge.game.input_events.pop(0)
+            if isinstance(event, sge.input.KeyPress):
+                if event.key == "escape":
+                    sge.game.pump_input()
+                    sge.game.input_events = []
+                    return None
+            elif isinstance(event, sge.input.JoystickAxisMove):
+                if event.value > JOYSTICK_THRESHOLD:
+                    sge.game.pump_input()
+                    sge.game.input_events = []
+                    return (event.js_id, "axis+", event.axis)
+                elif event.value < -JOYSTICK_THRESHOLD:
+                    sge.game.pump_input()
+                    sge.game.input_events = []
+                    return (event.js_id, "axis-", event.axis)
+            elif isinstance(event, sge.input.JoystickHatMove):
+                sge.game.pump_input()
+                sge.game.input_events = []
+                t = ("hatx+" if event.x > 0 else
+                     "hatx-" if event.x < 0 else
+                     "haty+" if event.y > 0 else
+                     "haty-" if event.y < 0 else
+                     "hatx0")
+                return (event.js_id, t, event.hat)
+            elif isinstance(event, sge.input.JoystickButtonPress):
+                sge.game.pump_input()
+                sge.game.input_events = []
+                return (event.js_id, "button", event.button)
+
+        # Regulate speed
+        sge.game.regulate_speed(fps=10)
+
+        # Project text
+        text = "Press the joystick button, axis, or hat direction you wish to use for this function, or Escape to cancel."
+        sge.game.project_text(menu_font, text, sge.game.width / 2,
+                              sge.game.height / 2, width=sge.game.width,
+                              height=sge.game.height,
+                              color=sge.Color("white"),
+                              halign="center", valign="middle")
+
+        # Refresh
+        sge.game.refresh()
+
+
+def play_sound(sound, *args, **kwargs):
+    if sound_enabled and sound:
+        sound.play(*args, **kwargs)
+
+
 def play_music(music, force_restart=False):
     """Play the given music file, starting with its start piece."""
-    if music:
+    if music_enabled and music:
         music_object = loaded_music.get(music)
         if music_object is None:
             try:
