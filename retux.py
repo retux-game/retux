@@ -41,6 +41,7 @@ import xsge_tmx
 
 DATA = os.path.join(os.path.dirname(__file__), "data")
 CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
+JOYSTICK_THRESHOLD = 0.7
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -52,14 +53,20 @@ parser.add_argument(
     help="Disable delta timing. Causes the game to slow down when it can't run at 60 FPS instead of becoming choppier.",
     action="store_true")
 parser.add_argument(
+    "--js-threshold", default=JOYSTICK_THRESHOLD, type=float,
+    help="The threshold at which an axis is considered to be triggered, as a float between 0 and 1. (Default: {})".format(JOYSTICK_THRESHOLD))
+parser.add_argument(
     "-d", "--datadir",
     help='Where to load the game data from (Default: "{}")'.format(DATA))
 args = parser.parse_args()
 
 SCALE_SMOOTH = not args.scale_basic
 DELTA = not args.nodelta
+JOYSTICK_THRESHOLD = args.js_threshold
 if args.datadir:
     DATA = args.datadir
+
+xsge_gui.joystick_threshold = JOYSTICK_THRESHOLD
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
@@ -181,6 +188,13 @@ down_key = ["down"]
 jump_key = ["space"]
 action_key = ["ctrl_left"]
 sneak_key = ["shift_left"]
+left_js = [(0, "axis-", 0)]
+right_js = [(0, "axis+", 0)]
+up_js = [(0, "axis-", 1)]
+down_js = [(0, "axis+", 1)]
+jump_js = [(0, "button", 1)]
+action_js = [(0, "button", 0)]
+sneak_js = [(0, "button", 2)]
 
 worldmaps = []
 levels = []
@@ -872,6 +886,36 @@ class Player(xsge_physics.Collider):
             self.sneak_pressed = sge.keyboard.get_pressed(
                 sneak_key[self.player])
 
+            # Add current joystick state
+            js_controls = [left_js, right_js, up_js, down_js, jump_js,
+                           action_js, sneak_js]
+            js_states = [False for i in js_controls]
+            for i in six.moves.range(len(js_controls)):
+                if js_controls[i][self.player] is not None:
+                    j, t, c = js_controls[i][self.player]
+                    if t == "axis+":
+                        js_states[i] = (sge.joystick.get_axis(j, c) >
+                                        JOYSTICK_THRESHOLD)
+                    elif t == "axis-":
+                        js_states[i] = (sge.joystick.get_axis(j, c) <
+                                        -JOYSTICK_THRESHOLD)
+                    elif t == "axis0":
+                        js_states[i] = (abs(sge.joystick.get_axis(j, c)) <=
+                                        JOYSTICK_THRESHOLD)
+                    elif t == "hat":
+                        js_states[i] = (sge.joystick.get_hat_x(j, c[0]) == c[1] and
+                                        sge.joystick.get_hat_y(j, c[0]) == c[2])
+                    elif t == "button":
+                        js_states[i] = sge.joystick.get_pressed(j, c)
+
+            self.left_pressed = self.left_pressed or js_states[0]
+            self.right_pressed = self.right_pressed or js_states[1]
+            self.up_pressed = self.up_pressed or js_states[2]
+            self.down_pressed = self.down_pressed or js_states[3]
+            self.jump_pressed = self.jump_pressed or js_states[4]
+            self.action_pressed = self.action_pressed or js_states[5]
+            self.sneak_pressed = self.sneak_pressed or js_states[6]
+
     def jump(self):
         if not self.warping and (self.on_floor or self.was_on_floor):
             for thin_ice in self.collision(ThinIce, y=(self.y + 1)):
@@ -1320,12 +1364,77 @@ class Player(xsge_physics.Collider):
         if self.human:
             if key == jump_key[self.player]:
                 self.jump()
-            elif key == action_key[self.player]:
+            if key == action_key[self.player]:
                 self.action()
 
     def event_key_release(self, key):
         if self.human:
             if key == jump_key[self.player]:
+                self.jump_release()
+
+    def event_joystick_axis_move(self, js_name, js_id, axis, value):
+        if self.human:
+            js_versions = [(js_id, "axis+", axis), (js_id, "axis-", axis)]
+            if value > JOYSTICK_THRESHOLD:
+                js = (js_id, "axis+", axis)
+            elif value < -JOYSTICK_THRESHOLD:
+                js = (js_id, "axis-", axis)
+            else:
+                js = (js_id, "axis0", axis)
+
+            if js == jump_js[self.player]:
+                self.jump()
+            elif jump_js[self.player] in js_versions:
+                self.jump_release()
+            if js == action_js[self.player]:
+                self.action()
+
+    def event_joystick_hat_move(self, js_name, js_id, hat, x, y):
+        if self.human:
+            js_versions = [(js_id, "hatx+", hat), (js_id, "hatx-", hat)]
+            if x > 0:
+                js = (js_id, "hatx+", hat)
+            elif x < 0:
+                js = (js_id, "hatx-", hat)
+            else:
+                js = (js_id, "hatx0", hat)
+
+            if js == jump_js[self.player]:
+                self.jump()
+            elif jump_js[self.player] in js_versions:
+                self.jump_release()
+            if js == action_js[self.player]:
+                self.action()
+
+            js_versions = [(js_id, "haty+", hat), (js_id, "haty-", hat)]
+            if y > 0:
+                js = (js_id, "haty+", hat)
+            elif y < 0:
+                js = (js_id, "haty-", hat)
+            else:
+                js = (js_id, "haty0", hat)
+
+            if js == jump_js[self.player]:
+                self.jump()
+            elif jump_js[self.player] in js_versions:
+                self.jump_release()
+            if js == action_js[self.player]:
+                self.action()
+
+    def event_joystick_button_press(self, js_name, js_id, button):
+        if self.human:
+            js = (js_id, "button", button)
+
+            if js == jump_js[self.player]:
+                self.jump()
+            if js == action_js[self.player]:
+                self.action()
+
+    def event_joystick_button_release(self, js_name, js_id, button):
+        if self.human:
+            js = (js_id, "button", button)
+
+            if js == jump_js[self.player]:
                 self.jump_release()
 
     def event_collision(self, other, xdirection, ydirection):
@@ -3014,6 +3123,32 @@ class MapPlayer(sge.Object):
                 if sge.keyboard.get_pressed(key):
                     self.move_down()
 
+            for j in six.moves.range(sge.joystick.get_joysticks()):
+                x = sge.joystick.get_axis(j, 0)
+                if x > JOYSTICK_THRESHOLD:
+                    self.move_right()
+                elif x < -JOYSTICK_THRESHOLD:
+                    self.move_left()
+
+                y = sge.joystick.get_axis(j, 1)
+                if y > JOYSTICK_THRESHOLD:
+                    self.move_down()
+                elif y < -JOYSTICK_THRESHOLD:
+                    self.move_up()
+
+                for h in six.moves.range(sge.joystick.get_hats(j)):
+                    x = sge.joystick.get_hat_x(j, h)
+                    if x > 0:
+                        self.move_right()
+                    elif x < 0:
+                        self.move_left()
+
+                    y = sge.joystick.get_hat_y(j, h)
+                    if y > 0:
+                        self.move_down()
+                    elif y < 0:
+                        self.move_up()
+
         if room.views:
             view = room.views[0]
             view.x = self.x - view.width / 2 + self.sprite.width / 2
@@ -3022,6 +3157,9 @@ class MapPlayer(sge.Object):
     def event_key_press(self, key, char):
         if key in jump_key or key in action_key or key == "enter":
             self.start_level()
+
+    def event_joystick_button_press(self, js_name, js_id, button):
+        self.start_level()
 
     def event_stop(self):
         self.moving = False
@@ -3407,8 +3545,7 @@ class OptionsMenu(Menu):
         elif self.choice == 3:
             KeyboardMenu.create_page()
         elif self.choice == 4:
-            print("JS")
-            OptionsMenu.create_options(default=self.choice)
+            JoystickMenu.create_page()
         else:
             MainMenu.create(default=3)
 
@@ -3473,6 +3610,69 @@ class KeyboardMenu(Menu):
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
             OptionsMenu.create_options(default=3)
+
+
+class JoystickMenu(Menu):
+
+    page = 0
+
+    @classmethod
+    def create_page(cls, default=0, page=0):
+        page %= min(len(left_js), len(right_js), len(up_js), len(down_js),
+                    len(jump_js), len(action_js), len(sneak_js))
+        cls.page = page
+        js_template = "Joystick {} {} {}"
+        cls.items = ["Player {}".format(page + 1),
+                     "Left: {}".format(js_template.format(*left_js[page])),
+                     "Right: {}".format(js_template.format(*right_js[page])),
+                     "Up: {}".format(js_template.format(*up_js[page])),
+                     "Down: {}".format(js_template.format(*down_js[page])),
+                     "Jump: {}".format(js_template.format(*jump_js[page])),
+                     "Action: {}".format(js_template.format(*action_js[page])),
+                     "Sneak: {}".format(js_template.format(*sneak_js[page])),
+                     "Back"]
+        cls.create(default)
+
+    def event_choose(self):
+        if self.choice == 0:
+            JoystickMenu.create_page(default=self.choice, page=(self.page + 1))
+        elif self.choice == 1:
+            js = wait_js()
+            if js is not None:
+                left_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 2:
+            js = wait_js()
+            if js is not None:
+                right_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 3:
+            js = wait_js()
+            if js is not None:
+                up_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 4:
+            js = wait_js()
+            if js is not None:
+                down_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 5:
+            js = wait_js()
+            if js is not None:
+                jump_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 6:
+            js = wait_js()
+            if js is not None:
+                action_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 7:
+            js = wait_js()
+            if js is not None:
+                sneak_js[self.page] = js
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        else:
+            OptionsMenu.create_options(default=4)
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -3570,7 +3770,7 @@ def wait_js():
 
         # Project text
         text = "Press the joystick button, axis, or hat direction you wish to use for this function, or Escape to cancel."
-        sge.game.project_text(menu_font, text, sge.game.width / 2,
+        sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
                               color=sge.Color("white"),
@@ -4054,6 +4254,15 @@ else:
     action_key = keys_cfg.get("action", action_key)
     sneak_key = keys_cfg.get("sneak", sneak_key)
 
+    js_cfg = cfg.get("js", {})
+    left_js = js_cfg.get("left", left_js)
+    right_js = js_cfg.get("right", right_js)
+    up_js = js_cfg.get("up", up_js)
+    down_js = js_cfg.get("down", down_js)
+    jump_js = js_cfg.get("jump", jump_js)
+    action_js = js_cfg.get("action", action_js)
+    sneak_js = js_cfg.get("sneak", sneak_js)
+
 
 if __name__ == '__main__':
     try:
@@ -4062,9 +4271,13 @@ if __name__ == '__main__':
         keys_cfg = {"left": left_key, "right": right_key, "up": up_key,
                     "down": down_key, "jump": jump_key, "action": action_key,
                     "sneak": sneak_key}
+        js_cfg = {"left": left_js, "right": right_js, "up": up_js,
+                  "down": down_js, "jump": jump_js, "action": action_js,
+                  "sneak": sneak_js}
 
         cfg = {"fullscreen": fullscreen, "sound_enabled": sound_enabled,
-               "music_enabled": music_enabled, "keys": keys_cfg}
+               "music_enabled": music_enabled, "keys": keys_cfg,
+               "joystick": js_cfg}
 
         with open(os.path.join(CONFIG, "config.json"), 'w') as f:
             json.dump(cfg, f)
