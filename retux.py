@@ -23,10 +23,11 @@ from __future__ import unicode_literals
 
 __version__ = "0.1a1"
 
-import os
-import math
-import random
+import argparse
 import json
+import math
+import os
+import random
 import warnings
 import weakref
 
@@ -39,6 +40,26 @@ import xsge_tmx
 
 
 DATA = os.path.join(os.path.dirname(__file__), "data")
+CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--scale-basic",
+    help="Use basic rather than smooth scaling. Faster if you're in fullscreen or resizing the window, but much uglier.",
+    action="store_true")
+parser.add_argument(
+    "--nodelta",
+    help="Disable delta timing. Causes the game to slow down when it can't run at 60 FPS instead of becoming choppier.",
+    action="store_true")
+parser.add_argument(
+    "-d", "--datadir",
+    help='Where to load the game data from (Default: "{}")'.format(DATA))
+args = parser.parse_args()
+
+SCALE_SMOOTH = not args.scale_basic
+DELTA = not args.nodelta
+if args.datadir:
+    DATA = args.datadir
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
@@ -150,6 +171,9 @@ backgrounds = {}
 loaded_music = {}
 tux_grab_sprites = {}
 
+fullscreen = False
+sound_enabled = True
+music_enabled = True
 left_key = ["left"]
 right_key = ["right"]
 up_key = ["up"]
@@ -3290,10 +3314,11 @@ class MainMenu(Menu):
             start_levelset()
         elif self.choice == 1:
             print("Load game")
+            MainMenu.create(default=self.choice)
         elif self.choice == 2:
             LevelsetMenu.create_page(default=-1)
         elif self.choice == 3:
-            print("Options")
+            OptionsMenu.create_options()
         else:
             sge.game.end()
 
@@ -3349,6 +3374,42 @@ class LevelsetMenu(Menu):
                 load_levelset(self.current_levelsets[self.choice])
 
             MainMenu.create(default=2)
+
+
+class OptionsMenu(Menu):
+
+    @classmethod
+    def create_options(cls, default=0):
+        cls.items = [
+            "Fullscreen: {}".format("On" if sge.game.fullscreen else "Off"),
+            "Sound: {}".format("On" if sound_enabled else "Off"),
+            "Music: {}".format("On" if music_enabled else "Off"),
+            "Configure keyboard", "Configure joysticks", "Back"]
+        cls.create(default)
+
+    def event_choose(self):
+        global fullscreen
+        global sound_enabled
+        global music_enabled
+
+        if self.choice == 0:
+            fullscreen = not fullscreen
+            sge.game.fullscreen = fullscreen
+            OptionsMenu.create_options(default=self.choice)
+        elif self.choice == 1:
+            sound_enabled = not sound_enabled
+            OptionsMenu.create_options(default=self.choice)
+        elif self.choice == 2:
+            music_enabled = not music_enabled
+            OptionsMenu.create_options(default=self.choice)
+        elif self.choice == 3:
+            print("Keys")
+            OptionsMenu.create_options(default=self.choice)
+        elif self.choice == 4:
+            print("JS")
+            OptionsMenu.create_options(default=self.choice)
+        else:
+            MainMenu.create(default=3)
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -3494,8 +3555,9 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "map_path": MapPath}
 
 
-Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=False, fps=FPS, delta=True,
-     delta_min=DELTA_MIN, window_text="reTux {}".format(__version__),
+Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=(not args.scale_basic),
+     fps=FPS, delta=(not args.nodelta), delta_min=DELTA_MIN,
+     window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 xsge_gui.init()
 
@@ -3821,6 +3883,40 @@ sge.game.start_room = TitleScreen.load(os.path.join("special",
 sge.game.mouse.visible = False
 load_levelset("retux.json")
 
+if not os.path.exists(CONFIG):
+    os.makedirs(CONFIG)
+
+try:
+    with open(os.path.join(CONFIG, "config.json")) as f:
+        cfg = json.load(f)
+except (IOError, ValueError):
+    pass
+else:
+    fullscreen = cfg.get("fullscreen", fullscreen)
+    sge.game.fullscreen = fullscreen
+    sound_enabled = cfg.get("sound_enabled", sound_enabled)
+    music_enabled = cfg.get("music_enabled", music_enabled)
+
+    keys_cfg = cfg.get("keys", {})
+    left_key = keys_cfg.get("left", left_key)
+    right_key = keys_cfg.get("right", right_key)
+    up_key = keys_cfg.get("up", up_key)
+    down_key = keys_cfg.get("down", down_key)
+    jump_key = keys_cfg.get("jump", jump_key)
+    action_key = keys_cfg.get("action", action_key)
+    sneak_key = keys_cfg.get("sneak", sneak_key)
+
 
 if __name__ == '__main__':
-    sge.game.start()
+    try:
+        sge.game.start()
+    finally:
+        keys_cfg = {"left": left_key, "right": right_key, "up": up_key,
+                    "down": down_key, "jump": jump_key, "action": action_key,
+                    "sneak": sneak_key}
+
+        cfg = {"fullscreen": fullscreen, "sound_enabled": sound_enabled,
+               "music_enabled": music_enabled, "keys": keys_cfg}
+
+        with open(os.path.join(CONFIG, "config.json"), 'w') as f:
+            json.dump(cfg, f)
