@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="creatures" tilewidth="32" tileheight="32">
  <tileoffset x="-16" y="0"/>
- <image source="../images/tiles/tileset_creatures.png" width="160" height="96"/>
+ <image source="../images/tiles/tileset_creatures.png" width="160" height="64"/>
  <tile id="0">
   <properties>
    <property name="cls" value="player"/>
@@ -27,12 +27,17 @@
    <property name="cls" value="spiky"/>
   </properties>
  </tile>
- <tile id="7">
+ <tile id="5">
+  <properties>
+   <property name="cls" value="bomb"/>
+  </properties>
+ </tile>
+ <tile id="6">
   <properties>
    <property name="cls" value="jumpy"/>
   </properties>
  </tile>
- <tile id="8">
+ <tile id="7">
   <properties>
    <property name="cls" value="flying_snowball"/>
   </properties>
