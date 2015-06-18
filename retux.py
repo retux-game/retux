@@ -3529,7 +3529,10 @@ class LoadGameMenu(NewGameMenu):
         if self.choice in six.moves.range(len(save_slots)):
             current_save_slot = self.choice
             load_game()
-            start_levelset()
+            if not start_levelset():
+                m = "An error occurred when trying to load the game."
+                xsge_gui.show_message(message=m, buttons=["Ok"])
+                MainMenu.create(default=1)
         else:
             MainMenu.create(default=1)
 
@@ -4046,6 +4049,9 @@ def start_levelset():
         level.start()
     else:
         print("Invalid save file: current level does not exist.")
+        return False
+
+    return True
 
 
 TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
@@ -4377,8 +4383,8 @@ fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
-pause_sound = sge.Sound(os.path.join(DATA, "sounds", "pause.ogg"))
-select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.wav"))
+pause_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
+select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 
 # Load music
 invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
