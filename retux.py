@@ -3455,6 +3455,9 @@ class Menu(xsge_gui.MenuWindow):
             self.show()
             return self
 
+    def event_change_selection(self, selection):
+        play_sound(select_sound)
+
 
 class MainMenu(Menu):
 
@@ -3746,6 +3749,53 @@ class JoystickMenu(Menu):
             JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
             OptionsMenu.create_page(default=4)
+
+
+class DialogLabel(xsge_gui.ProgressiveLabel):
+
+    def event_add_character(self):
+        pass
+
+
+class DialogBox(xsge_gui.Dialog):
+
+    def __init__(self, text, portrait=None, rate=1000):
+        width = sge.game.width / 2
+        x_padding = 16
+        y_padding = 16
+        label_x = 8
+        label_y = 8
+        if portrait is not None:
+            x_padding += 8
+            label_x += 8
+            portrait_w = portrait.width
+            portrait_h = portrait.height
+            label_x += portrait_w
+        else:
+            portrait_w = 0
+            portrait_h = 0
+        label_w = max(1, width - portrait_w - x_padding)
+        height = max(1, portrait_h + y_padding,
+                     font.get_height(text, width=label_w) + y_padding)
+        x = sge.game.width / 2 - width / 2
+        y = sge.game.height / 2 - height / 2
+        super(DialogBox, self).__init__(
+            None, x, y, width, height,
+            background_color=sge.Color((64, 64, 255, 64)), border=False)
+        label_h = max(1, height - y_padding)
+        self.label = DialogLabel(self, label_x, label_y, 0, text, font=font,
+                                 width=label_w, height=label_h,
+                                 color=sge.Color("white"), rate=rate)
+
+    def event_key_press(self, key, char):
+        if key == "enter" or key in jump_key or key in action_key:
+            if len(self.label.text) < len(self.label.full_text):
+                self.label.text = self.label.full_text
+            else:
+                self.destroy()
+
+    def event_joystick_button_press(self, js_name, js_id, button):
+        self.event_key_press("enter", "\n")
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -4326,8 +4376,9 @@ iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
-pause_sound = sge.Sound(os.path.join(DATA, "sounds", "pause.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
+pause_sound = sge.Sound(os.path.join(DATA, "sounds", "pause.ogg"))
+select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.wav"))
 
 # Load music
 invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
