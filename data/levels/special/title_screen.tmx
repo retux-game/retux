@@ -5,26 +5,26 @@
   <property name="music" value="theme.ogg"/>
  </properties>
  <tileset firstgid="1" source="../../tilesets/creatures.tsx"/>
- <tileset firstgid="16" source="../../tilesets/snow.tsx"/>
- <tileset firstgid="156" source="../../tilesets/cave.tsx"/>
- <tileset firstgid="176" source="../../tilesets/blocks.tsx"/>
- <tileset firstgid="191" source="../../tilesets/pipes.tsx"/>
- <tileset firstgid="279" source="../../tilesets/special_blocks.tsx"/>
- <tileset firstgid="299" source="../../tilesets/decoration_small.tsx"/>
- <tileset firstgid="303" source="../../tilesets/igloo.tsx"/>
- <tileset firstgid="305" name="Logo" tilewidth="280" tileheight="93">
+ <tileset firstgid="11" source="../../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../../tilesets/blocks.tsx"/>
+ <tileset firstgid="186" source="../../tilesets/pipes.tsx"/>
+ <tileset firstgid="274" source="../../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="294" source="../../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="298" source="../../tilesets/igloo.tsx"/>
+ <tileset firstgid="300" name="Logo" tilewidth="280" tileheight="93">
   <tile id="0">
    <image width="280" height="93" source="../../images/misc/logo.png"/>
   </tile>
  </tileset>
  <layer name="Back Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLArZv9afi+CyAZLAAAAAAAAAAAAAAAAAAAAAAAAAOCuqQAAAAAAAAD8t/pXALg=
+   eJztw0EJAAAIBLCLZf9kfi+CyAZLAAAAAAAAAAAAAAAAAAAAAAAAAOCuqQAAAAAAAAD8tzYsAKk=
   </data>
  </layer>
  <layer name="Middle Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
-   eJztnDlT3EAQRpvIIWtDvOwSupYjsB34CrAjSICA5Ujxlfr8eXZm/xOH/AX3FKWqQZZGI82MRqzeq3oRtaveWaq+bqlBBGBcLNRZC/d7rA0AAAD88MnzPSHPAQBWjYn6ytOrTDWCP8znAADj4qf6S52qjzz9JGT60KnK80P1qMaz/ksEAICI/Fb/SLt57oeQ6UOn6vtkBgcAWF265LmxyHTXffnN1MV7sFTPcxeRAfIcAGBc+Ob5jror/2e66778huTLdJPj1+o79b36QeL1GuVdgyH0LWXs77PYeyPPAQDCado3y5UJ5Ty3d55tX6gva35W51z6z3Q7xz+rX9Sv6je522tsB1yjvGsQ8l6pYD4HAIiPyfKH4p5lfTPhQH1j+Tawtq73230tMt13d76pz3H1ReUcd9UVkm3ls0qdk5fS/qzIcwCAuBRZviVx8uVYPbE8DajtwZrIX4mX53Wzvcl03935pj7HtYdfl+NVdd2XPDdZ/lHan1XOPJ/0dB0AGB9dZ8MYNmV522ebT9Snls88XrOsqW1d8/xGbvP8uaPGnJbPJdZ9hNA87+N/sRRZ/l3af6YLyfc3adOergMA46PrbBhDO8vr5ldjikywnyW3qbNPXWdidOV502td13utPu5oufcx75WiF/TN8qHtuy1yFwAAK8uswi5ZkNLYmdD0LLnp84eeT6zzTTWfzyVOjxb6Xi595/LCVH1FW02/AwCQglmgPtkUMisaY2eCz07YkK2bOVPt7fX1eVIa+3copN8BAEjBP/PZvHs=
+   eJztnLFSFEEQhhtDQIwRDS1QAjQAJRAjTMBAVFIUSBXk8SCDNyHkKegt6qrG8WZ2ZmdmZ7n9vqo/urrd2bmq+7p3+04EYFysalYisl5nmQAAAOAhxOdvBJ8DAMwaC5oPgTmstEYIh/4cAGBcXGquNMuap4E5FZw+dKb5fFfz2ZGvdZYJAACZuNbcSFw/dyE4fehM+zzpwQEAZpcuPjed7rsv/6zH63BxoPlWexEVwOcAAOMi1Odrmtfyv9N99+WXpJ7TG48faX5qfmmOJV+tYc8aDKFusTE/z8ncGz4HAEinbd6slhNsn5szz2a2NO8dr7nyQvp3uunx35o/mjPNufxba7xMOIc9a5ByrFLQnwMA5Kdx+aL4e9lQJ3zU7Bj5lLi2rvfbY50eOjvfVuf46iLb46Xmue29Ku3JHxK/V/gcACAvE5c/lzx+2dPsG/mSsLYncyK3ks/nrt6+cXro7HxbneObw3d5fNq6HovPG5efSPxe1fT5Qk/nAYDx0bU3zJE2l8c+29zQvDXyLuA9B461zavP7+TB55ueNdaMvS+57iOk+ryP/2KZuPyvxF/Td6n3m7Tlns4DAOOja2+YI6bLXf1rKSeYz5Jj1tlnfHvS5vO29/rOt6151TF27dMcq0QtGOryoc27rdZeAADMLF080ndyO6HtWXLb9afuT679LdWfpzwDsGuflGP5EtqXl64rYrMpAABlSP3uD3FTSq9YwgkhM2FDjqvnLDW319f1lEypuqJLvQMAUIJ73Tilkg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -66,21 +66,21 @@
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="295" x="4384" y="256"/>
-  <object gid="295" x="4416" y="256"/>
-  <object gid="295" x="4576" y="256"/>
-  <object gid="295" x="4608" y="256"/>
-  <object gid="281" x="352" y="256"/>
-  <object gid="281" x="480" y="256"/>
-  <object gid="281" x="608" y="256"/>
-  <object gid="291" x="1184" y="256"/>
-  <object gid="281" x="3328" y="192"/>
-  <object gid="281" x="3360" y="192"/>
-  <object gid="295" x="5984" y="320"/>
-  <object gid="295" x="6016" y="320"/>
-  <object gid="281" x="5088" y="288"/>
-  <object gid="281" x="5216" y="288"/>
-  <object gid="281" x="5344" y="288"/>
+  <object gid="290" x="4384" y="256"/>
+  <object gid="290" x="4416" y="256"/>
+  <object gid="290" x="4576" y="256"/>
+  <object gid="290" x="4608" y="256"/>
+  <object gid="276" x="352" y="256"/>
+  <object gid="276" x="480" y="256"/>
+  <object gid="276" x="608" y="256"/>
+  <object gid="286" x="1184" y="256"/>
+  <object gid="276" x="3328" y="192"/>
+  <object gid="276" x="3360" y="192"/>
+  <object gid="290" x="5984" y="320"/>
+  <object gid="290" x="6016" y="320"/>
+  <object gid="276" x="5088" y="288"/>
+  <object gid="276" x="5216" y="288"/>
+  <object gid="276" x="5344" y="288"/>
   <object gid="3" x="5920" y="288"/>
   <object gid="3" x="5984" y="288"/>
  </objectgroup>
@@ -114,6 +114,6 @@
   </data>
  </layer>
  <objectgroup name="Logo">
-  <object gid="305" x="260" y="128"/>
+  <object gid="300" x="260" y="128"/>
  </objectgroup>
 </map>

@@ -2664,7 +2664,10 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
 
     def __init__(self, x, y, text="(null)", **kwargs):
         super(InfoBlock, self).__init__(x, y, **kwargs)
-        self.text = text
+        self.text = text.replace("\\n", "\n")
+
+    def event_hit_end(self):
+        DialogBox(gui_handler, self.text, self.sprite).show()
 
 
 class ThinIce(xsge_physics.Solid):
@@ -3762,7 +3765,7 @@ class DialogLabel(xsge_gui.ProgressiveLabel):
 
 class DialogBox(xsge_gui.Dialog):
 
-    def __init__(self, text, portrait=None, rate=1000):
+    def __init__(self, parent, text, portrait=None, rate=1000):
         width = sge.game.width / 2
         x_padding = 16
         y_padding = 16
@@ -3783,12 +3786,16 @@ class DialogBox(xsge_gui.Dialog):
         x = sge.game.width / 2 - width / 2
         y = sge.game.height / 2 - height / 2
         super(DialogBox, self).__init__(
-            None, x, y, width, height,
+            parent, x, y, width, height,
             background_color=sge.Color((64, 64, 255, 64)), border=False)
         label_h = max(1, height - y_padding)
+
         self.label = DialogLabel(self, label_x, label_y, 0, text, font=font,
                                  width=label_w, height=label_h,
                                  color=sge.Color("white"), rate=rate)
+
+        if portrait is not None:
+            xsge_gui.Widget(self, 8, 8, 0, sprite=portrait)
 
     def event_key_press(self, key, char):
         if key == "enter" or key in jump_key or key in action_key:
