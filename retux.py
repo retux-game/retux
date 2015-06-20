@@ -172,6 +172,8 @@ WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5
 
+TEXT_SPEED = 1000
+
 SAVE_NSLOTS = 10
 MENU_MAX_ITEMS = 14
 
@@ -3513,6 +3515,7 @@ class NewGameMenu(Menu):
         if self.choice in six.moves.range(len(save_slots)):
             current_save_slot = self.choice
             m = "Are you sure to override the existing saved game in this slot? This cannot be undone!"
+            sge.game.mouse.visible = True
             if (save_slots[current_save_slot] is None or
                     xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                           default=0)):
@@ -3520,6 +3523,7 @@ class NewGameMenu(Menu):
                 start_levelset()
             else:
                 NewGameMenu.create(default=self.choice)
+            sge.game.mouse.visible = False
         else:
             MainMenu.create(default=0)
 
@@ -3760,12 +3764,13 @@ class JoystickMenu(Menu):
 class DialogLabel(xsge_gui.ProgressiveLabel):
 
     def event_add_character(self):
-        pass
+        if self.text[-1] not in (' ', '\n', '\t'):
+            play_sound(type_sound)
 
 
 class DialogBox(xsge_gui.Dialog):
 
-    def __init__(self, parent, text, portrait=None, rate=1000):
+    def __init__(self, parent, text, portrait=None, rate=TEXT_SPEED):
         width = sge.game.width / 2
         x_padding = 16
         y_padding = 16
@@ -4392,6 +4397,7 @@ pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
 pause_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
+type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))
 
 # Load music
 invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
