@@ -132,11 +132,18 @@ ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3
+KICK_FORWARD_SPEED = 8
+KICK_FORWARD_HEIGHT = TILE_SIZE / 2
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 ICEBLOCK_GRAVITY = 0.6
 ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
+BOMB_GRAVITY = 0.6
+BOMB_TICK_TIME = 8
+EXPLOSION_TIME = 45
+
+ROCK_FRICTION = 0.2
 
 FLOWER_FALL_SPEED = 5
 FLOWER_THROW_SPEED = 8
@@ -1462,7 +1469,7 @@ class Player(xsge_physics.Collider):
                      self.bbox_bottom - other.bbox_top <= STOMP_LAX) or
                     (xdirection and not self.on_floor and self.yvelocity > 0)):
                 other.stomp(self)
-            elif xdirection or ydirection:
+            else:
                 other.touch(self)
 
     def event_physics_collision_left(self, other, move_loss):
@@ -2048,6 +2055,44 @@ class Spiky(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
         pass
 
 
+class WalkingBomb(CrowdObject, KnockableObject, BurnableObject,
+                  FreezableObject, WinPuffObject):
+
+    stayonplatform = True
+
+    def event_create(self):
+        super(WalkingBomb, self).event_create()
+        self.sprite = bomb_walk_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.stomp_jump(self)
+        play_sound(stomp_sound)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        TickingBomb.create(self.x, self.y, self.z, sprite=bomb_ticking_sprite,
+                           image_xscale=self.image_xscale,
+                           image_yscale=self.image_yscale)
+        self.destroy()
+
+    def knock(self, other=None):
+        super(WalkingBomb, self).knock(other)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def burn(self):
+        Explosion.create(self.x, self.y, self.z)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        self.destroy()
+
+
 class Jumpy(CrowdObject, KnockableObject, BurnableObject, FreezableObject,
             WinPuffObject):
 
@@ -2158,7 +2203,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
 
 
 class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
-                   BurnableObject, WinPuffObject):
+                   BurnableObject, FreezableObject, WinPuffObject):
 
     def touch(self, other):
         if self.parent is not other:
@@ -2179,6 +2224,9 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
         if self.parent is not None and other is not None:
             other.knock(self)
         super(FlatIceblock, self).knock(other)
+
+    def freeze(self):
+        pass
 
     def drop(self):
         if self.parent is not None:
@@ -2217,7 +2265,7 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
 
 
 class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
-                     WinPuffObject):
+                     FreezableObject, WinPuffObject):
 
     active_range = ICEBLOCK_ACTIVE_RANGE
     gravity = ICEBLOCK_GRAVITY
@@ -2233,6 +2281,9 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
                                   image_yscale=self.image_yscale)
         self.destroy()
         fib.touch(other)
+
+    def freeze(self):
+        pass
 
     def stop_left(self):
         play_sound(iceblock_bump_sound)
@@ -2280,7 +2331,7 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
 
 
 class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
-                      WinPuffObject):
+                      FreezableObject, WinPuffObject):
 
     gravity = ICEBLOCK_GRAVITY
     active_range = ICEBLOCK_ACTIVE_RANGE
@@ -2289,6 +2340,20 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
     def __init__(self, thrower, *args, **kwargs):
         self.thrower = thrower
         super(DashingIceblock, self).__init__(*args, **kwargs)
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.stomp_jump(self)
+        play_sound(stomp_sound)
+        FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
+                            image_xscale=self.image_xscale,
+                            image_yscale=self.image_yscale)
+        self.destroy()
+
+    def freeze(self):
+        pass
 
     def stop_left(self):
         play_sound(iceblock_bump_sound)
@@ -2304,17 +2369,6 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
             if isinstance(block, HittableBlock):
                 block.hit(self.thrower)
 
-    def touch(self, other):
-        other.hurt()
-
-    def stomp(self, other):
-        other.stomp_jump(self)
-        play_sound(stomp_sound)
-        FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
-                            image_xscale=self.image_xscale,
-                            image_yscale=self.image_yscale)
-        self.destroy()
-
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, InteractiveObject):
             other.knock(self)
@@ -2326,6 +2380,126 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
+
+
+class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject,
+                  BurnableObject, FreezableObject):
+
+    gravity = BOMB_GRAVITY
+    thrower = None
+
+    def touch(self, other):
+        if self.parent is not other:
+            if other.pickup(self):
+                self.thrower = other
+                self.gravity = 0
+                if other.action_pressed:
+                    other.action()
+
+    def burn(self):
+        Explosion.create(self.x, self.y, self.z)
+        self.destroy()
+
+    def freeze(self):
+        if self.image_index > 0:
+            self.image_index -= 1
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = self.parent.xvelocity + math.copysign(
+                KICK_FORWARD_SPEED, self.parent.image_xscale)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT,
+                                            self.__class__.gravity)
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = self.parent.xvelocity
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT,
+                                            self.__class__.gravity)
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def stop_left(self):
+        if self.parent is None:
+            play_sound(iceblock_bump_sound)
+            self.xvelocity = abs(self.xvelocity)
+            self.set_direction(1)
+            for block in self.get_left_touching_wall():
+                if isinstance(block, HittableBlock):
+                    block.hit(self.thrower)
+
+    def stop_right(self):
+        if self.parent is None:
+            play_sound(iceblock_bump_sound)
+            self.xvelocity = -abs(self.xvelocity)
+            self.set_direction(-1)
+            for block in self.get_right_touching_wall():
+                if isinstance(block, HittableBlock):
+                    block.hit(self.thrower)
+
+    def stop_up(self):
+        if self.parent is None:
+            self.yvelocity = 0
+            for block in self.get_top_touching_wall():
+                if isinstance(block, HittableBlock):
+                    block.hit(self.thrower)
+
+    def event_end_step(self, time_passed, delta_mult):
+        if (self.yvelocity >= 0 and
+                (self.get_bottom_touching_wall() or
+                 self.get_bottom_touching_slope())):
+            self.xdeceleration = ROCK_FRICTION
+        else:
+            self.xdeceleration = 0
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.destroy()
+
+    def event_animation_end(self):
+        Explosion.create(self.x, self.y, self.z)
+        self.destroy()
+
+
+class Explosion(InteractiveObject):
+
+    def event_create(self):
+        self.sprite = explosion_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.__life = EXPLOSION_TIME
+        play_sound(explosion_sound)
+
+    def touch(self, other):
+        other.hurt()
+
+    def event_step(self, time_passed, delta_mult):
+        self.__life -= delta_mult
+        if self.__life <= 0:
+            self.destroy()
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.destroy()
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, BurnableObject):
+            other.burn()
+
+        super(Explosion, self).event_collision(other, xdirection, ydirection)
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -4078,7 +4252,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "map_objects": get_object, "player": Player,
          "walking_snowball": WalkingSnowball,
          "bouncing_snowball": BouncingSnowball,
-         "walking_iceblock": WalkingIceblock, "spiky": Spiky, "jumpy": Jumpy,
+         "walking_iceblock": WalkingIceblock, "spiky": Spiky,
+         "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "fireflower": FireFlower,
          "tuxdoll": TuxDoll, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
@@ -4181,7 +4356,12 @@ spiky_iced_sprite = sge.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
                                fps=8, bbox_x=-13, bbox_y=0, bbox_width=26,
                                bbox_height=32)
 bomb_walk_sprite = sge.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
-                              bbox_x=13, bbox_width=26, bbox_height=32)
+                              bbox_x=-13, bbox_y=0, bbox_width=26,
+                              bbox_height=32)
+bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=8,
+                                 bbox_x=-13, bbox_y=0, bbox_width=26,
+                                 bbox_height=29)
+bomb_ticking_sprite.fps = bomb_ticking_sprite.frames / BOMB_TICK_TIME
 jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-17,
                           bbox_y=0, bbox_width=33, bbox_height=32)
 jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,
@@ -4191,7 +4371,7 @@ jumpy_iced_sprite = sge.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
                                bbox_x=-17, bbox_y=0, bbox_width=33,
                                bbox_height=32)
 flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
-                                    origin_y=11, fps=15, bbox_x=-13,
+                                    origin_y=11, fps=15, bbox_x=-13, bbox_y=0,
                                     bbox_width=26, bbox_height=32)
 flying_snowball_squished_sprite = sge.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
@@ -4241,6 +4421,9 @@ logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8, bbox_x=-12, bbox_width=24)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
+explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
+                              bbox_x=-32, bbox_y=-4, bbox_width=64,
+                              bbox_height=40)
 smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
                                origin_x=24, origin_y=24, fps=24)
 smoke_plume_sprite = sge.Sprite("smoke_plume", d, width=64, height=64,
@@ -4391,6 +4574,7 @@ stomp_sound = sge.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
 kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
 iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))
+explosion_sound = sge.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
