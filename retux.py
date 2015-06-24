@@ -878,8 +878,6 @@ class Player(xsge_physics.Collider):
         self.facing = 1
         self.view = None
 
-        self.__new_touch = []
-
         super(Player, self).__init__(
             x, y, z=z, sprite=sprite, visible=visible, active=active,
             checks_collisions=checks_collisions, tangible=tangible,
@@ -1377,12 +1375,6 @@ class Player(xsge_physics.Collider):
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
 
-    def event_end_step(self, time_passed, delta_mult):
-        self.__new_touch.sort(key=lambda o: -o.bbox_bottom)
-        for other in self.__new_touch:
-            other.touch(self)
-        self.__new_touch = []
-
     def event_alarm(self, alarm_id):
         if alarm_id == "hitstun":
             self.hitstun = False
@@ -1484,7 +1476,7 @@ class Player(xsge_physics.Collider):
             # player from being hurt by the same object more than once
             # until the collision stops.
             elif xdirection or ydirection:
-                self.__new_touch.append(other)
+                other.touch(self)
 
     def event_physics_collision_left(self, other, move_loss):
         for block in self.get_left_touching_wall():
