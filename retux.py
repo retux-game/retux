@@ -28,16 +28,20 @@ import json
 import math
 import os
 import random
+import sys
 import warnings
 import weakref
 
-import six
 import sge
+import six
 import xsge_gui
 import xsge_path
 import xsge_physics
 import xsge_tmx
 
+
+if getattr(sys, "frozen", False):
+    __file__ = sys.executable
 
 DATA = os.path.join(os.path.dirname(__file__), "data")
 CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
