@@ -147,6 +147,7 @@ BOMB_GRAVITY = 0.6
 BOMB_TICK_TIME = 8
 EXPLOSION_TIME = 45
 
+ROCK_GRAVITY = 0.6
 ROCK_FRICTION = 0.2
 
 FLOWER_FALL_SPEED = 5
@@ -169,6 +170,7 @@ ICE_REFREEZE_RATE = 2/3
 
 ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 800
+ROCK_ACTIVE_RANGE = 800
 TILE_ACTIVE_RANGE = 928
 DEATHZONE = 2 * TILE_SIZE
 
@@ -2216,7 +2218,7 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
                    BurnableObject, FreezableObject, WinPuffObject):
 
     def touch(self, other):
-        if self.parent is not other:
+        if self.parent is None:
             if other.pickup(self):
                 self.gravity = 0
                 if other.action_pressed:
@@ -2399,12 +2401,11 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject,
     thrower = None
 
     def touch(self, other):
-        if self.parent is not other:
-            if other.pickup(self):
-                self.thrower = other
-                self.gravity = 0
-                if other.action_pressed:
-                    other.action()
+        if other.pickup(self):
+            self.thrower = other
+            self.gravity = 0
+            if other.action_pressed:
+                other.action()
 
     def burn(self):
         Explosion.create(self.x, self.y, self.z)
@@ -2701,6 +2702,85 @@ class TuxDoll(FallingObject):
 
     def knock(self, other=None):
         self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
+
+
+class CarriedRock(InteractiveObject):
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            Rock.create(self.x - self.image_origin_x,
+                        self.y - self.image_origin_y, self.z,
+                        sprite=self.sprite, image_xscale=self.image_xscale,
+                        image_yscale=self.image_yscale)
+            self.destroy()
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            xv = self.parent.xvelocity + math.copysign(
+                KICK_FORWARD_SPEED, self.parent.image_xscale)
+            yv = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
+            Rock.create(self.x - self.image_origin_x,
+                        self.y - self.image_origin_y, self.z,
+                        sprite=self.sprite, xvelocity=xv, yvelocity=yv,
+                        image_xscale=self.image_xscale,
+                        image_yscale=self.image_yscale)
+            self.destroy()
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            xv = self.parent.xvelocity
+            yv = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
+            Rock.create(self.x - self.image_origin_x,
+                        self.y - self.image_origin_y, self.z,
+                        sprite=self.sprite, xvelocity=xv, yvelocity=yv,
+                        image_xscale=self.image_xscale,
+                        image_yscale=self.image_yscale)
+            self.destroy()
+
+
+class Rock(xsge_physics.SolidTop, xsge_physics.MobileColliderWall,
+           FallingObject):
+
+    sticky_top = True
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+
+    def event_create(self):
+        self.sprite = rock_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def touch(self, other):
+        cr = CarriedRock.create(self.x, self.y, self.z, sprite=self.sprite,
+                                image_xscale=self.image_xscale,
+                                image_yscale=self.image_yscale)
+        if other.pickup(cr):
+            self.destroy()
+            if other.action_pressed:
+                other.action()
+        else:
+            cr.destroy()
+
+    def stop_up(self):
+        self.yvelocity = 0
+
+    def event_end_step(self, time_passed, delta_mult):
+        if (self.yvelocity >= 0 and
+                (self.get_bottom_touching_wall() or
+                 self.get_bottom_touching_slope())):
+            self.xdeceleration = ROCK_FRICTION
+        else:
+            self.xdeceleration = 0
 
 
 class HittableBlock(xsge_physics.SolidBottom, Tile):
@@ -4265,14 +4345,14 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "fireflower": FireFlower,
-         "tuxdoll": TuxDoll, "brick": Brick, "coinbrick": CoinBrick,
-         "emptyblock": EmptyBlock, "itemblock": ItemBlock,
-         "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
-         "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
-         "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
-         "flying_snowball_path": FlyingSnowballPath, "warp_spawn": WarpSpawn,
-         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
-         "map_path": MapPath}
+         "tuxdoll": TuxDoll, "rock": Rock, "brick": Brick,
+         "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
+         "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
+         "infoblock": InfoBlock, "thin_ice": ThinIce, "lava": Lava,
+         "lava_surface": LavaSurface, "goal": Goal, "goal_top": GoalTop,
+         "coin": Coin, "warp": Warp, "flying_snowball_path": FlyingSnowballPath,
+         "warp_spawn": WarpSpawn, "map_player": MapPlayer,
+         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=(not args.scale_basic),
@@ -4423,6 +4503,7 @@ goal_sprite = sge.Sprite("goal", d, fps=8)
 goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
 
 d = os.path.join(DATA, "images", "objects", "misc")
+rock_sprite = sge.Sprite("rock", d, origin_x=16, origin_y=16)
 thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
 thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 

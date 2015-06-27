@@ -98,7 +98,7 @@
  </tile>
  <tile id="15">
   <properties>
-   <property name="cls" value="stone"/>
+   <property name="cls" value="rock"/>
   </properties>
   <image width="32" height="32" source="../images/objects/misc/rock.png"/>
  </tile>
