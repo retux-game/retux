@@ -35,7 +35,7 @@
  <tile id="5">
   <properties>
    <property name="cls" value="itemblock"/>
-   <property name="item" value="stone"/>
+   <property name="item" value="rock"/>
   </properties>
   <image width="32" height="32" source="../images/objects/bonus/bonus_rock.png"/>
  </tile>

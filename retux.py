@@ -137,7 +137,7 @@ ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3
 KICK_FORWARD_SPEED = 8
-KICK_FORWARD_HEIGHT = TILE_SIZE / 2
+KICK_FORWARD_HEIGHT = TILE_SIZE * 3 / 4
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 ICEBLOCK_GRAVITY = 0.6
 ICEBLOCK_FALL_SPEED = 10
@@ -148,7 +148,8 @@ BOMB_TICK_TIME = 8
 EXPLOSION_TIME = 45
 
 ROCK_GRAVITY = 0.6
-ROCK_FRICTION = 0.2
+ROCK_FALL_SPEED = 10
+ROCK_FRICTION = 0.4
 
 FLOWER_FALL_SPEED = 5
 FLOWER_THROW_SPEED = 8
@@ -2741,12 +2742,13 @@ class CarriedRock(InteractiveObject):
             self.destroy()
 
 
-class Rock(xsge_physics.SolidTop, xsge_physics.MobileColliderWall,
-           FallingObject):
+class Rock(FallingObject, xsge_physics.MobileColliderWall,
+           xsge_physics.SolidTop):
 
     sticky_top = True
     active_range = ROCK_ACTIVE_RANGE
     gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
 
     def event_create(self):
         self.sprite = rock_sprite
@@ -2770,6 +2772,12 @@ class Rock(xsge_physics.SolidTop, xsge_physics.MobileColliderWall,
                 other.action()
         else:
             cr.destroy()
+
+    def stop_left(self):
+        self.xvelocity = 0
+
+    def stop_right(self):
+        self.xvelocity = 0
 
     def stop_up(self):
         self.yvelocity = 0
