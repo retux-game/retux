@@ -163,6 +163,9 @@ FIREBALL_FALL_SPEED = 5
 FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
 FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
 
+ICEBULLET_AMMO = 19
+ICEBULLET_SPEED = 8
+
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
 
@@ -1732,25 +1735,38 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
     def event_physics_collision_left(self, other, move_loss):
         if isinstance(other, HurtRight):
             self.touch_hurt()
+
         if isinstance(other, xsge_physics.SolidRight):
             self.stop_left()
+        elif isinstance(other, xsge_physics.SlopeTopRight):
+            self.stop_down()
+        elif isinstance(other, xsge_physics.SlopeBottomRight):
+            self.stop_up()
 
     def event_physics_collision_right(self, other, move_loss):
         if isinstance(other, HurtLeft):
             self.touch_hurt()
+
         if isinstance(other, xsge_physics.SolidLeft):
             self.stop_right()
+        elif isinstance(other, xsge_physics.SlopeTopLeft):
+            self.stop_down()
+        elif isinstance(other, xsge_physics.SlopeBottomLeft):
+            self.stop_up()
 
     def event_physics_collision_top(self, other, move_loss):
         if isinstance(other, HurtBottom):
             self.touch_hurt()
-        if isinstance(other, xsge_physics.SolidBottom):
+        if isinstance(other, (xsge_physics.SolidBottom,
+                              xsge_physics.SlopeBottomLeft,
+                              xsge_physics.SlopeBottomRight)):
             self.stop_up()
 
     def event_physics_collision_bottom(self, other, move_loss):
         if isinstance(other, HurtTop):
             self.touch_hurt()
-        if isinstance(other, xsge_physics.SolidTop):
+        if isinstance(other, (xsge_physics.SolidTop, xsge_physics.SlopeTopLeft,
+                              xsge_physics.SlopeTopRight)):
             self.stop_down()
 
 
@@ -2597,6 +2613,81 @@ class FireFlower(FallingObject, WinPuffObject):
             self.image_xscale = abs(self.image_xscale) * direction
 
 
+class IceFlower(FallingObject, WinPuffObject):
+
+    fall_speed = FLOWER_FALL_SPEED
+    slide_speed = 0
+    win_puff_points = 0
+
+    def event_create(self):
+        super(IceFlower, self).event_create()
+        self.sprite = ice_flower_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+        self.ammo = ICEBULLET_AMMO
+
+    def touch(self, other):
+        if other.pickup(self):
+            self.gravity = 0
+
+    def knock(self, other=None):
+        self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick(self):
+        if self.parent is not None:
+            d = (self.image_xscale >= 0) - (self.image_xscale < 0)
+            if self.ammo > 0:
+                IceBullet.create(self.x, self.y, self.parent.z,
+                                 xvelocity=(ICEBULLET_SPEED * d))
+                self.ammo -= 1
+                play_sound(shoot_sound)
+
+                self.sprite = ice_flower_sprite.copy()
+                lightness = int((self.ammo / ICEBULLET_AMMO) * 230 + 25)
+                darkener = sge.Sprite(width=self.sprite.width,
+                                      height=self.sprite.height)
+                darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
+                                        fill=sge.Color([lightness] * 3))
+                self.sprite.draw_sprite(darkener, 0, 0, 0,
+                                        blend_mode=sge.BLEND_RGB_MULTIPLY)
+            else:
+                h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
+                yv = get_jump_speed(h, ThrownFlower.gravity)
+                self.parent.kick_object()
+                play_sound(kick_sound)
+                ThrownFlower.create(self.parent, self.x, self.y, self.z,
+                                    sprite=self.sprite,
+                                    xvelocity=(FIREBALL_SPEED * d),
+                                    yvelocity=yv,
+                                    image_xscale=self.image_xscale)
+                self.parent = None
+                self.destroy()
+                pass
+
+    def win_puff(self):
+        super(IceFlower, self).win_puff()
+        sge.game.current_room.add_points(AMMO_POINTS * (self.ammo + 1))
+
+    def event_end_step(self, time_passed, delta_mult):
+        if self.parent is not None:
+            direction = -1 if self.parent.image_xscale < 0 else 1
+            self.image_xscale = abs(self.image_xscale) * direction
+
+
 class ThrownFlower(FallingObject, WinPuffObject):
 
     fall_speed = FLOWER_FALL_SPEED
@@ -2674,6 +2765,44 @@ class Fireball(FallingObject):
 
     def event_destroy(self):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
+
+
+class IceBullet(InteractiveCollider):
+
+    def event_create(self):
+        self.sprite = ice_bullet_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+
+    def stop_left(self):
+        self.destroy()
+
+    def stop_right(self):
+        self.destroy()
+
+    def stop_down(self):
+        self.destroy()
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.destroy()
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, FreezableObject):
+            other.freeze()
+            self.destroy()
+
+        super(IceBullet, self).event_collision(other, xdirection, ydirection)
+
+    def event_destroy(self):
+        # TODO: Some kind of ice breaking sparkly effect, and some kind
+        # of glass-breaking-esque sound.
+        #Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
+        pass
 
 
 class TuxDoll(FallingObject):
@@ -4353,8 +4482,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "fireflower": FireFlower,
-         "tuxdoll": TuxDoll, "rock": Rock, "brick": Brick,
-         "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
+         "iceflower": IceFlower, "tuxdoll": TuxDoll, "rock": Rock,
+         "brick": Brick, "coinbrick": CoinBrick, "emptyblock": EmptyBlock,
          "itemblock": ItemBlock, "hiddenblock": HiddenItemBlock,
          "infoblock": InfoBlock, "thin_ice": ThinIce, "lava": Lava,
          "lava_surface": LavaSurface, "goal": Goal, "goal_top": GoalTop,
@@ -4483,6 +4612,9 @@ coin_sprite = sge.Sprite("coin", d, fps=8)
 fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=16,
                                 fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                 bbox_height=24)
+ice_flower_sprite = sge.Sprite("ice_flower", d, origin_x=16, origin_y=16,
+                               fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
+                               bbox_height=24)
 tuxdoll_sprite = sge.Sprite("tuxdoll", d, origin_x=16, origin_y=16, bbox_x=-16,
                             bbox_y=-16, bbox_width=32, bbox_height=32)
 
@@ -4519,7 +4651,8 @@ d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8, bbox_x=-12, bbox_width=24)
-ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7)
+ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
+                               bbox_x=-12, bbox_width=24)
 explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
                               bbox_x=-32, bbox_y=-4, bbox_width=64,
                               bbox_height=40)
