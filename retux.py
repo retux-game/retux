@@ -1932,6 +1932,19 @@ class KnockableObject(InteractiveObject):
         self.destroy()
 
 
+class BurnableObject(InteractiveObject):
+
+    """Provides basic burn behavior."""
+
+    def burn(self):
+        play_sound(fall_sound)
+        DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
+                       xvelocity=self.xvelocity, yvelocity=0,
+                       image_xscale=self.image_xscale,
+                       image_yscale=-abs(self.image_yscale))
+        self.destroy()
+
+
 class FreezableObject(InteractiveObject):
 
     """Provides basic freeze behavior."""
@@ -1969,9 +1982,12 @@ class FreezableObject(InteractiveObject):
             frozen_self.alarms["thaw_warn"] = self.frozen_time
 
 
-class FrozenObject(FreezableObject, xsge_physics.Solid):
+class FrozenObject(BurnableObject, FreezableObject, xsge_physics.Solid):
 
     unfrozen = None
+
+    def burn(self):
+        self.thaw()
 
     def freeze(self):
         if self.unfrozen is not None:
@@ -2003,19 +2019,6 @@ class FrozenObject(FreezableObject, xsge_physics.Solid):
                 self.alarms["thaw"] = THAW_WARN_TIME
             elif alarm_id == "thaw":
                 self.thaw()
-
-
-class BurnableObject(InteractiveObject):
-
-    """Provides basic burn behavior."""
-
-    def burn(self):
-        play_sound(fall_sound)
-        DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
-                       xvelocity=self.xvelocity, yvelocity=0,
-                       image_xscale=self.image_xscale,
-                       image_yscale=-abs(self.image_yscale))
-        self.destroy()
 
 
 class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
@@ -2819,6 +2822,22 @@ class Fireball(FallingObject):
             self.destroy()
 
         super(Fireball, self).event_collision(other, xdirection, ydirection)
+
+    def event_physics_collision_left(self, other, move_loss):
+        super(Fireball, self).event_physics_collision_left(other, move_loss)
+        self.event_collision(other, -1, 0)
+
+    def event_physics_collision_right(self, other, move_loss):
+        super(Fireball, self).event_physics_collision_right(other, move_loss)
+        self.event_collision(other, 1, 0)
+
+    def event_physics_collision_top(self, other, move_loss):
+        super(Fireball, self).event_physics_collision_top(other, move_loss)
+        self.event_collision(other, 0, -1)
+
+    def event_physics_collision_bottom(self, other, move_loss):
+        super(Fireball, self).event_physics_collision_bottom(other, move_loss)
+        self.event_collision(other, 0, 1)
 
     def event_destroy(self):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
