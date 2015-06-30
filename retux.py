@@ -145,7 +145,10 @@ ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
 BOMB_GRAVITY = 0.6
 BOMB_TICK_TIME = 8
-EXPLOSION_TIME = 45
+EXPLOSION_TIME = FPS * 3 / 4
+THAW_FPS = 15
+THAW_TIME_DEFAULT = FPS * 5
+THAW_WARN_TIME = FPS
 
 ROCK_GRAVITY = 0.6
 ROCK_FALL_SPEED = 10
@@ -1934,11 +1937,72 @@ class FreezableObject(InteractiveObject):
     """Provides basic freeze behavior."""
 
     frozen_sprite = None
+    frozen_time = THAW_TIME_DEFAULT
+    frozen = False
+
+    def update_active(self):
+        if self.frozen:
+            self.active = False
+        else:
+            super(FreezableObject, self).update_active()
 
     def freeze(self):
-        # TODO: Create ice block with frozen_sprite if possible, or the
-        # current sprite of the object otherwise.
+        if self.frozen_sprite is None:
+            self.frozen_sprite = self.sprite.copy()
+            colorizer = sge.Sprite(width=self.frozen_sprite.width,
+                                   height=self.frozen_sprite.height)
+            colorizer.draw_rectangle(0, 0, colorizer.width, colorizer.height,
+                                     fill=sge.Color((128, 128, 255)))
+            self.frozen_sprite.draw_sprite(colorizer, 0, 0, 0,
+                                           blend_mode=sge.BLEND_RGB_MULTIPLY)
+
+        frozen_self = FrozenObject.create(self.x, self.y, self.z,
+                                          sprite=self.frozen_sprite,
+                                          image_xscale=self.image_xscale,
+                                          image_yscale=self.image_yscale)
+        frozen_self.unfrozen = self
+        self.frozen = True
+        self.tangible = False
+        self.active = False
+        self.visible = False
+        if self.frozen_time is not None:
+            frozen_self.alarms["thaw_warn"] = self.frozen_time
+
+
+class FrozenObject(FreezableObject, xsge_physics.Solid):
+
+    unfrozen = None
+
+    def freeze(self):
+        if self.unfrozen is not None:
+            self.thaw()
+            self.unfrozen.freeze()
+
+    def thaw(self):
+        if self.unfrozen is not None:
+            self.unfrozen.frozen = False
+            self.unfrozen.tangible = True
+            self.unfrozen.visible = True
+            self.unfrozen.update_active()
         self.destroy()
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.thaw()
+
+    def event_alarm(self, alarm_id):
+        if self.unfrozen is not None:
+            if alarm_id == "thaw_warn":
+                self.sprite = self.sprite.copy()
+                self.sprite.append_frame()
+                self.sprite.draw_sprite(self.unfrozen.sprite,
+                                        self.unfrozen.image_index,
+                                        self.unfrozen.image_origin_x,
+                                        self.unfrozen.image_origin_y,
+                                        frame=(self.sprite.frames - 1))
+                self.image_fps = THAW_FPS
+                self.alarms["thaw"] = THAW_WARN_TIME
+            elif alarm_id == "thaw":
+                self.thaw()
 
 
 class BurnableObject(InteractiveObject):
@@ -2099,6 +2163,8 @@ class WalkingBomb(CrowdObject, KnockableObject, BurnableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
+
+        self.frozen_sprite = bomb_iced_sprite
 
     def touch(self, other):
         other.hurt()
@@ -2573,6 +2639,7 @@ class FireFlower(FallingObject, WinPuffObject):
                 else:
                     yv = FIREBALL_FALL_SPEED
                 Fireball.create(self.x, self.y, self.parent.z,
+                                sprite=fire_bullet_sprite,
                                 xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
                 self.ammo -= 1
@@ -2652,6 +2719,7 @@ class IceFlower(FallingObject, WinPuffObject):
             d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
                 IceBullet.create(self.x, self.y, self.parent.z,
+                                 sprite=ice_bullet_sprite,
                                  xvelocity=(ICEBULLET_SPEED * d))
                 self.ammo -= 1
                 play_sound(shoot_sound)
@@ -2665,8 +2733,7 @@ class IceFlower(FallingObject, WinPuffObject):
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
-                h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
-                yv = get_jump_speed(h, ThrownFlower.gravity)
+                yv = get_jump_speed(FLOWER_THROW_HEIGHT, ThrownFlower.gravity)
                 self.parent.kick_object()
                 play_sound(kick_sound)
                 ThrownFlower.create(self.parent, self.x, self.y, self.z,
@@ -2734,16 +2801,6 @@ class Fireball(FallingObject):
     gravity = FIREBALL_GRAVITY
     fall_speed = FIREBALL_FALL_SPEED
 
-    def event_create(self):
-        self.sprite = fire_bullet_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-
     def stop_left(self):
         self.destroy()
 
@@ -2767,17 +2824,7 @@ class Fireball(FallingObject):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
 
 
-class IceBullet(InteractiveCollider):
-
-    def event_create(self):
-        self.sprite = ice_bullet_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+class IceBullet(InteractiveObject, xsge_physics.Collider):
 
     def stop_left(self):
         self.destroy()
@@ -2797,6 +2844,30 @@ class IceBullet(InteractiveCollider):
             self.destroy()
 
         super(IceBullet, self).event_collision(other, xdirection, ydirection)
+
+    def event_physics_collision_left(self, other, move_loss):
+        if isinstance(other, FreezableObject):
+            other.freeze()
+
+        self.destroy()
+
+    def event_physics_collision_right(self, other, move_loss):
+        if isinstance(other, FreezableObject):
+            other.freeze()
+
+        self.destroy()
+
+    def event_physics_collision_top(self, other, move_loss):
+        if isinstance(other, FreezableObject):
+            other.freeze()
+
+        self.destroy()
+
+    def event_physics_collision_bottom(self, other, move_loss):
+        if isinstance(other, FreezableObject):
+            other.freeze()
+
+        self.destroy()
 
     def event_destroy(self):
         # TODO: Some kind of ice breaking sparkly effect, and some kind
@@ -4583,6 +4654,9 @@ spiky_iced_sprite = sge.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
                                fps=8, bbox_x=-13, bbox_y=0, bbox_width=26,
                                bbox_height=32)
 bomb_walk_sprite = sge.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
+                              bbox_x=-13, bbox_y=0, bbox_width=26,
+                              bbox_height=32)
+bomb_iced_sprite = sge.Sprite("bomb_iced", d, origin_x=21, origin_y=8,
                               bbox_x=-13, bbox_y=0, bbox_width=26,
                               bbox_height=32)
 bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=8,
