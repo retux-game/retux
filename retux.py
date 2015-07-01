@@ -2662,6 +2662,10 @@ class Icicle(InteractiveObject):
                         self.alarms["fall"] = ICICLE_SHAKE_TIME
                         break
 
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.shaking = False
+        super(Icicle, self).event_inactive_step(time_passed, delta_mult)
+
     def event_alarm(self, alarm_id):
         if alarm_id == "fall":
             FallingIcicle.create(self.x, self.y, self.z, sprite=self.sprite,
@@ -2684,6 +2688,9 @@ class FallingIcicle(FallingObject):
                       sprite=icicle_broken_sprite,
                       image_xscale=self.image_xscale,
                       image_yscale=self.image_yscale)
+        self.destroy()
+
+    def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
