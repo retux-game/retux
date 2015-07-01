@@ -1990,21 +1990,13 @@ class FreezableObject(InteractiveObject):
             frozen_self.alarms["thaw_warn"] = self.frozen_time
 
 
-class FrozenObject(InteractiveObject, xsge_physics.Solid):
+class FrozenObject(InteractiveObject, xsge_physics.SolidTop):
 
     burnable = True
     freezable = True
     unfrozen = None
 
     def burn(self):
-        self.thaw()
-
-    def freeze(self):
-        if self.unfrozen is not None:
-            self.thaw()
-            self.unfrozen.freeze()
-
-    def thaw(self):
         if self.unfrozen is not None:
             self.unfrozen.frozen = False
             self.unfrozen.tangible = True
@@ -2012,8 +2004,13 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
             self.unfrozen.update_active()
         self.destroy()
 
+    def freeze(self):
+        if self.unfrozen is not None:
+            self.burn()
+            self.unfrozen.freeze()
+
     def event_inactive_step(self, time_passed, delta_mult):
-        self.thaw()
+        self.burn()
 
     def event_alarm(self, alarm_id):
         if self.unfrozen is not None:
@@ -2028,7 +2025,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
                 self.image_fps = THAW_FPS
                 self.alarms["thaw"] = THAW_WARN_TIME
             elif alarm_id == "thaw":
-                self.thaw()
+                self.burn()
 
 
 class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
