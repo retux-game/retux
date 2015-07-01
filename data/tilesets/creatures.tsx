@@ -42,4 +42,9 @@
    <property name="cls" value="flying_snowball"/>
   </properties>
  </tile>
+ <tile id="8">
+  <properties>
+   <property name="cls" value="icicle"/>
+  </properties>
+ </tile>
 </tileset>
