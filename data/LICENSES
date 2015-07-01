@@ -268,6 +268,8 @@ images/worldmap/warp_2.png
 images/worldmap/warp_3.png
 images/worldmap/warp_4.png
 sounds/bell.wav
+sounds/icicle_crash.ogg
+sounds/icicle_shake.wav
 sounds/kill.wav
 sounds/upgrade.wav
 
