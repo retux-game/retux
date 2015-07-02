@@ -792,6 +792,21 @@ class SlopeBottomRight(xsge_physics.SlopeBottomRight, Tile):
         super(SlopeBottomRight, self).__init__(*args, **kwargs)
 
 
+class MovingPlatform(xsge_physics.SolidTop, xsge_physics.MobileWall, Tile):
+
+    sticky_top = True
+
+    def event_create(self):
+        self.sprite = platform_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+
+
 class HurtLeft(SolidLeft):
 
     pass
@@ -1276,10 +1291,19 @@ class Player(xsge_physics.Collider):
             hands_free = (self.held_object is None)
 
             if self.on_floor and self.was_on_floor:
-                xdiff = self.x - self.last_x
-                speed = (math.hypot(abs(xdiff), abs(self.y - self.last_y)) /
-                         delta_mult)
-                xm = (xdiff > 0) - (xdiff < 0)
+                # This method was designed to adjust the walk animation
+                # to account for slopes (so that the animation cycle is
+                # slower when walking up and faster when walking down),
+                # but it's so generic that it also causes nonsensical
+                # animation when the player is on a moving platform.
+                # TODO: Think of a way to achieve this effect without the
+                # silly-looking side-effect on moving platforms.
+                #xdiff = self.x - self.last_x
+                #speed = (math.hypot(abs(xdiff), abs(self.y - self.last_y)) /
+                #         delta_mult)
+                #xm = (xdiff > 0) - (xdiff < 0)
+                xm = (self.xvelocity > 0) - (self.xvelocity < 0)
+                speed = abs(self.xvelocity)
                 if speed > 0:
                     if xm != self.facing:
                         skidding = skid_sound.playing
@@ -3626,11 +3650,50 @@ class Warp(WarpSpawn):
             sge.game.current_room.warps.remove(self)
 
 
-class FlyingSnowballPath(xsge_path.Path):
+class MovingObjectPath(xsge_path.PathLink):
+
+    cls = None
+
+    def __init__(self, x, y, path_speed=ENEMY_WALK_SPEED, path_accel=None,
+                 path_decel=None, path_loop=None, path_id=None, prime=False,
+                 parent=None, **kwargs):
+        self.path_speed = path_speed
+        self.path_accel = path_accel if path_accel != -1 else None
+        self.path_decel = path_decel if path_decel != -1 else None
+        self.path_loop = path_loop if path_loop != -1 else None
+        self.path_id = path_id
+        self.prime = prime
+        self.parent = parent
+        super(MovingObjectPath, self).__init__(x, y, **kwargs)
 
     def event_create(self):
-        obj = FlyingSnowball.create(self.x, self.y, z=self.z)
-        self.follow_start(obj, ENEMY_WALK_SPEED, loop=None)
+        if self.parent is not None:
+            for obj in sge.game.current_room.objects:
+                if (isinstance(obj, self.__class__) and
+                        obj.path_id == self.parent):
+                    obj.next_path = self
+                    obj.next_speed = self.path_speed
+                    obj.next_accel = self.path_accel
+                    obj.next_decel = self.path_decel
+                    obj.next_loop = self.path_loop
+                    break
+        else:
+            self.prime = True
+
+        if self.prime and self.cls in TYPES:
+            obj = TYPES[self.cls].create(self.x, self.y, z=self.z)
+            self.follow_start(obj, self.path_speed, accel=self.path_accel,
+                              decel=self.path_decel, loop=self.path_loop)
+
+
+class MovingPlatformPath(MovingObjectPath):
+
+    cls = "moving_platform"
+
+
+class FlyingSnowballPath(MovingObjectPath):
+
+    cls = "flying_snowball"
 
 
 class MapPlayer(sge.Object):
@@ -4661,7 +4724,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "solid_top": SolidTop, "solid_bottom": SolidBottom, "solid": Solid,
          "slope_topleft": SlopeTopLeft, "slope_topright": SlopeTopRight,
          "slope_bottomleft": SlopeBottomLeft,
-         "slope_bottomright": SlopeBottomRight, "spike_left": SpikeLeft,
+         "slope_bottomright": SlopeBottomRight,
+         "moving_platform": MovingPlatform, "spike_left": SpikeLeft,
          "spike_right": SpikeRight, "spike_top": SpikeTop,
          "spike_bottom": SpikeBottom, "death": Death, "level_end": LevelEnd,
          "creatures": get_object, "hazards": get_object,
@@ -4678,6 +4742,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
          "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
+         "moving_platform_path": MovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "warp_spawn": WarpSpawn,
          "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
          "map_path": MapPath}
@@ -4841,6 +4906,7 @@ goal_sprite = sge.Sprite("goal", d, fps=8)
 goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
 
 d = os.path.join(DATA, "images", "objects", "misc")
+platform_sprite = sge.Sprite("platform", d)
 rock_sprite = sge.Sprite("rock", d, origin_x=16, origin_y=16)
 thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
 thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
