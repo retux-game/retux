@@ -353,6 +353,7 @@ tilesets/map_objects.tsx
 tilesets/pipes.tsx
 tilesets/snow.tsx
 tilesets/special_blocks.tsx
+timelines/title_demo.json
 worldmaps/base.tmx
 
 Author: onpon4 <https://onpon4.github.io>

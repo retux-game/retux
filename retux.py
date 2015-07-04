@@ -62,6 +62,9 @@ parser.add_argument(
 parser.add_argument(
     "-d", "--datadir",
     help='Where to load the game data from (Default: "{}")'.format(DATA))
+parser.add_argument(
+    "--record",
+    help="Start the indicated level and record player actions in a timeline. Useful for making cutscenes.")
 args = parser.parse_args()
 
 SCALE_SMOOTH = not args.scale_basic
@@ -69,6 +72,7 @@ DELTA = not args.nodelta
 JOYSTICK_THRESHOLD = args.js_threshold
 if args.datadir:
     DATA = args.datadir
+RECORD = args.record
 
 xsge_gui.joystick_threshold = JOYSTICK_THRESHOLD
 
@@ -423,7 +427,7 @@ class Level(sge.Room):
         t_keys = sorted(self.timeline.keys())
         for i in t_keys:
             if i <= self.timeline_step:
-                for command in timeline[i]:
+                for command in self.timeline[i]:
                     command = command.split(maxsplit=1)
                     if command:
                         if len(command) >= 2:
@@ -452,8 +456,18 @@ class Level(sge.Room):
                                 if obj is None:
                                     setattr(self, name, value)
                                 elif obj in self.timeline_objects:
-                                    setattr(self.timeline_objects[obj], name,
-                                            value)
+                                    obj = self.timeline_objects[obj]()
+                                    if obj is not None:
+                                        setattr(obj, name, value)
+                        elif command == "call":
+                            args = arg.split()
+                            if len(args) >= 2:
+                                if args[0] in self.timeline_objects:
+                                    obj = self.timeline_objects[args[0]]()
+                                    if obj is not None:
+                                        for method in args[1:]:
+                                            getattr(obj, method,
+                                                    lambda: None)()
                 del self.timeline[i]
             else:
                 break
@@ -599,6 +613,125 @@ class Level(sge.Room):
             r.fname = fname
             current_areas[fname] = r
             return r
+
+
+class LevelRecorder(Level):
+
+    def __init__(self, *args, **kwargs):
+        super(LevelRecorder, self).__init__(*args, **kwargs)
+        self.recording = {}
+
+    def add_recording_event(self, command):
+        self.recording.setdefault(self.timeline_step, []).append(command)
+
+    def event_key_press(self, key, char):
+        if key == "escape":
+            jt = self.recording
+
+            import time
+            fname = "recording_{}.json".format(time.time())
+            with open(fname, 'w') as f:
+                json.dump(jt, f, indent=4, sort_keys=True)
+
+            sge.game.end()
+        if key in left_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == left_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} left_pressed 1".format(obj.ID))
+        if key in right_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == right_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} right_pressed 1".format(obj.ID))
+        if key in up_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == up_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} up_pressed 1".format(obj.ID))
+        if key in down_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == down_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} down_pressed 1".format(obj.ID))
+        if key in jump_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == jump_key.index(key)):
+                    self.add_recording_event("call {} jump".format(obj.ID))
+        if key in action_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == action_key.index(key)):
+                    self.add_recording_event("call {} action".format(obj.ID))
+        if key in sneak_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == sneak_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} sneak_pressed 1".format(obj.ID))
+
+    def event_key_release(self, key):
+        if key in left_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == left_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} left_pressed 0".format(obj.ID))
+        if key in right_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == right_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} right_pressed 0".format(obj.ID))
+        if key in up_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == up_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} up_pressed 0".format(obj.ID))
+        if key in down_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == down_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} down_pressed 0".format(obj.ID))
+        if key in jump_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == jump_key.index(key)):
+                    self.add_recording_event(
+                        "call {} jump_release".format(obj.ID))
+        if key in action_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == action_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} action_pressed 0".format(obj.ID))
+        if key in sneak_key:
+            for i in self.timeline_objects:
+                obj = self.timeline_objects[i]()
+                if (isinstance(obj, Player) and obj.human and
+                        obj.player == sneak_key.index(key)):
+                    self.add_recording_event(
+                        "setattr {} sneak_pressed 0".format(obj.ID))
 
 
 class TitleScreen(Level):
@@ -2602,6 +2735,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 class Explosion(InteractiveObject):
 
     def event_create(self):
+        super(Explosion, self).event_create()
         self.sprite = explosion_sprite
         self.image_fps = None
         self.image_origin_x = None
@@ -3026,6 +3160,7 @@ class TuxDoll(FallingObject):
     slide_speed = 0
 
     def event_create(self):
+        super(TuxDoll, self).event_create()
         self.sprite = tuxdoll_sprite
         self.image_fps = None
         self.image_origin_x = None
@@ -3095,6 +3230,7 @@ class Rock(FallingObject, xsge_physics.MobileColliderWall,
     fall_speed = ROCK_FALL_SPEED
 
     def event_create(self):
+        super(Rock, self).event_create()
         self.sprite = rock_sprite
         self.image_fps = None
         self.image_origin_x = None
@@ -3145,6 +3281,8 @@ class FixedSpring(FallingObject):
     expand_sprite = None
 
     def event_create(self):
+        self.update_active()
+
         self.normal_sprite = fixed_spring_sprite
         self.expand_sprite = fixed_spring_expand_sprite
 
@@ -3174,6 +3312,8 @@ class FixedSpring(FallingObject):
 class Spring(FixedSpring):
 
     def event_create(self):
+        self.update_active()
+
         self.normal_sprite = spring_sprite
         self.expand_sprite = spring_expand_sprite
 
@@ -3219,6 +3359,8 @@ class Spring(FixedSpring):
 class RustySpring(Spring):
 
     def event_create(self):
+        self.update_active()
+
         self.normal_sprite = rusty_spring_sprite
         self.expand_sprite = rusty_spring_expand_sprite
 
@@ -5227,8 +5369,11 @@ bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
                              tangible=False)
 
 # Create rooms
-sge.game.start_room = TitleScreen.load(os.path.join("special",
-                                                    "title_screen.tmx"))
+if RECORD:
+    sge.game.start_room = LevelRecorder.load(RECORD)
+else:
+    sge.game.start_room = TitleScreen.load(os.path.join("special",
+                                                        "title_screen.tmx"))
 
 sge.game.mouse.visible = False
 load_levelset(current_levelset)

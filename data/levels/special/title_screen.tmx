@@ -3,6 +3,7 @@
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="theme.ogg"/>
+  <property name="timeline" value="title_demo.json"/>
  </properties>
  <tileset firstgid="1" source="../../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../../tilesets/snow.tsx"/>
@@ -107,7 +108,7 @@
   <object gid="1" x="64" y="352">
    <properties>
     <property name="ID" value="player"/>
-    <property name="human" value="1"/>
+    <property name="human" value="0"/>
     <property name="lose_on_death" value="0"/>
    </properties>
   </object>
