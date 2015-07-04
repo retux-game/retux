@@ -158,6 +158,8 @@ ROCK_GRAVITY = 0.6
 ROCK_FALL_SPEED = 10
 ROCK_FRICTION = 0.4
 
+SPRING_JUMP_HEIGHT = 8 * TILE_SIZE + 11
+
 FLOWER_FALL_SPEED = 5
 FLOWER_THROW_SPEED = 8
 FLOWER_THROW_HEIGHT = TILE_SIZE / 2
@@ -994,9 +996,9 @@ class Player(xsge_physics.Collider):
             else:
                 self.held_object.kick()
 
-    def stomp_jump(self, other):
+    def stomp_jump(self, other, jump_height=PLAYER_JUMP_HEIGHT):
         if self.jump_pressed:
-            self.yvelocity = get_jump_speed(PLAYER_JUMP_HEIGHT)
+            self.yvelocity = get_jump_speed(jump_height)
         else:
             self.yvelocity = get_jump_speed(PLAYER_STOMP_HEIGHT)
         T = math.floor(other.bbox_top / TILE_SIZE) * TILE_SIZE
@@ -3133,6 +3135,111 @@ class Rock(FallingObject, xsge_physics.MobileColliderWall,
             self.xdeceleration = 0
 
 
+class FixedSpring(FallingObject):
+
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
+    jump_height = SPRING_JUMP_HEIGHT
+    normal_sprite = None
+    expand_sprite = None
+
+    def event_create(self):
+        self.normal_sprite = fixed_spring_sprite
+        self.expand_sprite = fixed_spring_expand_sprite
+
+        self.sprite = self.normal_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def stomp(self, other):
+        other.stomp_jump(self, self.jump_height)
+        play_sound(spring_sound)
+        self.sprite = self.expand_sprite
+        self.image_index = 0
+        self.image_fps = None
+
+    def event_animation_end(self):
+        if self.sprite == self.expand_sprite:
+            self.sprite = self.normal_sprite
+
+
+class Spring(FixedSpring):
+
+    def event_create(self):
+        self.normal_sprite = spring_sprite
+        self.expand_sprite = spring_expand_sprite
+
+        self.sprite = self.normal_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def touch(self, other):
+        if other.pickup(self):
+            self.gravity = 0
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = self.parent.xvelocity + math.copysign(
+                KICK_FORWARD_SPEED, self.parent.image_xscale)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
+            self.gravity = self.__class__.gravity
+            self.parent = None
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = self.parent.xvelocity
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
+            self.gravity = self.__class__.gravity
+            self.parent = None
+
+
+class RustySpring(Spring):
+
+    def event_create(self):
+        self.normal_sprite = rusty_spring_sprite
+        self.expand_sprite = rusty_spring_expand_sprite
+
+        self.sprite = self.normal_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+        self.x += self.image_origin_x
+        self.y += self.image_origin_y
+
+    def event_animation_end(self):
+        if self.sprite == self.expand_sprite:
+            Corpse.create(self.x, self.y, self.z,
+                          sprite=rusty_spring_dead_sprite)
+            self.destroy()
+
+
 class HittableBlock(xsge_physics.SolidBottom, Tile):
 
     hit_sprite = None
@@ -4737,7 +4844,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "icicle": Icicle,
          "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
-         "rock": Rock, "brick": Brick, "coinbrick": CoinBrick,
+         "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
+         "rusty_spring": RustySpring, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
          "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
          "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
@@ -4905,6 +5013,28 @@ lava_surface_sprite = sge.Sprite("lava_surface", d, fps=5)
 goal_sprite = sge.Sprite("goal", d, fps=8)
 goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
 
+d = os.path.join(DATA, "images", "objects", "spring")
+fixed_spring_sprite = sge.Sprite(
+    "fixed_spring", d, origin_x=16, origin_y=16, bbox_x=-16, bbox_y=-7,
+    bbox_width=32, bbox_height=23)
+fixed_spring_expand_sprite = sge.Sprite(
+    "fixed_spring_expand", d, origin_x=16, origin_y=16, fps=16, bbox_x=-16,
+    bbox_y=-7, bbox_width=32, bbox_height=23)
+spring_sprite = sge.Sprite("spring", d, origin_x=16, origin_y=16, bbox_x=-16,
+                           bbox_y=-7, bbox_width=32, bbox_height=23)
+spring_expand_sprite = sge.Sprite(
+    "spring_expand", d, origin_x=16, origin_y=16, fps=16, bbox_x=-16,
+    bbox_y=-7, bbox_width=32, bbox_height=23)
+rusty_spring_sprite = sge.Sprite(
+    "rusty_spring", d, origin_x=16, origin_y=16, bbox_x=-16, bbox_y=-7,
+    bbox_width=32, bbox_height=23)
+rusty_spring_expand_sprite = sge.Sprite(
+    "rusty_spring_expand", d, origin_x=16, origin_y=26, fps=16, bbox_x=-16,
+    bbox_y=-7, bbox_width=32, bbox_height=23)
+rusty_spring_dead_sprite = sge.Sprite(
+    "rusty_spring_dead", d, origin_x=16, origin_y=26, bbox_x=-16, bbox_y=-7,
+    bbox_width=32, bbox_height=23)
+
 d = os.path.join(DATA, "images", "objects", "misc")
 platform_sprite = sge.Sprite("platform", d)
 rock_sprite = sge.Sprite("rock", d, origin_x=16, origin_y=16)
@@ -5067,6 +5197,7 @@ heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
 shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
 squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))
 stomp_sound = sge.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
+spring_sound = sge.Sound(os.path.join(DATA, "sounds", "spring.wav"))
 kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
 iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))
