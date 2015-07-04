@@ -428,7 +428,7 @@ class Level(sge.Room):
         for i in t_keys:
             if i <= self.timeline_step:
                 for command in self.timeline[i]:
-                    command = command.split(maxsplit=1)
+                    command = command.split(None, 1)
                     if command:
                         if len(command) >= 2:
                             command, arg = command[:2]
@@ -437,7 +437,7 @@ class Level(sge.Room):
                             arg = ""
 
                         if command == "setattr":
-                            args = arg.split(maxsplit=2)
+                            args = arg.split(None, 2)
                             if len(args) >= 2:
                                 if len(args) >= 3:
                                     obj, name, value = args[:3]
