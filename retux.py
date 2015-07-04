@@ -668,12 +668,16 @@ class LevelRecorder(Level):
                 if (isinstance(obj, Player) and obj.human and
                         obj.player == jump_key.index(key)):
                     self.add_recording_event("call {} jump".format(obj.ID))
+                    self.add_recording_event(
+                        "setattr {} jump_pressed 1".format(obj.ID))
         if key in action_key:
             for i in self.timeline_objects:
                 obj = self.timeline_objects[i]()
                 if (isinstance(obj, Player) and obj.human and
                         obj.player == action_key.index(key)):
                     self.add_recording_event("call {} action".format(obj.ID))
+                    self.add_recording_event(
+                        "setattr {} action_pressed 1".format(obj.ID))
         if key in sneak_key:
             for i in self.timeline_objects:
                 obj = self.timeline_objects[i]()
@@ -718,6 +722,8 @@ class LevelRecorder(Level):
                         obj.player == jump_key.index(key)):
                     self.add_recording_event(
                         "call {} jump_release".format(obj.ID))
+                    self.add_recording_event(
+                        "setattr {} jump_pressed 0".format(obj.ID))
         if key in action_key:
             for i in self.timeline_objects:
                 obj = self.timeline_objects[i]()
