@@ -468,6 +468,12 @@ class Level(sge.Room):
                                         for method in args[1:]:
                                             getattr(obj, method,
                                                     lambda: None)()
+                        elif command == "dialog":
+                            args = arg.split(None, 1)
+                            if len(args) >= 2:
+                                portrait, text = args[:2]
+                                sprite = portrait_sprites.get(portrait)
+                                DialogBox(gui_handler, text, sprite).show()
                 del self.timeline[i]
             else:
                 break
@@ -5216,6 +5222,8 @@ coin_icon_sprite.width = 16
 coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
 
+portrait_sprites = {"tux": tux_stand_sprite}
+
 d = os.path.join(DATA, "images", "worldmap")
 worldmap_tux_sprite = sge.Sprite("tux", d)
 worldmap_level_complete_sprite = sge.Sprite("level_complete", d)
@@ -5296,19 +5304,23 @@ layers = [
         repeat_right=True, repeat_down=True)]
 backgrounds["bluemountain"] = sge.Background(layers, sge.Color((86, 142, 206)))
 
+castle_spr = sge.Sprite("castle", d)
+castle_bottom_spr = sge.Sprite("castle-bottom", d)
 for i in list(backgrounds.keys()):
     layers = backgrounds[i].layers + [
-        sge.BackgroundLayer(sge.Sprite("castle", d), 0, -64, -99000,
+        sge.BackgroundLayer(castle_spr, 0, -64, -99000,
                             xscroll_rate=0.75, yscroll_rate=0.75,
                             repeat_left=True, repeat_right=True,
                             repeat_up=True),
-        sge.BackgroundLayer(sge.Sprite("castle-bottom", d), 0, 536, -99000,
+        sge.BackgroundLayer(castle_bottom_spr, 0, 536, -99000,
                             xscroll_rate=0.75, yscroll_rate=0.75,
                             repeat_left=True, repeat_right=True,
                             repeat_down=True)]
 
     backgrounds["{}_castle".format(i)] = sge.Background(layers,
                                                         backgrounds[i].color)
+del castle_spr
+del castle_bottom_spr
 
 # Load fonts
 chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 128)] +
