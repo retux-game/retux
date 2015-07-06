@@ -82,10 +82,10 @@
   <object gid="290" x="5984" y="320"/>
   <object gid="290" x="6016" y="320"/>
   <object gid="276" x="5088" y="288"/>
-  <object gid="276" x="5216" y="288"/>
-  <object gid="276" x="5344" y="288"/>
+  <object gid="276" x="5120" y="288"/>
   <object gid="3" x="5920" y="288"/>
   <object gid="3" x="5984" y="288"/>
+  <object gid="284" x="5248" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1664" y="416"/>

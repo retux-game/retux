@@ -135,6 +135,9 @@ CAMERA_MARGIN_BOTTOM = 5 * TILE_SIZE
 WARP_LAX = 12
 WARP_SPEED = 1.5
 
+SHAKE_FRAME_TIME = FPS / DELTA_MIN
+SHAKE_AMOUNT = 3
+
 ENEMY_WALK_SPEED = 1
 ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
@@ -151,9 +154,13 @@ BOMB_GRAVITY = 0.6
 BOMB_TICK_TIME = 8
 EXPLOSION_TIME = FPS * 3 / 4
 ICICLE_SHAKE_TIME = FPS
-ICICLE_SHAKE_FRAME_TIME = 2
 ICICLE_GRAVITY = 0.75
 ICICLE_FALL_SPEED = 12
+CRUSHER_GRAVITY = 1
+CRUSHER_FALL_SPEED = 15
+CRUSHER_RISE_SPEED = 2
+CRUSHER_CRUSH_TIME = FPS * 2 / 3
+CRUSHER_SHAKE_NUM = 2
 THAW_FPS = 15
 THAW_TIME_DEFAULT = FPS * 5
 THAW_WARN_TIME = FPS
@@ -281,6 +288,7 @@ class Level(sge.Room):
         self.timeline_objects = {}
         self.timeline_step = 0
         self.warps = []
+        self.shake_queue = 0
 
         if bgname is not None:
             background = backgrounds.get(bgname, background)
@@ -323,6 +331,13 @@ class Level(sge.Room):
             else:
                 s = tuxdoll_transparent_sprite
             sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
+
+    def shake(self, num=1):
+        shaking = (self.shake_queue or "shake_up" in self.alarms or
+                   "shake_down" in self.alarms)
+        self.shake_queue = max(self.shake_queue, num)
+        if not shaking:
+            self.event_alarm("shake_down")
 
     def die(self):
         global current_areas
@@ -567,6 +582,16 @@ class Level(sge.Room):
             level_timers.setdefault(main_area, 0)
             level_timers[main_area] -= SECOND_POINTS
             self.alarms["timer"] = TIMER_FRAMES
+        elif alarm_id == "shake_down":
+            self.shake_queue -= 1
+            for view in self.views:
+                view.yport += SHAKE_AMOUNT
+            self.alarms["shake_up"] = SHAKE_FRAME_TIME
+        elif alarm_id == "shake_up":
+            for view in self.views:
+                view.yport -= SHAKE_AMOUNT
+            if self.shake_queue:
+                self.alarms["shake_down"] = SHAKE_FRAME_TIME
         elif alarm_id == "death":
             if current_worldmap:
                 self.return_to_map()
@@ -1983,8 +2008,9 @@ class FallingObject(InteractiveCollider):
         if self.was_on_floor and (on_floor or on_slope) and self.yvelocity >= 0:
             self.yacceleration = 0
             if on_floor:
-                self.yvelocity = 0
-                self.stop_down()
+                if self.yvelocity > 0:
+                    self.yvelocity = 0
+                    self.stop_down()
             else:
                 assert on_slope
                 self.yvelocity = self.slide_speed * (on_slope[0].bbox_height /
@@ -2792,7 +2818,7 @@ class Icicle(InteractiveObject):
         self.bbox_width = None
         self.bbox_height = None
 
-        self.shake_counter = ICICLE_SHAKE_FRAME_TIME
+        self.shake_counter = SHAKE_FRAME_TIME
 
     def event_step(self, time_passed, delta_mult):
         super(Icicle, self).event_step(time_passed, delta_mult)
@@ -2801,7 +2827,7 @@ class Icicle(InteractiveObject):
             if self.shaking:
                 self.shake_counter -= delta_mult
                 while self.shake_counter <= 0:
-                    self.shake_counter += ICICLE_SHAKE_FRAME_TIME
+                    self.shake_counter += SHAKE_FRAME_TIME
                     if self.image_origin_x > self.sprite.origin_x:
                         self.image_origin_x = self.sprite.origin_x - 2
                     else:
@@ -2868,6 +2894,86 @@ class FallingIcicle(FallingObject):
 
         super(FallingIcicle, self).event_collision(other, xdirection,
                                                    ydirection)
+
+
+class Crusher(FallingObject):
+
+    gravity = 0
+    fall_speed = CRUSHER_FALL_SPEED
+    crushing = False
+
+    def touch(self, other):
+        other.hurt()
+
+    def stop_up(self):
+        self.yvelocity = 0
+        self.crushing = False
+
+    def stop_down(self):
+        play_sound(brick_sound)
+        self.yvelocity = 0
+        self.gravity = 0
+        sge.game.current_room.shake(CRUSHER_SHAKE_NUM)
+        self.alarms["crush_end"] = CRUSHER_CRUSH_TIME
+
+    def event_step(self, time_passed, delta_mult):
+        if not self.crushing:
+            super(Crusher, self).event_step(time_passed, delta_mult)
+            if self.active:
+                players = []
+                crash_y = sge.game.current_room.height
+                for obj in sge.game.current_room.objects:
+                    if (obj.bbox_top > self.bbox_bottom and
+                            self.bbox_right >= obj.bbox_left and
+                            self.bbox_left <= obj.bbox_right):
+                        if isinstance(obj, Player):
+                            players.append(obj)
+                        elif isinstance(obj, xsge_physics.SolidTop):
+                            crash_y = min(crash_y, obj.bbox_top)
+                        elif isinstance(obj, xsge_physics.SlopeTopLeft):
+                            crash_y = min(crash_y,
+                                          obj.get_slope_y(self.bbox_right))
+                        elif isinstance(obj, xsge_physics.SlopeTopRight):
+                            crash_y = min(crash_y,
+                                          obj.get_slope_y(self.bbox_left))
+
+                for player in players:
+                    if player.bbox_top < crash_y:
+                        self.crushing = True
+                        self.gravity = CRUSHER_GRAVITY
+                        break
+
+    def event_alarm(self, alarm_id):
+        if alarm_id == "crush_end":
+            self.yvelocity = -CRUSHER_RISE_SPEED
+
+
+class Krush(Crusher):
+
+    def event_create(self):
+        super(Krush, self).event_create()
+        self.sprite = krush_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+
+
+class Krosh(Crusher):
+
+    def event_create(self):
+        super(Krosh, self).event_create()
+        self.sprite = krosh_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -4997,8 +5103,9 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "icicle": Icicle,
-         "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
-         "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
+         "krush": Krush, "krosh": Krosh, "fireflower": FireFlower,
+         "iceflower": IceFlower, "tuxdoll": TuxDoll, "rock": Rock,
+         "fixed_spring": FixedSpring, "spring": Spring,
          "rusty_spring": RustySpring, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
          "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
@@ -5128,6 +5235,10 @@ icicle_sprite = sge.Sprite("icicle", d, bbox_x=12, bbox_y=0, bbox_width=8,
                            bbox_height=48)
 icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=12, bbox_y=32,
                                   bbox_width=8, bbox_height=16)
+krush_sprite = sge.Sprite("krush", d, origin_x=1, bbox_x=0, bbox_y=0,
+                          bbox_width=64, bbox_height=64)
+krosh_sprite = sge.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,
+                          bbox_width=128, bbox_height=128)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)

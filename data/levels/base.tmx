@@ -5,21 +5,23 @@
   <property name="music" value="chipdisko.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="16" source="../tilesets/snow.tsx"/>
- <tileset firstgid="156" source="../tilesets/cave.tsx"/>
- <tileset firstgid="176" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="191" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="279" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="299" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="303" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="294" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="300" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="301" source="../tilesets/krosh.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABdBhpb4f2qB2jdtDRDlsSMT0AAD8cBD4=
+   eJxjYBgFowAB1Blpb4faqB2jdtDRDgsSMT0AAM/1A9o=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhAWzJwPqMpNkhRAcMAJ3tBQw=
+   eJxjYBgFo2AUjIKhASzIwFqMpNnBSwcMAFT1BEk=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -38,7 +40,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowAT6DDS3g7tUTtG7aCzHQZ0sJ8YAADltQGT
+   eJxjYBgFowATqDPS3g61UTtG7aCzHdp0sJ8YAACSvQFm
   </data>
  </layer>
 </map>

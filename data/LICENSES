@@ -349,6 +349,8 @@ tilesets/creatures.tsx
 tilesets/decoration_small.tsx
 tilesets/icyisland.tsx
 tilesets/igloo.tsx
+tilesets/krosh.tsx
+tilesets/krush.tsx
 tilesets/map_objects.tsx
 tilesets/pipes.tsx
 tilesets/snow.tsx
