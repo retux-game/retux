@@ -21,24 +21,39 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztw9ENABAQBbBnAIuYwObWs8LxR9qkyb1VCAAAAAAAAAAAAAAAFVN97mg50tXvbzixR10=
+   eJztzrERABEUQMGvAI2oQNdC7WlAgIS72Z15+Ys41xcCAAAAAAAAAADm2u0BAAB4TJX0uUqKLVnS7xsuQEgM
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="0" y="416" width="8000" height="32"/>
   <object x="7904" y="288" width="64" height="128"/>
   <object x="480" y="0" width="288" height="32"/>
+  <object x="1184" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="7456" y="0" width="32" height="416"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="287" x="960" y="416"/>
+ </objectgroup>
  <objectgroup name="NPCs">
   <object gid="300" x="512" y="96"/>
   <object gid="300" x="608" y="96"/>
   <object gid="300" x="704" y="96"/>
+  <object type="circoflame" x="1184" y="288">
+   <polyline points="0,0 0,-128"/>
+  </object>
+  <object type="circoflame" x="1184" y="288">
+   <polyline points="0,0 0,-96"/>
+  </object>
+  <object type="circoflame" x="1184" y="288">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object type="circoflame" x="1184" y="288">
+   <polyline points="0,0 0,-32"/>
+  </object>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>

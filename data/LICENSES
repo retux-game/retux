@@ -112,6 +112,8 @@ images/objects/enemies/bouncing_snowball-2.png
 images/objects/enemies/bouncing_snowball-3.png
 images/objects/enemies/bouncing_snowball-4.png
 images/objects/enemies/bouncing_snowball-5.png
+images/objects/enemies/circoflame-0.png
+images/objects/enemies/circoflame-1.png
 images/objects/enemies/flying_snowball-0.png
 images/objects/enemies/flying_snowball-1.png
 images/objects/enemies/flying_snowball_squished.png
@@ -271,6 +273,7 @@ sounds/bell.wav
 sounds/icicle_crash.ogg
 sounds/icicle_shake.wav
 sounds/kill.wav
+sounds/sizzle.ogg
 sounds/upgrade.wav
 
 Authors: SuperTux development team <http://supertux.lethargik.org>

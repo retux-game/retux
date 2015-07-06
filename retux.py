@@ -2443,6 +2443,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
                      BurnableObject, WinPuffObject):
 
     freezable = True
+    had_xv = False
 
     def event_create(self):
         super(FlyingSnowball, self).event_create()
@@ -2456,8 +2457,11 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
         self.bbox_height = None
 
     def move(self):
-        if abs(self.xvelocity) > 0.1:
+        if self.xvelocity:
+            self.had_xv = True
             self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
+        elif self.had_xv:
+            self.had_xv = False
         else:
             player = None
             dist = 0
@@ -2473,8 +2477,6 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
                     self.image_xscale = abs(self.image_xscale)
                 else:
                     self.image_xscale = -abs(self.image_xscale)
-            else:
-                self.set_direction(-1)
 
     def touch(self, other):
         other.hurt()
@@ -2898,6 +2900,8 @@ class FallingIcicle(FallingObject):
 
 class Crusher(FallingObject):
 
+    burnble = True
+    freezable = True
     gravity = 0
     fall_speed = CRUSHER_FALL_SPEED
     crushing = False
@@ -2974,6 +2978,51 @@ class Krosh(Crusher):
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
+
+
+class Circoflame(InteractiveObject):
+
+    burnable = True
+    freezable = True
+
+    def __init__(self, center, *args, **kwargs):
+        self.center = weakref.ref(center)
+        kwargs["sprite"] = circoflame_sprite
+        super(Circoflame, self).__init__(*args, **kwargs)
+
+    def touch(self, other):
+        other.hurt()
+
+    def freeze(self):
+        play_sound(sizzle_sound)
+        center = self.center()
+        if center is not None:
+            center.destroy()
+        self.destroy()
+
+
+class CircoflameCenter(InteractiveObject):
+
+    def __init__(self, x, y, z=0, radius=(TILE_SIZE * 4), pos=180,
+                 rvelocity=2):
+        self.radius = radius
+        self.pos = pos
+        self.rvelocity = rvelocity
+        self.flame = Circoflame(self, x, y, z)
+        super(CircoflameCenter, self).__init__(x, y, tangible=False)
+
+    def event_create(self):
+        sge.game.current_room.add(self.flame)
+
+    def event_step(self, time_passed, delta_mult):
+        super(CircoflameCenter, self).event_step(time_passed, delta_mult)
+        if self.active:
+            self.pos += self.rvelocity * delta_mult
+            self.pos %= 360
+            x = math.cos(math.radians(self.pos)) * self.radius
+            y = math.sin(math.radians(self.pos)) * self.radius
+            self.flame.x = self.x + x
+            self.flame.y = self.y + y
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -4063,6 +4112,24 @@ class FlyingSnowballPath(MovingObjectPath):
     cls = "flying_snowball"
 
 
+class CircoflamePath(xsge_path.Path):
+
+    def __init__(self, x, y, z=0, points=(), rvelocity=2):
+        self.rvelocity = rvelocity
+        x += TILE_SIZE / 2
+        y += TILE_SIZE / 2
+        super(CircoflamePath, self).__init__(x, y, z=z, points=points)
+
+    def event_create(self):
+        if self.points:
+            fx, fy = self.points[0]
+            radius = math.hypot(fx, fy)
+            pos = math.degrees(math.atan2(fy, fx))
+            CircoflameCenter.create(self.x, self.y, z=self.z, radius=radius,
+                                    pos=pos, rvelocity=self.rvelocity)
+        self.destroy()
+
+
 class MapPlayer(sge.Object):
 
     moving = False
@@ -5103,9 +5170,9 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "icicle": Icicle,
-         "krush": Krush, "krosh": Krosh, "fireflower": FireFlower,
-         "iceflower": IceFlower, "tuxdoll": TuxDoll, "rock": Rock,
-         "fixed_spring": FixedSpring, "spring": Spring,
+         "krush": Krush, "krosh": Krosh, "circoflame": CircoflamePath,
+         "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
+         "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
          "rusty_spring": RustySpring, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
          "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
@@ -5239,6 +5306,9 @@ krush_sprite = sge.Sprite("krush", d, origin_x=1, bbox_x=0, bbox_y=0,
                           bbox_width=64, bbox_height=64)
 krosh_sprite = sge.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,
                           bbox_width=128, bbox_height=128)
+circoflame_sprite = sge.Sprite("circoflame", d, origin_x=16, origin_y=16,
+                               fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
+                               bbox_height=16)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)
@@ -5468,6 +5538,7 @@ heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
 shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
 squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))
 stomp_sound = sge.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
+sizzle_sound = sge.Sound(os.path.join(DATA, "sounds", "sizzle.ogg"))
 spring_sound = sge.Sound(os.path.join(DATA, "sounds", "spring.wav"))
 kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
 iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
