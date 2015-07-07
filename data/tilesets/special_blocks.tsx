@@ -126,4 +126,10 @@
   </properties>
   <image width="32" height="32" source="../images/objects/spring/spring.png"/>
  </tile>
+ <tile id="20">
+  <properties>
+   <property name="cls" value="boss_block"/>
+  </properties>
+  <image width="32" height="32" source="../images/objects/misc/boss_block.png"/>
+ </tile>
 </tileset>

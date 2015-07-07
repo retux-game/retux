@@ -1,5 +1,61 @@
 {
     "0": [
-        "setattr boss stage 1"
+        "setattr player human 0",
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 0",
+        "setattr player up_pressed 0",
+        "setattr player down_pressed 0",
+        "setattr player jump_pressed 0",
+        "setattr player action_pressed 0",
+        "setattr player sneak_pressed 0",
+        "setattr player xvelocity 0"
+    ],
+    "30": [
+        "call bossblock1 activate"
+    ],
+    "35": [
+        "call bossblock2 activate"
+    ],
+    "40": [
+        "call bossblock3 activate"
+    ],
+    "45": [
+        "call bossblock4 activate"
+    ],
+    "50": [
+        "call bossblock5 activate"
+    ],
+    "55": [
+        "call bossblock6 activate"
+    ],
+    "60": [
+        "call bossblock7 activate"
+    ],
+    "65": [
+        "call bossblock8 activate"
+    ],
+    "70": [
+        "call bossblock9 activate"
+    ],
+    "75": [
+        "call bossblock10 activate"
+    ],
+    "80": [
+        "call bossblock11 activate"
+    ],
+    "85": [
+        "call bossblock12 activate"
+    ],
+    "90": [
+        "call bossblock13 activate"
+    ],
+    "95": [
+        "call bossblock14 activate"
+    ],
+    "100": [
+        "setattr view_frozen 1",
+        "setattr player human 1",
+        "setattr boss stage 1",
+        "play_music bossattack.ogg"
     ]
 }

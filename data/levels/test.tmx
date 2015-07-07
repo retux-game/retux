@@ -10,19 +10,19 @@
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="294" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="300" source="../tilesets/krush.tsx"/>
- <tileset firstgid="301" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="302" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="301" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAUQ8HvMrqC+0/mBBYWIsQ7SJ/mVQEAAAAAwL9Ge/0AuK3rHOLpHPLpHPLpHPLpHPLpHPLtOp+HA/ItoXAD2g==
+   eJzt07EJACAUQ8HvNDqC+0/mBBYWIsQ7SJ/mVQEAAAAAwL9Ge/0AuK3rHOLpHPLpHPLpHPLpHPLpHPLtOp+HA/ItMF8D4g==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztzrERABEUQMGvAI2oQNdC7WlAgIS72Z15+Ys41xcCAAAAAAAAAADm2u0BAAB4TJX0uUqKLVnS7xsuQEgM
+   eJzt07sJgFAURMFrAVZiA3Zt+NozMVT8gOhbZmDzTU7Vc+3Cetb7f+CcziGfziGfziGfziGfziGfziGfziGfzuE9y9cHNjqHfDqHfDonxWyHaz/4YLa3aahbRjOL3wrjzlEg
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -33,7 +33,7 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="7456" y="0" width="32" height="416"/>
-  <object type="timeline_switcher" x="1824" y="0" width="32" height="416">
+  <object type="timeline_switcher" x="2016" y="0" width="32" height="416">
    <properties>
     <property name="timeline" value="boss_start.json"/>
    </properties>
@@ -43,11 +43,77 @@
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="294" x="1760" y="416">
+   <properties>
+    <property name="ID" value="bossblock1"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="384">
+   <properties>
+    <property name="ID" value="bossblock2"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="352">
+   <properties>
+    <property name="ID" value="bossblock3"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="320">
+   <properties>
+    <property name="ID" value="bossblock4"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="288">
+   <properties>
+    <property name="ID" value="bossblock5"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="256">
+   <properties>
+    <property name="ID" value="bossblock6"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="224">
+   <properties>
+    <property name="ID" value="bossblock7"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="192">
+   <properties>
+    <property name="ID" value="bossblock8"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="160">
+   <properties>
+    <property name="ID" value="bossblock9"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="128">
+   <properties>
+    <property name="ID" value="bossblock10"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="96">
+   <properties>
+    <property name="ID" value="bossblock11"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="64">
+   <properties>
+    <property name="ID" value="bossblock12"/>
+   </properties>
+  </object>
+  <object gid="294" x="1760" y="32">
+   <properties>
+    <property name="ID" value="bossblock13"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="300" x="512" y="96"/>
-  <object gid="300" x="608" y="96"/>
-  <object gid="300" x="704" y="96"/>
+  <object gid="301" x="512" y="96"/>
+  <object gid="301" x="608" y="96"/>
+  <object gid="301" x="704" y="96"/>
   <object type="circoflame" x="1184" y="288">
    <polyline points="0,0 0,-128"/>
   </object>
@@ -60,7 +126,7 @@
   <object type="circoflame" x="1184" y="288">
    <polyline points="0,0 0,-32"/>
   </object>
-  <object gid="302" x="2048" y="448"/>
+  <object gid="303" x="2176" y="448"/>
   <object gid="286" x="256" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
@@ -105,7 +171,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8GwDBTsvx9MkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuA8PhAWY=
+   eJzt1LENACAMA8EwDRTsPx9MkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuA1acAW8=
   </data>
  </layer>
 </map>

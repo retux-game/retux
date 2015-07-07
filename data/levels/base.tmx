@@ -10,19 +10,19 @@
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="294" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="300" source="../tilesets/krush.tsx"/>
- <tileset firstgid="301" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="302" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="301" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowAB1Blpb4faqB2jdtDRDgsSMT0AAM/1A9o=
+   eJxjYBgFowABNBhpb4f6qB2jdtDRDgsSMT0AAOBFA+I=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhASzIwFqMpNnBSwcMAFT1BEk=
+   eJxjYBgFo2AUjIKhASzIwNqMpNnBSwcMAFWJBEo=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -41,7 +41,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowATqDPS3g61UTtG7aCzHdp0sJ8YAACSvQFm
+   eJxjYBgFowATaDDS3g71UTtG7aCzHTp0sJ8YAACjVQFv
   </data>
  </layer>
 </map>
