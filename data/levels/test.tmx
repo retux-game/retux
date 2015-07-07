@@ -14,6 +14,7 @@
  <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
  <tileset firstgid="300" source="../tilesets/krush.tsx"/>
  <tileset firstgid="301" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="302" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
    eJzt07EJACAUQ8HvMrqC+0/mBBYWIsQ7SJ/mVQEAAAAAwL9Ge/0AuK3rHOLpHPLpHPLpHPLpHPLpHPLtOp+HA/ItoXAD2g==
@@ -32,12 +33,17 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="7456" y="0" width="32" height="416"/>
+  <object type="timeline_switcher" x="1824" y="0" width="32" height="416">
+   <properties>
+    <property name="timeline" value="boss_start.json"/>
+   </properties>
+  </object>
+  <object type="solid_right" x="1760" y="0" width="32" height="416"/>
+  <object type="solid_left" x="2272" y="0" width="32" height="416"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items">
-  <object gid="287" x="960" y="416"/>
- </objectgroup>
+ <objectgroup name="Items"/>
  <objectgroup name="NPCs">
   <object gid="300" x="512" y="96"/>
   <object gid="300" x="608" y="96"/>
@@ -54,6 +60,8 @@
   <object type="circoflame" x="1184" y="288">
    <polyline points="0,0 0,-32"/>
   </object>
+  <object gid="302" x="2048" y="448"/>
+  <object gid="286" x="256" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>

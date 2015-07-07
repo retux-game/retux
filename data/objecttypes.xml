@@ -20,4 +20,5 @@
  <objecttype name="flying_snowball_path" color="#ffff00"/>
  <objecttype name="moving_platform_path" color="#5500ff"/>
  <objecttype name="circoflame" color="#ff0000"/>
+ <objecttype name="timeline_switcher" color="#00ffff"/>
 </objecttypes>

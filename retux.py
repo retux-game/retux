@@ -108,6 +108,23 @@ PLAYER_HITSTUN = 120
 PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
 PLAYER_DIE_FALL_SPEED = 8
 
+SNOWMAN_WALK_SPEED = 1
+SNOWMAN_STRONG_WALK_SPEED = 3
+SNOWMAN_FINAL_WALK_SPEED = 5
+SNOWMAN_STUNNED_WALK_SPEED = 5
+SNOWMAN_ACCELERATION = 0.05
+SNOWMAN_STRONG_ACCELERATION = 0.1
+SNOWMAN_FINAL_ACCELERATION = 1
+SNOWMAN_HOP_HEIGHT = 2 * TILE_SIZE
+SNOWMAN_JUMP_HEIGHT = 7 * TILE_SIZE
+SNOWMAN_JUMP_TRIGGER = 2 * TILE_SIZE
+SNOWMAN_STOMP_DELAY = 15
+SNOWMAN_WALK_FRAMES_PER_PIXEL = 1 / 4
+SNOWMAN_HP = 5
+SNOWMAN_STRONG_STAGE = 2
+SNOWMAN_FINAL_STAGE = 3
+SNOWMAN_HITSTUN = 120
+
 MAX_HP = 5
 TIMER_FRAMES = 40
 HEAL_COINS = 20
@@ -284,15 +301,22 @@ class Level(sge.Room):
         self.time_bonus = time_bonus
         self.spawn = spawn
         self.points = 0
-        self.timeline = {}
         self.timeline_objects = {}
-        self.timeline_step = 0
         self.warps = []
         self.shake_queue = 0
 
         if bgname is not None:
             background = backgrounds.get(bgname, background)
 
+        self.load_timeline(timeline)
+
+        super(Level, self).__init__(objects, width, height, views, background,
+                                    background_x, background_y)
+        self.add(gui_handler)
+
+    def load_timeline(self, timeline):
+        self.timeline = {}
+        self.timeline_step = 0
         if timeline is not None:
             fname = os.path.join(DATA, "timelines", timeline)
             with open(fname, 'r') as f:
@@ -300,10 +324,6 @@ class Level(sge.Room):
 
             for i in jt:
                 self.timeline[eval(i)] = jt[i]
-
-        super(Level, self).__init__(objects, width, height, views, background,
-                                    background_x, background_y)
-        self.add(gui_handler)
 
     def add_timeline_object(self, obj):
         if obj.ID is not None:
@@ -1198,7 +1218,7 @@ class Player(xsge_physics.Collider):
 
         self.destroy()
 
-    def win_level(self):
+    def win_level(self, victory_walk=True):
         for obj in sge.game.current_room.objects:
             if isinstance(obj, WinPuffObject) and obj.active:
                 obj.win_puff()
@@ -1213,10 +1233,11 @@ class Player(xsge_physics.Collider):
         self.sneak_pressed = True
         self.jump_release()
 
-        if self.xvelocity >= 0:
-            self.right_pressed = True
-        else:
-            self.left_pressed = True
+        if victory_walk:
+            if self.xvelocity >= 0:
+                self.right_pressed = True
+            else:
+                self.left_pressed = True
 
         if "timer" in sge.game.current_room.alarms:
             del sge.game.current_room.alarms["timer"]
@@ -1850,6 +1871,17 @@ class InteractiveObject(sge.Object):
         if self.bbox_top > sge.game.current_room.height + self.active_range:
             self.destroy()
 
+    def get_nearest_player(self):
+        player = None
+        dist = 0
+        for obj in sge.game.current_room.objects:
+            if isinstance(obj, Player):
+                ndist = math.hypot(self.x - obj.x, self.y - obj.y)
+                if player is None or ndist < dist:
+                    player = obj
+                    dist = ndist
+        return player
+
     def set_direction(self, direction):
         self.image_xscale = abs(self.image_xscale) * direction
 
@@ -2011,8 +2043,7 @@ class FallingObject(InteractiveCollider):
                 if self.yvelocity > 0:
                     self.yvelocity = 0
                     self.stop_down()
-            else:
-                assert on_slope
+            elif on_slope:
                 self.yvelocity = self.slide_speed * (on_slope[0].bbox_height /
                                                      on_slope[0].bbox_width)
         else:
@@ -2043,15 +2074,7 @@ class WalkingObject(FallingObject):
         super(WalkingObject, self).move()
 
         if not self.xvelocity:
-            player = None
-            dist = 0
-            for obj in sge.game.current_room.objects:
-                if isinstance(obj, Player):
-                    ndist = math.hypot(self.x - obj.x, self.y - obj.y)
-                    if player is None or ndist < dist:
-                        player = obj
-                        dist = ndist
-
+            player = self.get_nearest_player()
             if player is not None:
                 self.set_direction(1 if self.x < player.x else -1)
             else:
@@ -2463,15 +2486,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
         elif self.had_xv:
             self.had_xv = False
         else:
-            player = None
-            dist = 0
-            for obj in sge.game.current_room.objects:
-                if isinstance(obj, Player):
-                    ndist = math.hypot(self.x - obj.x, self.y - obj.y)
-                    if player is None or ndist < dist:
-                        player = obj
-                        dist = ndist
-
+            player = self.get_nearest_player()
             if player is not None:
                 if self.x < player.x:
                     self.image_xscale = abs(self.image_xscale)
@@ -3023,6 +3038,190 @@ class CircoflameCenter(InteractiveObject):
             y = math.sin(math.radians(self.pos)) * self.radius
             self.flame.x = self.x + x
             self.flame.y = self.y + y
+
+
+class Snowman(FallingObject):
+
+    burnable = True
+    freezable = True
+    knockable = True
+
+    def __init__(self, x, y, ID="boss", **kwargs):
+        self.ID = ID
+        self.stage = 0
+        self.hp = SNOWMAN_HP
+        self.stunned = False
+        self.stun_time = 0
+        self.fixed_movement = False
+        self.fixed_sprite = False
+        self.killer = None
+        kwargs["sprite"] = snowman_stand_sprite
+        super(Snowman, self).__init__(x, y, **kwargs)
+
+    def event_create(self):
+        super(Snowman, self).event_create()
+        sge.game.current_room.add_timeline_object(self)
+
+    def jump(self):
+        play_sound(bigjump_sound)
+        self.yvelocity = get_jump_speed(SNOWMAN_JUMP_HEIGHT, self.gravity)
+
+    def next_stage(self):
+        self.xvelocity = 0
+        self.xacceleration = 0
+        if self.stage == SNOWMAN_FINAL_STAGE:
+            self.kill()
+        else:
+            play_sound(bigjump_sound)
+            self.yvelocity = get_jump_speed(SNOWMAN_HOP_HEIGHT, self.gravity)
+            self.stage += 1
+            self.hp = SNOWMAN_HP
+
+    def kill(self):
+        play_sound(fall_sound)
+        DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
+                       yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
+                       image_xscale=self.image_xscale,
+                       image_yscale=-abs(self.image_yscale))
+        self.destroy()
+
+    def move(self):
+        super(Snowman, self).move()
+
+        if not self.fixed_movement:
+            self.xacceleration = 0
+            if self.stage > 0:
+                if self.get_bottom_touching_wall():
+                    can_jump = False
+                    if self.stage >= SNOWMAN_FINAL_STAGE:
+                        walk_speed = SNOWMAN_FINAL_WALK_SPEED
+                        accel = SNOWMAN_FINAL_ACCELERATION
+                    elif self.stage >= SNOWMAN_STRONG_STAGE:
+                        walk_speed = SNOWMAN_STRONG_WALK_SPEED
+                        accel = SNOWMAN_STRONG_ACCELERATION
+                        can_jump = True
+                    else:
+                        walk_speed = SNOWMAN_WALK_SPEED
+                        accel = SNOWMAN_ACCELERATION
+
+                    player = self.get_nearest_player()
+                    if player is not None:
+                        d = player.x - self.x
+                        if (abs(self.xvelocity) < walk_speed or
+                                (self.xvelocity > 0) != (d > 0)):
+                            self.xacceleration = math.copysign(accel, d)
+                        else:
+                            self.xvelocity = math.copysign(walk_speed, d)
+
+                        if (can_jump and self.yvelocity == 0 and
+                                self.y - player.y >= SNOWMAN_JUMP_TRIGGER):
+                            self.jump()
+            else:
+                player = self.get_nearest_player()
+                if player is not None:
+                    self.image_xscale = math.copysign(self.image_xscale,
+                                                      player.x - self.x)
+
+    def stop_left(self):
+        self.xvelocity = abs(self.xvelocity)
+
+    def stop_right(self):
+        self.xvelocity = -abs(self.xvelocity)
+
+    def stop_up(self):
+        self.yvelocity = 0
+
+    def stop_down(self):
+        if self.stage > 0 and self.yvelocity > 1:
+            play_sound(brick_sound)
+            self.xvelocity = 0
+            self.yvelocity = 0
+            self.xacceleration = 0
+            sge.game.current_room.shake(3)
+            self.fixed_movement = True
+            self.fixed_sprite = False
+            self.stunned = False
+            self.alarms["fixed_movement"] = SNOWMAN_STOMP_DELAY
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.stomp_jump(self)
+        if not self.stunned:
+            play_sound(stomp_sound)
+            self.knock(other)
+
+    def burn(self):
+        if self.stage <= 0:
+            self.stage = 1
+
+        play_sound(sizzle_sound)
+        self.hp -= 1
+        if self.hp <= 0:
+            self.next_stage()
+
+    def knock(self, other=None):
+        self.killer = other
+        self.stunned = True
+        self.fixed_movement = True
+        self.fixed_sprite = True
+        self.sprite = snowman_hurt_walk_sprite
+        self.xvelocity = 0
+        self.xacceleration = 0
+        self.image_speed = 0
+        self.alarms["stun_start"] = SNOWMAN_STOMP_DELAY
+
+    def touch_death(self):
+        self.kill()
+
+    def event_step(self, time_passed, delta_mult):
+        super(Snowman, self).event_step(time_passed, delta_mult)
+
+        if not self.fixed_sprite:
+            if self.was_on_floor:
+                speed = abs(self.xvelocity)
+                if speed > 0:
+                    self.sprite = snowman_walk_sprite
+                    self.image_speed = (speed * SNOWMAN_WALK_FRAMES_PER_PIXEL)
+                else:
+                    self.sprite = snowman_stand_sprite
+            else:
+                self.sprite = snowman_jump_sprite
+
+        if self.xvelocity:
+            self.image_xscale = math.copysign(self.image_xscale,
+                                              self.xvelocity)
+
+    def event_alarm(self, alarm_id):
+        if alarm_id == "fixed_movement":
+            self.fixed_movement = False
+        elif alarm_id == "stun_start":
+            self.image_speed = (SNOWMAN_STUNNED_WALK_SPEED *
+                                SNOWMAN_WALK_FRAMES_PER_PIXEL)
+            self.xvelocity = math.copysign(SNOWMAN_STUNNED_WALK_SPEED,
+                                           self.image_xscale)
+            self.alarms["stun"] = SNOWMAN_HITSTUN
+        elif alarm_id == "stun":
+            self.next_stage()
+
+    def event_destroy(self):
+        if self.killer is not None:
+            self.killer.win_level(False)
+        else:
+            self.get_nearest_player().win_level(False)
+
+
+class TimelineSwitcher(InteractiveObject):
+
+    def __init__(self, x, y, timeline=None, **kwargs):
+        self.timeline = timeline
+        kwargs["visible"] = False
+        super(TimelineSwitcher, self).__init__(x, y, **kwargs)
+
+    def touch(self, other):
+        sge.game.current_room.load_timeline(self.timeline)
+        self.destroy()
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -5171,6 +5370,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "icicle": Icicle,
          "krush": Krush, "krosh": Krosh, "circoflame": CircoflamePath,
+         "snowman": Snowman, "timeline_switcher": TimelineSwitcher,
          "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
          "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
          "rusty_spring": RustySpring, "brick": Brick, "coinbrick": CoinBrick,
@@ -5309,6 +5509,21 @@ krosh_sprite = sge.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,
 circoflame_sprite = sge.Sprite("circoflame", d, origin_x=16, origin_y=16,
                                fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                bbox_height=16)
+snowman_stand_sprite = sge.Sprite("snowman_stand", d, origin_x=28, origin_y=43,
+                                  bbox_x=-14, bbox_y=-40, bbox_width=28,
+                                  bbox_height=72)
+snowman_walk_sprite = sge.Sprite("snowman_walk", d, origin_x=28, origin_y=43,
+                                 bbox_x=-14, bbox_y=-40, bbox_width=28,
+                                 bbox_height=72)
+snowman_jump_sprite = sge.Sprite("snowman_jump", d, origin_x=28, origin_y=43,
+                                 bbox_x=-14, bbox_y=-40, bbox_width=28,
+                                 bbox_height=72)
+snowman_hurt_walk_sprite = sge.Sprite("snowman_hurt_walk", d, origin_x=28,
+                                      origin_y=43, bbox_x=-14, bbox_y=-8,
+                                      bbox_width=28, bbox_height=40)
+snowman_hurt_jump_sprite = sge.Sprite("snowman_hurt_jump", d, origin_x=28,
+                                      origin_y=43, bbox_x=-14, bbox_y=-8,
+                                      bbox_width=28, bbox_height=40)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)
@@ -5522,6 +5737,7 @@ pause_sprite = sge.Sprite.from_text(font_big, "Paused",
 
 # Load sounds
 jump_sound = sge.Sound(os.path.join(DATA, "sounds", "jump.wav"))
+bigjump_sound = sge.Sound(os.path.join(DATA, "sounds", "bigjump.wav"))
 skid_sound = sge.Sound(os.path.join(DATA, "sounds", "skid.wav"), 50)
 hurt_sound = sge.Sound(os.path.join(DATA, "sounds", "hurt.wav"))
 kill_sound = sge.Sound(os.path.join(DATA, "sounds", "kill.wav"))

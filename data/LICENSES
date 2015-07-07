@@ -151,14 +151,8 @@ images/objects/enemies/snowman_body_walk-5.png
 images/objects/enemies/snowman_body_walk-6.png
 images/objects/enemies/snowman_body_walk-7.png
 images/objects/enemies/snowman_body_walk-8.png
-images/objects/enemies/snowman_hurt-1.png
-images/objects/enemies/snowman_hurt-2.png
-images/objects/enemies/snowman_hurt-3.png
-images/objects/enemies/snowman_hurt-4.png
-images/objects/enemies/snowman_hurt-5.png
-images/objects/enemies/snowman_hurt-6.png
-images/objects/enemies/snowman_hurt-7.png
-images/objects/enemies/snowman_hurt-8.png
+images/objects/enemies/snowman_jump.png
+images/objects/enemies/snowman_stand.png
 images/objects/enemies/snowman_walk-1.png
 images/objects/enemies/snowman_walk-2.png
 images/objects/enemies/snowman_walk-3.png
@@ -267,7 +261,7 @@ images/tiles/tileset_ice.png
 images/tiles/tileset_icyisland.png
 images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
-images/tiles/tileset_spikes.png
+images/tiles/tileset_snowman.png
 images/worldmap/level_complete.png
 images/worldmap/level_incomplete-01.png
 images/worldmap/level_incomplete-02.png
@@ -318,6 +312,28 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
 Details:
   SuperTux logo is by the SuperTux development team.  Letters from the
   SuperTux logo were re-arranged to spell "reTux" by onpon4.
+
+------------------------------------------------------------------------
+
+images/objects/enemies/snowman_hurt_jump.png
+images/objects/enemies/snowman_hurt_walk-1.png
+images/objects/enemies/snowman_hurt_walk-2.png
+images/objects/enemies/snowman_hurt_walk-3.png
+images/objects/enemies/snowman_hurt_walk-4.png
+images/objects/enemies/snowman_hurt_walk-5.png
+images/objects/enemies/snowman_hurt_walk-6.png
+images/objects/enemies/snowman_hurt_walk-7.png
+images/objects/enemies/snowman_hurt_walk-8.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  onpon4 <https://onpon4.github.io>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Details:
+  This is the result of pasting the dead snowball sprite onto the
+  snowman body. This work was done by onpon4; everything else was done
+  by the authors of the respective source sprites.
 
 ------------------------------------------------------------------------
 
