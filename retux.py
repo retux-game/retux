@@ -167,6 +167,7 @@ ICEBLOCK_GRAVITY = 0.6
 ICEBLOCK_FALL_SPEED = 10
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
+JUMPY_BOUNCE_HEIGHT = TILE_SIZE * 4
 BOMB_GRAVITY = 0.6
 BOMB_TICK_TIME = 8
 EXPLOSION_TIME = FPS * 3 / 4
@@ -211,6 +212,7 @@ ICE_REFREEZE_RATE = 2/3
 
 ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 800
+BULLET_ACTIVE_RANGE = 200
 ROCK_ACTIVE_RANGE = 800
 TILE_ACTIVE_RANGE = 928
 DEATHZONE = 2 * TILE_SIZE
@@ -2302,6 +2304,9 @@ class BouncingSnowball(WalkingSnowball):
         self.bbox_width = None
         self.bbox_height = None
 
+    def stop_up(self):
+        self.yvelocity = 0
+
     def stop_down(self):
         self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
 
@@ -2402,9 +2407,11 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         other.stomp_jump(self)
         play_sound(stomp_sound)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
-        TickingBomb.create(self.x, self.y, self.z, sprite=bomb_ticking_sprite,
-                           image_xscale=self.image_xscale,
-                           image_yscale=self.image_yscale)
+        tb = TickingBomb.create(self.x, self.y, self.z,
+                                sprite=bomb_ticking_sprite,
+                                image_xscale=self.image_xscale,
+                                image_yscale=self.image_yscale)
+        tb.thrower = other
         self.destroy()
 
     def knock(self, other=None):
@@ -2462,8 +2469,11 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     def touch_hurt(self):
         pass
 
+    def stop_up(self):
+        self.yvelocity = 0
+
     def stop_down(self):
-        self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
+        self.yvelocity = get_jump_speed(JUMPY_BOUNCE_HEIGHT, self.gravity)
 
 
 class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
@@ -2714,11 +2724,14 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
         if other.pickup(self):
             self.thrower = other
             self.gravity = 0
+            self.xvelocity = 0
+            self.yvelocity = 0
             if other.action_pressed:
                 other.action()
 
     def burn(self):
-        Explosion.create(self.x, self.y, self.z)
+        e = Explosion.create(self.x, self.y, self.z)
+        e.detonator = self.thrower
         self.destroy()
 
     def freeze(self):
@@ -2787,11 +2800,14 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
         self.destroy()
 
     def event_animation_end(self):
-        Explosion.create(self.x, self.y, self.z)
+        e = Explosion.create(self.x, self.y, self.z)
+        e.detonator = self.thrower
         self.destroy()
 
 
 class Explosion(InteractiveObject):
+
+    detonator = None
 
     def event_create(self):
         super(Explosion, self).event_create()
@@ -2818,8 +2834,14 @@ class Explosion(InteractiveObject):
         self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.burnable:
-            other.burn()
+        if isinstance(other, InteractiveObject):
+            if other.burnable:
+                other.burn()
+            if other.knockable:
+                other.knock(self.detonator)
+        if isinstance(other, HittableBlock):
+            if self.detonator is not None:
+                other.hit(self.detonator)
 
         super(Explosion, self).event_collision(other, xdirection, ydirection)
 
@@ -3393,6 +3415,7 @@ class IceFlower(FallingObject, WinPuffObject):
 
 class ThrownFlower(FallingObject, WinPuffObject):
 
+    active_range = BULLET_ACTIVE_RANGE
     fall_speed = FLOWER_FALL_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
@@ -3434,6 +3457,7 @@ class ThrownFlower(FallingObject, WinPuffObject):
 
 class Fireball(FallingObject):
 
+    active_range = BULLET_ACTIVE_RANGE
     gravity = FIREBALL_GRAVITY
     fall_speed = FIREBALL_FALL_SPEED
 
@@ -3477,6 +3501,8 @@ class Fireball(FallingObject):
 
 
 class IceBullet(InteractiveObject, xsge_physics.Collider):
+
+    active_range = BULLET_ACTIVE_RANGE
 
     def stop_left(self):
         self.destroy()
@@ -3635,6 +3661,12 @@ class Rock(FallingObject, xsge_physics.MobileColliderWall,
 
     def stop_up(self):
         self.yvelocity = 0
+
+    def touch_hurt(self):
+        pass
+
+    def touch_death(self):
+        pass
 
     def event_end_step(self, time_passed, delta_mult):
         if (self.yvelocity >= 0 and
