@@ -207,7 +207,7 @@ ICEBULLET_SPEED = 8
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
 
-ICE_CRACK_TIME = 60
+ICE_CRACK_TIME = 20
 ICE_REFREEZE_RATE = 2/3
 
 ENEMY_ACTIVE_RANGE = 32
@@ -4348,10 +4348,23 @@ class Warp(WarpSpawn):
 class MovingObjectPath(xsge_path.PathLink):
 
     cls = None
+    default_speed = ENEMY_WALK_SPEED
+    default_accel = None
+    default_decel = None
+    default_loop = None
 
     def __init__(self, x, y, path_speed=ENEMY_WALK_SPEED, path_accel=None,
                  path_decel=None, path_loop=None, path_id=None, prime=False,
                  parent=None, **kwargs):
+        if path_speed is None:
+            path_speed = self.default_speed
+        if path_accel is None:
+            path_accel = self.default_accel
+        if path_decel is None:
+            path_decel = self.default_decel
+        if path_loop is None:
+            path_loop = self.default_loop
+
         self.path_speed = path_speed
         self.path_accel = path_accel if path_accel != -1 else None
         self.path_decel = path_decel if path_decel != -1 else None
@@ -4384,11 +4397,17 @@ class MovingObjectPath(xsge_path.PathLink):
 class MovingPlatformPath(MovingObjectPath):
 
     cls = "moving_platform"
+    default_speed = 1.5
+    default_accel = 0.05
+    defaul_decel = 0.05
 
 
 class FlyingSnowballPath(MovingObjectPath):
 
     cls = "flying_snowball"
+    default_speed = ENEMY_WALK_SPEED
+    default_accel = 0.05
+    default_decel = 0.05
 
 
 class CircoflamePath(xsge_path.Path):
