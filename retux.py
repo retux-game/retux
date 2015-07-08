@@ -1455,12 +1455,12 @@ class Player(xsge_physics.Collider):
             else:
                 self.view.x = view_target_x
 
-        view_min_y = self.y - self.view.height + CAMERA_MARGIN_BOTTOM
-        view_max_y = self.y - CAMERA_MARGIN_TOP
-        if self.view.y < view_min_y:
-            self.view.y = view_min_y
-        elif self.view.y > view_max_y:
-            self.view.y = view_max_y
+            view_min_y = self.y - self.view.height + CAMERA_MARGIN_BOTTOM
+            view_max_y = self.y - CAMERA_MARGIN_TOP
+            if self.view.y < view_min_y:
+                self.view.y = view_min_y
+            elif self.view.y > view_max_y:
+                self.view.y = view_max_y
 
         self.last_x = self.x
         self.last_y = self.y
@@ -1584,13 +1584,13 @@ class Player(xsge_physics.Collider):
                     warp.warp(self)
 
         # Prevent moving off-screen to the right or left
-        if self.bbox_left < 0:
-            self.bbox_left = 0
-        elif self.bbox_right > sge.game.current_room.width:
-            self.bbox_right = sge.game.current_room.width
+        if self.bbox_left < self.view.x:
+            self.bbox_left = self.view.x
+        elif self.bbox_right > self.view.x + self.view.width:
+            self.bbox_right = self.view.x + self.view.width
 
         # Off-screen death
-        if self.bbox_top > sge.game.current_room.height + DEATHZONE:
+        if self.bbox_top > self.view.y + self.view.height + DEATHZONE:
             self.kill(False)
 
     def event_step_warp(self, time_passed, delta_mult):
@@ -2494,7 +2494,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
         self.bbox_height = None
 
     def move(self):
-        if self.xvelocity:
+        if abs(self.xvelocity) >= 0.05:
             self.had_xv = True
             self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
         elif self.had_xv:
@@ -2941,7 +2941,7 @@ class FallingIcicle(FallingObject):
 
 class Crusher(FallingObject):
 
-    burnble = True
+    burnable = True
     freezable = True
     gravity = 0
     fall_speed = CRUSHER_FALL_SPEED
@@ -3181,7 +3181,7 @@ class Snowman(FallingObject):
 
     def stomp(self, other):
         other.stomp_jump(self)
-        if not self.stunned:
+        if self.stage > 0 and not self.stunned:
             play_sound(stomp_sound)
             self.knock(other)
 
@@ -3193,16 +3193,17 @@ class Snowman(FallingObject):
                 self.next_stage()
 
     def knock(self, other=None):
-        self.killer = other
-        self.stunned = True
-        self.fixed_sprite = True
-        self.sprite = snowman_hurt_walk_sprite
-        self.xvelocity = 0
-        self.xacceleration = 0
-        self.image_speed = 0
-        if self.yvelocity < 0:
-            self.yvelocity = 0
-        self.alarms["stun_start"] = SNOWMAN_STOMP_DELAY
+        if self.stage > 0:
+            self.killer = other
+            self.stunned = True
+            self.fixed_sprite = True
+            self.sprite = snowman_hurt_walk_sprite
+            self.xvelocity = 0
+            self.xacceleration = 0
+            self.image_speed = 0
+            if self.yvelocity < 0:
+                self.yvelocity = 0
+            self.alarms["stun_start"] = SNOWMAN_STOMP_DELAY
 
     def touch_death(self):
         self.kill()

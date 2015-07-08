@@ -22,7 +22,7 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07sJgFAURMFrAVZiA3Zt+NozMVT8gOhbZmDzTU7Vc+3Cetb7f+CcziGfziGfziGfziGfziGfziGfziGfzuE9y9cHNjqHfDqHfDonxWyHaz/4YLa3aahbRjOL3wrjzlEg
+   eJzt0LEJACEURMFvAVZiA3ZtaHvXwAlqosgMvHzZiH19IgAAAAAAAAAA4F87PQAAAC5TNcw/urWSYkmW9HwfutpH1Q==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -33,83 +33,10 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="7456" y="0" width="32" height="416"/>
-  <object type="timeline_switcher" x="2016" y="0" width="32" height="416">
-   <properties>
-    <property name="timeline" value="boss_start.json"/>
-   </properties>
-  </object>
-  <object type="solid_right" x="1760" y="0" width="32" height="416"/>
-  <object type="solid_left" x="2272" y="0" width="32" height="416"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items">
-  <object gid="294" x="1760" y="416">
-   <properties>
-    <property name="ID" value="bossblock1"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="384">
-   <properties>
-    <property name="ID" value="bossblock2"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="352">
-   <properties>
-    <property name="ID" value="bossblock3"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="320">
-   <properties>
-    <property name="ID" value="bossblock4"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="288">
-   <properties>
-    <property name="ID" value="bossblock5"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="256">
-   <properties>
-    <property name="ID" value="bossblock6"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="224">
-   <properties>
-    <property name="ID" value="bossblock7"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="192">
-   <properties>
-    <property name="ID" value="bossblock8"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="160">
-   <properties>
-    <property name="ID" value="bossblock9"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="128">
-   <properties>
-    <property name="ID" value="bossblock10"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="96">
-   <properties>
-    <property name="ID" value="bossblock11"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="64">
-   <properties>
-    <property name="ID" value="bossblock12"/>
-   </properties>
-  </object>
-  <object gid="294" x="1760" y="32">
-   <properties>
-    <property name="ID" value="bossblock13"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Items"/>
  <objectgroup name="NPCs">
   <object gid="301" x="512" y="96"/>
   <object gid="301" x="608" y="96"/>
@@ -126,8 +53,14 @@
   <object type="circoflame" x="1184" y="288">
    <polyline points="0,0 0,-32"/>
   </object>
-  <object gid="303" x="2176" y="448"/>
   <object gid="286" x="256" y="416"/>
+  <object type="flying_snowball_path" x="6432" y="288">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="6592" y="320">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+  <object gid="303" x="6176" y="448"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>

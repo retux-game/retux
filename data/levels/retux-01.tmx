@@ -3,23 +3,23 @@
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="1-1...?"/>
+  <property name="name" value="Not exactly 1:1"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
  <tileset firstgid="151" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="166" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="254" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="274" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="278" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="275" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="279" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07ENgDAAA8GwAiyT/SejoQfRwCt3kns3PwYAAAD807F9/QB4a9cvZOkXuvQLXfqFLv1Cl36hS7998xrr0W+fftd11+98OKDtBDlbA9A=
+   eJzt07ENgDAAA8EwAwyT/SejoQfRwCt3kns3PwYAAAD807F9/QB4a9cvZOkXuvQLXfqFLv1Cl36hS7998xrr0W+fftd11+98OKDtBAqiA9o=
   </data>
  </layer>
  <layer name="Middle Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmUsKwjAQhse1+FgJPreCrgVP4gk8Qa9U0J1e0RQaiUNSaxLz6v/BTxcWTcb5MpQSAQAAAAAMg5vIPfYiAABWPESesRcBALAC/gKQL/C3DOo2YFjA3/ypCf4OFfibNzXB3xCMRc5KZnGX8wb+5gt3F/7+j6XIRMmU0nBY+svPlyYXx+/W9RR6zA86d1Hb/7EXWSvZUBoOS3/5+dLkSvYOm3qq1D4L+R7d5G6JdU0F7q/qMJ97pnDXdTPz10h/T5r1VWTncFdPldproZ5DutyNWVPXPkw9qh8H+nSYzz1Ttqxmuplpm5VmbarDffdp6ql5e+Wfxf5ffCXEfr656/v3FyPqRXOvrz5MNdIPlxxZ3XQz3Weky5XDvuWZs2uvPs8cJJ28AEbGf0w=
+   eJztmUsKwjAQhse1+NiJz62ga8GTeAJP0CsVdKdXNIVG4pDUmsS8+n/w04VFk3G+DKVEAAAAAADD4CZyj70IAIAVD5Fn7EUAAKyAvwDkC/wtg7oNGBbwN39qgr9DBf7mTU3wNwRjkbOSWdzlvIG/+cLdhb//YykyUTKlNByW/vLzpcnF8bt1PYUe84POXdT2f+xF1ko2lIbD0l9+vjS5kr3Dpp4qtc9Cvkc3uVtiXVOB+6s6zOeeKdx13cz8NdLfk2Z9Fdk53NVTpfZaqOeQLndj1tS1D1OP6seBPh3mc8+ULauZbmbaZqVZm+pw332aemreXvlnsf8XXwmxn2/u+v79xYh60dzrqw9TjfTDJUdWN91M9xnpcuWwb3nm7NqrzzMHSScvSrJ/TQ==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -61,7 +61,7 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="3040" y="64">
    <properties>
-    <property name="dest" value="bonus1.tmx:bonus_enter"/>
+    <property name="dest" value="retux-bonus1.tmx:bonus_enter"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>
@@ -168,7 +168,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07ERABAUBcGvBQL9d6oFI+GZ3QouuSoAAAB422i3C4BT3b8Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qa+ff6XH41gI5YQDY
+   eJzt07ERABAUBcGvBgL9V6oFI+GZ3QouuSoAAAB422i3C4BT3b8Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qy7+Qa+ff6XH41gIOOADj
   </data>
  </layer>
 </map>

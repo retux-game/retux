@@ -13,12 +13,12 @@
  <objectgroup name="Spaces">
   <object gid="62" x="544" y="352">
    <properties>
-    <property name="level" value="1-1.tmx"/>
+    <property name="level" value="retux-01.tmx"/>
    </properties>
   </object>
   <object gid="62" x="416" y="352">
    <properties>
-    <property name="level" value="2d_better.tmx"/>
+    <property name="level" value="retux-02.tmx"/>
    </properties>
   </object>
   <object gid="62" x="416" y="224"/>

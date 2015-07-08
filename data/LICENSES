@@ -368,9 +368,13 @@ Source: http://powstudios.com/content/smoke-animation-pack-1
 objecttypes.xml
 images/backgrounds/castle-bottom.png
 levels/base.tmx
-levels/1-1.tmx
-levels/bonus1.tmx
+levels/retux-01.tmx
+levels/retux-02.tmx
+levels/retux-bonus1.tmx
+levels/test.tmx
 levels/special/title_screen.tmx
+levelsets/retux.json
+levelsets/test.json
 tilesets/blocks.tsx
 tilesets/cave.tsx
 tilesets/creatures.tsx
@@ -385,6 +389,7 @@ tilesets/snow.tsx
 tilesets/special_blocks.tsx
 timelines/title_demo.json
 worldmaps/base.tmx
+worldmaps/retux-01.tmx
 
 Author: onpon4 <https://onpon4.github.io>
 License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
