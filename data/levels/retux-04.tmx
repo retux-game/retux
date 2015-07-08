@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="May The Fourth Be With You"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="301" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowABNBhpb4f6qB2jdtDRDgsSMT0AAOBFA+I=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKhASzIwNqMpNnBSwcMAFWJBEo=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="416" width="800" height="32"/>
+  <object x="704" y="288" width="64" height="128"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="level_end" x="256" y="0" width="32" height="416"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="64" y="416"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowATaDDS3g71UTtG7aCzHTp0sJ8YAACjVQFv
+  </data>
+ </layer>
+</map>

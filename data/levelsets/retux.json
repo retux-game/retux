@@ -5,6 +5,8 @@
     ],
     "levels": [
         "retux-01.tmx",
-        "retux-02.tmx"
+        "retux-02.tmx",
+        "retux-03.tmx",
+        "retux-04.tmx"
     ]
 }

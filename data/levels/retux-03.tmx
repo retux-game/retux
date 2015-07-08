@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Take a Third Pipe"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="301" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="90" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAMBVGdRkfI/pPZ2gRSXRDvwe8/N4YkSVJuz+4Hf1h2RtiZYWeGnRl2ZnR3jmuvqvzPOkdx4hwi/gSK
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="90" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAOUAdiaSSshcYfbFibSv6mNwgB4nAgjmAgzp+E4kEDiDWJNIucuB2q4QwDaUDswkB5ejMDYnMqmDNcwxkE0MuQwYZdgTiQZr6nH8AVzgNdZsPKouGQlkEAVFa7MVCn/KBmPMHKouESzjBASvlBTr1HLh7J4Uyteo+YND8Uw3kXEO/GITdY68OhGM6HgPgwDjlahTOlZcxoONOnjBlq4czEyMDwiIG0cCZUftKq7YdsLnI44yv3qAksKMBcwHB+xQAJZ2zypgy0L2vJwZZIboTlR3L8r81IfBjz0hBLDYIwxYZlaOxvbBgAEq5Wtg==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="416" width="2880" height="32"/>
+  <object x="576" y="0" width="1440" height="32"/>
+  <object x="672" y="32" width="1344" height="64"/>
+  <object x="672" y="96" width="64" height="64"/>
+  <object x="736" y="96" width="1248" height="320"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="slope_bottomleft" x="608" y="32" width="64" height="32"/>
+  <object type="solid_top" x="2048" y="352" width="64" height="32"/>
+  <object type="solid_top" x="512" y="256" width="64" height="32"/>
+  <object type="solid_left" x="480" y="352" width="32" height="64"/>
+  <object type="level_end" x="2368" y="0" width="32" height="416"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="480" y="384">
+   <properties>
+    <property name="dest" value="retux-03b.tmx:enter"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="544" y="256">
+   <properties>
+    <property name="dest" value="retux-03b.tmx:enter"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="2080" y="416">
+   <properties>
+    <property name="spawn_id" value="level_end"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="64" y="416"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="90" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt0UENACAQA8FDDTzwrw8H8CskzChotlUAAGej3V7wh65zhM4ZOmfonKFzhs4Zu87TB09YmIMBbw==
+  </data>
+ </layer>
+</map>

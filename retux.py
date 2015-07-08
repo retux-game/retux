@@ -665,11 +665,17 @@ class Level(sge.Room):
         if fname in current_areas:
             return current_areas[fname]
         else:
-            r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
-                              types=TYPES)
-            r.fname = fname
-            current_areas[fname] = r
-            return r
+            try:
+                r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
+                                  types=TYPES)
+            except IOError as e:
+                m = "An error occurred when trying to load the level:\n\n{}".format(e)
+                xsge_gui.show_message(message=m, title="Error", buttons=["Ok"])
+                return None
+            else:
+                r.fname = fname
+                current_areas[fname] = r
+                return r
 
 
 class LevelRecorder(Level):
@@ -4202,27 +4208,31 @@ class WarpSpawn(xsge_path.Path):
                 if level_f == "__main__":
                     level_f = main_area
                 level = sge.game.current_room.__class__.load(level_f)
-                level.spawn = spawn
-                level.points = cr.points
+                if level is not None:
+                    level.spawn = spawn
+                    level.points = cr.points
 
-                for nobj in level.objects:
-                    if isinstance(nobj, Player):
-                        for cobj in cr.objects:
-                            if (isinstance(cobj, Player) and
-                                    cobj.player == nobj.player):
-                                nobj.hp = cobj.hp
-                                nobj.coins = cobj.coins
+                    for nobj in level.objects:
+                        if isinstance(nobj, Player):
+                            for cobj in cr.objects:
+                                if (isinstance(cobj, Player) and
+                                        cobj.player == nobj.player):
+                                    nobj.hp = cobj.hp
+                                    nobj.coins = cobj.coins
 
-                                held_object = cobj.held_object
-                                if held_object is not None:
-                                    cobj.drop_object()
-                                    cr.remove(held_object)
-                                    level.add(held_object)
-                                    nobj.pickup(held_object)
+                                    held_object = cobj.held_object
+                                    if held_object is not None:
+                                        cobj.drop_object()
+                                        cr.remove(held_object)
+                                        level.add(held_object)
+                                        nobj.pickup(held_object)
 
-                                break
+                                    break
 
-                level.start()
+                    level.start()
+                else:
+                    save_game()
+                    sge.game.start_room.start()
         else:
             play_sound(pipe_sound)
             self.warps_out.append(obj)
