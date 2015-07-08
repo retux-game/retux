@@ -476,12 +476,8 @@ class Level(sge.Room):
 
                         if command == "setattr":
                             args = arg.split(None, 2)
-                            if len(args) >= 2:
-                                if len(args) >= 3:
-                                    obj, name, value = args[:3]
-                                else:
-                                    obj = None
-                                    name, value = args[:2]
+                            if len(args) >= 3:
+                                obj, name, value = args[:3]
 
                                 try:
                                     value = int(value)
@@ -491,21 +487,23 @@ class Level(sge.Room):
                                     except ValueError:
                                         pass
 
-                                if obj is None:
-                                    setattr(self, name, value)
-                                elif obj in self.timeline_objects:
+                                if obj in self.timeline_objects:
                                     obj = self.timeline_objects[obj]()
                                     if obj is not None:
                                         setattr(obj, name, value)
+                                elif obj == "__level__":
+                                    setattr(self, name, value)
                         elif command == "call":
-                            args = arg.split()
+                            args = arg.split(None, 1)
                             if len(args) >= 2:
-                                if args[0] in self.timeline_objects:
-                                    obj = self.timeline_objects[args[0]]()
+                                obj, method = args[:2]
+
+                                if obj in self.timeline_objects:
+                                    obj = self.timeline_objects[obj]()
                                     if obj is not None:
-                                        for method in args[1:]:
-                                            getattr(obj, method,
-                                                    lambda: None)()
+                                        getattr(obj, method, lambda: None)()
+                                elif obj == "__level__":
+                                    getattr(self, method, lambda: None)()
                         elif command == "dialog":
                             args = arg.split(None, 1)
                             if len(args) >= 2:
@@ -515,6 +513,8 @@ class Level(sge.Room):
                         elif command == "play_music":
                             self.music = arg
                             play_music(arg)
+                        elif command == "timeline":
+                            self.load_timeline(arg)
                 del self.timeline[i]
             else:
                 break
@@ -2486,7 +2486,7 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
                      BurnableObject, WinPuffObject):
 
     freezable = True
-    had_xv = False
+    had_xv = 0
 
     def event_create(self):
         super(FlyingSnowball, self).event_create()
@@ -2500,11 +2500,11 @@ class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
         self.bbox_height = None
 
     def move(self):
-        if abs(self.xvelocity) >= 0.05:
-            self.had_xv = True
+        if abs(self.xvelocity) > abs(self.yvelocity):
             self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
-        elif self.had_xv:
-            self.had_xv = False
+            self.had_xv = 5
+        elif self.had_xv > 0:
+            self.had_xv -= 1
         else:
             player = self.get_nearest_player()
             if player is not None:
@@ -2843,7 +2843,7 @@ class Explosion(InteractiveObject):
         if isinstance(other, InteractiveObject):
             if other.burnable:
                 other.burn()
-            if other.knockable:
+            elif other.knockable:
                 other.knock(self.detonator)
         if isinstance(other, HittableBlock):
             if self.detonator is not None:
@@ -2997,6 +2997,12 @@ class Crusher(FallingObject):
     def event_alarm(self, alarm_id):
         if alarm_id == "crush_end":
             self.yvelocity = -CRUSHER_RISE_SPEED
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, InteractiveObject) and other.knockable:
+            other.knock(self)
+
+        super(Crusher, self).event_collision(other, xdirection, ydirection)
 
 
 class Krush(Crusher):
@@ -3247,18 +3253,6 @@ class Snowman(FallingObject):
             self.killer.win_level(False)
         else:
             self.get_nearest_player().win_level(False)
-
-
-class TimelineSwitcher(InteractiveObject):
-
-    def __init__(self, x, y, timeline=None, **kwargs):
-        self.timeline = timeline
-        kwargs["visible"] = False
-        super(TimelineSwitcher, self).__init__(x, y, **kwargs)
-
-    def touch(self, other):
-        sge.game.current_room.load_timeline(self.timeline)
-        self.destroy()
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -3795,6 +3789,69 @@ class RustySpring(Spring):
             self.destroy()
 
 
+class TimelineSwitcher(InteractiveObject):
+
+    def __init__(self, x, y, timeline=None, **kwargs):
+        self.timeline = timeline
+        kwargs["visible"] = False
+        super(TimelineSwitcher, self).__init__(x, y, **kwargs)
+
+    def touch(self, other):
+        sge.game.current_room.load_timeline(self.timeline)
+        self.destroy()
+
+
+class Iceblock(InteractiveObject, xsge_physics.Solid):
+
+    burnable = True
+
+    def event_create(self):
+        self.update_active()
+
+        self.sprite = iceblock_sprite
+        self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
+
+    def burn(self):
+        play_sound(sizzle_sound)
+        Smoke.create(self.x, self.y, self.z, sprite=iceblock_melt_sprite)
+        self.destroy()
+
+
+class BossBlock(InteractiveObject):
+
+    def __init__(self, x, y, ID=None, **kwargs):
+        self.ID = ID
+        kwargs["visible"] = False
+        super(BossBlock, self).__init__(x, y, **kwargs)
+
+    def event_create(self):
+        super(BossBlock, self).event_create()
+        sge.game.current_room.add_timeline_object(self)
+
+    def activate(self):
+        self.child = xsge_physics.Solid.create(
+            self.x, self.y, self.z, sprite=boss_block_sprite)
+        self.child.x += self.child.image_origin_x
+        self.child.y += self.child.image_origin_y
+        Smoke.create(self.child.x, self.child.y, z=(self.child.z + 0.5),
+                     sprite=item_spawn_cloud_sprite)
+        play_sound(pop_sound)
+
+    def deactivate(self):
+        if self.child is not None:
+            Smoke.create(self.child.x, self.child.y, z=self.child.z,
+                         sprite=smoke_plume_sprite)
+            self.child.destroy()
+            self.child = None
+            play_sound(pop_sound)
+
+
 class HittableBlock(xsge_physics.SolidBottom, Tile):
 
     hit_sprite = None
@@ -3996,35 +4053,6 @@ class ThinIce(xsge_physics.Solid):
             play_sound(random.choice(ice_crack_sounds))
         self.image_index += 1
         self.freeze_time = 0
-
-
-class BossBlock(InteractiveObject):
-
-    def __init__(self, x, y, ID=None, **kwargs):
-        self.ID = ID
-        kwargs["visible"] = False
-        super(BossBlock, self).__init__(x, y, **kwargs)
-
-    def event_create(self):
-        super(BossBlock, self).event_create()
-        sge.game.current_room.add_timeline_object(self)
-
-    def activate(self):
-        self.child = xsge_physics.Solid.create(
-            self.x, self.y, self.z, sprite=boss_block_sprite)
-        self.child.x += self.child.image_origin_x
-        self.child.y += self.child.image_origin_y
-        Smoke.create(self.child.x, self.child.y, z=(self.child.z + 0.5),
-                     sprite=item_spawn_cloud_sprite)
-        play_sound(pop_sound)
-
-    def deactivate(self):
-        if self.child is not None:
-            Smoke.create(self.child.x, self.child.y, z=self.child.z,
-                         sprite=smoke_plume_sprite)
-            self.child.destroy()
-            self.child = None
-            play_sound(pop_sound)
 
 
 class Lava(xsge_tmx.Decoration):
@@ -5469,15 +5497,16 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "icicle": Icicle,
          "krush": Krush, "krosh": Krosh, "circoflame": CircoflamePath,
-         "snowman": Snowman, "timeline_switcher": TimelineSwitcher,
-         "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
-         "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
-         "rusty_spring": RustySpring, "brick": Brick, "coinbrick": CoinBrick,
+         "snowman": Snowman, "fireflower": FireFlower, "iceflower": IceFlower,
+         "tuxdoll": TuxDoll, "rock": Rock, "fixed_spring": FixedSpring,
+         "spring": Spring, "rusty_spring": RustySpring,
+         "timeline_switcher": TimelineSwitcher, "iceblock": Iceblock,
+         "boss_block": BossBlock, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
          "hiddenblock": HiddenItemBlock, "infoblock": InfoBlock,
-         "thin_ice": ThinIce, "boss_block": BossBlock, "lava": Lava,
-         "lava_surface": LavaSurface, "goal": Goal, "goal_top": GoalTop,
-         "coin": Coin, "warp": Warp, "moving_platform_path": MovingPlatformPath,
+         "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
+         "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
+         "moving_platform_path": MovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "warp_spawn": WarpSpawn,
          "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
          "map_path": MapPath}
@@ -5687,6 +5716,8 @@ rusty_spring_dead_sprite = sge.Sprite(
 d = os.path.join(DATA, "images", "objects", "misc")
 platform_sprite = sge.Sprite("platform", d)
 rock_sprite = sge.Sprite("rock", d, origin_x=16, origin_y=16)
+iceblock_sprite = sge.Sprite("iceblock", d)
+iceblock_melt_sprite = sge.Sprite("iceblock_melt", d, fps=30)
 thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
 thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 boss_block_sprite = sge.Sprite("boss_block", d, origin_x=16, origin_y=16)

@@ -132,4 +132,10 @@
   </properties>
   <image width="32" height="32" source="../images/objects/misc/boss_block.png"/>
  </tile>
+ <tile id="21">
+  <properties>
+   <property name="cls" value="iceblock"/>
+  </properties>
+  <image width="32" height="32" source="../images/objects/misc/iceblock.png"/>
+ </tile>
 </tileset>

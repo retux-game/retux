@@ -10,19 +10,19 @@
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="301" source="../tilesets/krush.tsx"/>
- <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="296" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="300" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="302" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="303" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="304" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAUQ8HvNDqC+0/mBBYWIsQ7SJ/mVQEAAAAAwL9Ge/0AuK3rHOLpHPLpHPLpHPLpHPLpHPLtOp+HA/ItMF8D4g==
+   eJzt07EJACAUQ8HvNrqB+0/mBBYWIsQ7SJ/mVQEAAAAAwL9Ge/0AuK3rHOLpHPLpHPLpHPLpHPLpHPLtOp+HA/Itvz8D6g==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0LEJACEURMFvAVZiA3ZtaHvXwAlqosgMvHzZiH19IgAAAAAAAAAA4F87PQAAAC5TNcw/urWSYkmW9HwfutpH1Q==
+   eJzt0LEJACEURMFvAXZiAXZtaHvXwAlqosgMvHzZiH19IgAAAAAAAAAA4F87PQAAAC5TNcw/urWSYkmW9HwfvvJH1g==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -36,11 +36,27 @@
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="295" x="928" y="416"/>
+  <object gid="295" x="928" y="352"/>
+  <object gid="295" x="928" y="384"/>
+  <object gid="295" x="992" y="416"/>
+  <object gid="295" x="960" y="416"/>
+  <object gid="295" x="960" y="384"/>
+  <object gid="295" x="896" y="416"/>
+  <object gid="295" x="896" y="384"/>
+  <object gid="295" x="960" y="320"/>
+  <object gid="295" x="960" y="352"/>
+  <object gid="295" x="864" y="416"/>
+  <object gid="295" x="992" y="384"/>
+  <object gid="295" x="1024" y="416"/>
+  <object gid="295" x="1056" y="416"/>
+  <object gid="295" x="1088" y="416"/>
+ </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="301" x="512" y="96"/>
-  <object gid="301" x="608" y="96"/>
-  <object gid="301" x="704" y="96"/>
+  <object gid="302" x="512" y="96"/>
+  <object gid="302" x="608" y="96"/>
+  <object gid="302" x="704" y="96"/>
   <object type="circoflame" x="1184" y="288">
    <polyline points="0,0 0,-128"/>
   </object>
@@ -60,7 +76,14 @@
   <object type="flying_snowball_path" x="6592" y="320">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="303" x="6176" y="448"/>
+  <object gid="304" x="6176" y="448"/>
+  <object gid="6" x="1088" y="384"/>
+  <object gid="6" x="992" y="288"/>
+  <object gid="6" x="1024" y="352"/>
+  <object gid="6" x="800" y="416"/>
+  <object gid="6" x="736" y="416"/>
+  <object gid="6" x="672" y="416"/>
+  <object gid="6" x="896" y="352"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>
@@ -104,7 +127,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8EwDRTsPx9MkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuA1acAW8=
+   eJzt1LENACAMA8GwDRTsvx5MkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuA+lIAXg=
   </data>
  </layer>
 </map>
