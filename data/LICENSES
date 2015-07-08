@@ -409,7 +409,7 @@ tilesets/snow.tsx
 tilesets/special_blocks.tsx
 timelines/title_demo.json
 worldmaps/base.tmx
-worldmaps/retux-01.tmx
+worldmaps/retux-1.tmx
 
 Author: onpon4 <https://onpon4.github.io>
 License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
