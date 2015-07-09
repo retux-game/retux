@@ -283,6 +283,11 @@ class Game(sge.Game):
             self.event_close()
 
     def event_close(self):
+        if main_area is not None:
+            if level_timers.setdefault(main_area, 0) < 0:
+                score -= level_timers[main_area] * SECOND_POINTS
+                level_timers[main_area] = 0
+        save_game()
         self.end()
 
     def event_paused_close(self):
@@ -631,6 +636,9 @@ class Level(sge.Room):
             self.win_count_time = True
 
     def event_key_press(self, key, char):
+        global level_timers
+        global score
+
         if self.death_time is not None or "death" in self.alarms:
             if level_timers.setdefault(main_area, 0) >= 0:
                 sge.Music.stop()
@@ -643,6 +651,9 @@ class Level(sge.Room):
                 m = "Are you sure you want to quit?"
                 if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                          default=0):
+                    if level_timers.setdefault(main_area, 0) < 0:
+                        score -= level_timers[main_area] * SECOND_POINTS
+                        level_timers[main_area] = 0
                     save_game()
                     sge.game.start_room.start()
                 sge.game.mouse.visible = False
@@ -2721,6 +2732,7 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
 
 class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 
+    active_range = ICEBLOCK_ACTIVE_RANGE
     burnable = True
     freezable = True
     gravity = BOMB_GRAVITY
@@ -4259,6 +4271,10 @@ class WarpSpawn(xsge_path.Path):
 
                     level.start()
                 else:
+                    # Error occurred; restart the game.
+                    if level_timers.setdefault(main_area, 0) < 0:
+                        score -= level_timers[main_area] * SECOND_POINTS
+                        level_timers[main_area] = 0
                     save_game()
                     sge.game.start_room.start()
         else:

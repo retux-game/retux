@@ -9,30 +9,206 @@
  <tileset firstgid="151" source="../tilesets/cave.tsx"/>
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="301" source="../tilesets/krush.tsx"/>
- <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="274" name="special_blocks" tilewidth="32" tileheight="32">
+  <tile id="0">
+   <properties>
+    <property name="cls" value="emptyblock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_empty.png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="cls" value="itemblock"/>
+    <property name="item" value="fireflower"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_fireflower.png"/>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="cls" value="itemblock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_full-0.png"/>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="cls" value="itemblock"/>
+    <property name="item" value="iceflower"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_iceflower.png"/>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="cls" value="hiddenblock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_invisible.png"/>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="cls" value="itemblock"/>
+    <property name="item" value="rock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_rock.png"/>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="cls" value="itemblock"/>
+    <property name="item" value="spring"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_spring.png"/>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="cls" value="itemblock"/>
+    <property name="item" value="fixed_spring"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_spring_fixed.png"/>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="cls" value="itemblock"/>
+    <property name="item" value="tuxdoll"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/bonus_tuxdoll.png"/>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="cls" value="brick"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/brick.png"/>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="cls" value="coinbrick"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/brick_full.png"/>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="cls" value="coin"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/coin-0.png"/>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="cls" value="fireflower"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/fire_flower-0.png"/>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="cls" value="iceflower"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/ice_flower-0.png"/>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="cls" value="infoblock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/misc/infoblock.png"/>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="cls" value="rock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/misc/rock.png"/>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="cls" value="thin_ice"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/misc/thin_ice-2.png"/>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="cls" value="fixed_spring"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/spring/fixed_spring.png"/>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="cls" value="rusty_spring"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/spring/rusty_spring.png"/>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="cls" value="spring"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/spring/spring.png"/>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="cls" value="boss_block"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/misc/boss_block.png"/>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="cls" value="iceblock"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/misc/iceblock.png"/>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="cls" value="tuxdoll"/>
+   </properties>
+   <image width="32" height="32" source="../images/objects/bonus/tuxdoll.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="297" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="301" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="303" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="304" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="305" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztzsENABAQAEH9V6ADOvPUgktoQQgzyf43palEVdITAQAAAAAAAADAr9rpAWC7HuUVAABwnwGrEKMm
+   eJztzsENgCAQAMHrvwI60DqwGJ+24CXy4k8gMpPsfyM+R3ZK+kU1uwIAAAAAAAAAAPZzzx4Ahnuy0gIA1lW6gH28YRWnCw==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt2LEKwjAYhdG/OPr+YDeFFHyzjr5CI9hVl5bS6zlw9yTwLWlV1fqeBaR6Nz4dfQhgVzqHfDqHfDqHfDqHfDqHfDqHfDqHfDqHfGvnc99lOPgwwC7Wzl991975rc63cftngSjts/uJ9/h9TfhrLWD+F+C7BfqjbJ0=
+   eJztmUFOwzAQRSewg/uLwgZDUygCLgE3YYPEhivgqLVqDbWcTsbjOvlP+rvW9tjz46+kJ6Lea0sAgLmw3auPtKm6IjBn7movYKF8eH16rQk+B+V5rL2AhQKfA0uevFZet7UXsjDgc2DJ0GfO66HyOpYGfA4sCX2GHrMFPgda3FA+j8c+XwmFzH868DnQYPD4PeXzeNxnTihk/tOBz+fNq9cb07vyHMHjY3rnmQ7fcqV6UV5/YKhDmjFSWSM3plU2gc/10eiXVjJt7PGWeyfU4SaKZ43cmMPvLc4t5fNvr8uu8OQzRKtfpLLMtNzjLfmcP4t5HVLx+tcj/uOo/LmlfP7rdd3Vu5dautMCx/reWlY+S9Xais/5s7jU/o/xefxeUrt3L7rdnf1F/30+5R3JOYg/G61ydG2PS3wm3ZtUrRvheNYa6z/J/kvncXTI8Vq66nZ39g8d93nL4r1ulaNr1y3xuXRvcv167ip5BlPnsaj7D+l5QR0=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="0" y="0" width="64" height="448"/>
   <object x="64" y="384" width="1536" height="64"/>
+  <object x="1696" y="416" width="1920" height="32"/>
+  <object x="2528" y="384" width="1088" height="32"/>
+  <object x="2560" y="352" width="1056" height="32"/>
+  <object x="2592" y="320" width="1024" height="32"/>
+  <object x="3712" y="256" width="192" height="32"/>
+  <object x="3968" y="416" width="3968" height="32"/>
+  <object x="7936" y="0" width="64" height="448"/>
+  <object x="64" y="0" width="7872" height="32"/>
+  <object x="4416" y="384" width="224" height="32"/>
+  <object x="4448" y="352" width="192" height="32"/>
+  <object x="4480" y="320" width="160" height="32"/>
+  <object x="4512" y="288" width="128" height="32"/>
+  <object x="4544" y="256" width="96" height="32"/>
+  <object x="4576" y="224" width="64" height="32"/>
+  <object x="4864" y="64" width="32" height="64"/>
+  <object x="4864" y="128" width="96" height="96"/>
+  <object x="4864" y="224" width="576" height="64"/>
+  <object x="5952" y="352" width="736" height="64"/>
+  <object x="6080" y="320" width="608" height="32"/>
+  <object x="6112" y="288" width="576" height="32"/>
+  <object x="6784" y="288" width="288" height="32"/>
+  <object x="6784" y="320" width="352" height="64"/>
+  <object x="6784" y="384" width="416" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_right" x="96" y="320" width="32" height="64"/>
+  <object type="solid_left" x="7808" y="352" width="32" height="64"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="7808" y="384">
+   <properties>
+    <property name="dest" value="__main__:level_end"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn">
   <object x="64" y="352">
    <properties>
@@ -47,6 +223,53 @@
   <object gid="276" x="896" y="288"/>
   <object gid="276" x="928" y="288"/>
   <object gid="275" x="768" y="288"/>
+  <object gid="4" x="2016" y="416"/>
+  <object gid="276" x="2048" y="320"/>
+  <object gid="276" x="2112" y="320"/>
+  <object gid="284" x="3072" y="224"/>
+  <object gid="276" x="2944" y="224"/>
+  <object gid="276" x="2976" y="224"/>
+  <object gid="276" x="3200" y="224"/>
+  <object gid="276" x="3168" y="224"/>
+  <object gid="274" x="3104" y="224"/>
+  <object gid="274" x="3136" y="224"/>
+  <object gid="274" x="3008" y="224"/>
+  <object gid="274" x="3040" y="224"/>
+  <object gid="285" x="3712" y="224"/>
+  <object gid="285" x="3744" y="224"/>
+  <object gid="285" x="3776" y="224"/>
+  <object gid="285" x="3808" y="224"/>
+  <object gid="285" x="3840" y="224"/>
+  <object gid="285" x="3872" y="224"/>
+  <object gid="285" x="3744" y="160"/>
+  <object gid="285" x="3776" y="160"/>
+  <object gid="285" x="3808" y="160"/>
+  <object gid="285" x="3840" y="160"/>
+  <object gid="285" x="4992" y="192"/>
+  <object gid="285" x="5024" y="192"/>
+  <object gid="285" x="5056" y="192"/>
+  <object gid="285" x="5088" y="192"/>
+  <object gid="285" x="5120" y="192"/>
+  <object gid="285" x="5024" y="128"/>
+  <object gid="285" x="5056" y="128"/>
+  <object gid="285" x="5088" y="128"/>
+  <object gid="285" x="5248" y="192"/>
+  <object gid="285" x="5312" y="192"/>
+  <object gid="285" x="5280" y="192"/>
+  <object gid="285" x="5344" y="192"/>
+  <object gid="285" x="5376" y="192"/>
+  <object gid="285" x="5280" y="128"/>
+  <object gid="285" x="5312" y="128"/>
+  <object gid="285" x="5344" y="128"/>
+  <object gid="284" x="5184" y="160"/>
+  <object gid="295" x="6688" y="320"/>
+  <object gid="295" x="6720" y="320"/>
+  <object gid="295" x="6752" y="320"/>
+  <object gid="296" x="6720" y="416"/>
+  <object gid="276" x="6336" y="192"/>
+  <object gid="276" x="6368" y="192"/>
+  <object gid="276" x="6496" y="192"/>
+  <object gid="276" x="6528" y="192"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="448" y="384"/>
@@ -55,6 +278,41 @@
   <object gid="2" x="1504" y="384"/>
   <object gid="2" x="1440" y="384"/>
   <object gid="3" x="1280" y="384"/>
+  <object gid="9" x="2304" y="64"/>
+  <object gid="2" x="2656" y="320"/>
+  <object gid="2" x="2720" y="320"/>
+  <object gid="2" x="2880" y="320"/>
+  <object gid="2" x="2816" y="320"/>
+  <object gid="9" x="2368" y="64"/>
+  <object gid="9" x="1632" y="64"/>
+  <object gid="2" x="2144" y="416"/>
+  <object gid="2" x="2208" y="416"/>
+  <object gid="3" x="3200" y="192"/>
+  <object gid="9" x="3072" y="64"/>
+  <object gid="9" x="3744" y="64"/>
+  <object gid="9" x="3840" y="64"/>
+  <object gid="4" x="4608" y="224"/>
+  <object gid="4" x="4512" y="288"/>
+  <object gid="2" x="4288" y="416"/>
+  <object gid="2" x="4224" y="416"/>
+  <object gid="9" x="4928" y="320"/>
+  <object gid="9" x="5344" y="320"/>
+  <object gid="9" x="5216" y="320"/>
+  <object gid="9" x="5056" y="320"/>
+  <object gid="2" x="6048" y="352"/>
+  <object gid="2" x="5984" y="352"/>
+  <object gid="4" x="6144" y="288"/>
+  <object gid="4" x="6208" y="288"/>
+  <object gid="4" x="6912" y="288"/>
+  <object gid="4" x="6976" y="288"/>
+  <object gid="2" x="6784" y="288"/>
+  <object gid="2" x="6720" y="288"/>
+  <object gid="9" x="6432" y="64"/>
+  <object gid="9" x="6880" y="64"/>
+  <object gid="9" x="6944" y="64"/>
+  <object gid="4" x="7488" y="416"/>
+  <object gid="4" x="7744" y="416"/>
+  <object gid="4" x="7616" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="160" y="384"/>
