@@ -283,6 +283,9 @@ class Game(sge.Game):
             self.event_close()
 
     def event_close(self):
+        global level_timers
+        global score
+
         if main_area is not None:
             if level_timers.setdefault(main_area, 0) < 0:
                 score -= level_timers[main_area] * SECOND_POINTS
@@ -338,7 +341,7 @@ class Level(sge.Room):
             self.timeline_objects[obj.ID] = weakref.ref(obj)
 
     def add_points(self, x):
-        if self.fname not in cleared_levels:
+        if main_area not in cleared_levels:
             self.points += x
 
     def show_hud(self):
@@ -382,7 +385,7 @@ class Level(sge.Room):
 
         for obj in m.objects:
             if (isinstance(obj, MapSpace) and
-                    obj.level == self.fname):
+                    obj.level == main_area):
                 x = obj.x
                 y = obj.y
                 if obj.sprite:
@@ -402,9 +405,6 @@ class Level(sge.Room):
         self.add(coin_animation)
         self.add(bonus_animation)
 
-        if self.fname not in level_timers:
-            level_timers[self.fname] = self.time_bonus
-
         self.event_room_resume()
 
     def event_room_resume(self):
@@ -419,6 +419,9 @@ class Level(sge.Room):
 
         if main_area is None:
             main_area = self.fname
+
+        if main_area not in level_timers:
+            level_timers[main_area] = self.time_bonus
 
         players = []
         spawn_point = None
@@ -582,11 +585,12 @@ class Level(sge.Room):
                   "win_count_points" not in self.alarms and
                   "win_count_time" not in self.alarms and
                   "win" not in self.alarms):
+                if main_area not in cleared_levels:
+                    cleared_levels.append(main_area)
+
                 current_areas = {}
                 main_area = None
                 level_cleared = True
-                if self.fname not in cleared_levels:
-                    cleared_levels.append(self.fname)
 
                 if current_worldmap:
                     self.return_to_map()
@@ -1090,7 +1094,7 @@ class Player(xsge_physics.Collider):
         if self.held_object is not None:
             if value:
                 self.held_object.x = -666
-                self.held_object.y = -666
+                self.held_object.y = -666 * (self.player + 1)
             else:
                 self.held_object.x = self.x + self.held_object.image_origin_x
                 self.held_object.y = self.y
@@ -4239,12 +4243,15 @@ class WarpSpawn(xsge_path.Path):
             self.warps_out.remove(obj)
 
     def event_follow_end(self, obj):
-        if self.dest and (":" in self.dest or self.dest == "__map__"):
+        global level_timers
+        global score
+
+        if self.dest and (':' in self.dest or self.dest == "__map__"):
             if self.dest == "__map__":
                 sge.game.current_room.return_to_map()
             else:
                 cr = sge.game.current_room
-                level_f, spawn = self.dest.split(":", 1)
+                level_f, spawn = self.dest.split(':', 1)
                 if level_f == "__main__":
                     level_f = main_area
                 level = sge.game.current_room.__class__.load(level_f)
@@ -4804,8 +4811,8 @@ class MapWarp(MapSpace):
         global current_worldmap
         global current_worldmap_space
 
-        if self.dest and ":" in self.dest:
-            map_f, spawn = self.dest.split(":", 1)
+        if self.dest and ':' in self.dest:
+            map_f, spawn = self.dest.split(':', 1)
             current_worldmap = map_f
             current_worldmap_space = spawn
         else:
@@ -5406,13 +5413,26 @@ def load_levelset(fname):
     tuxdolls_available = []
 
     for level in levels:
-        r = Level.load(level)
-        for obj in r.objects:
-            if (isinstance(obj, TuxDoll) or
-                    (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
-                     obj.item == "tuxdoll")):
-                tuxdolls_available.append(level)
-                break
+        subrooms = [level]
+        already_checked = []
+
+        while subrooms:
+            subroom = subrooms.pop(0)
+            already_checked.append(subroom)
+            r = Level.load(subroom)
+            for obj in r.objects:
+                if (isinstance(obj, TuxDoll) or
+                        (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
+                         obj.item == "tuxdoll")):
+                    tuxdolls_available.append(level)
+                    subrooms = []
+                    break
+                elif isinstance(obj, Warp):
+                    if obj.dest and ':' in obj.dest:
+                        map_f = obj.dest.split(':', 1)[0]
+                        if (map_f not in subrooms and
+                                map_f not in already_checked):
+                            subrooms.append(map_f)
 
 
 def set_new_game():
