@@ -19,27 +19,37 @@
  <tileset firstgid="304" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
+   eJztw7ENAAAIA6Ce5f+XuXY2jpCQAAAAAADcTAUAAAAAAAAAAAAAAAAAAAAAAAAAAAD4sNYmAKk=
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJzt27FKA0EQBuDpRbRVia1RazVYq9gKwSfwCXz/wm2CBLJm4+b2Lpvvg787uLlibo5jJwIAAAAAAAAAOFQnKYuKnLUvGdjRRcppRWbtSwZ2tEx5y+Ql5WpL7tuXDOzRTehz6N2qz+9Cn0OvcvP8NX6/7T9Gqw7Yh1yfm+HQj9w/OjMcAAAAAAD+53zsAoDBXY9dAByx2r3S0jwXXvc57OPCUardKy3Ne+F1X2GfnX61mKmb8hDrZ1LnKbexfc8sl792VkryHfbZ6VeLmbopl7HeZ48pT1HXq0Ok9P3h7DxTNpU+OfR763Om7Ae5AzkM
+   eJzt3DtOw0AUheGLKBGCNiBoeaTmIWpAtEiIBso0ULItYBOwFEo2wdwiUmxl4uvMy4z/TzpSCsczKc44suwRqdOXy3fpSQBIip4D9aPnQP3oOVA/7fmPy+ZGvHNuxTsVgEDaR+35r352Pb+U7uwYzjtx2Y4UAGHW6eOB4bwPLrcLeYo9cQBmRy77PTNdY5wXoetAKbl6rug6UEbOniu6DuTXt+fPLveBY8boeshaA4xNn55rx18jjRvadXoO2M17fir5Oj6nXV+8J3/d47v0HLDzXc9vpNnB2B33zcWKngN2vp6X6JGv5+01RxN6jwAYk/bzLCV75Os5126gHvQcqN+Q/lsAAAAAAFDKbukJAEjusPQEgBHTPV8s+7yE5sp43GOC3/ju8rEinwnGBIYk5h5Mq3JnPG4mYeuJZd8poJQc19RlOZPmM6nHLidif8+sna53VrryJmHriWXfKaCUHNfUZdmTZs/OXS4krKspYl0/eL4NQzaUnvz3sek5huwPbspZrg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="0" y="832" width="960" height="64"/>
   <object x="1792" y="704" width="32" height="64"/>
-  <object x="1472" y="288" width="544" height="32"/>
   <object x="1696" y="320" width="224" height="160"/>
   <object x="1920" y="320" width="96" height="96"/>
   <object x="960" y="768" width="1152" height="128"/>
   <object x="2112" y="800" width="544" height="96"/>
+  <object x="1696" y="192" width="448" height="128"/>
+  <object x="2784" y="736" width="288" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_topright" x="2112" y="768" width="32" height="32"/>
+  <object type="slope_bottomright" x="2016" y="320" width="96" height="96"/>
+  <object type="solid_right" x="1792" y="128" width="32" height="64"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="1824" y="160">
+   <properties>
+    <property name="dest" value="retux-04b.tmx:bonus_enter"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
   <object gid="276" x="288" y="736"/>
@@ -48,10 +58,6 @@
   <object gid="276" x="448" y="736"/>
   <object gid="276" x="544" y="736"/>
   <object gid="276" x="576" y="736"/>
-  <object gid="274" x="2304" y="704"/>
-  <object gid="274" x="2336" y="704"/>
-  <object gid="274" x="2432" y="704"/>
-  <object gid="274" x="2464" y="704"/>
   <object gid="276" x="2368" y="704"/>
   <object gid="276" x="2400" y="704"/>
   <object gid="276" x="2496" y="704"/>
@@ -66,6 +72,12 @@
   <object gid="274" x="2432" y="576"/>
   <object gid="274" x="2464" y="576"/>
   <object gid="274" x="2496" y="576"/>
+  <object gid="283" x="2464" y="704"/>
+  <object gid="283" x="2432" y="704"/>
+  <object gid="283" x="2336" y="704"/>
+  <object gid="283" x="2304" y="704"/>
+  <object gid="283" x="1824" y="192"/>
+  <object gid="283" x="1824" y="160"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="1120" y="768"/>
@@ -88,6 +100,11 @@
   <object gid="2" x="2496" y="800"/>
   <object gid="2" x="2304" y="800"/>
   <object gid="2" x="2240" y="800"/>
+  <object gid="9" x="2912" y="576"/>
+  <object gid="9" x="2848" y="576"/>
+  <object gid="9" x="2976" y="576"/>
+  <object gid="3" x="3040" y="736"/>
+  <object gid="3" x="2976" y="736"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="832"/>

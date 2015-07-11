@@ -274,8 +274,8 @@
   <object gid="2" x="5312" y="416"/>
  </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="2" x="448" y="384"/>
   <object gid="2" x="512" y="384"/>
+  <object gid="2" x="576" y="384"/>
   <object gid="2" x="1568" y="384"/>
   <object gid="2" x="1504" y="384"/>
   <object gid="2" x="1440" y="384"/>

@@ -685,7 +685,11 @@ class Level(sge.Room):
                                   types=TYPES)
             except IOError as e:
                 m = "An error occurred when trying to load the level:\n\n{}".format(e)
-                xsge_gui.show_message(message=m, title="Error", buttons=["Ok"])
+                if sge.game.current_room is not None:
+                    xsge_gui.show_message(message=m, title="Error",
+                                          buttons=["Ok"])
+                else:
+                    print(m)
                 return None
             else:
                 r.fname = fname
@@ -5420,19 +5424,20 @@ def load_levelset(fname):
             subroom = subrooms.pop(0)
             already_checked.append(subroom)
             r = Level.load(subroom)
-            for obj in r.objects:
-                if (isinstance(obj, TuxDoll) or
-                        (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
-                         obj.item == "tuxdoll")):
-                    tuxdolls_available.append(level)
-                    subrooms = []
-                    break
-                elif isinstance(obj, Warp):
-                    if obj.dest and ':' in obj.dest:
-                        map_f = obj.dest.split(':', 1)[0]
-                        if (map_f not in subrooms and
-                                map_f not in already_checked):
-                            subrooms.append(map_f)
+            if r is not None:
+                for obj in r.objects:
+                    if (isinstance(obj, TuxDoll) or
+                            (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
+                             obj.item == "tuxdoll")):
+                        tuxdolls_available.append(level)
+                        subrooms = []
+                        break
+                    elif isinstance(obj, Warp):
+                        if obj.dest and ':' in obj.dest:
+                            map_f = obj.dest.split(':', 1)[0]
+                            if (map_f not in subrooms and
+                                    map_f not in already_checked):
+                                subrooms.append(map_f)
 
 
 def set_new_game():
