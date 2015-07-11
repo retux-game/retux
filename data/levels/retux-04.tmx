@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="28" tilewidth="32" tileheight="32">
  <properties>
+  <property name="background_y" value="448"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="May The Fourth Be With You"/>
@@ -11,38 +12,89 @@
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="301" source="../tilesets/krush.tsx"/>
- <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <tileset firstgid="296" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="300" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="302" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="303" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="304" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABNBhpb4f6qB2jdtDRDgsSMT0AAOBFA+I=
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhASzIwNqMpNnBSwcMAFWJBEo=
+   eJzt27FKA0EQBuDpRbRVia1RazVYq9gKwSfwCXz/wm2CBLJm4+b2Lpvvg787uLlibo5jJwIAAAAAAAAAOFQnKYuKnLUvGdjRRcppRWbtSwZ2tEx5y+Ql5WpL7tuXDOzRTehz6N2qz+9Cn0OvcvP8NX6/7T9Gqw7Yh1yfm+HQj9w/OjMcAAAAAAD+53zsAoDBXY9dAByx2r3S0jwXXvc57OPCUardKy3Ne+F1X2GfnX61mKmb8hDrZ1LnKbexfc8sl792VkryHfbZ6VeLmbopl7HeZ48pT1HXq0Ok9P3h7DxTNpU+OfR763Om7Ae5AzkM
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="0" y="416" width="800" height="32"/>
-  <object x="704" y="288" width="64" height="128"/>
+  <object x="0" y="832" width="960" height="64"/>
+  <object x="1792" y="704" width="32" height="64"/>
+  <object x="1472" y="288" width="544" height="32"/>
+  <object x="1696" y="320" width="224" height="160"/>
+  <object x="1920" y="320" width="96" height="96"/>
+  <object x="960" y="768" width="1152" height="128"/>
+  <object x="2112" y="800" width="544" height="96"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="level_end" x="256" y="0" width="32" height="416"/>
+  <object type="slope_topright" x="2112" y="768" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players">
-  <object gid="1" x="64" y="416"/>
+ <objectgroup name="Items">
+  <object gid="276" x="288" y="736"/>
+  <object gid="276" x="320" y="736"/>
+  <object gid="276" x="416" y="736"/>
+  <object gid="276" x="448" y="736"/>
+  <object gid="276" x="544" y="736"/>
+  <object gid="276" x="576" y="736"/>
+  <object gid="274" x="2304" y="704"/>
+  <object gid="274" x="2336" y="704"/>
+  <object gid="274" x="2432" y="704"/>
+  <object gid="274" x="2464" y="704"/>
+  <object gid="276" x="2368" y="704"/>
+  <object gid="276" x="2400" y="704"/>
+  <object gid="276" x="2496" y="704"/>
+  <object gid="276" x="2528" y="704"/>
+  <object gid="276" x="2272" y="704"/>
+  <object gid="276" x="2240" y="704"/>
+  <object gid="274" x="2272" y="576"/>
+  <object gid="274" x="2304" y="576"/>
+  <object gid="274" x="2336" y="576"/>
+  <object gid="274" x="2368" y="576"/>
+  <object gid="274" x="2400" y="576"/>
+  <object gid="274" x="2432" y="576"/>
+  <object gid="274" x="2464" y="576"/>
+  <object gid="274" x="2496" y="576"/>
  </objectgroup>
- <layer name="Front Tiles" width="25" height="14">
+ <objectgroup name="NPCs">
+  <object gid="3" x="1120" y="768"/>
+  <object gid="3" x="1184" y="768"/>
+  <object gid="3" x="1344" y="768"/>
+  <object gid="3" x="1408" y="768"/>
+  <object gid="3" x="1472" y="768"/>
+  <object gid="3" x="1760" y="768"/>
+  <object gid="3" x="1696" y="768"/>
+  <object gid="3" x="1632" y="768"/>
+  <object gid="9" x="1728" y="512"/>
+  <object gid="9" x="1760" y="512"/>
+  <object gid="9" x="1792" y="512"/>
+  <object gid="9" x="1824" y="512"/>
+  <object gid="9" x="1856" y="512"/>
+  <object gid="3" x="2528" y="672"/>
+  <object gid="3" x="2464" y="672"/>
+  <object gid="2" x="2624" y="800"/>
+  <object gid="2" x="2560" y="800"/>
+  <object gid="2" x="2496" y="800"/>
+  <object gid="2" x="2304" y="800"/>
+  <object gid="2" x="2240" y="800"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="832"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowATaDDS3g71UTtG7aCzHTp0sJ8YAACjVQFv
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
   </data>
  </layer>
 </map>

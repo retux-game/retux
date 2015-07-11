@@ -287,11 +287,7 @@ images/worldmap/warp_1.png
 images/worldmap/warp_2.png
 images/worldmap/warp_3.png
 images/worldmap/warp_4.png
-sounds/bell.wav
-sounds/icicle_crash.ogg
-sounds/icicle_shake.wav
 sounds/kill.wav
-sounds/sizzle.ogg
 sounds/upgrade.wav
 
 Authors: SuperTux development team <http://supertux.lethargik.org>
@@ -582,6 +578,16 @@ sounds/turnkey.ogg
 Author: WolfgangB
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/icicle_crash.wav
+sounds/icicle_shake.wav
+sounds/sizzle.ogg
+
+Author: lmh.0013@gmail.com
+License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
 
 ------------------------------------------------------------------------
 

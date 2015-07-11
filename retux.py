@@ -5927,7 +5927,7 @@ kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
 iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))
 icicle_shake_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_shake.wav"))
-icicle_crash_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_crash.ogg"))
+icicle_crash_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_crash.wav"))
 explosion_sound = sge.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
