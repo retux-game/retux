@@ -852,6 +852,8 @@ class Worldmap(sge.Room):
 
     def event_room_start(self):
         self.level_text = None
+        self.level_tuxdoll_available = False
+        self.level_tuxdoll_found = False
         self.event_room_resume()
 
     def event_room_resume(self):
@@ -900,6 +902,15 @@ class Worldmap(sge.Room):
             sge.game.project_text(font, self.level_text, x, y,
                                   color=sge.Color("white"), halign="center",
                                   valign="bottom")
+
+        if self.level_tuxdoll_available:
+            x = sge.game.width / 2
+            y = sge.game.height - font.size * 4
+            if self.level_tuxdoll_found:
+                sge.game.project_sprite(tuxdoll_shadow_sprite, 0, x + 2, y + 2)
+                sge.game.project_sprite(tuxdoll_sprite, 0, x, y)
+            else:
+                sge.game.project_sprite(tuxdoll_transparent_sprite, 0, x, y)
 
     def event_key_press(self, key, char):
         if key == "escape":
@@ -4599,6 +4610,8 @@ class MapPlayer(sge.Object):
 
         if space is not None:
             room.level_text = level_names.get(space.level)
+            room.level_tuxdoll_available = space.level in tuxdolls_available
+            room.level_tuxdoll_found = space.level in tuxdolls_found
 
             for key in sneak_key:
                 if sge.keyboard.get_pressed(key):
