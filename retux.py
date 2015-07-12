@@ -1884,23 +1884,26 @@ class InteractiveObject(sge.Object):
     burnable = False
     freezable = False
     parent = None
+    warping = False
 
     def update_active(self):
-        for view in sge.game.current_room.views:
-            if (self.bbox_left <= view.x + view.width + self.active_range and
-                    self.bbox_right >= view.x - self.active_range and
-                    self.bbox_top <= (view.y + view.height +
-                                      self.active_range) and
-                    self.bbox_bottom >= view.y - self.active_range):
-                self.tangible = True
-                self.active = True
-                break
-        else:
-            self.tangible = False
-            self.active = False
+        if not self.warping:
+            for view in sge.game.current_room.views:
+                if (self.bbox_left <= (view.x + view.width +
+                                       self.active_range) and
+                        self.bbox_right >= view.x - self.active_range and
+                        self.bbox_top <= (view.y + view.height +
+                                          self.active_range) and
+                        self.bbox_bottom >= view.y - self.active_range):
+                    self.tangible = True
+                    self.active = True
+                    break
+            else:
+                self.tangible = False
+                self.active = False
 
-        if self.bbox_top > sge.game.current_room.height + self.active_range:
-            self.destroy()
+            if self.bbox_top > sge.game.current_room.height + self.active_range:
+                self.destroy()
 
     def get_nearest_player(self):
         player = None
@@ -1957,7 +1960,10 @@ class InteractiveObject(sge.Object):
         self.update_active()
 
     def event_begin_step(self, time_passed, delta_mult):
-        self.move()
+        if not self.warping:
+            self.move()
+        elif self.xvelocity:
+            self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
 
     def event_step(self, time_passed, delta_mult):
         self.update_active()
@@ -4319,8 +4325,8 @@ class WarpSpawn(xsge_path.Path):
 
 class Warp(WarpSpawn):
 
-    def __init__(self, x, y, points=(), dest=None, **kwargs):
-        super(Warp, self).__init__(x, y, points=points, dest=dest, **kwargs)
+    def __init__(self, x, y, **kwargs):
+        super(Warp, self).__init__(x, y, **kwargs)
         self.warps_in = []
 
     def warp(self, other):
@@ -4397,6 +4403,37 @@ class Warp(WarpSpawn):
     def event_destroy(self):
         while self in sge.game.current_room.warps:
             sge.game.current_room.warps.remove(self)
+
+
+class ObjectWarpSpawn(WarpSpawn):
+
+    def __init__(self, x, y, cls=None, interval=180, **kwargs):
+        # If dest is defined, that will cause the player to
+        # automatically switch to the destination room whenever an
+        # object spawns, which is not desirable at all.
+        kwargs["dest"] = None
+        self.cls = TYPES.get(cls)
+        self.interval = interval
+        self.__steps_passed = 0
+        super(ObjectWarpSpawn, self).__init__(x, y, **kwargs)
+
+    def event_begin_step(self, time_passed, delta_mult):
+        in_view = False
+        for view in sge.game.current_room.views:
+            if (self.x <= view.x + view.width and self.x >= view.x and
+                    self.y <= view.y + view.height and self.y >= view.y):
+                in_view = True
+                break
+
+        if in_view and self.cls is not None:
+            self.__steps_passed += delta_mult
+            while self.__steps_passed >= self.interval:
+                self.__steps_passed -= self.interval
+                obj = self.cls.create(self.x, self.y, z=self.z)
+                obj.warping = True
+                obj.visible = False
+                obj.tangible = False
+                self.follow_start(obj, WARP_SPEED)
 
 
 class MovingObjectPath(xsge_path.PathLink):
@@ -5548,8 +5585,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "warp_spawn": WarpSpawn,
-         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
-         "map_path": MapPath}
+         "object_warp_spawn": ObjectWarpSpawn, "map_player": MapPlayer,
+         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
 
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=(not args.scale_basic),

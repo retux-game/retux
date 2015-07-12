@@ -21,4 +21,5 @@
  <objecttype name="moving_platform_path" color="#5500ff"/>
  <objecttype name="circoflame" color="#ff0000"/>
  <objecttype name="timeline_switcher" color="#00ffff"/>
+ <objecttype name="object_warp_spawn" color="#ff5500"/>
 </objecttypes>
