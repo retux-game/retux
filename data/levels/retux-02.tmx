@@ -7,21 +7,21 @@
   <property name="name" value="Two Dimensions are Better than One"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="16" source="../tilesets/snow.tsx"/>
- <tileset firstgid="156" source="../tilesets/cave.tsx"/>
- <tileset firstgid="176" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="191" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="279" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="299" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="303" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="297" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="301" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAUQ8HvPLqC+6/lBKKNCOEO0qd5VQAAAAAAAAAAAAAAAAAAAAAAAAAAnIz2+wHwWtc5xNM55NM55NM55NM55NM55Nt1Pi8HAGRYXwcDxA==
+   eJzt07EJACAUQ8HvODqB+0/mBKKNCOEO0qd5VQAAAAAAAAAAAAAAAAAAAAAAAAAAnIz2+wHwWtc5xNM55NM55NM55NM55NM55Nt1Pi8HAGRYdyYDgg==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -74,94 +74,94 @@
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="283" x="0" y="800"/>
-  <object gid="283" x="32" y="800"/>
-  <object gid="281" x="480" y="800"/>
-  <object gid="281" x="608" y="800"/>
-  <object gid="281" x="736" y="800"/>
-  <object gid="281" x="864" y="800"/>
-  <object gid="281" x="800" y="672"/>
-  <object gid="281" x="672" y="672"/>
-  <object gid="281" x="544" y="672"/>
-  <object gid="281" x="768" y="160"/>
-  <object gid="281" x="896" y="160"/>
-  <object gid="281" x="640" y="160"/>
-  <object gid="281" x="608" y="160"/>
-  <object gid="281" x="736" y="160"/>
-  <object gid="288" x="640" y="800"/>
-  <object gid="288" x="672" y="800"/>
-  <object gid="288" x="704" y="800"/>
-  <object gid="288" x="768" y="800"/>
-  <object gid="288" x="800" y="800"/>
-  <object gid="288" x="832" y="800"/>
-  <object gid="288" x="512" y="800"/>
-  <object gid="288" x="544" y="800"/>
-  <object gid="288" x="576" y="800"/>
-  <object gid="288" x="576" y="672"/>
-  <object gid="288" x="608" y="672"/>
-  <object gid="288" x="640" y="672"/>
-  <object gid="288" x="704" y="672"/>
-  <object gid="288" x="736" y="672"/>
-  <object gid="288" x="768" y="672"/>
-  <object gid="283" x="64" y="800"/>
-  <object gid="283" x="96" y="800"/>
-  <object gid="283" x="0" y="672"/>
-  <object gid="283" x="32" y="672"/>
-  <object gid="283" x="64" y="672"/>
-  <object gid="283" x="32" y="544"/>
-  <object gid="283" x="0" y="544"/>
-  <object gid="287" x="864" y="160"/>
-  <object gid="290" x="2016" y="288"/>
-  <object gid="290" x="2048" y="352"/>
-  <object gid="290" x="2016" y="416"/>
-  <object gid="290" x="1184" y="160"/>
-  <object gid="290" x="1248" y="160"/>
-  <object gid="290" x="1312" y="160"/>
-  <object gid="290" x="1376" y="160"/>
-  <object gid="290" x="1216" y="96"/>
-  <object gid="290" x="1280" y="96"/>
-  <object gid="290" x="1344" y="96"/>
-  <object gid="281" x="2432" y="608"/>
-  <object gid="281" x="2624" y="608"/>
-  <object gid="280" x="2528" y="480"/>
-  <object gid="281" x="2528" y="608"/>
-  <object gid="290" x="5088" y="864"/>
-  <object gid="290" x="5152" y="864"/>
-  <object gid="290" x="5216" y="864"/>
-  <object gid="290" x="5280" y="864"/>
-  <object gid="290" x="5344" y="864"/>
-  <object gid="290" x="5408" y="864"/>
-  <object gid="290" x="5472" y="864"/>
-  <object gid="290" x="5536" y="864"/>
-  <object gid="290" x="5504" y="832"/>
-  <object gid="290" x="5440" y="832"/>
-  <object gid="290" x="5376" y="832"/>
-  <object gid="290" x="5312" y="832"/>
-  <object gid="290" x="5248" y="832"/>
-  <object gid="290" x="5184" y="832"/>
-  <object gid="290" x="5120" y="832"/>
-  <object gid="290" x="5088" y="800"/>
-  <object gid="290" x="5152" y="800"/>
-  <object gid="290" x="5216" y="800"/>
-  <object gid="290" x="5280" y="800"/>
-  <object gid="290" x="5344" y="800"/>
-  <object gid="290" x="5408" y="800"/>
-  <object gid="290" x="5472" y="800"/>
-  <object gid="290" x="5536" y="800"/>
-  <object gid="290" x="5504" y="768"/>
-  <object gid="290" x="5440" y="768"/>
-  <object gid="290" x="5376" y="768"/>
-  <object gid="290" x="5312" y="768"/>
-  <object gid="290" x="5248" y="768"/>
-  <object gid="290" x="5184" y="768"/>
-  <object gid="290" x="5120" y="768"/>
-  <object gid="281" x="3136" y="576"/>
-  <object gid="281" x="3104" y="576"/>
-  <object gid="289" x="4608" y="224"/>
-  <object gid="281" x="5056" y="192"/>
-  <object gid="281" x="5152" y="192"/>
-  <object gid="281" x="5248" y="192"/>
-  <object gid="289" x="5952" y="320"/>
+  <object gid="278" x="0" y="800"/>
+  <object gid="278" x="32" y="800"/>
+  <object gid="276" x="480" y="800"/>
+  <object gid="276" x="608" y="800"/>
+  <object gid="276" x="736" y="800"/>
+  <object gid="276" x="864" y="800"/>
+  <object gid="276" x="800" y="672"/>
+  <object gid="276" x="672" y="672"/>
+  <object gid="276" x="544" y="672"/>
+  <object gid="276" x="768" y="160"/>
+  <object gid="276" x="896" y="160"/>
+  <object gid="276" x="640" y="160"/>
+  <object gid="276" x="608" y="160"/>
+  <object gid="276" x="736" y="160"/>
+  <object gid="283" x="640" y="800"/>
+  <object gid="283" x="672" y="800"/>
+  <object gid="283" x="704" y="800"/>
+  <object gid="283" x="768" y="800"/>
+  <object gid="283" x="800" y="800"/>
+  <object gid="283" x="832" y="800"/>
+  <object gid="283" x="512" y="800"/>
+  <object gid="283" x="544" y="800"/>
+  <object gid="283" x="576" y="800"/>
+  <object gid="283" x="576" y="672"/>
+  <object gid="283" x="608" y="672"/>
+  <object gid="283" x="640" y="672"/>
+  <object gid="283" x="704" y="672"/>
+  <object gid="283" x="736" y="672"/>
+  <object gid="283" x="768" y="672"/>
+  <object gid="278" x="64" y="800"/>
+  <object gid="278" x="96" y="800"/>
+  <object gid="278" x="0" y="672"/>
+  <object gid="278" x="32" y="672"/>
+  <object gid="278" x="64" y="672"/>
+  <object gid="278" x="32" y="544"/>
+  <object gid="278" x="0" y="544"/>
+  <object gid="282" x="864" y="160"/>
+  <object gid="285" x="2016" y="288"/>
+  <object gid="285" x="2048" y="352"/>
+  <object gid="285" x="2016" y="416"/>
+  <object gid="285" x="1184" y="160"/>
+  <object gid="285" x="1248" y="160"/>
+  <object gid="285" x="1312" y="160"/>
+  <object gid="285" x="1376" y="160"/>
+  <object gid="285" x="1216" y="96"/>
+  <object gid="285" x="1280" y="96"/>
+  <object gid="285" x="1344" y="96"/>
+  <object gid="276" x="2432" y="608"/>
+  <object gid="276" x="2624" y="608"/>
+  <object gid="275" x="2528" y="480"/>
+  <object gid="276" x="2528" y="608"/>
+  <object gid="285" x="5088" y="864"/>
+  <object gid="285" x="5152" y="864"/>
+  <object gid="285" x="5216" y="864"/>
+  <object gid="285" x="5280" y="864"/>
+  <object gid="285" x="5344" y="864"/>
+  <object gid="285" x="5408" y="864"/>
+  <object gid="285" x="5472" y="864"/>
+  <object gid="285" x="5536" y="864"/>
+  <object gid="285" x="5504" y="832"/>
+  <object gid="285" x="5440" y="832"/>
+  <object gid="285" x="5376" y="832"/>
+  <object gid="285" x="5312" y="832"/>
+  <object gid="285" x="5248" y="832"/>
+  <object gid="285" x="5184" y="832"/>
+  <object gid="285" x="5120" y="832"/>
+  <object gid="285" x="5088" y="800"/>
+  <object gid="285" x="5152" y="800"/>
+  <object gid="285" x="5216" y="800"/>
+  <object gid="285" x="5280" y="800"/>
+  <object gid="285" x="5344" y="800"/>
+  <object gid="285" x="5408" y="800"/>
+  <object gid="285" x="5472" y="800"/>
+  <object gid="285" x="5536" y="800"/>
+  <object gid="285" x="5504" y="768"/>
+  <object gid="285" x="5440" y="768"/>
+  <object gid="285" x="5376" y="768"/>
+  <object gid="285" x="5312" y="768"/>
+  <object gid="285" x="5248" y="768"/>
+  <object gid="285" x="5184" y="768"/>
+  <object gid="285" x="5120" y="768"/>
+  <object gid="276" x="3136" y="576"/>
+  <object gid="276" x="3104" y="576"/>
+  <object gid="284" x="4608" y="224"/>
+  <object gid="276" x="5056" y="192"/>
+  <object gid="276" x="5152" y="192"/>
+  <object gid="276" x="5248" y="192"/>
+  <object gid="284" x="5952" y="320"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1952" y="192"/>
@@ -195,7 +195,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8EwDxTsPx0boDQIybqbwM27CgAAAAAAAAAAAAAAAAAAAAAAAACArjV+LwBemzqHeDqHfDqHfDqHfDqHfDqHfLfOtw8AgHgH/EwBkw==
+   eJzt1LENACAMA8EwDhTsPx4boDQIybqbwM27CgAAAAAAAAAAAAAAAAAAAAAAAACArjV+LwBemzqHeDqHfDqHfDqHfDqHfDqHfLfOtw8AgHgHkN0BgQ==
   </data>
  </layer>
 </map>

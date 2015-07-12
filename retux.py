@@ -2578,9 +2578,8 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
                 self.destroy()
 
     def knock(self, other=None):
-        if self.parent is not None and other is not None:
-            other.knock(self)
-        super(FlatIceblock, self).knock(other)
+        if self.parent is None:
+            super(FlatIceblock, self).knock(other)
 
     def freeze(self):
         pass
@@ -5667,7 +5666,7 @@ flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
 flying_snowball_squished_sprite = sge.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
     bbox_y=11, bbox_width=26, bbox_height=21)
-icicle_sprite = sge.Sprite("icicle", d, bbox_x=12, bbox_y=0, bbox_width=8,
+icicle_sprite = sge.Sprite("icicle", d, bbox_x=8, bbox_y=0, bbox_width=16,
                            bbox_height=48)
 icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=12, bbox_y=32,
                                   bbox_width=8, bbox_height=16)
