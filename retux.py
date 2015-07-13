@@ -2884,7 +2884,7 @@ class Explosion(InteractiveObject):
             if other.burnable:
                 other.burn()
             elif other.knockable:
-                other.knock(self.detonator)
+                other.knock(self)
         if isinstance(other, HittableBlock):
             if self.detonator is not None:
                 other.hit(self.detonator)
@@ -3107,6 +3107,10 @@ class CircoflameCenter(InteractiveObject):
     def event_create(self):
         sge.game.current_room.add(self.flame)
 
+    def update_active(self):
+        self.active = True
+        self.tangible = False
+
     def event_step(self, time_passed, delta_mult):
         self.pos += self.rvelocity * delta_mult
         self.pos %= 360
@@ -3130,7 +3134,6 @@ class Snowman(FallingObject):
         self.stun_end = False
         self.stun_time = 0
         self.fixed_sprite = False
-        self.killer = None
         kwargs["sprite"] = snowman_stand_sprite
         super(Snowman, self).__init__(x, y, **kwargs)
 
@@ -3142,6 +3145,17 @@ class Snowman(FallingObject):
         if self.was_on_floor:
             play_sound(bigjump_sound)
             self.yvelocity = get_jump_speed(SNOWMAN_JUMP_HEIGHT, self.gravity)
+
+    def stun(self):
+        self.stunned = True
+        self.fixed_sprite = True
+        self.sprite = snowman_hurt_walk_sprite
+        self.xvelocity = 0
+        self.xacceleration = 0
+        self.image_speed = 0
+        if self.yvelocity < 0:
+            self.yvelocity = 0
+        self.alarms["stun_start"] = SNOWMAN_STOMP_DELAY
 
     def next_stage(self):
         self.xvelocity = 0
@@ -3232,8 +3246,8 @@ class Snowman(FallingObject):
     def stomp(self, other):
         other.stomp_jump(self)
         if self.stage > 0 and not self.stunned:
-            play_sound(stomp_sound)
-            self.knock(other)
+            play_sound(squish_sound)
+            self.stun()
 
     def burn(self):
         if self.stage > 0:
@@ -3243,17 +3257,11 @@ class Snowman(FallingObject):
                 self.next_stage()
 
     def knock(self, other=None):
-        if self.stage > 0:
-            self.killer = other
-            self.stunned = True
-            self.fixed_sprite = True
-            self.sprite = snowman_hurt_walk_sprite
-            self.xvelocity = 0
-            self.xacceleration = 0
-            self.image_speed = 0
-            if self.yvelocity < 0:
-                self.yvelocity = 0
-            self.alarms["stun_start"] = SNOWMAN_STOMP_DELAY
+        if self.stage > 0 and not self.stunned:
+            play_sound(stomp_sound)
+            self.stun()
+            if other.knockable:
+                other.knock(self)
 
     def touch_death(self):
         self.kill()
@@ -3287,10 +3295,7 @@ class Snowman(FallingObject):
             self.next_stage()
 
     def event_destroy(self):
-        if self.killer is not None:
-            self.killer.win_level(False)
-        else:
-            self.get_nearest_player().win_level(False)
+        self.get_nearest_player().win_level(False)
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -3914,29 +3919,32 @@ class HittableBlock(xsge_physics.SolidBottom, Tile):
         if self.hit_obj is not None:
             self.hit_obj.destroy()
             self.hit_obj = None
+            self.visible = True
+            self.event_hit_end()
 
         if isinstance(self, xsge_physics.SolidTop):
             for obj in self.collision(InteractiveObject, y=(self.y - 1)):
                 if obj.knockable:
                     obj.knock()
 
-        if self.hit_sprite is not None:
-            s = self.hit_sprite
-        else:
-            s = self.sprite
+        if self in sge.game.current_room.objects:
+            if self.hit_sprite is not None:
+                s = self.hit_sprite
+            else:
+                s = self.sprite
 
-        self.visible = False
-        self.hit_obj = sge.Object.create(
-            self.x, self.y, self.z, sprite=s, tangible=False,
-            yvelocity=get_jump_speed(BLOCK_HIT_HEIGHT),
-            yacceleration=GRAVITY, image_index=self.image_index,
-            image_origin_x=self.image_origin_x,
-            image_origin_y=self.image_origin_y,
-            image_fps=self.image_fps, image_xscale=self.image_xscale,
-            image_yscale=self.image_yscale,
-            image_rotation=self.image_rotation)
+            self.visible = False
+            self.hit_obj = sge.Object.create(
+                self.x, self.y, self.z, sprite=s, tangible=False,
+                yvelocity=get_jump_speed(BLOCK_HIT_HEIGHT),
+                yacceleration=GRAVITY, image_index=self.image_index,
+                image_origin_x=self.image_origin_x,
+                image_origin_y=self.image_origin_y,
+                image_fps=self.image_fps, image_xscale=self.image_xscale,
+                image_yscale=self.image_yscale,
+                image_rotation=self.image_rotation)
 
-        self.event_hit(other)
+            self.event_hit(other)
 
     def event_hit(self, other):
         pass

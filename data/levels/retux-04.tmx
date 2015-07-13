@@ -10,21 +10,21 @@
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
  <tileset firstgid="151" source="../tilesets/cave.tsx"/>
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="297" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="301" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="303" source="../tilesets/krush.tsx"/>
- <tileset firstgid="304" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="305" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="183" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="271" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="294" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="298" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="300" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="301" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="302" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACEABEG/HK3A/iszNVOERzlm4PJLthQAAAAAgDN9GgAAAAAAAAAAAAB3tO/2A+BvVecQT+eQT+eQT+eQT+eQT+eQT+eQb9V53xwAAADwhgEFrwRU
+   eJzt07EJACEABEG/GW3B/iszNVOERzlm4PJLthQAAAAAgDN9GgAAAAAAAAAAAAB3tO/2A+BvVecQT+eQT+eQT+eQT+eQT+eQT+eQb9V53xwAAADwhgGxrwQ5
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -94,56 +94,56 @@
   </object>
  </objectgroup>
  <objectgroup name="Items">
-  <object gid="276" x="288" y="736"/>
-  <object gid="276" x="320" y="736"/>
-  <object gid="276" x="416" y="736"/>
-  <object gid="276" x="448" y="736"/>
-  <object gid="276" x="544" y="736"/>
-  <object gid="276" x="576" y="736"/>
-  <object gid="276" x="2368" y="704"/>
-  <object gid="276" x="2400" y="704"/>
-  <object gid="276" x="2496" y="704"/>
-  <object gid="276" x="2528" y="704"/>
-  <object gid="276" x="2272" y="704"/>
-  <object gid="276" x="2240" y="704"/>
-  <object gid="274" x="2272" y="576"/>
-  <object gid="274" x="2304" y="576"/>
-  <object gid="274" x="2336" y="576"/>
-  <object gid="274" x="2368" y="576"/>
-  <object gid="274" x="2400" y="576"/>
-  <object gid="274" x="2432" y="576"/>
-  <object gid="274" x="2464" y="576"/>
-  <object gid="274" x="2496" y="576"/>
-  <object gid="283" x="2464" y="704"/>
-  <object gid="283" x="2432" y="704"/>
-  <object gid="283" x="2336" y="704"/>
-  <object gid="283" x="2304" y="704"/>
-  <object gid="283" x="1824" y="192"/>
-  <object gid="283" x="1824" y="160"/>
-  <object gid="295" x="7040" y="800"/>
-  <object gid="295" x="7072" y="800"/>
-  <object gid="295" x="7104" y="800"/>
-  <object gid="296" x="7072" y="864"/>
-  <object gid="284" x="6496" y="512"/>
-  <object gid="284" x="6688" y="512"/>
-  <object gid="285" x="6528" y="576"/>
-  <object gid="285" x="6560" y="544"/>
-  <object gid="285" x="6592" y="576"/>
-  <object gid="285" x="6624" y="544"/>
-  <object gid="285" x="6656" y="576"/>
-  <object gid="278" x="6464" y="384"/>
-  <object gid="278" x="6432" y="256"/>
-  <object gid="276" x="4544" y="640"/>
-  <object gid="276" x="4416" y="640"/>
-  <object gid="276" x="4672" y="640"/>
-  <object gid="284" x="4608" y="640"/>
-  <object gid="284" x="4480" y="640"/>
-  <object gid="276" x="3360" y="736"/>
-  <object gid="276" x="3392" y="736"/>
-  <object gid="276" x="3424" y="736"/>
-  <object gid="276" x="3456" y="736"/>
-  <object gid="276" x="3488" y="736"/>
-  <object gid="276" x="3520" y="736"/>
+  <object gid="273" x="288" y="736"/>
+  <object gid="273" x="320" y="736"/>
+  <object gid="273" x="416" y="736"/>
+  <object gid="273" x="448" y="736"/>
+  <object gid="273" x="544" y="736"/>
+  <object gid="273" x="576" y="736"/>
+  <object gid="273" x="2368" y="704"/>
+  <object gid="273" x="2400" y="704"/>
+  <object gid="273" x="2496" y="704"/>
+  <object gid="273" x="2528" y="704"/>
+  <object gid="273" x="2272" y="704"/>
+  <object gid="273" x="2240" y="704"/>
+  <object gid="271" x="2272" y="576"/>
+  <object gid="271" x="2304" y="576"/>
+  <object gid="271" x="2336" y="576"/>
+  <object gid="271" x="2368" y="576"/>
+  <object gid="271" x="2400" y="576"/>
+  <object gid="271" x="2432" y="576"/>
+  <object gid="271" x="2464" y="576"/>
+  <object gid="271" x="2496" y="576"/>
+  <object gid="280" x="2464" y="704"/>
+  <object gid="280" x="2432" y="704"/>
+  <object gid="280" x="2336" y="704"/>
+  <object gid="280" x="2304" y="704"/>
+  <object gid="280" x="1824" y="192"/>
+  <object gid="280" x="1824" y="160"/>
+  <object gid="292" x="7040" y="800"/>
+  <object gid="292" x="7072" y="800"/>
+  <object gid="292" x="7104" y="800"/>
+  <object gid="293" x="7072" y="864"/>
+  <object gid="281" x="6496" y="512"/>
+  <object gid="281" x="6688" y="512"/>
+  <object gid="282" x="6528" y="576"/>
+  <object gid="282" x="6560" y="544"/>
+  <object gid="282" x="6592" y="576"/>
+  <object gid="282" x="6624" y="544"/>
+  <object gid="282" x="6656" y="576"/>
+  <object gid="275" x="6464" y="384"/>
+  <object gid="275" x="6432" y="256"/>
+  <object gid="273" x="4544" y="640"/>
+  <object gid="273" x="4416" y="640"/>
+  <object gid="273" x="4672" y="640"/>
+  <object gid="281" x="4608" y="640"/>
+  <object gid="281" x="4480" y="640"/>
+  <object gid="273" x="3360" y="736"/>
+  <object gid="273" x="3392" y="736"/>
+  <object gid="273" x="3424" y="736"/>
+  <object gid="273" x="3456" y="736"/>
+  <object gid="273" x="3488" y="736"/>
+  <object gid="273" x="3520" y="736"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="1120" y="768"/>
@@ -238,7 +238,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJzt1DERACAQA8FHDhT4l4cFGgbI7CpIc6kCAAAAAAAAAAAAAAAAAADgd6PdXgCc1nUO8XQO+XQO+XQO+XQO+XQO+XQO+XY6n74AAAAAnrcADJABqw==
+   eJzt1DERACAQA8HHDBT494cFGgbI7CpIc6kCAAAAAAAAAAAAAAAAAADgd6PdXgCc1nUO8XQO+XQO+XQO+XQO+XQO+XQO+XY6n74AAAAAnrcAiigBjQ==
   </data>
  </layer>
 </map>
