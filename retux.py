@@ -159,7 +159,7 @@ ENEMY_WALK_SPEED = 1
 ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
-SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3
+SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3 + 2
 KICK_FORWARD_SPEED = 8
 KICK_FORWARD_HEIGHT = TILE_SIZE * 3 / 4
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
@@ -2518,7 +2518,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
         self.yvelocity = get_jump_speed(JUMPY_BOUNCE_HEIGHT, self.gravity)
 
 
-class FlyingSnowball(InteractiveCollider, CrowdBlockingObject, KnockableObject,
+class FlyingSnowball(CrowdBlockingObject, KnockableObject,
                      BurnableObject, WinPuffObject):
 
     freezable = True
@@ -4455,9 +4455,9 @@ class MovingObjectPath(xsge_path.PathLink):
     default_decel = None
     default_loop = None
 
-    def __init__(self, x, y, path_speed=ENEMY_WALK_SPEED, path_accel=None,
-                 path_decel=None, path_loop=None, path_id=None, prime=False,
-                 parent=None, **kwargs):
+    def __init__(self, x, y, path_speed=None, path_accel=None, path_decel=None,
+                 path_loop=None, path_id=None, prime=False, parent=None,
+                 **kwargs):
         if path_speed is None:
             path_speed = self.default_speed
         if path_accel is None:
@@ -4499,17 +4499,17 @@ class MovingObjectPath(xsge_path.PathLink):
 class MovingPlatformPath(MovingObjectPath):
 
     cls = "moving_platform"
-    default_speed = 1.5
-    default_accel = 0.05
-    defaul_decel = 0.05
+    default_speed = 3
+    default_accel = 0.02
+    default_decel = 0.02
 
 
 class FlyingSnowballPath(MovingObjectPath):
 
     cls = "flying_snowball"
-    default_speed = ENEMY_WALK_SPEED
-    default_accel = 0.05
-    default_decel = 0.05
+    default_speed = 2
+    default_accel = 0.02
+    default_decel = 0.02
 
 
 class CircoflamePath(xsge_path.Path):

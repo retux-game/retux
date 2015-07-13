@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="14" tilewidth="32" tileheight="32">
  <properties>
-  <property name="bgname" value="arctis"/>
+  <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="50 Shades of Snow"/>
+  <property name="name" value="The Five Pillars of Snow"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
@@ -11,38 +11,80 @@
  <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="301" source="../tilesets/krush.tsx"/>
- <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <tileset firstgid="297" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="301" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="303" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="304" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="305" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABNBhpb4f6qB2jdtDRDgsSMT0AAOBFA+I=
+   eJztwYEAAAAAw6D5U9/gBFUBAAAAAAAAAAAAAAAAAAAA8AxBoAAB
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhASzIwNqMpNnBSwcMAFWJBEo=
+   eJzt2kEKwjAQBdBeQDyAeAJ34sJl8WDqXryz3YilpNaamDb1PZhNoJlQyKcDrSoAAAAAoDTnpi6BuvesXxP2CfX4dn/gf90W0gNYPnkFPLXno/ZcdJ3wTG2hLEk9073LK/MjpJHz3k7l0zPFnH3ss3N8T1CinPc2tX1Th85a7rwKnSFlL+Cl5Lyqmzp11nLnVegMKXtBSY6RtR7Y/xd51fevwdA/B2Pn0bqSVzAnq8jaDuw/xfdVqvtbV/IK5mQTWbuB/eXVePIKwh7VGEse
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="0" y="416" width="800" height="32"/>
-  <object x="704" y="288" width="64" height="128"/>
+  <object x="0" y="384" width="544" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="level_end" x="256" y="0" width="32" height="416"/>
+  <object type="solid_top" x="608" y="256" width="352" height="32"/>
+  <object type="solid_top" x="1152" y="224" width="224" height="32"/>
+  <object type="solid_top" x="1440" y="352" width="544" height="32"/>
+  <object type="moving_platform_path" x="2112" y="384">
+   <polyline points="0,0 0,-288 0,0"/>
+  </object>
+  <object type="solid_top" x="3456" y="224" width="352" height="32"/>
+  <object type="solid_top" x="3072" y="128" width="352" height="32"/>
+  <object type="solid_top" x="2240" y="128" width="416" height="32"/>
+  <object type="solid_top" x="2592" y="224" width="352" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players">
-  <object gid="1" x="64" y="416"/>
+ <objectgroup name="Items">
+  <object gid="283" x="1696" y="256"/>
+  <object gid="283" x="1664" y="256"/>
+  <object gid="283" x="1728" y="256"/>
+  <object gid="283" x="1632" y="256"/>
+  <object gid="283" x="1600" y="256"/>
+  <object gid="283" x="1760" y="256"/>
+  <object gid="283" x="1792" y="256"/>
+  <object gid="283" x="1568" y="256"/>
+  <object gid="283" x="1824" y="256"/>
+  <object gid="275" x="2304" y="64"/>
+  <object gid="284" x="3328" y="64"/>
+  <object gid="284" x="3360" y="64"/>
  </objectgroup>
- <layer name="Front Tiles" width="25" height="14">
+ <objectgroup name="NPCs">
+  <object gid="3" x="1312" y="224"/>
+  <object gid="2" x="928" y="256"/>
+  <object gid="2" x="864" y="256"/>
+  <object gid="2" x="1952" y="352"/>
+  <object gid="2" x="1888" y="352"/>
+  <object gid="2" x="1824" y="352"/>
+  <object gid="3" x="1696" y="352"/>
+  <object type="flying_snowball_path" x="1056" y="320">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+  <object gid="4" x="2656" y="224"/>
+  <object gid="4" x="2720" y="224"/>
+  <object gid="4" x="2912" y="224"/>
+  <object gid="4" x="2848" y="224"/>
+  <object type="flying_snowball_path" x="3008" y="256">
+   <polyline points="0,0 0,-160 0,0"/>
+  </object>
+  <object gid="3" x="3232" y="128"/>
+  <object gid="2" x="3328" y="128"/>
+  <object gid="2" x="3392" y="128"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="384"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowATaDDS3g71UTtG7aCzHTp0sJ8YAACjVQFv
+   eJztwYEAAAAAw6D5U9/gBFUBAAAAAAAAAAAAAAAAAAAA8AxBoAAB
   </data>
  </layer>
 </map>

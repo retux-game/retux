@@ -7,22 +7,23 @@
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
  <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="186" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="274" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="295" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="299" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="301" source="../tilesets/krush.tsx"/>
- <tileset firstgid="302" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="303" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="171" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="219" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="234" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="322" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="345" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="349" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="351" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="352" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="353" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABNBhpb4f6qB2jdtDRDgsSMT0AAOBFA+I=
+   eJxjYBgFowABohhpb0fkqB2jdtDRDgsSMT0AABAhBXI=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhASzIwNqMpNnBSwcMAFWJBEo=
+   eJxjYBgFo2AUjIKhASzIwLGMpNnBSwcMAHJxBHw=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -41,7 +42,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowATaDDS3g71UTtG7aCzHTp0sJ8YAACjVQFv
+   eJxjYBgFowATRDHS3o7IUTtG7aCzHXF0sJ8YAADhMgMx
   </data>
  </layer>
 </map>
