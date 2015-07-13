@@ -5314,7 +5314,7 @@ class DialogBox(xsge_gui.Dialog):
 
 
 def get_object(x, y, cls=None, **kwargs):
-    cls = TYPES.get(cls, sge.Object)
+    cls = TYPES.get(cls, xsge_tmx.Decoration)
     return cls(x, y, **kwargs)
 
 
