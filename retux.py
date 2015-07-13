@@ -2518,8 +2518,8 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
         self.yvelocity = get_jump_speed(JUMPY_BOUNCE_HEIGHT, self.gravity)
 
 
-class FlyingSnowball(CrowdBlockingObject, KnockableObject,
-                     BurnableObject, WinPuffObject):
+class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
+                     WinPuffObject):
 
     freezable = True
     had_xv = 0
@@ -2534,6 +2534,10 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject,
         self.bbox_y = None
         self.bbox_width = None
         self.bbox_height = None
+
+    def update_active(self):
+        super(FlyingSnowball, self).update_active()
+        self.active = True
 
     def move(self):
         if abs(self.xvelocity) > abs(self.yvelocity):
@@ -3104,14 +3108,12 @@ class CircoflameCenter(InteractiveObject):
         sge.game.current_room.add(self.flame)
 
     def event_step(self, time_passed, delta_mult):
-        super(CircoflameCenter, self).event_step(time_passed, delta_mult)
-        if self.active:
-            self.pos += self.rvelocity * delta_mult
-            self.pos %= 360
-            x = math.cos(math.radians(self.pos)) * self.radius
-            y = math.sin(math.radians(self.pos)) * self.radius
-            self.flame.x = self.x + x
-            self.flame.y = self.y + y
+        self.pos += self.rvelocity * delta_mult
+        self.pos %= 360
+        x = math.cos(math.radians(self.pos)) * self.radius
+        y = math.sin(math.radians(self.pos)) * self.radius
+        self.flame.x = self.x + x
+        self.flame.y = self.y + y
 
 
 class Snowman(FallingObject):
