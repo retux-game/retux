@@ -164,7 +164,7 @@ KICK_FORWARD_SPEED = 8
 KICK_FORWARD_HEIGHT = TILE_SIZE * 3 / 4
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 ICEBLOCK_GRAVITY = 0.6
-ICEBLOCK_FALL_SPEED = 10
+ICEBLOCK_FALL_SPEED = 9
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
 JUMPY_BOUNCE_HEIGHT = TILE_SIZE * 4
@@ -3295,7 +3295,9 @@ class Snowman(FallingObject):
             self.next_stage()
 
     def event_destroy(self):
-        self.get_nearest_player().win_level(False)
+        player = self.get_nearest_player()
+        if player is not None:
+            player.win_level(False)
 
 
 class FireFlower(FallingObject, WinPuffObject):

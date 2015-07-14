@@ -147,8 +147,7 @@
   <object gid="2" x="5504" y="224"/>
   <object gid="2" x="5440" y="224"/>
   <object gid="2" x="5376" y="224"/>
-  <object gid="4" x="6112" y="288"/>
-  <object gid="4" x="6272" y="288"/>
+  <object gid="4" x="6208" y="288"/>
   <object gid="3" x="5696" y="384"/>
   <object gid="3" x="5760" y="384"/>
   <object type="circoflame" x="3744" y="288">
