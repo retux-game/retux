@@ -126,6 +126,7 @@ SNOWMAN_FINAL_STAGE = 3
 SNOWMAN_HITSTUN = 120
 
 MAX_HP = 5
+HP_POINTS = 1000
 TIMER_FRAMES = 40
 HEAL_COINS = 20
 
@@ -221,7 +222,7 @@ DEATH_FADE_TIME = 3000
 DEATH_RESTART_WAIT = FPS
 
 WIN_COUNT_START_TIME = 120
-WIN_COUNT_CONTINUE_TIME = 60
+WIN_COUNT_CONTINUE_TIME = 45
 WIN_COUNT_MULT = 111
 WIN_COUNT_AMOUNT = 1
 WIN_FINISH_DELAY = 120
@@ -580,10 +581,14 @@ class Level(sge.Room):
                     play_sound(coin_sound)
                 else:
                     self.win_count_time = False
-                    self.alarms["win"] = WIN_FINISH_DELAY
+                    if main_area not in cleared_levels:
+                        self.alarms["win_count_hp"] = WIN_COUNT_CONTINUE_TIME
+                    else:
+                        self.alarms["win"] = WIN_FINISH_DELAY
             elif (not level_win_music.playing and
                   "win_count_points" not in self.alarms and
                   "win_count_time" not in self.alarms and
+                  "win_count_hp" not in self.alarms and
                   "win" not in self.alarms):
                 if main_area not in cleared_levels:
                     cleared_levels.append(main_area)
@@ -635,9 +640,22 @@ class Level(sge.Room):
                 r = self.__class__.load(main_area)
                 r.start()
         elif alarm_id == "win_count_points":
-            self.win_count_points = True
+            if self.points > 0:
+                self.win_count_points = True
+            else:
+                self.win_count_time = True
         elif alarm_id == "win_count_time":
             self.win_count_time = True
+        elif alarm_id == "win_count_hp":
+            for obj in self.objects:
+                if isinstance(obj, Player) and obj.hp > 0:
+                    obj.hp -= 1
+                    score += HP_POINTS
+                    play_sound(heal_sound)
+                    self.alarms["win_count_hp"] = WIN_COUNT_CONTINUE_TIME
+                    break
+            else:
+                self.alarms["win"] = WIN_FINISH_DELAY
 
     def event_key_press(self, key, char):
         global level_timers
@@ -1503,10 +1521,11 @@ class Player(xsge_physics.Collider):
 
         while self.coins >= HEAL_COINS:
             self.coins -= HEAL_COINS
-            self.hp += 1
             play_sound(heal_sound)
-
-        self.hp = min(self.hp, MAX_HP)
+            if self.hp < MAX_HP:
+                self.hp += 1
+            else:
+                sge.game.current_room.add_points(HP_POINTS)
 
         self.show_hud()
 
@@ -4711,7 +4730,7 @@ class MapSpace(sge.Object):
                 while connected_spaces:
                     space = connected_spaces.pop(0)
                     already_checked.append(space)
-                    if space.level in cleared_levels:
+                    if space.free or space.level in cleared_levels:
                         return True
                     elif space.level is None:
                         for path in space.get_exits():

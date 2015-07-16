@@ -7,7 +7,7 @@
  <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
  <layer name="Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJyVkckOwjAMRAsc2KUiCggoSIDYIWyCE///XcwhkSxrnJTDOzRx3zh2nmVZXpEjmAnmYBihAM5wnIivirNKxgs0wZT4amAVoU4y3qBD5jEwepokerbuCzJnax6NRM+xDMu7A3twIA7mi2VYb7+DB3gSh3xToEccZ7AEC8/Fn4/9P2uwAV/iSO1mK97gPC3wSfwXm8tVfd9URvtPP8sYGfchQ89Pzs2iq3bRJ7sJu3DKH87KCjmhH9aTdDlRJ89YjnTq+lJlFcoVozScqXpd+wPxfiMp
+   eJydk0sLAjEMhFc9+D5tZVGroOID1PoAPfn/f5dzaCCEtNnu4TtsOplpE7auqqpuyRKsGGtD70BQ6ouCTAvKGIp6k9D3wC5DX+n5gIny3lRGqm6duwLtwLhzl4wTOIOL4qH5dcl4ghd4Kx78TcRM8bqCLdhEbrE+jT17cAA/xcPazZG9IURG4Gv05eZyF98PkTEu9Ncy5D/ViAw5Pz63FDRPYq7shnYRhD/VfIscuo92J+4VmI7XtBzuKfVeZDnhlcMnPC291P4BcJAimQ==
   </data>
  </layer>
  <objectgroup name="Spaces">
@@ -36,7 +36,12 @@
     <property name="level" value="retux-05.tmx"/>
    </properties>
   </object>
-  <object gid="63" x="128" y="256"/>
+  <object gid="63" x="128" y="64">
+   <properties>
+    <property name="ID" value="map_exit"/>
+    <property name="dest" value="retux-2.tmx:map_enter"/>
+   </properties>
+  </object>
   <object gid="62" x="224" y="256">
    <properties>
     <property name="level" value="retux-06.tmx"/>
@@ -69,7 +74,7 @@
    <polyline points="0,0 0,96 -96,96"/>
   </object>
   <object x="224" y="224">
-   <polyline points="0,0 -96,0"/>
+   <polyline points="0,0 -96,0 -96,-192"/>
   </object>
  </objectgroup>
 </map>
