@@ -594,7 +594,6 @@ class Level(sge.Room):
                     cleared_levels.append(main_area)
 
                 current_areas = {}
-                main_area = None
                 level_cleared = True
 
                 if current_worldmap:
@@ -4861,7 +4860,10 @@ class MapSpace(sge.Object):
         return self.get_exits()[2]
 
     def start_level(self):
+        global main_area
+
         if self.level:
+            main_area = None
             level = Level.load(self.level)
             x = self.x
             y = self.y
@@ -4892,6 +4894,7 @@ class MapWarp(MapSpace):
         self.image_fps = None
 
     def start_level(self):
+        global main_area
         global current_worldmap
         global current_worldmap_space
 
@@ -4903,6 +4906,7 @@ class MapWarp(MapSpace):
             current_worldmap_space = None
 
         if self.level:
+            main_area = None
             level = Level.load(self.level)
             x = self.x
             y = self.y
