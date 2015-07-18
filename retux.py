@@ -52,12 +52,18 @@ JOYSTICK_THRESHOLD = 0.7
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(CONFIG, "data")]
 for d in dirs:
-    for fname in os.listdir(d):
-        fp = os.path.join(d, fname)
-        if os.path.isdir(fp):
-            shutil.copytree(fp, DATA)
-        elif os.path.exists(fp):
-            shutil.copy2(fp, DATA)
+    if os.path.isdir(d):
+        for dirpath, dirnames, filenames in os.walk(d, True, None, True):
+            dirtail = os.path.relpath(dirpath, d)
+            nd = os.path.join(DATA, dirtail)
+
+            for dirname in dirnames:
+                dp = os.path.join(nd, dirname)
+                if not os.path.exists(dp):
+                    os.makedirs(dp)
+
+            for fname in filenames:
+                shutil.copy2(os.path.join(dirpath, fname), nd)
 del dirs
 
 parser = argparse.ArgumentParser()
@@ -78,6 +84,10 @@ parser.add_argument(
 parser.add_argument(
     "--record",
     help="Start the indicated level and record player actions in a timeline. Useful for making cutscenes.")
+parser.add_argument(
+    "--no-backgrounds",
+    help="Only show solid colors for backgrounds (uses less RAM).",
+    action="store_true")
 args = parser.parse_args()
 
 SCALE_SMOOTH = not args.scale_basic
@@ -86,6 +96,7 @@ JOYSTICK_THRESHOLD = args.js_threshold
 if args.datadir:
     DATA = args.datadir
 RECORD = args.record
+NO_BACKGROUNDS = args.no_backgrounds
 
 xsge_gui.joystick_threshold = JOYSTICK_THRESHOLD
 
@@ -1652,10 +1663,8 @@ class Player(xsge_physics.Collider):
 
         # Prevent moving off-screen to the right or left
         if self.bbox_left < self.view.x:
-            self.move_x(self.view.x - self.bbox_left)
             self.bbox_left = self.view.x
         elif self.bbox_right > self.view.x + self.view.width:
-            self.move_x(self.view.x + self.view.width - self.bbox_right)
             self.bbox_right = self.view.x + self.view.width
 
         # Off-screen death
@@ -5130,7 +5139,7 @@ class LevelsetMenu(Menu):
         if cls.levelsets:
             page_size = MENU_MAX_ITEMS - 2
             n_pages = math.ceil(len(cls.levelsets) / page_size)
-            page %= n_pages
+            page = int(page % n_pages)
             page_start = page * page_size
             page_end = min(page_start + page_size, len(cls.levelsets))
             current_page = cls.levelsets[page_start:page_end]
@@ -5919,93 +5928,105 @@ worldmap_warp_sprite = sge.Sprite("warp", d, fps=3)
 
 # Load backgrounds
 d = os.path.join(DATA, "images", "backgrounds")
+layers = []
 
-layers = [
-    sge.BackgroundLayer(
-        sge.Sprite("arctis1-middle", d), 0, 0, -100000, xscroll_rate=0.5,
-        yscroll_rate=0.5, repeat_left=True, repeat_right=True),
-    sge.BackgroundLayer(
-        sge.Sprite("arctis1-bottom", d), 0, 352, -100000, xscroll_rate=0.5,
-        yscroll_rate=0.5, repeat_left=True, repeat_right=True,
-        repeat_down=True),
-    sge.BackgroundLayer(
-        sge.Sprite("arctis2-middle", d), 0, 0, -100010, xscroll_rate=0.25,
-        yscroll_rate=0.25, repeat_left=True, repeat_right=True),
-    sge.BackgroundLayer(
-        sge.Sprite("arctis2-bottom", d), 0, 352, -100010, xscroll_rate=0.25,
-        yscroll_rate=0.25, repeat_left=True, repeat_right=True,
-        repeat_down=True),
-    sge.BackgroundLayer(
-        sge.Sprite("arctis3", d), 0, 0, -100020, xscroll_rate=0,
-        yscroll_rate=0.25, repeat_left=True, repeat_right=True)]
+if not NO_BACKGROUNDS:
+    layers = [
+        sge.BackgroundLayer(
+            sge.Sprite("arctis1-middle", d), 0, 0, -100000, xscroll_rate=0.5,
+            yscroll_rate=0.5, repeat_left=True, repeat_right=True),
+        sge.BackgroundLayer(
+            sge.Sprite("arctis1-bottom", d), 0, 352, -100000, xscroll_rate=0.5,
+            yscroll_rate=0.5, repeat_left=True, repeat_right=True,
+            repeat_down=True),
+        sge.BackgroundLayer(
+            sge.Sprite("arctis2-middle", d), 0, 0, -100010, xscroll_rate=0.25,
+            yscroll_rate=0.25, repeat_left=True, repeat_right=True),
+        sge.BackgroundLayer(
+            sge.Sprite("arctis2-bottom", d), 0, 352, -100010,
+            xscroll_rate=0.25, yscroll_rate=0.25, repeat_left=True,
+            repeat_right=True, repeat_down=True),
+        sge.BackgroundLayer(
+            sge.Sprite("arctis3", d), 0, 0, -100020, xscroll_rate=0,
+            yscroll_rate=0.25, repeat_left=True, repeat_right=True)]
+
 backgrounds["arctis"] = sge.Background(layers, sge.Color((109, 92, 230)))
 
-cave_edge_spr = sge.Sprite("cave-edge", d)
-layers = [
-    sge.BackgroundLayer(
-        sge.Sprite("cave-middle", d), 0, 128, -100000, xscroll_rate=0.7,
-        yscroll_rate=0.7, repeat_left=True, repeat_right=True),
-    sge.BackgroundLayer(
-        cave_edge_spr, 0, 0, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
-        repeat_left=True, repeat_right=True, repeat_up=True),
-    sge.BackgroundLayer(
-        cave_edge_spr, 0, 256, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
-        repeat_left=True, repeat_right=True, repeat_down=True)]
-del cave_edge_spr
+if not NO_BACKGROUNDS:
+    cave_edge_spr = sge.Sprite("cave-edge", d)
+    layers = [
+        sge.BackgroundLayer(
+            sge.Sprite("cave-middle", d), 0, 128, -100000, xscroll_rate=0.7,
+            yscroll_rate=0.7, repeat_left=True, repeat_right=True),
+        sge.BackgroundLayer(
+            cave_edge_spr, 0, 0, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
+            repeat_left=True, repeat_right=True, repeat_up=True),
+        sge.BackgroundLayer(
+            cave_edge_spr, 0, 256, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
+            repeat_left=True, repeat_right=True, repeat_down=True)]
+    del cave_edge_spr
+
 backgrounds["cave"] = sge.Background(layers, sge.Color("black"))
 
-nightsky_bottom_spr = sge.Sprite("nightsky-bottom", d)
-layers = [
-    sge.BackgroundLayer(
-        sge.Sprite("nightsky1-middle", d), 0, 306, -100000, xscroll_rate=0.5,
-        yscroll_rate=0.5, repeat_left=True, repeat_right=True),
-    sge.BackgroundLayer(
-        nightsky_bottom_spr, 0, 664, -100000, xscroll_rate=0.5,
-        yscroll_rate=0.5, repeat_left=True, repeat_right=True,
-        repeat_down=True),
-    sge.BackgroundLayer(
-        sge.Sprite("nightsky2-middle", d), 0, 0, -100010, xscroll_rate=0.25,
-        yscroll_rate=0.25, repeat_left=True, repeat_right=True),
-    sge.BackgroundLayer(
-        sge.Sprite("nightsky2-top", d), 0, -600, -100010, xscroll_rate=0.25,
-        yscroll_rate=0.25, repeat_left=True, repeat_right=True,
-        repeat_up=True),
-    sge.BackgroundLayer(
-        nightsky_bottom_spr, 0, 600, -100010, xscroll_rate=0.25,
-        yscroll_rate=0.25, repeat_left=True, repeat_right=True,
-        repeat_down=True)]
-del nightsky_bottom_spr
+if not NO_BACKGROUNDS:
+    nightsky_bottom_spr = sge.Sprite("nightsky-bottom", d)
+    layers = [
+        sge.BackgroundLayer(
+            sge.Sprite("nightsky1-middle", d), 0, 306, -100000, xscroll_rate=0.5,
+            yscroll_rate=0.5, repeat_left=True, repeat_right=True),
+        sge.BackgroundLayer(
+            nightsky_bottom_spr, 0, 664, -100000, xscroll_rate=0.5,
+            yscroll_rate=0.5, repeat_left=True, repeat_right=True,
+            repeat_down=True),
+        sge.BackgroundLayer(
+            sge.Sprite("nightsky2-middle", d), 0, 0, -100010, xscroll_rate=0.25,
+            yscroll_rate=0.25, repeat_left=True, repeat_right=True),
+        sge.BackgroundLayer(
+            sge.Sprite("nightsky2-top", d), 0, -600, -100010, xscroll_rate=0.25,
+            yscroll_rate=0.25, repeat_left=True, repeat_right=True,
+            repeat_up=True),
+        sge.BackgroundLayer(
+            nightsky_bottom_spr, 0, 600, -100010, xscroll_rate=0.25,
+            yscroll_rate=0.25, repeat_left=True, repeat_right=True,
+            repeat_down=True)]
+    del nightsky_bottom_spr
+
 backgrounds["nightsky"] = sge.Background(layers, sge.Color("black"))
 
-layers = [
-    sge.BackgroundLayer(
-        sge.Sprite("bluemountain-middle", d), 0, -128, -100000,
-        xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
-        repeat_right=True),
-    sge.BackgroundLayer(
-        sge.Sprite("bluemountain-top", d), 0, -704, -100000, xscroll_rate=0.1,
-        yscroll_rate=0.1, repeat_left=True, repeat_right=True, repeat_up=True),
-    sge.BackgroundLayer(
-        sge.Sprite("bluemountain-bottom", d), 0, 448, -100000,
-        xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
-        repeat_right=True, repeat_down=True)]
+if not NO_BACKGROUNDS:
+    layers = [
+        sge.BackgroundLayer(
+            sge.Sprite("bluemountain-middle", d), 0, -128, -100000,
+            xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
+            repeat_right=True),
+        sge.BackgroundLayer(
+            sge.Sprite("bluemountain-top", d), 0, -704, -100000, xscroll_rate=0.1,
+            yscroll_rate=0.1, repeat_left=True, repeat_right=True, repeat_up=True),
+        sge.BackgroundLayer(
+            sge.Sprite("bluemountain-bottom", d), 0, 448, -100000,
+            xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
+            repeat_right=True, repeat_down=True)]
+
 backgrounds["bluemountain"] = sge.Background(layers, sge.Color((86, 142, 206)))
 
 castle_spr = sge.Sprite("castle", d)
 castle_bottom_spr = sge.Sprite("castle-bottom", d)
 for i in list(backgrounds.keys()):
-    layers = backgrounds[i].layers + [
-        sge.BackgroundLayer(castle_spr, 0, -64, -99000,
-                            xscroll_rate=0.75, yscroll_rate=0.75,
-                            repeat_left=True, repeat_right=True,
-                            repeat_up=True),
-        sge.BackgroundLayer(castle_bottom_spr, 0, 536, -99000,
-                            xscroll_rate=0.75, yscroll_rate=0.75,
-                            repeat_left=True, repeat_right=True,
-                            repeat_down=True)]
+    if not NO_BACKGROUNDS:
+        layers = backgrounds[i].layers + [
+            sge.BackgroundLayer(castle_spr, 0, -64, -99000,
+                                xscroll_rate=0.75, yscroll_rate=0.75,
+                                repeat_left=True, repeat_right=True,
+                                repeat_up=True),
+            sge.BackgroundLayer(castle_bottom_spr, 0, 536, -99000,
+                                xscroll_rate=0.75, yscroll_rate=0.75,
+                                repeat_left=True, repeat_right=True,
+                                repeat_down=True)]
 
-    backgrounds["{}_castle".format(i)] = sge.Background(layers,
-                                                        backgrounds[i].color)
+        backgrounds["{}_castle".format(i)] = sge.Background(layers,
+                                                            backgrounds[i].color)
+    else:
+        backgrounds["{}_castle".format(i)] = sge.Background([], sge.Color("black"))
 del castle_spr
 del castle_bottom_spr
 
