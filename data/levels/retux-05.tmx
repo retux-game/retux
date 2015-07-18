@@ -35,7 +35,7 @@
   <object type="solid_top" x="608" y="256" width="352" height="32"/>
   <object type="solid_top" x="1152" y="224" width="224" height="32"/>
   <object type="solid_top" x="1440" y="352" width="544" height="32"/>
-  <object type="moving_platform_path" x="2080" y="384">
+  <object type="moving_platform_path" x="2048" y="384">
    <polyline points="0,0 0,-288 0,0"/>
   </object>
   <object type="solid_top" x="3456" y="224" width="352" height="32"/>
@@ -49,13 +49,13 @@
   </object>
   <object type="level_end" x="9088" y="0" width="32" height="320"/>
   <object type="moving_platform_path" x="6464" y="128">
-   <polyline points="0,0 192,0 0,0"/>
+   <polyline points="0,0 160,0 0,0"/>
   </object>
   <object type="moving_platform_path" x="7040" y="192">
-   <polyline points="0,0 -192,0 0,0"/>
+   <polyline points="-32,0 -192,0 -32,0"/>
   </object>
   <object type="moving_platform_path" x="7232" y="256">
-   <polyline points="0,0 192,0 0,0"/>
+   <polyline points="0,0 160,0 0,0"/>
   </object>
   <object type="solid_top" x="5536" y="160" width="544" height="32"/>
   <object type="solid_top" x="6208" y="96" width="160" height="32"/>
