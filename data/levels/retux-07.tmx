@@ -4,7 +4,7 @@
   <property name="background_y" value="512"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="The Seven Stationary Springs"/>
+  <property name="name" value="The Seven Deadly Springs"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
