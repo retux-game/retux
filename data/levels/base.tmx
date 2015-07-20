@@ -8,41 +8,34 @@
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
  <tileset firstgid="151" source="../tilesets/cave.tsx"/>
  <tileset firstgid="171" source="../tilesets/castle.tsx"/>
- <tileset firstgid="219" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="234" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="322" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="345" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="349" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="351" source="../tilesets/krush.tsx"/>
- <tileset firstgid="352" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="353" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="342" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABohhpb0fkqB2jdtDRDgsSMT0AABAhBXI=
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhASzIwLGMpNnBSwcMAHJxBHw=
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid">
-  <object x="0" y="416" width="800" height="32"/>
-  <object x="704" y="288" width="64" height="128"/>
- </objectgroup>
- <objectgroup name="Collision Objects">
-  <object type="level_end" x="256" y="0" width="32" height="416"/>
- </objectgroup>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects"/>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players">
-  <object gid="1" x="64" y="416"/>
- </objectgroup>
+ <objectgroup name="Players"/>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowATRDHS3o7IUTtG7aCzHXF0sJ8YAADhMgMx
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
   </data>
  </layer>
 </map>

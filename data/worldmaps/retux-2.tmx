@@ -11,7 +11,11 @@
   </data>
  </layer>
  <objectgroup name="Spaces">
-  <object gid="62" x="448" y="352"/>
+  <object gid="62" x="448" y="352">
+   <properties>
+    <property name="level" value="retux-07.tmx"/>
+   </properties>
+  </object>
   <object gid="62" x="256" y="352"/>
   <object gid="62" x="96" y="256"/>
   <object gid="62" x="192" y="96"/>
