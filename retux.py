@@ -428,7 +428,7 @@ class Level(sge.Room):
         spawn_point = None
 
         for obj in self.objects:
-            if isinstance(obj, WarpSpawn):
+            if isinstance(obj, (Spawn, WarpSpawn)):
                 if self.spawn is not None and obj.spawn_id == self.spawn:
                     spawn_point = obj
 
@@ -4195,6 +4195,13 @@ class CoinCollect(sge.Object):
     def event_alarm(self, alarm_id):
         if alarm_id == "destroy":
             self.destroy()
+
+
+class Spawn(sge.Object):
+
+    def __init__(self, x, y, spawn_id=None, **kwargs):
+        super(Spawn, self).__init__(x, y, **kwargs)
+        self.spawn_id = spawn_id
 
 
 class WarpSpawn(xsge_path.Path):
