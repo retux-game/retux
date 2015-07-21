@@ -18,17 +18,47 @@
  <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAlwHE4AAB
+   eJztzrENACAMA0GyACX7rwdTwASRKFAo7iQX37k1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG71yBvgFyPyBgAAAAAAAADemmer+gQAAAAAAOU2ymsCIA==
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAlwHE4AAB
+   eJzt3DmP00AYBuDpEVBz1VwFUHAVQAM0sAVIdEgg0SGBxG/lF3A0nA1HzReJlSJvbCf22GM7zyO9xSq7TrxevzsTj5MSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAs27HIrQnk5NA7CszeqcjxCeTc0DsKzN75yJkCuVT5+vLQOwrMXqm+qkZfAW2qfVUd97SNi/QVLMuHyMfSL6KG8RWw7kvka+kXUWMufXUncjdyr/ceA030Vfscs62vHkUeRw567zHwNNWvLXr/P6XXOG3K9dS9Zx5EHnbM/cq22vrqSuRq5FrL9wH1Vj31IvIylV/D1CWnU3MnXYhcrHmsy3tO3yLf09Fx3WpbPyI/O2wTaLbeU28ib1OeeVHpuVk1NyI3ax7r0le/Ir/T5r76E/nbYZvAZm09NWbn5HiuPtvo0lefIp/T5r46fAz2zRD3xeUeT+2SpnlZqfRZg7Cpr3JwHZE5GuK+uBI9dZimeVmJPI882fpoHDVUX7mOyByNeZ1+27HPGHPFIZ6jus1VV73e/lBsNFRfuY7IHOXoq23P/amNfYbMYVc9S3nXUVjfzj7b9b442a2rXqW86yj0FftsCuu2V+mzpnJqWe+qd5l/T/qKXOb4WZJT6aslXaev66quY9f1n9NX5JL7OtuJNO59JiXXAizlPMwxrmo6DrdT2fuSfB7zcrT9b9w1Z9O495n0fT+8z76WPg9zJcccsOk4jPE30RSfx7wcJcYlY3TJGK+n9HmYK7nfr5ra38JSxsGk9A+n4/2c
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="4928" y="1280" width="1024" height="64"/>
+  <object x="4288" y="1152" width="640" height="192"/>
+  <object x="4768" y="672" width="160" height="480"/>
+  <object x="2560" y="1312" width="1728" height="32"/>
+  <object x="0" y="1248" width="672" height="96"/>
+  <object x="672" y="1280" width="768" height="64"/>
+  <object x="1440" y="1056" width="1120" height="288"/>
+  <object x="2368" y="928" width="1952" height="128"/>
+  <object x="2560" y="1056" width="1600" height="128"/>
+  <object x="2560" y="896" width="64" height="32"/>
+  <object x="3808" y="896" width="512" height="32"/>
+  <object x="3808" y="672" width="960" height="224"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="slope_topleft" x="4128" y="1152" width="160" height="160"/>
+  <object type="slope_bottomright" x="4160" y="1056" width="128" height="128"/>
+  <object type="slope_topleft" x="2112" y="928" width="256" height="128"/>
+  <object type="solid_bottom" x="4704" y="992" width="64" height="32"/>
+  <object type="solid_bottom" x="4928" y="992" width="64" height="32"/>
+  <object type="solid_top" x="5152" y="864" width="96" height="32"/>
+  <object type="solid_top" x="5472" y="1056" width="96" height="32"/>
+  <object type="solid_bottom" x="2560" y="1216" width="64" height="32"/>
+  <object type="solid_top" x="2560" y="800" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="2592" y="800">
+   <polyline points="0,0 0,448"/>
+  </object>
+  <object x="4736" y="1024">
+   <polyline points="0,0 0,-64 224,-64 224,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>

@@ -1,7 +1,8 @@
 {
     "name": "reTux",
     "worldmaps": [
-        "retux-1.tmx"
+        "retux-1.tmx",
+        "retux-2.tmx"
     ],
     "levels": [
         "retux-01.tmx",
@@ -9,6 +10,8 @@
         "retux-03.tmx",
         "retux-04.tmx",
         "retux-05.tmx",
-        "retux-06.tmx"
+        "retux-06.tmx",
+        "retux-07.tmx",
+        "retux-08.tmx"
     ]
 }
