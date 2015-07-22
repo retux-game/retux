@@ -3768,11 +3768,12 @@ class FixedSpring(FallingObject):
         self.y += self.image_origin_y
 
     def stomp(self, other):
-        other.stomp_jump(self, self.jump_height)
-        play_sound(spring_sound)
-        self.sprite = self.expand_sprite
-        self.image_index = 0
-        self.image_fps = None
+        if other is not self.parent:
+            other.stomp_jump(self, self.jump_height)
+            play_sound(spring_sound)
+            self.sprite = self.expand_sprite
+            self.image_index = 0
+            self.image_fps = None
 
     def event_animation_end(self):
         if self.sprite == self.expand_sprite:

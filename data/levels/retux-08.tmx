@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="42" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
+  <property name="background_y" value="512"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="Trace your Spring"/>
@@ -24,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   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
+   eJztnUtv1TAQhd01L8EOKAvoAgoq0AWPqgU2gESBBVB2iOcO8dzyN/sLeGx4tBto14zVWIrSJI7tGXuSez7pKC1UuXHu9bkzztg2BoB8LM4Zs0XH7dIXAgCYWW6Qbg7QMvnVDh13C10nAADcJz0YoIekn6RfZS4TAKCIx6TrgjrS8bqXSMdIa6SLldYqrVbHe6QFA78CYMwcMDxe8oL0knRIUKd62nHa7PnSOmmp+vlMdVyqfrZ+9Z30I/w2ATBquPr50BhCiuOGx0vekz6QTjLpfOP356RHPe2wMdblmly8ZX3KxlbWxxai7hAA44ern4fEEBKcNfu94hxpseXfS+pdYLua/mW1HHgOAKZCWz/n0IWcjTDt7bhKuhZx7V2xkU8+f7Sx1RepGwDADJDqV119WoNf5ZbPH0NjKwCmzmbg3zf7OVcOtUJ6ktaUpHZoE2IrANJp9vPUHMppnvSK9Nrk8a1YvwrN+WKF2AqMmaG1zLeEr0MyLvlI+mTy+Fa9Hbk8CLEVmDpfSd9MWC2zJBx+5cshm74lUT9xhaEdXGr6JWIrMFZcXbKtC7T1NK6OebV2XK/+76iRf3bd9KuY2GRoDul8S6J+4kTHa94h3S0sxFZgrNT9yvqT9SVbt2y9qUSdTY5x6pL5We7nlABMCedXzTrAUjWAQ/1K25gQ/AoAebTNU9VYBzC0pmKIh8KvAIhH2zxVjX7FVVPB7VfuWQkAoAwa/YpTnH6lLTYGYNbI5Vc5x7/qrwW/AmA6xPhVrhqB2xHXxh1f1dfb2awkuZaflvV5ANDIEL9qxka5xrA5Yr/Ua5Vab0f7+jwAaCTGE3L51YZJj9H61sYbQqnxvVLfEQBoxvXHkPGlWeo7Wp5H1O+5m3sqPbcUAG1ojq80EDpfSeq5Qv2eu7mn0nNLAdBGTM6VmmM10VzXpDG+cnMjsC4yAPnRXCeg0a/aQI4IQB7gV/4c0+dXyBEB4KNvD9KSdU2S62ql1Kk1a898foUcEYB0rE/l2INUSl3rajn1zc2OeS7xm/TH7I/r7Lm2SNsB50KOCGaF1DHwuk9x7UGqcU2bvrnZMX71l/TPtPvVDmk34FzIEcGsEDum5POpUvMIS5wjxq/c+h1tfhW6tgdyRDAVfPvQx4wpccdTIdK4l3NKnVqbX3GAHBGMEYl5cSV8yolzzSwOPTNpdWpSfoUcEYyRnM/pOdcLTZXEazTPab3q7fC3ohUpv0KOCMYIh18N7fvaYh9JOa96anjrKCTnQGnIEX3jEz7l3Esc5IdjHy+o26veGN46Ckm/Kp0jWq86aNLuV869xEF+NNRtW2nYH5BLda/6zHyfJP2qZI7ovKruzzHfnTn3Eh87Y1xLUotfxTyn10qXV8XGrlLrOmuhzatSlWMvcYm+nZoPb8z57vYe9m+5n7MdznDf6uMjJWsBptIPOeKqvvdhxejsZ5bYvsbtVW2+VXp+RFNd68TmXMfW990YqvkM11z/nKSOh6e0tXQ/5BJHDtj3PuT4TMT0M0tsX0v1Kq4xV86xW9+5ur6fteQ7paVtHL15PaX7IZe4x6u0fRb64mBfX9P2GSypUL+S8OT/8pwX2g==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -80,6 +81,9 @@
   <object type="solid_top" x="3904" y="544" width="64" height="32"/>
   <object type="level_end" x="9088" y="0" width="32" height="1248"/>
   <object type="slope_topright" x="7200" y="1152" width="192" height="96"/>
+  <object type="solid_top" x="5632" y="1152" width="96" height="32"/>
+  <object type="solid_top" x="5312" y="960" width="96" height="32"/>
+  <object type="solid_top" x="4992" y="768" width="96" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="2592" y="800">
@@ -94,6 +98,15 @@
   <object x="384" y="576">
    <polyline points="0,0 0,-192"/>
   </object>
+  <object x="4960" y="1024">
+   <polyline points="0,0 0,-64 -224,-64 -224,0"/>
+  </object>
+  <object x="2592" y="1248">
+   <polyline points="0,0 0,-448"/>
+  </object>
+  <object x="384" y="384">
+   <polyline points="0,0 0,192"/>
+  </object>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
@@ -107,8 +120,6 @@
   <object gid="330" x="1120" y="288"/>
   <object gid="330" x="704" y="384"/>
   <object gid="330" x="3040" y="416"/>
-  <object gid="330" x="5184" y="864"/>
-  <object gid="330" x="5504" y="1056"/>
   <object gid="330" x="5824" y="1280"/>
   <object gid="324" x="2752" y="1280"/>
   <object gid="324" x="2784" y="1248"/>
@@ -190,10 +201,8 @@
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="9" x="1600" y="832"/>
-  <object gid="9" x="1568" y="832"/>
   <object gid="9" x="1536" y="832"/>
   <object gid="9" x="1824" y="832"/>
-  <object gid="9" x="1856" y="832"/>
   <object gid="9" x="1888" y="832"/>
   <object gid="9" x="2688" y="672"/>
   <object gid="9" x="2656" y="672"/>

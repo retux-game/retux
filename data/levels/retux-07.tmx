@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="250" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
+  <property name="background_y" value="512"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="The Seven Stationary Springs"/>
@@ -119,9 +120,7 @@
   <object gid="3" x="2048" y="800"/>
   <object gid="3" x="1920" y="800"/>
   <object gid="3" x="1856" y="800"/>
-  <object gid="9" x="3104" y="448"/>
   <object gid="9" x="3232" y="448"/>
-  <object gid="9" x="3168" y="448"/>
   <object gid="9" x="3296" y="448"/>
   <object gid="9" x="3648" y="576"/>
   <object gid="9" x="3584" y="576"/>
@@ -130,7 +129,6 @@
   <object gid="3" x="6304" y="576"/>
   <object gid="3" x="6464" y="576"/>
   <object gid="3" x="6528" y="576"/>
-  <object gid="2" x="6944" y="800"/>
   <object gid="2" x="6848" y="768"/>
   <object gid="2" x="6752" y="704"/>
   <object gid="4" x="5664" y="544"/>
@@ -149,7 +147,6 @@
   <object gid="3" x="4416" y="672"/>
   <object gid="2" x="3360" y="704"/>
   <object gid="2" x="3296" y="672"/>
-  <object gid="4" x="2944" y="608"/>
   <object gid="2" x="2752" y="544"/>
   <object gid="2" x="2688" y="544"/>
   <object gid="2" x="2560" y="544"/>
