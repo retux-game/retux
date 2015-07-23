@@ -3782,6 +3782,10 @@ class FixedSpring(FallingObject):
 
 class Spring(FixedSpring):
 
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
+
     def event_create(self):
         self.update_active()
 
@@ -3825,6 +3829,14 @@ class Spring(FixedSpring):
             self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
             self.gravity = self.__class__.gravity
             self.parent = None
+
+    def event_end_step(self, time_passed, delta_mult):
+        if (self.yvelocity >= 0 and
+                (self.get_bottom_touching_wall() or
+                 self.get_bottom_touching_slope())):
+            self.xdeceleration = ROCK_FRICTION
+        else:
+            self.xdeceleration = 0
 
 
 class RustySpring(Spring):
