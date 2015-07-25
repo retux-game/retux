@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="342" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="200" height="200">
+  <data encoding="base64" compression="zlib">
+   eJzt2MEJACEQBEHzz1SjOBPwIQwcg1Ww/30OPQYA8Lq5b/39BAAAAAAA1/RdAIAs+woAAAAAoJO+CwCQZV8BAAAAAHTSdwEAsuwrAAAAAIBO+i4AQJZ9BQAAAADQSd8FAMiyrwAAAAAAOum7AABZ9hUAAAAAQCd9FwAgy74CAAAAAOik7wIAZNlXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwMkHSYYfBA==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="200" height="200">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="6336" width="6400" height="64"/>
+  <object x="6336" y="64" width="64" height="6272"/>
+  <object x="0" y="0" width="6400" height="64"/>
+  <object x="0" y="64" width="64" height="6176"/>
+  <object x="320" y="320" width="5760" height="64"/>
+  <object x="6016" y="384" width="64" height="5536"/>
+  <object x="320" y="384" width="64" height="5696"/>
+  <object x="384" y="6016" width="5696" height="64"/>
+  <object x="640" y="640" width="5120" height="64"/>
+  <object x="5696" y="704" width="64" height="5056"/>
+  <object x="640" y="5696" width="5056" height="64"/>
+  <object x="640" y="704" width="64" height="4896"/>
+  <object x="960" y="960" width="4480" height="64"/>
+  <object x="5376" y="1024" width="64" height="4256"/>
+  <object x="1024" y="5376" width="4416" height="64"/>
+  <object x="960" y="1024" width="64" height="4416"/>
+  <object x="1280" y="5056" width="3776" height="64"/>
+  <object x="5056" y="1344" width="64" height="3776"/>
+  <object x="1280" y="1280" width="3840" height="64"/>
+  <object x="1280" y="1344" width="64" height="3616"/>
+  <object x="1600" y="1600" width="3200" height="64"/>
+  <object x="4736" y="1664" width="64" height="2976"/>
+  <object x="1600" y="1664" width="64" height="3136"/>
+  <object x="1664" y="4736" width="3136" height="64"/>
+  <object x="1920" y="1920" width="2560" height="64"/>
+  <object x="4416" y="1984" width="64" height="2496"/>
+  <object x="1920" y="4416" width="2496" height="64"/>
+  <object x="1920" y="1984" width="64" height="2336"/>
+  <object x="2240" y="2240" width="1920" height="64"/>
+  <object x="4096" y="2304" width="64" height="1696"/>
+  <object x="2240" y="2304" width="64" height="1856"/>
+  <object x="2304" y="4096" width="1856" height="64"/>
+  <object x="2560" y="2560" width="1280" height="64"/>
+  <object x="3776" y="2624" width="64" height="1216"/>
+  <object x="2560" y="3776" width="1216" height="64"/>
+  <object x="2560" y="2624" width="64" height="1056"/>
+  <object x="1248" y="6240" width="448" height="32"/>
+  <object x="1216" y="6272" width="512" height="32"/>
+  <object x="1184" y="6304" width="544" height="32"/>
+  <object x="2496" y="6208" width="480" height="32"/>
+  <object x="2464" y="6240" width="992" height="32"/>
+  <object x="2432" y="6272" width="1024" height="32"/>
+  <object x="2400" y="6304" width="1056" height="32"/>
+  <object x="3808" y="6304" width="32" height="32"/>
+  <object x="3872" y="6272" width="32" height="64"/>
+  <object x="3936" y="6240" width="32" height="96"/>
+  <object x="4000" y="6240" width="32" height="96"/>
+  <object x="4064" y="6240" width="32" height="96"/>
+  <object x="4128" y="6240" width="32" height="96"/>
+  <object x="4192" y="6240" width="32" height="96"/>
+  <object x="4256" y="6272" width="32" height="64"/>
+  <object x="4320" y="6304" width="32" height="32"/>
+  <object x="5120" y="5984" width="64" height="32"/>
+  <object x="3328" y="5952" width="640" height="64"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_bottom" x="3712" y="3616" width="64" height="32"/>
+  <object type="solid_top" x="5120" y="5888" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="315" x="416" y="6240"/>
+  <object gid="315" x="512" y="6240"/>
+  <object gid="315" x="608" y="6240"/>
+  <object gid="324" x="2624" y="6144"/>
+  <object gid="324" x="2656" y="6176"/>
+  <object gid="324" x="2784" y="6176"/>
+  <object gid="324" x="2816" y="6144"/>
+  <object gid="324" x="2848" y="6144"/>
+  <object gid="324" x="2880" y="6176"/>
+  <object gid="324" x="2592" y="6144"/>
+  <object gid="324" x="2560" y="6176"/>
+  <object gid="315" x="5024" y="6240"/>
+  <object gid="315" x="4992" y="6240"/>
+  <object gid="315" x="5056" y="6240"/>
+  <object gid="315" x="4960" y="6240"/>
+  <object gid="315" x="5120" y="6240"/>
+  <object gid="314" x="5088" y="6240"/>
+  <object gid="330" x="6112" y="6336"/>
+  <object gid="330" x="5472" y="5696"/>
+  <object gid="330" x="4832" y="5056"/>
+  <object gid="330" x="4192" y="4416"/>
+  <object gid="330" x="2496" y="4096"/>
+  <object gid="330" x="1856" y="4736"/>
+  <object gid="330" x="1216" y="5376"/>
+  <object gid="330" x="576" y="6016"/>
+  <object gid="315" x="4864" y="5920"/>
+  <object gid="315" x="4832" y="5920"/>
+  <object gid="315" x="4736" y="5920"/>
+  <object gid="315" x="4704" y="5920"/>
+  <object gid="315" x="4608" y="5920"/>
+  <object gid="315" x="4576" y="5920"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="2" x="896" y="6336"/>
+  <object gid="2" x="960" y="6336"/>
+  <object gid="2" x="1344" y="6240"/>
+  <object gid="2" x="1472" y="6240"/>
+  <object gid="2" x="1536" y="6240"/>
+  <object gid="2" x="1600" y="6240"/>
+  <object gid="3" x="1984" y="6336"/>
+  <object gid="3" x="2048" y="6336"/>
+  <object gid="3" x="2208" y="6336"/>
+  <object gid="3" x="2272" y="6336"/>
+  <object gid="4" x="3040" y="6240"/>
+  <object gid="4" x="3168" y="6240"/>
+  <object gid="4" x="3424" y="6240"/>
+  <object gid="4" x="3296" y="6240"/>
+  <object gid="2" x="4672" y="6336"/>
+  <object gid="2" x="4736" y="6336"/>
+  <object gid="2" x="4800" y="6336"/>
+  <object gid="3" x="5824" y="6336"/>
+  <object gid="3" x="5760" y="6336"/>
+  <object gid="3" x="5760" y="6016"/>
+  <object gid="3" x="5696" y="6016"/>
+  <object gid="2" x="5536" y="6016"/>
+  <object gid="2" x="5472" y="6016"/>
+  <object gid="2" x="5408" y="6016"/>
+  <object gid="2" x="4192" y="6016"/>
+  <object gid="2" x="4128" y="6016"/>
+  <object gid="2" x="4064" y="6016"/>
+  <object gid="3" x="3424" y="5952"/>
+  <object gid="3" x="3488" y="5952"/>
+  <object gid="3" x="3648" y="5952"/>
+  <object gid="3" x="3712" y="5952"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="6336"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="200" height="200">
+  <data encoding="base64" compression="zlib">
+   eJztwYEAAAAAw6D5U1/hAFUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGcR4AAQ==
+  </data>
+ </layer>
+</map>
