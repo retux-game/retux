@@ -1663,10 +1663,10 @@ class Player(xsge_physics.Collider):
 
         # Prevent moving off-screen to the right or left
         if self.bbox_left < self.view.x:
-            self.move_x(self.view.x - self.bbox_left)
+            self.move_x(self.view.x - self.bbox_left, True)
             self.bbox_left = self.view.x
         elif self.bbox_right > self.view.x + self.view.width:
-            self.move_x(self.view.x + self.view.width - self.bbox_right)
+            self.move_x(self.view.x + self.view.width - self.bbox_right, True)
             self.bbox_right = self.view.x + self.view.width
 
         # Off-screen death
