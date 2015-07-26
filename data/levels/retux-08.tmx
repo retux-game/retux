@@ -20,7 +20,7 @@
  <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt1rEJgEAMQNG7BSydxc4VdP8JdAqtBY8Di1zwPUiRLtUnpQAAT2v0AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADG+q7R1gFHNt7wAAwHe7PxtIYtMrIAm9ArLQKyALvYp33HNGHwEJ6BWQxVuvls4BAADgvy6MtwbH
+   eJzt20GO00AQBdDmAiw5CzuuAGdxAutMFrBLAog7wilwC/9xpaWRkHDIIN6TSrE9iWNl8VVu17QGAIze3PsCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP5xp7kOc+2X7dOy/TDXsdQ017kcfz/XhztcL/D/6vnUM6hn1nF57XVpv3IredXfNy2vPau+zfXyxfW5xn2ALfUsuiyV/uq87CfHdkN9nuvTXK+GfBr3AbbU86lnU+750m/VDMvf0mv148ksgL8l2dR7qp5Nu+XYw7LdcyrrW4dh+3iH6+X5e6fP5gbSO/X86dmU9fRk2H45loya2tpzZY0LRm/lFRtLr9SzKVmU/mpfKhm1a+v61rEcg5G8YktTW+cTsn5VK71WKuvs+dyuySueJq/YStal3M9xK/Lq/r7P9WOuj3N9bdf3TMmAOhtQn//3v5/bOs+U9Z/MDZzKsYdyntyzpbfJd+QcWXeqPVH2L23thzKbUGcUDtv+PPBIXt3Xl1JjVo3ZUXMrMwD7tq5fJ08O5X2ZxTyX99V1pXx+zMFkXjIt13QqrzWrkl+e63FLT+XV698s/kyemWU9OvNKh7KdHqr2TDVXaqYli7I/tbWvSj+Ucyf/8qwuWTbe103lvHVmKpmVZ3/Txr8N8LwkC5JH9f9UpnadFXWWKVlWe630S5lhGucE6hp3Mqne49VZgn3ZTp81le+t+Zg+CwDYzk+T4LVZ
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
