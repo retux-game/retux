@@ -166,7 +166,7 @@ ITEM_SPAWN_SPEED = 1
 SECOND_POINTS = 100
 COIN_POINTS = 100
 ENEMY_KILL_POINTS = 50
-AMMO_POINTS = 50
+AMMO_POINTS = 10
 TUXDOLL_POINTS = 5000
 
 CAMERA_SPEED_FACTOR = 1 / 2
@@ -219,14 +219,14 @@ FLOWER_THROW_SPEED = 8
 FLOWER_THROW_HEIGHT = TILE_SIZE / 2
 FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
 
-FIREBALL_AMMO = 19
+FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
 FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
 FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
 FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
 
-ICEBULLET_AMMO = 19
+ICEBULLET_AMMO = 20
 ICEBULLET_SPEED = 8
 
 COINBRICK_COINS = 20
@@ -617,6 +617,7 @@ class Level(sge.Room):
                 if main_area not in cleared_levels:
                     cleared_levels.append(main_area)
 
+                main_area = None
                 current_areas = {}
                 level_cleared = True
 
