@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="bonuscave.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="342" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <layer name="Back Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgY8BKIXw2Q3aNgFIyCUTCQAAAhVwHU
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxbwsDAsIROeAUNMLL5SxlQwWMgfsJAOViMxw5qgeFux300TG070M2n1B50O24C8S08NDp4CMSPSLTjLhDfw0Ojg5dA/IpEOxjw+IGPERNzAjEXEv8tUN07IuzA5QcxRsL4K1DdNzx2gPACGmB6lYMgDADk0YTZ
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="800" height="64"/>
+  <object x="0" y="384" width="800" height="64"/>
+  <object x="736" y="64" width="64" height="320"/>
+  <object x="0" y="64" width="64" height="320"/>
+  <object x="96" y="320" width="192" height="64"/>
+  <object x="64" y="256" width="256" height="64"/>
+  <object x="96" y="224" width="192" height="32"/>
+  <object x="128" y="192" width="128" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_top" x="448" y="256" width="64" height="32"/>
+  <object type="solid_bottom" x="160" y="64" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="480" y="256">
+   <properties>
+    <property name="dest" value="retux-10b:bonus_exit"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="192" y="96">
+   <properties>
+    <property name="dest" value="retux-10.tmx:exit"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="480" y="320">
+   <properties>
+    <property name="spawn_id" value="bonus_enter"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object gid="321" x="672" y="288"/>
+ </objectgroup>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+  </data>
+ </layer>
+</map>
