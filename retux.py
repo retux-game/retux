@@ -3165,15 +3165,38 @@ class CircoflameCenter(InteractiveObject):
         self.flame.y = self.y + y
 
 
-class Snowman(FallingObject):
+class Boss(InteractiveObject):
+
+    def __init__(self, x, y, ID="boss", death_timeline=None, **kwargs):
+        self.ID = ID
+        self.death_timeline = death_timeline
+        self.stage = 0
+        super(Boss, self).__init__(x, y, **kwargs)
+
+    def event_create(self):
+        super(Boss, self).event_create()
+        sge.game.current_room.add_timeline_object(self)
+
+    def event_destroy(self):
+        for obj in sge.game.current_room.objects:
+            if obj is not self and isinstance(obj, Boss) and obj.stage > 0:
+                break
+        else:
+            if self.death_timeline:
+                sge.game.current_room.load_timeline(self.death_timeline)
+            else:
+                player = self.get_nearest_player()
+                if player is not None:
+                    player.win_level(False)
+
+
+class Snowman(FallingObject, Boss):
 
     burnable = True
     freezable = True
     knockable = True
 
-    def __init__(self, x, y, ID="boss", **kwargs):
-        self.ID = ID
-        self.stage = 0
+    def __init__(self, x, y, **kwargs):
         self.hp = SNOWMAN_HP
         self.stunned = False
         self.stun_end = False
@@ -3181,10 +3204,6 @@ class Snowman(FallingObject):
         self.fixed_sprite = False
         kwargs["sprite"] = snowman_stand_sprite
         super(Snowman, self).__init__(x, y, **kwargs)
-
-    def event_create(self):
-        super(Snowman, self).event_create()
-        sge.game.current_room.add_timeline_object(self)
 
     def jump(self):
         if self.was_on_floor:
@@ -3338,11 +3357,6 @@ class Snowman(FallingObject):
             self.alarms["stun"] = SNOWMAN_HITSTUN
         elif alarm_id == "stun":
             self.next_stage()
-
-    def event_destroy(self):
-        player = self.get_nearest_player()
-        if player is not None:
-            player.win_level(False)
 
 
 class FireFlower(FallingObject, WinPuffObject):
