@@ -105,6 +105,7 @@ TILE_SIZE = 32
 FPS = 60
 DELTA_MIN = 20
 
+DEFAULT_LEVELSET = "retux.json"
 DEFAULT_LEVEL_TIME_BONUS = 30000
 
 TUX_ORIGIN_X = 28
@@ -282,7 +283,7 @@ sneak_js = [(0, "button", 2)]
 save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
 current_save_slot = None
-current_levelset = "retux.json"
+current_levelset = None
 worldmaps = []
 levels = []
 level_names = {}
@@ -312,8 +313,14 @@ class Game(sge.Game):
         global score
 
         if main_area is not None:
-            if level_timers.setdefault(main_area, 0) < 0:
-                score -= level_timers[main_area] * SECOND_POINTS
+            won = sge.game.current_room and sge.game.current_room.won
+
+            if won:
+                score += sge.game.current_room.points
+                sge.game.current_room.points = 0
+
+            if won or level_timers.setdefault(main_area, 0) < 0:
+                score += level_timers[main_area] * SECOND_POINTS
                 level_timers[main_area] = 0
         save_game()
         self.end()
@@ -5594,6 +5601,9 @@ def set_new_game():
     global current_level
     global score
 
+    if current_levelset is None:
+        load_levelset(DEFAULT_LEVELSET)
+
     level_timers = {}
     cleared_levels = []
     tuxdolls_found = []
@@ -5698,14 +5708,17 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
 
+print("Initializing game system...")
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=(not args.scale_basic),
      fps=FPS, delta=(not args.nodelta), delta_min=DELTA_MIN,
      window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
-xsge_gui.init()
 
+print("Initializing GUI system...")
+xsge_gui.init()
 gui_handler = xsge_gui.Handler()
 
+print("Loading images...")
 # Load sprites
 d = os.path.join(DATA, "images", "objects", "tux")
 tux_body_stand_sprite = sge.Sprite(
@@ -6048,6 +6061,7 @@ del castle_spr
 del castle_bottom_spr
 
 # Load fonts
+print("Loading fonts...")
 chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 128)] +
          [six.unichr(i) for i in six.moves.range(160, 384)])
 
@@ -6100,10 +6114,8 @@ select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))
 
 # Load music
-invincible_music = sge.Music(os.path.join(DATA, "music", "invincible.ogg"))
 level_win_music = sge.Music(os.path.join(DATA, "music", "leveldone.ogg"))
 no_music = sge.Music(None)
-loaded_music["invincible.ogg"] = invincible_music
 loaded_music["leveldone.ogg"] = level_win_music
 loaded_music[None] = no_music
 
@@ -6114,6 +6126,7 @@ bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
                              tangible=False)
 
 # Create rooms
+print("Creating {}...".format("level" if RECORD else "title screen"))
 if RECORD:
     sge.game.start_room = LevelRecorder.load(RECORD)
 else:
@@ -6121,7 +6134,6 @@ else:
                                                         "title_screen.tmx"))
 
 sge.game.mouse.visible = False
-load_levelset(current_levelset)
 
 if not os.path.exists(CONFIG):
     os.makedirs(CONFIG)
@@ -6166,6 +6178,7 @@ else:
 
 
 if __name__ == '__main__':
+    print("Starting game...")
     try:
         sge.game.start()
     finally:
@@ -6181,9 +6194,9 @@ if __name__ == '__main__':
                "joystick": js_cfg}
 
         with open(os.path.join(CONFIG, "config.json"), 'w') as f:
-            json.dump(cfg, f)
+            json.dump(cfg, f, indent=4, sort_keys=True)
 
         with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
-            json.dump(save_slots, f)
+            json.dump(save_slots, f, indent=4, sort_keys=True)
 
         shutil.rmtree(DATA)
