@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="42" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="background_y" value="512"/>
+  <property name="background_y" value="896"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="Trace your Spring"/>
