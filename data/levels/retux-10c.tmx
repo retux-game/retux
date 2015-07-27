@@ -43,7 +43,7 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="480" y="256">
    <properties>
-    <property name="dest" value="retux-10b:bonus_exit"/>
+    <property name="dest" value="retux-10b.tmx:bonus_exit"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>
@@ -66,7 +66,9 @@
   <object gid="321" x="672" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="480" y="256"/>
+ </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRQE8AAAV4AAE=

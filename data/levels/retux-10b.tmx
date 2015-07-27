@@ -73,11 +73,18 @@
    </properties>
    <polyline points="0,0 0,64"/>
   </object>
+  <object x="64" y="64">
+   <properties>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
  </objectgroup>
  <objectgroup name="Items">
   <object type="object_warp_spawn" x="2944" y="0">
    <properties>
     <property name="cls" value="spring"/>
+    <property name="interval" value="60"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>

@@ -313,7 +313,8 @@ class Game(sge.Game):
         global score
 
         if main_area is not None:
-            won = sge.game.current_room and sge.game.current_room.won
+            won = (isinstance(sge.game.current_room, Level) and
+                   sge.game.current_room.won)
 
             if won:
                 score += sge.game.current_room.points
