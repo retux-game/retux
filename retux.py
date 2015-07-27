@@ -917,7 +917,7 @@ class Worldmap(sge.Room):
                         level_names[obj.level] = name
                     elif obj.level in levels:
                         level_names[obj.level] = "Level {}".format(
-                            levels.index(level) + 1)
+                            levels.index(obj.level) + 1)
                     else:
                         level_names[obj.level] = "???"
 
