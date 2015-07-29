@@ -20,12 +20,12 @@
  <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt27ENACAMA0HYijFg/2WYACkdMtxJ7lN9l9YAAAAAAAAAAAD+s/rtCwBqpl4BIfQKSKFXQAq9AlLoFZBCr4AUp16N4gAAAAAAAAAAAAAAAAAA4Fd+bgEAeNEGBKAFKg==
+   eJzt27ENwCAQBEHcFRUQ4/6bISFFIkCyz56RLv9osy8FAAAAAAAAAADgf+7r6QsA9nS9AkLoFZBCr4AUegWk0CsghV4BKVa9qpsDAAAAAAAAAAAAAAAAgNPaHMDb+bkFAOCLBosgBbY=
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJztm7lOAzEURZ2atUJibZGAiio/AD1iaahYGiqWX+ULoIOvwKPECjKQzNhv3viZc6SrKUCK87APHi/OAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQKm8+bwrft6Sz1goV4rtBoDh+fD5VPy8TZ8Vodw7nAVQK5fu5xzldZpFc5k1oTbs+2wL5cXlOUt7bgkA7WhcdefS5zK7Qu2Q9FWus7TnlgCwmOCqZ5fuhUOhtkj76ruzuq5/tZ1bSuRi1K4+43a/BlAlEq4q3VfBWVLrYkMH4D8i5SoLvqopAJZJPQMg5Sp8ha9ghsSZnHP1VuvQ1GbZpb1XSLkKX+ErmCFxJufG59bV5a3gqi03/BjCV/gKJkj04UefJ1eGt6TOcJfiKnyFr3Ko7ZybZB+OvTXE+WepM9yluApf4ascajvn1kcfDt4a4s6GxTF54nP6S66nP8dXeqkNfNU+uXc2UrA4Jv/y0YObOAtf6aU0ctc34nO54W7XevSUWEfRGOd99+HgLK01LYtjcp6PGmedZdTjOxZro52SyNmfXnS3ay96SqyjaMxNNPpw4yyttXiLY1Jq/rQIi7XRTin0tT8d+tpR9JToG6l3s7rc59fqw1p7iBbHZDNfXx05d9DynlsqFmujHYm95Xj8pbxr9bU/3aevmqTczepyn1+7D8feku4bFsdk46sN76rjUf7/n3lYrI12JN+5AinvWn3tT/ftq5w2tWGodgZvSfcNi2Nyp+N3TMVibSwmHn8l1R1flVH/Wr5P7t9zHjXWRjpfuXtXDg==
+   eJztm7lOAzEURT01a4XE2iIBFVW+gB6xVDRAKhqWX+ULoIOvwFawEhkpmbGf39jmHOlqGqQ4L/bB48UYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKJUPm0/Fz1uzmQjlVrHdADA+Xzbfip+3a7MhlKnBWQCtcmP+zlHef7NqLrMl1IZjm32hvJk0Z2nPLQGgH85VjyZ+LnMo1A5JX6U6S3tuCQCr8a56NfFeOBVqi7SvFp01dP2r79xSItddv/pM+v0ZQJNIuKp0X3lnSa2LjR2A/4iUq2rwVUsBqJnYMwBSrsJX+ArmSJzJuVJvtQ6uNusm7r1CylX4Cl/BHIkzOfc2D6Ytb3lX7ZnxxxC+wlcwQ6IPP9u8mDK8JXWGuxRX4St8lUJr59wk+3DorTHOP0ud4S7FVfgKX6XQ2jm3HH3Ye2uMOxstjkl8pZfWwFf9k3pnI4YWxyS+0ktppK5vhOdy/d2u7eApsY6iMc5z92HvLK01rRbG5J3NxUIuqY1aSiJlf3rV3a6j4CmxjqIxN9How85ZWmvxtY9J56on8arMqL02GimFXPvTfq5+Fjwl+kbs3awh9/m1+rDWHmKNY9LN1zc7Y066fK5y1Fgb7UjsLYfjL+ZdK9f+dE5fucTczRpyn1+7D4feku4bNY5J56sd66rzLv3/zzJqrI12JN+5PDHvWrn2p3P7KqVNfRirnd5b0n2jxjF5MPA7xlJjbWpMOP5Kqju+KqP+rXyf1N9zGS3WRjo/ru5YEg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -41,20 +41,21 @@
   <object x="2528" y="864" width="480" height="96"/>
   <object x="3328" y="608" width="544" height="352"/>
   <object x="3872" y="896" width="1024" height="64"/>
-  <object x="4992" y="672" width="1696" height="32"/>
   <object x="4992" y="896" width="1728" height="64"/>
-  <object x="4992" y="704" width="1472" height="192"/>
-  <object x="6688" y="416" width="32" height="352"/>
-  <object x="5568" y="640" width="1120" height="32"/>
-  <object x="5600" y="608" width="1088" height="32"/>
-  <object x="5632" y="576" width="1056" height="32"/>
-  <object x="6240" y="416" width="448" height="160"/>
+  <object x="4992" y="832" width="1536" height="64"/>
+  <object x="5568" y="640" width="1152" height="32"/>
+  <object x="5600" y="608" width="1120" height="32"/>
+  <object x="5632" y="576" width="1088" height="32"/>
+  <object x="6240" y="416" width="480" height="160"/>
   <object x="6368" y="384" width="64" height="32"/>
   <object x="7264" y="480" width="2336" height="480"/>
   <object x="8384" y="448" width="64" height="32"/>
   <object x="7264" y="352" width="608" height="128"/>
   <object x="3872" y="704" width="192" height="192"/>
   <object x="4064" y="800" width="96" height="96"/>
+  <object x="4992" y="672" width="1728" height="96"/>
+  <object x="4992" y="768" width="1536" height="64"/>
+  <object x="9536" y="352" width="64" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="moving_platform_path" x="6816" y="384">
@@ -70,17 +71,15 @@
   <object type="solid_top" x="1664" y="672" width="64" height="32"/>
   <object type="slope_topleft" x="6080" y="416" width="160" height="160"/>
   <object type="solid_top" x="6368" y="320" width="64" height="32"/>
-  <object type="slope_bottomleft" x="6624" y="704" width="64" height="64"/>
-  <object type="solid_right" x="6496" y="832" width="32" height="64"/>
   <object type="slope_topright" x="7872" y="352" width="128" height="128"/>
   <object type="solid_top" x="8384" y="384" width="64" height="32"/>
   <object type="level_end" x="9088" y="0" width="32" height="480"/>
+  <object type="slope_bottomright" x="6528" y="768" width="64" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="6528" y="864">
    <polyline points="0,0 -96,0 -128,-32 -128,-544"/>
   </object>
-  <object gid="323" x="6624" y="800"/>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
@@ -96,7 +95,7 @@
   <object gid="324" x="6560" y="320"/>
   <object gid="324" x="6528" y="320"/>
   <object gid="324" x="6496" y="352"/>
-  <object gid="321" x="6592" y="800"/>
+  <object gid="321" x="6624" y="832"/>
   <object gid="323" x="6272" y="320"/>
   <object gid="315" x="5056" y="576"/>
   <object gid="315" x="5088" y="576"/>
@@ -173,6 +172,7 @@
   <object gid="324" x="7392" y="160"/>
   <object gid="324" x="7456" y="160"/>
   <object gid="324" x="7520" y="160"/>
+  <object gid="323" x="6656" y="832"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1184" y="800"/>

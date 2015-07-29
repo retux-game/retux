@@ -104,6 +104,7 @@ SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
 FPS = 60
 DELTA_MIN = 20
+TRANSITION_TIME = 750
 
 DEFAULT_LEVELSET = "retux.json"
 DEFAULT_LEVEL_TIME_BONUS = 30000
@@ -348,6 +349,7 @@ class Level(sge.Room):
         self.warps = []
         self.shake_queue = 0
         self.view_frozen = False
+        self.pause_delay = TRANSITION_TIME
 
         if bgname is not None:
             background = backgrounds.get(bgname, background)
@@ -430,7 +432,8 @@ class Level(sge.Room):
             arg = None
 
         save_game()
-        m.start(transition="iris_out", transition_time=750, transition_arg=arg)
+        m.start(transition="iris_out", transition_time=TRANSITION_TIME,
+                transition_arg=arg)
 
     def event_room_start(self):
         global level_timers
@@ -448,6 +451,7 @@ class Level(sge.Room):
         self.win_count_time = False
         self.death_time = None
         self.alarms["timer"] = TIMER_FRAMES
+        self.pause_delay = TRANSITION_TIME
         play_music(self.music)
 
         if main_area is None:
@@ -499,6 +503,9 @@ class Level(sge.Room):
         global current_areas
         global main_area
         global level_cleared
+
+        if self.pause_delay > 0:
+            self.pause_delay -= time_passed
 
         self.show_hud()
 
@@ -712,7 +719,7 @@ class Level(sge.Room):
                     sge.game.start_room.start()
                 sge.game.mouse.visible = False
             elif key in ("enter", "p"):
-                if not self.won:
+                if self.pause_delay <= 0 and not self.won:
                     sge.Music.pause()
                     play_sound(pause_sound)
                     sge.game.pause(pause_sprite)
@@ -733,7 +740,7 @@ class Level(sge.Room):
             try:
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
                                   types=TYPES)
-            except IOError as e:
+            except Exception as e:
                 m = "An error occurred when trying to load the level:\n\n{}".format(e)
                 if sge.game.current_room is not None:
                     xsge_gui.show_message(message=m, title="Error",
@@ -3019,6 +3026,13 @@ class FallingIcicle(FallingObject):
     def touch(self, other):
         other.hurt()
 
+    def touch_death(self):
+        play_sound(sizzle_sound)
+        self.destroy()
+
+    def touch_hurt(self):
+        pass
+
     def stop_down(self):
         play_sound(icicle_crash_sound)
         Corpse.create(self.x, self.y, self.z,
@@ -3281,7 +3295,8 @@ class Snowman(FallingObject, Boss):
                             self.xvelocity = math.copysign(walk_speed, d)
 
                         if (can_jump and self.yvelocity == 0 and
-                                self.y - player.y >= SNOWMAN_JUMP_TRIGGER):
+                                self.y - player.y >= SNOWMAN_JUMP_TRIGGER and
+                                abs(self.xvelocity) >= walk_speed / 2):
                             self.jump()
             else:
                 player = self.get_nearest_player()
@@ -3334,6 +3349,9 @@ class Snowman(FallingObject, Boss):
             self.stun()
             if other.knockable:
                 other.knock(self)
+
+    def touch_hurt(self):
+        pass
 
     def touch_death(self):
         self.kill()
@@ -4085,6 +4103,12 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
         super(ItemBlock, self).event_create()
         self.sprite = bonus_full_sprite
         self.image_fps = None
+        self.image_origin_x = None
+        self.image_origin_y = None
+        self.bbox_x = None
+        self.bbox_y = None
+        self.bbox_width = None
+        self.bbox_height = None
         self.hit_sprite = bonus_empty_sprite
 
     def event_hit(self, other):
@@ -4939,7 +4963,7 @@ class MapSpace(sge.Object):
             if self.sprite:
                 x += self.sprite.width / 2
                 y += self.sprite.height / 2
-            level.start(transition="iris_in", transition_time=750,
+            level.start(transition="iris_in", transition_time=TRANSITION_TIME,
                         transition_arg=(x, y))
 
     @classmethod
@@ -4982,11 +5006,11 @@ class MapWarp(MapSpace):
             if self.sprite:
                 x += self.sprite.width / 2
                 y += self.sprite.height / 2
-            level.start(transition="iris_in", transition_time=750,
+            level.start(transition="iris_in", transition_time=TRANSITION_TIME,
                         transition_arg=(x, y))
         else:
             m = Worldmap.load(current_worldmap)
-            m.start(transition="dissolve", transition_time=750)
+            m.start(transition="dissolve", transition_time=TRANSITION_TIME)
             play_sound(warp_sound)
 
 
@@ -5838,20 +5862,20 @@ circoflame_sprite = sge.Sprite("circoflame", d, origin_x=16, origin_y=16,
                                fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                bbox_height=16)
 snowman_stand_sprite = sge.Sprite("snowman_stand", d, origin_x=28, origin_y=43,
-                                  bbox_x=-14, bbox_y=-40, bbox_width=28,
+                                  bbox_x=-17, bbox_y=-40, bbox_width=34,
                                   bbox_height=72)
 snowman_walk_sprite = sge.Sprite("snowman_walk", d, origin_x=28, origin_y=43,
-                                 bbox_x=-14, bbox_y=-40, bbox_width=28,
+                                 bbox_x=-17, bbox_y=-40, bbox_width=34,
                                  bbox_height=72)
 snowman_jump_sprite = sge.Sprite("snowman_jump", d, origin_x=28, origin_y=43,
-                                 bbox_x=-14, bbox_y=-40, bbox_width=28,
+                                 bbox_x=-17, bbox_y=-40, bbox_width=34,
                                  bbox_height=72)
 snowman_hurt_walk_sprite = sge.Sprite("snowman_hurt_walk", d, origin_x=28,
-                                      origin_y=43, bbox_x=-14, bbox_y=-8,
-                                      bbox_width=28, bbox_height=40)
+                                      origin_y=43, bbox_x=-17, bbox_y=-8,
+                                      bbox_width=34, bbox_height=40)
 snowman_hurt_jump_sprite = sge.Sprite("snowman_hurt_jump", d, origin_x=28,
-                                      origin_y=43, bbox_x=-14, bbox_y=-8,
-                                      bbox_width=28, bbox_height=40)
+                                      origin_y=43, bbox_x=-17, bbox_y=-8,
+                                      bbox_width=34, bbox_height=40)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)

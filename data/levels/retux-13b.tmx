@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="arctis_castle"/>
-  <property name="music" value="chipdisko.ogg"/>
+  <property name="music" value="fortress.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
@@ -23,7 +23,7 @@
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmE0KAjEMRjtX1HuOC934A1YYxWvoTk9hCxWCVGnDpGnke/CWKYV8k7bjnXMewpm9OGCdKXhmKNX7o+DaoB2xj57hSXA/yJV9esvVJLg2aAfOQSBBj7nCvLJPb7nCOQhybJK/WCdzIFcylPTlTezN1n3vkUXoOXgL3hX3oskuuE8eBGvmoCazWtB7+yP4VNyLJvR+UnrnoG/7kpnPyYOFDOWg8wq5qssVp0YKOjt7cAyuKmtazvxW1M6eyGeuloOe3P+iknLeptc/k/al9DsbSU3M4mLQs8dcvQDSypx5
+   eJztmEEOgjAQRcsV9Z640I1KIiZIuIbu9BS2SReTBpN27DBt81/ywgZKoZ9py2iMGSHM7GxA7UzWB0Opsb8Jtg22w43jyPAu2B/kqn5Ky9Uk2DbYDsyDQIISc4V6VT+l5QrzIJAAuZLh5I3haD37YyvQefBpfSn2RZOL9eodBK/JQUpmtaDr9rf1o9gXTej6JHbNQff2MTWfk4caMrQGrVfIVVquONdIQWvnPw6J7f06v7cemPduidTa4whzte/05P4XDXXPvpj4/eXsz1+7P2dvujQmfS+x31kfjMeu0zNXrnL6BW0MmHw=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -31,7 +31,7 @@
   <object x="2496" y="288" width="128" height="128"/>
   <object x="2080" y="288" width="128" height="128"/>
   <object x="2080" y="416" width="544" height="32"/>
-  <object x="3616" y="352" width="1184" height="96"/>
+  <object x="3616" y="352" width="608" height="64"/>
   <object x="4768" y="32" width="32" height="320"/>
   <object x="3616" y="32" width="480" height="192"/>
   <object x="0" y="32" width="32" height="352"/>
@@ -41,8 +41,9 @@
   <object x="3072" y="256" width="96" height="32"/>
   <object x="3296" y="320" width="64" height="32"/>
   <object x="3456" y="288" width="64" height="32"/>
-  <object x="4256" y="224" width="64" height="32"/>
-  <object x="4544" y="224" width="64" height="32"/>
+  <object x="3616" y="416" width="1184" height="32"/>
+  <object x="4256" y="352" width="352" height="64"/>
+  <object x="4640" y="352" width="160" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="moving_platform_path" x="544" y="352">
@@ -62,6 +63,8 @@
     <property name="timeline" value="boss_start.json"/>
    </properties>
   </object>
+  <object type="spike_top" x="4224" y="384" width="32" height="32"/>
+  <object type="spike_top" x="4608" y="384" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn">
@@ -186,8 +189,8 @@
   <object type="circoflame" x="3104" y="256">
    <polyline points="0,0 0,-32"/>
   </object>
-  <object gid="9" x="3072" y="64"/>
-  <object gid="9" x="3136" y="64"/>
+  <object gid="9" x="3040" y="64"/>
+  <object gid="9" x="3168" y="64"/>
   <object gid="9" x="2880" y="64"/>
   <object gid="9" x="2912" y="64"/>
   <object gid="9" x="3296" y="64"/>
@@ -196,12 +199,8 @@
   <object gid="9" x="2752" y="64"/>
   <object gid="9" x="3456" y="64"/>
   <object gid="9" x="3488" y="64"/>
-  <object gid="9" x="2336" y="64"/>
-  <object gid="9" x="2240" y="64"/>
-  <object gid="9" x="2144" y="64"/>
-  <object gid="9" x="2432" y="64"/>
-  <object gid="9" x="2528" y="64"/>
   <object gid="344" x="4672" y="384"/>
+  <object gid="9" x="3104" y="64"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="288"/>
