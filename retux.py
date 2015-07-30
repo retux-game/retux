@@ -198,9 +198,11 @@ JUMPY_BOUNCE_HEIGHT = TILE_SIZE * 4
 BOMB_GRAVITY = 0.6
 BOMB_TICK_TIME = 8
 EXPLOSION_TIME = FPS * 3 / 4
+ICICLE_LAX = TILE_SIZE
 ICICLE_SHAKE_TIME = FPS
 ICICLE_GRAVITY = 0.75
 ICICLE_FALL_SPEED = 12
+CRUSHER_LAX = TILE_SIZE
 CRUSHER_GRAVITY = 1
 CRUSHER_FALL_SPEED = 15
 CRUSHER_RISE_SPEED = 2
@@ -2969,6 +2971,9 @@ class Icicle(InteractiveObject):
 
         self.shake_counter = SHAKE_FRAME_TIME
 
+    def touch(self, other):
+        other.hurt()
+
     def event_step(self, time_passed, delta_mult):
         super(Icicle, self).event_step(time_passed, delta_mult)
 
@@ -2988,9 +2993,7 @@ class Icicle(InteractiveObject):
                     if (obj.bbox_top > self.bbox_bottom and
                             self.bbox_right >= obj.bbox_left and
                             self.bbox_left <= obj.bbox_right):
-                        if isinstance(obj, Player):
-                            players.append(obj)
-                        elif isinstance(obj, xsge_physics.SolidTop):
+                        if isinstance(obj, xsge_physics.SolidTop):
                             crash_y = min(crash_y, obj.bbox_top)
                         elif isinstance(obj, xsge_physics.SlopeTopLeft):
                             crash_y = min(crash_y,
@@ -2998,6 +3001,11 @@ class Icicle(InteractiveObject):
                         elif isinstance(obj, xsge_physics.SlopeTopRight):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
+                    if (obj.bbox_bottom > self.bbox_top and
+                            self.bbox_right + ICICLE_LAX >= obj.bbox_left and
+                            self.bbox_left - ICICLE_LAX <= obj.bbox_right):
+                        if isinstance(obj, Player):
+                            players.append(obj)
 
                 for player in players:
                     if player.bbox_top < crash_y:
@@ -3084,9 +3092,7 @@ class Crusher(FallingObject):
                     if (obj.bbox_top > self.bbox_bottom and
                             self.bbox_right >= obj.bbox_left and
                             self.bbox_left <= obj.bbox_right):
-                        if isinstance(obj, Player):
-                            players.append(obj)
-                        elif isinstance(obj, xsge_physics.SolidTop):
+                        if isinstance(obj, xsge_physics.SolidTop):
                             crash_y = min(crash_y, obj.bbox_top)
                         elif isinstance(obj, xsge_physics.SlopeTopLeft):
                             crash_y = min(crash_y,
@@ -3094,6 +3100,11 @@ class Crusher(FallingObject):
                         elif isinstance(obj, xsge_physics.SlopeTopRight):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
+                    if (obj.bbox_bottom > self.bbox_top and
+                            self.bbox_right + CRUSHER_LAX >= obj.bbox_left and
+                            self.bbox_left - CRUSHER_LAX <= obj.bbox_right):
+                        if isinstance(obj, Player):
+                            players.append(obj)
 
                 for player in players:
                     if player.bbox_top < crash_y:
