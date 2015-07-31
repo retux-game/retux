@@ -31,6 +31,7 @@ import random
 import shutil
 import sys
 import tempfile
+import traceback
 import warnings
 import weakref
 
@@ -242,7 +243,7 @@ ICE_REFREEZE_RATE = 2/3
 ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 800
 BULLET_ACTIVE_RANGE = 200
-ROCK_ACTIVE_RANGE = 800
+ROCK_ACTIVE_RANGE = 864
 TILE_ACTIVE_RANGE = 928
 DEATHZONE = 2 * TILE_SIZE
 
@@ -312,21 +313,7 @@ class Game(sge.Game):
             self.event_close()
 
     def event_close(self):
-        global level_timers
-        global score
-
-        if main_area is not None:
-            won = (isinstance(sge.game.current_room, Level) and
-                   sge.game.current_room.won)
-
-            if won:
-                score += sge.game.current_room.points
-                sge.game.current_room.points = 0
-
-            if won or level_timers.setdefault(main_area, 0) < 0:
-                score += level_timers[main_area] * SECOND_POINTS
-                level_timers[main_area] = 0
-        save_game()
+        rush_save()
         self.end()
 
     def event_paused_close(self):
@@ -714,10 +701,7 @@ class Level(sge.Room):
                 m = "Are you sure you want to quit?"
                 if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                          default=0):
-                    if level_timers.setdefault(main_area, 0) < 0:
-                        score -= level_timers[main_area] * SECOND_POINTS
-                        level_timers[main_area] = 0
-                    save_game()
+                    rush_save()
                     sge.game.start_room.start()
                 sge.game.mouse.visible = False
             elif key in ("enter", "p"):
@@ -743,7 +727,8 @@ class Level(sge.Room):
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
                                   types=TYPES)
             except Exception as e:
-                m = "An error occurred when trying to load the level:\n\n{}".format(e)
+                m = "An error occurred when trying to load the level:\n\n{}".format(
+                    traceback.format_exc())
                 if sge.game.current_room is not None:
                     xsge_gui.show_message(message=m, title="Error",
                                           buttons=["Ok"])
@@ -977,7 +962,7 @@ class Worldmap(sge.Room):
             m = "Are you sure you want to quit?"
             if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                      default=0):
-                save_game()
+                rush_save()
                 sge.game.start_room.start()
             sge.game.mouse.visible = False
 
@@ -1089,15 +1074,9 @@ class MovingPlatform(xsge_physics.SolidTop, xsge_physics.MobileWall, Tile):
 
     sticky_top = True
 
-    def event_create(self):
-        self.sprite = platform_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs.setdefault("sprite", platform_sprite)
+        super(MovingPlatform, self).__init__(x, y, z, **kwargs)
 
 
 class HurtLeft(SolidLeft):
@@ -2363,16 +2342,9 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     freezable = True
 
-    def event_create(self):
-        super(WalkingSnowball, self).event_create()
-        self.sprite = snowball_walk_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = snowball_walk_sprite
+        super(WalkingSnowball, self).__init__(x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -2397,16 +2369,9 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
 class BouncingSnowball(WalkingSnowball):
 
-    def event_create(self):
-        super(BouncingSnowball, self).event_create()
-        self.sprite = bouncing_snowball_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = bouncing_snowball_sprite
+        super(BouncingSnowball, self).__init__(x, y, z, **kwargs)
 
     def stop_up(self):
         self.yvelocity = 0
@@ -2421,16 +2386,9 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     freezable = True
     stayonplatform = True
 
-    def event_create(self):
-        super(WalkingIceblock, self).event_create()
-        self.sprite = iceblock_walk_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = iceblock_walk_sprite
+        super(WalkingIceblock, self).__init__(x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -2458,17 +2416,9 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     burnable = True
     stayonplatform = True
 
-    def event_create(self):
-        super(Spiky, self).event_create()
-        self.sprite = spiky_walk_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = spiky_walk_sprite
+        super(Spiky, self).__init__(x, y, z, **kwargs)
         self.frozen_sprite = spiky_iced_sprite
 
     def touch(self, other):
@@ -2491,17 +2441,9 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
     burnable = True
     stayonplatform = True
 
-    def event_create(self):
-        super(WalkingBomb, self).event_create()
-        self.sprite = bomb_walk_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = bomb_walk_sprite
+        super(WalkingBomb, self).__init__(x, y, z, **kwargs)
         self.frozen_sprite = bomb_iced_sprite
 
     def touch(self, other):
@@ -2523,7 +2465,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
-        Explosion.create(self.x, self.y, self.z)
+        Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         self.destroy()
 
@@ -2533,17 +2475,9 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     burnable = True
     walk_speed = 0
 
-    def event_create(self):
-        super(Jumpy, self).event_create()
-        self.sprite = jumpy_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = jumpy_sprite
+        super(Jumpy, self).__init__(x, y, z, **kwargs)
         self.frozen_sprite = jumpy_iced_sprite
 
     def move(self):
@@ -2586,16 +2520,9 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
     freezable = True
     had_xv = 0
 
-    def event_create(self):
-        super(FlyingSnowball, self).event_create()
-        self.sprite = flying_snowball_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = flying_snowball_sprite
+        super(FlyingSnowball, self).__init__(x, y, z, **kwargs)
 
     def update_active(self):
         super(FlyingSnowball, self).update_active()
@@ -2838,7 +2765,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
                 other.action()
 
     def burn(self):
-        e = Explosion.create(self.x, self.y, self.z)
+        e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
         e.detonator = self.thrower
         self.destroy()
 
@@ -2908,7 +2835,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
         self.destroy()
 
     def event_animation_end(self):
-        e = Explosion.create(self.x, self.y, self.z)
+        e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
         e.detonator = self.thrower
         self.destroy()
 
@@ -2919,14 +2846,6 @@ class Explosion(InteractiveObject):
 
     def event_create(self):
         super(Explosion, self).event_create()
-        self.sprite = explosion_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
         self.__life = EXPLOSION_TIME
         play_sound(explosion_sound)
 
@@ -2958,17 +2877,9 @@ class Icicle(InteractiveObject):
 
     shaking = False
 
-    def event_create(self):
-        super(Icicle, self).event_create()
-        self.sprite = icicle_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = icicle_sprite
+        super(Icicle, self).__init__(x, y, z, **kwargs)
         self.shake_counter = SHAKE_FRAME_TIME
 
     def touch(self, other):
@@ -3125,30 +3036,16 @@ class Crusher(FallingObject):
 
 class Krush(Crusher):
 
-    def event_create(self):
-        super(Krush, self).event_create()
-        self.sprite = krush_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = krush_sprite
+        super(Krush, self).__init__(x, y, z, **kwargs)
 
 
 class Krosh(Crusher):
 
-    def event_create(self):
-        super(Krosh, self).event_create()
-        self.sprite = krosh_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = krosh_sprite
+        super(Krosh, self).__init__(x, y, z, **kwargs)
 
 
 class Circoflame(InteractiveObject):
@@ -3156,10 +3053,10 @@ class Circoflame(InteractiveObject):
     burnable = True
     freezable = True
 
-    def __init__(self, center, *args, **kwargs):
+    def __init__(self, center, x, y, z=0, **kwargs):
         self.center = weakref.ref(center)
         kwargs["sprite"] = circoflame_sprite
-        super(Circoflame, self).__init__(*args, **kwargs)
+        super(Circoflame, self).__init__(x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -3402,19 +3299,11 @@ class FireFlower(FallingObject, WinPuffObject):
     slide_speed = 0
     win_puff_points = 0
 
-    def event_create(self):
-        super(FireFlower, self).event_create()
-        self.sprite = fire_flower_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
-
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = fire_flower_sprite
+        x += fire_flower_sprite.origin_x
+        y += fire_flower_sprite.origin_y
+        super(FireFlower, self).__init__(x, y, z, **kwargs)
         self.ammo = FIREBALL_AMMO
 
     def touch(self, other):
@@ -3486,19 +3375,11 @@ class IceFlower(FallingObject, WinPuffObject):
     slide_speed = 0
     win_puff_points = 0
 
-    def event_create(self):
-        super(IceFlower, self).event_create()
-        self.sprite = ice_flower_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
-
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = ice_flower_sprite
+        x += ice_flower_sprite.origin_x
+        y += ice_flower_sprite.origin_y
+        super(IceFlower, self).__init__(x, y, z, **kwargs)
         self.ammo = ICEBULLET_AMMO
 
     def touch(self, other):
@@ -3701,18 +3582,11 @@ class TuxDoll(FallingObject):
     fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
 
-    def event_create(self):
-        super(TuxDoll, self).event_create()
-        self.sprite = tuxdoll_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = tuxdoll_sprite
+        x += tuxdoll_sprite.origin_x
+        y += tuxdoll_sprite.origin_y
+        super(TuxDoll, self).__init__(x, y, z, **kwargs)
 
     def touch(self, other):
         play_sound(tuxdoll_sound)
@@ -3771,18 +3645,11 @@ class Rock(FallingObject, xsge_physics.MobileColliderWall,
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
 
-    def event_create(self):
-        super(Rock, self).event_create()
-        self.sprite = rock_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = rock_sprite
+        x += rock_sprite.origin_x
+        y += rock_sprite.origin_y
+        super(Rock, self).__init__(x, y, z, **kwargs)
 
     def touch(self, other):
         cr = CarriedRock.create(self.x, self.y, self.z, sprite=self.sprite,
@@ -3825,25 +3692,20 @@ class FixedSpring(FallingObject):
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
     jump_height = SPRING_JUMP_HEIGHT
-    normal_sprite = None
-    expand_sprite = None
 
-    def event_create(self):
-        self.update_active()
-
+    def set_sprite(self):
+        # This is a function because the names referenced don't exist
+        # when this class is defined, and these therefore can't be class
+        # attributes.
         self.normal_sprite = fixed_spring_sprite
         self.expand_sprite = fixed_spring_expand_sprite
 
-        self.sprite = self.normal_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
+    def __init__(self, x, y, z=0, **kwargs):
+        self.set_sprite()
+        kwargs["sprite"] = self.normal_sprite
+        x += self.normal_sprite.origin_x
+        y += self.normal_sprite.origin_y
+        super(FixedSpring, self).__init__(x, y, z, **kwargs)
 
     def stomp(self, other):
         if other is not self.parent:
@@ -3864,22 +3726,9 @@ class Spring(FixedSpring):
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
 
-    def event_create(self):
-        self.update_active()
-
+    def set_sprite(self):
         self.normal_sprite = spring_sprite
         self.expand_sprite = spring_expand_sprite
-
-        self.sprite = self.normal_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
     def touch(self, other):
         if other.pickup(self):
@@ -3919,22 +3768,9 @@ class Spring(FixedSpring):
 
 class RustySpring(Spring):
 
-    def event_create(self):
-        self.update_active()
-
+    def set_sprite(self):
         self.normal_sprite = rusty_spring_sprite
         self.expand_sprite = rusty_spring_expand_sprite
-
-        self.sprite = self.normal_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
-        self.x += self.image_origin_x
-        self.y += self.image_origin_y
 
     def event_animation_end(self):
         if self.sprite == self.expand_sprite:
@@ -3957,19 +3793,8 @@ class TimelineSwitcher(InteractiveObject):
 
 class Iceblock(InteractiveObject, xsge_physics.Solid):
 
+    active_range = TILE_ACTIVE_RANGE
     burnable = True
-
-    def event_create(self):
-        self.update_active()
-
-        self.sprite = iceblock_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
 
     def burn(self):
         play_sound(sizzle_sound)
@@ -4009,9 +3834,7 @@ class BossBlock(InteractiveObject):
 class HittableBlock(xsge_physics.SolidBottom, Tile):
 
     hit_sprite = None
-
-    def event_create(self):
-        self.hit_obj = None
+    hit_obj = None
 
     def event_destroy(self):
         if self.hit_obj is not None:
@@ -4066,10 +3889,6 @@ class HittableBlock(xsge_physics.SolidBottom, Tile):
 
 class Brick(HittableBlock, xsge_physics.Solid):
 
-    def event_create(self):
-        super(Brick, self).event_create()
-        self.sprite = brick_sprite
-
     def event_hit(self, other):
         # TODO: Create brick shards (probably DeadMan objects)
         sge.game.current_room.add_points(10)
@@ -4078,9 +3897,17 @@ class Brick(HittableBlock, xsge_physics.Solid):
 
 class CoinBrick(Brick):
 
-    def event_create(self):
-        super(CoinBrick, self).event_create()
-        self.coins = COINBRICK_COINS
+    coins = COINBRICK_COINS
+
+    def __init__(self, x, y, disguised=False, **kwargs):
+        if not disguised:
+            kwargs["sprite"] = brick_sprite
+        elif kwargs.get("sprite") is None:
+            kwargs["bbox_x"] = brick_sprite.bbox_x
+            kwargs["bbox_y"] = brick_sprite.bbox_y
+            kwargs["bbox_width"] = brick_sprite.bbox_width
+            kwargs["bbox_height"] = brick_sprite.bbox_height
+        super(CoinBrick, self).__init__(x, y, **kwargs)
 
     def event_alarm(self, alarm_id):
         if alarm_id == "decay":
@@ -4106,21 +3933,17 @@ class EmptyBlock(HittableBlock, xsge_physics.Solid):
 
 class ItemBlock(HittableBlock, xsge_physics.Solid):
 
-    def __init__(self, x, y, item=None, **kwargs):
+    def __init__(self, x, y, item=None, disguised=False, **kwargs):
+        if not disguised:
+            kwargs["sprite"] = bonus_full_sprite
+        elif kwargs.get("sprite") is None:
+            kwargs["bbox_x"] = bonus_full_sprite.bbox_x
+            kwargs["bbox_y"] = bonus_full_sprite.bbox_y
+            kwargs["bbox_width"] = bonus_full_sprite.bbox_width
+            kwargs["bbox_height"] = bonus_full_sprite.bbox_height
         super(ItemBlock, self).__init__(x, y, **kwargs)
-        self.item = item
-
-    def event_create(self):
-        super(ItemBlock, self).event_create()
-        self.sprite = bonus_full_sprite
-        self.image_fps = None
-        self.image_origin_x = None
-        self.image_origin_y = None
-        self.bbox_x = None
-        self.bbox_y = None
-        self.bbox_width = None
-        self.bbox_height = None
         self.hit_sprite = bonus_empty_sprite
+        self.item = item
 
     def event_hit(self, other):
         if self.item and self.item in TYPES:
@@ -4146,12 +3969,13 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
 class HiddenItemBlock(HittableBlock):
 
     def __init__(self, x, y, item=None, **kwargs):
+        kwargs["sprite"] = None
+        kwargs["bbox_x"] = bonus_full_sprite.bbox_x
+        kwargs["bbox_y"] = bonus_full_sprite.bbox_y
+        kwargs["bbox_width"] = bonus_full_sprite.bbox_width
+        kwargs["bbox_height"] = bonus_full_sprite.bbox_height
         super(HiddenItemBlock, self).__init__(x, y, **kwargs)
         self.item = item
-
-    def event_create(self):
-        super(HiddenItemBlock, self).event_create()
-        self.sprite = None
 
     def hit(self, other):
         b = ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
@@ -4169,13 +3993,13 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
         DialogBox(gui_handler, self.text, self.sprite).show()
 
 
-class ThinIce(xsge_physics.Solid):
+class ThinIce(xsge_physics.Solid, Tile):
 
-    def event_create(self):
-        super(ThinIce, self).event_create()
-        self.sprite = thin_ice_sprite
-        self.image_index = 0
-        self.image_fps = 0
+    def __init__(self, x, y, z=0, permanent=False, **kwargs):
+        kwargs["sprite"] = thin_ice_sprite
+        kwargs["image_fps"] = 0
+        super(ThinIce, self).__init__(x, y, z, **kwargs)
+        self.permanent = permanent
         self.crack_time = 0
         self.freeze_time = 0
 
@@ -4188,19 +4012,20 @@ class ThinIce(xsge_physics.Solid):
                     while self.crack_time >= ICE_CRACK_TIME:
                         self.crack_time -= ICE_CRACK_TIME
                         self.crack()
-            elif self.image_index > 0:
-                rfa = delta_mult * ICE_REFREEZE_RATE
-                self.crack_time -= rfa
-                self.rfa = max(0, -self.crack_time)
-                self.crack_time = max(0, self.crack_time)
-                self.freeze_time += rfa
-                while self.freeze_time >= ICE_CRACK_TIME:
-                    self.freeze_time -= ICE_CRACK_TIME
-                    if self.image_index > 0:
-                        self.image_index -= 1
-            else:
-                self.crack_time -= delta_mult * ICE_REFREEZE_RATE
-                self.crack_time = max(0, self.crack_time)
+            elif not self.permanent:
+                if self.image_index > 0:
+                    rfa = delta_mult * ICE_REFREEZE_RATE
+                    self.crack_time -= rfa
+                    self.rfa = max(0, -self.crack_time)
+                    self.crack_time = max(0, self.crack_time)
+                    self.freeze_time += rfa
+                    while self.freeze_time >= ICE_CRACK_TIME:
+                        self.freeze_time -= ICE_CRACK_TIME
+                        if self.image_index > 0:
+                            self.image_index -= 1
+                else:
+                    self.crack_time -= delta_mult * ICE_REFREEZE_RATE
+                    self.crack_time = max(0, self.crack_time)
 
     def event_animation_end(self):
         if self.sprite is thin_ice_sprite:
@@ -4253,11 +4078,10 @@ class GoalTop(xsge_tmx.Decoration):
 class Coin(Tile):
 
     def __init__(self, x, y, **kwargs):
+        kwargs["sprite"] = coin_sprite
+        kwargs["checks_collisions"] = False
+        kwargs["active"] = False
         super(Coin, self).__init__(x, y, **kwargs)
-        self.sprite = coin_sprite
-        self.image_fps = None
-        self.checks_collisions = False
-        self.active = False
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.image_index = coin_animation.image_index
@@ -4274,10 +4098,9 @@ class Coin(Tile):
 class CoinCollect(sge.Object):
 
     def __init__(self, x, y, **kwargs):
+        kwargs["sprite"] = coin_sprite
+        kwargs["tangible"] = False
         super(CoinCollect, self).__init__(x, y, **kwargs)
-        self.sprite = coin_sprite
-        self.image_fps = coin_sprite.fps
-        self.tangible = False
 
     def event_create(self):
         play_sound(coin_sound)
@@ -4433,10 +4256,7 @@ class WarpSpawn(xsge_path.Path):
                     level.start()
                 else:
                     # Error occurred; restart the game.
-                    if level_timers.setdefault(main_area, 0) < 0:
-                        score -= level_timers[main_area] * SECOND_POINTS
-                        level_timers[main_area] = 0
-                    save_game()
+                    rush_save()
                     sge.game.start_room.start()
         else:
             play_sound(pipe_sound)
@@ -5689,6 +5509,30 @@ def load_game():
         score = slot.get("score", 0)
     else:
         set_new_game()
+
+
+def rush_save():
+    global level_timers
+    global cleared_levels
+    global score
+    global main_area
+
+    if main_area is not None:
+        won = (isinstance(sge.game.current_room, Level) and
+               sge.game.current_room.won)
+
+        if won:
+            score += sge.game.current_room.points
+            sge.game.current_room.points = 0
+            if main_area not in cleared_levels:
+                cleared_levels.append(main_area)
+
+        if won or level_timers.setdefault(main_area, 0) < 0:
+            score += level_timers[main_area]
+            level_timers[main_area] = 0
+
+    save_game()
+    main_area = None
 
 
 def start_levelset():
