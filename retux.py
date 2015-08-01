@@ -409,7 +409,8 @@ class Level(sge.Room):
 
         for obj in m.objects:
             if (isinstance(obj, MapSpace) and
-                    obj.level == main_area):
+                    obj.level == main_area and
+                    main_area is not None):
                 x = obj.x
                 y = obj.y
                 if obj.sprite:
@@ -621,13 +622,13 @@ class Level(sge.Room):
                 if main_area not in cleared_levels:
                     cleared_levels.append(main_area)
 
-                main_area = None
                 current_areas = {}
                 level_cleared = True
 
                 if current_worldmap:
                     self.return_to_map()
                 else:
+                    main_area = None
                     current_level += 1
                     save_game()
                     if current_level < len(levels):
@@ -901,8 +902,11 @@ class Worldmap(sge.Room):
         self.event_room_resume()
 
     def event_room_resume(self):
+        global main_area
         global level_names
         global level_cleared
+
+        main_area = None
 
         for obj in self.objects:
             if isinstance(obj, MapSpace):
@@ -2344,7 +2348,7 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = snowball_walk_sprite
-        super(WalkingSnowball, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -2371,7 +2375,7 @@ class BouncingSnowball(WalkingSnowball):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = bouncing_snowball_sprite
-        super(BouncingSnowball, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def stop_up(self):
         self.yvelocity = 0
@@ -2388,7 +2392,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = iceblock_walk_sprite
-        super(WalkingIceblock, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -2418,7 +2422,7 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = spiky_walk_sprite
-        super(Spiky, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = spiky_iced_sprite
 
     def touch(self, other):
@@ -2443,7 +2447,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = bomb_walk_sprite
-        super(WalkingBomb, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = bomb_iced_sprite
 
     def touch(self, other):
@@ -2477,7 +2481,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = jumpy_sprite
-        super(Jumpy, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = jumpy_iced_sprite
 
     def move(self):
@@ -2522,7 +2526,7 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = flying_snowball_sprite
-        super(FlyingSnowball, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def update_active(self):
         super(FlyingSnowball, self).update_active()
@@ -2879,7 +2883,7 @@ class Icicle(InteractiveObject):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = icicle_sprite
-        super(Icicle, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.shake_counter = SHAKE_FRAME_TIME
 
     def touch(self, other):
@@ -3038,14 +3042,14 @@ class Krush(Crusher):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = krush_sprite
-        super(Krush, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
 
 class Krosh(Crusher):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = krosh_sprite
-        super(Krosh, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
 
 class Circoflame(InteractiveObject):
@@ -3056,7 +3060,7 @@ class Circoflame(InteractiveObject):
     def __init__(self, center, x, y, z=0, **kwargs):
         self.center = weakref.ref(center)
         kwargs["sprite"] = circoflame_sprite
-        super(Circoflame, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -3077,7 +3081,8 @@ class CircoflameCenter(InteractiveObject):
         self.pos = pos
         self.rvelocity = rvelocity
         self.flame = Circoflame(self, x, y, z)
-        super(CircoflameCenter, self).__init__(x, y, tangible=False)
+        super(CircoflameCenter, self).__init__(x, y, z, visible=False,
+                                               tangible=False)
 
     def event_create(self):
         sge.game.current_room.add(self.flame)
@@ -3303,7 +3308,7 @@ class FireFlower(FallingObject, WinPuffObject):
         kwargs["sprite"] = fire_flower_sprite
         x += fire_flower_sprite.origin_x
         y += fire_flower_sprite.origin_y
-        super(FireFlower, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.ammo = FIREBALL_AMMO
 
     def touch(self, other):
@@ -3379,7 +3384,7 @@ class IceFlower(FallingObject, WinPuffObject):
         kwargs["sprite"] = ice_flower_sprite
         x += ice_flower_sprite.origin_x
         y += ice_flower_sprite.origin_y
-        super(IceFlower, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.ammo = ICEBULLET_AMMO
 
     def touch(self, other):
@@ -3586,7 +3591,7 @@ class TuxDoll(FallingObject):
         kwargs["sprite"] = tuxdoll_sprite
         x += tuxdoll_sprite.origin_x
         y += tuxdoll_sprite.origin_y
-        super(TuxDoll, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         play_sound(tuxdoll_sound)
@@ -3649,7 +3654,7 @@ class Rock(FallingObject, xsge_physics.MobileColliderWall,
         kwargs["sprite"] = rock_sprite
         x += rock_sprite.origin_x
         y += rock_sprite.origin_y
-        super(Rock, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         cr = CarriedRock.create(self.x, self.y, self.z, sprite=self.sprite,
@@ -3705,7 +3710,7 @@ class FixedSpring(FallingObject):
         kwargs["sprite"] = self.normal_sprite
         x += self.normal_sprite.origin_x
         y += self.normal_sprite.origin_y
-        super(FixedSpring, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def stomp(self, other):
         if other is not self.parent:
@@ -3784,7 +3789,7 @@ class TimelineSwitcher(InteractiveObject):
     def __init__(self, x, y, timeline=None, **kwargs):
         self.timeline = timeline
         kwargs["visible"] = False
-        super(TimelineSwitcher, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def touch(self, other):
         sge.game.current_room.load_timeline(self.timeline)
@@ -3807,7 +3812,7 @@ class BossBlock(InteractiveObject):
     def __init__(self, x, y, ID=None, **kwargs):
         self.ID = ID
         kwargs["visible"] = False
-        super(BossBlock, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def event_create(self):
         super(BossBlock, self).event_create()
@@ -3907,7 +3912,7 @@ class CoinBrick(Brick):
             kwargs["bbox_y"] = brick_sprite.bbox_y
             kwargs["bbox_width"] = brick_sprite.bbox_width
             kwargs["bbox_height"] = brick_sprite.bbox_height
-        super(CoinBrick, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def event_alarm(self, alarm_id):
         if alarm_id == "decay":
@@ -3941,7 +3946,7 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
             kwargs["bbox_y"] = bonus_full_sprite.bbox_y
             kwargs["bbox_width"] = bonus_full_sprite.bbox_width
             kwargs["bbox_height"] = bonus_full_sprite.bbox_height
-        super(ItemBlock, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
         self.hit_sprite = bonus_empty_sprite
         self.item = item
 
@@ -3974,7 +3979,7 @@ class HiddenItemBlock(HittableBlock):
         kwargs["bbox_y"] = bonus_full_sprite.bbox_y
         kwargs["bbox_width"] = bonus_full_sprite.bbox_width
         kwargs["bbox_height"] = bonus_full_sprite.bbox_height
-        super(HiddenItemBlock, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
         self.item = item
 
     def hit(self, other):
@@ -3998,7 +4003,7 @@ class ThinIce(xsge_physics.Solid, Tile):
     def __init__(self, x, y, z=0, permanent=False, **kwargs):
         kwargs["sprite"] = thin_ice_sprite
         kwargs["image_fps"] = 0
-        super(ThinIce, self).__init__(x, y, z, **kwargs)
+        sge.Object.__init__(self, x, y, z, **kwargs)
         self.permanent = permanent
         self.crack_time = 0
         self.freeze_time = 0
@@ -4081,7 +4086,7 @@ class Coin(Tile):
         kwargs["sprite"] = coin_sprite
         kwargs["checks_collisions"] = False
         kwargs["active"] = False
-        super(Coin, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.image_index = coin_animation.image_index
@@ -4100,7 +4105,7 @@ class CoinCollect(sge.Object):
     def __init__(self, x, y, **kwargs):
         kwargs["sprite"] = coin_sprite
         kwargs["tangible"] = False
-        super(CoinCollect, self).__init__(x, y, **kwargs)
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def event_create(self):
         play_sound(coin_sound)
@@ -5415,6 +5420,32 @@ def load_levelset(fname):
     global levels
     global tuxdolls_available
 
+    w = 400
+    h = 128
+    margin = 16
+    x = SCREEN_SIZE[0] / 2 - w / 2
+    y = SCREEN_SIZE[1] / 2 - h / 2
+    c = sge.Color("black")
+    window = xsge_gui.Window(gui_handler, x, y, w, h, background_color=c,
+                             border=False)
+
+    x = margin
+    y = margin
+    text = "Loading levelset..."
+    c = sge.Color("white")
+    xsge_gui.Label(window, x, y, 1, text, font=font, width=(w - 2 * margin),
+                   height=(h - 3 * margin -
+                           xsge_gui.progressbar_container_sprite.height),
+                   color=c)
+
+    x = margin
+    y = h - margin - xsge_gui.progressbar_container_sprite.height
+    progressbar = xsge_gui.ProgressBar(window, x, y, 0, width=(w - 2 * margin))
+
+    window.show()
+    gui_handler.event_step(0, 0)
+    sge.game.refresh()
+
     current_levelset = fname
 
     with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
@@ -5429,6 +5460,19 @@ def load_levelset(fname):
         already_checked = []
 
         while subrooms:
+            sge.game.pump_input()
+            while sge.game.input_events:
+                event = sge.game.input_events.pop(0)
+                if isinstance(event, sge.input.KeyPress):
+                    if event.key == "escape":
+                        sge.game.start_room.start()
+                if isinstance(event, sge.input.QuitRequest):
+                    sge.game.end()
+
+            time_passed = sge.game.regulate_speed(10000)
+            gui_handler.event_step(time_passed, 1)
+            sge.game.refresh()
+
             subroom = subrooms.pop(0)
             already_checked.append(subroom)
             r = Level.load(subroom)
@@ -5446,6 +5490,19 @@ def load_levelset(fname):
                             if (map_f not in subrooms and
                                     map_f not in already_checked):
                                 subrooms.append(map_f)
+
+        progressbar.progress = (levels.index(level) + 1) / len(levels)
+        progressbar.redraw()
+        time_passed = sge.game.regulate_speed(10000)
+        gui_handler.event_step(time_passed, 1)
+        sge.game.refresh()
+
+    window.destroy()
+    sge.game.pump_input()
+    sge.game.input_events = []
+    time_passed = sge.game.regulate_speed(10000)
+    gui_handler.event_step(time_passed, 1)
+    sge.game.refresh()
 
 
 def set_new_game():
