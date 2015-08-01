@@ -12,19 +12,19 @@
  <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0bENgDAMBECzIswaWA8PkCqEOMWd5PJtvRwBAAAAAAAAsJ/rmLuv5dw5z4L7vezsPow5i//w5X4vW93nTy8ZbgS/
+   eJzt0bENgDAMBEAzI6waWA8PkCqEOMWd5PJtvRwBAAAAAAAAsJ/rmLuv5dw5z4L7vezsPow5i//w5X4vW93nTy8sFgTH
   </data>
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztl+sKwjAMRrtX1Mf0fscLrML0PfSfPoUZrjCKY+2SLJvLBwcHagn0NOmsMcYqCjFXo9HQJjXqlYY+uVd36SKEc5Qu4A+j/ar/OQHnH8zN98wsKr6/MNakXvU/+R7aBjjfOPz6J6+GOs8y4IaAw68h3a8mwDSCmUyZ0Wnar3wo/coI1qia723McWyWwApYSxeCCJVXDgq/UsR/Xer6cF5nV93aAXvgEPj7ujMkcb6wc5BqPj6AZ/FM4VXIeeFyawNsi0/37AhJbL/C9AaueyyXV86tUL9ewLtUU9PzV36ftQF0sW/FeoXZQ657LKdXMf2r7FXaUk1+bZhZMk7kwHrlr4eZq7HnmoqQPWy7Jiz5LBklcmC98tejvnN3iQ81PTHK
+   eJztl+sKwjAMRrtn1Lf0fscLrML0PfSfPoUZrjCKY+2SLJvLBwcHagn0NOmsMcYqCjFXo9HQJjXqlYY+uVd36SKEc5Qu4A+j/ar/OQHnH8zN98wsKr6/MNakXvU/+R7aBjjfOPz6J6+GOs8y4IaAw68h3a8mwDSCmUyZ0Wnar3wo/coI1qia723McWyWwApYSxeCCJVXDgq/UsR/Xer6cF5nV93aAXvgEPj7ujMkcb6wc5BqPj6AZ/FM4VXIeeFyawNsi0/37AhJbL/C9AaueyyXV86tUL9ewLtUU9PzV36ftQF0sW/FeoXZQ657LKdXMf2r7FXaUk1+bZhZMk7kwHrlr4eZq7HnmoqQPWy7Jiz5LBklcmC98tejvnN3iQ/mnTIQ
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">

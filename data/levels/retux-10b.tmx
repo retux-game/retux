@@ -11,11 +11,11 @@
  <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
    eJzt0bEJACAMRNHsP4Er6hSmloBgYZr34PcHF8EvM1vdI7jyEwAAAAAAAAAAlXEEAK82kGoGBw==
@@ -84,7 +84,7 @@
   <object type="object_warp_spawn" x="2944" y="0">
    <properties>
     <property name="cls" value="spring"/>
-    <property name="interval" value="60"/>
+    <property name="interval" value="90"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>

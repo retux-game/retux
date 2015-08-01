@@ -11,25 +11,25 @@
  <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0TERADAIADFqEfx7qYEOLBxDEwM/fAQAAAAAAAAAXXX+7jMjl79u918uv0IBTw==
+   eJzt0TERADAIADGqEfxrqYEOLBxDEwM/fAQAAAAAAAAAXXX+7jMjl79u918ux0IBUw==
   </data>
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmEEOgjAQRcsV9Z640I1KIiZIuIbu9BS2SReTBpN27DBt81/ywgZKoZ9py2iMGSHM7GxA7UzWB0Opsb8Jtg22w43jyPAu2B/kqn5Ky9Uk2DbYDsyDQIISc4V6VT+l5QrzIJAAuZLh5I3haD37YyvQefBpfSn2RZOL9eodBK/JQUpmtaDr9rf1o9gXTej6JHbNQff2MTWfk4caMrQGrVfIVVquONdIQWvnPw6J7f06v7cemPduidTa4whzte/05P4XDXXPvpj4/eXsz1+7P2dvujQmfS+x31kfjMeu0zNXrnL6BW0MmHw=
+   eJztmEEOwiAQRekZ9Zx1oRu1iTWphmvoTk8hJl0QAi2dMAyQ/5KXbgiF8jvQjkqpEcLEPhWoncn4IMi19jfGvkE+/us4Erwzjge5qp/ScjUx9g3ygX0QcFBirlCv6qe0XGEfBBwgVzycZmM4Gs/ztRXsffBlfAuORZKL8eo4JGjLwZbMSmGf2z/Gr+BYJPGdT0JnD983fUzNp+Shhgz5sOsVcrWerdh2ufHVUIrDxv5C7XvjgXjvlgj9V3Tr0FKu9p2c1P+ivvnqhXn65q0Dz4/ybaob034use9Z76zHrpMzVa5S+gM7JKfd
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="0" y="384" width="416" height="64"/>
-  <object x="2496" y="288" width="128" height="128"/>
-  <object x="2080" y="288" width="128" height="128"/>
+  <object x="2432" y="288" width="192" height="64"/>
+  <object x="2080" y="288" width="192" height="64"/>
   <object x="2080" y="416" width="544" height="32"/>
   <object x="3616" y="352" width="608" height="64"/>
   <object x="4768" y="32" width="32" height="320"/>
@@ -44,6 +44,8 @@
   <object x="3616" y="416" width="1184" height="32"/>
   <object x="4256" y="352" width="352" height="64"/>
   <object x="4640" y="352" width="160" height="64"/>
+  <object x="2400" y="352" width="224" height="64"/>
+  <object x="2080" y="352" width="224" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="moving_platform_path" x="544" y="352">
@@ -128,32 +130,12 @@
   <object gid="334" x="2304" y="384"/>
   <object gid="334" x="2336" y="384"/>
   <object gid="334" x="2368" y="384"/>
-  <object gid="334" x="2304" y="416"/>
-  <object gid="334" x="2368" y="416"/>
-  <object gid="334" x="2272" y="384"/>
-  <object gid="334" x="2400" y="384"/>
   <object gid="334" x="2272" y="352"/>
   <object gid="334" x="2400" y="352"/>
-  <object gid="334" x="2432" y="352"/>
-  <object gid="334" x="2240" y="352"/>
-  <object gid="334" x="2240" y="320"/>
   <object gid="334" x="2272" y="320"/>
-  <object gid="334" x="2208" y="320"/>
   <object gid="334" x="2400" y="320"/>
-  <object gid="334" x="2432" y="320"/>
-  <object gid="334" x="2464" y="320"/>
-  <object gid="334" x="2464" y="352"/>
-  <object gid="334" x="2464" y="384"/>
-  <object gid="334" x="2432" y="384"/>
-  <object gid="334" x="2464" y="416"/>
-  <object gid="334" x="2432" y="416"/>
-  <object gid="334" x="2400" y="416"/>
-  <object gid="334" x="2208" y="352"/>
-  <object gid="334" x="2208" y="384"/>
-  <object gid="334" x="2240" y="384"/>
-  <object gid="334" x="2272" y="416"/>
-  <object gid="334" x="2240" y="416"/>
-  <object gid="334" x="2208" y="416"/>
+  <object gid="334" x="2368" y="416"/>
+  <object gid="334" x="2304" y="416"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object type="flying_snowball_path" x="480" y="384">
@@ -199,7 +181,7 @@
   <object gid="9" x="2752" y="64"/>
   <object gid="9" x="3456" y="64"/>
   <object gid="9" x="3488" y="64"/>
-  <object gid="344" x="4672" y="384"/>
+  <object gid="345" x="4672" y="384"/>
   <object gid="9" x="3104" y="64"/>
  </objectgroup>
  <objectgroup name="Players">

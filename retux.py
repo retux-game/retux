@@ -430,6 +430,8 @@ class Level(sge.Room):
 
         self.add(coin_animation)
         self.add(bonus_animation)
+        self.add(lava_animation)
+        self.add(goal_animation)
 
         self.event_room_resume()
 
@@ -1936,6 +1938,8 @@ class Smoke(sge.Object):
 class InteractiveObject(sge.Object):
 
     active_range = ENEMY_ACTIVE_RANGE
+    never_active = False
+    never_tangible = False
     knockable = False
     burnable = False
     freezable = False
@@ -1951,8 +1955,10 @@ class InteractiveObject(sge.Object):
                         self.bbox_top <= (view.y + view.height +
                                           self.active_range) and
                         self.bbox_bottom >= view.y - self.active_range):
-                    self.tangible = True
-                    self.active = True
+                    if not self.never_tangible:
+                        self.tangible = True
+                    if not self.never_active:
+                        self.active = True
                     break
             else:
                 self.tangible = False
@@ -2303,7 +2309,7 @@ class FreezableObject(InteractiveObject):
             frozen_self.alarms["thaw_warn"] = self.frozen_time
 
 
-class FrozenObject(InteractiveObject, xsge_physics.SolidTop):
+class FrozenObject(InteractiveObject, xsge_physics.Solid):
 
     burnable = True
     freezable = True
@@ -2940,6 +2946,12 @@ class Icicle(InteractiveObject):
                                  image_yscale=self.image_yscale)
             self.destroy()
 
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, InteractiveObject) and other.knockable:
+            other.knock(self)
+
+        super(Icicle, self).event_collision(other, xdirection, ydirection)
+
 
 class FallingIcicle(FallingObject):
 
@@ -3489,6 +3501,12 @@ class Fireball(FallingObject):
     gravity = FIREBALL_GRAVITY
     fall_speed = FIREBALL_FALL_SPEED
 
+    def touch_hurt(self):
+        pass
+
+    def touch_death(self):
+        self.destroy()
+
     def stop_left(self):
         self.destroy()
 
@@ -3607,6 +3625,9 @@ class TuxDoll(FallingObject):
 
 class CarriedRock(InteractiveObject):
 
+    never_active = True
+    never_tangible = True
+
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
@@ -3642,13 +3663,14 @@ class CarriedRock(InteractiveObject):
             self.destroy()
 
 
-class Rock(FallingObject, xsge_physics.MobileColliderWall,
+class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
            xsge_physics.SolidTop):
 
     sticky_top = True
     active_range = ROCK_ACTIVE_RANGE
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
+    win_puff_score = 0
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = rock_sprite
@@ -3725,11 +3747,12 @@ class FixedSpring(FallingObject):
             self.sprite = self.normal_sprite
 
 
-class Spring(FixedSpring):
+class Spring(FixedSpring, WinPuffObject):
 
     active_range = ROCK_ACTIVE_RANGE
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
+    win_puff_score = 0
 
     def set_sprite(self):
         self.normal_sprite = spring_sprite
@@ -3799,6 +3822,7 @@ class TimelineSwitcher(InteractiveObject):
 class Iceblock(InteractiveObject, xsge_physics.Solid):
 
     active_range = TILE_ACTIVE_RANGE
+    never_active = True
     burnable = True
 
     def burn(self):
@@ -3808,6 +3832,9 @@ class Iceblock(InteractiveObject, xsge_physics.Solid):
 
 
 class BossBlock(InteractiveObject):
+
+    never_active = True
+    never_tangible = True
 
     def __init__(self, x, y, ID=None, **kwargs):
         self.ID = ID
@@ -4052,32 +4079,36 @@ class Lava(xsge_tmx.Decoration):
 
     def event_create(self):
         self.sprite = lava_body_sprite
-        self.image_fps = None
-        self.active = True
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.image_index = lava_animation.image_index
 
 
 class LavaSurface(xsge_tmx.Decoration):
 
     def event_create(self):
         self.sprite = lava_surface_sprite
-        self.image_fps = None
-        self.active = True
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.image_index = lava_animation.image_index
 
 
 class Goal(xsge_tmx.Decoration):
 
     def event_create(self):
         self.sprite = goal_sprite
-        self.image_fps = None
-        self.active = True
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.image_index = goal_animation.image_index
 
 
 class GoalTop(xsge_tmx.Decoration):
 
     def event_create(self):
         self.sprite = goal_top_sprite
-        self.image_fps = None
-        self.active = True
+
+    def event_inactive_step(self, time_passed, delta_mult):
+        self.image_index = goal_animation.image_index
 
 
 class Coin(Tile):
@@ -5420,89 +5451,93 @@ def load_levelset(fname):
     global levels
     global tuxdolls_available
 
-    w = 400
-    h = 128
-    margin = 16
-    x = SCREEN_SIZE[0] / 2 - w / 2
-    y = SCREEN_SIZE[1] / 2 - h / 2
-    c = sge.Color("black")
-    window = xsge_gui.Window(gui_handler, x, y, w, h, background_color=c,
-                             border=False)
+    if current_levelset != fname:
+        w = 400
+        h = 128
+        margin = 16
+        x = SCREEN_SIZE[0] / 2 - w / 2
+        y = SCREEN_SIZE[1] / 2 - h / 2
+        c = sge.Color("black")
+        window = xsge_gui.Window(gui_handler, x, y, w, h, background_color=c,
+                                 border=False)
 
-    x = margin
-    y = margin
-    text = "Loading levelset..."
-    c = sge.Color("white")
-    xsge_gui.Label(window, x, y, 1, text, font=font, width=(w - 2 * margin),
-                   height=(h - 3 * margin -
-                           xsge_gui.progressbar_container_sprite.height),
-                   color=c)
+        x = margin
+        y = margin
+        text = "Loading levelset..."
+        c = sge.Color("white")
+        xsge_gui.Label(window, x, y, 1, text, font=font,
+                       width=(w - 2 * margin),
+                       height=(h - 3 * margin -
+                               xsge_gui.progressbar_container_sprite.height),
+                       color=c)
 
-    x = margin
-    y = h - margin - xsge_gui.progressbar_container_sprite.height
-    progressbar = xsge_gui.ProgressBar(window, x, y, 0, width=(w - 2 * margin))
+        x = margin
+        y = h - margin - xsge_gui.progressbar_container_sprite.height
+        progressbar = xsge_gui.ProgressBar(window, x, y, 0,
+                                           width=(w - 2 * margin))
 
-    window.show()
-    gui_handler.event_step(0, 0)
-    sge.game.refresh()
+        window.show()
+        gui_handler.event_step(0, 0)
+        sge.game.refresh()
 
-    current_levelset = fname
+        current_levelset = fname
 
-    with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
-        data = json.load(f)
+        with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
+            data = json.load(f)
 
-    worldmaps = data.get("worldmaps", [])
-    levels = data.get("levels", [])
-    tuxdolls_available = []
+        worldmaps = data.get("worldmaps", [])
+        levels = data.get("levels", [])
+        tuxdolls_available = []
 
-    for level in levels:
-        subrooms = [level]
-        already_checked = []
+        for level in levels:
+            subrooms = [level]
+            already_checked = []
 
-        while subrooms:
-            sge.game.pump_input()
-            while sge.game.input_events:
-                event = sge.game.input_events.pop(0)
-                if isinstance(event, sge.input.KeyPress):
-                    if event.key == "escape":
-                        sge.game.start_room.start()
-                if isinstance(event, sge.input.QuitRequest):
-                    sge.game.end()
+            while subrooms:
+                sge.game.pump_input()
+                while sge.game.input_events:
+                    event = sge.game.input_events.pop(0)
+                    if isinstance(event, sge.input.KeyPress):
+                        if event.key == "escape":
+                            sge.game.start_room.start()
+                    if isinstance(event, sge.input.QuitRequest):
+                        sge.game.end()
 
+                time_passed = sge.game.regulate_speed(10000)
+                gui_handler.event_step(time_passed, 1)
+                sge.game.refresh()
+
+                subroom = subrooms.pop(0)
+                already_checked.append(subroom)
+                r = Level.load(subroom)
+                if r is not None:
+                    for obj in r.objects:
+                        if (isinstance(obj, TuxDoll) or
+                                (isinstance(obj, (ItemBlock,
+                                                  HiddenItemBlock)) and
+                                 obj.item == "tuxdoll")):
+                            tuxdolls_available.append(level)
+                            subrooms = []
+                            break
+                        elif isinstance(obj, Warp):
+                            if obj.dest and ':' in obj.dest:
+                                map_f = obj.dest.split(':', 1)[0]
+                                if (map_f not in subrooms and
+                                        map_f not in already_checked):
+                                    subrooms.append(map_f)
+
+            progressbar.progress = (levels.index(level) + 1) / len(levels)
+            progressbar.redraw()
             time_passed = sge.game.regulate_speed(10000)
             gui_handler.event_step(time_passed, 1)
             sge.game.refresh()
 
-            subroom = subrooms.pop(0)
-            already_checked.append(subroom)
-            r = Level.load(subroom)
-            if r is not None:
-                for obj in r.objects:
-                    if (isinstance(obj, TuxDoll) or
-                            (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
-                             obj.item == "tuxdoll")):
-                        tuxdolls_available.append(level)
-                        subrooms = []
-                        break
-                    elif isinstance(obj, Warp):
-                        if obj.dest and ':' in obj.dest:
-                            map_f = obj.dest.split(':', 1)[0]
-                            if (map_f not in subrooms and
-                                    map_f not in already_checked):
-                                subrooms.append(map_f)
-
-        progressbar.progress = (levels.index(level) + 1) / len(levels)
-        progressbar.redraw()
+        window.destroy()
+        sge.game.pump_input()
+        sge.game.input_events = []
         time_passed = sge.game.regulate_speed(10000)
         gui_handler.event_step(time_passed, 1)
         sge.game.refresh()
-
-    window.destroy()
-    sge.game.pump_input()
-    sge.game.input_events = []
-    time_passed = sge.game.regulate_speed(10000)
-    gui_handler.event_step(time_passed, 1)
-    sge.game.refresh()
 
 
 def set_new_game():
@@ -5763,10 +5798,10 @@ flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
 flying_snowball_squished_sprite = sge.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
     bbox_y=11, bbox_width=26, bbox_height=21)
-icicle_sprite = sge.Sprite("icicle", d, bbox_x=8, bbox_y=0, bbox_width=16,
+icicle_sprite = sge.Sprite("icicle", d, bbox_x=4, bbox_y=0, bbox_width=24,
                            bbox_height=48)
-icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=12, bbox_y=32,
-                                  bbox_width=8, bbox_height=16)
+icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=4, bbox_y=32,
+                                  bbox_width=24, bbox_height=16)
 krush_sprite = sge.Sprite("krush", d, origin_x=1, bbox_x=0, bbox_y=0,
                           bbox_width=64, bbox_height=64)
 krosh_sprite = sge.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,
@@ -6062,6 +6097,10 @@ coin_animation = sge.Object(0, 0, sprite=coin_sprite, visible=False,
                             tangible=False)
 bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
                              tangible=False)
+lava_animation = sge.Object(0, 0, sprite=lava_body_sprite, visible=False,
+                            tangible=False)
+goal_animation = sge.Object(0, 0, sprite=goal_sprite, visible=False,
+                            tangible=False)
 
 # Create rooms
 print("Creating {}...".format("level" if RECORD else "title screen"))
