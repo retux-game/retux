@@ -289,7 +289,9 @@ save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 current_save_slot = None
 current_levelset = None
 worldmaps = []
+loaded_worldmaps = {}
 levels = []
+loaded_levels = {}
 level_names = {}
 level_timers = {}
 cleared_levels = []
@@ -725,6 +727,8 @@ class Level(sge.Room):
     def load(cls, fname):
         if fname in current_areas:
             return current_areas[fname]
+        elif fname in loaded_levels:
+            return loaded_levels.pop(fname)
         else:
             try:
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
@@ -904,6 +908,7 @@ class Worldmap(sge.Room):
         self.event_room_resume()
 
     def event_room_resume(self):
+        global loaded_levels
         global main_area
         global level_names
         global level_cleared
@@ -913,7 +918,9 @@ class Worldmap(sge.Room):
         for obj in self.objects:
             if isinstance(obj, MapSpace):
                 if obj.level and obj.level not in level_names:
-                    name = Level.load(obj.level).name
+                    r = Level.load(obj.level)
+                    loaded_levels[obj.level] = r
+                    name = r.name
                     if name:
                         level_names[obj.level] = name
                     elif obj.level in levels:
@@ -974,9 +981,11 @@ class Worldmap(sge.Room):
 
     @classmethod
     def load(cls, fname):
-        r = xsge_tmx.load(os.path.join(DATA, "worldmaps", fname), cls=cls,
-                          types=TYPES)
-        return r
+        if fname in loaded_worldmaps:
+            return loaded_worldmaps.pop(fname)
+        else:
+            return xsge_tmx.load(os.path.join(DATA, "worldmaps", fname),
+                                 cls=cls, types=TYPES)
 
 
 class Tile(sge.Object):
@@ -5448,8 +5457,24 @@ def play_music(music, force_restart=False):
 def load_levelset(fname):
     global current_levelset
     global worldmaps
+    global loaded_worldmaps
     global levels
+    global loaded_levels
     global tuxdolls_available
+
+    def do_refresh():
+        sge.game.pump_input()
+        while sge.game.input_events:
+            event = sge.game.input_events.pop(0)
+            if isinstance(event, sge.input.KeyPress):
+                if event.key == "escape":
+                    sge.game.start_room.start()
+            if isinstance(event, sge.input.QuitRequest):
+                sge.game.end()
+
+        time_passed = sge.game.regulate_speed(10000)
+        gui_handler.event_step(time_passed, 1)
+        sge.game.refresh()
 
     if current_levelset != fname:
         w = 400
@@ -5494,23 +5519,13 @@ def load_levelset(fname):
             already_checked = []
 
             while subrooms:
-                sge.game.pump_input()
-                while sge.game.input_events:
-                    event = sge.game.input_events.pop(0)
-                    if isinstance(event, sge.input.KeyPress):
-                        if event.key == "escape":
-                            sge.game.start_room.start()
-                    if isinstance(event, sge.input.QuitRequest):
-                        sge.game.end()
-
-                time_passed = sge.game.regulate_speed(10000)
-                gui_handler.event_step(time_passed, 1)
-                sge.game.refresh()
+                do_refresh()
 
                 subroom = subrooms.pop(0)
                 already_checked.append(subroom)
                 r = Level.load(subroom)
                 if r is not None:
+                    loaded_levels[subroom] = r
                     for obj in r.objects:
                         if (isinstance(obj, TuxDoll) or
                                 (isinstance(obj, (ItemBlock,
@@ -5528,16 +5543,11 @@ def load_levelset(fname):
 
             progressbar.progress = (levels.index(level) + 1) / len(levels)
             progressbar.redraw()
-            time_passed = sge.game.regulate_speed(10000)
-            gui_handler.event_step(time_passed, 1)
-            sge.game.refresh()
+            do_refresh()
 
         window.destroy()
-        sge.game.pump_input()
+        do_refresh()
         sge.game.input_events = []
-        time_passed = sge.game.regulate_speed(10000)
-        gui_handler.event_step(time_passed, 1)
-        sge.game.refresh()
 
 
 def set_new_game():
