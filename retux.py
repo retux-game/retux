@@ -2927,8 +2927,8 @@ class Icicle(InteractiveObject):
                 crash_y = sge.game.current_room.height
                 for obj in sge.game.current_room.objects:
                     if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right >= obj.bbox_left and
-                            self.bbox_left <= obj.bbox_right):
+                            self.bbox_right > obj.bbox_left and
+                            self.bbox_left < obj.bbox_right):
                         if isinstance(obj, xsge_physics.SolidTop):
                             crash_y = min(crash_y, obj.bbox_top)
                         elif isinstance(obj, xsge_physics.SlopeTopLeft):
@@ -2938,8 +2938,8 @@ class Icicle(InteractiveObject):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
                     if (obj.bbox_bottom > self.bbox_top and
-                            self.bbox_right + ICICLE_LAX >= obj.bbox_left and
-                            self.bbox_left - ICICLE_LAX <= obj.bbox_right):
+                            self.bbox_right + ICICLE_LAX > obj.bbox_left and
+                            self.bbox_left - ICICLE_LAX < obj.bbox_right):
                         if isinstance(obj, Player):
                             players.append(obj)
 
@@ -3032,8 +3032,8 @@ class Crusher(FallingObject):
                 crash_y = sge.game.current_room.height
                 for obj in sge.game.current_room.objects:
                     if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right >= obj.bbox_left and
-                            self.bbox_left <= obj.bbox_right):
+                            self.bbox_right > obj.bbox_left and
+                            self.bbox_left < obj.bbox_right):
                         if isinstance(obj, xsge_physics.SolidTop):
                             crash_y = min(crash_y, obj.bbox_top)
                         elif isinstance(obj, xsge_physics.SlopeTopLeft):
@@ -3043,8 +3043,8 @@ class Crusher(FallingObject):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
                     if (obj.bbox_bottom > self.bbox_top and
-                            self.bbox_right + CRUSHER_LAX >= obj.bbox_left and
-                            self.bbox_left - CRUSHER_LAX <= obj.bbox_right):
+                            self.bbox_right + CRUSHER_LAX > obj.bbox_left and
+                            self.bbox_left - CRUSHER_LAX < obj.bbox_right):
                         if isinstance(obj, Player):
                             players.append(obj)
 
@@ -5830,10 +5830,10 @@ flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
 flying_snowball_squished_sprite = sge.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
     bbox_y=11, bbox_width=26, bbox_height=21)
-icicle_sprite = sge.Sprite("icicle", d, bbox_x=4, bbox_y=0, bbox_width=24,
+icicle_sprite = sge.Sprite("icicle", d, bbox_x=0, bbox_y=0, bbox_width=32,
                            bbox_height=48)
-icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=4, bbox_y=32,
-                                  bbox_width=24, bbox_height=16)
+icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=0, bbox_y=32,
+                                  bbox_width=32, bbox_height=16)
 krush_sprite = sge.Sprite("krush", d, origin_x=1, bbox_x=0, bbox_y=0,
                           bbox_width=64, bbox_height=64)
 krosh_sprite = sge.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,

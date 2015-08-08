@@ -11,19 +11,19 @@
  <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgY8BKIXw2Q3aNgFIyCUTCQAAAhVwHU
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxbwsDAsIROeAUNMLL5SxlQwWMgfsJAOViMxw5qgeFux300TG070M2n1B50O24C8S08NDp4CMSPSLTjLhDfw0Ojg5dA/IpEOxjw+IGPERNzAjEXEv8tUN07IuzA5QcxRsL4K1DdNzx2gPACGmB6lYMgDADk0YTZ
+   eJxbwsDAsIROeAUNMLL5SxloAxaP2kGxHffRMLXtQDefUnvQ7bgJxLfw0OjgIRA/ItGOu0B8Dw+NDl4C8SsS7WDA4wc+RkzMCcRcSPy3QHXviLADlx/EGAnjr0B13/DYAcILaIDpVQ6CMAC2pYMS
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -38,7 +38,6 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="448" y="256" width="64" height="32"/>
-  <object type="solid_bottom" x="160" y="64" width="64" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="480" y="256">
@@ -46,12 +45,6 @@
     <property name="dest" value="retux-10b.tmx:bonus_exit"/>
    </properties>
    <polyline points="0,0 0,64"/>
-  </object>
-  <object x="192" y="96">
-   <properties>
-    <property name="dest" value="retux-10.tmx:exit"/>
-   </properties>
-   <polyline points="0,0 0,-64"/>
   </object>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn">
