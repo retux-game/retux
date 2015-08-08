@@ -288,6 +288,8 @@ save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
 current_save_slot = None
 current_levelset = None
+start_cutscene = None
+win_cutscene = None
 worldmaps = []
 loaded_worldmaps = {}
 levels = []
@@ -639,10 +641,14 @@ class Level(sge.Room):
                         level = self.__class__.load(levels[current_level])
                         level.start(transition="fade")
                     else:
-                        # TODO: Ending
                         if current_save_slot is not None:
                             save_slots[current_save_slot] = None
-                        sge.game.start_room.start()
+
+                        if end_cutscene:
+                            level = Level.load(end_cutscene)
+                            level.start()
+                        else:
+                            sge.game.start_room.start()
 
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
@@ -3319,6 +3325,13 @@ class Snowman(FallingObject, Boss):
             self.next_stage()
 
 
+class Raccot(FallingObject, Boss):
+
+    burnable = True
+    freezable = True
+    knockable = True
+
+
 class FireFlower(FallingObject, WinPuffObject):
 
     fall_speed = FLOWER_FALL_SPEED
@@ -5456,6 +5469,8 @@ def play_music(music, force_restart=False):
 
 def load_levelset(fname):
     global current_levelset
+    global start_cutscene
+    global win_cutscene
     global worldmaps
     global loaded_worldmaps
     global levels
@@ -5510,6 +5525,8 @@ def load_levelset(fname):
         with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
             data = json.load(f)
 
+        start_cutscene = data.get("start_cutscene")
+        win_cutscene = data.get("win_cutscene")
         worldmaps = data.get("worldmaps", [])
         levels = data.get("levels", [])
         tuxdolls_available = []
@@ -5570,7 +5587,7 @@ def set_new_game():
     else:
         current_worldmap = None
     current_worldmap_space = None
-    current_level = 0
+    current_level = None
     score = 0
 
 
@@ -5638,6 +5655,7 @@ def rush_save():
 
 
 def start_levelset():
+    global current_level
     global main_area
     global level_cleared
     global current_areas
@@ -5645,7 +5663,11 @@ def start_levelset():
     main_area = None
     level_cleared = True
 
-    if current_worldmap:
+    if start_cutscene and current_level is None:
+        current_level = 0
+        level = Level.load(start_cutscene)
+        level.start()
+    elif current_worldmap:
         m = Worldmap.load(current_worldmap)
         m.start()
     elif current_level < len(levels):
@@ -5834,6 +5856,21 @@ snowman_hurt_walk_sprite = sge.Sprite("snowman_hurt_walk", d, origin_x=28,
 snowman_hurt_jump_sprite = sge.Sprite("snowman_hurt_jump", d, origin_x=28,
                                       origin_y=43, bbox_x=-17, bbox_y=-8,
                                       bbox_width=34, bbox_height=40)
+raccot_stand_sprite = sge.Sprite("raccot_stand", d, origin_x=41, origin_y=10,
+                                 bbox_x=-30, bbox_y=0, bbox_width=60,
+                                 bbox_height=96)
+raccot_walk_sprite = sge.Sprite("raccot_walk", d, origin_x=54, origin_y=12,
+                                bbox_x=-30, bbox_y=0, bbox_width=60,
+                                bbox_height=96)
+raccot_stomp_sprite = sge.Sprite("raccot_stomp", d, origin_x=41, origin_y=13,
+                                 bbox_x=-30, bbox_y=0, bbox_width=60,
+                                 bbox_height=96)
+raccot_hop_sprite = sge.Sprite("raccot_hop", d, origin_x=41, origin_y=10,
+                               bbox_x=-30, bbox_y=0, bbox_width=60,
+                               bbox_height=96)
+raccot_jump_sprite = sge.Sprite("raccot_jump", d, origin_x=60, origin_y=8,
+                                bbox_x=-30, bbox_y=0, bbox_width=60,
+                                bbox_height=96)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)
@@ -6098,9 +6135,7 @@ type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))
 
 # Load music
 level_win_music = sge.Music(os.path.join(DATA, "music", "leveldone.ogg"))
-no_music = sge.Music(None)
 loaded_music["leveldone.ogg"] = level_win_music
-loaded_music[None] = no_music
 
 # Create objects
 coin_animation = sge.Object(0, 0, sprite=coin_sprite, visible=False,

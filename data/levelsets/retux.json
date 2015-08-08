@@ -1,5 +1,7 @@
 {
     "name": "reTux",
+    "start_cutscene": null,
+    "win_cutscene": null,
     "worldmaps": [
         "retux-1.tmx",
         "retux-2.tmx"
