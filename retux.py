@@ -289,7 +289,6 @@ save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 current_save_slot = None
 current_levelset = None
 start_cutscene = None
-win_cutscene = None
 worldmaps = []
 loaded_worldmaps = {}
 levels = []
@@ -429,6 +428,13 @@ class Level(sge.Room):
         m.start(transition="iris_out", transition_time=TRANSITION_TIME,
                 transition_arg=arg)
 
+    def win_game(self):
+        # TODO: Show credits first before leaving the game!
+        if current_save_slot is not None:
+            save_slots[current_save_slot] = None
+
+        sge.game.start_room.start()
+
     def event_room_start(self):
         global level_timers
 
@@ -454,7 +460,10 @@ class Level(sge.Room):
             main_area = self.fname
 
         if main_area not in level_timers:
-            level_timers[main_area] = self.time_bonus
+            if main_area in levels:
+                level_timers[main_area] = self.time_bonus
+            else:
+                level_timers[main_area] = 0
 
         players = []
         spawn_point = None
@@ -641,14 +650,7 @@ class Level(sge.Room):
                         level = self.__class__.load(levels[current_level])
                         level.start(transition="fade")
                     else:
-                        if current_save_slot is not None:
-                            save_slots[current_save_slot] = None
-
-                        if end_cutscene:
-                            level = Level.load(end_cutscene)
-                            level.start()
-                        else:
-                            sge.game.start_room.start()
+                        self.win_game()
 
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
@@ -658,9 +660,10 @@ class Level(sge.Room):
         global score
 
         if alarm_id == "timer":
-            level_timers.setdefault(main_area, 0)
-            level_timers[main_area] -= SECOND_POINTS
-            self.alarms["timer"] = TIMER_FRAMES
+            if main_area in levels:
+                level_timers.setdefault(main_area, 0)
+                level_timers[main_area] -= SECOND_POINTS
+                self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "shake_down":
             self.shake_queue -= 1
             for view in self.views:
@@ -2907,6 +2910,32 @@ class Icicle(InteractiveObject):
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.shake_counter = SHAKE_FRAME_TIME
 
+    def check_shake(self):
+        players = []
+        crash_y = sge.game.current_room.height
+        for obj in sge.game.current_room.objects:
+            if (obj.bbox_top > self.bbox_bottom and
+                    self.bbox_right > obj.bbox_left and
+                    self.bbox_left < obj.bbox_right):
+                if isinstance(obj, xsge_physics.SolidTop):
+                    crash_y = min(crash_y, obj.bbox_top)
+                elif isinstance(obj, xsge_physics.SlopeTopLeft):
+                    crash_y = min(crash_y, obj.get_slope_y(self.bbox_right))
+                elif isinstance(obj, xsge_physics.SlopeTopRight):
+                    crash_y = min(crash_y, obj.get_slope_y(self.bbox_left))
+            if (obj.bbox_bottom > self.bbox_top and
+                    self.bbox_right + ICICLE_LAX > obj.bbox_left and
+                    self.bbox_left - ICICLE_LAX < obj.bbox_right):
+                if isinstance(obj, Player):
+                    players.append(obj)
+
+        for player in players:
+            if player.bbox_top < crash_y:
+                self.shaking = True
+                play_sound(icicle_shake_sound)
+                self.alarms["fall"] = ICICLE_SHAKE_TIME
+                break
+
     def touch(self, other):
         other.hurt()
 
@@ -2923,32 +2952,7 @@ class Icicle(InteractiveObject):
                     else:
                         self.image_origin_x = self.sprite.origin_x + 2
             else:
-                players = []
-                crash_y = sge.game.current_room.height
-                for obj in sge.game.current_room.objects:
-                    if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right > obj.bbox_left and
-                            self.bbox_left < obj.bbox_right):
-                        if isinstance(obj, xsge_physics.SolidTop):
-                            crash_y = min(crash_y, obj.bbox_top)
-                        elif isinstance(obj, xsge_physics.SlopeTopLeft):
-                            crash_y = min(crash_y,
-                                          obj.get_slope_y(self.bbox_right))
-                        elif isinstance(obj, xsge_physics.SlopeTopRight):
-                            crash_y = min(crash_y,
-                                          obj.get_slope_y(self.bbox_left))
-                    if (obj.bbox_bottom > self.bbox_top and
-                            self.bbox_right + ICICLE_LAX > obj.bbox_left and
-                            self.bbox_left - ICICLE_LAX < obj.bbox_right):
-                        if isinstance(obj, Player):
-                            players.append(obj)
-
-                for player in players:
-                    if player.bbox_top < crash_y:
-                        self.shaking = True
-                        play_sound(icicle_shake_sound)
-                        self.alarms["fall"] = ICICLE_SHAKE_TIME
-                        break
+                self.check_shake()
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.shaking = False
@@ -2966,6 +2970,13 @@ class Icicle(InteractiveObject):
             other.knock(self)
 
         super(Icicle, self).event_collision(other, xdirection, ydirection)
+
+
+class SteadyIcicle(Icicle):
+
+    def check_shake(self, earthquake=False):
+        if earthquake:
+            super(SteadyIcicle, self).check_shake()
 
 
 class FallingIcicle(FallingObject):
@@ -5470,7 +5481,6 @@ def play_music(music, force_restart=False):
 def load_levelset(fname):
     global current_levelset
     global start_cutscene
-    global win_cutscene
     global worldmaps
     global loaded_worldmaps
     global levels
@@ -5526,7 +5536,6 @@ def load_levelset(fname):
             data = json.load(f)
 
         start_cutscene = data.get("start_cutscene")
-        win_cutscene = data.get("win_cutscene")
         worldmaps = data.get("worldmaps", [])
         levels = data.get("levels", [])
         tuxdolls_available = []
