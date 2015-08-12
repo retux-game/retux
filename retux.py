@@ -2859,9 +2859,6 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
         else:
             self.xdeceleration = 0
 
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.destroy()
-
     def event_animation_end(self):
         e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
         e.detonator = self.thrower
@@ -3499,6 +3496,12 @@ class ThrownFlower(FallingObject, WinPuffObject):
     def dissipate(self):
         play_sound(stomp_sound)
         self.destroy()
+
+    def touch_hurt(self):
+        pass
+
+    def touch_death(self):
+        self.dissipate()
 
     def stop_left(self):
         self.dissipate()
@@ -6108,11 +6111,11 @@ for i in list(backgrounds.keys()):
     if not NO_BACKGROUNDS:
         layers = backgrounds[i].layers + [
             sge.BackgroundLayer(castle_spr, 0, -64, -99000,
-                                xscroll_rate=0.75, yscroll_rate=0.75,
+                                xscroll_rate=0.75, yscroll_rate=1,
                                 repeat_left=True, repeat_right=True,
                                 repeat_up=True),
             sge.BackgroundLayer(castle_bottom_spr, 0, 536, -99000,
-                                xscroll_rate=0.75, yscroll_rate=0.75,
+                                xscroll_rate=0.75, yscroll_rate=1,
                                 repeat_left=True, repeat_right=True,
                                 repeat_down=True)]
 

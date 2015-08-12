@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="55" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="1312"/>
+  <property name="bgname" value="bluemountain_castle"/>
+  <property name="music" value="darkforestkeep.ogg"/>
+  <property name="name" value="Concept Castle"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="151" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="171" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="343" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="346" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="250" height="55">
+  <data encoding="base64" compression="zlib">
+   eJzt3DENACAMRUFqgBFj4F8LDggJA2lzt30BHftaAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKlpx3kB+M84bAAAAAAAAAAAAAAAAAAAAfut+4aG84c6BBzd9LA0tyO2mj6WhRWYbsbACyw==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="250" height="55">
+  <data encoding="base64" compression="zlib">
+   eJzt3F1u00AYBdDJBnhkETyyFbpLoPxIBQmQOkil+wD6AqvAFoxiIjdxHbsz4zlHulKlpJKj5vabcRyHAAAAAAAAAAAAAAAAAAAAp8XMedPl84x8mfNioVHfKk3//0HXYZpYcXQdpsk9l811WF/unuo6rC93R3Ud1pe7n6V3/TrkPw9xTqA37Mlt5mOZ6lj3zPW969wHQDG21vM+uv6XnpPU2PObYL8+xU3uA6AYcZCvOQ/kAabumVvvup6TxLDdnvdpuet6TrLVdbs1vP05ezX2fM5nXS123TwnqbHnD53nrc51PSeJYdv788O01HXrdpIY6uv53Hne2lzXc5IS1+3fu/w48vgS16K20HXrdpIYypvnv7r8PvL4Utecb73rek5yOM8vdvt8CvPu6bR2LsN56/ZW1vB6ThLD//P8xW6fc/fBtWTuPepKyX3/p/Sc5Nj7fcm5Kevlvv2WnpNEqT56zilRNpGxtbuek0TZRMZmus/PSXLvLWWZ3B7+YYN5zl7u96csk7HPB/Wckg2vk0mf7Y3NK47Tc0qm58uwP6dkP7vc/ftZz+czz6lFyz0/97rjy8c/ZJil5Z6bx7QifTetlO/SzfGyy6sJeX3we/bXtGILPT/0tsu7Lu9PPE/P2bLhfSZa7rl1O7VY4lxSDNvq+VWXD10+nnienlODvuNLfbe1Pw/3ZBfCs93jvoYkxz03nC+ndKnjcaH08/xp1/HnmXputlKzNWdRXDBr3vOlvy58eL+sseg5Ncv9/YsS0u8JhvfLGotz39TsD8VkX1w=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="1696" width="2112" height="64"/>
+  <object x="704" y="1664" width="672" height="32"/>
+  <object x="736" y="1632" width="640" height="32"/>
+  <object x="768" y="1600" width="608" height="32"/>
+  <object x="1280" y="1344" width="96" height="256"/>
+  <object x="0" y="704" width="128" height="448"/>
+  <object x="0" y="1312" width="3712" height="32"/>
+  <object x="0" y="1216" width="3680" height="96"/>
+  <object x="0" y="1152" width="3648" height="64"/>
+  <object x="224" y="1120" width="3424" height="32"/>
+  <object x="224" y="1088" width="1888" height="32"/>
+  <object x="1440" y="1056" width="640" height="32"/>
+  <object x="1440" y="1024" width="608" height="32"/>
+  <object x="1440" y="992" width="576" height="32"/>
+  <object x="1440" y="960" width="544" height="32"/>
+  <object x="1440" y="928" width="512" height="32"/>
+  <object x="1440" y="896" width="480" height="32"/>
+  <object x="1440" y="864" width="448" height="32"/>
+  <object x="1440" y="832" width="416" height="32"/>
+  <object x="1440" y="800" width="384" height="32"/>
+  <object x="1440" y="768" width="352" height="32"/>
+  <object x="1440" y="736" width="320" height="32"/>
+  <object x="1440" y="704" width="288" height="32"/>
+  <object x="0" y="672" width="1696" height="32"/>
+  <object x="0" y="640" width="1664" height="32"/>
+  <object x="0" y="608" width="1632" height="32"/>
+  <object x="0" y="576" width="1600" height="32"/>
+  <object x="0" y="544" width="1568" height="32"/>
+  <object x="0" y="512" width="1536" height="32"/>
+  <object x="0" y="480" width="1504" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="death" x="128" y="1120" width="96" height="32"/>
+  <object type="death" x="2112" y="1728" width="256" height="32"/>
+  <object type="solid_bottom" x="1184" y="1408" width="64" height="32"/>
+  <object type="solid_top" x="1184" y="1024" width="64" height="32"/>
+  <object type="solid_top" x="1184" y="1568" width="64" height="32"/>
+  <object type="solid_right" x="1408" y="1632" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="1216" y="1568">
+   <polyline points="0,0 0,96 224,96"/>
+  </object>
+  <object x="1216" y="1440">
+   <polyline points="0,0 0,-416"/>
+  </object>
+  <object x="1216" y="1152">
+   <polyline points="0,-128 0,288"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="327" x="320" y="992">
+   <properties>
+    <property name="text" value="All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten lava!"/>
+   </properties>
+  </object>
+  <object gid="314" x="544" y="992"/>
+  <object gid="315" x="704" y="992"/>
+  <object gid="315" x="736" y="992"/>
+  <object gid="315" x="768" y="992"/>
+  <object gid="334" x="1216" y="1568"/>
+  <object gid="334" x="1184" y="1568"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="2" x="960" y="1600"/>
+  <object gid="2" x="1056" y="1600"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="1696"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="250" height="55">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20Gf6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgM1tgAAQ==
+  </data>
+ </layer>
+</map>
