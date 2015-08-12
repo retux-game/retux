@@ -86,8 +86,8 @@
   <object type="solid_top" x="4992" y="768" width="96" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
-  <object x="2592" y="800">
-   <polyline points="0,0 0,448"/>
+  <object x="2592" y="768">
+   <polyline points="0,0 0,480"/>
   </object>
   <object x="4736" y="1024">
    <polyline points="0,0 0,-64 224,-64 224,0"/>
@@ -101,8 +101,8 @@
   <object x="4960" y="1024">
    <polyline points="0,0 0,-64 -224,-64 -224,0"/>
   </object>
-  <object x="2592" y="1248">
-   <polyline points="0,0 0,-448"/>
+  <object x="2592" y="1216">
+   <polyline points="0,32 0,-448"/>
   </object>
   <object x="384" y="384">
    <polyline points="0,0 0,192"/>

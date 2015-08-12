@@ -188,7 +188,7 @@ ENEMY_FALL_SPEED = 5
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3 + 2
-KICK_FORWARD_SPEED = 8
+KICK_FORWARD_SPEED = 6
 KICK_FORWARD_HEIGHT = TILE_SIZE * 3 / 4
 KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 ICEBLOCK_GRAVITY = 0.6
@@ -220,7 +220,6 @@ ROCK_FRICTION = 0.4
 SPRING_JUMP_HEIGHT = 8 * TILE_SIZE + 11
 
 FLOWER_FALL_SPEED = 5
-FLOWER_THROW_SPEED = 8
 FLOWER_THROW_HEIGHT = TILE_SIZE / 2
 FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
 
@@ -737,7 +736,9 @@ class Level(sge.Room):
         if fname in current_areas:
             return current_areas[fname]
         elif fname in loaded_levels:
-            return loaded_levels.pop(fname)
+            r = loaded_levels.pop(fname)
+            current_areas[fname] = r
+            return r
         else:
             try:
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
