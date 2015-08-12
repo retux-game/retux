@@ -112,6 +112,9 @@
     <property name="cls" value="iceblock"/>
    </properties>
   </object>
+  <object gid="296" x="3648" y="416"/>
+  <object gid="304" x="3936" y="96"/>
+  <object gid="305" x="3936" y="64"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="313" x="512" y="96"/>
@@ -150,6 +153,7 @@
    </properties>
    <polyline points="0,0 -64,0"/>
   </object>
+  <object gid="7" x="3840" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>

@@ -3394,14 +3394,14 @@ class FireFlower(FallingObject, WinPuffObject):
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
                 h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
-                yv = get_jump_speed(h, ThrownFlower.gravity)
+                yv = get_jump_speed(h, ThrownFireFlower.gravity)
                 self.parent.kick_object()
                 play_sound(kick_sound)
-                ThrownFlower.create(self.parent, self.x, self.y, self.z,
-                                    sprite=self.sprite,
-                                    xvelocity=(FIREBALL_SPEED * d),
-                                    yvelocity=yv,
-                                    image_xscale=self.image_xscale)
+                ThrownFireFlower.create(self.parent, self.x, self.y, self.z,
+                                        sprite=self.sprite,
+                                        xvelocity=(FIREBALL_SPEED * d),
+                                        yvelocity=yv,
+                                        image_xscale=self.image_xscale)
                 self.parent = None
                 self.destroy()
                 pass
@@ -3464,14 +3464,15 @@ class IceFlower(FallingObject, WinPuffObject):
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
-                yv = get_jump_speed(FLOWER_THROW_HEIGHT, ThrownFlower.gravity)
+                yv = get_jump_speed(FLOWER_THROW_HEIGHT,
+                                    ThrownIceFlower.gravity)
                 self.parent.kick_object()
                 play_sound(kick_sound)
-                ThrownFlower.create(self.parent, self.x, self.y, self.z,
-                                    sprite=self.sprite,
-                                    xvelocity=(FIREBALL_SPEED * d),
-                                    yvelocity=yv,
-                                    image_xscale=self.image_xscale)
+                ThrownIceFlower.create(self.parent, self.x, self.y, self.z,
+                                       sprite=self.sprite,
+                                       xvelocity=(FIREBALL_SPEED * d),
+                                       yvelocity=yv,
+                                       image_xscale=self.image_xscale)
                 self.parent = None
                 self.destroy()
                 pass
@@ -3495,37 +3496,66 @@ class ThrownFlower(FallingObject, WinPuffObject):
         self.thrower = thrower
         super(ThrownFlower, self).__init__(*args, **kwargs)
 
-    def stop_left(self):
+    def dissipate(self):
         play_sound(stomp_sound)
         self.destroy()
+
+    def stop_left(self):
+        self.dissipate()
 
     def stop_right(self):
-        play_sound(stomp_sound)
-        self.destroy()
+        self.dissipate()
 
     def stop_up(self):
-        play_sound(stomp_sound)
-        self.destroy()
+        self.dissipate()
 
     def stop_down(self):
-        play_sound(stomp_sound)
-        self.destroy()
+        self.dissipate()
 
-    def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.knockable:
-            other.knock(self)
-            play_sound(stomp_sound)
-            self.destroy()
-        elif isinstance(other, Coin):
-            other.event_collision(self.thrower, -xdirection, -ydirection)
+    def event_physics_collision_left(self, other, move_loss):
+        super(ThrownFlower, self).event_physics_collision_left(other,
+                                                               move_loss)
+        self.event_collision(other, -1, 0)
 
-        super(ThrownFlower, self).event_collision(other, xdirection, ydirection)
+    def event_physics_collision_right(self, other, move_loss):
+        super(ThrownFlower, self).event_physics_collision_right(other,
+                                                                move_loss)
+        self.event_collision(other, 1, 0)
+
+    def event_physics_collision_top(self, other, move_loss):
+        super(ThrownFlower, self).event_physics_collision_top(other, move_loss)
+        self.event_collision(other, 0, -1)
+
+    def event_physics_collision_bottom(self, other, move_loss):
+        super(ThrownFlower, self).event_physics_collision_bottom(other,
+                                                                 move_loss)
+        self.event_collision(other, 0, 1)
 
     def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
 
     def event_destroy(self):
         Smoke.create(self.x, self.y, self.z, sprite=smoke_puff_sprite)
+
+
+class ThrownFireFlower(ThrownFlower):
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, InteractiveObject) and other.burnable:
+            self.dissipate()
+            other.burn()
+
+        super(ThrownFlower, self).event_collision(other, xdirection, ydirection)
+
+
+class ThrownIceFlower(ThrownFlower):
+
+    def event_collision(self, other, xdirection, ydirection):
+        if isinstance(other, InteractiveObject) and other.burnable:
+            self.dissipate()
+            other.freeze()
+
+        super(ThrownFlower, self).event_collision(other, xdirection, ydirection)
 
 
 class Fireball(FallingObject):
@@ -5679,12 +5709,16 @@ def start_levelset():
     elif current_worldmap:
         m = Worldmap.load(current_worldmap)
         m.start()
-    elif current_level < len(levels):
-        level = Level.load(levels[current_level])
-        level.start()
     else:
-        print("Invalid save file: current level does not exist.")
-        return False
+        if current_level is None:
+            current_level = 0
+
+        if current_level < len(levels):
+            level = Level.load(levels[current_level])
+            level.start()
+        else:
+            print("Invalid save file: current level does not exist.")
+            return False
 
     return True
 
