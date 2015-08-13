@@ -378,6 +378,8 @@ Source: http://powstudios.com/content/smoke-animation-pack-1
 objecttypes.xml
 images/backgrounds/castle-bottom.png
 levels/base.tmx
+levels/concept_castle.tmx
+levels/retux-00.tmx
 levels/retux-01.tmx
 levels/retux-02.tmx
 levels/retux-03.tmx
@@ -389,6 +391,12 @@ levels/retux-07.tmx
 levels/retux-08.tmx
 levels/retux-09.tmx
 levels/retux-10.tmx
+levels/retux-10b.tmx
+levels/retux-10c.tmx
+levels/retux-11.tmx
+levels/retux-12.tmx
+levels/retux-13.tmx
+levels/retux-13b.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/special/title_screen.tmx

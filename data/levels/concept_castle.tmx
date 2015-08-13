@@ -26,7 +26,7 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="55">
   <data encoding="base64" compression="zlib">
-   eJzt3FlOwzAUhWF3AzyyCB7ZCuwSKIMESICEkaD7YHiBVWALrhqCm7apY/va/ycdCTEWwem1kzTGAAAAAAAAAAAAAAAAAAAAAAAAAACAqd253PfykPURAduzmXNu/vdok6Tq2nPgfYtEPxuI5UVp/PNDiq6Hej72uWmbADFZxUnR9ceJvz+QQu65XPpcD81zQJvcPS296/QcNcjd0dK7zrodNcjdz9K77ntuFQfwuj3Rcr5oqHupjsNrwFoEorae+9D1H/QcQmPP/bGxnMfmtOAYIoTt5CnnA9nCpnvm1rtOzyGsqbfnPi13nZ5D1LpuZw3P/hxLGns+5lxXi11nnkNo7Pm287zVuU7PIaype3/eT0tdZ90OYY2+no+d563NdXoOUeK6/dXlbeDjMa5FbaHrrNshrClvnn+6fA18PNY157V3nZ5D9Of58WyZ0L3RSsjc7LZub2UNT88hrPk7z49my+y6D9aSFPeBmjKrnqfoOcTQ/3vMuUmmy6r9Fj2HsER96DnWsaSKhNbu9BzCkioSmumcP4fIvbckcbLo/2EN8xxLuf8/SZyEzg/Sc5Sse52MnNsLzSsMo+coGT2Pg/05Svbu8vH7Nj0fj3kOLVru+a7XHc/TP2RglJZ7zjxGK+S1aaW8lm6ME5fTDXLW+zr212hFDT3vu3C5dLla83n0HDXr3mei5Z6zbocWMY4lWVNXz69dblxu13wePYcGvuOxXtvqj8PtzYw5mKX9HUSOe25wvBylk47bSPHzfN91/DBTz5mt0GzKWWQjZsp7vvjrwrv3ywqFnkOz3K+/KCF+T9C9X1YoHPuGZt9J8ntJ
+   eJzt3G1KAzEUheHMBvzpIvzpVnSXav0AFVQwgroPXYkJeuk4xraTZpLc5H3ggEjVsfT0JtN2jAEAAAAAAAAAAAAAAAAAAAAAAAAAAEt7cHmc5KnoEQHz2cK5NH97tEtyde018L33TH8bSOVNafzzQ46uh3oe+9w0J0BKVnFydP154d8P5FB6Ltc+10PzHNCmdE9r7zo9RwtKd7T2rrNuRwtK97P2rvueW8UBvHFPtLxetKl7uc7Da8BaBKK1nvvQ9W/0HEJjz/25sZLn5rTgHCKEHeWl5IHMsOueufeu03MIa9rtuU/PXafnEK2u21nDsz/Hmsaex7zW1WPXmecQGns+d573OtfpOYQ1be/Pp+mp66zbIazR1/PYed7bXKfnEBrX7Snei9pD11m3Q1ijb56nes95612n5xDTeX46rBO6NtqSCXUudAwrs9+6vZc1PD2HsOb3PD8Z1tl3Hzw3oX1DjmPIcR2o3M+Pct8B3qbHe8q5WXPPtee//RY9h7AVJfR41f757xyh59jGVhR6Hp/Q2p2eQ9iKQs/T33eAV3pvyf582fsO8Eo/Pul5moReH6Tn0EJ6HnoOwGb0HFrQ83jsz6EFPY/HPIcWPfd83/cdr/IfMhCl554zj9ELef1cy2fpQs5cznfIxeTn2F+jFy30fOrK5drlZsvt6Dla9uHy+fN1zz1n3Q4tUpxLsqatnt+63Lncb7kdPYcGvuOpPtvqz8MdDMYcDXn/B5H7mhucL4cG0nGbKH6eH7qOHxfqObMVmi05i2zCLHnNF/++8PH1skKh59Cs9OcvaojfE4yvlxUK576h2Re7zFoK
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -36,11 +36,7 @@
   <object x="768" y="1600" width="608" height="32"/>
   <object x="1280" y="1344" width="96" height="256"/>
   <object x="0" y="704" width="128" height="448"/>
-  <object x="0" y="1312" width="3712" height="32"/>
-  <object x="0" y="1216" width="3680" height="96"/>
-  <object x="0" y="1152" width="3648" height="64"/>
-  <object x="224" y="1120" width="3424" height="32"/>
-  <object x="224" y="1088" width="1888" height="32"/>
+  <object x="1280" y="1312" width="2432" height="32"/>
   <object x="1440" y="1056" width="640" height="32"/>
   <object x="1440" y="1024" width="608" height="32"/>
   <object x="1440" y="992" width="576" height="32"/>
@@ -60,24 +56,24 @@
   <object x="0" y="544" width="1568" height="32"/>
   <object x="0" y="512" width="1536" height="32"/>
   <object x="0" y="480" width="1504" height="32"/>
+  <object x="1280" y="1216" width="2400" height="96"/>
+  <object x="1280" y="1120" width="2368" height="96"/>
+  <object x="1280" y="1088" width="832" height="32"/>
+  <object x="0" y="1152" width="1152" height="192"/>
+  <object x="224" y="1088" width="928" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="death" x="128" y="1120" width="96" height="32"/>
   <object type="death" x="2112" y="1728" width="256" height="32"/>
-  <object type="solid_bottom" x="1184" y="1408" width="64" height="32"/>
-  <object type="solid_top" x="1184" y="1024" width="64" height="32"/>
   <object type="solid_top" x="1184" y="1568" width="64" height="32"/>
   <object type="solid_right" x="1408" y="1632" width="32" height="64"/>
+  <object type="moving_platform_path" x="1152" y="1440">
+   <polyline points="0,32 0,-352 0,32"/>
+  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="1216" y="1568">
    <polyline points="0,0 0,96 224,96"/>
-  </object>
-  <object x="1216" y="1440">
-   <polyline points="0,0 0,-416"/>
-  </object>
-  <object x="1216" y="1152">
-   <polyline points="0,-128 0,288"/>
   </object>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>

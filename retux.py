@@ -1365,6 +1365,7 @@ class Player(xsge_physics.Collider):
 
     def drop_object(self):
         if self.held_object is not None:
+            self.held_object.parent = None
             self.held_object.visible = True
             self.held_object = None
 
@@ -2024,7 +2025,6 @@ class InteractiveObject(sge.Object):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
 
     def kick_up(self):
         self.kick()
@@ -2059,7 +2059,6 @@ class InteractiveObject(sge.Object):
     def event_destroy(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
 
 
 class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
@@ -2626,7 +2625,6 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -2805,7 +2803,6 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -3364,7 +3361,6 @@ class FireFlower(FallingObject, WinPuffObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self, up=False):
@@ -3440,7 +3436,6 @@ class IceFlower(FallingObject, WinPuffObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -3832,7 +3827,6 @@ class Spring(FixedSpring, WinPuffObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
-            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -4400,6 +4394,10 @@ class Warp(WarpSpawn):
     def warp(self, other):
         play_sound(pipe_sound)
         self.warps_in.append(other)
+
+        if getattr(other, "held_object") is not None:
+            other.held_object.drop()
+
         other.visible = False
         other.tangible = False
         other.warping = True

@@ -20,18 +20,17 @@
  <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt20GO00AQBdDmAiw5CzvOAFdxAutMFrBLAog7wilwC/9xpaWRkHDIIN6TSrE9iWNl8VVu17QGAIze3PsCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP5xp7kOc+2X7dOy/TDXsdQ017kcfz/XhztcL/D/6vnUM6hn1nF57XVpv3IredXfNy2vPau+zfXyxfW5xn2ALfUsuiyV/uq87CfHdkN9nuvTXK+GfBr3AbbU86lnU+750m/VDMvf0mv148ksgL8l2dR7qp5Nu+XYw7LdcyrrW4dh+3iH6+X5e6fP5gbSO/X86dmU9fRk2H45loya2tpzZY0LRm/lFRtLr9SzKVmU/mpfKhm1a+v61rEcg5G8YktTW+cTsn5VK71WKuvs+dyuySueJq/YStal3M9xK/Lq/r7P9WOuj3N9bdf3TMmAOhtQn//3v5/bOs+U9Z/MDZzKsYdyntyzpbfJd+QcWXeqPVH2L23thzKbUGcUDtv+PPBIXt3Xl1JjVo3ZUXMrMwD7tq5fJ08O5X2ZxTyX99V1pXx+zMFkXjIt13QqrzWrkl+e63FLT+XV698s/kyemWU9OvNKh7KdHqr2TDVXaqYli7I/tbWvSj+Ucyf/8qwuWTbe103lvHVmKpmVZ3/Txr8N8LwkC5JH9f9UpnadFXWWKVlWe630S5lhGucE6hp3Mqne49VZgn3ZTp81le+t+Zg+CwDYzk9aq7Vg
+   eJzt21Fu00AUBdBhV/yxBtiKkwU4+YC/JJRNwirwqL7yi6VKSJi4tOdIT3bcZOL24+rNeNoaALD2ae8bAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPjPXaYapzrO55f5/DTVudQw1XW+ft3lToH3rudTz6CeWef52OvWnnMredXfN8zHwy53Crx3PYtuc6W/us6vk2OHVemvgD30fOrZlDlf+q2aYflZ7bUAHi3Z1HumzPVOc/XznlNZ3xpLfZ/q2zzG16meHnrXvGZfPux9B7xF6Z16FmWel6zK+lW/lrwa2tJzJbN6Tv2YfwbdZ3nFxtIn9WxKFqW/OpZKRh3asr51Xl3zzJBKXrGloS37E7J+VSu9Virr7Pncod3nVT+OD/0NeM3kFVvJulT2LMDW5NX+fk71qz2vLff1mjpnSgbUvQH1+X/mS9nPlPWf7Bu4lGunMk7mbOlt8h0ZI+tOtSfK61tb+qHsTah7FPRD/Cvyal9PpdZZtc6OmlvZA3Bsy/p18mQs78tezGt5X11XyufXOZjMS6blni7lWLMq+XXe9s8Dd17Kq49/WPydPDPLWk32K43lPD1U7ZlqrtRMSxbl9dCWvir9UMZO/uVZXbJsPa8byrh1z1QyK8/+PMeDty1ZkDyq/6cytPusqHuZkmW110q/lP1M630CdY07mVTneJk33soY+c6xjFX3KdS5IACwnd8y27fy
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="4928" y="1280" width="1024" height="64"/>
   <object x="4288" y="1152" width="640" height="192"/>
-  <object x="4768" y="672" width="160" height="480"/>
   <object x="2560" y="1312" width="1728" height="32"/>
   <object x="0" y="1248" width="672" height="96"/>
   <object x="672" y="1280" width="768" height="64"/>
@@ -40,7 +39,7 @@
   <object x="2560" y="1056" width="1600" height="128"/>
   <object x="2560" y="896" width="64" height="32"/>
   <object x="3808" y="896" width="512" height="32"/>
-  <object x="3808" y="672" width="960" height="224"/>
+  <object x="3808" y="672" width="1120" height="224"/>
   <object x="1504" y="192" width="448" height="608"/>
   <object x="1952" y="192" width="288" height="448"/>
   <object x="2240" y="416" width="512" height="224"/>
@@ -58,13 +57,13 @@
   <object x="6656" y="1184" width="544" height="32"/>
   <object x="6688" y="1152" width="512" height="32"/>
   <object x="9536" y="1120" width="64" height="128"/>
+  <object x="4704" y="896" width="64" height="128"/>
+  <object x="4864" y="1024" width="64" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_topleft" x="4128" y="1152" width="160" height="160"/>
   <object type="slope_bottomright" x="4160" y="1056" width="128" height="128"/>
   <object type="slope_topleft" x="2112" y="928" width="256" height="128"/>
-  <object type="solid_bottom" x="4704" y="992" width="64" height="32"/>
-  <object type="solid_bottom" x="4928" y="992" width="64" height="32"/>
   <object type="solid_top" x="5152" y="864" width="96" height="32"/>
   <object type="solid_top" x="5472" y="1056" width="96" height="32"/>
   <object type="solid_bottom" x="2560" y="1216" width="64" height="32"/>
@@ -84,22 +83,17 @@
   <object type="solid_top" x="5632" y="1152" width="96" height="32"/>
   <object type="solid_top" x="5312" y="960" width="96" height="32"/>
   <object type="solid_top" x="4992" y="768" width="96" height="32"/>
+  <object type="solid_top" x="4768" y="1024" width="96" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="2592" y="768">
    <polyline points="0,0 0,480"/>
-  </object>
-  <object x="4736" y="1024">
-   <polyline points="0,0 0,-64 224,-64 224,0"/>
   </object>
   <object x="4992" y="32">
    <polyline points="0,0 64,0 64,128"/>
   </object>
   <object x="384" y="576">
    <polyline points="0,0 0,-192"/>
-  </object>
-  <object x="4960" y="1024">
-   <polyline points="0,0 0,-64 -224,-64 -224,0"/>
   </object>
   <object x="2592" y="1216">
    <polyline points="0,32 0,-448"/>
