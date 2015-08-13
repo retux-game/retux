@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="55" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="52" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="background_y" value="1312"/>
+  <property name="background_y" value="1216"/>
   <property name="bgname" value="bluemountain_castle"/>
   <property name="music" value="darkforestkeep.ogg"/>
   <property name="name" value="Concept Castle"/>
@@ -19,87 +19,249 @@
  <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="346" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="250" height="55">
+ <layer name="Back Tiles" width="250" height="52">
   <data encoding="base64" compression="zlib">
-   eJzt3DENACAMRUFqgBFj4F8LDggJA2lzt30BHftaAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKlpx3kB+M84bAAAAAAAAAAAAAAAAAAAAfut+4aG84c6BBzd9LA0tyO2mj6WhRWYbsbACyw==
+   eJzt3DENACAMRUEwwIgx8K8FBw2EgZTcbV9Ax75SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzs0abyC/UeMNAAAAAAAAAAAAAAAAAAAArzW/8PC97s6BCzt9LA0tyG2nj6WhRWYLpfgCyw==
   </data>
  </layer>
- <layer name="Middle Tiles" width="250" height="55">
+ <layer name="Middle Tiles" width="250" height="52">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="0" y="1696" width="2112" height="64"/>
-  <object x="704" y="1664" width="672" height="32"/>
-  <object x="736" y="1632" width="640" height="32"/>
-  <object x="768" y="1600" width="608" height="32"/>
-  <object x="1280" y="1344" width="96" height="256"/>
-  <object x="0" y="704" width="128" height="448"/>
-  <object x="1280" y="1312" width="2432" height="32"/>
-  <object x="1440" y="1056" width="640" height="32"/>
-  <object x="1440" y="1024" width="608" height="32"/>
-  <object x="1440" y="992" width="576" height="32"/>
-  <object x="1440" y="960" width="544" height="32"/>
-  <object x="1440" y="928" width="512" height="32"/>
-  <object x="1440" y="896" width="480" height="32"/>
-  <object x="1440" y="864" width="448" height="32"/>
-  <object x="1440" y="832" width="416" height="32"/>
-  <object x="1440" y="800" width="384" height="32"/>
-  <object x="1440" y="768" width="352" height="32"/>
-  <object x="1440" y="736" width="320" height="32"/>
-  <object x="1440" y="704" width="288" height="32"/>
-  <object x="0" y="672" width="1696" height="32"/>
-  <object x="0" y="640" width="1664" height="32"/>
-  <object x="0" y="608" width="1632" height="32"/>
-  <object x="0" y="576" width="1600" height="32"/>
-  <object x="0" y="544" width="1568" height="32"/>
-  <object x="0" y="512" width="1536" height="32"/>
-  <object x="0" y="480" width="1504" height="32"/>
-  <object x="1280" y="1216" width="2400" height="96"/>
-  <object x="1280" y="1120" width="2368" height="96"/>
-  <object x="1280" y="1088" width="832" height="32"/>
-  <object x="0" y="1152" width="1152" height="192"/>
-  <object x="224" y="1088" width="928" height="64"/>
+  <object x="0" y="1600" width="2112" height="64"/>
+  <object x="704" y="1568" width="672" height="32"/>
+  <object x="736" y="1536" width="640" height="32"/>
+  <object x="768" y="1504" width="608" height="32"/>
+  <object x="1280" y="1248" width="96" height="256"/>
+  <object x="0" y="608" width="128" height="448"/>
+  <object x="1280" y="1216" width="2432" height="32"/>
+  <object x="1440" y="960" width="640" height="32"/>
+  <object x="1440" y="928" width="608" height="32"/>
+  <object x="1440" y="896" width="576" height="32"/>
+  <object x="1440" y="864" width="544" height="32"/>
+  <object x="1440" y="832" width="512" height="32"/>
+  <object x="1440" y="800" width="480" height="32"/>
+  <object x="1440" y="768" width="448" height="32"/>
+  <object x="1440" y="736" width="416" height="32"/>
+  <object x="1440" y="704" width="384" height="32"/>
+  <object x="1440" y="672" width="352" height="32"/>
+  <object x="1440" y="640" width="320" height="32"/>
+  <object x="1440" y="608" width="288" height="32"/>
+  <object x="0" y="576" width="1696" height="32"/>
+  <object x="0" y="544" width="1664" height="32"/>
+  <object x="0" y="512" width="1632" height="32"/>
+  <object x="0" y="480" width="1600" height="32"/>
+  <object x="0" y="448" width="1568" height="32"/>
+  <object x="0" y="416" width="1536" height="32"/>
+  <object x="0" y="384" width="1504" height="32"/>
+  <object x="1280" y="1120" width="2400" height="96"/>
+  <object x="1280" y="1024" width="2368" height="96"/>
+  <object x="1280" y="992" width="832" height="32"/>
+  <object x="0" y="1056" width="1152" height="192"/>
+  <object x="224" y="992" width="928" height="64"/>
+  <object x="2112" y="256" width="32" height="32"/>
+  <object x="1952" y="256" width="32" height="32"/>
+  <object x="1792" y="256" width="32" height="32"/>
+  <object x="1632" y="256" width="32" height="32"/>
+  <object x="0" y="96" width="1056" height="288"/>
+  <object x="0" y="0" width="4768" height="96"/>
+  <object x="4288" y="96" width="480" height="256"/>
+  <object x="2304" y="352" width="192" height="64"/>
+  <object x="2304" y="416" width="2464" height="192"/>
+  <object x="3552" y="352" width="1216" height="64"/>
+  <object x="4512" y="608" width="544" height="64"/>
+  <object x="4768" y="448" width="288" height="160"/>
+  <object x="4512" y="672" width="736" height="32"/>
+  <object x="3808" y="608" width="576" height="384"/>
+  <object x="2368" y="1536" width="928" height="128"/>
+  <object x="3296" y="1344" width="832" height="320"/>
+  <object x="4128" y="1600" width="2080" height="64"/>
+  <object x="6208" y="1248" width="1792" height="416"/>
+  <object x="4864" y="1248" width="256" height="32"/>
+  <object x="4864" y="1280" width="224" height="32"/>
+  <object x="4864" y="1312" width="192" height="32"/>
+  <object x="4864" y="1344" width="160" height="32"/>
+  <object x="4864" y="1376" width="128" height="32"/>
+  <object x="4864" y="1408" width="96" height="32"/>
+  <object x="4864" y="1440" width="64" height="32"/>
+  <object x="3808" y="1248" width="320" height="96"/>
+  <object x="3808" y="992" width="4192" height="256"/>
+  <object x="7328" y="640" width="672" height="352"/>
+  <object x="5440" y="768" width="640" height="224"/>
+  <object x="5536" y="640" width="544" height="128"/>
+  <object x="5536" y="480" width="2464" height="160"/>
+  <object x="7936" y="32" width="64" height="448"/>
+  <object x="5536" y="448" width="672" height="32"/>
+  <object x="5536" y="416" width="640" height="32"/>
+  <object x="5536" y="384" width="608" height="32"/>
+  <object x="5536" y="352" width="576" height="32"/>
+  <object x="5536" y="320" width="544" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="death" x="128" y="1120" width="96" height="32"/>
-  <object type="death" x="2112" y="1728" width="256" height="32"/>
-  <object type="solid_top" x="1184" y="1568" width="64" height="32"/>
-  <object type="solid_right" x="1408" y="1632" width="32" height="64"/>
-  <object type="moving_platform_path" x="1152" y="1440">
+  <object type="death" x="128" y="1024" width="96" height="32"/>
+  <object type="death" x="2112" y="1632" width="256" height="32"/>
+  <object type="solid_top" x="1184" y="1472" width="64" height="32"/>
+  <object type="solid_right" x="1408" y="1536" width="32" height="64"/>
+  <object type="moving_platform_path" x="1152" y="1344">
    <polyline points="0,32 0,-352 0,32"/>
   </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
-  <object x="1216" y="1568">
+  <object x="1216" y="1472">
    <polyline points="0,0 0,96 224,96"/>
   </object>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="327" x="320" y="992">
+  <object gid="327" x="320" y="896">
    <properties>
     <property name="text" value="All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten lava!"/>
    </properties>
   </object>
-  <object gid="314" x="544" y="992"/>
-  <object gid="315" x="704" y="992"/>
-  <object gid="315" x="736" y="992"/>
-  <object gid="315" x="768" y="992"/>
-  <object gid="334" x="1216" y="1568"/>
-  <object gid="334" x="1184" y="1568"/>
+  <object gid="314" x="544" y="896"/>
+  <object gid="315" x="704" y="896"/>
+  <object gid="315" x="736" y="896"/>
+  <object gid="315" x="768" y="896"/>
+  <object gid="334" x="1216" y="1472"/>
+  <object gid="334" x="1184" y="1472"/>
+  <object gid="329" x="2496" y="384"/>
+  <object gid="329" x="2528" y="384"/>
+  <object gid="329" x="2560" y="384"/>
+  <object gid="329" x="2592" y="384"/>
+  <object gid="329" x="2624" y="384"/>
+  <object gid="329" x="2688" y="384"/>
+  <object gid="329" x="2656" y="384"/>
+  <object gid="329" x="2720" y="384"/>
+  <object gid="329" x="2752" y="384"/>
+  <object gid="329" x="2784" y="384"/>
+  <object gid="329" x="2816" y="384"/>
+  <object gid="329" x="2848" y="384"/>
+  <object gid="329" x="2880" y="384"/>
+  <object gid="329" x="2912" y="384"/>
+  <object gid="329" x="2944" y="384"/>
+  <object gid="329" x="2976" y="384"/>
+  <object gid="329" x="3008" y="384"/>
+  <object gid="329" x="3040" y="384"/>
+  <object gid="329" x="3072" y="384"/>
+  <object gid="329" x="3104" y="384"/>
+  <object gid="329" x="3136" y="384"/>
+  <object gid="329" x="3168" y="384"/>
+  <object gid="329" x="3200" y="384"/>
+  <object gid="329" x="3232" y="384"/>
+  <object gid="329" x="3264" y="384"/>
+  <object gid="329" x="3296" y="384"/>
+  <object gid="329" x="3328" y="384"/>
+  <object gid="329" x="3360" y="384"/>
+  <object gid="329" x="3392" y="384"/>
+  <object gid="329" x="3424" y="384"/>
+  <object gid="329" x="3456" y="384"/>
+  <object gid="329" x="3488" y="384"/>
+  <object gid="329" x="3520" y="384"/>
+  <object gid="334" x="7872" y="128"/>
+  <object gid="335" x="7872" y="96"/>
+  <object gid="316" x="4576" y="896"/>
+  <object gid="315" x="4608" y="896"/>
+  <object gid="315" x="4736" y="896"/>
+  <object gid="315" x="4768" y="896"/>
+  <object gid="323" x="4672" y="896"/>
+  <object gid="317" x="4768" y="224">
+   <properties>
+    <property name="item" value="fireflower"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="2" x="960" y="1600"/>
-  <object gid="2" x="1056" y="1600"/>
+  <object gid="2" x="960" y="1504"/>
+  <object gid="2" x="1056" y="1504"/>
+  <object gid="5" x="3136" y="352"/>
+  <object gid="5" x="3008" y="352"/>
+  <object gid="6" x="2816" y="352"/>
+  <object gid="6" x="2752" y="352"/>
+  <object gid="6" x="2688" y="352"/>
+  <object gid="6" x="3328" y="352"/>
+  <object gid="6" x="3392" y="352"/>
+  <object gid="6" x="3520" y="352"/>
+  <object gid="6" x="3584" y="352"/>
+  <object gid="4" x="3168" y="1408"/>
+  <object gid="4" x="2976" y="1408"/>
+  <object gid="5" x="2624" y="1536"/>
+  <object gid="5" x="2720" y="1536"/>
+  <object gid="9" x="2752" y="128"/>
+  <object gid="9" x="3264" y="128"/>
+  <object gid="9" x="3008" y="128"/>
+  <object type="circoflame" x="1632" y="256">
+   <polyline points="0,0 0,-128"/>
+  </object>
+  <object type="circoflame" x="1632" y="256">
+   <polyline points="0,0 0,-96"/>
+  </object>
+  <object type="circoflame" x="1632" y="256">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object type="circoflame" x="1632" y="256">
+   <polyline points="0,0 0,-32"/>
+  </object>
+  <object type="circoflame" x="1792" y="256">
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object type="circoflame" x="1792" y="256">
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object type="circoflame" x="1792" y="256">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object type="circoflame" x="1792" y="256">
+   <polyline points="0,0 -32,0"/>
+  </object>
+  <object type="circoflame" x="1952" y="256">
+   <polyline points="0,0 0,128"/>
+  </object>
+  <object type="circoflame" x="1952" y="256">
+   <polyline points="0,0 0,96"/>
+  </object>
+  <object type="circoflame" x="1952" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object type="circoflame" x="1952" y="256">
+   <polyline points="0,0 0,32"/>
+  </object>
+  <object type="circoflame" x="2112" y="256">
+   <polyline points="0,0 128,0"/>
+  </object>
+  <object type="circoflame" x="2112" y="256">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object type="circoflame" x="2112" y="256">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object type="circoflame" x="2112" y="256">
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object gid="7" x="7776" y="480"/>
+  <object gid="7" x="7648" y="480"/>
+  <object gid="7" x="4800" y="448"/>
+  <object gid="7" x="5088" y="640"/>
+  <object gid="7" x="5216" y="640"/>
+  <object gid="5" x="5504" y="736"/>
+  <object gid="7" x="5408" y="992"/>
+  <object gid="7" x="5280" y="992"/>
+  <object gid="5" x="5408" y="320"/>
+  <object gid="5" x="5280" y="320"/>
+  <object gid="4" x="6432" y="480"/>
+  <object gid="4" x="6560" y="480"/>
+  <object gid="6" x="6752" y="480"/>
+  <object gid="6" x="6816" y="480"/>
+  <object gid="6" x="6944" y="480"/>
+  <object gid="6" x="7008" y="480"/>
  </objectgroup>
  <objectgroup name="Players">
-  <object gid="1" x="128" y="1696"/>
+  <object gid="1" x="128" y="1600"/>
  </objectgroup>
- <layer name="Front Tiles" width="250" height="55">
+ <layer name="Front Tiles" width="250" height="52">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20Gf6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgM1tgAAQ==
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgyyyAAAQ==
   </data>
  </layer>
 </map>

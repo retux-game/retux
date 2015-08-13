@@ -237,7 +237,7 @@ COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
 
 ICE_CRACK_TIME = 20
-ICE_REFREEZE_RATE = 2/3
+ICE_REFREEZE_RATE = 1 / 4
 
 ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 800
@@ -4086,7 +4086,13 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
         DialogBox(gui_handler, self.text, self.sprite).show()
 
 
-class ThinIce(xsge_physics.Solid, Tile):
+class ThinIce(InteractiveObject, xsge_physics.Solid):
+
+    active_range = TILE_ACTIVE_RANGE
+    burnable = True
+
+    def burn(self):
+        self.crack()
 
     def __init__(self, x, y, z=0, permanent=False, **kwargs):
         kwargs["sprite"] = thin_ice_sprite
