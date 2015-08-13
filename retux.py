@@ -1365,7 +1365,6 @@ class Player(xsge_physics.Collider):
 
     def drop_object(self):
         if self.held_object is not None:
-            self.held_object.parent = None
             self.held_object.visible = True
             self.held_object = None
 
@@ -2025,6 +2024,7 @@ class InteractiveObject(sge.Object):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
 
     def kick_up(self):
         self.kick()
@@ -2059,6 +2059,7 @@ class InteractiveObject(sge.Object):
     def event_destroy(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
 
 
 class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
@@ -2625,6 +2626,7 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -2803,6 +2805,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -2826,28 +2829,17 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 
     def stop_left(self):
         if self.parent is None:
-            play_sound(iceblock_bump_sound)
             self.xvelocity = abs(self.xvelocity)
             self.set_direction(1)
-            for block in self.get_left_touching_wall():
-                if isinstance(block, HittableBlock):
-                    block.hit(self.thrower)
 
     def stop_right(self):
         if self.parent is None:
-            play_sound(iceblock_bump_sound)
             self.xvelocity = -abs(self.xvelocity)
             self.set_direction(-1)
-            for block in self.get_right_touching_wall():
-                if isinstance(block, HittableBlock):
-                    block.hit(self.thrower)
 
     def stop_up(self):
         if self.parent is None:
             self.yvelocity = 0
-            for block in self.get_top_touching_wall():
-                if isinstance(block, HittableBlock):
-                    block.hit(self.thrower)
 
     def event_end_step(self, time_passed, delta_mult):
         if (self.yvelocity >= 0 and
@@ -2889,6 +2881,8 @@ class Explosion(InteractiveObject):
                 other.burn()
             elif other.knockable:
                 other.knock(self)
+        elif isinstance(other, (Iceblock, ThinIce)):
+            other.burn()
         if isinstance(other, HittableBlock):
             if self.detonator is not None:
                 other.hit(self.detonator)
@@ -3055,7 +3049,7 @@ class Crusher(FallingObject):
                             players.append(obj)
 
                 for player in players:
-                    if player.bbox_top < crash_y:
+                    if player.bbox_top < crash_y + CRUSHER_LAX:
                         self.crushing = True
                         self.gravity = CRUSHER_GRAVITY
                         break
@@ -3361,6 +3355,7 @@ class FireFlower(FallingObject, WinPuffObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self, up=False):
@@ -3436,6 +3431,7 @@ class IceFlower(FallingObject, WinPuffObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -3582,7 +3578,8 @@ class Fireball(FallingObject):
         self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.burnable:
+        if ((isinstance(other, InteractiveObject) and other.burnable) or
+                isinstance(other, (Iceblock, ThinIce))):
             other.burn()
             self.destroy()
 
@@ -3827,6 +3824,7 @@ class Spring(FixedSpring, WinPuffObject):
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
+            self.parent = None
             self.gravity = self.__class__.gravity
 
     def kick(self):
@@ -3880,11 +3878,7 @@ class TimelineSwitcher(InteractiveObject):
         self.destroy()
 
 
-class Iceblock(InteractiveObject, xsge_physics.Solid):
-
-    active_range = TILE_ACTIVE_RANGE
-    never_active = True
-    burnable = True
+class Iceblock(xsge_physics.Solid, Tile):
 
     def burn(self):
         play_sound(sizzle_sound)
@@ -4086,13 +4080,7 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
         DialogBox(gui_handler, self.text, self.sprite).show()
 
 
-class ThinIce(InteractiveObject, xsge_physics.Solid):
-
-    active_range = TILE_ACTIVE_RANGE
-    burnable = True
-
-    def burn(self):
-        self.crack()
+class ThinIce(xsge_physics.Solid, Tile):
 
     def __init__(self, x, y, z=0, permanent=False, **kwargs):
         kwargs["sprite"] = thin_ice_sprite
@@ -4101,6 +4089,9 @@ class ThinIce(InteractiveObject, xsge_physics.Solid):
         self.permanent = permanent
         self.crack_time = 0
         self.freeze_time = 0
+
+    def burn(self):
+        self.crack()
 
     def event_step(self, time_passed, delta_mult):
         if self.sprite is thin_ice_sprite:

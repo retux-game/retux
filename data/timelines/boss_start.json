@@ -56,6 +56,7 @@
         "setattr __level__ view_frozen 1",
         "setattr player human 1",
         "setattr boss stage 1",
+        "setattr boss2 stage 1",
         "play_music bossattack.ogg"
     ]
 }
