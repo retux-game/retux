@@ -244,6 +244,7 @@ ICEBLOCK_ACTIVE_RANGE = 800
 BULLET_ACTIVE_RANGE = 200
 ROCK_ACTIVE_RANGE = 864
 TILE_ACTIVE_RANGE = 928
+EXPLOSION_ACTIVE_RANGE = 1000
 DEATHZONE = 2 * TILE_SIZE
 
 DEATH_FADE_TIME = 3000
@@ -2857,6 +2858,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 
 class Explosion(InteractiveObject):
 
+    active_range = EXPLOSION_ACTIVE_RANGE
     detonator = None
 
     def event_create(self):
