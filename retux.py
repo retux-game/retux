@@ -272,6 +272,7 @@ tux_grab_sprites = {}
 fullscreen = False
 sound_enabled = True
 music_enabled = True
+fps_enabled = False
 left_key = ["left"]
 right_key = ["right"]
 up_key = ["up"]
@@ -312,6 +313,24 @@ level_cleared = False
 
 
 class Game(sge.Game):
+
+    fps_time = 0
+    fps_frames = 0
+    fps_text = ""
+
+    def event_step(self, time_passed, delta_mult):
+        if fps_enabled:
+            self.fps_time += time_passed
+            self.fps_frames += 1
+            if self.fps_time >= 250:
+                self.fps_text = str(round((1000 * self.fps_frames) /
+                                          self.fps_time))
+                self.fps_time = 0
+                self.fps_frames = 0
+
+            self.project_text(font_small, self.fps_text, self.width - 8,
+                              self.height - 8, color=sge.Color("yellow"),
+                              halign="right", valign="bottom")
 
     def event_mouse_button_press(self, button):
         if button == "middle":
@@ -5166,6 +5185,7 @@ class OptionsMenu(Menu):
             "Fullscreen: {}".format("On" if sge.game.fullscreen else "Off"),
             "Sound: {}".format("On" if sound_enabled else "Off"),
             "Music: {}".format("On" if music_enabled else "Off"),
+            "Show FPS: {}".format("On" if fps_enabled else "Off"),
             "Configure keyboard", "Configure joysticks", "Back"]
         return cls.create(default)
 
@@ -5173,6 +5193,7 @@ class OptionsMenu(Menu):
         global fullscreen
         global sound_enabled
         global music_enabled
+        global fps_enabled
 
         if self.choice == 0:
             fullscreen = not fullscreen
@@ -5186,8 +5207,11 @@ class OptionsMenu(Menu):
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 3:
-            KeyboardMenu.create_page()
+            fps_enabled = not fps_enabled
+            OptionsMenu.create_page(default=self.choice)
         elif self.choice == 4:
+            KeyboardMenu.create_page()
+        elif self.choice == 5:
             JoystickMenu.create_page()
         else:
             MainMenu.create(default=3)
@@ -6146,6 +6170,11 @@ font_sprite = sge.Sprite.from_tileset(
     width=16, height=18)
 font = sge.Font.from_sprite(font_sprite, chars, size=18)
 
+font_small_sprite = sge.Sprite.from_tileset(
+    os.path.join(DATA, "images", "misc", "font_small.png"), columns=16,
+    rows=20, width=8, height=9)
+font_small = sge.Font.from_sprite(font_small_sprite, chars, size=9)
+
 font_big_sprite = sge.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
     width=20, height=22)
@@ -6226,6 +6255,7 @@ else:
     sge.game.fullscreen = fullscreen
     sound_enabled = cfg.get("sound_enabled", sound_enabled)
     music_enabled = cfg.get("music_enabled", music_enabled)
+    fps_enabled = cfg.get("fps_enabled", fps_enabled)
 
     keys_cfg = cfg.get("keys", {})
     left_key = keys_cfg.get("left", left_key)
@@ -6268,8 +6298,8 @@ if __name__ == '__main__':
                   "sneak": sneak_js}
 
         cfg = {"fullscreen": fullscreen, "sound_enabled": sound_enabled,
-               "music_enabled": music_enabled, "keys": keys_cfg,
-               "joystick": js_cfg}
+               "music_enabled": music_enabled, "fps_enabled": fps_enabled,
+               "keys": keys_cfg, "joystick": js_cfg}
 
         with open(os.path.join(CONFIG, "config.json"), 'w') as f:
             json.dump(cfg, f, indent=4, sort_keys=True)
