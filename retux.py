@@ -172,10 +172,12 @@ ENEMY_KILL_POINTS = 50
 AMMO_POINTS = 10
 TUXDOLL_POINTS = 5000
 
-CAMERA_SPEED_FACTOR = 1 / 2
+CAMERA_HSPEED_FACTOR = 1 / 2
+CAMERA_VSPEED_FACTOR = 1 / 20
 CAMERA_OFFSET_FACTOR = 10
 CAMERA_MARGIN_TOP = 4 * TILE_SIZE
 CAMERA_MARGIN_BOTTOM = 5 * TILE_SIZE
+CAMERA_TARGET_MARGIN_BOTTOM = CAMERA_MARGIN_BOTTOM + TILE_SIZE
 
 WARP_LAX = 12
 WARP_SPEED = 1.5
@@ -1551,12 +1553,22 @@ class Player(xsge_physics.Collider):
                              self.xvelocity * CAMERA_OFFSET_FACTOR)
             if abs(view_target_x - self.view.x) > 0.5:
                 self.view.x += ((view_target_x - self.view.x) *
-                                CAMERA_SPEED_FACTOR)
+                                CAMERA_HSPEED_FACTOR)
             else:
                 self.view.x = view_target_x
 
             view_min_y = self.y - self.view.height + CAMERA_MARGIN_BOTTOM
             view_max_y = self.y - CAMERA_MARGIN_TOP
+
+            if self.on_floor and self.was_on_floor:
+                view_target_y = (self.y - self.view.height +
+                                 CAMERA_TARGET_MARGIN_BOTTOM)
+                if abs(view_target_y - self.view.y) > 0.5:
+                    self.view.y += ((view_target_y - self.view.y) *
+                                    CAMERA_VSPEED_FACTOR)
+                else:
+                    self.view.y = view_target_y
+
             if self.view.y < view_min_y:
                 self.view.y = view_min_y
             elif self.view.y > view_max_y:
