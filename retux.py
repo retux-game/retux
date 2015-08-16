@@ -242,11 +242,10 @@ ICE_CRACK_TIME = 20
 ICE_REFREEZE_RATE = 1 / 4
 
 ENEMY_ACTIVE_RANGE = 32
-ICEBLOCK_ACTIVE_RANGE = 800
-BULLET_ACTIVE_RANGE = 200
-ROCK_ACTIVE_RANGE = 864
-TILE_ACTIVE_RANGE = 928
-EXPLOSION_ACTIVE_RANGE = 1000
+ICEBLOCK_ACTIVE_RANGE = 600
+BULLET_ACTIVE_RANGE = 96
+ROCK_ACTIVE_RANGE = 664
+TILE_ACTIVE_RANGE = 728
 DEATHZONE = 2 * TILE_SIZE
 
 DEATH_FADE_TIME = 3000
@@ -2889,13 +2888,20 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 
 class Explosion(InteractiveObject):
 
-    active_range = EXPLOSION_ACTIVE_RANGE
     detonator = None
+
+    def __init__(self, *args, **kwargs):
+        kwargs["checks_collisions"] = False
+        sge.Object.__init__(self, *args, **kwargs)
 
     def event_create(self):
         super(Explosion, self).event_create()
         self.__life = EXPLOSION_TIME
         play_sound(explosion_sound)
+
+    def update_active(self):
+        self.active = True
+        self.tangible = True
 
     def touch(self, other):
         other.hurt()
@@ -2929,6 +2935,7 @@ class Icicle(InteractiveObject):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = icicle_sprite
+        kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.shake_counter = SHAKE_FRAME_TIME
 
@@ -3114,12 +3121,14 @@ class Krosh(Crusher):
 
 class Circoflame(InteractiveObject):
 
+    active_range = 0
     burnable = True
     freezable = True
 
     def __init__(self, center, x, y, z=0, **kwargs):
         self.center = weakref.ref(center)
         kwargs["sprite"] = circoflame_sprite
+        kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
@@ -3904,6 +3913,7 @@ class TimelineSwitcher(InteractiveObject):
     def __init__(self, x, y, timeline=None, **kwargs):
         self.timeline = timeline
         kwargs["visible"] = False
+        kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, **kwargs)
 
     def touch(self, other):
@@ -3912,6 +3922,10 @@ class TimelineSwitcher(InteractiveObject):
 
 
 class Iceblock(xsge_physics.Solid, Tile):
+
+    def __init__(self, x, y, **kwargs):
+        kwargs["checks_collisions"] = False
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def burn(self):
         play_sound(sizzle_sound)
@@ -3955,6 +3969,10 @@ class HittableBlock(xsge_physics.SolidBottom, Tile):
 
     hit_sprite = None
     hit_obj = None
+
+    def __init__(self, x, y, **kwargs):
+        kwargs["checks_collisions"] = False
+        sge.Object.__init__(self, x, y, **kwargs)
 
     def event_destroy(self):
         if self.hit_obj is not None:
@@ -4027,6 +4045,7 @@ class CoinBrick(Brick):
             kwargs["bbox_y"] = brick_sprite.bbox_y
             kwargs["bbox_width"] = brick_sprite.bbox_width
             kwargs["bbox_height"] = brick_sprite.bbox_height
+        kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, **kwargs)
 
     def event_alarm(self, alarm_id):
@@ -4061,6 +4080,7 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
             kwargs["bbox_y"] = bonus_full_sprite.bbox_y
             kwargs["bbox_width"] = bonus_full_sprite.bbox_width
             kwargs["bbox_height"] = bonus_full_sprite.bbox_height
+        kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, **kwargs)
         self.hit_sprite = bonus_empty_sprite
         self.item = item
@@ -4094,6 +4114,7 @@ class HiddenItemBlock(HittableBlock):
         kwargs["bbox_y"] = bonus_full_sprite.bbox_y
         kwargs["bbox_width"] = bonus_full_sprite.bbox_width
         kwargs["bbox_height"] = bonus_full_sprite.bbox_height
+        kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, **kwargs)
         self.item = item
 
@@ -4117,6 +4138,7 @@ class ThinIce(xsge_physics.Solid, Tile):
 
     def __init__(self, x, y, z=0, permanent=False, **kwargs):
         kwargs["sprite"] = thin_ice_sprite
+        kwargs["checks_collisions"] = False
         kwargs["image_fps"] = 0
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.permanent = permanent
@@ -4247,6 +4269,8 @@ class CoinCollect(sge.Object):
 class Spawn(sge.Object):
 
     def __init__(self, x, y, spawn_id=None, **kwargs):
+        kwargs["visible"] = False
+        kwargs["tangible"] = False
         super(Spawn, self).__init__(x, y, **kwargs)
         self.spawn_id = spawn_id
 
