@@ -2890,10 +2890,6 @@ class Explosion(InteractiveObject):
 
     detonator = None
 
-    def __init__(self, *args, **kwargs):
-        kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, *args, **kwargs)
-
     def event_create(self):
         super(Explosion, self).event_create()
         self.__life = EXPLOSION_TIME
