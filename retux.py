@@ -941,6 +941,7 @@ class Worldmap(sge.Room):
     def event_room_resume(self):
         global loaded_levels
         global main_area
+        global current_areas
         global level_names
         global level_cleared
 
@@ -951,6 +952,7 @@ class Worldmap(sge.Room):
                 if obj.level and obj.level not in level_names:
                     r = Level.load(obj.level)
                     loaded_levels[obj.level] = r
+                    current_areas = {}
                     name = r.name
                     if name:
                         level_names[obj.level] = name
@@ -4936,9 +4938,11 @@ class MapSpace(sge.Object):
 
     def start_level(self):
         global main_area
+        global current_areas
 
         if self.level:
             main_area = None
+            current_areas = {}
             level = Level.load(self.level)
             x = self.x
             y = self.y
@@ -4970,6 +4974,7 @@ class MapWarp(MapSpace):
 
     def start_level(self):
         global main_area
+        global current_areas
         global current_worldmap
         global current_worldmap_space
 
@@ -4982,6 +4987,7 @@ class MapWarp(MapSpace):
 
         if self.level:
             main_area = None
+            current_areas = {}
             level = Level.load(self.level)
             x = self.x
             y = self.y
