@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#808080">
  <properties>
   <property name="bgname" value="cave"/>
   <property name="music" value="bonuscave.ogg"/>
@@ -7,23 +7,23 @@
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
  <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/castle.tsx"/>
- <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="343" source="../tilesets/krush.tsx"/>
- <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="223" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="253" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="277" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="365" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="389" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="393" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="395" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="396" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="397" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJxjYBgFo2AUjAL6gBkk4OEMAD9yBok=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxbwsDAsIROeAUNMLL5SxloAxaP2kGxHffRMLXtQDefUnvQ7bgJxLfw0OjgIRA/ItGOu0B8Dw+NDl4C8SsS7WDA4wc+RkzMCcRcSPy3QHXviLADlx/EGAnjr0B13/DYAcILaIDpVQ6CMAC2pYMS
+   eJy9lEEKwjAQRScHUFDRnYLu9A66cOkJXQpWEJr2Olr1MP7QfDpGo4USBx6Tpsl8pjOdXERKkHncugC58m7fRtZ5cLdUd3WsCzgn4Kq0TpLGjirvlBr8Xik1WJt/a4zMK1012HvUCON31XEaLgfWvIdYfRP3oY2xN/mhT43MawxwfmjiPrQp9mYtNMK+iuWw/cAabNTzHCzMu0bmNe5g/yWXXQuWYGXqOOQhzX9egUMCblLXm3OMM81K02/sCSvNbLPKF+oMY+h5yndPxXNn4A==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -56,7 +56,7 @@
   </object>
  </objectgroup>
  <objectgroup name="Items">
-  <object gid="321" x="672" y="288"/>
+  <object gid="373" x="672" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
