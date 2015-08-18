@@ -348,9 +348,12 @@ class Level(sge.Room):
     """Handles levels."""
 
     def __init__(self, objects=(), width=None, height=None, views=None,
-                 background=None, background_x=0, background_y=0, name=None,
-                 bgname=None, music=None, time_bonus=DEFAULT_LEVEL_TIME_BONUS,
-                 spawn=None, timeline=None):
+                 background=None, background_x=0, background_y=0,
+                 object_area_width=TILE_SIZE * 2,
+                 object_area_height=TILE_SIZE * 2,
+                 name=None, bgname=None, music=None,
+                 time_bonus=DEFAULT_LEVEL_TIME_BONUS, spawn=None,
+                 timeline=None):
         self.fname = None
         self.name = name
         self.music = music
@@ -369,7 +372,8 @@ class Level(sge.Room):
         self.load_timeline(timeline)
 
         super(Level, self).__init__(objects, width, height, views, background,
-                                    background_x, background_y)
+                                    background_x, background_y,
+                                    object_area_width, object_area_height)
         self.add(gui_handler)
 
     def load_timeline(self, timeline):
@@ -927,10 +931,13 @@ class Worldmap(sge.Room):
     """Handles worldmaps."""
 
     def __init__(self, objects=(), width=None, height=None, views=None,
-                 background=None, background_x=0, background_y=0, music=None):
+                 background=None, background_x=0, background_y=0,
+                 object_area_width=TILE_SIZE * 2,
+                 object_area_height=TILE_SIZE * 2, music=None):
         self.music = music
         super(Worldmap, self).__init__(objects, width, height, views,
-                                       background, background_x, background_y)
+                                       background, background_x, background_y,
+                                       object_area_width, object_area_height)
 
     def event_room_start(self):
         self.level_text = None
