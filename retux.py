@@ -241,11 +241,12 @@ COINBRICK_DECAY_TIME = 25
 ICE_CRACK_TIME = 20
 ICE_REFREEZE_RATE = 1 / 4
 
+ACTIVATE_RANGE = 528
 ENEMY_ACTIVE_RANGE = 32
-ICEBLOCK_ACTIVE_RANGE = 600
+ICEBLOCK_ACTIVE_RANGE = 400
 BULLET_ACTIVE_RANGE = 96
-ROCK_ACTIVE_RANGE = 664
-TILE_ACTIVE_RANGE = 728
+ROCK_ACTIVE_RANGE = 464
+TILE_ACTIVE_RANGE = 528
 DEATHZONE = 2 * TILE_SIZE
 
 DEATH_FADE_TIME = 3000
@@ -537,6 +538,20 @@ class Level(sge.Room):
             self.pause_delay -= time_passed
 
         self.show_hud()
+
+        # Handle inactive objects
+        for view in self.views:
+            for obj in self.get_objects_at(
+                    view.x - ACTIVATE_RANGE, view.y - ACTIVATE_RANGE,
+                    view.width + ACTIVATE_RANGE * 2,
+                    view.height + ACTIVATE_RANGE * 2):
+                if not obj.active:
+                    if isinstance(obj, InteractiveObject):
+                        obj.update_active()
+                    elif isinstance(obj, (Lava, LavaSurface)):
+                        obj.image_index = lava_animation.image_index
+                    elif isinstance(obj, (Goal, GoalTop)):
+                        obj.image_index = goal_animation.image_index
 
         # Timeline events
         t_keys = sorted(self.timeline.keys())
@@ -1997,13 +2012,30 @@ class Smoke(sge.Object):
 class InteractiveObject(sge.Object):
 
     active_range = ENEMY_ACTIVE_RANGE
+    always_active = False
     never_active = False
+    always_tangible = False
     never_tangible = False
     knockable = False
     burnable = False
     freezable = False
+    activated = False
     parent = None
     warping = False
+
+    def activate(self):
+        self.activated = True
+        if not self.never_tangible:
+            self.tangible = True
+        if not self.never_active:
+            self.active = True
+
+    def deactivate(self):
+        self.activated = False
+        if not self.always_active:
+            self.active = False
+        if not self.always_tangible:
+            self.tangible = False
 
     def update_active(self):
         if not self.warping:
@@ -2014,14 +2046,12 @@ class InteractiveObject(sge.Object):
                         self.bbox_top <= (view.y + view.height +
                                           self.active_range) and
                         self.bbox_bottom >= view.y - self.active_range):
-                    if not self.never_tangible:
-                        self.tangible = True
-                    if not self.never_active:
-                        self.active = True
+                    if not self.activated:
+                        self.activate()
                     break
             else:
-                self.tangible = False
-                self.active = False
+                if self.activated:
+                    self.deactivate()
 
             if self.bbox_top > sge.game.current_room.height + self.active_range:
                 self.destroy()
@@ -2078,7 +2108,7 @@ class InteractiveObject(sge.Object):
         self.destroy()
 
     def event_create(self):
-        self.update_active()
+        InteractiveObject.deactivate(self)
 
     def event_begin_step(self, time_passed, delta_mult):
         if not self.warping:
@@ -2087,9 +2117,6 @@ class InteractiveObject(sge.Object):
             self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
 
     def event_step(self, time_passed, delta_mult):
-        self.update_active()
-
-    def event_inactive_step(self, time_passed, delta_mult):
         self.update_active()
 
     def event_collision(self, other, xdirection, ydirection):
@@ -2117,12 +2144,7 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
         self.yvelocity = 0
 
     def touch_hurt(self):
-        play_sound(fall_sound)
-        DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
-                       xvelocity=self.xvelocity, yvelocity=0,
-                       image_xscale=self.image_xscale,
-                       image_yscale=-abs(self.image_yscale))
-        self.destroy()
+        self.touch_death()
 
     def event_physics_collision_left(self, other, move_loss):
         if isinstance(other, HurtRight):
@@ -2224,6 +2246,10 @@ class WalkingObject(FallingObject):
     walk_speed = ENEMY_WALK_SPEED
     stayonplatform = False
 
+    def deactivate(self):
+        super(WalkingObject, self).deactivate()
+        self.xvelocity = 0
+
     def set_direction(self, direction):
         self.xvelocity = self.walk_speed * direction
         self.image_xscale = abs(self.image_xscale) * direction
@@ -2261,10 +2287,6 @@ class WalkingObject(FallingObject):
 
     def stop_right(self):
         self.set_direction(-1)
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.xvelocity = 0
-        self.update_active()
 
 
 class CrowdBlockingObject(InteractiveObject):
@@ -2374,6 +2396,10 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
     freezable = True
     unfrozen = None
 
+    def deactivate(self):
+        self.burn()
+        super(FrozenObject, self).deactivate()
+
     def burn(self):
         if self.unfrozen is not None:
             self.unfrozen.frozen = False
@@ -2386,9 +2412,6 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
         if self.unfrozen is not None:
             self.burn()
             self.unfrozen.freeze()
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.burn()
 
     def event_alarm(self, alarm_id):
         if self.unfrozen is not None:
@@ -2778,6 +2801,9 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
         self.thrower = thrower
         super(DashingIceblock, self).__init__(*args, **kwargs)
 
+    def deactivate(self):
+        self.destroy()
+
     def touch(self, other):
         other.hurt()
 
@@ -2811,9 +2837,6 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
 
         super(DashingIceblock, self).event_collision(other, xdirection,
                                                      ydirection)
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.destroy()
 
 
 class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
@@ -2904,6 +2927,9 @@ class Explosion(InteractiveObject):
         self.__life = EXPLOSION_TIME
         play_sound(explosion_sound)
 
+    def deactivate(self):
+        pass
+
     def update_active(self):
         self.active = True
         self.tangible = True
@@ -2915,9 +2941,6 @@ class Explosion(InteractiveObject):
         self.__life -= delta_mult
         if self.__life <= 0:
             self.destroy()
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, InteractiveObject):
@@ -2970,6 +2993,10 @@ class Icicle(InteractiveObject):
                 self.alarms["fall"] = ICICLE_SHAKE_TIME
                 break
 
+    def deactivate(self):
+        self.shaking = False
+        super(Icicle, self).deactivate()
+
     def touch(self, other):
         other.hurt()
 
@@ -2987,10 +3014,6 @@ class Icicle(InteractiveObject):
                         self.image_origin_x = self.sprite.origin_x + 2
             else:
                 self.check_shake()
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.shaking = False
-        super(Icicle, self).event_inactive_step(time_passed, delta_mult)
 
     def event_alarm(self, alarm_id):
         if alarm_id == "fall":
@@ -3018,6 +3041,9 @@ class FallingIcicle(FallingObject):
     gravity = ICICLE_GRAVITY
     fall_speed = ICICLE_FALL_SPEED
 
+    def deactivate(self):
+        self.destroy()
+
     def touch(self, other):
         other.hurt()
 
@@ -3034,9 +3060,6 @@ class FallingIcicle(FallingObject):
                       sprite=icicle_broken_sprite,
                       image_xscale=self.image_xscale,
                       image_yscale=self.image_yscale)
-        self.destroy()
-
-    def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
@@ -3536,6 +3559,9 @@ class ThrownFlower(FallingObject, WinPuffObject):
         play_sound(stomp_sound)
         self.destroy()
 
+    def deactivate(self):
+        self.destroy()
+
     def touch_hurt(self):
         pass
 
@@ -3573,9 +3599,6 @@ class ThrownFlower(FallingObject, WinPuffObject):
                                                                  move_loss)
         self.event_collision(other, 0, 1)
 
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.destroy()
-
     def event_destroy(self):
         Smoke.create(self.x, self.y, self.z, sprite=smoke_puff_sprite)
 
@@ -3606,6 +3629,9 @@ class Fireball(FallingObject):
     gravity = FIREBALL_GRAVITY
     fall_speed = FIREBALL_FALL_SPEED
 
+    def deactivate(self):
+        self.destroy()
+
     def touch_hurt(self):
         pass
 
@@ -3620,9 +3646,6 @@ class Fireball(FallingObject):
 
     def stop_down(self):
         self.yvelocity = get_jump_speed(FIREBALL_BOUNCE_HEIGHT, self.gravity)
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
         if ((isinstance(other, InteractiveObject) and other.burnable) or
@@ -3656,6 +3679,9 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
 
     active_range = BULLET_ACTIVE_RANGE
 
+    def deactivate(self):
+        self.destroy()
+
     def stop_left(self):
         self.destroy()
 
@@ -3663,9 +3689,6 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
         self.destroy()
 
     def stop_down(self):
-        self.destroy()
-
-    def event_inactive_step(self, time_passed, delta_mult):
         self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
@@ -4198,17 +4221,11 @@ class Lava(xsge_tmx.Decoration):
     def event_create(self):
         self.sprite = lava_body_sprite
 
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.image_index = lava_animation.image_index
-
 
 class LavaSurface(xsge_tmx.Decoration):
 
     def event_create(self):
         self.sprite = lava_surface_sprite
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.image_index = lava_animation.image_index
 
 
 class Goal(xsge_tmx.Decoration):
@@ -4216,17 +4233,11 @@ class Goal(xsge_tmx.Decoration):
     def event_create(self):
         self.sprite = goal_sprite
 
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.image_index = goal_animation.image_index
-
 
 class GoalTop(xsge_tmx.Decoration):
 
     def event_create(self):
         self.sprite = goal_top_sprite
-
-    def event_inactive_step(self, time_passed, delta_mult):
-        self.image_index = goal_animation.image_index
 
 
 class Coin(Tile):
@@ -4234,10 +4245,9 @@ class Coin(Tile):
     def __init__(self, x, y, **kwargs):
         kwargs["sprite"] = coin_sprite
         kwargs["checks_collisions"] = False
-        kwargs["active"] = False
         sge.Object.__init__(self, x, y, **kwargs)
 
-    def event_inactive_step(self, time_passed, delta_mult):
+    def event_step(self, time_passed, delta_mult):
         self.image_index = coin_animation.image_index
         Tile.event_step(self, time_passed, delta_mult)
 
