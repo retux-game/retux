@@ -4231,19 +4231,22 @@ class ThinIce(xsge_physics.Solid, Tile):
                     self.crack_time = max(0, self.crack_time)
 
     def event_animation_end(self):
-        if self.sprite is thin_ice_sprite:
+        self.destroy()
+
+    def shatter(self):
+        if self.sprite != thin_ice_break_sprite:
             self.sprite = thin_ice_break_sprite
             self.image_index = 0
             self.image_fps = None
             play_sound(ice_shatter_sound)
-        else:
-            self.destroy()
 
     def crack(self):
         if self.image_index + 1 < self.sprite.frames:
             play_sound(random.choice(ice_crack_sounds))
-        self.image_index += 1
-        self.freeze_time = 0
+            self.image_index += 1
+            self.freeze_time = 0
+        else:
+            self.shatter()
 
 
 class Lava(xsge_tmx.Decoration):
