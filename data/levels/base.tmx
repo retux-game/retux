@@ -6,17 +6,17 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="223" source="../tilesets/castle.tsx"/>
- <tileset firstgid="253" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="277" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="365" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="389" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="393" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="395" source="../tilesets/krush.tsx"/>
- <tileset firstgid="396" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="397" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="398" source="../tilesets/door.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="493" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="496" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRQE8AAAV4AAE=

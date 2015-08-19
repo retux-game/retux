@@ -8,24 +8,24 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/castle.tsx"/>
- <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="493" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="18">
   <data encoding="base64" compression="zlib">
-   eJzt08EJACAQA8GzK8vQ/puxAsGPHIQZyD+frQIAAAAAAAAAAIBee3Q/AH5bOod4Ood8Ood8Ood8Ood8t87n4wCADAeSFARp
+   eJzt08EJACAQA8GzK/tvRsuwAsGPHIQZyD+frQIAAAAAAAAAAIBee3Q/AH5bOod4Ood8Ood8Ood8Ood8t87n4wCADAdULgiK
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="18">
   <data encoding="base64" compression="zlib">
-   eJztmMFOAjEQhsezqGcRzx58AZ5DDVeVeFUJb6lEEvQJ5AZP4WziJmtTsZ3OtJX9v+RLuGzaKfPvpEsEAAAAAAAAAAAAAAAAAAAAgJxPdl16EwAY8sYuM65XY6Y27Lb0JgAwZMW+Z1yvxkzVuCcANMk9z2My9cK+BrjwPHvIjgP9+Lb5fSKoCYDa2dd5fsoeCTwmZB2EEzNPdjkx3mc7zzXm+hXFzU5XzXxdsGcCR4SsW6OVjevcG3do6hiQbJ64PpBt1tt5njLXm3zfsneUVuu5cH0f0px3s67Ri7X1Zmk0s3HPTin9TCXfhts6hiTvs65zss16yjzv5vuRfaK0Wi+TKvlJSs7brGv0olVvSrB4b8WqmY1ndkbpZxp7l9TOuJt1i3N353noc5r5rjHnVmr1pgSL91as2tnwnelvPeu7izWZ3XWXtH5X+bJe+j/qqpnvPuU8tjf/8uYg7DzGFdSc60xj7oWS77VWGe+Lfcp5aG9qWrrW0vr667/0yT7Zx5zn9AtosMEt
+   eJztmDlOA0EQRWtitpgtJuACPgdIpLbBEhCwyAlkcC12MnYuwiX4I9TCao1MT3X1TOP5T3qSg7HV1a7fpR4RQgghhBBCCCGEEEIIIYQQQvScFSLnRdurICQde+jvUYM9nmOmLrCey8zWRIgl++jvgwZ7PMdM5bgmQixpep7XyVQfzw0CHFb83hzsBXpY/Fh+XoovkZDsmNV5vgwXFC4Ks07CqTNPprmTeJ1unlvM9St4LeGz09cyXxtwVeGaMOupscjGDbxteuEeZR3zopsnviNJm3U3z2Pm+hbswyf4LPpa12MK8dDmfDLrFud0br3ZNlbZeIGvcBduR65J827Y1bEi+j6bdCxpsx4zz12+B/AIHktcrZvR1fwSk3OXdYtzOlVvarA+tzRaZuMEnsKhxO1p3bukdcb9rKfYd3+eh3znAT6KXb5zzHkqrXpTg/W5pdE6G/6e3sF7Cb8XlpmddpdMfVZVZb3t/8j5AT/FLt9dynnd3vzLr8A51Mug5ib29A2+S/i9UPO+NlXGu2KXch7am5a2XWvbVvXXf+mTWbKLOW/Sb68ntb0=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -65,38 +65,38 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="324" x="5408" y="192"/>
-  <object gid="324" x="5440" y="160"/>
-  <object gid="324" x="5472" y="160"/>
-  <object gid="324" x="5504" y="160"/>
-  <object gid="324" x="5536" y="192"/>
-  <object gid="315" x="3712" y="384"/>
-  <object gid="315" x="3744" y="384"/>
-  <object gid="319" x="3776" y="384"/>
-  <object gid="315" x="3808" y="384"/>
-  <object gid="314" x="5472" y="64"/>
-  <object gid="335" x="4192" y="480"/>
-  <object gid="324" x="4224" y="480"/>
-  <object gid="324" x="4224" y="448"/>
-  <object gid="324" x="4192" y="448"/>
-  <object gid="315" x="6464" y="288"/>
-  <object gid="315" x="6496" y="288"/>
-  <object gid="315" x="6528" y="288"/>
-  <object gid="315" x="6560" y="288"/>
-  <object gid="323" x="3040" y="288"/>
-  <object gid="323" x="3136" y="288"/>
-  <object gid="315" x="3072" y="288"/>
-  <object gid="315" x="3104" y="288"/>
-  <object gid="315" x="2976" y="288"/>
-  <object gid="315" x="3008" y="288"/>
-  <object gid="315" x="3168" y="288"/>
-  <object gid="315" x="3200" y="288"/>
+  <object gid="474" x="5408" y="192"/>
+  <object gid="474" x="5440" y="160"/>
+  <object gid="474" x="5472" y="160"/>
+  <object gid="474" x="5504" y="160"/>
+  <object gid="474" x="5536" y="192"/>
+  <object gid="465" x="3712" y="384"/>
+  <object gid="465" x="3744" y="384"/>
+  <object gid="469" x="3776" y="384"/>
+  <object gid="465" x="3808" y="384"/>
+  <object gid="464" x="5472" y="64"/>
+  <object gid="485" x="4192" y="480"/>
+  <object gid="474" x="4224" y="480"/>
+  <object gid="474" x="4224" y="448"/>
+  <object gid="474" x="4192" y="448"/>
+  <object gid="465" x="6464" y="288"/>
+  <object gid="465" x="6496" y="288"/>
+  <object gid="465" x="6528" y="288"/>
+  <object gid="465" x="6560" y="288"/>
+  <object gid="473" x="3040" y="288"/>
+  <object gid="473" x="3136" y="288"/>
+  <object gid="465" x="3072" y="288"/>
+  <object gid="465" x="3104" y="288"/>
+  <object gid="465" x="2976" y="288"/>
+  <object gid="465" x="3008" y="288"/>
+  <object gid="465" x="3168" y="288"/>
+  <object gid="465" x="3200" y="288"/>
  </objectgroup>
  <objectgroup name="Iceblocks">
-  <object gid="334" x="4192" y="480"/>
-  <object gid="334" x="4224" y="480"/>
-  <object gid="334" x="4192" y="448"/>
-  <object gid="334" x="4224" y="448"/>
+  <object gid="484" x="4192" y="480"/>
+  <object gid="484" x="4224" y="480"/>
+  <object gid="484" x="4192" y="448"/>
+  <object gid="484" x="4224" y="448"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="5600" y="288"/>
@@ -131,16 +131,16 @@
   <object type="flying_snowball_path" x="2144" y="512">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="315" x="256" y="384"/>
-  <object gid="315" x="384" y="384"/>
-  <object gid="315" x="512" y="384"/>
+  <object gid="465" x="256" y="384"/>
+  <object gid="465" x="384" y="384"/>
+  <object gid="465" x="512" y="384"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="480"/>
  </objectgroup>
  <layer name="Front Tiles" width="250" height="18">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8GwIRTsvwob0EUg624CN+8qAAAAAAAAAAAA+MMarxcA3abOIZ7OIZ/OIZ/OIZ/OId+t8+0DACDeAdoyAo8=
+   eJzt1LENACAMA8Gw/6BQMAQb0EUg624CN+8qAAAAAAAAAAAA+MMarxcA3abOIZ7OIZ/OIZ/OIZ/OId+t8+0DACDeASofB0c=
   </data>
  </layer>
 </map>
