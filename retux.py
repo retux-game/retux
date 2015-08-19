@@ -2405,7 +2405,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
             self.unfrozen.frozen = False
             self.unfrozen.tangible = True
             self.unfrozen.visible = True
-            self.unfrozen.update_active()
+            self.unfrozen.activate()
         self.destroy()
 
     def freeze(self):
@@ -3991,6 +3991,9 @@ class BossBlock(InteractiveObject):
             self.child.destroy()
             self.child = None
             play_sound(pop_sound)
+
+    def update_active(self):
+        pass
 
 
 class HittableBlock(xsge_physics.SolidBottom, Tile):
