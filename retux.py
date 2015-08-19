@@ -290,6 +290,8 @@ action_js = [(0, "button", 0)]
 sneak_js = [(0, "button", 2)]
 save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
+abort = False
+
 current_save_slot = None
 current_levelset = None
 start_cutscene = None
@@ -5212,7 +5214,10 @@ class NewGameMenu(Menu):
         return cls.create(default)
 
     def event_choose(self):
+        global abort
         global current_save_slot
+
+        abort = False
 
         if self.choice in six.moves.range(len(save_slots)):
             current_save_slot = self.choice
@@ -5222,7 +5227,10 @@ class NewGameMenu(Menu):
                     xsge_gui.show_message(message=m, buttons=["No", "Yes"],
                                           default=0)):
                 set_new_game()
-                start_levelset()
+                if not abort:
+                    start_levelset()
+                else:
+                    NewGameMenu.create(default=self.choice)
             else:
                 NewGameMenu.create(default=self.choice)
             sge.game.mouse.visible = False
@@ -5233,12 +5241,17 @@ class NewGameMenu(Menu):
 class LoadGameMenu(NewGameMenu):
 
     def event_choose(self):
+        global abort
         global current_save_slot
+
+        abort = False
 
         if self.choice in six.moves.range(len(save_slots)):
             current_save_slot = self.choice
             load_game()
-            if not start_levelset():
+            if abort:
+                MainMenu.create(default=1)
+            elif not start_levelset():
                 m = "An error occurred when trying to load the game."
                 xsge_gui.show_message(message=m, buttons=["Ok"])
                 MainMenu.create(default=1)
@@ -5290,10 +5303,13 @@ class LevelsetMenu(Menu):
         return self
 
     def event_choose(self):
+        global abort
+
         if self.choice == len(self.items) - 2:
             self.create_page(default=-2, page=self.page)
         else:
             if self.choice is not None and self.choice < len(self.items) - 2:
+                abort = False
                 load_levelset(self.current_levelsets[self.choice])
 
             MainMenu.create(default=2)
@@ -5668,6 +5684,7 @@ def play_music(music, force_restart=False):
 
 
 def load_levelset(fname):
+    global abort
     global current_levelset
     global start_cutscene
     global worldmaps
@@ -5677,20 +5694,20 @@ def load_levelset(fname):
     global tuxdolls_available
 
     def do_refresh():
+        global abort
+
         sge.game.pump_input()
         while sge.game.input_events:
             event = sge.game.input_events.pop(0)
             if isinstance(event, sge.input.KeyPress):
                 if event.key == "escape":
-                    return True
+                    abort = True
             if isinstance(event, sge.input.QuitRequest):
                 sge.game.end()
 
         time_passed = sge.game.regulate_speed(10000)
         gui_handler.event_step(time_passed, 1)
         sge.game.refresh()
-
-        return False
 
     if current_levelset != fname:
         w = 400
@@ -5736,9 +5753,6 @@ def load_levelset(fname):
             already_checked = []
 
             while subrooms:
-                if do_refresh():
-                    return
-
                 subroom = subrooms.pop(0)
                 already_checked.append(subroom)
                 r = Level.load(subroom)
@@ -5761,12 +5775,20 @@ def load_levelset(fname):
 
             progressbar.progress = (levels.index(level) + 1) / len(levels)
             progressbar.redraw()
-            if do_refresh():
-                return
+            if abort or do_refresh():
+                abort = True
+                break
 
         window.destroy()
         do_refresh()
         sge.game.input_events = []
+
+        if abort:
+            current_levelset = None
+            start_cutscene = None
+            worldmaps = []
+            levels = []
+            tuxdolls_available = []
 
 
 def set_new_game():
