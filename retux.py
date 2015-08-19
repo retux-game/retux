@@ -2126,12 +2126,13 @@ class InteractiveObject(sge.Object):
         self.kick()
 
     def touch_death(self):
-        play_sound(fall_sound)
-        DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
-                       xvelocity=self.xvelocity, yvelocity=0,
-                       image_xscale=self.image_xscale,
-                       image_yscale=-abs(self.image_yscale))
-        self.destroy()
+        if self.parent is None:
+            play_sound(fall_sound)
+            DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
+                           xvelocity=self.xvelocity, yvelocity=0,
+                           image_xscale=self.image_xscale,
+                           image_yscale=-abs(self.image_yscale))
+            self.destroy()
 
     def event_create(self):
         InteractiveObject.deactivate(self)
