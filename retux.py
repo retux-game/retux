@@ -117,6 +117,7 @@ TUX_KICK_TIME = 10
 GRAVITY = 0.25
 
 PLAYER_WALK_SPEED = 2
+PLAYER_SKID_THRESHOLD = 3
 PLAYER_RUN_SPEED = 4
 PLAYER_MAX_SPEED = 5
 PLAYER_ACCELERATION = 0.2
@@ -1681,7 +1682,7 @@ class Player(xsge_physics.Collider):
                         skidding = skid_sound.playing
                         s = speed + self.xdeceleration * delta_mult
                         if (not skidding and h_control and
-                                s >= PLAYER_RUN_SPEED):
+                                s >= PLAYER_SKID_THRESHOLD):
                             skidding = True
                             play_sound(skid_sound)
                     else:
