@@ -8,23 +8,24 @@
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
  <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/castle.tsx"/>
- <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="343" source="../tilesets/krush.tsx"/>
- <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="223" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="253" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="277" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="365" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="389" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="393" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="395" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="396" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="397" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="398" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0bENgDAMBEAzI6waWA8PkCqEOMWd5PJtvRwBAAAAAAAAsJ/rmLuv5dw5z4L7vezsPow5i//w5X4vW93nTy8sFgTH
+   eJzt0bENgDAMBEAzPawaWAIPkCqEOMWd5PJtvRwBAAAAAAAAsJ/rmLuv5dw5z4L7vezsPow5i//w5X4vW93nTy810AcD
   </data>
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztl+sKwjAMRrtn1Lf0fscLrML0PfSfPoUZrjCKY+2SLJvLBwcHagn0NOmsMcYqCjFXo9HQJjXqlYY+uVd36SKEc5Qu4A+j/ar/OQHnH8zN98wsKr6/MNakXvU/+R7aBjjfOPz6J6+GOs8y4IaAw68h3a8mwDSCmUyZ0Wnar3wo/coI1qia723McWyWwApYSxeCCJVXDgq/UsR/Xer6cF5nV93aAXvgEPj7ujMkcb6wc5BqPj6AZ/FM4VXIeeFyawNsi0/37AhJbL/C9AaueyyXV86tUL9ewLtUU9PzV36ftQF0sW/FeoXZQ657LKdXMf2r7FXaUk1+bZhZMk7kwHrlr4eZq7HnmoqQPWy7Jiz5LBklcmC98tejvnN3iQ/mnTIQ
+   eJztl+sKwjAMhbOn17f0fscLbML0lylakOFY2yRL3XLgY4KuHOjJxQoAKsNg5g4mE69KsFyZ+OVy9dQ2oayztoEByvrV/+uCXH+whHfNrFq+vwl6slz9v9wdpuzVPm8S+RpSrsY6z2rkQUAiX2Par2bIPIJFj94oSu1Xkv2rZjijbb73McepWiMbZKtthCCuXHHmqyS869XVh53PXLN1QI7IKfD3XTWkUV/UOSgxHzlyFVIvUtnaIfvP03/2hCi2X1F6g9QeK5UrSr5qSK+/7/+zof01t74VmyvKHUrtsdK5SslX2ZOnpjfKLJkWelBz1TyPMldj65p7/8rJExU3SyaFHtRcNc/j3rlz4gVLncv9
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -51,64 +52,62 @@
   <object x="2048" y="96" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="solid_top" x="4672" y="288" width="64" height="32"/>
   <object type="solid_top" x="1856" y="224" width="416" height="32"/>
   <object type="death" x="2912" y="416" width="128" height="32"/>
   <object type="death" x="1408" y="416" width="992" height="32"/>
- </objectgroup>
- <objectgroup color="#00ff00" name="warp">
-  <object x="4704" y="288">
+  <object gid="398" x="4704" y="384">
    <properties>
     <property name="dest" value="retux-13b.tmx:enter"/>
+    <property name="spawn_id" value="exit"/>
    </properties>
-   <polyline points="0,0 0,64"/>
   </object>
  </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="315" x="224" y="256"/>
-  <object gid="315" x="256" y="256"/>
-  <object gid="315" x="288" y="256"/>
-  <object gid="332" x="3488" y="384"/>
-  <object gid="324" x="3200" y="352"/>
-  <object gid="324" x="3200" y="320"/>
-  <object gid="324" x="3200" y="288"/>
-  <object gid="324" x="3200" y="256"/>
-  <object gid="324" x="3168" y="288"/>
-  <object gid="324" x="3136" y="320"/>
-  <object gid="324" x="3104" y="288"/>
-  <object gid="324" x="3136" y="256"/>
-  <object gid="324" x="3232" y="288"/>
-  <object gid="324" x="3264" y="320"/>
-  <object gid="324" x="3296" y="288"/>
-  <object gid="324" x="3264" y="256"/>
-  <object gid="324" x="3168" y="224"/>
-  <object gid="324" x="3136" y="192"/>
-  <object gid="324" x="3104" y="224"/>
-  <object gid="324" x="3232" y="224"/>
-  <object gid="324" x="3264" y="192"/>
-  <object gid="324" x="3296" y="224"/>
-  <object gid="317" x="3200" y="128">
+  <object gid="367" x="224" y="256"/>
+  <object gid="367" x="256" y="256"/>
+  <object gid="367" x="288" y="256"/>
+  <object gid="384" x="3488" y="384"/>
+  <object gid="376" x="3200" y="352"/>
+  <object gid="376" x="3200" y="320"/>
+  <object gid="376" x="3200" y="288"/>
+  <object gid="376" x="3200" y="256"/>
+  <object gid="376" x="3168" y="288"/>
+  <object gid="376" x="3136" y="320"/>
+  <object gid="376" x="3104" y="288"/>
+  <object gid="376" x="3136" y="256"/>
+  <object gid="376" x="3232" y="288"/>
+  <object gid="376" x="3264" y="320"/>
+  <object gid="376" x="3296" y="288"/>
+  <object gid="376" x="3264" y="256"/>
+  <object gid="376" x="3168" y="224"/>
+  <object gid="376" x="3136" y="192"/>
+  <object gid="376" x="3104" y="224"/>
+  <object gid="376" x="3232" y="224"/>
+  <object gid="376" x="3264" y="192"/>
+  <object gid="376" x="3296" y="224"/>
+  <object gid="369" x="3200" y="128">
    <properties>
     <property name="item" value="fireflower"/>
    </properties>
   </object>
-  <object gid="324" x="3296" y="320"/>
-  <object gid="324" x="3296" y="192"/>
-  <object gid="324" x="3104" y="192"/>
-  <object gid="324" x="3104" y="320"/>
-  <object gid="324" x="3232" y="384"/>
-  <object gid="323" x="1184" y="288"/>
-  <object gid="315" x="1088" y="288"/>
-  <object gid="315" x="1152" y="288"/>
-  <object gid="315" x="1024" y="288"/>
-  <object gid="315" x="1216" y="288"/>
-  <object gid="322" x="1120" y="288"/>
-  <object gid="322" x="1056" y="288"/>
-  <object gid="324" x="2592" y="224"/>
-  <object gid="324" x="2624" y="192"/>
-  <object gid="324" x="2656" y="192"/>
-  <object gid="324" x="2688" y="224"/>
+  <object gid="376" x="3296" y="320"/>
+  <object gid="376" x="3296" y="192"/>
+  <object gid="376" x="3104" y="192"/>
+  <object gid="376" x="3104" y="320"/>
+  <object gid="376" x="3232" y="384"/>
+  <object gid="375" x="1184" y="288"/>
+  <object gid="367" x="1088" y="288"/>
+  <object gid="367" x="1152" y="288"/>
+  <object gid="367" x="1024" y="288"/>
+  <object gid="367" x="1216" y="288"/>
+  <object gid="374" x="1120" y="288"/>
+  <object gid="374" x="1056" y="288"/>
+  <object gid="376" x="2592" y="224"/>
+  <object gid="376" x="2624" y="192"/>
+  <object gid="376" x="2656" y="192"/>
+  <object gid="376" x="2688" y="224"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object type="flying_snowball_path" x="2976" y="352">

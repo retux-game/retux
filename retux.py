@@ -494,7 +494,7 @@ class Level(sge.Room):
         spawn_point = None
 
         for obj in self.objects:
-            if isinstance(obj, (Spawn, WarpSpawn)):
+            if isinstance(obj, (Spawn, Door, WarpSpawn)):
                 if self.spawn is not None and obj.spawn_id == self.spawn:
                     spawn_point = obj
 
@@ -525,6 +525,10 @@ class Level(sge.Room):
                     player.tangible = False
                     player.warping = True
                     spawn_point.follow_start(player, WARP_SPEED)
+                else:
+                    player.visible = True
+                    player.tangible = True
+                    player.warping = False
 
     def event_step(self, time_passed, delta_mult):
         global level_timers
@@ -973,16 +977,20 @@ class Worldmap(sge.Room):
             if isinstance(obj, MapSpace):
                 if obj.level and obj.level not in level_names:
                     r = Level.load(obj.level)
-                    loaded_levels[obj.level] = r
-                    current_areas = {}
-                    name = r.name
-                    if name:
-                        level_names[obj.level] = name
-                    elif obj.level in levels:
-                        level_names[obj.level] = "Level {}".format(
-                            levels.index(obj.level) + 1)
+                    if r is not None:
+                        loaded_levels[obj.level] = r
+                        current_areas = {}
+                        name = r.name
+                        if name:
+                            level_names[obj.level] = name
+                        elif obj.level in levels:
+                            level_names[obj.level] = "Level {}".format(
+                                levels.index(obj.level) + 1)
+                        else:
+                            level_names[obj.level] = "???"
                     else:
-                        level_names[obj.level] = "???"
+                        rush_save()
+                        sge.game.start_room.start()
 
                 obj.update_sprite()
 
@@ -1335,6 +1343,15 @@ class Player(xsge_physics.Collider):
                 self.held_object.drop()
             else:
                 self.held_object.kick()
+
+    def press_up(self):
+        if self.on_floor and self.was_on_floor:
+            for door in sorted(self.collision(Door),
+                               key=lambda o, x=self.x: -abs(x - o.x)):
+                if self.y == door.y and abs(self.x - door.x) <= WARP_LAX:
+                    self.x = door.x
+                    door.warp(self)
+                    break
 
     def stomp_jump(self, other, jump_height=PLAYER_JUMP_HEIGHT):
         if self.jump_pressed:
@@ -1765,10 +1782,16 @@ class Player(xsge_physics.Collider):
             else:
                 self.image_xscale = -abs(self.image_xscale)
         else:
-            if hands_free:
-                self.sprite = tux_jump_sprite
+            if self.on_floor and self.was_on_floor:
+                if hands_free:
+                    self.sprite = tux_stand_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_stand_sprite)
             else:
-                self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
+                if hands_free:
+                    self.sprite = tux_jump_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
 
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
@@ -1784,6 +1807,8 @@ class Player(xsge_physics.Collider):
                 self.jump()
             if key == action_key[self.player]:
                 self.action()
+            if key == up_key[self.player]:
+                self.press_up()
 
     def event_key_release(self, key):
         if self.human:
@@ -4293,6 +4318,72 @@ class Spawn(sge.Object):
         self.spawn_id = spawn_id
 
 
+class Door(sge.Object):
+
+    def __init__(self, x, y, dest=None, spawn_id=None, **kwargs):
+        y += 64
+        kwargs["sprite"] = door_sprite
+        kwargs["checks_collisions"] = False
+        kwargs["image_fps"] = 0
+        super(Door, self).__init__(x, y, **kwargs)
+        self.dest = dest
+        self.spawn_id = spawn_id
+        self.occupant = None
+
+    def warp(self, other):
+        if self.occupant is None and self.image_index == 0:
+            self.occupant = other
+            play_sound(door_sound)
+            self.image_fps = self.sprite.fps
+
+            other.visible = False
+            other.tangible = False
+            other.warping = True
+            other.xvelocity = 0
+            other.yvelocity = 0
+
+    def warp_end(self):
+        warp(self.dest)
+
+    def event_step(self, time_passed, delta_mult):
+        if self.occupant is not None:
+            s = get_scaled_copy(self.occupant)
+            if self.image_fps > 0:
+                sge.game.current_room.project_sprite(
+                    door_back_sprite, 0, self.x, self.y, self.z - 0.5)
+                sge.game.current_room.project_sprite(s, 0, self.x, self.y,
+                                                     self.occupant.z)
+            else:
+                dbs = door_back_sprite.copy()
+                dbs.draw_sprite(s, 0, dbs.origin_x, dbs.origin_y,
+                                blend_mode=sge.BLEND_RGB_MAXIMUM)
+                sge.game.current_room.project_sprite(dbs, 0, self.x, self.y,
+                                                     self.z - 0.5)
+        elif self.image_index != 0:
+            sge.game.current_room.project_sprite(door_back_sprite, 0, self.x,
+                                                 self.y, self.z - 0.5)
+
+    def event_animation_end(self):
+        if self.image_fps > 0:
+            if self.dest and (':' in self.dest or self.dest == "__map__"):
+                self.image_fps = -self.image_fps
+                self.image_index = self.sprite.frames - 1
+            else:
+                self.image_fps = 0
+                self.image_index = self.sprite.frames - 1
+                self.occupant.visible = True
+                self.occupant.tangible = True
+                self.occupant.warping = False
+                self.occupant.xvelocity = 0
+                self.occupant.yvelocity = 0
+                self.occupant = None
+        elif self.image_fps < 0:
+            self.image_fps = 0
+            self.image_index = 0
+            self.occupant = None
+            self.warp_end()
+
+
 class WarpSpawn(xsge_path.Path):
 
     def __init__(self, x, y, points=(), dest=None, spawn_id=None, **kwargs):
@@ -4325,8 +4416,6 @@ class WarpSpawn(xsge_path.Path):
                     warnings.warn("Warp at position ({}, {}) has no end direction".format(x, y))
             else:
                 self.end_direction = self.direction
-
-
 
     def event_step(self, time_passed, delta_mult):
         super(WarpSpawn, self).event_step(time_passed, delta_mult)
@@ -4393,40 +4482,7 @@ class WarpSpawn(xsge_path.Path):
         global score
 
         if self.dest and (':' in self.dest or self.dest == "__map__"):
-            if self.dest == "__map__":
-                sge.game.current_room.return_to_map()
-            else:
-                cr = sge.game.current_room
-                level_f, spawn = self.dest.split(':', 1)
-                if level_f == "__main__":
-                    level_f = main_area
-                level = sge.game.current_room.__class__.load(level_f)
-                if level is not None:
-                    level.spawn = spawn
-                    level.points = cr.points
-
-                    for nobj in level.objects:
-                        if isinstance(nobj, Player):
-                            for cobj in cr.objects:
-                                if (isinstance(cobj, Player) and
-                                        cobj.player == nobj.player):
-                                    nobj.hp = cobj.hp
-                                    nobj.coins = cobj.coins
-
-                                    held_object = cobj.held_object
-                                    if held_object is not None:
-                                        cobj.drop_object()
-                                        cr.remove(held_object)
-                                        level.add(held_object)
-                                        nobj.pickup(held_object)
-
-                                    break
-
-                    level.start()
-                else:
-                    # Error occurred; restart the game.
-                    rush_save()
-                    sge.game.start_room.start()
+            warp(self.dest)
         else:
             play_sound(pipe_sound)
             self.warps_out.append(obj)
@@ -4568,6 +4624,7 @@ class ObjectWarpSpawn(WarpSpawn):
             while self.__steps_passed >= self.interval:
                 self.__steps_passed -= self.interval
                 obj = self.cls.create(self.x, self.y, z=self.z)
+                obj.activate()
                 obj.warping = True
                 obj.visible = False
                 obj.tangible = False
@@ -4964,13 +5021,18 @@ class MapSpace(sge.Object):
             main_area = None
             current_areas = {}
             level = Level.load(self.level)
-            x = self.x
-            y = self.y
-            if self.sprite:
-                x += self.sprite.width / 2
-                y += self.sprite.height / 2
-            level.start(transition="iris_in", transition_time=TRANSITION_TIME,
-                        transition_arg=(x, y))
+            if level is not None:
+                x = self.x
+                y = self.y
+                if self.sprite:
+                    x += self.sprite.width / 2
+                    y += self.sprite.height / 2
+                level.start(transition="iris_in",
+                            transition_time=TRANSITION_TIME,
+                            transition_arg=(x, y))
+            else:
+                rush_save()
+                sge.game.start_room.start()
 
     @classmethod
     def get_at(cls, x, y):
@@ -5009,13 +5071,18 @@ class MapWarp(MapSpace):
             main_area = None
             current_areas = {}
             level = Level.load(self.level)
-            x = self.x
-            y = self.y
-            if self.sprite:
-                x += self.sprite.width / 2
-                y += self.sprite.height / 2
-            level.start(transition="iris_in", transition_time=TRANSITION_TIME,
-                        transition_arg=(x, y))
+            if level is not None:
+                x = self.x
+                y = self.y
+                if self.sprite:
+                    x += self.sprite.width / 2
+                    y += self.sprite.height / 2
+                level.start(transition="iris_in",
+                            transition_time=TRANSITION_TIME,
+                            transition_arg=(x, y))
+            else:
+                rush_save()
+                sge.game.start_room.start()
         else:
             m = Worldmap.load(current_worldmap)
             m.start(transition="dissolve", transition_time=TRANSITION_TIME)
@@ -5788,7 +5855,10 @@ def start_levelset():
     if start_cutscene and current_level is None:
         current_level = 0
         level = Level.load(start_cutscene)
-        level.start()
+        if level is not None:
+            level.start()
+        else:
+            return False
     elif current_worldmap:
         m = Worldmap.load(current_worldmap)
         m.start()
@@ -5798,12 +5868,52 @@ def start_levelset():
 
         if current_level < len(levels):
             level = Level.load(levels[current_level])
-            level.start()
+            if level is not None:
+                level.start()
+            else:
+                return False
         else:
             print("Invalid save file: current level does not exist.")
             return False
 
     return True
+
+
+def warp(dest):
+    if dest == "__map__":
+        sge.game.current_room.return_to_map()
+    else:
+        cr = sge.game.current_room
+        level_f, spawn = dest.split(':', 1)
+        if level_f == "__main__":
+            level_f = main_area
+        level = sge.game.current_room.__class__.load(level_f)
+        if level is not None:
+            level.spawn = spawn
+            level.points = cr.points
+
+            for nobj in level.objects:
+                if isinstance(nobj, Player):
+                    for cobj in cr.objects:
+                        if (isinstance(cobj, Player) and
+                                cobj.player == nobj.player):
+                            nobj.hp = cobj.hp
+                            nobj.coins = cobj.coins
+
+                            held_object = cobj.held_object
+                            if held_object is not None:
+                                cobj.drop_object()
+                                cr.remove(held_object)
+                                level.add(held_object)
+                                nobj.pickup(held_object)
+
+                            break
+
+            level.start()
+        else:
+            # Error occurred; restart the game.
+            rush_save()
+            sge.game.start_room.start()
 
 
 TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
@@ -5834,9 +5944,9 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "spawn": Spawn,
-         "warp_spawn": WarpSpawn, "object_warp_spawn": ObjectWarpSpawn,
-         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
-         "map_path": MapPath}
+         "door": Door, "warp_spawn": WarpSpawn,
+         "object_warp_spawn": ObjectWarpSpawn, "map_player": MapPlayer,
+         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
 
 print("Initializing game system...")
@@ -6067,6 +6177,8 @@ thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
 thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 boss_block_sprite = sge.Sprite("boss_block", d, transparent=False, origin_x=16,
                                origin_y=16)
+door_sprite = sge.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
+door_back_sprite = sge.Sprite("door_back", d, origin_x=25, origin_y=68)
 
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.Sprite("logo", d, origin_x=140)
@@ -6265,6 +6377,7 @@ fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
+door_sound = sge.Sound(os.path.join(DATA, "sounds", "door.wav"))
 pause_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))

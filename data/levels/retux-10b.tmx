@@ -16,14 +16,15 @@
  <tileset firstgid="395" source="../tilesets/krush.tsx"/>
  <tileset firstgid="396" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="397" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="398" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0bEJACAUQ8H8QXRux7UXQbDQ5g5eH0jCK62SXr9XcOInAAAAAAAAAAB2xhIA3JrtAgLb
+   eJztzkEBAAAEBLAThP4xteCzJVjCla5k6nsBAAAAAAAAAAAAwKcFQdwAPg==
   </data>
  </layer>
  <layer name="Middle Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
-   eJztWltOwzAQ3J4CfuAm/CDxwx345Ey8RaEpD6XJdYDyOAu28KiTld2EtkmqdEcauRs7yTre8VbyTkXkYCRy6Dhxv3PHWWAR7CzYZbDz0JfRmDfHF6NxQHx3nEpVH14DWWAZ6LWRU8v90Il/jmE59tw33h/17YWhDqwHrQ8f65xD2EauYF3ANn0YhgKtD+xrz7J6LnrtfBYGQzvQ+jAYDAuYPgyGNEwfBkMapg+DIY1d08eF42WEV306Zdha9KWPVJxukrGYv3G8jfCuo/nEfFrlW/Sl5+uadmjoQx8+Hn4cxy3zYdOOJ/Cf+cR8um94L/Nb+tHIY007FJ2cOU0cOx6RPj6l/T3d08fSXBZniny+iPP4gvo8+fwefTir1Gf4uLau3pvu6zwfPjfFfFCHkCd8mtA9eIau38HcMdcP+dNI1zn4qaaFTrr4f9Amz50mTh1Pgj6+wjcfd0AfS3wujxiI2Vz3FdOSrnNBDPlx6+qj6b4+l2oMw2/2DX0pfXANj56vrnvDHLtYL53v6vSBdpWcuM30a8zrw+uA601ilmuzSqmu8Sxic77g33iXzhts67E5vXcTdS6oQeN3LYtb3vsz1cLHlD74GTOpaoG/F2zeTzC2kGpu1XU/BV3TYznH8fppf5vqQ9e36vUqIzb7qeOP561913lW23xdP4NjOha3HIe/ykBP6g==
+   eJztWu1OwzAM9J4C/sBr8y0G6/hQ174OsAHPQiJy4mqStXRrOhWfdMrcpK3T+OJJ8VJETmYip44L97t0XAVWwS6CXQe7DH0FjXlxfDIaJ8RXx6U09eE1UATWgV4bJbXcD5345xi248h94+PZ2F4YusLrQevDxzrnELaRK1gXsE0fhqkB+sC+9ij9c9Fzdu8NhmEBfRgMht8wfRgMaZg+DIY0TB8GQxr/RR9njucRXozplOHgkVsfqTjdJ2Mxf+V4HeFNpvnEfOrzLcbS82VLO1Xk1IePh0/H+cC827fjCfxlPjGfbjvey/yQcTRy39JOVSdeHxsZfk/39LG0lp8zRT5fxHl8RX2efH6PPpxV6jN8XNtV7133dZ4Pn5tiPqhDKBM+LegePEPX72DumOubfGskdw5+aGmhkxz/D3LyPXzzeQb6WOJzecRAzOa6r5iWdJ0LYsiP21UfXff1tTRjGH6zb+hL6YNrePR8dd0b5phjvXS+a9MH2j458ZDp15jXh9cB17vELNdm1dJc41XE5nzBv/EunTfY1mNLeu8+6lxQg8bv2ha3vPcXqoWPKX3wM1bS1AJ/L9i8n2BsJc3cqut+Krqmx3KO4/XT/nbVh65v1etVR2z2U8cfz1v7rvOstvm6fgbHdCxuOQ6/ANbxThE=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -50,7 +51,11 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_bottom" x="2912" y="32" width="64" height="32"/>
-  <object type="solid_left" x="6240" y="320" width="32" height="64"/>
+  <object gid="398" x="6304" y="384">
+   <properties>
+    <property name="dest" value="retux-10.tmx:cave_exit"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="2944" y="64">
@@ -58,12 +63,6 @@
     <property name="dest" value="retux-10c.tmx:bonus_enter"/>
    </properties>
    <polyline points="0,0 0,-64"/>
-  </object>
-  <object x="6240" y="352">
-   <properties>
-    <property name="dest" value="retux-10.tmx:exit"/>
-   </properties>
-   <polyline points="0,0 64,0"/>
   </object>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn">
