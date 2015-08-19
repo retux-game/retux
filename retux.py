@@ -5749,7 +5749,7 @@ def load_levelset(fname):
                             tuxdolls_available.append(level)
                             subrooms = []
                             break
-                        elif isinstance(obj, Warp):
+                        elif isinstance(obj, (Door, Warp)):
                             if obj.dest and ':' in obj.dest:
                                 map_f = obj.dest.split(':', 1)[0]
                                 if (map_f not in subrooms and
