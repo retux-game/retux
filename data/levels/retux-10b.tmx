@@ -54,6 +54,7 @@
   <object gid="398" x="6304" y="384">
    <properties>
     <property name="dest" value="retux-10.tmx:cave_exit"/>
+    <property name="spawn_id" value="cave_exit"/>
    </properties>
   </object>
  </objectgroup>

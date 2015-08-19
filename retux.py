@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.1a3"
+__version__ = "0.1a4"
 
 import argparse
 import json
@@ -1782,7 +1782,7 @@ class Player(xsge_physics.Collider):
             else:
                 self.image_xscale = -abs(self.image_xscale)
         else:
-            if self.on_floor and self.was_on_floor:
+            if self.on_floor and self.was_on_floor and abs(self.yvelocity) < 1:
                 if hands_free:
                     self.sprite = tux_stand_sprite
                 else:
@@ -4341,6 +4341,10 @@ class Door(sge.Object):
             other.warping = True
             other.xvelocity = 0
             other.yvelocity = 0
+            other.xacceleration = 0
+            other.yacceleration = 0
+            other.xdeceleration = 0
+            other.ydeceleration = 0
 
     def warp_end(self):
         warp(self.dest)
@@ -4355,8 +4359,7 @@ class Door(sge.Object):
                                                      self.occupant.z)
             else:
                 dbs = door_back_sprite.copy()
-                dbs.draw_sprite(s, 0, dbs.origin_x, dbs.origin_y,
-                                blend_mode=sge.BLEND_RGB_MAXIMUM)
+                dbs.draw_sprite(s, 0, dbs.origin_x, dbs.origin_y)
                 sge.game.current_room.project_sprite(dbs, 0, self.x, self.y,
                                                      self.z - 0.5)
         elif self.image_index != 0:
@@ -4378,6 +4381,7 @@ class Door(sge.Object):
                 self.occupant.yvelocity = 0
                 self.occupant = None
         elif self.image_fps < 0:
+            play_sound(door_shut_sound)
             self.image_fps = 0
             self.image_index = 0
             self.occupant = None
@@ -6178,7 +6182,7 @@ thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 boss_block_sprite = sge.Sprite("boss_block", d, transparent=False, origin_x=16,
                                origin_y=16)
 door_sprite = sge.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
-door_back_sprite = sge.Sprite("door_back", d, origin_x=25, origin_y=68)
+door_back_sprite = sge.Sprite("door_back", d, origin_x=21, origin_y=41)
 
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.Sprite("logo", d, origin_x=140)
@@ -6378,6 +6382,7 @@ pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
 door_sound = sge.Sound(os.path.join(DATA, "sounds", "door.wav"))
+door_shut_sound = sge.Sound(os.path.join(DATA, "sounds", "door_shut.wav"))
 pause_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))

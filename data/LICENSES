@@ -161,15 +161,6 @@ images/objects/enemies/spiky_iced.png
 images/objects/enemies/stalactite.png
 images/objects/enemies/stalactite_broken.png
 images/objects/misc/boss_block.png
-images/objects/misc/door-0.png
-images/objects/misc/door-1.png
-images/objects/misc/door-2.png
-images/objects/misc/door-3.png
-images/objects/misc/door-4.png
-images/objects/misc/door-5.png
-images/objects/misc/door-6.png
-images/objects/misc/door-7.png
-images/objects/misc/door_back.png
 images/objects/misc/flag-0.png
 images/objects/misc/flag-1.png
 images/objects/misc/flagpole.png
@@ -288,9 +279,29 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable
 
 ------------------------------------------------------------------------
 
+images/objects/misc/door-0.png
+images/objects/misc/door-1.png
+images/objects/misc/door-2.png
+images/objects/misc/door-3.png
+images/objects/misc/door-4.png
+images/objects/misc/door-5.png
+images/objects/misc/door-6.png
+images/objects/misc/door-7.png
+
+Authors:
+  SuperTux development team <http://supertux.github.io>
+  onpon4 <https://onpon4.github.io>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Details:
+Made by replacing the black in SuperTux's door with transparency, then
+pasting that over door_shadow.png.
+
+------------------------------------------------------------------------
+
 sounds/pop.wav
 
-Authors: SuperTux development team <http://supertux.lethargik.org>
+Authors: SuperTux development team <http://supertux.github.io>
 License: GNU GPLv2 or later <https://gnu.org/licenses/gpl.html>
 Source: https://github.com/SuperTux/supertux/releases/download/v0.1.3/supertux-0.1.3.tar.bz2
 
@@ -370,6 +381,8 @@ Source: http://powstudios.com/content/smoke-animation-pack-1
 
 objecttypes.xml
 images/backgrounds/castle-bottom.png
+images/objects/misc/door_back.png
+images/objects/misc/door_shadow.png
 levels/base.tmx
 levels/concept_castle.tmx
 levels/retux-00.tmx
@@ -428,7 +441,6 @@ music/fortress.ogg
 music/fortress-start.ogg
 music/ghostforest2.ogg
 music/intro.ogg
-music/invincible.ogg
 music/leveldone.ogg
 music/theme.ogg
 music/treeboss.ogg
@@ -478,8 +490,6 @@ Details:
 
 sounds/bigjump.wav
 sounds/coin.wav
-sounds/flip.wav
-sounds/invincible_start.ogg
 sounds/jump.wav
 sounds/rain.wav
 sounds/skid.wav
@@ -500,16 +510,6 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
 
-sounds/dartfire.wav
-sounds/darthit.wav
-sounds/ticking.wav
-
-Author: sommer
-License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
-
-------------------------------------------------------------------------
-
 sounds/door.wav
 sounds/mr_tree.ogg
 sounds/mr_treehit.ogg
@@ -518,6 +518,14 @@ sounds/phone.wav
 Author: gwater
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/door_shut.wav
+
+Author: Imitatia Dei <http://freesound.org/people/Imitatia%20Dei/>
+License: CC0 <http://creativecommons.org/publicdomain/zero/1.0/>
+Source: http://freesound.org/people/Imitatia%20Dei/sounds/96472/
 
 ------------------------------------------------------------------------
 
@@ -541,19 +549,10 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
 
-sounds/fireworks.wav
 sounds/warp.wav
 
 Author: Ricardo Cruz
 License: GNU GPL <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
-
-------------------------------------------------------------------------
-
-sounds/fizz.wav
-
-Author: WolfgangB
-License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
@@ -569,19 +568,6 @@ sounds/yeti_roar.wav
 
 Author: MatzeB
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
-
-------------------------------------------------------------------------
-
-sounds/hop.ogg
-sounds/locked.ogg
-sounds/splash.ogg
-sounds/switch.ogg
-sounds/totem.ogg
-sounds/turnkey.ogg
-
-Author: WolfgangB
-License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
@@ -642,14 +628,6 @@ sounds/pipe.ogg
 Author: cameron
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: https://github.com/FluXy/SMC/blob/master/smc/data/sounds/player/powerdown.ogg
-
-------------------------------------------------------------------------
-
-sounds/saw.wav
-
-Author: Paulo Morfeo
-License: CC BY-SA 2.0 <http://creativecommons.org/licenses/by-sa/2.0/>
-Source: http://svn.berlios.de/viewcvs/lincity-ng/trunk/data/sounds/Mill1.wav
 
 ------------------------------------------------------------------------
 

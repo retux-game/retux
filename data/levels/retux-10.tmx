@@ -46,6 +46,7 @@
   <object type="level_end" x="1888" y="0" width="32" height="384"/>
   <object gid="398" x="608" y="416">
    <properties>
+    <property name="dest" value="retux-10b.tmx:cave_exit"/>
     <property name="spawn_id" value="cave_exit"/>
    </properties>
   </object>
