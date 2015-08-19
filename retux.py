@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.1a4"
+__version__ = "0.1a5"
 
 import argparse
 import json
@@ -5682,13 +5682,15 @@ def load_levelset(fname):
             event = sge.game.input_events.pop(0)
             if isinstance(event, sge.input.KeyPress):
                 if event.key == "escape":
-                    sge.game.start_room.start()
+                    return True
             if isinstance(event, sge.input.QuitRequest):
                 sge.game.end()
 
         time_passed = sge.game.regulate_speed(10000)
         gui_handler.event_step(time_passed, 1)
         sge.game.refresh()
+
+        return False
 
     if current_levelset != fname:
         w = 400
@@ -5734,7 +5736,8 @@ def load_levelset(fname):
             already_checked = []
 
             while subrooms:
-                do_refresh()
+                if do_refresh():
+                    return
 
                 subroom = subrooms.pop(0)
                 already_checked.append(subroom)
@@ -5758,7 +5761,8 @@ def load_levelset(fname):
 
             progressbar.progress = (levels.index(level) + 1) / len(levels)
             progressbar.redraw()
-            do_refresh()
+            if do_refresh():
+                return
 
         window.destroy()
         do_refresh()
