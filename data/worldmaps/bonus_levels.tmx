@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="music" value="salcon.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/icyisland.tsx"/>
+ <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
+ <layer name="Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzjYGBg4KQi5gJiPTQsBMT6QCwMxaIUsk2x2AOyQxxJHTXYpmj+AtnBDMSKUCxBJTYIMwGxCI38gczHZoc8ldj47KAGFoOGFR+SHbD4UKCyXfj8QWn6JcYOaqYB9LCidvrlobE/tIFYFojloHagpzlK06821GxYWSIDtY+aGNl8EAYA2z0e0g==
+  </data>
+ </layer>
+ <objectgroup name="Spaces">
+  <object gid="62" x="128" y="64">
+   <properties>
+    <property name="level" value="concept_castle.tmx"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Objects">
+  <object gid="61" x="32" y="64"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="map_path">
+  <object x="32" y="96">
+   <polyline points="0,0 0,128"/>
+  </object>
+  <object x="32" y="224">
+   <polyline points="0,0 0,96"/>
+  </object>
+  <object x="32" y="320">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="128" y="96">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object x="128" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="128" y="160">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="224" y="160">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="224" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="320" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="320" y="160">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="224" y="96">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object x="320" y="96">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object x="416" y="96">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object x="512" y="96">
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object x="608" y="96">
+   <polyline points="0,0 128,0 128,96"/>
+  </object>
+  <object x="736" y="192">
+   <polyline points="0,0 0,128 -96,128"/>
+  </object>
+  <object x="640" y="320">
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object x="544" y="320">
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object x="448" y="320">
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object x="352" y="320">
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object x="256" y="320">
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object x="160" y="320">
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object x="96" y="224">
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="160" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="160" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="256" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="256" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="352" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="352" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="448" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="448" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="544" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="544" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="640" y="256">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="640" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="672" y="192">
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="608" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="608" y="160">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="512" y="160">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="512" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="416" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="416" y="160">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="32" y="32">
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="32" y="96">
+   <polyline points="0,0 96,0"/>
+  </object>
+ </objectgroup>
+</map>

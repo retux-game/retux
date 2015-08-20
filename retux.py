@@ -5819,15 +5819,19 @@ def save_game():
     global save_slots
 
     if current_save_slot is not None:
+        if levels:
+            completion = int(100 * (len(cleared_levels) + len(tuxdolls_found)) /
+                             (len(levels) + len(tuxdolls_available)))
+        else:
+            completion = 100
+
         save_slots[current_save_slot] = {
             "levelset": current_levelset, "level_timers": level_timers,
             "cleared_levels": cleared_levels, "tuxdolls_found": tuxdolls_found,
             "current_worldmap": current_worldmap,
             "current_worldmap_space": current_worldmap_space,
             "current_level": current_level, "score": score,
-            "completion": int(100 * (len(cleared_levels) +
-                                     len(tuxdolls_found)) /
-                              (len(levels) + len(tuxdolls_available)))}
+            "completion": completion}
 
 
 def load_game():

@@ -1,5 +1,8 @@
 {
     "name": "Bonus Levels",
+    "worldmaps": [
+        "bonus_levels.tmx"
+    ],
     "levels": [
         "concept_castle.tmx"
     ]
