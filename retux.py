@@ -3636,7 +3636,8 @@ class ThrownFlower(FallingObject, WinPuffObject):
 class ThrownFireFlower(ThrownFlower):
 
     def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.burnable:
+        if ((isinstance(other, InteractiveObject) and other.burnable) or
+                isinstance(other, (Iceblock, ThinIce))):
             self.dissipate()
             other.burn()
 
