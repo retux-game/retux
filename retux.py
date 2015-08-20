@@ -708,7 +708,8 @@ class Level(sge.Room):
         if alarm_id == "timer":
             if main_area in levels:
                 level_timers.setdefault(main_area, 0)
-                level_timers[main_area] -= SECOND_POINTS
+                if main_area not in cleared_levels:
+                    level_timers[main_area] -= SECOND_POINTS
                 self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "shake_down":
             self.shake_queue -= 1
