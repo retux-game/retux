@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.1a5"
+__version__ = "0.1a6"
 
 import argparse
 import json
@@ -1623,7 +1623,7 @@ class Player(xsge_physics.Collider):
             view_min_y = self.y - self.view.height + CAMERA_MARGIN_BOTTOM
             view_max_y = self.y - CAMERA_MARGIN_TOP
 
-            if self.on_floor and self.was_on_floor:
+            if self.warping or (self.on_floor and self.was_on_floor):
                 view_target_y = (self.y - self.view.height +
                                  CAMERA_TARGET_MARGIN_BOTTOM)
                 if abs(view_target_y - self.view.y) > 0.5:
@@ -3900,6 +3900,9 @@ class FixedSpring(FallingObject):
             self.sprite = self.expand_sprite
             self.image_index = 0
             self.image_fps = None
+
+    def touch_hurt(self):
+        pass
 
     def event_animation_end(self):
         if self.sprite == self.expand_sprite:
