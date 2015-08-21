@@ -3002,7 +3002,7 @@ class Icicle(InteractiveObject):
         crash_y = sge.game.current_room.height
         for obj in sge.game.current_room.get_objects_at(
                 self.bbox_left, self.bbox_bottom, self.bbox_width,
-                sge.game.current_room.height - self.bbox_bottom):
+                sge.game.current_room.height - self.bbox_bottom + 1):
             if (obj.bbox_top > self.bbox_bottom and
                     self.bbox_right > obj.bbox_left and
                     self.bbox_left < obj.bbox_right):
@@ -3130,7 +3130,9 @@ class Crusher(FallingObject):
             if self.active:
                 players = []
                 crash_y = sge.game.current_room.height
-                for obj in sge.game.current_room.objects:
+                for obj in sge.game.current_room.get_objects_at(
+                        self.bbox_left, self.bbox_bottom, self.bbox_width,
+                        sge.game.current_room.height - self.bbox_bottom + 1):
                     if (obj.bbox_top > self.bbox_bottom and
                             self.bbox_right > obj.bbox_left and
                             self.bbox_left < obj.bbox_right):
@@ -4939,7 +4941,8 @@ class MapSpace(sge.Object):
         up_exit = None
         down_exit = None
 
-        for obj in sge.game.current_room.objects:
+        for obj in sge.game.current_room.get_objects_at(self.x - 1, self.y - 1,
+                                                        2, 2):
             if (isinstance(obj, MapPath) and obj.points and
                     abs(self.x - obj.x) < 1 and abs(self.y - obj.y) < 1):
                 exits.append(obj)
@@ -5057,7 +5060,7 @@ class MapSpace(sge.Object):
 
     @classmethod
     def get_at(cls, x, y):
-        for obj in sge.game.current_room.objects:
+        for obj in sge.game.current_room.get_objects_at(x - 1, y - 1, 2, 2):
             if (isinstance(obj, MapSpace) and abs(x - obj.x) < 1 and
                     abs(y - obj.y) < 1):
                 return obj
