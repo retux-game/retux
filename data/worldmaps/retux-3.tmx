@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="36" height="20" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="music" value="salcon.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/icyisland.tsx"/>
+ <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
+ <layer name="Tiles" width="36" height="20">
+  <data encoding="base64" compression="zlib">
+   eJy1lttOwzAQRA0SUO6IBFX0hgAJKJSKa574/+9io2akYbp2nNA+HLWKvd7Z6a7TIoRQbJhrY2SMjRdjasyMpTGh7x51/NUWNKkOZmAcEkeiZ5g4d8e4zWBX4r4lD2uoEntZz4PxaDzR3pTWQvbVniwkT0yDAk2c8814Nz566inDqj9YU5u/7GvZfB43a3fGvfFD+0866EGNlx3qwXrt7SwzV06tZ+R75eTjPl8467U3y5b8sVr2jP2GA/FYgb88b55//9GD+wV3zGtGLM9Qjh72EbVMxduYBzrrsTMwbxX99vBP9ZSkG3Ham22+FXLeIMRnXWNYD3qbc3vPuujhvmav4NfQyQU90DahGKz31RPrHZzJMWX4+77Q/Xy/o0aeKaaer1hfcX/pXZ3SU8h+7zc/Ny4cPsP67Of416bHgz35Eh3zsJr3Z0eb6tqUHs8T6BiH9btoJGu5enieU3qQCx7Mm1y5/0HAqfPMey+WzrOULtR9kxnXhT7v022CHvoF6lFCoA==
+  </data>
+ </layer>
+ <objectgroup name="Spaces">
+  <object gid="63" x="416" y="608">
+   <properties>
+    <property name="ID" value="map_enter"/>
+    <property name="dest" value="retux-2.tmx:map_exit"/>
+   </properties>
+  </object>
+  <object gid="63" x="32" y="64">
+   <properties>
+    <property name="ID" value="map_exit"/>
+   </properties>
+  </object>
+  <object gid="62" x="800" y="576"/>
+  <object gid="62" x="608" y="576"/>
+  <object gid="62" x="576" y="224"/>
+  <object gid="62" x="512" y="96"/>
+  <object gid="62" x="288" y="96"/>
+  <object gid="62" x="128" y="192"/>
+  <object gid="62" x="704" y="448"/>
+  <object gid="62" x="544" y="384"/>
+  <object gid="62" x="352" y="288"/>
+  <object gid="62" x="960" y="416"/>
+  <object gid="62" x="1024" y="224"/>
+  <object gid="62" x="768" y="160"/>
+ </objectgroup>
+ <objectgroup name="Objects">
+  <object gid="61" x="416" y="608"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" name="map_path"/>
+</map>

@@ -44,6 +44,7 @@
   <object gid="63" x="704" y="96">
    <properties>
     <property name="ID" value="map_exit"/>
+    <property name="dest" value="retux-3.tmx:map_enter"/>
    </properties>
   </object>
   <object gid="63" x="576" y="416">

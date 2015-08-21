@@ -4873,9 +4873,11 @@ class MapPlayer(sge.Object):
 
 class MapSpace(sge.Object):
 
-    def __init__(self, x, y, level=None, ID=None, free=False, **kwargs):
+    def __init__(self, x, y, level=None, level_spawn=None, ID=None, free=False,
+                 **kwargs):
         super(MapSpace, self).__init__(x, y, **kwargs)
         self.level = level
+        self.level_spawn = level_spawn
         self.ID = ID if ID is not None else level
         self.free = free
 
@@ -5038,6 +5040,7 @@ class MapSpace(sge.Object):
             current_areas = {}
             level = Level.load(self.level)
             if level is not None:
+                level.spawn = self.level_spawn
                 x = self.x
                 y = self.y
                 if self.sprite:
@@ -5071,8 +5074,6 @@ class MapWarp(MapSpace):
         self.image_fps = None
 
     def start_level(self):
-        global main_area
-        global current_areas
         global current_worldmap
         global current_worldmap_space
 
@@ -5082,23 +5083,11 @@ class MapWarp(MapSpace):
             current_worldmap_space = spawn
         else:
             current_worldmap_space = None
+            if self.dest:
+                current_worldmap = self.dest
 
         if self.level:
-            main_area = None
-            current_areas = {}
-            level = Level.load(self.level)
-            if level is not None:
-                x = self.x
-                y = self.y
-                if self.sprite:
-                    x += self.sprite.width / 2
-                    y += self.sprite.height / 2
-                level.start(transition="iris_in",
-                            transition_time=TRANSITION_TIME,
-                            transition_arg=(x, y))
-            else:
-                rush_save()
-                sge.game.start_room.start()
+            MapSpace.start_level(self)
         else:
             m = Worldmap.load(current_worldmap)
             m.start(transition="dissolve", transition_time=TRANSITION_TIME)
@@ -5928,7 +5917,13 @@ def warp(dest):
         sge.game.current_room.return_to_map()
     else:
         cr = sge.game.current_room
-        level_f, spawn = dest.split(':', 1)
+
+        if ":" in dest:
+            level_f, spawn = dest.split(':', 1)
+        else:
+            level_f = dest
+            spawn = None
+
         if level_f == "__main__":
             level_f = main_area
         level = sge.game.current_room.__class__.load(level_f)
