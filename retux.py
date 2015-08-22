@@ -781,6 +781,7 @@ class Level(sge.Room):
 
     @classmethod
     def load(cls, fname):
+        global level_names
         global tuxdolls_available
 
         if fname in current_areas:
@@ -805,6 +806,17 @@ class Level(sge.Room):
 
         if r is not None:
             current_areas[fname] = r
+
+            if fname not in level_names:
+                name = r.name
+                if name:
+                    level_names[fname] = name
+                elif fname in levels:
+                    level_names[fname] = "Level {}".format(
+                        levels.index(fname) + 1)
+                else:
+                    level_names[fname] = "???"
+
             if main_area in levels and main_area not in tuxdolls_available:
                 for obj in r.objects:
                     if (isinstance(obj, TuxDoll) or
@@ -989,30 +1001,12 @@ class Worldmap(sge.Room):
         global loaded_levels
         global main_area
         global current_areas
-        global level_names
         global level_cleared
 
         main_area = None
 
         for obj in self.objects:
             if isinstance(obj, MapSpace):
-                if obj.level and obj.level not in level_names:
-                    r = Level.load(obj.level)
-                    if r is not None:
-                        loaded_levels[obj.level] = r
-                        current_areas = {}
-                        name = r.name
-                        if name:
-                            level_names[obj.level] = name
-                        elif obj.level in levels:
-                            level_names[obj.level] = "Level {}".format(
-                                levels.index(obj.level) + 1)
-                        else:
-                            level_names[obj.level] = "???"
-                    else:
-                        rush_save()
-                        sge.game.start_room.start()
-
                 obj.update_sprite()
 
         play_music(self.music)
@@ -4826,10 +4820,21 @@ class MapPlayer(sge.Object):
                     self.y = obj.y
 
     def event_step(self, time_passed, delta_mult):
+        global current_areas
+
         room = sge.game.current_room
         space = MapSpace.get_at(self.x, self.y)
 
         if space is not None:
+            if space.level and space.level not in level_names:
+                r = Level.load(space.level)
+                if r is not None:
+                    loaded_levels[space.level] = r
+                    current_areas = {}
+                else:
+                    rush_save()
+                    sge.game.start_room.start()
+
             room.level_text = level_names.get(space.level)
             room.level_tuxdoll_available = space.level in tuxdolls_available
             room.level_tuxdoll_found = space.level in tuxdolls_found
@@ -5745,7 +5750,7 @@ def load_levelset(fname):
 
         x = margin
         y = margin
-        text = "Preloading levels (press Escape to skip)..."
+        text = "Preloading levels...\n\n(press Escape to skip)"
         c = sge.Color("white")
         xsge_gui.Label(
             window, x, y, 1, text, font=font, width=(w - 2 * margin),
