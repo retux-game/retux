@@ -109,6 +109,7 @@
   <object gid="465" x="3072" y="576"/>
   <object gid="465" x="3104" y="576"/>
   <object gid="465" x="3136" y="576"/>
+  <object gid="480" x="5696" y="544"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="992" y="800"/>
