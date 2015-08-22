@@ -5110,9 +5110,7 @@ class MapPath(xsge_path.Path):
                 rx += self.x
                 ry += self.y
                 rp = []
-                for x, y in sorted(self.points[:-1],
-                                   key=(lambda i, p=self.points: p.index(i)),
-                                   reverse=True) + [(0, 0)]:
+                for x, y in self.points[-2::-1] + [(0, 0)]:
                     x = x + self.x - rx
                     y = y + self.y - ry
                     rp.append((x, y))
