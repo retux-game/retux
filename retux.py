@@ -6447,6 +6447,8 @@ goal_animation = sge.Object(0, 0, sprite=goal_sprite, visible=False,
 print("Creating {}...".format("level" if RECORD else "title screen"))
 if RECORD:
     sge.game.start_room = LevelRecorder.load(RECORD)
+    if sge.game.start_room is None:
+        sys.exit()
 else:
     sge.game.start_room = TitleScreen.load(os.path.join("special",
                                                         "title_screen.tmx"))
