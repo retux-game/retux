@@ -3402,7 +3402,7 @@ class Snowman(FallingObject, Boss):
         if self.stage > 0 and not self.stunned:
             play_sound(stomp_sound)
             self.stun()
-            if other.knockable:
+            if other is not None and other.knockable:
                 other.knock(self)
 
     def touch_hurt(self):
