@@ -295,7 +295,7 @@ abort = False
 current_save_slot = None
 current_levelset = None
 start_cutscene = None
-worldmaps = []
+worldmap = None
 loaded_worldmaps = {}
 levels = []
 loaded_levels = {}
@@ -5686,7 +5686,7 @@ def load_levelset(fname):
     global abort
     global current_levelset
     global start_cutscene
-    global worldmaps
+    global worldmap
     global loaded_worldmaps
     global levels
     global loaded_levels
@@ -5743,7 +5743,7 @@ def load_levelset(fname):
             data = json.load(f)
 
         start_cutscene = data.get("start_cutscene")
-        worldmaps = data.get("worldmaps", [])
+        worldmap = data.get("worldmap")
         levels = data.get("levels", [])
         tuxdolls_available = []
 
@@ -5785,7 +5785,7 @@ def load_levelset(fname):
         if abort:
             current_levelset = None
             start_cutscene = None
-            worldmaps = []
+            worldmap = None
             levels = []
             tuxdolls_available = []
 
@@ -5805,10 +5805,7 @@ def set_new_game():
     level_timers = {}
     cleared_levels = []
     tuxdolls_found = []
-    if worldmaps:
-        current_worldmap = worldmaps[0]
-    else:
-        current_worldmap = None
+    current_worldmap = worldmap
     current_worldmap_space = None
     current_level = None
     score = 0

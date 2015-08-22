@@ -1,10 +1,7 @@
 {
     "name": "reTux",
     "start_cutscene": null,
-    "worldmaps": [
-        "retux-1.tmx",
-        "retux-2.tmx"
-    ],
+    "worldmap": "retux-1.tmx",
     "levels": [
         "retux-01.tmx",
         "retux-02.tmx",
