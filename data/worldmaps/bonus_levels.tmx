@@ -7,7 +7,7 @@
  <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
  <layer name="Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJzjYGBg4KQi5gJiPTQsBMT6QCwMxaIUsk2x2AOyQxxJHTXYpmj+AtnBDMSKUCxBJTYIMwGxCI38gczHZoc8ldj47KAGFoOGFR+SHbD4UKCyXfj8QWn6JcYOaqYB9LCidvrlobE/tIFYFojloHagpzlK06821GxYWSIDtY+aGNl8EAYA2z0e0g==
+   eJy1lLsKgDAMRYtOFnHwPfgcnASd/P9f8xYihCJF6HU4kELJIemlpTFmAxfICFhweJTgBJXQRNbXi8c5OnWPUeudWHGkYBV6Uu1IQP3THPr85phJdcjBoJVdFcrxvMdCdoXmiM3vFwczA/6u2PnNf55jByOYxOFnLja/u/R+/pJBfEx0f8cNmfsfJA==
   </data>
  </layer>
  <objectgroup name="Spaces">

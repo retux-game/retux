@@ -16,5 +16,20 @@
         "retux-11.tmx",
         "retux-12.tmx",
         "retux-13.tmx"
+    ],
+    "tuxdolls_available": [
+        "retux-01.tmx",
+        "retux-02.tmx",
+        "retux-03.tmx",
+        "retux-04.tmx",
+        "retux-05.tmx",
+        "retux-06.tmx",
+        "retux-07.tmx",
+        "retux-08.tmx",
+        "retux-09.tmx",
+        "retux-10.tmx",
+        "retux-11.tmx",
+        "retux-12.tmx",
+        "retux-13.tmx"
     ]
 }

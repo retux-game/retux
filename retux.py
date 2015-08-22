@@ -781,12 +781,12 @@ class Level(sge.Room):
 
     @classmethod
     def load(cls, fname):
+        global tuxdolls_available
+
         if fname in current_areas:
-            return current_areas[fname]
+            r = current_areas[fname]
         elif fname in loaded_levels:
             r = loaded_levels.pop(fname)
-            current_areas[fname] = r
-            return r
         else:
             try:
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
@@ -799,11 +799,28 @@ class Level(sge.Room):
                                           buttons=["Ok"])
                 else:
                     print(m)
-                return None
+                r = None
             else:
                 r.fname = fname
-                current_areas[fname] = r
-                return r
+
+        if r is not None:
+            current_areas[fname] = r
+            if main_area in levels and main_area not in tuxdolls_available:
+                for obj in r.objects:
+                    if (isinstance(obj, TuxDoll) or
+                            (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
+                             obj.item == "tuxdoll")):
+                        tuxdolls_available.append(main_area)
+                        break
+            elif fname in levels and fname not in tuxdolls_available:
+                for obj in r.objects:
+                    if (isinstance(obj, TuxDoll) or
+                            (isinstance(obj, (ItemBlock, HiddenItemBlock)) and
+                             obj.item == "tuxdoll")):
+                        tuxdolls_available.append(fname)
+                        break
+
+        return r
 
 
 class LevelRecorder(Level):
@@ -5302,13 +5319,10 @@ class LevelsetMenu(Menu):
         return self
 
     def event_choose(self):
-        global abort
-
         if self.choice == len(self.items) - 2:
             self.create_page(default=-2, page=self.page)
         else:
             if self.choice is not None and self.choice < len(self.items) - 2:
-                abort = False
                 load_levelset(self.current_levelsets[self.choice])
 
             MainMenu.create(default=2)
@@ -5683,7 +5697,6 @@ def play_music(music, force_restart=False):
 
 
 def load_levelset(fname):
-    global abort
     global current_levelset
     global start_cutscene
     global worldmap
@@ -5691,42 +5704,53 @@ def load_levelset(fname):
     global levels
     global loaded_levels
     global tuxdolls_available
+    global main_area
 
     def do_refresh():
-        global abort
-
+        # Refresh the screen, return whether the user pressed Esc.
         sge.game.pump_input()
         while sge.game.input_events:
             event = sge.game.input_events.pop(0)
             if isinstance(event, sge.input.KeyPress):
                 if event.key == "escape":
-                    abort = True
+                    return True
             if isinstance(event, sge.input.QuitRequest):
                 sge.game.end()
 
-        time_passed = sge.game.regulate_speed(10000)
-        gui_handler.event_step(time_passed, 1)
+        gui_handler.event_step(0, 0)
         sge.game.refresh()
+        return False
 
     if current_levelset != fname:
+        current_levelset = fname
+
+        with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
+            data = json.load(f)
+
+        start_cutscene = data.get("start_cutscene")
+        worldmap = data.get("worldmap")
+        levels = data.get("levels", [])
+        tuxdolls_available = data.get("tuxdolls_available", [])
+
+        main_area = None
+
         w = 400
         h = 128
         margin = 16
         x = SCREEN_SIZE[0] / 2 - w / 2
         y = SCREEN_SIZE[1] / 2 - h / 2
         c = sge.Color("black")
-        window = xsge_gui.Window(gui_handler, x, y, w, h, background_color=c,
-                                 border=False)
+        window = xsge_gui.Window(gui_handler, x, y, w, h,
+                                 background_color=c, border=False)
 
         x = margin
         y = margin
-        text = "Loading levelset..."
+        text = "Preloading levels (press Escape to skip)..."
         c = sge.Color("white")
-        xsge_gui.Label(window, x, y, 1, text, font=font,
-                       width=(w - 2 * margin),
-                       height=(h - 3 * margin -
-                               xsge_gui.progressbar_container_sprite.height),
-                       color=c)
+        xsge_gui.Label(
+            window, x, y, 1, text, font=font, width=(w - 2 * margin),
+            height=(h - 3 * margin -
+                    xsge_gui.progressbar_container_sprite.height), color=c)
 
         x = margin
         y = h - margin - xsge_gui.progressbar_container_sprite.height
@@ -5736,16 +5760,6 @@ def load_levelset(fname):
         window.show()
         gui_handler.event_step(0, 0)
         sge.game.refresh()
-
-        current_levelset = fname
-
-        with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
-            data = json.load(f)
-
-        start_cutscene = data.get("start_cutscene")
-        worldmap = data.get("worldmap")
-        levels = data.get("levels", [])
-        tuxdolls_available = []
 
         for level in levels:
             subrooms = [level]
@@ -5758,36 +5772,22 @@ def load_levelset(fname):
                 if r is not None:
                     loaded_levels[subroom] = r
                     for obj in r.objects:
-                        if (isinstance(obj, TuxDoll) or
-                                (isinstance(obj, (ItemBlock,
-                                                  HiddenItemBlock)) and
-                                 obj.item == "tuxdoll")):
-                            tuxdolls_available.append(level)
-                            subrooms = []
-                            break
-                        elif isinstance(obj, (Door, Warp)):
+                        if isinstance(obj, (Door, Warp)):
                             if obj.dest and ':' in obj.dest:
                                 map_f = obj.dest.split(':', 1)[0]
                                 if (map_f not in subrooms and
-                                        map_f not in already_checked):
+                                        map_f not in already_checked and
+                                        map_f not in {"__main__", "__map__"}):
                                     subrooms.append(map_f)
 
             progressbar.progress = (levels.index(level) + 1) / len(levels)
             progressbar.redraw()
-            if abort or do_refresh():
-                abort = True
+            if do_refresh():
                 break
 
         window.destroy()
         do_refresh()
         sge.game.input_events = []
-
-        if abort:
-            current_levelset = None
-            start_cutscene = None
-            worldmap = None
-            levels = []
-            tuxdolls_available = []
 
 
 def set_new_game():
