@@ -457,9 +457,13 @@ class Level(sge.Room):
                 transition_arg=arg)
 
     def win_game(self):
+        global save_slots
+        global current_save_slot
+
         # TODO: Show credits first before leaving the game!
         if current_save_slot is not None:
             save_slots[current_save_slot] = None
+            current_save_slot = None
 
         sge.game.start_room.start()
 
@@ -691,8 +695,8 @@ class Level(sge.Room):
                 else:
                     main_area = None
                     current_level += 1
-                    save_game()
                     if current_level < len(levels):
+                        save_game()
                         level = self.__class__.load(levels[current_level])
                         level.start(transition="fade")
                     else:
