@@ -3019,9 +3019,12 @@ class Icicle(InteractiveObject):
     def check_shake(self):
         players = []
         crash_y = sge.game.current_room.height
-        for obj in sge.game.current_room.get_objects_at(
+        objects = (
+            sge.game.current_room.get_objects_at(
                 self.bbox_left, self.bbox_bottom, self.bbox_width,
-                sge.game.current_room.height - self.bbox_bottom + 1):
+                sge.game.current_room.height - self.bbox_bottom) |
+            sge.game.current_room.object_area_void)
+        for obj in objects:
             if (obj.bbox_top > self.bbox_bottom and
                     self.bbox_right > obj.bbox_left and
                     self.bbox_left < obj.bbox_right):
@@ -3149,9 +3152,12 @@ class Crusher(FallingObject):
             if self.active:
                 players = []
                 crash_y = sge.game.current_room.height
-                for obj in sge.game.current_room.get_objects_at(
+                objects = (
+                    sge.game.current_room.get_objects_at(
                         self.bbox_left, self.bbox_bottom, self.bbox_width,
-                        sge.game.current_room.height - self.bbox_bottom + 1):
+                        sge.game.current_room.height - self.bbox_bottom) |
+                    sge.game.current_room.object_area_void)
+                for obj in objects:
                     if (obj.bbox_top > self.bbox_bottom and
                             self.bbox_right > obj.bbox_left and
                             self.bbox_left < obj.bbox_right):
