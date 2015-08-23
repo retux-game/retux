@@ -2941,12 +2941,12 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 
     def stop_left(self):
         if self.parent is None:
-            self.xvelocity = abs(self.xvelocity)
+            self.xvelocity = abs(self.xvelocity) / 2
             self.set_direction(1)
 
     def stop_right(self):
         if self.parent is None:
-            self.xvelocity = -abs(self.xvelocity)
+            self.xvelocity = -abs(self.xvelocity) / 2
             self.set_direction(-1)
 
     def stop_up(self):
