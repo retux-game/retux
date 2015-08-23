@@ -1,57 +1,47 @@
 {
-    "453": [
+    "439": [
         "setattr player sneak_pressed 1"
     ],
-    "486": [
+    "485": [
         "setattr player right_pressed 1"
     ],
-    "633": [
+    "637": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "655": [
+    "663": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "696": [
+    "697": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "720": [
+    "722": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "763": [
+    "762": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "791": [
+    "793": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "936": [
+    "934": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "994": [
+    "982": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "1089": [
-        "setattr player up_pressed 1"
-    ],
-    "1098": [
+    "1104": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "1102": [
-        "setattr player action_pressed 0"
-    ],
-    "1107": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "1110": [
+    "1109": [
         "setattr player action_pressed 0"
     ],
     "1113": [
@@ -72,245 +62,207 @@
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "1124": [
-        "setattr player up_pressed 0"
-    ],
     "1126": [
         "setattr player action_pressed 0"
     ],
-    "1132": [
+    "1127": [
+        "setattr player up_pressed 1"
+    ],
+    "1128": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "1136": [
+    "1132": [
         "setattr player action_pressed 0"
     ],
-    "1138": [
+    "1133": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "1137": [
+        "setattr player action_pressed 0"
+    ],
+    "1140": [
         "call player action",
         "setattr player action_pressed 1"
     ],
     "1141": [
         "setattr player action_pressed 0"
     ],
-    "1144": [
+    "1143": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "1146": [
+    "1147": [
         "setattr player action_pressed 0"
     ],
-    "1148": [
+    "1149": [
+        "setattr player up_pressed 0"
+    ],
+    "1150": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "1151": [
+    "1155": [
         "setattr player action_pressed 0"
     ],
-    "1154": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "1158": [
-        "setattr player action_pressed 0"
-    ],
-    "1161": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "1165": [
-        "setattr player action_pressed 0"
-    ],
-    "1181": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "1185": [
-        "setattr player action_pressed 0"
-    ],
-    "1187": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "1189": [
-        "setattr player action_pressed 0"
-    ],
-    "1765": [
+    "1666": [
         "setattr player sneak_pressed 0"
     ],
-    "1766": [
+    "1669": [
         "setattr player right_pressed 0"
     ],
-    "1984": [
+    "1672": [
         "setattr player sneak_pressed 1"
     ],
-    "1997": [
+    "1678": [
+        "setattr player sneak_pressed 0"
+    ],
+    "1948": [
+        "setattr player sneak_pressed 1"
+    ],
+    "1973": [
         "setattr player right_pressed 1"
     ],
-    "2124": [
+    "2097": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "2144": [
+    "2118": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "2162": [
+    "2344": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "2367": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "2391": [
         "setattr player right_pressed 0"
     ],
-    "2163": [
+    "2416": [
         "setattr player left_pressed 1"
     ],
-    "2173": [
+    "2428": [
         "setattr player left_pressed 0"
     ],
-    "2175": [
+    "2452": [
         "setattr player right_pressed 1"
     ],
-    "2376": [
+    "2541": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "2406": [
+    "2556": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "2435": [
-        "setattr player left_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "2458": [
-        "setattr player left_pressed 0"
-    ],
-    "2464": [
-        "setattr player right_pressed 1"
-    ],
-    "2568": [
+    "2654": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "2587": [
+    "2706": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "2678": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "2709": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "2757": [
+    "2729": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "2761": [
+    "2733": [
         "setattr player action_pressed 0"
     ],
-    "3074": [
+    "3046": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3128": [
+    "3063": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3162": [
+    "3136": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3237": [
+    "3209": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3256": [
+    "3230": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3336": [
+    "3299": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3490": [
+    "3462": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3515": [
+    "3482": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3564": [
+    "3540": [
         "setattr player right_pressed 0"
     ],
-    "3568": [
+    "3554": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3580": [
-        "setattr player left_pressed 1"
-    ],
-    "3591": [
+    "3577": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3592": [
-        "setattr player left_pressed 0"
-    ],
-    "3603": [
-        "setattr player left_pressed 1"
-    ],
-    "3608": [
+    "3590": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3609": [
-        "setattr player left_pressed 0"
-    ],
-    "3623": [
-        "setattr player right_pressed 1"
-    ],
-    "3629": [
+    "3613": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3641": [
-        "setattr player right_pressed 0"
-    ],
-    "3645": [
+    "3627": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3656": [
-        "setattr player left_pressed 1"
-    ],
-    "3663": [
-        "setattr player left_pressed 0"
+    "3651": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
     ],
     "3664": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "3685": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3704": [
+    "3684": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3726": [
+    "3699": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3744": [
+    "3723": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3764": [
+    "3734": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3784": [
+    "3755": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "3769": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "3789": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
@@ -318,1400 +270,1202 @@
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3828": [
+    "3826": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3844": [
+    "3840": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3866": [
+    "3861": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3885": [
+    "3879": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "3908": [
+    "3905": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "3921": [
+    "3951": [
         "setattr player right_pressed 1"
     ],
-    "4069": [
+    "4116": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "4110": [
+    "4164": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "4140": [
+    "4176": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "4145": [
+    "4191": [
         "setattr player right_pressed 0"
     ],
-    "4158": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "4163": [
+    "4200": [
         "setattr player left_pressed 1"
     ],
-    "4170": [
-        "setattr player left_pressed 0"
-    ],
-    "4228": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "4232": [
-        "setattr player right_pressed 1"
-    ],
-    "4242": [
+    "4201": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "4248": [
-        "setattr player right_pressed 0"
-    ],
-    "4258": [
-        "setattr player left_pressed 1"
-    ],
-    "4281": [
+    "4214": [
         "setattr player left_pressed 0"
     ],
-    "4284": [
+    "4222": [
+        "setattr player left_pressed 1"
+    ],
+    "4231": [
+        "setattr player left_pressed 0"
+    ],
+    "4249": [
+        "setattr player left_pressed 1"
+    ],
+    "4254": [
+        "setattr player left_pressed 0"
+    ],
+    "4262": [
         "setattr player right_pressed 1"
     ],
-    "4303": [
+    "4268": [
         "setattr player right_pressed 0"
     ],
-    "4316": [
+    "4271": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "4289": [
+        "setattr player right_pressed 1"
+    ],
+    "4297": [
+        "setattr player right_pressed 0"
+    ],
+    "4301": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "4332": [
+        "setattr player left_pressed 1"
+    ],
+    "4340": [
+        "setattr player left_pressed 0"
+    ],
+    "4345": [
+        "setattr player right_pressed 1"
+    ],
+    "4351": [
+        "setattr player right_pressed 0"
+    ],
+    "4384": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "4324": [
+    "4390": [
         "setattr player action_pressed 0"
     ],
-    "4355": [
+    "4416": [
         "setattr player right_pressed 1"
     ],
-    "4592": [
-        "setattr player right_pressed 0"
-    ],
-    "4594": [
+    "4652": [
         "setattr player sneak_pressed 0"
     ],
-    "4749": [
+    "4654": [
+        "setattr player right_pressed 0"
+    ],
+    "4900": [
         "setattr player sneak_pressed 1"
     ],
-    "4760": [
+    "4913": [
         "setattr player right_pressed 1"
     ],
-    "4985": [
+    "5137": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5022": [
-        "setattr player right_pressed 0",
+    "5217": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "5229": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "5232": [
+        "setattr player right_pressed 0"
+    ],
+    "5234": [
         "setattr player left_pressed 1"
     ],
-    "5029": [
-        "setattr player right_pressed 1"
-    ],
-    "5030": [
+    "5245": [
         "setattr player left_pressed 0"
     ],
-    "5050": [
+    "5253": [
+        "setattr player right_pressed 1"
+    ],
+    "5271": [
+        "setattr player right_pressed 0"
+    ],
+    "5273": [
         "setattr player left_pressed 1"
     ],
-    "5051": [
-        "setattr player right_pressed 0"
-    ],
-    "5088": [
-        "setattr player right_pressed 1",
+    "5282": [
         "setattr player left_pressed 0"
     ],
-    "5090": [
+    "5291": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5096": [
-        "setattr player right_pressed 0"
-    ],
-    "5133": [
-        "setattr player right_pressed 1"
-    ],
-    "5134": [
+    "5304": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5142": [
-        "setattr player right_pressed 0"
-    ],
-    "5151": [
+    "5305": [
         "setattr player right_pressed 1"
     ],
-    "5153": [
-        "setattr player right_pressed 0"
-    ],
-    "5155": [
-        "setattr player right_pressed 1"
-    ],
-    "5161": [
-        "setattr player right_pressed 0"
-    ],
-    "5164": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "5169": [
-        "setattr player right_pressed 1"
-    ],
-    "5174": [
-        "setattr player right_pressed 0"
-    ],
-    "5181": [
+    "5336": [
         "setattr player left_pressed 1"
     ],
-    "5187": [
+    "5337": [
+        "setattr player right_pressed 0"
+    ],
+    "5345": [
         "setattr player left_pressed 0"
     ],
-    "5227": [
-        "setattr player left_pressed 1"
-    ],
-    "5236": [
-        "setattr player left_pressed 0"
-    ],
-    "5254": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "5266": [
+    "5346": [
         "setattr player right_pressed 1"
     ],
-    "5280": [
+    "5358": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5444": [
+    "5380": [
+        "setattr player right_pressed 0"
+    ],
+    "5385": [
+        "setattr player right_pressed 1"
+    ],
+    "5387": [
+        "setattr player right_pressed 0"
+    ],
+    "5417": [
+        "setattr player right_pressed 1"
+    ],
+    "5437": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5491": [
+    "5490": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5514": [
+    "5512": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5536": [
+    "5556": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5581": [
+    "5585": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5598": [
+    "5629": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5655": [
+    "5657": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5682": [
+    "5704": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5736": [
+    "5738": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5795": [
+    "5790": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "5891": [
+    "5893": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "5912": [
+    "5930": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6038": [
+    "6036": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "6099": [
+    "6104": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6298": [
+    "6300": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "6367": [
+    "6417": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6469": [
+    "6453": [
         "call player jump",
         "setattr player jump_pressed 1"
-    ],
-    "6486": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
     ],
     "6500": [
-        "setattr player left_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "6505": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "6509": [
-        "setattr player left_pressed 0"
-    ],
-    "6514": [
-        "setattr player right_pressed 1"
-    ],
-    "6527": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6529": [
-        "setattr player right_pressed 0"
-    ],
-    "6531": [
-        "setattr player left_pressed 1"
+    "6515": [
+        "call player jump",
+        "setattr player jump_pressed 1"
     ],
     "6537": [
-        "setattr player left_pressed 0"
-    ],
-    "6548": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "6566": [
-        "setattr player right_pressed 1"
-    ],
-    "6572": [
+        "setattr player right_pressed 0",
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6588": [
+    "6540": [
+        "setattr player right_pressed 1"
+    ],
+    "6552": [
         "setattr player right_pressed 0"
     ],
-    "6590": [
+    "6553": [
         "setattr player left_pressed 1"
     ],
-    "6593": [
+    "6574": [
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 1",
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "6604": [
-        "setattr player left_pressed 0"
-    ],
-    "6605": [
-        "setattr player right_pressed 1"
-    ],
-    "6627": [
+    "6577": [
         "setattr player right_pressed 0"
     ],
-    "6628": [
+    "6584": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "6595": [
+        "setattr player right_pressed 1"
+    ],
+    "6597": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "6606": [
+        "setattr player right_pressed 0"
+    ],
+    "6611": [
+        "setattr player right_pressed 1"
+    ],
+    "6617": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "6618": [
+        "setattr player right_pressed 0"
+    ],
+    "6625": [
         "setattr player left_pressed 1"
     ],
     "6629": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "6656": [
         "setattr player left_pressed 0"
     ],
-    "6664": [
+    "6642": [
         "setattr player right_pressed 1"
     ],
-    "6674": [
+    "6659": [
         "setattr player right_pressed 0"
     ],
-    "6683": [
+    "6661": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "6685": [
+    "6669": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "6682": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "6690": [
         "setattr player right_pressed 1"
+    ],
+    "6694": [
+        "setattr player right_pressed 0"
     ],
     "6704": [
+        "setattr player right_pressed 1"
+    ],
+    "6708": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6707": [
+    "6712": [
         "setattr player right_pressed 0"
     ],
-    "6710": [
+    "6728": [
         "setattr player left_pressed 1"
     ],
-    "6717": [
+    "6737": [
+        "setattr player left_pressed 0"
+    ],
+    "6741": [
+        "setattr player right_pressed 1"
+    ],
+    "6941": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "6734": [
-        "setattr player right_pressed 1"
-    ],
-    "6735": [
-        "setattr player left_pressed 0"
-    ],
-    "6751": [
+    "7071": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "6767": [
-        "setattr player left_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "6777": [
-        "setattr player left_pressed 0"
-    ],
-    "6784": [
-        "setattr player right_pressed 1"
-    ],
-    "7082": [
+    "7077": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "7217": [
+    "7140": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "7220": [
-        "setattr player right_pressed 0"
-    ],
-    "7221": [
-        "setattr player left_pressed 1"
-    ],
-    "7232": [
-        "setattr player left_pressed 0"
-    ],
-    "7244": [
-        "setattr player right_pressed 1"
-    ],
-    "7300": [
+    "7170": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "7314": [
+    "7247": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "7451": [
+    "7290": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "7501": [
+    "7348": [
         "setattr player right_pressed 0"
     ],
-    "7502": [
+    "7353": [
         "setattr player left_pressed 1"
     ],
-    "7510": [
-        "setattr player left_pressed 0"
-    ],
-    "7517": [
-        "setattr player left_pressed 1"
-    ],
-    "7520": [
-        "setattr player left_pressed 0"
-    ],
-    "7527": [
-        "setattr player right_pressed 1"
-    ],
-    "7572": [
-        "setattr player right_pressed 0"
-    ],
-    "7573": [
-        "setattr player left_pressed 1"
-    ],
-    "7581": [
-        "setattr player left_pressed 0"
-    ],
-    "7615": [
-        "setattr player right_pressed 1"
-    ],
-    "7650": [
-        "setattr player right_pressed 0"
-    ],
-    "7668": [
-        "setattr player left_pressed 1"
-    ],
-    "7675": [
-        "setattr player left_pressed 0"
-    ],
-    "7682": [
-        "setattr player right_pressed 1"
-    ],
-    "7701": [
-        "setattr player right_pressed 0"
-    ],
-    "7723": [
-        "setattr player right_pressed 1"
-    ],
-    "7731": [
-        "setattr player right_pressed 0"
-    ],
-    "7745": [
-        "setattr player left_pressed 1"
-    ],
-    "7755": [
-        "setattr player left_pressed 0"
-    ],
-    "7774": [
-        "setattr player right_pressed 1"
-    ],
-    "7808": [
-        "setattr player right_pressed 0"
-    ],
-    "7824": [
-        "setattr player left_pressed 1"
-    ],
-    "7828": [
-        "setattr player left_pressed 0"
-    ],
-    "7837": [
-        "setattr player right_pressed 1"
-    ],
-    "7863": [
-        "setattr player right_pressed 0"
-    ],
-    "7889": [
-        "setattr player left_pressed 1"
-    ],
-    "7892": [
-        "setattr player left_pressed 0"
-    ],
-    "7913": [
-        "setattr player left_pressed 1"
-    ],
-    "7916": [
+    "7366": [
         "setattr player left_pressed 0",
         "setattr player right_pressed 1"
     ],
-    "7955": [
+    "7401": [
         "setattr player right_pressed 0"
     ],
-    "7958": [
+    "7404": [
         "setattr player left_pressed 1"
     ],
-    "7964": [
+    "7412": [
         "setattr player left_pressed 0"
     ],
-    "7993": [
+    "7434": [
         "setattr player right_pressed 1"
     ],
-    "8085": [
+    "7477": [
+        "setattr player right_pressed 0"
+    ],
+    "7478": [
+        "setattr player left_pressed 1"
+    ],
+    "7490": [
+        "setattr player left_pressed 0"
+    ],
+    "7512": [
+        "setattr player right_pressed 1"
+    ],
+    "7557": [
+        "setattr player right_pressed 0"
+    ],
+    "7559": [
+        "setattr player left_pressed 1"
+    ],
+    "7570": [
+        "setattr player left_pressed 0"
+    ],
+    "7597": [
+        "setattr player right_pressed 1"
+    ],
+    "7648": [
+        "setattr player left_pressed 1"
+    ],
+    "7649": [
+        "setattr player right_pressed 0"
+    ],
+    "7658": [
+        "setattr player left_pressed 0"
+    ],
+    "7670": [
+        "setattr player right_pressed 1"
+    ],
+    "7710": [
+        "setattr player right_pressed 0"
+    ],
+    "7715": [
+        "setattr player left_pressed 1"
+    ],
+    "7719": [
+        "setattr player left_pressed 0"
+    ],
+    "7737": [
+        "setattr player left_pressed 1"
+    ],
+    "7747": [
+        "setattr player left_pressed 0"
+    ],
+    "7748": [
+        "setattr player right_pressed 1"
+    ],
+    "7791": [
+        "setattr player right_pressed 0"
+    ],
+    "7797": [
+        "setattr player left_pressed 1"
+    ],
+    "7807": [
+        "setattr player left_pressed 0"
+    ],
+    "7827": [
+        "setattr player right_pressed 1"
+    ],
+    "7932": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "8124": [
+    "7957": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "8150": [
+    "7994": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "8237": [
-        "setattr player right_pressed 0",
-        "setattr player left_pressed 1"
+    "8074": [
+        "setattr player left_pressed 1",
+        "setattr player right_pressed 0"
     ],
-    "8265": [
+    "8105": [
         "setattr player left_pressed 0"
+    ],
+    "8110": [
+        "setattr player right_pressed 1"
+    ],
+    "8121": [
+        "setattr player right_pressed 0"
+    ],
+    "8159": [
+        "setattr player right_pressed 1"
     ],
     "8278": [
-        "setattr player right_pressed 1"
+        "call player jump",
+        "setattr player jump_pressed 1"
     ],
-    "8285": [
+    "8301": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "8315": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "8339": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "8379": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "8425": [
         "setattr player right_pressed 0"
     ],
-    "8322": [
-        "setattr player right_pressed 1"
-    ],
-    "8435": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "8456": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "8472": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "8491": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "8537": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "8570": [
-        "setattr player right_pressed 0"
-    ],
-    "8574": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "8575": [
+    "8430": [
         "setattr player left_pressed 1"
     ],
-    "8580": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "8581": [
+    "8440": [
         "setattr player left_pressed 0"
     ],
-    "8593": [
+    "8441": [
         "setattr player right_pressed 1"
     ],
-    "8605": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "8608": [
+    "8450": [
         "setattr player right_pressed 0"
     ],
-    "8613": [
+    "8457": [
+        "call player jump_release",
+        "setattr player jump_pressed 0",
         "setattr player left_pressed 1"
     ],
-    "8632": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "8633": [
+    "8465": [
         "setattr player left_pressed 0"
     ],
-    "8637": [
-        "setattr player right_pressed 1"
+    "8478": [
+        "setattr player left_pressed 1"
     ],
-    "8691": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "8803": [
+    "8488": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "8808": [
-        "setattr player right_pressed 0"
-    ],
-    "8811": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "8818": [
-        "setattr player left_pressed 1"
-    ],
-    "8842": [
+    "8489": [
         "setattr player left_pressed 0"
     ],
-    "8871": [
+    "8492": [
         "setattr player right_pressed 1"
     ],
-    "8883": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "8908": [
+    "8559": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "8925": [
+    "8657": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "8669": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "8675": [
         "setattr player right_pressed 0"
     ],
-    "8927": [
+    "8677": [
         "setattr player left_pressed 1"
     ],
-    "8938": [
-        "setattr player right_pressed 1",
+    "8679": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "8689": [
+        "setattr player left_pressed 0"
+    ],
+    "8693": [
+        "setattr player right_pressed 1"
+    ],
+    "8699": [
+        "setattr player right_pressed 0"
+    ],
+    "8707": [
+        "setattr player right_pressed 1"
+    ],
+    "8710": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "8715": [
+        "setattr player right_pressed 0"
+    ],
+    "8725": [
+        "setattr player left_pressed 1"
+    ],
+    "8730": [
+        "setattr player left_pressed 0"
+    ],
+    "8733": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "8736": [
+        "setattr player right_pressed 1"
+    ],
+    "8740": [
+        "setattr player right_pressed 0"
+    ],
+    "8745": [
+        "setattr player right_pressed 1"
+    ],
+    "8755": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "8764": [
+        "setattr player right_pressed 0"
+    ],
+    "8772": [
+        "setattr player left_pressed 1"
+    ],
+    "8779": [
+        "setattr player left_pressed 0"
+    ],
+    "8783": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "8793": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "8800": [
+        "setattr player left_pressed 1"
+    ],
+    "8805": [
+        "setattr player left_pressed 0"
+    ],
+    "8817": [
+        "setattr player right_pressed 1"
+    ],
+    "8974": [
+        "setattr player down_pressed 1"
+    ],
+    "8986": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "8993": [
+        "setattr player action_pressed 0"
+    ],
+    "9006": [
+        "setattr player left_pressed 1",
+        "setattr player right_pressed 0"
+    ],
+    "9007": [
+        "setattr player down_pressed 0"
+    ],
+    "9087": [
+        "setattr player right_pressed 1"
+    ],
+    "9089": [
         "setattr player left_pressed 0"
     ],
     "9092": [
         "setattr player right_pressed 0"
     ],
-    "9096": [
-        "setattr player down_pressed 1"
-    ],
-    "9111": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "9117": [
-        "setattr player action_pressed 0"
-    ],
-    "9124": [
+    "9235": [
         "setattr player left_pressed 1"
-    ],
-    "9125": [
-        "setattr player down_pressed 0"
     ],
     "9244": [
-        "setattr player right_pressed 1"
-    ],
-    "9245": [
         "setattr player left_pressed 0"
     ],
-    "9256": [
-        "setattr player right_pressed 0"
+    "9254": [
+        "setattr player left_pressed 1"
     ],
-    "9260": [
-        "call player action",
-        "setattr player action_pressed 1"
+    "9265": [
+        "setattr player left_pressed 0"
     ],
-    "9263": [
-        "setattr player action_pressed 0"
-    ],
-    "9267": [
+    "9294": [
         "setattr player right_pressed 1"
     ],
-    "9269": [
-        "setattr player right_pressed 0"
-    ],
-    "9281": [
-        "setattr player right_pressed 1"
-    ],
-    "9291": [
-        "setattr player right_pressed 0"
-    ],
-    "9297": [
-        "setattr player right_pressed 1"
-    ],
-    "9299": [
-        "setattr player right_pressed 0"
-    ],
-    "9315": [
-        "setattr player right_pressed 1"
-    ],
-    "9326": [
-        "setattr player right_pressed 0"
-    ],
-    "9339": [
-        "setattr player right_pressed 1"
-    ],
-    "9408": [
-        "setattr player right_pressed 0"
-    ],
-    "9416": [
-        "setattr player right_pressed 1"
-    ],
-    "9533": [
+    "9295": [
         "call player jump",
         "setattr player jump_pressed 1"
+    ],
+    "9343": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "9392": [
+        "setattr player right_pressed 0",
+        "setattr player left_pressed 1"
+    ],
+    "9412": [
+        "setattr player left_pressed 0"
+    ],
+    "9435": [
+        "setattr player right_pressed 1"
+    ],
+    "9442": [
+        "setattr player right_pressed 0"
+    ],
+    "9450": [
+        "setattr player right_pressed 1"
     ],
     "9552": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "9605": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "9622": [
+    "9570": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "9668": [
+    "9626": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "9680": [
+    "9645": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "9934": [
+    "9705": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "9944": [
+    "9714": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "9809": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "9844": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "9862": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "9886": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "9891": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "9900": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "9903": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "9945": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "10016": [
         "setattr player right_pressed 0"
     ],
-    "9950": [
+    "10017": [
         "setattr player left_pressed 1"
     ],
-    "9951": [
+    "10022": [
         "setattr player left_pressed 0"
     ],
-    "9953": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "9963": [
-        "setattr player right_pressed 1"
-    ],
-    "9968": [
+    "10023": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "9975": [
+    "10026": [
+        "setattr player right_pressed 1"
+    ],
+    "10033": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "10207": [
         "setattr player right_pressed 0"
     ],
-    "9981": [
-        "setattr player right_pressed 1"
-    ],
-    "10011": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "10030": [
+    "10223": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "10057": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
+    "10235": [
+        "setattr player right_pressed 1"
     ],
-    "10142": [
+    "10236": [
+        "setattr player right_pressed 0"
+    ],
+    "10239": [
+        "setattr player right_pressed 1"
+    ],
+    "10246": [
+        "setattr player right_pressed 0"
+    ],
+    "10259": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "10152": [
-        "setattr player action_pressed 0"
-    ],
-    "10155": [
-        "setattr player right_pressed 0"
-    ],
-    "10157": [
+    "10277": [
         "setattr player left_pressed 1"
     ],
-    "10193": [
+    "10278": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "10279": [
+        "setattr player action_pressed 0"
+    ],
+    "10376": [
         "setattr player left_pressed 0",
         "setattr player right_pressed 1"
     ],
-    "10211": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "10213": [
+    "10467": [
         "setattr player right_pressed 0"
     ],
-    "10217": [
-        "setattr player action_pressed 0"
-    ],
-    "10219": [
-        "setattr player left_pressed 1"
-    ],
-    "10226": [
-        "setattr player left_pressed 0"
-    ],
-    "10231": [
-        "setattr player left_pressed 1"
-    ],
-    "10263": [
-        "setattr player left_pressed 0"
-    ],
-    "10264": [
-        "setattr player right_pressed 1"
-    ],
-    "10292": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "10296": [
-        "setattr player right_pressed 0"
-    ],
-    "10297": [
-        "setattr player action_pressed 0"
-    ],
-    "10301": [
-        "setattr player left_pressed 1"
-    ],
-    "10348": [
-        "setattr player left_pressed 0",
-        "setattr player right_pressed 1"
-    ],
-    "10358": [
+    "10480": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "10364": [
+    "10487": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "10369": [
+    "10489": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "10373": [
-        "setattr player right_pressed 0"
-    ],
-    "10374": [
+    "10492": [
         "setattr player action_pressed 0"
     ],
-    "10375": [
+    "10517": [
         "setattr player left_pressed 1"
     ],
-    "10388": [
+    "10521": [
         "setattr player left_pressed 0"
     ],
-    "10392": [
+    "10523": [
         "setattr player left_pressed 1"
     ],
-    "10439": [
-        "setattr player left_pressed 0"
-    ],
-    "10453": [
-        "setattr player left_pressed 1"
-    ],
-    "10458": [
-        "setattr player left_pressed 0"
-    ],
-    "10459": [
-        "setattr player right_pressed 1"
-    ],
-    "10479": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "10485": [
-        "call player action",
-        "setattr player action_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "10490": [
-        "call player jump_release",
-        "setattr player jump_pressed 0",
-        "setattr player action_pressed 0"
-    ],
-    "10493": [
-        "setattr player left_pressed 1"
-    ],
-    "10514": [
-        "setattr player left_pressed 0"
-    ],
-    "10516": [
-        "setattr player right_pressed 1"
-    ],
-    "10539": [
-        "setattr player right_pressed 0"
-    ],
-    "10542": [
-        "setattr player left_pressed 1"
-    ],
-    "10572": [
+    "10527": [
         "setattr player left_pressed 0",
-        "setattr player right_pressed 1"
+        "setattr player left_pressed 1"
     ],
-    "10624": [
+    "10609": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "10627": [
-        "setattr player right_pressed 0"
-    ],
-    "10628": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "10631": [
+    "10615": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "10632": [
+    "10616": [
+        "setattr player left_pressed 0"
+    ],
+    "10626": [
+        "setattr player right_pressed 1"
+    ],
+    "10678": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "10695": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "10697": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "10700": [
+        "setattr player right_pressed 0"
+    ],
+    "10702": [
+        "setattr player action_pressed 0"
+    ],
+    "10707": [
+        "setattr player left_pressed 1"
+    ],
+    "10722": [
+        "setattr player left_pressed 0"
+    ],
+    "10728": [
+        "setattr player left_pressed 1"
+    ],
+    "10794": [
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 1"
+    ],
+    "10828": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "10832": [
+        "setattr player right_pressed 0"
+    ],
+    "10844": [
+        "setattr player right_pressed 1"
+    ],
+    "10856": [
+        "setattr player right_pressed 0"
+    ],
+    "10857": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "10859": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "10863": [
+        "setattr player action_pressed 0",
+        "setattr player left_pressed 1"
+    ],
+    "10874": [
+        "setattr player left_pressed 0"
+    ],
+    "10907": [
+        "setattr player left_pressed 1"
+    ],
+    "10962": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "10973": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "10990": [
+        "setattr player left_pressed 0"
+    ],
+    "10991": [
+        "setattr player right_pressed 1"
+    ],
+    "11067": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "11071": [
+        "setattr player right_pressed 0"
+    ],
+    "11073": [
+        "setattr player action_pressed 0"
+    ],
+    "11096": [
+        "setattr player left_pressed 1"
+    ],
+    "11156": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "11161": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "11164": [
+        "setattr player left_pressed 0"
+    ],
+    "11165": [
+        "setattr player right_pressed 1"
+    ],
+    "11240": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "11248": [
+        "setattr player right_pressed 0"
+    ],
+    "11251": [
+        "setattr player action_pressed 0"
+    ],
+    "11264": [
+        "setattr player left_pressed 1"
+    ],
+    "11279": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "11281": [
+        "setattr player action_pressed 0"
+    ],
+    "11290": [
+        "setattr player left_pressed 0"
+    ],
+    "11297": [
+        "setattr player left_pressed 1"
+    ],
+    "11309": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "11315": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "11333": [
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 1"
+    ],
+    "11349": [
+        "setattr player right_pressed 0"
+    ],
+    "11353": [
+        "setattr player left_pressed 1"
+    ],
+    "11360": [
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 1"
+    ],
+    "11474": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "11516": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "11553": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "11565": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "11573": [
         "setattr player left_pressed 1",
-        "setattr player action_pressed 0"
+        "setattr player right_pressed 0"
     ],
-    "10666": [
+    "11589": [
         "setattr player left_pressed 0"
     ],
-    "10671": [
-        "setattr player left_pressed 1"
-    ],
-    "10683": [
-        "setattr player left_pressed 0"
-    ],
-    "10684": [
+    "11590": [
         "setattr player right_pressed 1"
     ],
-    "10798": [
+    "11603": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "10816": [
+    "11609": [
+        "setattr player right_pressed 0"
+    ],
+    "11615": [
         "call player action",
         "setattr player action_pressed 1"
     ],
-    "10820": [
-        "setattr player right_pressed 0"
-    ],
-    "10822": [
+    "11629": [
+        "setattr player left_pressed 1",
         "setattr player action_pressed 0",
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "10824": [
+    "11633": [
+        "setattr player left_pressed 0"
+    ],
+    "11643": [
         "setattr player left_pressed 1"
     ],
-    "10847": [
-        "setattr player left_pressed 0",
-        "setattr player right_pressed 1"
+    "11650": [
+        "setattr player left_pressed 0"
     ],
-    "10876": [
-        "setattr player right_pressed 0"
+    "11676": [
+        "setattr player left_pressed 1"
     ],
-    "10889": [
+    "11680": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "10896": [
-        "setattr player right_pressed 1"
-    ],
-    "10906": [
-        "setattr player right_pressed 0"
-    ],
-    "10907": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "10910": [
+    "11722": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "10913": [
-        "setattr player left_pressed 1"
-    ],
-    "10914": [
-        "setattr player action_pressed 0"
-    ],
-    "10924": [
-        "setattr player left_pressed 0"
-    ],
-    "10933": [
-        "setattr player left_pressed 1"
-    ],
-    "10938": [
-        "setattr player left_pressed 0"
-    ],
-    "10942": [
-        "setattr player left_pressed 1"
-    ],
-    "10946": [
-        "setattr player left_pressed 0"
-    ],
-    "10955": [
-        "setattr player left_pressed 1"
-    ],
-    "11035": [
-        "setattr player left_pressed 0",
-        "setattr player right_pressed 1"
-    ],
-    "11077": [
-        "setattr player right_pressed 0"
-    ],
-    "11084": [
+    "11765": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "11085": [
-        "setattr player right_pressed 1"
-    ],
-    "11092": [
-        "call player action",
-        "setattr player action_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "11106": [
+    "11786": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "11107": [
-        "setattr player action_pressed 0"
-    ],
-    "11111": [
-        "setattr player left_pressed 1"
-    ],
-    "11182": [
+    "11890": [
         "call player jump",
         "setattr player jump_pressed 1"
-    ],
-    "11187": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "11189": [
-        "setattr player left_pressed 0"
-    ],
-    "11192": [
-        "setattr player right_pressed 1"
-    ],
-    "11248": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "11253": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "11254": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11257": [
-        "setattr player right_pressed 0",
-        "setattr player action_pressed 0"
-    ],
-    "11260": [
-        "setattr player left_pressed 1"
-    ],
-    "11281": [
-        "setattr player left_pressed 0"
-    ],
-    "11288": [
-        "setattr player left_pressed 1"
-    ],
-    "11290": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11293": [
-        "setattr player action_pressed 0"
-    ],
-    "11336": [
-        "setattr player left_pressed 0",
-        "setattr player right_pressed 1"
-    ],
-    "11340": [
-        "setattr player right_pressed 0"
-    ],
-    "11344": [
-        "setattr player right_pressed 1"
-    ],
-    "11360": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11361": [
-        "setattr player right_pressed 0"
-    ],
-    "11365": [
-        "setattr player action_pressed 0"
-    ],
-    "11375": [
-        "setattr player left_pressed 1"
-    ],
-    "11392": [
-        "setattr player left_pressed 0"
-    ],
-    "11395": [
-        "setattr player left_pressed 1"
-    ],
-    "11414": [
-        "setattr player right_pressed 1"
-    ],
-    "11415": [
-        "setattr player left_pressed 0"
-    ],
-    "11500": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "11527": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11532": [
-        "setattr player right_pressed 0"
-    ],
-    "11533": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "11534": [
-        "setattr player left_pressed 1"
-    ],
-    "11537": [
-        "setattr player action_pressed 0"
-    ],
-    "11682": [
-        "setattr player left_pressed 0"
-    ],
-    "11683": [
-        "setattr player right_pressed 1"
-    ],
-    "11704": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11705": [
-        "setattr player right_pressed 0"
-    ],
-    "11713": [
-        "setattr player action_pressed 0"
-    ],
-    "11721": [
-        "setattr player left_pressed 1"
-    ],
-    "11733": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11736": [
-        "setattr player action_pressed 0"
-    ],
-    "11758": [
-        "setattr player left_pressed 0",
-        "setattr player right_pressed 1"
-    ],
-    "11795": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11801": [
-        "setattr player action_pressed 0"
-    ],
-    "11803": [
-        "setattr player right_pressed 0"
-    ],
-    "11807": [
-        "setattr player left_pressed 1"
-    ],
-    "11865": [
-        "setattr player right_pressed 1",
-        "setattr player left_pressed 0"
-    ],
-    "11893": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "11897": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
     ],
     "11898": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "11901": [
-        "setattr player action_pressed 0"
-    ],
-    "12028": [
-        "setattr player right_pressed 0"
-    ],
-    "12038": [
-        "setattr player right_pressed 1"
-    ],
-    "12040": [
-        "setattr player right_pressed 0"
-    ],
-    "12047": [
-        "setattr player right_pressed 1"
-    ],
-    "12050": [
-        "setattr player right_pressed 0"
-    ],
-    "12057": [
-        "setattr player right_pressed 1"
-    ],
-    "12060": [
-        "setattr player right_pressed 0",
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "12064": [
-        "setattr player right_pressed 1"
-    ],
-    "12068": [
-        "setattr player right_pressed 0"
-    ],
-    "12074": [
-        "setattr player right_pressed 1"
-    ],
-    "12078": [
-        "setattr player right_pressed 0"
-    ],
-    "12083": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "12092": [
-        "setattr player left_pressed 1"
-    ],
-    "12103": [
+    "11926": [
         "setattr player left_pressed 0"
     ],
-    "12105": [
+    "11927": [
         "setattr player right_pressed 1"
     ],
-    "12111": [
+    "12069": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "12079": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "12121": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "12129": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "12148": [
+        "call player action",
+        "setattr player action_pressed 1"
+    ],
+    "12151": [
         "setattr player right_pressed 0"
     ],
-    "12117": [
-        "setattr player right_pressed 1"
+    "12153": [
+        "setattr player action_pressed 0"
     ],
-    "12122": [
-        "setattr player right_pressed 0"
-    ],
-    "12130": [
-        "setattr player right_pressed 1"
-    ],
-    "12134": [
-        "setattr player right_pressed 0"
-    ],
-    "12145": [
-        "setattr player right_pressed 1"
-    ],
-    "12149": [
-        "setattr player right_pressed 0"
-    ],
-    "12159": [
+    "12163": [
         "setattr player right_pressed 1"
     ],
     "12164": [
-        "setattr player right_pressed 0"
+        "call player jump",
+        "setattr player jump_pressed 1"
     ],
     "12170": [
-        "setattr player down_pressed 1"
-    ],
-    "12177": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "12181": [
-        "setattr player action_pressed 0"
-    ],
-    "12192": [
-        "setattr player down_pressed 0"
-    ],
-    "12194": [
-        "setattr player down_pressed 1"
-    ],
-    "12198": [
-        "setattr player down_pressed 0"
-    ],
-    "12203": [
-        "setattr player left_pressed 1"
-    ],
-    "12211": [
-        "setattr player left_pressed 0"
-    ],
-    "12215": [
-        "setattr player left_pressed 1"
-    ],
-    "12216": [
-        "setattr player left_pressed 0"
-    ],
-    "12224": [
-        "setattr player left_pressed 1"
-    ],
-    "12229": [
-        "setattr player left_pressed 0"
-    ],
-    "12230": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "12231": [
-        "setattr player right_pressed 1"
-    ],
-    "12236": [
-        "setattr player right_pressed 0"
-    ],
-    "12237": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "12265": [
-        "setattr player right_pressed 1"
+    "12223": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "12245": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "12264": [
+        "setattr player left_pressed 1",
+        "setattr player right_pressed 0"
     ],
     "12275": [
-        "setattr player right_pressed 0"
-    ],
-    "12281": [
-        "setattr player right_pressed 1"
-    ],
-    "12287": [
-        "setattr player right_pressed 0"
-    ],
-    "12298": [
-        "setattr player right_pressed 1"
-    ],
-    "12303": [
-        "setattr player right_pressed 0"
-    ],
-    "12314": [
-        "setattr player right_pressed 1"
-    ],
-    "12317": [
-        "setattr player right_pressed 0"
-    ],
-    "12326": [
-        "setattr player right_pressed 1"
-    ],
-    "12328": [
-        "setattr player right_pressed 0"
-    ],
-    "12332": [
-        "setattr player down_pressed 1"
-    ],
-    "12337": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "12342": [
-        "setattr player action_pressed 0"
-    ],
-    "12352": [
-        "setattr player down_pressed 0"
-    ],
-    "12360": [
-        "setattr player left_pressed 1"
-    ],
-    "12391": [
         "setattr player left_pressed 0"
     ],
-    "12403": [
+    "12287": [
         "setattr player right_pressed 1"
     ],
-    "12445": [
+    "12293": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "12467": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "12473": [
-        "setattr player right_pressed 0"
-    ],
-    "12479": [
+    "12366": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "12480": [
-        "setattr player action_pressed 0"
+    "12372": [
+        "call player jump",
+        "setattr player jump_pressed 1"
     ],
-    "12481": [
+    "12414": [
+        "setattr player right_pressed 0",
         "setattr player left_pressed 1"
     ],
-    "12482": [
+    "12415": [
+        "call player jump_release",
+        "setattr player jump_pressed 0"
+    ],
+    "12442": [
         "setattr player left_pressed 0"
     ],
-    "12490": [
+    "12451": [
+        "call player jump",
+        "setattr player jump_pressed 1"
+    ],
+    "12477": [
         "setattr player right_pressed 1"
     ],
-    "12493": [
-        "setattr player right_pressed 0"
+    "12487": [
+        "setattr player right_pressed 0",
+        "call player jump_release",
+        "setattr player jump_pressed 0"
     ],
     "12498": [
         "setattr player left_pressed 1"
@@ -1719,308 +1473,59 @@
     "12500": [
         "setattr player left_pressed 0"
     ],
-    "12516": [
+    "12503": [
         "setattr player left_pressed 1"
+    ],
+    "12504": [
+        "setattr player left_pressed 0"
+    ],
+    "12512": [
+        "setattr player left_pressed 1"
+    ],
+    "12517": [
+        "setattr player left_pressed 0"
     ],
     "12522": [
-        "setattr player left_pressed 0"
+        "setattr player right_pressed 1"
     ],
-    "12534": [
-        "setattr player left_pressed 1"
-    ],
-    "12549": [
+    "12523": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "12565": [
+    "12542": [
+        "setattr player right_pressed 0"
+    ],
+    "12545": [
+        "setattr player left_pressed 1"
+    ],
+    "12551": [
+        "setattr player left_pressed 0"
+    ],
+    "12555": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "12609": [
+    "12566": [
+        "setattr player left_pressed 1"
+    ],
+    "12570": [
         "setattr player left_pressed 0"
     ],
-    "12610": [
+    "12588": [
         "setattr player right_pressed 1"
     ],
-    "12646": [
+    "12600": [
         "call player jump",
         "setattr player jump_pressed 1"
     ],
-    "12660": [
+    "12674": [
         "call player jump_release",
         "setattr player jump_pressed 0"
     ],
-    "12691": [
+    "13887": [
         "setattr player right_pressed 0"
     ],
-    "12705": [
-        "setattr player right_pressed 1"
-    ],
-    "12706": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "12720": [
-        "setattr player right_pressed 0"
-    ],
-    "12725": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "12727": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "12730": [
-        "setattr player action_pressed 0"
-    ],
-    "12732": [
-        "setattr player left_pressed 1"
-    ],
-    "12747": [
-        "setattr player left_pressed 0"
-    ],
-    "12774": [
-        "setattr player left_pressed 1"
-    ],
-    "12779": [
-        "setattr player left_pressed 0"
-    ],
-    "12788": [
-        "setattr player left_pressed 1"
-    ],
-    "12793": [
-        "setattr player left_pressed 0"
-    ],
-    "12800": [
-        "setattr player left_pressed 1"
-    ],
-    "12817": [
-        "setattr player left_pressed 0"
-    ],
-    "12820": [
-        "setattr player right_pressed 1"
-    ],
-    "12853": [
-        "setattr player right_pressed 0"
-    ],
-    "12868": [
-        "setattr player right_pressed 1"
-    ],
-    "12870": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "12881": [
-        "setattr player right_pressed 0"
-    ],
-    "12886": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "12894": [
-        "setattr player left_pressed 1"
-    ],
-    "12901": [
-        "setattr player left_pressed 0"
-    ],
-    "12905": [
-        "setattr player right_pressed 1"
-    ],
-    "12912": [
-        "setattr player right_pressed 0"
-    ],
-    "12923": [
-        "setattr player right_pressed 1"
-    ],
-    "12928": [
-        "setattr player right_pressed 0"
-    ],
-    "12943": [
-        "setattr player right_pressed 1"
-    ],
-    "12948": [
-        "setattr player right_pressed 0"
-    ],
-    "12955": [
-        "setattr player down_pressed 1"
-    ],
-    "12962": [
-        "call player action",
-        "setattr player action_pressed 1"
-    ],
-    "12966": [
-        "setattr player action_pressed 0"
-    ],
-    "12977": [
-        "setattr player down_pressed 0"
-    ],
-    "12981": [
-        "setattr player left_pressed 1"
-    ],
-    "13001": [
-        "setattr player left_pressed 0"
-    ],
-    "13012": [
-        "setattr player left_pressed 1"
-    ],
-    "13020": [
-        "setattr player left_pressed 0"
-    ],
-    "13028": [
-        "setattr player right_pressed 1"
-    ],
-    "13054": [
-        "call player action",
-        "setattr player action_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "13057": [
-        "setattr player action_pressed 0"
-    ],
-    "13092": [
-        "setattr player right_pressed 1"
-    ],
-    "13095": [
-        "setattr player right_pressed 0"
-    ],
-    "13097": [
-        "setattr player right_pressed 1"
-    ],
-    "13100": [
-        "setattr player right_pressed 0"
-    ],
-    "13111": [
-        "setattr player right_pressed 1"
-    ],
-    "13132": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13145": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "13173": [
-        "setattr player right_pressed 0"
-    ],
-    "13180": [
-        "setattr player right_pressed 1"
-    ],
-    "13190": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13259": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "13265": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13287": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "13292": [
-        "setattr player right_pressed 0"
-    ],
-    "13294": [
-        "setattr player right_pressed 1"
-    ],
-    "13299": [
-        "setattr player right_pressed 0"
-    ],
-    "13318": [
-        "setattr player right_pressed 1"
-    ],
-    "13354": [
-        "setattr player right_pressed 0",
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13367": [
-        "setattr player left_pressed 1"
-    ],
-    "13369": [
-        "setattr player left_pressed 0"
-    ],
-    "13377": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "13383": [
-        "setattr player left_pressed 1"
-    ],
-    "13387": [
-        "setattr player left_pressed 0"
-    ],
-    "13403": [
-        "setattr player left_pressed 1"
-    ],
-    "13405": [
-        "setattr player left_pressed 0"
-    ],
-    "13419": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13420": [
-        "setattr player right_pressed 1"
-    ],
-    "13432": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "13448": [
-        "setattr player left_pressed 1",
-        "setattr player right_pressed 0"
-    ],
-    "13461": [
-        "setattr player left_pressed 0"
-    ],
-    "13467": [
-        "setattr player right_pressed 1"
-    ],
-    "13475": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13482": [
-        "setattr player right_pressed 0"
-    ],
-    "13490": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "13500": [
-        "setattr player right_pressed 1"
-    ],
-    "13505": [
-        "setattr player right_pressed 0"
-    ],
-    "13514": [
-        "setattr player left_pressed 1"
-    ],
-    "13531": [
-        "setattr player left_pressed 0"
-    ],
-    "13532": [
-        "setattr player right_pressed 1"
-    ],
-    "13533": [
-        "call player jump",
-        "setattr player jump_pressed 1"
-    ],
-    "13576": [
-        "call player jump_release",
-        "setattr player jump_pressed 0"
-    ],
-    "14286": [
-        "setattr player right_pressed 0"
-    ],
-    "14288": [
+    "13888": [
         "setattr player sneak_pressed 0"
     ]
 }

@@ -1756,22 +1756,26 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "right" and self.bbox_right == warp.x and
                         abs(self.y - warp.y) < WARP_LAX):
+                    self.y = warp.y
                     warp.warp(self)
         elif h_control < 0 and self.xvelocity <= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "left" and self.bbox_left == warp.x and
                         abs(self.y - warp.y) < WARP_LAX):
+                    self.y = warp.y
                     warp.warp(self)
 
         if v_control > 0 and self.yvelocity >= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "down" and self.bbox_bottom == warp.y and
                         abs(self.x - warp.x) < WARP_LAX):
+                    self.x = warp.x
                     warp.warp(self)
         elif v_control < 0 and self.yvelocity <= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "up" and self.bbox_top == warp.y and
                         abs(self.x - warp.x) < WARP_LAX):
+                    self.x = warp.x
                     warp.warp(self)
 
         # Prevent moving off-screen to the right or left
@@ -2919,8 +2923,8 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            self.xvelocity = self.parent.xvelocity + math.copysign(
-                KICK_FORWARD_SPEED, self.parent.image_xscale)
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
+                                           self.parent.image_xscale)
             self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT,
                                             self.__class__.gravity)
             self.parent = None
@@ -3819,8 +3823,7 @@ class CarriedRock(InteractiveObject):
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            xv = self.parent.xvelocity + math.copysign(
-                KICK_FORWARD_SPEED, self.parent.image_xscale)
+            xv = math.copysign(KICK_FORWARD_SPEED, self.parent.image_xscale)
             yv = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
             Rock.create(self.x - self.image_origin_x,
                         self.y - self.image_origin_y, self.z,
@@ -3943,6 +3946,8 @@ class Spring(FixedSpring, WinPuffObject):
     def touch(self, other):
         if other.pickup(self):
             self.gravity = 0
+            if other.action_pressed:
+                other.action()
 
     def drop(self):
         if self.parent is not None:
@@ -3953,8 +3958,8 @@ class Spring(FixedSpring, WinPuffObject):
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            self.xvelocity = self.parent.xvelocity + math.copysign(
-                KICK_FORWARD_SPEED, self.parent.image_xscale)
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
+                                           self.parent.image_xscale)
             self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
             self.gravity = self.__class__.gravity
             self.parent = None

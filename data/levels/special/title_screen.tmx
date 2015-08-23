@@ -27,7 +27,7 @@
  </layer>
  <layer name="Middle Tiles" width="500" height="14">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -67,6 +67,7 @@
   <object x="13472" y="384" width="544" height="32"/>
   <object x="13472" y="192" width="64" height="192"/>
   <object x="12000" y="320" width="512" height="96"/>
+  <object x="15328" y="320" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="1632" y="288" width="160" height="32"/>
@@ -82,6 +83,7 @@
   <object type="slope_topleft" x="11808" y="320" width="192" height="96"/>
   <object type="spike_top" x="14016" y="416" width="512" height="32"/>
   <object type="spike_top" x="8672" y="416" width="96" height="32"/>
+  <object type="slope_topleft" x="15264" y="320" width="64" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="2240" y="320">
