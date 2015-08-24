@@ -3022,7 +3022,8 @@ class Icicle(InteractiveObject):
         objects = (
             sge.game.current_room.get_objects_at(
                 self.bbox_left, self.bbox_bottom, self.bbox_width,
-                sge.game.current_room.height - self.bbox_bottom) |
+                (sge.game.current_room.height - self.bbox_bottom +
+                 sge.game.current_room.object_area_height)) |
             sge.game.current_room.object_area_void)
         for obj in objects:
             if (obj.bbox_top > self.bbox_bottom and
@@ -3155,7 +3156,8 @@ class Crusher(FallingObject):
                 objects = (
                     sge.game.current_room.get_objects_at(
                         self.bbox_left, self.bbox_bottom, self.bbox_width,
-                        sge.game.current_room.height - self.bbox_bottom) |
+                        (sge.game.current_room.height - self.bbox_bottom +
+                         sge.game.current_room.object_area_height)) |
                     sge.game.current_room.object_area_void)
                 for obj in objects:
                     if (obj.bbox_top > self.bbox_bottom and
