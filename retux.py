@@ -630,7 +630,7 @@ class Level(sge.Room):
                                        fill=sge.Color((0, 0, 0, min(a, 255))))
 
             time_bonus = level_timers.setdefault(main_area, 0)
-            if time_bonus < 0:
+            if time_bonus < 0 and cleared_levels:
                 amt = int(math.copysign(
                     min(math.ceil(abs(self.death_time_bonus) * 3 * time_passed /
                                   DEATH_FADE_TIME),
@@ -726,6 +726,9 @@ class Level(sge.Room):
             if self.shake_queue:
                 self.alarms["shake_down"] = SHAKE_FRAME_TIME
         elif alarm_id == "death":
+            if not cleared_levels:
+                level_timers[main_area] = self.time_bonus
+
             if current_worldmap:
                 self.return_to_map()
             elif main_area is not None:
