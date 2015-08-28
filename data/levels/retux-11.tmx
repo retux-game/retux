@@ -4,28 +4,28 @@
   <property name="background_y" value="512"/>
   <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="Scaling the Mountains"/>
+  <property name="name" value="Scaling Mount Slimmerist"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/castle.tsx"/>
- <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="493" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQBMG3K8vQ/psxMhQ+k4MZuPyirQIA4Nrj9wOAnqVXQAi9AlLoFZBCr4AUegWk0CsgxatXszkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADyHBqgBLo=
+   eJzt1LEJACAQBMG3K/tvRsswMhQ+k4MZuPyirQIA4Nrj9wOAnqVXQAi9AlLoFZBCr4AUegWk0CsgxatXszkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADyHGaRCXI=
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJztnctKxDAUhse1iGtvS1HHtTq+h8+j3YvvbAKW1NI2ycnlpO33wQ/CkEvH9PMkc/FwgL1ybnKpPQkAgACuTO60JwEAEMCDybP2JIA6FyAAfNUG1LkAfqZ89WnyNZOfhce6KjPeJvzdAPATe598l5rIzsFXAH5q+mpct41rtS6h79bpr72/5m70OL4C8KNZX+2xVpu7ZnwFW2PpXCnkfGmqjsFXddHwlX3t8dR4Ps7CruUkegagVWIdsCVfTfl8yt9d5nFj0PCVfe3xYkOB7bBnX2mNEcOSr95N7gvkxeTmL8fBz5pJmQeUo/YZc8z9afcJdi3jq3os+er2UKYeuT604ZlcgXqM12tun8Xcn3afYNfynnxV4gwwZT491ldr88ijyVPlMY8BzzH8Z7jmh2u7C2jru0dT7+GY9v09sidflWqT2neqrzTyavKmMC7IiV3b+KpMXznHaMlXLey/WgvIwVdy8JVDUl/N7cdaclyJuYAcfCUHXzkkvkrdj7XkNXxVB3wlB1851nh+ha/WB76Sg68c+Cq83gM5+EoOvnKE+mqte7icATn4Sg6+cqy5vqrtUJCDr+TgK0dLvtJ4Hyi+qgO+koOvHENfae/5tN4HupThcwJy8JUcfOWoVV9puzDH+Lmo/X0e2p8Fs+ArOfjKMfZV7J5M20M1UxLtz8eXHh9fycFXjrGvWtyTtZKS+H73pWsyfDUPvsrXJrXvls7baySlHpR+h2nI/3fUXi/4ah58la9Nat9781Vshvtj6feAhfx/R+31gq/mwVf52qT2ja+Wk2N/HLLOtdcLvpoHX+Vrk9q3z1clztPXekb/C/M/cdQ=
+   eJztnUtOwzAQQMMaIdjy3SGgsAXK5SB7xKkQp+ESJIjKIWoSe/yZSfKeNBJS5U+C/TTjtmlVwVo50Z4AAIAnV9oTAADw5EF7AvDLYRPH2pMAMA6+ssFpE5fakwAwzj5fvTbxNhAfI6/V+ae7WG6auNeeBIBxvqqwOuQ910RWDr4CmOazCqtDYnzVz9v6uVod0bd1dte+u+a69zq+ApgmdJ+kzK/WmKsNXTO+gqUxdq7kc760L4/BV2XR8FX73uPWeHwf+F3LVnQHwCqhDliSr/b5fJ+/68TjhqDhq/a9x6MFBSyHNftKa4wQxnz10sR1hnhs4vwvNp2/NSNmHpCP0mfMIfuzrRPatYyvyjHmq4sqTz5yVtnwTKqAcvTXa2qfhezPtk5o1/KafJXjDDBmPjtaX83NI7dN3BUec+Nxj+E/3TXfXdu1R9upPRq7h0Pa7/bImnyVq01s37G+0oinJp4VxgU5oWsbX+XpK+UYlnxlof6yFiAHX8nBVw5JfjVUj1lyXI65gBx8JQdfOSS+iq3HLHkNX5UBX8nBV445nl/hq/mBr+TgKwe+8s/3QA6+koOvHL6+mmsNlzJADr6Sg68cc86vSjsU5OArOfjKYclXGp8DxVdlwFdy8JWj6yvtmk/rc6Bj0b0nIAdfycFXjlL5lbYLU4yfitLP89D+LlgLvpKDrxx9X4XWZNoeKhk50f5+fO7x8ZUcfOXo+8piTWYlcjL1v8+dk+GrYfBVujaxfVs6by8RMfmg9BmmPr+ror1e8NUw+Cpdm9i+1+ar0OjWx9LngPn8ror2esFXw+CrdG1i+8ZX45GiPvZZ59rrBV8Ng6/StYnte8pXOc7T53pG/wOBNnLn
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -34,8 +34,9 @@
   <object x="7936" y="288" width="1664" height="672"/>
   <object x="0" y="896" width="480" height="64"/>
   <object x="4032" y="384" width="96" height="576"/>
-  <object x="4064" y="32" width="64" height="352"/>
+  <object x="4064" y="32" width="32" height="160"/>
   <object x="9536" y="160" width="64" height="128"/>
+  <object x="4064" y="192" width="64" height="192"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="moving_platform_path" x="5312" y="160">
@@ -68,46 +69,51 @@
   <object type="moving_platform_path" x="2016" y="512">
    <polyline points="0,0 256,0 0,0"/>
   </object>
-  <object gid="317" x="4000" y="288">
+  <object gid="467" x="4032" y="288">
    <properties>
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="315" x="224" y="800"/>
-  <object gid="315" x="256" y="800"/>
-  <object gid="315" x="288" y="800"/>
-  <object gid="315" x="352" y="800"/>
-  <object gid="330" x="2016" y="768"/>
-  <object gid="330" x="3936" y="256"/>
-  <object gid="330" x="4640" y="128"/>
-  <object gid="314" x="1440" y="864"/>
-  <object gid="315" x="320" y="800"/>
-  <object gid="323" x="1888" y="672"/>
-  <object gid="322" x="1856" y="672"/>
-  <object gid="322" x="1824" y="672"/>
-  <object gid="322" x="1792" y="672"/>
-  <object gid="324" x="2464" y="352"/>
-  <object gid="324" x="2496" y="320"/>
-  <object gid="324" x="2528" y="320"/>
-  <object gid="324" x="2560" y="320"/>
-  <object gid="324" x="2592" y="352"/>
-  <object gid="315" x="3424" y="160"/>
-  <object gid="315" x="3456" y="160"/>
-  <object gid="315" x="3520" y="160"/>
-  <object gid="315" x="3552" y="160"/>
-  <object gid="322" x="3488" y="160"/>
-  <object gid="323" x="6528" y="288"/>
-  <object gid="315" x="6496" y="288"/>
-  <object gid="315" x="6432" y="288"/>
-  <object gid="322" x="6464" y="288"/>
-  <object gid="322" x="6400" y="288"/>
-  <object gid="324" x="6976" y="160"/>
-  <object gid="324" x="7008" y="160"/>
-  <object gid="324" x="7040" y="160"/>
-  <object gid="315" x="5760" y="192"/>
-  <object gid="315" x="5792" y="192"/>
-  <object gid="315" x="5824" y="192"/>
-  <object gid="315" x="5728" y="192"/>
+  <object gid="465" x="224" y="800"/>
+  <object gid="465" x="256" y="800"/>
+  <object gid="465" x="288" y="800"/>
+  <object gid="465" x="352" y="800"/>
+  <object gid="480" x="2016" y="768"/>
+  <object gid="480" x="3936" y="256"/>
+  <object gid="480" x="4640" y="128"/>
+  <object gid="464" x="1440" y="864"/>
+  <object gid="465" x="320" y="800"/>
+  <object gid="473" x="1888" y="672"/>
+  <object gid="472" x="1856" y="672"/>
+  <object gid="472" x="1824" y="672"/>
+  <object gid="472" x="1792" y="672"/>
+  <object gid="474" x="2464" y="352"/>
+  <object gid="474" x="2496" y="320"/>
+  <object gid="474" x="2528" y="320"/>
+  <object gid="474" x="2560" y="320"/>
+  <object gid="474" x="2592" y="352"/>
+  <object gid="465" x="3424" y="160"/>
+  <object gid="465" x="3456" y="160"/>
+  <object gid="465" x="3520" y="160"/>
+  <object gid="465" x="3552" y="160"/>
+  <object gid="472" x="3488" y="160"/>
+  <object gid="473" x="6528" y="288"/>
+  <object gid="465" x="6496" y="288"/>
+  <object gid="465" x="6432" y="288"/>
+  <object gid="472" x="6464" y="288"/>
+  <object gid="472" x="6400" y="288"/>
+  <object gid="474" x="6976" y="160"/>
+  <object gid="474" x="7008" y="160"/>
+  <object gid="474" x="7040" y="160"/>
+  <object gid="465" x="5760" y="192"/>
+  <object gid="465" x="5792" y="192"/>
+  <object gid="465" x="5824" y="192"/>
+  <object gid="465" x="5728" y="192"/>
+  <object gid="477" x="3680" y="160">
+   <properties>
+    <property name="text" value="Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do not climb on Mount Slimmerist; the extra weight may cause it to topple over."/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="8288" y="288"/>
@@ -150,7 +156,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1KENACAQBMGnQxD03woeQXDkyEwFq7YKAIDdaK8LAO50vwJC+BWQwq+AFH4FpPArIIVfASlOv5peBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8JUFih4C4A==
+   eJzt1KENACAQBMGn/0JBUAQeQXDkyEwFq7YKAIDdaK8LAO50vwJC+BWQwq+AFH4FpPArIIVfASlOv5peBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8JUF1qUILw==
   </data>
  </layer>
 </map>

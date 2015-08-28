@@ -74,7 +74,7 @@
  </objectgroup>
  <objectgroup name="Items">
   <object gid="365" x="2144" y="288"/>
-  <object gid="365" x="2176" y="288"/>
+  <object gid="365" x="2208" y="288"/>
   <object gid="363" x="1152" y="320"/>
   <object gid="363" x="1216" y="320"/>
   <object gid="370" x="1184" y="320"/>
@@ -132,9 +132,14 @@
   <object gid="370" x="5920" y="320"/>
   <object gid="370" x="5888" y="320"/>
   <object gid="363" x="5856" y="320"/>
-  <object gid="365" x="2208" y="288">
+  <object gid="365" x="2176" y="288">
    <properties>
     <property name="item" value="tuxdoll"/>
+   </properties>
+  </object>
+  <object gid="375" x="1504" y="320">
+   <properties>
+    <property name="text" value="Having trouble finding secret areas? The clue is in the name!"/>
    </properties>
   </object>
  </objectgroup>

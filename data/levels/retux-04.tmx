@@ -24,7 +24,7 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -127,6 +127,11 @@
   <object gid="435" x="3520" y="736"/>
   <object gid="434" x="1728" y="192"/>
   <object gid="443" x="2080" y="192"/>
+  <object gid="447" x="6944" y="672">
+   <properties>
+    <property name="text" value="Traveller's Note:\nI swear, there are no fire flowers anywhere in this level! How am I supposed to melt this ice?! What's more, that ledge over there is shaped like a grin, almost like it's taunting me!"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="1280" y="768"/>

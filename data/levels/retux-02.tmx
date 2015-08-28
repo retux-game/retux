@@ -81,7 +81,6 @@
   <object gid="435" x="736" y="800"/>
   <object gid="435" x="864" y="800"/>
   <object gid="435" x="800" y="672"/>
-  <object gid="435" x="672" y="672"/>
   <object gid="435" x="544" y="672"/>
   <object gid="435" x="768" y="160"/>
   <object gid="435" x="896" y="160"/>
@@ -162,6 +161,11 @@
   <object gid="435" x="5152" y="192"/>
   <object gid="435" x="5248" y="192"/>
   <object gid="443" x="5952" y="320"/>
+  <object gid="447" x="672" y="672">
+   <properties>
+    <property name="text" value="Sometimes, it's just better to go up."/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="1952" y="192"/>

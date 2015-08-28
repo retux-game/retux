@@ -3,27 +3,27 @@
  <properties>
   <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="The Five Pillars of Snow"/>
+  <property name="name" value="Over the Five Pillars of Snow"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="195" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="283" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="306" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="310" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="312" source="../tilesets/krush.tsx"/>
- <tileset firstgid="313" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="314" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="345" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="433" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="457" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="461" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="463" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="464" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="465" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQBMG3JU3svzIrED7Tgxm4/KKtAgAAIM0arx8A9Ey9AkLoFZBCr4AUegWk0CsghV4BKW692s0BAAAAwO8OLCoDyg==
+   eJzt1LEJACAQBMG3K/vPtCorED7Tgxm4/KKtAgAAIM0erx8A9Cy9AkLoFZBCr4AUegWk0CsghV4BKW69ms0BAAAAwO8OW5MIgg==
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmU9LAzEQxdOzSM8iPYpgbyLSY/CD6d6l37kRFbbDJJlsJn/7fjAUspvNy+zsS0KNAQAAAAAAAAAAALhNPl18uTj//S5N1QCQxn/90jh72hfFcbgxtj4fpPHdWgAAitSoZ3wzYXxrSWxNkXg/cs+D/eeYwK/6Jyd/yH0Y5Oea9dq5XieXhprWcO9L+0wXqolez49UF9VUUw/86pcS72Tm/JT8blsh1VTzmxk5T72N3WMutdCY28z5+WHk2nl18UbaavsVp0FzrFLAr/pDcjaI7cHoM+5cnDLjfSfTf5LdlsXItWNdfJC22n7FadAcqxQ1NPm8fOSak7D1HCOZW+weev3BxX3FyPXGfeb8t/Qt+f/QGmvm9atYDiV5DOUypukpMTis4XMzu19xaHiR5B56/dnFo3K8BK7l+t0hc/4l+mrVnDXz+lWqDsm51NeXI2Vd9tWYNbfrV/R99OZXIc9pGcfM+ZfoC7/SIVWHry9HyrrsqzGfphI1l7of1A6KNddz782vSu25LuQhqY4=
+   eJztmc9KAzEQxtOziGeRHkXQm3joMfTB6t6lj+Y7NaLCdpgkk83kb78fDIXsZvNldvZLQo0BAAAAAAAAAAAAuE1OLj5dnP9+l6ZqAEjjv35pnD3ti+I43Bhbnw/S+GotAABFatQzvpkwvrUktqZIvB+558H+c0zgV/2Tkz/kPgzyc8167Vyvk0tDTWu496V9pgvVRK/nR6qLaqqpB371S4l3MnN+Sn63rZBqqvnNjJyn3sbuMZdaaMxt5vz8MHLtvLv4IG21/YrToDlWKeBX/SE5G8T2YPQZdy4OmfG9k+k/yG7LYuTasS6OpK22X3EaNMcqRQ1NPi8fueYkbD3HSOYWu4def3RxXzFyvfEhc/5b+pb8f2iNNfP6VSyHkjyGchnT9JwYHNbwuZndrzg0vEhyD73+4uJJOV4D13L9bp85/xJ9tWrOmnn9KlWH5Fzq68uRsi77asya2/Ur+j5686uQ57SMt8z5l+gLv9IhVYevL0fKuuyrMZ+mEjWXuh/UDoo113Pvza9K7bkuDgmqJQ==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -69,64 +69,69 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="292" x="1696" y="256"/>
-  <object gid="292" x="1664" y="256"/>
-  <object gid="292" x="1728" y="256"/>
-  <object gid="292" x="1632" y="256"/>
-  <object gid="292" x="1600" y="256"/>
-  <object gid="292" x="1760" y="256"/>
-  <object gid="292" x="1792" y="256"/>
-  <object gid="292" x="1568" y="256"/>
-  <object gid="292" x="1824" y="256"/>
-  <object gid="284" x="2304" y="64"/>
-  <object gid="293" x="3328" y="64"/>
-  <object gid="293" x="3360" y="64"/>
-  <object gid="285" x="2272" y="64"/>
-  <object gid="287" x="4416" y="96"/>
-  <object gid="287" x="4448" y="96">
+  <object gid="442" x="1696" y="256"/>
+  <object gid="442" x="1664" y="256"/>
+  <object gid="442" x="1728" y="256"/>
+  <object gid="442" x="1632" y="256"/>
+  <object gid="442" x="1600" y="256"/>
+  <object gid="442" x="1760" y="256"/>
+  <object gid="442" x="1792" y="256"/>
+  <object gid="442" x="1568" y="256"/>
+  <object gid="442" x="1824" y="256"/>
+  <object gid="434" x="2304" y="64"/>
+  <object gid="443" x="3328" y="64"/>
+  <object gid="443" x="3360" y="64"/>
+  <object gid="435" x="2272" y="64"/>
+  <object gid="437" x="4416" y="96"/>
+  <object gid="437" x="4448" y="96">
    <properties>
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="285" x="5600" y="64"/>
-  <object gid="285" x="5568" y="64"/>
-  <object gid="285" x="5632" y="64"/>
-  <object gid="285" x="5664" y="64"/>
-  <object gid="293" x="7616" y="224"/>
-  <object gid="293" x="7648" y="224"/>
-  <object gid="294" x="736" y="160"/>
-  <object gid="294" x="768" y="160"/>
-  <object gid="294" x="800" y="160"/>
-  <object gid="294" x="1696" y="320"/>
-  <object gid="294" x="1664" y="320"/>
-  <object gid="294" x="1728" y="320"/>
-  <object gid="294" x="1600" y="320"/>
-  <object gid="294" x="1568" y="320"/>
-  <object gid="294" x="1536" y="320"/>
-  <object gid="294" x="1792" y="320"/>
-  <object gid="294" x="1824" y="320"/>
-  <object gid="294" x="1856" y="320"/>
-  <object gid="294" x="2752" y="96"/>
-  <object gid="294" x="2720" y="96"/>
-  <object gid="294" x="2784" y="96"/>
-  <object gid="294" x="2816" y="128"/>
-  <object gid="294" x="2688" y="128"/>
-  <object gid="294" x="3552" y="160"/>
-  <object gid="294" x="3584" y="128"/>
-  <object gid="294" x="3616" y="160"/>
-  <object gid="294" x="3648" y="128"/>
-  <object gid="294" x="3680" y="160"/>
-  <object gid="294" x="4288" y="288"/>
-  <object gid="294" x="4320" y="288"/>
-  <object gid="294" x="4352" y="288"/>
-  <object gid="294" x="4352" y="256"/>
-  <object gid="294" x="4320" y="224"/>
-  <object gid="294" x="6784" y="64"/>
-  <object gid="294" x="6816" y="64"/>
-  <object gid="294" x="7168" y="128"/>
-  <object gid="294" x="7200" y="128"/>
-  <object gid="294" x="6752" y="64"/>
-  <object gid="294" x="7136" y="128"/>
+  <object gid="435" x="5600" y="64"/>
+  <object gid="435" x="5568" y="64"/>
+  <object gid="435" x="5632" y="64"/>
+  <object gid="435" x="5664" y="64"/>
+  <object gid="443" x="7616" y="224"/>
+  <object gid="443" x="7648" y="224"/>
+  <object gid="444" x="736" y="160"/>
+  <object gid="444" x="768" y="160"/>
+  <object gid="444" x="800" y="160"/>
+  <object gid="444" x="1696" y="320"/>
+  <object gid="444" x="1664" y="320"/>
+  <object gid="444" x="1728" y="320"/>
+  <object gid="444" x="1600" y="320"/>
+  <object gid="444" x="1568" y="320"/>
+  <object gid="444" x="1536" y="320"/>
+  <object gid="444" x="1792" y="320"/>
+  <object gid="444" x="1824" y="320"/>
+  <object gid="444" x="1856" y="320"/>
+  <object gid="444" x="2752" y="96"/>
+  <object gid="444" x="2720" y="96"/>
+  <object gid="444" x="2784" y="96"/>
+  <object gid="444" x="2816" y="128"/>
+  <object gid="444" x="2688" y="128"/>
+  <object gid="444" x="3552" y="160"/>
+  <object gid="444" x="3584" y="128"/>
+  <object gid="444" x="3616" y="160"/>
+  <object gid="444" x="3648" y="128"/>
+  <object gid="444" x="3680" y="160"/>
+  <object gid="444" x="4288" y="288"/>
+  <object gid="444" x="4320" y="288"/>
+  <object gid="444" x="4352" y="288"/>
+  <object gid="444" x="4352" y="256"/>
+  <object gid="444" x="4320" y="224"/>
+  <object gid="444" x="6784" y="64"/>
+  <object gid="444" x="6816" y="64"/>
+  <object gid="444" x="7168" y="128"/>
+  <object gid="444" x="7200" y="128"/>
+  <object gid="444" x="6752" y="64"/>
+  <object gid="444" x="7136" y="128"/>
+  <object gid="447" x="3168" y="64">
+   <properties>
+    <property name="text" value="Studies have shown that penguins have the ability to kick iceblocks, and possibly other items, straight up. They do this by holding down the &quot;up&quot; button while pressing the &quot;action&quot; button."/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="1312" y="224"/>
@@ -165,7 +170,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1DENACEAwECw9Az4d4aDDxtpcqegU8cAAACgas3XBQB3Pr8CIvwKqPAroMKvgAq/Air8Cqj4+9X2MgAAAADCDgFWAdI=
+   eJzt1DENACEAwEDwr+wZ0ISDDxtpcqegU8cAAACgas3XBQB3Pr8CIvwKqPAroMKvgAq/Air8Cqj4+9X2MgAAAADCDi3EByE=
   </data>
  </layer>
 </map>

@@ -97,7 +97,7 @@
   <object gid="474" x="3552" y="224"/>
   <object gid="474" x="3584" y="224"/>
   <object gid="480" x="6912" y="800"/>
-  <object gid="480" x="7072" y="800"/>
+  <object gid="480" x="6112" y="576"/>
   <object gid="480" x="4736" y="672"/>
   <object gid="464" x="1440" y="704"/>
   <object gid="465" x="1472" y="704"/>
@@ -110,6 +110,11 @@
   <object gid="465" x="3104" y="576"/>
   <object gid="465" x="3136" y="576"/>
   <object gid="480" x="5696" y="544"/>
+  <object gid="477" x="7104" y="704">
+   <properties>
+    <property name="text" value="Traveller's Note:\nIt is said that this level contains 7 springs, but I have only managed to find 6. Could the seventh one be in a hidden block somewhere?"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="992" y="800"/>

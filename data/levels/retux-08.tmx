@@ -192,6 +192,11 @@
   <object gid="474" x="7648" y="1056"/>
   <object gid="474" x="7744" y="1056"/>
   <object gid="474" x="7776" y="1056"/>
+  <object gid="477" x="5152" y="1184">
+   <properties>
+    <property name="text" value="Traveller's note:\nThat cave to the left appears to be inaccessible from here. There has to be another way inside!"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="9" x="1600" y="832"/>
