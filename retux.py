@@ -24,6 +24,7 @@ from __future__ import unicode_literals
 __version__ = "0.1a7"
 
 import argparse
+import datetime
 import json
 import math
 import os
@@ -265,6 +266,17 @@ TEXT_SPEED = 1000
 
 SAVE_NSLOTS = 10
 MENU_MAX_ITEMS = 14
+
+# Save error messages to a text file (so they aren't lost).
+stderr = os.path.join(CONFIG, "stderr.txt")
+if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
+    sys.stderr = open(stderr, 'w')
+else:
+    sys.stderr = open(stderr, 'a')
+dt = datetime.datetime.now()
+sys.stderr.write("\n{}-{}-{} {}:{}:{}\n".format(dt.year, dt.month, dt.day,
+                                                dt.hour, dt.minute, dt.second))
+del dt
 
 backgrounds = {}
 loaded_music = {}

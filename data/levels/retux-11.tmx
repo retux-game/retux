@@ -114,6 +114,7 @@
     <property name="text" value="Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do not climb on Mount Slimmerist; the extra weight may cause it to topple over."/>
    </properties>
   </object>
+  <object gid="480" x="4960" y="192"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="8288" y="288"/>
