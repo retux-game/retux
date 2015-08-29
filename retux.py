@@ -90,6 +90,9 @@ parser.add_argument(
     "--no-backgrounds",
     help="Only show solid colors for backgrounds (uses less RAM).",
     action="store_true")
+parser.add_argument(
+    "--no-hud", help="Don't show the player's heads-up display.",
+    action="store_true")
 args = parser.parse_args()
 
 SCALE_SMOOTH = not args.scale_basic
@@ -99,6 +102,7 @@ if args.datadir:
     DATA = args.datadir
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
+NO_HUD = args.no_hud
 
 xsge_gui.joystick_threshold = JOYSTICK_THRESHOLD
 
@@ -412,23 +416,24 @@ class Level(sge.Room):
             self.points += x
 
     def show_hud(self):
-        if self.points:
-            score_text = "{}+{}".format(score, self.points)
-        else:
-            score_text = str(score)
-        time_bonus = level_timers.get(main_area, 0)
-        text = "Score\n{}\n\nTime {}\n{}".format(
-            score_text, "Bonus" if time_bonus >= 0 else "Penalty",
-            abs(time_bonus))
-        sge.game.project_text(font, text, sge.game.width / 2, 0,
-                              color=sge.Color("white"), halign="center")
-
-        if main_area in tuxdolls_available:
-            if main_area in tuxdolls_found:
-                s = tuxdoll_sprite
+        if not NO_HUD:
+            if self.points:
+                score_text = "{}+{}".format(score, self.points)
             else:
-                s = tuxdoll_transparent_sprite
-            sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
+                score_text = str(score)
+            time_bonus = level_timers.get(main_area, 0)
+            text = "Score\n{}\n\nTime {}\n{}".format(
+                score_text, "Bonus" if time_bonus >= 0 else "Penalty",
+                abs(time_bonus))
+            sge.game.project_text(font, text, sge.game.width / 2, 0,
+                                  color=sge.Color("white"), halign="center")
+
+            if main_area in tuxdolls_available:
+                if main_area in tuxdolls_found:
+                    s = tuxdoll_sprite
+                else:
+                    s = tuxdoll_transparent_sprite
+                sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
 
     def shake(self, num=1):
         shaking = (self.shake_queue or "shake_up" in self.alarms or
@@ -1477,23 +1482,24 @@ class Player(xsge_physics.Collider):
         self.do_kick()
 
     def show_hud(self):
-        y = 0
-        sge.game.project_text(font, "Tux", 0, y, color=sge.Color("white"))
+        if not NO_HUD:
+            y = 0
+            sge.game.project_text(font, "Tux", 0, y, color=sge.Color("white"))
 
-        x = 0
-        y += 36
-        for i in six.moves.range(MAX_HP):
-            if self.hp >= i + 1:
-                sge.game.project_sprite(heart_full_sprite, 0, x, y)
-            else:
-                sge.game.project_sprite(heart_empty_sprite, 0, x, y)
-            x += heart_empty_sprite.width
+            x = 0
+            y += 36
+            for i in six.moves.range(MAX_HP):
+                if self.hp >= i + 1:
+                    sge.game.project_sprite(heart_full_sprite, 0, x, y)
+                else:
+                    sge.game.project_sprite(heart_empty_sprite, 0, x, y)
+                x += heart_empty_sprite.width
 
-        y += 18
-        sge.game.project_sprite(coin_icon_sprite, coin_animation.image_index,
-                                0, y)
-        sge.game.project_text(font, "x{}".format(self.coins), 16, y,
-                              color=sge.Color("white"))
+            y += 18
+            sge.game.project_sprite(coin_icon_sprite,
+                                    coin_animation.image_index, 0, y)
+            sge.game.project_text(font, "x{}".format(self.coins), 16, y,
+                                  color=sge.Color("white"))
 
     def get_grab_sprite(self, body_sprite, arms_sprite=None):
         if arms_sprite is None: arms_sprite = tux_arms_grab_sprite
