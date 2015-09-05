@@ -1978,20 +1978,31 @@ class Player(xsge_physics.Collider):
         top_touching = self.get_top_touching_wall()
 
         xv = self.xvelocity
+        tmv = 0
         for i in six.moves.range(CEILING_LAX):
-            self.x -= 1
-            if not self.get_top_touching_wall():
-                self.move_y(-move_loss)
-                break
-        else:
-            self.x += CEILING_LAX
-            for i in six.moves.range(CEILING_LAX):
-                self.x += 1
-                if not self.get_top_touching_wall():
+            if (not self.get_left_touching_wall() and
+                    not self.get_left_touching_slope()):
+                self.x -= 1
+                tmv -= 1
+                if (not self.get_top_touching_wall() and
+                        not self.get_top_touching_slope()):
                     self.move_y(-move_loss)
                     break
+        else:
+            self.x -= tmv
+            tmv = 0
+            for i in six.moves.range(CEILING_LAX):
+                if (not self.get_left_touching_wall() and
+                        not self.get_left_touching_slope()):
+                    self.x += 1
+                    tmv += 1
+                    if (not self.get_top_touching_wall() and
+                            not self.get_top_touching_slope()):
+                        self.move_y(-move_loss)
+                        break
             else:
-                self.x -= CEILING_LAX
+                self.x -= tmv
+                tmv = 0
                 self.yvelocity = 0
 
         for block in top_touching:
