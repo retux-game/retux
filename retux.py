@@ -789,14 +789,14 @@ class Level(sge.Room):
                     rush_save()
                     sge.game.start_room.start()
                 sge.game.mouse.visible = False
-            elif key in ("enter", "p"):
+            elif key == "enter":
                 if self.pause_delay <= 0 and not self.won:
                     sge.Music.pause()
                     play_sound(pause_sound)
                     sge.game.pause(pause_sprite)
 
     def event_paused_key_press(self, key, char):
-        if key in ("enter", "p"):
+        if key == "enter":
             play_sound(pause_sound)
             sge.Music.unpause()
             sge.game.unpause()
