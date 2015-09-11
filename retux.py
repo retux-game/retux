@@ -49,7 +49,7 @@ if getattr(sys, "frozen", False):
 
 DATA = tempfile.mkdtemp("retux-data")
 CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
-JOYSTICK_THRESHOLD = 0.7
+JOYSTICK_THRESHOLD = 0.1
 
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(CONFIG, "data")]
@@ -1324,11 +1324,13 @@ class Player(xsge_physics.Collider):
                 if js_controls[i][self.player] is not None:
                     j, t, c = js_controls[i][self.player]
                     if t == "axis+":
-                        js_states[i] = (sge.joystick.get_axis(j, c) >
-                                        JOYSTICK_THRESHOLD)
+                        v = sge.joystick.get_axis(j, c)
+                        if v > JOYSTICK_THRESHOLD:
+                            js_states[i] = abs(v)
                     elif t == "axis-":
-                        js_states[i] = (sge.joystick.get_axis(j, c) <
-                                        -JOYSTICK_THRESHOLD)
+                        v = sge.joystick.get_axis(j, c)
+                        if v < -JOYSTICK_THRESHOLD:
+                            js_states[i] = abs(v)
                     elif t == "axis0":
                         js_states[i] = (abs(sge.joystick.get_axis(j, c)) <=
                                         JOYSTICK_THRESHOLD)
@@ -1581,7 +1583,7 @@ class Player(xsge_physics.Collider):
         if not self.warping:
             self.refresh_input()
 
-            h_control = self.right_pressed - self.left_pressed
+            h_control = bool(self.right_pressed) - bool(self.left_pressed)
             current_h_movement = (self.xvelocity > 0) - (self.xvelocity < 0)
 
             self.xacceleration = 0
@@ -1591,27 +1593,28 @@ class Player(xsge_physics.Collider):
             if h_control:
                 self.facing = h_control
                 self.image_xscale = h_control * abs(self.image_xscale)
-                if (abs(self.xvelocity) < PLAYER_MAX_SPEED and
-                        (not self.sneak_pressed or
-                         abs(self.xvelocity) < PLAYER_WALK_SPEED)):
+                h_factor = abs(self.right_pressed - self.left_pressed)
+                max_speed = h_factor * PLAYER_MAX_SPEED
+                if self.sneak_pressed:
+                    max_speed = min(max_speed, PLAYER_WALK_SPEED)
+                if abs(self.xvelocity) < max_speed:
                     if self.on_floor or self.was_on_floor:
                         self.xacceleration = PLAYER_ACCELERATION * h_control
                     else:
                         self.xacceleration = PLAYER_AIR_ACCELERATION * h_control
                 else:
-                    if self.sneak_pressed:
-                        if self.on_floor or self.was_on_floor:
-                            dc = PLAYER_FRICTION
-                        else:
-                            dc = PLAYER_AIR_FRICTION
+                    if abs(self.xvelocity) >= PLAYER_MAX_SPEED:
+                        self.xvelocity = max_speed * current_h_movement
 
-                        if self.xvelocity - dc * delta_mult > PLAYER_WALK_SPEED:
-                            self.xdeceleration = dc
-                        else:
-                            self.xvelocity = (PLAYER_WALK_SPEED *
-                                              current_h_movement)
+                    if self.on_floor or self.was_on_floor:
+                        dc = PLAYER_FRICTION
                     else:
-                        self.xvelocity = PLAYER_MAX_SPEED * current_h_movement
+                        dc = PLAYER_AIR_FRICTION
+
+                    if self.xvelocity - dc * delta_mult > max_speed:
+                        self.xdeceleration = dc
+                    else:
+                        self.xvelocity = max_speed * current_h_movement
 
             if current_h_movement and h_control != current_h_movement:
                 if self.on_floor or self.was_on_floor:
@@ -1680,8 +1683,8 @@ class Player(xsge_physics.Collider):
         self.on_slope = self.get_bottom_touching_slope() if not on_floor else []
         self.was_on_floor = self.on_floor
         self.on_floor = on_floor + self.on_slope
-        h_control = self.right_pressed - self.left_pressed
-        v_control = self.down_pressed - self.up_pressed
+        h_control = bool(self.right_pressed) - bool(self.left_pressed)
+        v_control = bool(self.down_pressed) - bool(self.up_pressed)
 
         for block in self.on_floor:
             if block in self.was_on_floor and isinstance(block, HurtTop):
@@ -1864,6 +1867,8 @@ class Player(xsge_physics.Collider):
                 self.jump_release()
             if js == action_js[self.player]:
                 self.action()
+            if js == up_js[self.player]:
+                self.press_up()
 
     def event_joystick_hat_move(self, js_name, js_id, hat, x, y):
         if self.human:
@@ -1881,6 +1886,8 @@ class Player(xsge_physics.Collider):
                 self.jump_release()
             if js == action_js[self.player]:
                 self.action()
+            if js == up_js[self.player]:
+                self.press_up()
 
             js_versions = [(js_id, "haty+", hat), (js_id, "haty-", hat)]
             if y > 0:
@@ -1896,6 +1903,8 @@ class Player(xsge_physics.Collider):
                 self.jump_release()
             if js == action_js[self.player]:
                 self.action()
+            if js == up_js[self.player]:
+                self.press_up()
 
     def event_joystick_button_press(self, js_name, js_id, button):
         if self.human:
@@ -1905,6 +1914,8 @@ class Player(xsge_physics.Collider):
                 self.jump()
             if js == action_js[self.player]:
                 self.action()
+            if js == up_js[self.player]:
+                self.press_up()
 
     def event_joystick_button_release(self, js_name, js_id, button):
         if self.human:
