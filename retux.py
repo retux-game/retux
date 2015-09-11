@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.1"
+__version__ = "0.1.1a0"
 
 import argparse
 import datetime
@@ -270,17 +270,6 @@ TEXT_SPEED = 1000
 
 SAVE_NSLOTS = 10
 MENU_MAX_ITEMS = 14
-
-# Save error messages to a text file (so they aren't lost).
-stderr = os.path.join(CONFIG, "stderr.txt")
-if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
-    sys.stderr = open(stderr, 'w')
-else:
-    sys.stderr = open(stderr, 'a')
-dt = datetime.datetime.now()
-sys.stderr.write("\n{}-{}-{} {}:{}:{}\n".format(dt.year, dt.month, dt.day,
-                                                dt.hour, dt.minute, dt.second))
-del dt
 
 backgrounds = {}
 loaded_music = {}
@@ -6506,6 +6495,17 @@ sge.game.mouse.visible = False
 
 if not os.path.exists(CONFIG):
     os.makedirs(CONFIG)
+
+# Save error messages to a text file (so they aren't lost).
+stderr = os.path.join(CONFIG, "stderr.txt")
+if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
+    sys.stderr = open(stderr, 'w')
+else:
+    sys.stderr = open(stderr, 'a')
+dt = datetime.datetime.now()
+sys.stderr.write("\n{}-{}-{} {}:{}:{}\n".format(dt.year, dt.month, dt.day,
+                                                dt.hour, dt.minute, dt.second))
+del dt
 
 try:
     with open(os.path.join(CONFIG, "config.json")) as f:
