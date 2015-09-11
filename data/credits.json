@@ -1,0 +1,69 @@
+[
+    {
+        "title": "Programming",
+        "lines": [
+            "onpon4 <https://onpon4.github.io>"
+        ]
+    },
+    {
+        "title": "Graphics",
+        "lines": [
+            "SuperTux development team <http://supertux.lethargik.org>",
+            "Pow Studios <http://powstudios.com>",
+            "C.Nilsson <http://opengameart.org/users/cnilsson>",
+            "onpon4 <https://onpon4.github.io>"
+        ]
+    },
+    {
+        "title": "Sounds",
+        "lines": [
+            "wansti",
+            "MatzeB",
+            "Some_Person",
+            "Nathan McCoy",
+            "lmh.0013@gmail.com",
+            "Yaniel",
+            "gwater",
+            "Bastian Zapf",
+            "Ricardo Cruz",
+            "cameron",
+            "theundecided <http://freesound.org/people/theundecided/>",
+            "RMAudio <http://freesound.org/people/RMAudio/>",
+            "Imitatia Dei <http://freesound.org/people/Imitatia%20Dei/>",
+            "NenadSimic <http://opengameart.org/users/nenadsimic>",
+            "onpon4 <https://onpon4.github.io>"
+        ]
+    },
+    {
+        "title": "Music",
+        "lines": [
+            "SuperTux development team <http://supertux.lethargik.org>",
+            "wansti",
+            "Lukas Nystrand",
+            "Mortimer Twang",
+            "Chris Huelsbeck",
+            "Mystical"
+        ]
+    },
+    {
+        "title": "Level Design",
+        "lines": [
+            "onpon4 <https://onpon4.github.io>"
+        ]
+    },
+    {
+        "title": "Software Used",
+        "lines": [
+            "Python <https://www.python.org/>",
+            "SGE Game Engine <http://stellarengine.nongnu.org>",
+            "xSGE <http://xsge.nongnu.org>,
+            "Tiled <http://www.mapeditor.org>
+        ]
+    },
+    {
+        "title": "Special Thanks",
+        "lines": [
+            "Jason Self"
+        ]
+    }
+]
