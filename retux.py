@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.1.1"
+__version__ = "0.1.2a0"
 
 import argparse
 import datetime
@@ -5492,8 +5492,6 @@ class JoystickMenu(Menu):
                      "Action: {}".format(js_template.format(*action_js[page])),
                      "Sneak: {}".format(js_template.format(*sneak_js[page])),
                      "Back"]
-        cls.create(default)
-
         self = cls.create(default)
         self.page = page
         return self
