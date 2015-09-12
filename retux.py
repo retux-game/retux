@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.1.2a0"
+__version__ = "0.2a0"
 
 import argparse
 import datetime
@@ -2539,6 +2539,9 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
         super(WalkingSnowball, self).burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
+    def freeze(self):
+        self.burn()
+
 
 class BouncingSnowball(WalkingSnowball):
 
@@ -2737,7 +2740,7 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def freeze(self):
-        pass
+        self.burn()
 
 
 class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
@@ -2763,9 +2766,6 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
     def knock(self, other=None):
         if self.parent is None:
             super(FlatIceblock, self).knock(other)
-
-    def freeze(self):
-        pass
 
     def drop(self):
         if self.parent is not None:
@@ -2821,9 +2821,6 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
                                   image_yscale=self.image_yscale)
         self.destroy()
         fib.touch(other)
-
-    def freeze(self):
-        pass
 
     def stop_left(self):
         play_sound(iceblock_bump_sound)
@@ -3321,8 +3318,12 @@ class Snowman(FallingObject, Boss):
     freezable = True
     knockable = True
 
-    def __init__(self, x, y, **kwargs):
-        self.hp = SNOWMAN_HP
+    def __init__(self, x, y, hp=SNOWMAN_HP, strong_stage=SNOWMAN_STRONG_STAGE,
+                 final_stage=SNOWMAN_FINAL_STAGE, **kwargs):
+        self.full_hp = hp
+        self.hp = hp
+        self.strong_stage = strong_stage
+        self.final_stage = final_stage
         self.stunned = False
         self.stun_end = False
         self.stun_time = 0
@@ -3349,14 +3350,15 @@ class Snowman(FallingObject, Boss):
     def next_stage(self):
         self.xvelocity = 0
         self.xacceleration = 0
-        if self.stage == SNOWMAN_FINAL_STAGE:
+        if self.stage == self.final_stage:
             self.kill()
         else:
             if self.was_on_floor:
                 play_sound(bigjump_sound)
-                self.yvelocity = get_jump_speed(SNOWMAN_HOP_HEIGHT, self.gravity)
+                self.yvelocity = get_jump_speed(SNOWMAN_HOP_HEIGHT,
+                                                self.gravity)
                 self.stage += 1
-                self.hp = SNOWMAN_HP
+                self.hp = self.full_hp
                 self.stun_end = True
             else:
                 self.alarms["stun"] = 1
@@ -3377,10 +3379,10 @@ class Snowman(FallingObject, Boss):
             if self.stage > 0:
                 if self.get_bottom_touching_wall():
                     can_jump = False
-                    if self.stage >= SNOWMAN_FINAL_STAGE:
+                    if self.stage >= self.final_stage:
                         walk_speed = SNOWMAN_FINAL_WALK_SPEED
                         accel = SNOWMAN_FINAL_ACCELERATION
-                    elif self.stage >= SNOWMAN_STRONG_STAGE:
+                    elif self.stage >= self.strong_stage:
                         walk_speed = SNOWMAN_STRONG_WALK_SPEED
                         accel = SNOWMAN_STRONG_ACCELERATION
                         can_jump = True
