@@ -309,6 +309,7 @@ level_timers = {}
 cleared_levels = []
 tuxdolls_available = []
 tuxdolls_found = []
+level_time_bonus = 0
 current_worldmap = None
 current_worldmap_space = None
 current_level = 0
@@ -485,6 +486,7 @@ class Level(sge.Room):
 
     def event_room_resume(self):
         global main_area
+        global level_time_bonus
 
         self.won = False
         self.win_count_points = False
@@ -497,9 +499,12 @@ class Level(sge.Room):
         if main_area is None:
             main_area = self.fname
 
+        if main_area == self.fname:
+            level_time_bonus = self.time_bonus
+
         if main_area not in level_timers:
             if main_area in levels:
-                level_timers[main_area] = self.time_bonus
+                level_timers[main_area] = level_time_bonus
             else:
                 level_timers[main_area] = 0
 
@@ -733,7 +738,7 @@ class Level(sge.Room):
                 self.alarms["shake_down"] = SHAKE_FRAME_TIME
         elif alarm_id == "death":
             if not cleared_levels:
-                level_timers[main_area] = self.time_bonus
+                level_timers[main_area] = level_time_bonus
 
             if current_worldmap:
                 self.return_to_map()
@@ -5915,6 +5920,9 @@ def rush_save():
     global main_area
 
     if main_area is not None:
+        if not cleared_levels:
+            level_timers[main_area] = level_time_bonus
+
         won = (isinstance(sge.game.current_room, Level) and
                sge.game.current_room.won)
 
