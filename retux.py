@@ -1081,7 +1081,17 @@ class Tile(sge.Object):
 
     out_frames = 0
 
-    def event_step(self, time_passed, delta_mult):
+    def event_step_wish(self, time_passed, delta_mult):
+        # XXX: This code executed in the step event causes a marginal
+        # speed benefit, but it's also incredibly prone to bugs. In
+        # particular, it causes a bug where enemies will occasionally
+        # fall through the floor they stand on when re-entering the
+        # level, and it prevents objects on moving platforms from moving
+        # with them.  In addition, if the problem with moving platforms
+        # were fixed, there would still be the chance of the object e.g.
+        # getting stuck in a wall somewhere because of where the
+        # platform moves.  All of these problems considered, this code
+        # is currently disabled.
         for view in sge.game.current_room.views:
             if (self.bbox_left <= view.x + view.width + TILE_ACTIVE_RANGE and
                     self.bbox_right >= view.x - TILE_ACTIVE_RANGE and
@@ -2209,6 +2219,18 @@ class InteractiveObject(sge.Object):
 
 
 class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
+
+    def deactivate(self):
+        tangible_anyway = False
+        if not self.never_tangible:
+            for other in self.get_bottom_touching_wall():
+                if isinstance(other, xsge_physics.MobileWall):
+                    tangible_anyway = True
+                    break
+
+        super(InteractiveCollider, self).deactivate()
+        if tangible_anyway:
+            self.tangible = True
 
     def stop_left(self):
         self.xvelocity = 0
