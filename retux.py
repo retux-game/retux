@@ -776,13 +776,11 @@ class Level(sge.Room):
             if key == "f11":
                 sge.game.fullscreen = not sge.game.fullscreen
             elif key == "escape":
-                sge.game.mouse.visible = True
-                m = "Are you sure you want to quit?"
-                if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
-                                         default=0):
-                    rush_save()
+                rush_save()
+                if current_worldmap:
+                    self.return_to_map()
+                else:
                     sge.game.start_room.start()
-                sge.game.mouse.visible = False
             elif key == "enter":
                 if self.pause_delay <= 0 and not self.won:
                     sge.Music.pause()
@@ -1067,13 +1065,8 @@ class Worldmap(sge.Room):
 
     def event_key_press(self, key, char):
         if key == "escape":
-            sge.game.mouse.visible = True
-            m = "Are you sure you want to quit?"
-            if xsge_gui.show_message(message=m, buttons=["No", "Yes"],
-                                     default=0):
-                rush_save()
-                sge.game.start_room.start()
-            sge.game.mouse.visible = False
+            rush_save()
+            sge.game.start_room.start()
 
     @classmethod
     def load(cls, fname):
