@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="28" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="background_y" value="448"/>
   <property name="bgname" value="cave"/>
   <property name="music" value="cave.ogg"/>
  </properties>
@@ -18,37 +17,169 @@
  <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="496" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="250" height="28">
+ <layer name="Back Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAUQ8G4/xqWTmil8HEE0eIOXp8mCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR2+vFwC3jf3zmQoAAPjPAjfNA0c=
+   eJzt3LENACEMA8BkchiG8iekoqWlQDzoTnLvBewIAOBGJSNqnm4BAAAAAAAAAAD79CkAAAAAAAAAAAAAAAAAALCi+XKH531pkw4AAH82AL1kBzY=
   </data>
  </layer>
- <layer name="Middle Tiles" width="250" height="28">
+ <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects">
-  <object type="solid_right" x="96" y="768" width="32" height="64"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="2048" height="576"/>
+  <object x="0" y="576" width="64" height="320"/>
+  <object x="0" y="896" width="1664" height="64"/>
+  <object x="1152" y="800" width="512" height="96"/>
+  <object x="1696" y="800" width="32" height="160"/>
+  <object x="1760" y="800" width="32" height="160"/>
+  <object x="1824" y="800" width="512" height="160"/>
+  <object x="2336" y="928" width="1120" height="32"/>
+  <object x="3296" y="832" width="160" height="96"/>
+  <object x="3584" y="736" width="192" height="32"/>
+  <object x="3840" y="640" width="160" height="32"/>
+  <object x="3520" y="544" width="192" height="32"/>
+  <object x="2048" y="0" width="5952" height="64"/>
+  <object x="2048" y="256" width="736" height="320"/>
+  <object x="2784" y="480" width="608" height="96"/>
+  <object x="4128" y="320" width="640" height="96"/>
+  <object x="4096" y="416" width="1152" height="64"/>
+  <object x="4096" y="480" width="1504" height="480"/>
+  <object x="5888" y="320" width="608" height="32"/>
+  <object x="5888" y="352" width="640" height="32"/>
+  <object x="5888" y="384" width="2112" height="576"/>
+  <object x="7232" y="352" width="768" height="32"/>
+  <object x="7968" y="64" width="32" height="288"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup name="Collision Objects">
+  <object type="solid_right" x="96" y="832" width="32" height="64"/>
+  <object type="solid_left" x="7872" y="288" width="32" height="64"/>
+  <object type="slope_topleft" x="960" y="800" width="192" height="96"/>
+  <object type="slope_topleft" x="3104" y="832" width="192" height="96"/>
+  <object type="slope_topright" x="4768" y="320" width="96" height="96"/>
+  <object type="slope_topright" x="5248" y="416" width="64" height="64"/>
+  <object type="slope_topleft" x="7168" y="352" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="7872" y="320">
+   <properties>
+    <property name="dest" value="__main__:level_end"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn">
-  <object x="64" y="800">
+  <object x="64" y="864">
    <properties>
     <property name="spawn_id" value="enter"/>
    </properties>
    <polyline points="0,0 64,0"/>
   </object>
  </objectgroup>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players">
-  <object gid="1" x="160" y="832"/>
+ <objectgroup name="Items">
+  <object gid="466" x="480" y="672"/>
+  <object gid="465" x="448" y="800"/>
+  <object gid="465" x="480" y="800"/>
+  <object gid="465" x="512" y="800"/>
+  <object gid="465" x="544" y="800"/>
+  <object gid="465" x="416" y="800"/>
+  <object gid="471" x="2112" y="160"/>
+  <object gid="474" x="2240" y="224"/>
+  <object gid="474" x="2240" y="160"/>
+  <object gid="474" x="2272" y="192"/>
+  <object gid="474" x="2272" y="128"/>
+  <object gid="474" x="2304" y="160"/>
+  <object gid="474" x="2304" y="224"/>
+  <object gid="474" x="2336" y="192"/>
+  <object gid="474" x="2336" y="128"/>
+  <object gid="474" x="2400" y="128"/>
+  <object gid="474" x="2464" y="128"/>
+  <object gid="474" x="2528" y="128"/>
+  <object gid="474" x="2592" y="128"/>
+  <object gid="474" x="2624" y="160"/>
+  <object gid="474" x="2560" y="160"/>
+  <object gid="474" x="2496" y="160"/>
+  <object gid="474" x="2432" y="160"/>
+  <object gid="474" x="2368" y="160"/>
+  <object gid="474" x="2368" y="224"/>
+  <object gid="474" x="2400" y="192"/>
+  <object gid="474" x="2432" y="224"/>
+  <object gid="474" x="2464" y="192"/>
+  <object gid="474" x="2496" y="224"/>
+  <object gid="474" x="2528" y="192"/>
+  <object gid="474" x="2560" y="224"/>
+  <object gid="474" x="2592" y="192"/>
+  <object gid="474" x="2624" y="224"/>
+  <object gid="465" x="2496" y="832"/>
+  <object gid="465" x="2528" y="832"/>
+  <object gid="473" x="2624" y="832"/>
+  <object gid="465" x="2720" y="832"/>
+  <object gid="465" x="2752" y="832"/>
+  <object gid="480" x="3904" y="640"/>
+  <object gid="480" x="5536" y="480"/>
+  <object gid="465" x="4160" y="224"/>
+  <object gid="465" x="4224" y="224"/>
+  <object gid="465" x="6752" y="288"/>
+  <object gid="465" x="6784" y="288"/>
+  <object gid="465" x="6816" y="288"/>
+  <object gid="465" x="6880" y="288"/>
+  <object gid="465" x="6912" y="288"/>
+  <object gid="465" x="6944" y="288"/>
+  <object gid="465" x="6848" y="288"/>
  </objectgroup>
- <layer name="Front Tiles" width="250" height="28">
+ <objectgroup name="NPCs">
+  <object gid="7" x="2848" y="480"/>
+  <object gid="2" x="1472" y="800"/>
+  <object gid="2" x="1536" y="800"/>
+  <object gid="2" x="1600" y="800"/>
+  <object gid="5" x="2240" y="800"/>
+  <object gid="4" x="3392" y="832"/>
+  <object gid="4" x="3136" y="896"/>
+  <object gid="4" x="3264" y="832"/>
+  <object gid="2" x="4544" y="320"/>
+  <object gid="2" x="4608" y="320"/>
+  <object gid="4" x="4832" y="352"/>
+  <object gid="4" x="4928" y="416"/>
+  <object gid="5" x="6208" y="320"/>
+  <object gid="2" x="6400" y="320"/>
+  <object gid="2" x="6464" y="320"/>
+  <object gid="2" x="6336" y="320"/>
+  <object gid="5" x="6944" y="256"/>
+  <object gid="9" x="1696" y="608"/>
+  <object gid="9" x="1760" y="608"/>
+  <object gid="9" x="2592" y="608"/>
+  <object gid="9" x="2656" y="608"/>
+  <object gid="9" x="4416" y="96"/>
+  <object gid="9" x="4448" y="96"/>
+  <object gid="9" x="4544" y="96"/>
+  <object gid="9" x="4640" y="96"/>
+  <object gid="9" x="4672" y="96"/>
+  <object gid="9" x="7392" y="96"/>
+  <object gid="9" x="7520" y="96"/>
+  <object gid="9" x="7648" y="96"/>
+  <object type="flying_snowball_path" x="5696" y="448">
+   <polyline points="0,0 0,-192 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="5792" y="224">
+   <polyline points="0,0 0,192 0,0"/>
+  </object>
+  <object gid="7" x="7472" y="352"/>
+  <object gid="7" x="7600" y="352"/>
+  <object gid="9" x="928" y="608"/>
+  <object gid="9" x="1024" y="608"/>
+  <object gid="9" x="1120" y="608"/>
+  <object gid="5" x="2304" y="800"/>
+  <object gid="7" x="3616" y="544"/>
+  <object gid="5" x="5344" y="480"/>
+  <object gid="5" x="5440" y="480"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="160" y="896"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
+   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4GdTAAAQ==
   </data>
  </layer>
 </map>
