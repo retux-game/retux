@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="90" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="The"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="493" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="90" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMA8GwVfZfJoxBQ4tEGkPgT3JvvRkAADX1dvrBH4LOEnTWoLMGnTXorHFTZ5+rIPt11dk3B7xmAKlhClI=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="90" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztl80OgyAMgOt5WTxvurP7Oc/NJ5s3fd+9xMqBLDHtZEgpQZt8B4MK/aQIAHLRIFUi3ATz1Iwdcgc65zNyYdokuEK+ng/IEei8W+TBtLk483muQ0rRjHUipTXDUCMn0Yx1IjXPhhzXDsqzb81vnvlwnc8x3a/Z8zafl0UIz//u/+ZqIwfPrwKgL77XITwv2f/l6nlAxyPjWeP/R9WC9TydEzHiGQjr2V5zZ8FYULXQMWP15e34rcy9eyG4s6AmtWC+c/wal9Z+N1a/kv1M3/0BZStQ6Q==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="2816" y="256" width="64" height="128"/>
+  <object x="0" y="384" width="2880" height="64"/>
+  <object x="736" y="-160" width="1152" height="544"/>
+  <object x="1888" y="96" width="32" height="288"/>
+  <object x="704" y="64" width="32" height="320"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="level_end" x="2368" y="0" width="32" height="384"/>
+  <object type="solid_top" x="1952" y="320" width="64" height="32"/>
+  <object type="solid_top" x="576" y="288" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <properties>
+   <property name="dest" value="retux-14b.tmx:enter"/>
+  </properties>
+  <object x="608" y="288">
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="1984" y="384">
+   <properties>
+    <property name="spawn_id" value="level_end"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="384"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="90" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt0UENACAQA8HDv1B4IAIHPEvIzShotlUA8Lc1Xi/oYeocoXOGzhk6Z+icoXPGrfP2AY0coj8ILw==
+  </data>
+ </layer>
+</map>

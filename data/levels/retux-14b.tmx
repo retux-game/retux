@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="28" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="448"/>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="cave.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="493" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="250" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzt07EJACAUQ8G4/xqWTmil8HEE0eIOXp8mCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR2+vFwC3jf3zmQoAAPjPAjfNA0c=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="250" height="28">
+  <data encoding="base64" compression="zlib">
+   eJzt08EJg1AURcEXN4F0JGK3WVpElqnJlc8OJPAJXmbglHCqAAAAAAAAAAAAAAAAAADgmvlR9fox4B6efoV4Pod8Pod8Pod8Pod8Pod8Pod8Pod85+fv7uN3iLX231v37fYaE/BfS/89DQ4AGOcA0a8aNw==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects">
+  <object type="solid_right" x="96" y="768" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="64" y="800">
+   <properties>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="160" y="832"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="250" height="28">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
+  </data>
+ </layer>
+</map>
