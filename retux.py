@@ -239,7 +239,7 @@ FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
 FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
 
 ICEBULLET_AMMO = 20
-ICEBULLET_SPEED = 8
+ICEBULLET_SPEED = 16
 
 COINBRICK_COINS = 20
 COINBRICK_DECAY_TIME = 25
@@ -3623,9 +3623,18 @@ class IceFlower(FallingObject, WinPuffObject):
         if self.parent is not None:
             d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
+                if d < 0:
+                    bbox_x = 0
+                    bbox_width = (ice_bullet_sprite.bbox_width -
+                                  ice_bullet_sprite.bbox_x)
+                else:
+                    bbox_x = None
+                    bbox_width = None
+                    
                 IceBullet.create(self.x, self.y, self.parent.z,
                                  sprite=ice_bullet_sprite,
-                                 xvelocity=(ICEBULLET_SPEED * d))
+                                 xvelocity=(ICEBULLET_SPEED * d),
+                                 bbox_x=bbox_x, bbox_width=bbox_width)
                 self.ammo -= 1
                 play_sound(shoot_sound)
 
@@ -6303,7 +6312,7 @@ logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8, bbox_x=-12, bbox_width=24)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
-                               bbox_x=-12, bbox_width=24)
+                               bbox_x=-32, bbox_width=48)
 explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
                               bbox_x=-32, bbox_y=-4, bbox_width=64,
                               bbox_height=40)
