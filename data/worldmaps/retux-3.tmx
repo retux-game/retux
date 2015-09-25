@@ -22,7 +22,11 @@
     <property name="ID" value="map_exit"/>
    </properties>
   </object>
-  <object gid="62" x="800" y="576"/>
+  <object gid="62" x="800" y="576">
+   <properties>
+    <property name="level" value="retux-15.tmx"/>
+   </properties>
+  </object>
   <object gid="62" x="608" y="576">
    <properties>
     <property name="level" value="retux-14.tmx"/>
