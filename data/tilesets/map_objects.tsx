@@ -18,4 +18,10 @@
   </properties>
   <image width="32" height="32" source="../images/worldmap/warp_1.png"/>
  </tile>
+ <tile id="3">
+  <properties>
+   <property name="cls" value="map_water"/>
+  </properties>
+  <image width="32" height="32" source="../images/worldmap/water_01.png"/>
+ </tile>
 </tileset>

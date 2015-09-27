@@ -3,53 +3,71 @@
  <properties>
   <property name="music" value="salcon.ogg"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/icyisland.tsx"/>
- <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
- <layer name="Tiles" width="25" height="14">
+ <tileset firstgid="1" source="../tilesets/map_objects.tsx"/>
+ <tileset firstgid="5" source="../tilesets/wm_roads.tsx"/>
+ <tileset firstgid="25" source="../tilesets/wm_snow.tsx"/>
+ <tileset firstgid="70" source="../tilesets/wm_trees.tsx"/>
+ <tileset firstgid="85" source="../tilesets/wm_castle.tsx"/>
+ <layer name="Water" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJydk0sLAjEMhFc9+D5tZVGroOID1PoAPfn/f5dzaCCEtNnu4TtsOplpE7auqqpuyRKsGGtD70BQ6ouCTAvKGIp6k9D3wC5DX+n5gIny3lRGqm6duwLtwLhzl4wTOIOL4qH5dcl4ghd4Kx78TcRM8bqCLdhEbrE+jT17cAA/xcPazZG9IURG4Gv05eZyF98PkTEu9Ncy5D/ViAw5Pz63FDRPYq7shnYRhD/VfIscuo92J+4VmI7XtBzuKfVeZDnhlcMnPC291P4BcJAimQ==
+   eJxjYKAdYIFiWoLhYgfMnlE7iDMfHQ8HO2gBsJlNTTuxmUVq2OFTi80sfJhUfeTYQQ0MAM3XAW0=
+  </data>
+ </layer>
+ <layer name="Land" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJyTZ2BgkKcRVmCAAFqZTy87FIFYmsZ2wPwyagdhLAPEqkCsAsWyVDRbHckPMCAJxEoUmKmGxtdBs0OKQvMJxQUDlvCjVrjB4oIBh5gyEfbA3IPNTchmMSCpQxbDZg+ymejqldHsUmAgHsD0YnMDPvXoagEt8yaO
+  </data>
+ </layer>
+ <layer name="Roads" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA/4KODHQI4xFmBmB8PZqOCHbjEiZUnRi07A343U8MOAQJqqG0Hsp9gmIsEOzix6Ec3gxQ3kwsGwg70PEUNN6CHJzcD+XEzClABALk8At8=
+  </data>
+ </layer>
+ <layer name="Decorations" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAeBABxIBIOIkEvrYEHHeygtn9tgNiWymaiA1MgNqOxHY5A7ERjO0gBoQPtgFEwCggAAPCkA+w=
   </data>
  </layer>
  <objectgroup name="Spaces">
-  <object gid="62" x="544" y="352">
+  <object gid="2" x="544" y="352">
    <properties>
     <property name="level" value="retux-01.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="416" y="352">
+  <object gid="2" x="416" y="352">
    <properties>
     <property name="level" value="retux-02.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="416" y="224">
+  <object gid="2" x="416" y="224">
    <properties>
     <property name="level" value="retux-03.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="576" y="96">
+  <object gid="2" x="576" y="96">
    <properties>
     <property name="level" value="retux-04.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="320" y="160">
+  <object gid="2" x="320" y="160">
    <properties>
     <property name="level" value="retux-05.tmx"/>
    </properties>
   </object>
-  <object gid="63" x="128" y="64">
+  <object gid="3" x="128" y="64">
    <properties>
     <property name="ID" value="map_exit"/>
     <property name="dest" value="retux-2.tmx:map_enter"/>
    </properties>
   </object>
-  <object gid="62" x="224" y="256">
+  <object gid="2" x="224" y="256">
    <properties>
     <property name="level" value="retux-06.tmx"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Objects">
-  <object gid="61" x="672" y="288"/>
+  <object gid="1" x="672" y="288"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="map_path">
   <object x="672" y="256">

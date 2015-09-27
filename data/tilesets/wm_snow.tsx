@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset name="wm_snow" tilewidth="32" tileheight="32">
+ <image source="../images/tiles/tileset_wm_snow.png" width="160" height="288"/>
+ <terraintypes>
+  <terrain name="snow" tile="6"/>
+  <terrain name="snow_hill" tile="35"/>
+ </terraintypes>
+ <tile id="0" terrain=",,,0"/>
+ <tile id="1" terrain=",,0,0"/>
+ <tile id="2" terrain=",,0,"/>
+ <tile id="3" terrain="0,0,0,"/>
+ <tile id="4" terrain="0,0,,0"/>
+ <tile id="5" terrain=",0,,0"/>
+ <tile id="6" terrain="1,1,1,1"/>
+ <tile id="7" terrain="0,,0,"/>
+ <tile id="8" terrain="0,,0,0"/>
+ <tile id="9" terrain=",0,0,0"/>
+ <tile id="10" terrain=",0,,"/>
+ <tile id="11" terrain="0,0,,"/>
+ <tile id="12" terrain="0,,,"/>
+ <tile id="26" terrain=",,1,1"/>
+ <tile id="28" terrain=",1,,1"/>
+ <tile id="29" terrain="1,,1,"/>
+ <tile id="31" terrain="1,1,,"/>
+ <tile id="35" terrain=",,,1"/>
+ <tile id="36" terrain=",,1,"/>
+ <tile id="37" terrain="1,1,1,"/>
+ <tile id="38" terrain="1,1,,1"/>
+ <tile id="40" terrain=",1,,"/>
+ <tile id="41" terrain="1,,,"/>
+ <tile id="42" terrain="1,,1,1"/>
+ <tile id="43" terrain=",1,1,1"/>
+</tileset>

@@ -476,8 +476,6 @@ class Level(sge.Room):
         sge.game.start_room.start()
 
     def event_room_start(self):
-        global level_timers
-
         self.add(coin_animation)
         self.add(bonus_animation)
         self.add(lava_animation)
@@ -5307,6 +5305,14 @@ class MapPath(xsge_path.Path):
         save_game()
 
 
+class MapWater(sge.Object):
+
+    def __init__(self, x, y, **kwargs):
+        kwargs["sprite"] = worldmap_water_sprite
+        kwargs["tangible"] = False
+        super(MapWater, self).__init__(x, y, **kwargs)
+
+
 class Menu(xsge_gui.MenuWindow):
 
     items = []
@@ -6137,7 +6143,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "checkpoint": Checkpoint, "bell": Bell, "door": Door,
          "warp_spawn": WarpSpawn, "object_warp_spawn": ObjectWarpSpawn,
          "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
-         "map_path": MapPath}
+         "map_path": MapPath, "map_water": MapWater}
 
 
 print("Initializing game system...")
@@ -6407,6 +6413,7 @@ worldmap_tux_sprite = sge.Sprite("tux", d)
 worldmap_level_complete_sprite = sge.Sprite("level_complete", d)
 worldmap_level_incomplete_sprite = sge.Sprite("level_incomplete", d, fps=8)
 worldmap_warp_sprite = sge.Sprite("warp", d, fps=3)
+worldmap_water_sprite = sge.Sprite("water", d, transparent=False, fps=8)
 
 # Load backgrounds
 d = os.path.join(DATA, "images", "backgrounds")

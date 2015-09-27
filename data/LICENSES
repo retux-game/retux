@@ -450,15 +450,20 @@ levels/retux-11.tmx
 levels/retux-12.tmx
 levels/retux-13.tmx
 levels/retux-13b.tmx
+levels/retux-14.tmx
+levels/retux-14b.tmx
+levels/retux-15.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/special/title_screen.tmx
 levelsets/retux.json
 levelsets/test.json
 tilesets/blocks.tsx
+tilesets/castle.tsx
 tilesets/cave.tsx
 tilesets/creatures.tsx
 tilesets/decoration_small.tsx
+tilesets/door.tsx
 tilesets/icyisland.tsx
 tilesets/igloo.tsx
 tilesets/krosh.tsx
@@ -466,14 +471,26 @@ tilesets/krush.tsx
 tilesets/map_objects.tsx
 tilesets/pipes.tsx
 tilesets/snow.tsx
+tilesets/snowman.tsx
 tilesets/special_blocks.tsx
+tilesets/wm_bridge.tsx
+tilesets/wm_castle.tsx
+tilesets/wm_cave_cracks.tsx
+tilesets/wm_icecave.tsx
+tilesets/wm_mountain.tsx
+tilesets/wm_pier.tsx
+tilesets/wm_roads.tsx
+tilesets/wm_shallow_water.tsx
+tilesets/wm_snow.tsx
+tilesets/wm_thin_ice.tsx
+tilesets/wm_trees.tsx
 timelines/title_demo.json
 worldmaps/base.tmx
 worldmaps/retux-1.tmx
 worldmaps/retux-2.tmx
 
 Author: onpon4 <https://onpon4.github.io>
-License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
 ------------------------------------------------------------------------
 
