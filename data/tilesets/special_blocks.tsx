@@ -150,4 +150,10 @@
   </properties>
   <image width="16" height="32" source="../images/misc/spawn_point.png"/>
  </tile>
+ <tile id="24">
+  <properties>
+   <property name="cls" value="bell"/>
+  </properties>
+  <image width="29" height="32" source="../images/objects/misc/bell-0.png"/>
+ </tile>
 </tileset>

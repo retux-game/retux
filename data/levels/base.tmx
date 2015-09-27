@@ -11,12 +11,12 @@
  <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRQE8AAAV4AAE=

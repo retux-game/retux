@@ -4445,7 +4445,20 @@ class Checkpoint(InteractiveObject):
     def touch(self, other):
         global current_checkpoints
         current_checkpoints[main_area] = self.dest
-        self.destroy()
+
+
+class Bell(Checkpoint):
+
+    def __init__(self, x, y, dest=None, **kwargs):
+        kwargs["sprite"] = bell_sprite
+        kwargs["image_fps"] = 0
+        InteractiveObject.__init__(self, x, y, **kwargs)
+        self.dest = dest
+
+    def touch(self, other):
+        super(Bell, self).touch(other)
+        play_sound(bell_sound)
+        self.image_fps = None
 
 
 class Door(sge.Object):
@@ -6108,9 +6121,10 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "spawn": Spawn,
-         "checkpoint": Checkpoint, "door": Door, "warp_spawn": WarpSpawn,
-         "object_warp_spawn": ObjectWarpSpawn, "map_player": MapPlayer,
-         "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
+         "checkpoint": Checkpoint, "bell": Bell, "door": Door,
+         "warp_spawn": WarpSpawn, "object_warp_spawn": ObjectWarpSpawn,
+         "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
+         "map_path": MapPath}
 
 
 print("Initializing game system...")
@@ -6341,6 +6355,8 @@ thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
 thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
 boss_block_sprite = sge.Sprite("boss_block", d, transparent=False, origin_x=16,
                                origin_y=16)
+bell_sprite = sge.Sprite("bell", d, origin_x=-1, fps=10, bbox_x=0,
+                         bbox_width=32, bbox_height=32)
 door_sprite = sge.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
 door_back_sprite = sge.Sprite("door_back", d, origin_x=21, origin_y=41)
 
@@ -6539,6 +6555,7 @@ icicle_crash_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_crash.wav"))
 explosion_sound = sge.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
+bell_sound = sge.Sound(os.path.join(DATA, "sounds", "bell.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
 warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
 door_sound = sge.Sound(os.path.join(DATA, "sounds", "door.wav"))

@@ -160,6 +160,14 @@ images/objects/enemies/spiky-3.png
 images/objects/enemies/spiky_iced.png
 images/objects/enemies/stalactite.png
 images/objects/enemies/stalactite_broken.png
+images/objects/misc/bell-0.png
+images/objects/misc/bell-1.png
+images/objects/misc/bell-2.png
+images/objects/misc/bell-3.png
+images/objects/misc/bell-4.png
+images/objects/misc/bell-5.png
+images/objects/misc/bell-6.png
+images/objects/misc/bell-7.png
 images/objects/misc/boss_block.png
 images/objects/misc/flag-0.png
 images/objects/misc/flag-1.png
@@ -270,6 +278,7 @@ images/worldmap/warp_1.png
 images/worldmap/warp_2.png
 images/worldmap/warp_3.png
 images/worldmap/warp_4.png
+sounds/bell.wav
 sounds/kill.wav
 sounds/upgrade.wav
 
