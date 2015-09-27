@@ -269,6 +269,26 @@ images/tiles/tileset_icyisland.png
 images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
 images/tiles/tileset_snowman.png
+images/tiles/tileset_wm_bridge.png
+images/tiles/tileset_wm_cave_cracks.png
+images/tiles/tileset_wm_icecave.png
+images/tiles/tileset_wm_mountain.png
+images/tiles/tileset_wm_pier.png
+images/tiles/tileset_wm_roads.png
+images/tiles/tileset_wm_shallow_water.png
+images/tiles/tileset_wm_snow.png
+images/tiles/tileset_wm_thin_ice.png
+images/tiles/tileset_wm_trees.png
+images/tiles/sources/tileset_wm_bridge.xcf
+images/tiles/sources/tileset_wm_cave_cracks.xcf
+images/tiles/sources/tileset_wm_icecave.xcf
+images/tiles/sources/tileset_wm_mountain.xcf
+images/tiles/sources/tileset_wm_pier.xcf
+images/tiles/sources/tileset_wm_roads.xcf
+images/tiles/sources/tileset_wm_shallow_water.xcf
+images/tiles/sources/tileset_wm_snow.xcf
+images/tiles/sources/tileset_wm_thin_ice.xcf
+images/worldmap/castle.png
 images/worldmap/level_complete.png
 images/worldmap/level_incomplete-01.png
 images/worldmap/level_incomplete-02.png
@@ -278,6 +298,24 @@ images/worldmap/warp_1.png
 images/worldmap/warp_2.png
 images/worldmap/warp_3.png
 images/worldmap/warp_4.png
+images/worldmap/water_01.png
+images/worldmap/water_02.png
+images/worldmap/water_03.png
+images/worldmap/water_04.png
+images/worldmap/water_05.png
+images/worldmap/water_06.png
+images/worldmap/water_07.png
+images/worldmap/water_08.png
+images/worldmap/water_09.png
+images/worldmap/water_10.png
+images/worldmap/water_11.png
+images/worldmap/water_12.png
+images/worldmap/water_13.png
+images/worldmap/water_14.png
+images/worldmap/water_15.png
+images/worldmap/water_16.png
+images/worldmap/sources/castle.xcf
+images/worldmap/sources/water.xcf
 sounds/bell.wav
 sounds/kill.wav
 sounds/upgrade.wav
@@ -456,6 +494,10 @@ music/treeboss.ogg
 music/treeboss-start.ogg
 music/wisphunt.ogg
 music/wisphunt-start.ogg
+music/sources/bossattack.ogg
+music/sources/fortress.ogg
+music/sources/treeboss.ogg
+music/sources/wisphunt.ogg
 
 Author: wansti
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
@@ -465,6 +507,7 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 music/chipdisko.ogg
 music/chipdisko-start.ogg
+music/sources/chipdisko.ogg
 
 Authors:
   Lukas Nystrand
