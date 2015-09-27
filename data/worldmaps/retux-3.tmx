@@ -3,48 +3,80 @@
  <properties>
   <property name="music" value="salcon.ogg"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/icyisland.tsx"/>
- <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
- <layer name="Tiles" width="36" height="21">
+ <tileset firstgid="1" source="../tilesets/map_objects.tsx"/>
+ <tileset firstgid="5" source="../tilesets/wm_roads.tsx"/>
+ <tileset firstgid="25" source="../tilesets/wm_bridge.tsx"/>
+ <tileset firstgid="37" source="../tilesets/wm_snow.tsx"/>
+ <tileset firstgid="82" source="../tilesets/wm_mountain.tsx"/>
+ <tileset firstgid="110" source="../tilesets/wm_trees.tsx"/>
+ <tileset firstgid="125" source="../tilesets/wm_shallow_water.tsx"/>
+ <tileset firstgid="140" source="../tilesets/wm_thin_ice.tsx"/>
+ <tileset firstgid="155" source="../tilesets/wm_castle.tsx"/>
+ <layer name="Water" width="36" height="21">
   <data encoding="base64" compression="zlib">
-   eJy9lttOwzAQRA0SUO6IBFX0hgCJUigV1z7x/9/FRs1Iw3TtOKHlYdQq9nqPJ7t2ihBCsWFdmwamoenZNDZNTAvTiP57quKvtsCkHKye6ZB0JDz9xLo7ptsM7Urcl+RhhmViLvM8mKamR5qbYi1kXuXJXPLEGFRg4pyvpjfTe0eeMqzqg5ma/GVfy/r3uB67M92bvmn+SQse7PGyxX4wXnk7ycyVs9cz8n3p5OM6nzvjlTeLhvyxveyZ9msdiMcq+Mv95vn3Fx6cLzhjXjJiuYdyeNhH7GUs3sY80F6PrYF+W9K7h3/KUxI34rQ2m3wrZL1eiPe6xjAPaptze8/a8HBds1fwq+/kAg/YRhSD8a48sdrBmhxTht/3hc7n8x175J5iVf0VqyuuLz2rUzyFzPfe+bnpwtFHWO/9HP+aeDyxJ5/CMQurfn9y2JRrUzyeJ+AYhvWzaCBjuTzczyke5IIHszpX7jcIdOo88+7F0nmW4sK+bzLj2qjLfbpNdbm//oPnByzGRWg=
+   eJzt1CEOACAMBMEK/v9mFJILJ1pW3Ca4iqGiVb0t81Ecvz232c6cv0943Ege2n7i0cWjI3mm7uFr8eji0dE8J5KHth+qZwPLBwFF
+  </data>
+ </layer>
+ <layer name="Land" width="36" height="21">
+  <data encoding="base64" compression="zlib">
+   eJzt1d0KgCAMBeC9TD9gWvb+D9egBkNaVGgcYoMDXgj7GMoCEYXKiZx0nEfOwsm016zOZ1XbIikdujpOrzJ84IlFH21IF3dbeaSPZbD8LT1PMwEY9HvLAA49GwJwtPCsYB60+fzNI38LxSOzcY973kT2ru9TO75P73k2LQZ5oQ==
+  </data>
+ </layer>
+ <layer name="Roads" width="36" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh8gG+gHYAGBPDIsQIxPxGYjU7uwSdHjjpKzaLUPYTCF1u4ciLJc6Op56LQPYT8Q0m44vMrzwC4B59e5DAmJXxp5Z6BMBNXGJCT12FxT2z6JAWQ40dahDUlZo8k9+BKV/jSFy3dQwhgs3vUPfjtpqZ7iG2D4KoTqV3uCFLRrFFAGgAAq6kGEw==
+  </data>
+ </layer>
+ <layer name="Back Decorations" width="36" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztzqkRACAQxVB65L4Egv5b4IvtYRF5M/EJAQAAeIgqWdn5paiqmtXVcfwZaqplbXUdf4CfPUkwBZc=
+  </data>
+ </layer>
+ <layer name="Decorations" width="36" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztlMkKwjAURd//+BGiuFBBEed5dqsuVVDrTP0Ff9YbTDCGDomNrnrhkJAmr7f3hRLZ1wqsweYHtWOZKwuSIKesb8H+j+8XlEACpJV9DnAtenr4rKdAHmQUisq+E7iBoyU/fmJ+1Cz8xDxdAp7b6GmBPrOYgwVnqVmD+diBO9nPT/xfTP4xopcHTT9yjuJbdvR9tl41mKczBfdTyKG3b3Euyt1k9a4G75fFvkXtq9eaieR7LWelk7lDr7660pk76fdax5u4Ozo11f0Mr6zLET2dPWrq7BdnKqDGx2rI/NeqgwZo8bEZMu+DARiCEa8RJU9VbdABPT52Q+ZjMAFTMLPoI1YsEz0BK51Gqg==
+  </data>
+ </layer>
+ <layer name="Front Decorations" width="36" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztzrkRACEMxVD3yALLFRDQfwv8wAEdONGbUS4zAAAAvJL6vBz8UlRVv9fUDvzpaqjpLXUCf2B2AUtBBZc=
   </data>
  </layer>
  <objectgroup name="Spaces">
-  <object gid="63" x="416" y="608">
+  <object gid="3" x="416" y="608">
    <properties>
     <property name="ID" value="map_enter"/>
     <property name="dest" value="retux-2.tmx:map_exit"/>
    </properties>
   </object>
-  <object gid="63" x="32" y="64">
+  <object gid="3" x="32" y="64">
    <properties>
     <property name="ID" value="map_exit"/>
    </properties>
   </object>
-  <object gid="62" x="800" y="576">
+  <object gid="2" x="800" y="576">
    <properties>
     <property name="level" value="retux-15.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="608" y="576">
+  <object gid="2" x="608" y="576">
    <properties>
     <property name="level" value="retux-14.tmx"/>
    </properties>
   </object>
-  <object gid="62" x="576" y="224"/>
-  <object gid="62" x="512" y="96"/>
-  <object gid="62" x="288" y="96"/>
-  <object gid="62" x="128" y="192"/>
-  <object gid="62" x="704" y="448"/>
-  <object gid="62" x="544" y="384"/>
-  <object gid="62" x="352" y="288"/>
-  <object gid="62" x="960" y="416"/>
-  <object gid="62" x="1024" y="224"/>
-  <object gid="62" x="768" y="160"/>
+  <object gid="2" x="576" y="224"/>
+  <object gid="2" x="512" y="96"/>
+  <object gid="2" x="288" y="96"/>
+  <object gid="2" x="128" y="192"/>
+  <object gid="2" x="704" y="448"/>
+  <object gid="2" x="544" y="384"/>
+  <object gid="2" x="352" y="288"/>
+  <object gid="2" x="960" y="416"/>
+  <object gid="2" x="1024" y="224"/>
+  <object gid="2" x="768" y="160"/>
  </objectgroup>
  <objectgroup name="Objects">
-  <object gid="61" x="416" y="608"/>
+  <object gid="1" x="416" y="608"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="map_path">
   <object x="416" y="576">
