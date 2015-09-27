@@ -14,20 +14,20 @@
  <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="250" height="52">
   <data encoding="base64" compression="zlib">
-   eJzt3KENwDAMRcF4/zUKs1g6RTewQqzI6R37zMT0jQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/NETpy8Aqs3iP38j30B/K/INAAAAAAAAAAAAAAAAAAAAp2npwP2qWzrA3Xb6WBpa0NtOH0tDi84+68EJ+Q==
+   eJzt3KENwDAMRcF4/zUKM1m6RDewQqzI6R37zMT0jQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/NETpy8Aqs3iP38j30B/K/INAAAAAAAAAAAAAAAAAAAAp2npwP2qWzrA3Xb6WBpa0NtOH0tDi84+PvcKAQ==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="52">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -265,6 +265,36 @@
   <object gid="474" x="6816" y="960"/>
   <object gid="479" x="2912" y="384"/>
   <object gid="466" x="4768" y="896"/>
+  <object gid="487" x="1504" y="1504">
+   <properties>
+    <property name="dest" value="checkpoint1"/>
+   </properties>
+  </object>
+  <object gid="486" x="1536" y="1600">
+   <properties>
+    <property name="spawn_id" value="checkpoint1"/>
+   </properties>
+  </object>
+  <object gid="486" x="4448" y="992">
+   <properties>
+    <property name="spawn_id" value="checkpoint2"/>
+   </properties>
+  </object>
+  <object gid="487" x="4432" y="896">
+   <properties>
+    <property name="dest" value="checkpoint2"/>
+   </properties>
+  </object>
+  <object gid="487" x="6016" y="1504">
+   <properties>
+    <property name="dest" value="checkpoint3"/>
+   </properties>
+  </object>
+  <object gid="486" x="6016" y="1600">
+   <properties>
+    <property name="spawn_id" value="checkpoint3"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="960" y="1504"/>
@@ -343,22 +373,22 @@
   <object gid="5" x="5280" y="320"/>
   <object gid="4" x="6432" y="480"/>
   <object gid="4" x="6560" y="480"/>
-  <object gid="494" x="5216" y="1376"/>
-  <object gid="493" x="5568" y="1312"/>
-  <object gid="493" x="5696" y="1312"/>
-  <object gid="493" x="5824" y="1312"/>
-  <object gid="493" x="5664" y="96"/>
-  <object gid="493" x="5888" y="96"/>
+  <object gid="495" x="5216" y="1376"/>
+  <object gid="494" x="5568" y="1312"/>
+  <object gid="494" x="5696" y="1312"/>
+  <object gid="494" x="5824" y="1312"/>
+  <object gid="494" x="5664" y="96"/>
+  <object gid="494" x="5888" y="96"/>
   <object gid="9" x="5760" y="96"/>
   <object gid="9" x="5824" y="96"/>
   <object gid="2" x="6784" y="480"/>
   <object gid="2" x="6848" y="480"/>
-  <object gid="495" x="4832" y="1376">
+  <object gid="496" x="4832" y="1376">
    <properties>
     <property name="ID" value="boss2"/>
    </properties>
   </object>
-  <object gid="495" x="4160" y="1376"/>
+  <object gid="496" x="4160" y="1376"/>
   <object gid="2" x="2080" y="1600"/>
   <object gid="2" x="1984" y="1600"/>
   <object gid="2" x="1888" y="1600"/>

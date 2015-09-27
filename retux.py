@@ -4441,24 +4441,37 @@ class Checkpoint(InteractiveObject):
             if ":" not in self.dest:
                 self.dest = "{}:{}".format(sge.game.current_room.fname,
                                            self.dest)
+        self.reset()
+
+    def reset(self):
+        pass
 
     def touch(self, other):
         global current_checkpoints
         current_checkpoints[main_area] = self.dest
+
+        for obj in sge.game.current_room.objects:
+            if isinstance(obj, Checkpoint):
+                obj.reset()
 
 
 class Bell(Checkpoint):
 
     def __init__(self, x, y, dest=None, **kwargs):
         kwargs["sprite"] = bell_sprite
-        kwargs["image_fps"] = 0
         InteractiveObject.__init__(self, x, y, **kwargs)
         self.dest = dest
+
+    def reset(self):
+        if current_checkpoints.get(main_area) == self.dest:
+            self.image_fps = None
+        else:
+            self.image_fps = 0
+            self.image_index = 0
 
     def touch(self, other):
         super(Bell, self).touch(other)
         play_sound(bell_sound)
-        self.image_fps = None
 
 
 class Door(sge.Object):
