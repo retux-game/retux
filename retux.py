@@ -374,7 +374,6 @@ class Level(sge.Room):
         self.timeline_objects = {}
         self.warps = []
         self.shake_queue = 0
-        self.view_frozen = False
         self.pause_delay = TRANSITION_TIME
 
         if bgname is not None:
@@ -1274,7 +1273,8 @@ class Player(xsge_physics.Collider):
                  image_origin_x=None, image_origin_y=None, image_fps=None,
                  image_xscale=1, image_yscale=1, image_rotation=0,
                  image_alpha=255, image_blend=None, ID="player", player=0,
-                 human=True, lose_on_death=True):
+                 human=True, lose_on_death=True, view_frozen=False,
+                 view_blocks=True):
         self.ID = ID
         self.player = player
         self.human = human
@@ -1571,7 +1571,7 @@ class Player(xsge_physics.Collider):
 
         self.view = sge.game.current_room.views[self.player]
         self.view.x = self.x - self.view.width / 2
-        self.view.y = self.y - self.view.height / 2
+        self.view.y = self.y - self.view.height + CAMERA_TARGET_MARGIN_BOTTOM
 
     def event_update_position(self, delta_mult):
         super(Player, self).event_update_position(delta_mult)
@@ -1649,7 +1649,7 @@ class Player(xsge_physics.Collider):
             self.event_step_normal(time_passed, delta_mult)
 
         # Move view
-        if not sge.game.current_room.view_frozen:
+        if not self.view_frozen:
             view_target_x = (self.x - self.view.width / 2 +
                              self.xvelocity * CAMERA_OFFSET_FACTOR)
             if abs(view_target_x - self.view.x) > 0.5:
@@ -1802,12 +1802,14 @@ class Player(xsge_physics.Collider):
                     warp.warp(self)
 
         # Prevent moving off-screen to the right or left
-        if self.bbox_left < self.view.x:
-            self.move_x(self.view.x - self.bbox_left, True)
-            self.bbox_left = self.view.x
-        elif self.bbox_right > self.view.x + self.view.width:
-            self.move_x(self.view.x + self.view.width - self.bbox_right, True)
-            self.bbox_right = self.view.x + self.view.width
+        if self.view_blocks:
+            if self.bbox_left < self.view.x:
+                self.move_x(self.view.x - self.bbox_left, True)
+                self.bbox_left = self.view.x
+            elif self.bbox_right > self.view.x + self.view.width:
+                self.move_x(self.view.x + self.view.width - self.bbox_right,
+                            True)
+                self.bbox_right = self.view.x + self.view.width
 
         # Off-screen death
         if self.bbox_top > self.view.y + self.view.height + DEATHZONE:

@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="intro.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/castle.tsx"/>
- <tileset firstgid="201" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="225" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="337" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="341" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="343" source="../tilesets/krush.tsx"/>
- <tileset firstgid="344" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="345" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="346" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJxjYBgFo2AUjIJRMApGwSgYHMBimGDeYYKlhwkGAJfGEsE=
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJxjYBgFo2AUjIJRMApGwSgYBYTAG8aBdsEoIBcAAKYKAO4=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="384" width="1600" height="64"/>
+ </objectgroup>
  <objectgroup name="Collision Objects"/>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
- <layer name="Front Tiles" width="25" height="14">
+ <objectgroup name="Players">
+  <object gid="1" x="1504" y="384">
+   <properties>
+    <property name="human" value="0"/>
+    <property name="lose_on_death" value="0"/>
+    <property name="view_blocks" value="0"/>
+    <property name="view_frozen" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Front Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztzjEBAAAIA6DZP6sdzLDLBxKQAADQ2Pke0DicngDv
   </data>
  </layer>
 </map>
