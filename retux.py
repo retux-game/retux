@@ -1274,11 +1274,13 @@ class Player(xsge_physics.Collider):
                  image_xscale=1, image_yscale=1, image_rotation=0,
                  image_alpha=255, image_blend=None, ID="player", player=0,
                  human=True, lose_on_death=True, view_frozen=False,
-                 view_blocks=True):
+                 view_is_barrier=True):
         self.ID = ID
         self.player = player
         self.human = human
         self.lose_on_death = lose_on_death
+        self.view_frozen = view_frozen
+        self.view_is_barrier = view_is_barrier
 
         self.held_object = None
         self.left_pressed = False
@@ -1802,7 +1804,7 @@ class Player(xsge_physics.Collider):
                     warp.warp(self)
 
         # Prevent moving off-screen to the right or left
-        if self.view_blocks:
+        if self.view_is_barrier:
             if self.bbox_left < self.view.x:
                 self.move_x(self.view.x - self.bbox_left, True)
                 self.bbox_left = self.view.x

@@ -40,8 +40,8 @@
    <properties>
     <property name="human" value="0"/>
     <property name="lose_on_death" value="0"/>
-    <property name="view_blocks" value="0"/>
     <property name="view_frozen" value="1"/>
+    <property name="view_is_barrier" value="0"/>
    </properties>
   </object>
  </objectgroup>
