@@ -22,4 +22,5 @@
  <objecttype name="circoflame" color="#ff0000"/>
  <objecttype name="timeline_switcher" color="#00ffff"/>
  <objecttype name="object_warp_spawn" color="#ff5500"/>
+ <objecttype name="checkpoint" color="#ffffff"/>
 </objecttypes>

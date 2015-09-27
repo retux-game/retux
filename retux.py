@@ -313,6 +313,7 @@ level_time_bonus = 0
 current_worldmap = None
 current_worldmap_space = None
 current_level = 0
+current_checkpoints = {}
 
 score = 0
 
@@ -1424,6 +1425,8 @@ class Player(xsge_physics.Collider):
         self.destroy()
 
     def win_level(self, victory_walk=True):
+        global current_checkpoints
+
         for obj in sge.game.current_room.objects:
             if isinstance(obj, WinPuffObject) and obj.active:
                 obj.win_puff()
@@ -1449,6 +1452,7 @@ class Player(xsge_physics.Collider):
 
         sge.game.current_room.won = True
         sge.game.current_room.alarms["win_count_points"] = WIN_COUNT_START_TIME
+        current_checkpoints[main_area] = None
         sge.Music.clear_queue()
         sge.Music.stop()
         if music_enabled:
@@ -4425,6 +4429,25 @@ class Spawn(sge.Object):
         self.spawn_id = spawn_id
 
 
+class Checkpoint(InteractiveObject):
+
+    def __init__(self, x, y, dest=None, **kwargs):
+        kwargs["visible"] = False
+        super(Checkpoint, self).__init__(x, y, **kwargs)
+        self.dest = dest
+
+    def event_create(self):
+        if self.dest is not None:
+            if ":" not in self.dest:
+                self.dest = "{}:{}".format(sge.game.current_room.fname,
+                                           self.dest)
+
+    def touch(self, other):
+        global current_checkpoints
+        current_checkpoints[main_area] = self.dest
+        self.destroy()
+
+
 class Door(sge.Object):
 
     def __init__(self, x, y, dest=None, spawn_id=None, **kwargs):
@@ -5140,14 +5163,25 @@ class MapSpace(sge.Object):
 
     def start_level(self):
         global main_area
+        global level_time_bonus
         global current_areas
+        global current_checkpoints
 
         if self.level:
             main_area = None
             current_areas = {}
             level = Level.load(self.level)
             if level is not None:
-                level.spawn = self.level_spawn
+                checkpoint = current_checkpoints.get(self.level)
+                if checkpoint is not None:
+                    main_area = level.fname
+                    level_time_bonus = level.time_bonus
+                    area_name, area_spawn = checkpoint.split(':', 1)
+                    level = Level.load(area_name)
+                    level.spawn = area_spawn
+                else:
+                    level.spawn = self.level_spawn
+
                 x = self.x
                 y = self.y
                 if self.sprite:
@@ -5909,7 +5943,8 @@ def save_game():
             "cleared_levels": cleared_levels, "tuxdolls_found": tuxdolls_found,
             "current_worldmap": current_worldmap,
             "current_worldmap_space": current_worldmap_space,
-            "current_level": current_level, "score": score,
+            "current_level": current_level,
+            "current_checkpoints": current_checkpoints, "score": score,
             "completion": completion}
 
 
@@ -5920,6 +5955,7 @@ def load_game():
     global current_worldmap
     global current_worldmap_space
     global current_level
+    global current_checkpoints
     global score
 
     if (current_save_slot is not None and
@@ -5932,6 +5968,7 @@ def load_game():
         current_worldmap = slot.get("current_worldmap")
         current_worldmap_space = slot.get("current_worldmap_space")
         current_level = slot.get("current_level", 0)
+        current_checkpoints = slot.get("current_checkpoints", {})
         score = slot.get("score", 0)
     else:
         set_new_game()
@@ -6071,7 +6108,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "spawn": Spawn,
-         "door": Door, "warp_spawn": WarpSpawn,
+         "checkpoint": Checkpoint, "door": Door, "warp_spawn": WarpSpawn,
          "object_warp_spawn": ObjectWarpSpawn, "map_player": MapPlayer,
          "map_level": MapSpace, "map_warp": MapWarp, "map_path": MapPath}
 
