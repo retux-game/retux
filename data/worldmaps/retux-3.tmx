@@ -71,7 +71,11 @@
   <object gid="2" x="704" y="448"/>
   <object gid="2" x="544" y="384"/>
   <object gid="2" x="352" y="288"/>
-  <object gid="2" x="960" y="416"/>
+  <object gid="2" x="960" y="416">
+   <properties>
+    <property name="level" value="retux-16.tmx"/>
+   </properties>
+  </object>
   <object gid="2" x="1024" y="224"/>
   <object gid="2" x="768" y="160"/>
  </objectgroup>
