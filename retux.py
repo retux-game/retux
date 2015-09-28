@@ -39,6 +39,7 @@ import weakref
 import sge
 import six
 import xsge_gui
+import xsge_lighting
 import xsge_path
 import xsge_physics
 import xsge_tmx
@@ -364,7 +365,7 @@ class Level(sge.Room):
                  object_area_height=TILE_SIZE * 2,
                  name=None, bgname=None, music=None,
                  time_bonus=DEFAULT_LEVEL_TIME_BONUS, spawn=None,
-                 timeline=None):
+                 timeline=None, ambient_light=None):
         self.fname = None
         self.name = name
         self.music = music
@@ -380,6 +381,15 @@ class Level(sge.Room):
             background = backgrounds.get(bgname, background)
 
         self.load_timeline(timeline)
+
+        if ambient_light:
+            self.ambient_light = sge.Color(ambient_light)
+            if (self.ambient_light.red >= 255 and
+                    self.ambient_light.green >= 255 and
+                    self.ambient_light.blue >= 255):
+                self.ambient_light = None
+        else:
+            self.ambient_light = None
 
         super(Level, self).__init__(objects, width, height, views, background,
                                     background_x, background_y,
@@ -556,6 +566,9 @@ class Level(sge.Room):
 
         if self.pause_delay > 0:
             self.pause_delay -= time_passed
+
+        if self.ambient_light:
+            xsge_lighting.project_darkness(ambient_light=self.ambient_light)
 
         self.show_hud()
 

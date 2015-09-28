@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="14" tilewidth="32" tileheight="32">
  <properties>
+  <property name="ambient_light" value="silver"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
  </properties>
@@ -10,19 +11,19 @@
  <tileset firstgid="321" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="345" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="433" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="457" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="461" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="463" source="../tilesets/krush.tsx"/>
- <tileset firstgid="464" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="465" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="458" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="462" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="464" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="465" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="466" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt06ENACAUQ8HPVuzvYComQCAISblL6mteFQAAAAAA/Gu21w+A24bOIZ7OIZ/OIZ/OIZ/OIZ/OId+u8344IN8Cn2UI8g==
+   eJzt06ENACAUQ8HPVuwvYSkmQCAISblL6mteFQAAAAAA/Gu21w+A24bOIZ7OIZ/OIZ/OIZ/OIZ/OId+u8344IN8CLlQI+g==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt2rEJgDAQQNFkAPdxAUvH0E53snQYd/KwFkStPN+D36Y4CLkipTzX1+sAAAAAAAAAAIBznf81APB7S+wDQzTaC+DQJmyN+z1Fc313Ttb56PttN9+wRlL6dmT6Rqs=
+   eJzt2rEJgDAQQNFkAPdxAUvH0E53snQZZ/KwFkStPN+D36Y4CLkipTzX1+sAAAAAAAAAAIBznf81APB7S+wDQzTaC+DQJmyN+z1Fc313Ttb56PttN9+wRlL6dmkSRqw=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -135,9 +136,9 @@
   <object gid="433" x="5696" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="463" x="512" y="96"/>
-  <object gid="463" x="608" y="96"/>
-  <object gid="463" x="704" y="96"/>
+  <object gid="464" x="512" y="96"/>
+  <object gid="464" x="608" y="96"/>
+  <object gid="464" x="704" y="96"/>
   <object type="circoflame" x="1184" y="288">
    <polyline points="0,0 0,-128"/>
   </object>
@@ -157,7 +158,7 @@
   <object type="flying_snowball_path" x="6592" y="320">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="465" x="5792" y="288"/>
+  <object gid="466" x="5792" y="288"/>
   <object gid="6" x="1088" y="384"/>
   <object gid="6" x="992" y="288"/>
   <object gid="6" x="1024" y="352"/>
@@ -215,7 +216,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8Gw/2RQMBNMkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuAyznByE=
+   eJzt1LENACAMA8Gw/2ZQsBJMkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuA7+TByo=
   </data>
  </layer>
 </map>
