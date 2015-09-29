@@ -18,7 +18,6 @@ images/backgrounds/nightsky-bottom.png
 images/backgrounds/nightsky1-middle.png
 images/backgrounds/nightsky2-middle.png
 images/backgrounds/nightsky2-top.png
-images/misc/bonusblock_light.png
 images/misc/explosion-0.png
 images/misc/explosion-1.png
 images/misc/fire_bullet-0.png
@@ -31,6 +30,7 @@ images/misc/font_small.png
 images/misc/ice_bullet.png
 images/misc/icon.ico
 images/misc/icon.png
+images/misc/light.png
 images/misc/lightmap_light.png
 images/misc/spawn_point.png
 images/objects/bonus/bonus_empty.png

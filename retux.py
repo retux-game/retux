@@ -496,6 +496,8 @@ class Level(sge.Room):
         global main_area
         global level_time_bonus
 
+        xsge_lighting.clear_lights()
+
         self.won = False
         self.win_count_points = False
         self.win_count_time = False
@@ -542,10 +544,9 @@ class Level(sge.Room):
                 player.y = spawn_point.y
                 if player.view is not None:
                     player.view.x = player.x - player.view.width / 2
-                    player.view.y = player.y - player.view.height / 2
+                    player.view.y = (player.y - player.view.height +
+                                     CAMERA_TARGET_MARGIN_BOTTOM)
 
-                # This is deliberate. It's so other kinds of spawn
-                # points can exist, like checkpoints.
                 if isinstance(spawn_point, WarpSpawn):
                     player.visible = False
                     player.tangible = False
@@ -569,6 +570,8 @@ class Level(sge.Room):
 
         if self.ambient_light:
             xsge_lighting.project_darkness(ambient_light=self.ambient_light)
+        else:
+            xsge_lighting.clear_lights()
 
         self.show_hud()
 
@@ -6414,6 +6417,7 @@ fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
 item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=80, height=80,
                                      origin_x=40, origin_y=40, fps=30)
 item_spawn_cloud_sprite.delete_frame(0)
+light_sprite = sge.Sprite("light", d, origin_x=288, origin_y=288)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
