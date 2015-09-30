@@ -3070,6 +3070,9 @@ class Explosion(InteractiveObject):
     def touch(self, other):
         other.hurt()
 
+    def project_light(self):
+        xsge_lighting.project_light(self.x, self.y, fire_flower_light_sprite)
+
     def event_step(self, time_passed, delta_mult):
         self.__life -= delta_mult
         if self.__life <= 0:
@@ -3820,6 +3823,9 @@ class Fireball(FallingObject):
 
     def touch_death(self):
         self.destroy()
+
+    def project_light(self):
+        xsge_lighting.project_light(self.x, self.y, circoflame_light_sprite)
 
     def stop_left(self):
         self.destroy()
