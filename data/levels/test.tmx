@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="14" tilewidth="32" tileheight="32">
  <properties>
-  <property name="ambient_light" value="gray"/>
+  <property name="ambient_light" value="#0f0f0f"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
  </properties>
@@ -134,6 +134,9 @@
   <object gid="433" x="5696" y="224"/>
   <object gid="433" x="5696" y="256"/>
   <object gid="433" x="5696" y="288"/>
+  <object gid="10" x="2496" y="416"/>
+  <object gid="10" x="4480" y="416"/>
+  <object gid="10" x="2112" y="352"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="464" x="512" y="96"/>

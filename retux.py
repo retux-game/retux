@@ -3314,6 +3314,9 @@ class Circoflame(InteractiveObject):
             center.destroy()
         self.destroy()
 
+    def project_light(self):
+        xsge_lighting.project_light(self.x, self.y, circoflame_light_sprite)
+
 
 class CircoflameCenter(InteractiveObject):
 
@@ -4118,6 +4121,68 @@ class RustySpring(Spring):
             Corpse.create(self.x, self.y, self.z,
                           sprite=rusty_spring_dead_sprite)
             self.destroy()
+
+
+class Lantern(FallingObject):
+
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
+
+    def __init__(self, x, y, color="white", **kwargs):
+        kwargs["sprite"] = lantern_sprite
+        sge.Object.__init__(self, x, y, **kwargs)
+
+        c = sge.Color(color)
+        if c.red < 255 or c.green < 255 or c.blue < 255:
+            self.light_sprite = light_sprite.copy()
+            blender = sge.Sprite(width=self.light_sprite.width,
+                                 height=self.light_sprite.height)
+            blender.draw_rectangle(0, 0, blender.width, blender.height, fill=c)
+            self.light_sprite.draw_sprite(blender, 0, 0, 0,
+                                          blend_mode=sge.BLEND_RGB_MULTIPLY)
+        else:
+            self.light_sprite = light_sprite
+
+    def touch(self, other):
+        if other.pickup(self):
+            self.gravity = 0
+            if other.action_pressed:
+                other.action()
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
+                                           self.parent.image_xscale)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
+            self.gravity = self.__class__.gravity
+            self.parent = None
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = self.parent.xvelocity
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
+            self.gravity = self.__class__.gravity
+            self.parent = None
+
+    def project_light(self):
+        xsge_lighting.project_light(self.x, self.y, self.light_sprite)
+
+    def event_end_step(self, time_passed, delta_mult):
+        if (self.yvelocity >= 0 and
+                (self.get_bottom_touching_wall() or
+                 self.get_bottom_touching_slope())):
+            self.xdeceleration = ROCK_FRICTION
+        else:
+            self.xdeceleration = 0
 
 
 class TimelineSwitcher(InteractiveObject):
@@ -6184,7 +6249,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "krush": Krush, "krosh": Krosh, "circoflame": CircoflamePath,
          "snowman": Snowman, "fireflower": FireFlower, "iceflower": IceFlower,
          "tuxdoll": TuxDoll, "rock": Rock, "fixed_spring": FixedSpring,
-         "spring": Spring, "rusty_spring": RustySpring,
+         "spring": Spring, "rusty_spring": RustySpring, "lantern": Lantern,
          "timeline_switcher": TimelineSwitcher, "iceblock": Iceblock,
          "boss_block": BossBlock, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
@@ -6421,6 +6486,9 @@ rusty_spring_dead_sprite = sge.Sprite(
 d = os.path.join(DATA, "images", "objects", "misc")
 platform_sprite = sge.Sprite("platform", d)
 rock_sprite = sge.Sprite("rock", d, origin_x=16, origin_y=16)
+lantern_sprite = sge.Sprite("lantern", d, origin_x=20, origin_y=9, fps=10,
+                            bbox_x=-16, bbox_y=0, bbox_width=32,
+                            bbox_height=32)
 iceblock_sprite = sge.Sprite("iceblock", d)
 iceblock_melt_sprite = sge.Sprite("iceblock_melt", d, fps=30)
 thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
@@ -6456,7 +6524,19 @@ heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
 
 # Various different lights
-fire_flower_light_sprite = light_sprite.copy()
+small_light_sprite = light_sprite.copy()
+small_light_sprite.width /= 2
+small_light_sprite.height /= 2
+small_light_sprite.origin_x /= 2
+small_light_sprite.origin_y /= 2
+
+tiny_light_sprite = light_sprite.copy()
+tiny_light_sprite.width /= 4
+tiny_light_sprite.height /= 4
+tiny_light_sprite.origin_x /= 4
+tiny_light_sprite.origin_y /= 4
+
+fire_flower_light_sprite = small_light_sprite.copy()
 blender = sge.Sprite(width=fire_flower_light_sprite.width,
                      height=fire_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
@@ -6465,7 +6545,7 @@ fire_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                      blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
-ice_flower_light_sprite = light_sprite.copy()
+ice_flower_light_sprite = small_light_sprite.copy()
 blender = sge.Sprite(width=ice_flower_light_sprite.width,
                      height=ice_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
@@ -6473,6 +6553,14 @@ blender.draw_rectangle(0, 0, blender.width, blender.height,
 ice_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                     blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
+
+circoflame_light_sprite = tiny_light_sprite.copy()
+blender = sge.Sprite(width=circoflame_light_sprite.width,
+                     height=circoflame_light_sprite.height)
+blender.draw_rectangle(0, 0, blender.width, blender.height,
+                       fill=sge.Color("#F1670B"))
+circoflame_light_sprite.draw_sprite(blender, 0, 0, 0,
+                                    blend_mode=sge.BLEND_RGB_MULTIPLY)
 
 coin_icon_sprite = coin_sprite.copy()
 coin_icon_sprite.width = 16

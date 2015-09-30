@@ -47,4 +47,9 @@
    <property name="cls" value="icicle"/>
   </properties>
  </tile>
+ <tile id="9">
+  <properties>
+   <property name="cls" value="lantern"/>
+  </properties>
+ </tile>
 </tileset>
