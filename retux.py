@@ -248,6 +248,8 @@ COINBRICK_DECAY_TIME = 25
 ICE_CRACK_TIME = 20
 ICE_REFREEZE_RATE = 1 / 4
 
+LIGHT_RANGE = 600
+
 ACTIVATE_RANGE = 528
 ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 400
@@ -568,19 +570,21 @@ class Level(sge.Room):
         if self.pause_delay > 0:
             self.pause_delay -= time_passed
 
-        if self.ambient_light:
-            xsge_lighting.project_darkness(ambient_light=self.ambient_light)
-        else:
-            xsge_lighting.clear_lights()
-
         self.show_hud()
 
-        # Handle inactive objects
+        # Handle inactive objects and lighting
+        if self.ambient_light:
+            range_ = max(ACTIVATE_RANGE, LIGHT_RANGE)
+        else:
+            range_ = ACTIVATE_RANGE
+
         for view in self.views:
             for obj in self.get_objects_at(
-                    view.x - ACTIVATE_RANGE, view.y - ACTIVATE_RANGE,
-                    view.width + ACTIVATE_RANGE * 2,
-                    view.height + ACTIVATE_RANGE * 2):
+                    view.x - range_, view.y - range_, view.width + range_ * 2,
+                    view.height + range_ * 2):
+                if isinstance(obj, InteractiveObject):
+                    obj.project_light()
+
                 if not obj.active:
                     if isinstance(obj, InteractiveObject):
                         obj.update_active()
@@ -588,6 +592,12 @@ class Level(sge.Room):
                         obj.image_index = lava_animation.image_index
                     elif isinstance(obj, (Goal, GoalTop)):
                         obj.image_index = goal_animation.image_index
+
+        # Show darkness
+        if self.ambient_light:
+            xsge_lighting.project_darkness(ambient_light=self.ambient_light)
+        else:
+            xsge_lighting.clear_lights()
 
         # Timeline events
         t_keys = sorted(self.timeline.keys())
@@ -2218,6 +2228,9 @@ class InteractiveObject(sge.Object):
                            image_yscale=-abs(self.image_yscale))
             self.destroy()
 
+    def project_light(self):
+        pass
+
     def event_create(self):
         InteractiveObject.deactivate(self)
 
@@ -3551,6 +3564,7 @@ class FireFlower(FallingObject, WinPuffObject):
         y += fire_flower_sprite.origin_y
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.ammo = FIREBALL_AMMO
+        self.light_sprite = fire_flower_light_sprite
 
     def touch(self, other):
         if other.pickup(self):
@@ -3581,13 +3595,19 @@ class FireFlower(FallingObject, WinPuffObject):
                 play_sound(shoot_sound)
 
                 self.sprite = fire_flower_sprite.copy()
-                lightness = int((self.ammo / FIREBALL_AMMO) * 230 + 25)
+                lightness = int((self.ammo / FIREBALL_AMMO) * 255)
                 darkener = sge.Sprite(width=self.sprite.width,
                                       height=self.sprite.height)
                 darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
                                         fill=sge.Color([lightness] * 3))
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
+
+                self.light_sprite = fire_flower_light_sprite.copy()
+                darkener.width = self.light_sprite.width
+                darkener.height = self.light_sprite.height
+                self.light_sprite.draw_sprite(
+                    darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
                 h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
                 yv = get_jump_speed(h, ThrownFireFlower.gravity)
@@ -3604,6 +3624,9 @@ class FireFlower(FallingObject, WinPuffObject):
 
     def kick_up(self):
         self.kick(True)
+
+    def project_light(self):
+        xsge_lighting.project_light(self.x, self.y, self.light_sprite)
 
     def win_puff(self):
         super(FireFlower, self).win_puff()
@@ -3627,6 +3650,7 @@ class IceFlower(FallingObject, WinPuffObject):
         y += ice_flower_sprite.origin_y
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.ammo = ICEBULLET_AMMO
+        self.light_sprite = ice_flower_light_sprite
 
     def touch(self, other):
         if other.pickup(self):
@@ -3661,13 +3685,19 @@ class IceFlower(FallingObject, WinPuffObject):
                 play_sound(shoot_sound)
 
                 self.sprite = ice_flower_sprite.copy()
-                lightness = int((self.ammo / ICEBULLET_AMMO) * 230 + 25)
+                lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
                 darkener = sge.Sprite(width=self.sprite.width,
                                       height=self.sprite.height)
                 darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
                                         fill=sge.Color([lightness] * 3))
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
+
+                self.light_sprite = ice_flower_light_sprite.copy()
+                darkener.width = self.light_sprite.width
+                darkener.height = self.light_sprite.height
+                self.light_sprite.draw_sprite(
+                    darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
                 yv = get_jump_speed(FLOWER_THROW_HEIGHT,
                                     ThrownIceFlower.gravity)
@@ -3681,6 +3711,9 @@ class IceFlower(FallingObject, WinPuffObject):
                 self.parent = None
                 self.destroy()
                 pass
+
+    def project_light(self):
+        xsge_lighting.project_light(self.x, self.y, self.light_sprite)
 
     def win_puff(self):
         super(IceFlower, self).win_puff()
@@ -6421,6 +6454,25 @@ light_sprite = sge.Sprite("light", d, origin_x=288, origin_y=288)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
+
+# Various different lights
+fire_flower_light_sprite = light_sprite.copy()
+blender = sge.Sprite(width=fire_flower_light_sprite.width,
+                     height=fire_flower_light_sprite.height)
+blender.draw_rectangle(0, 0, blender.width, blender.height,
+                       fill=sge.Color("#F1670B"))
+fire_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
+                                     blend_mode=sge.BLEND_RGB_MULTIPLY)
+del blender
+
+ice_flower_light_sprite = light_sprite.copy()
+blender = sge.Sprite(width=ice_flower_light_sprite.width,
+                     height=ice_flower_light_sprite.height)
+blender.draw_rectangle(0, 0, blender.width, blender.height,
+                       fill=sge.Color("#7CF8FA"))
+ice_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
+                                    blend_mode=sge.BLEND_RGB_MULTIPLY)
+del blender
 
 coin_icon_sprite = coin_sprite.copy()
 coin_icon_sprite.width = 16
