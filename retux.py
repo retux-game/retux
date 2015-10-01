@@ -570,8 +570,6 @@ class Level(sge.Room):
         if self.pause_delay > 0:
             self.pause_delay -= time_passed
 
-        self.show_hud()
-
         # Handle inactive objects and lighting
         if self.ambient_light:
             range_ = max(ACTIVATE_RANGE, LIGHT_RANGE)
@@ -598,6 +596,9 @@ class Level(sge.Room):
             xsge_lighting.project_darkness(ambient_light=self.ambient_light)
         else:
             xsge_lighting.clear_lights()
+
+        # Show HUD
+        self.show_hud()
 
         # Timeline events
         t_keys = sorted(self.timeline.keys())
@@ -3318,7 +3319,7 @@ class Circoflame(InteractiveObject):
         self.destroy()
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, circoflame_light_sprite)
+        xsge_lighting.project_light(self.x, self.y, fireball_light_sprite)
 
 
 class CircoflameCenter(InteractiveObject):
@@ -3825,7 +3826,7 @@ class Fireball(FallingObject):
         self.destroy()
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, circoflame_light_sprite)
+        xsge_lighting.project_light(self.x, self.y, fireball_light_sprite)
 
     def stop_left(self):
         self.destroy()
@@ -6560,13 +6561,14 @@ ice_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                     blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
-circoflame_light_sprite = tiny_light_sprite.copy()
-blender = sge.Sprite(width=circoflame_light_sprite.width,
-                     height=circoflame_light_sprite.height)
+fireball_light_sprite = tiny_light_sprite.copy()
+blender = sge.Sprite(width=fireball_light_sprite.width,
+                     height=fireball_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
-                       fill=sge.Color("#F1670B"))
-circoflame_light_sprite.draw_sprite(blender, 0, 0, 0,
-                                    blend_mode=sge.BLEND_RGB_MULTIPLY)
+                       fill=sge.Color("#FF5B11"))
+fireball_light_sprite.draw_sprite(blender, 0, 0, 0,
+                                  blend_mode=sge.BLEND_RGB_MULTIPLY)
+del blender
 
 coin_icon_sprite = coin_sprite.copy()
 coin_icon_sprite.width = 16
