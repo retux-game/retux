@@ -457,22 +457,17 @@ class Level(sge.Room):
     def return_to_map(self):
         m = Worldmap.load(current_worldmap)
 
-        for obj in m.objects:
-            if (isinstance(obj, MapSpace) and
-                    obj.level == main_area and
-                    main_area is not None):
-                x = obj.x
-                y = obj.y
-                if obj.sprite:
-                    x += obj.sprite.width / 2
-                    y += obj.sprite.height / 2
+        for obj in self.objects:
+            if isinstance(obj, Player):
+                x = obj.x - obj.view.x + obj.view.xport
+                y = obj.y - obj.view.y + obj.view.yport
                 arg = (x, y)
                 break
         else:
             arg = None
 
         save_game()
-        m.start(transition="iris_out", transition_time=TRANSITION_TIME,
+        m.start(transition="iris_in", transition_time=TRANSITION_TIME,
                 transition_arg=arg)
 
     def win_game(self):
@@ -5331,8 +5326,8 @@ class MapSpace(sge.Object):
                 else:
                     level.spawn = self.level_spawn
 
-                x = self.x
-                y = self.y
+                x = self.x - sge.game.current_room.views[0].x
+                y = self.y - sge.game.current_room.views[0].y
                 if self.sprite:
                     x += self.sprite.width / 2
                     y += self.sprite.height / 2
