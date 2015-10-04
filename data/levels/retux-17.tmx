@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="28" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="bgname" value="arctis"/>
+  <property name="bgname" value="nightsky"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="Ice Climber"/>
  </properties>
@@ -25,12 +25,40 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="28">
   <data encoding="base64" compression="zlib">
-   eJzt2jlOAzEYhmFTA6JmKxFbDYRrwAFYepbrsdOxcxIOwZ9ipCiKJ7bHyz/j95G+igjNEn/xeGwMAAAAAAAAAAAAAAAAAOS3KBl55EHyWORIAdRuVbLskQ/Jp+RSclrgeAHUa1uy7pkbya3kwtBbAPKZ7qs9Q28B0MllfrUj2W35+2RvPUmejd+a2Kz8Lbgd/yj0xAH0jktfHUqOHD437q0vybfxWxPrGgB1CFm/0pLm2RWoie87fZesZD2DcH3uqyZALcZdtWTiP6Ns5jyJDugroB+arloz8cfQvuexbBXKQYJzd8m8NXz6CjWb9czn2lU+7/hD+8p332aspOhql+vluoZPX6FGs/ogxVgN7ashPJeVCjA0uftgSH0VMr+kr4BwXfZxa+8r7X1CXwG615W1zq9irnNrCYbvTnJv4u87irH3yLWDfPYhpFyrajI5z9HaVzHXuafPuda+8h1Lfdmbp8GJ5EzyJnk3ad452fYexe6hVB0UYw6ita+GmFJCx5KWvXkp9knHyovkVXIuuZJcG/v97/qbaRurru/sbT2U67c8xhykZF9pmPPkjKax5HLtfb8bqZTaQ+OSH8mvae+pWLHdj5rmEF37qrbOmZe269G3sXRsyu0PDl3THcL30XYO2voq1bVu+788D+pPqTG4YcrPX1Kup2i85m1x7SuNx576Gtho7ivt9+kfYAceWA==
+   eJztmklOAzEQRc2aac20RExrIFwDDsCwh3A9ZnbMnIRDUC0UKUTpju32UN1+T3orImQ77R+7uowBAAAAAAAAAAAAAAAAAAAAAABIz7w4cPBOvM8yUgAonRVx0cE38V28EE8yjBcAymVLXHN0KF6L54bcAoB0TObVriG3AEAnNuerbXGn4e/jufUgPhq3mtg0f+bsxj/wnTgAdA6bvDoQDy0+V+XWh/hp3GpibQWAMvCpX2lxdHcFKAnXd/o2LiedgT9dzquRAKVQZdWCCX9H2Ug5iRaQVwDdYJRVqyb8HtpzHMtmJvcjzN3GWTV88gpKZtqdzzarXN7x++aVa99mKGNktc162dbwySsokWl5EGOv+uZVH+5luQToG6nzoE955XO+JK8A/lPd8Wzfw7Xp49aeV9rzhLyCPmObQ9Udb8n81aK01ZW1nq9C1rm1CP3nRrw14fuOmnqPQudQlUHrJl9dedLxc47WvApZ556cc6l55bqXutKbp4Fj8VR8EV9NnHdOdb1HoXMoVgaFOINozas+mgvfvaSlNy9Gn3Qon8Rn8Uy8FK9M/fff9jezbq9We7JNDqX6LQ9xBsmZVxrOPCnVtJds1t712YhFrh4aG7/Eb9OcU6Fsyqvcz3Yq2+ZVaZkzy6b16NpeOjL5+oN9a7p9eB7r5qAtr2KtddP/5T6o31x70LbmGtsUNV0ta96kbV5pHHvsNahDc15p/55+Ac/DHwM=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="9536" y="256" width="64" height="128"/>
+  <object x="8032" y="256" width="416" height="128"/>
+  <object x="8032" y="384" width="1568" height="160"/>
+  <object x="7072" y="544" width="2528" height="352"/>
+  <object x="4800" y="768" width="1920" height="128"/>
+  <object x="5120" y="736" width="1600" height="32"/>
+  <object x="5440" y="704" width="1280" height="32"/>
+  <object x="5792" y="576" width="928" height="128"/>
+  <object x="5952" y="544" width="768" height="32"/>
+  <object x="5984" y="512" width="736" height="32"/>
+  <object x="6016" y="480" width="704" height="32"/>
+  <object x="3904" y="736" width="736" height="64"/>
+  <object x="2496" y="800" width="2144" height="96"/>
+  <object x="1056" y="768" width="384" height="64"/>
+  <object x="0" y="832" width="1440" height="64"/>
+  <object x="1440" y="864" width="1056" height="32"/>
+  <object x="5440" y="672" width="64" height="32"/>
+  <object x="5120" y="704" width="64" height="32"/>
+  <object x="4800" y="736" width="64" height="32"/>
+ </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="9088" y="0" width="32" height="384"/>
+  <object type="slope_topleft" x="928" y="768" width="128" height="64"/>
+  <object type="spike_top" x="1440" y="832" width="1056" height="32"/>
+  <object type="slope_topleft" x="3776" y="736" width="128" height="64"/>
+  <object type="spike_top" x="4896" y="736" width="224" height="32"/>
+  <object type="spike_top" x="5216" y="704" width="224" height="32"/>
+  <object type="spike_top" x="5536" y="672" width="256" height="32"/>
+  <object type="spike_top" x="7072" y="512" width="960" height="32"/>
+  <object type="slope_topright" x="8448" y="256" width="256" height="128"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
@@ -40,8 +68,6 @@
   <object gid="480" x="6656" y="480"/>
   <object gid="480" x="7936" y="512"/>
   <object gid="480" x="7520" y="512"/>
-  <object gid="471" x="7360" y="192"/>
-  <object gid="473" x="7680" y="192"/>
   <object gid="466" x="1120" y="672"/>
   <object gid="465" x="1152" y="672"/>
   <object gid="465" x="1344" y="672"/>
@@ -50,20 +76,67 @@
   <object gid="465" x="1216" y="672"/>
   <object gid="472" x="1280" y="672"/>
   <object gid="472" x="1184" y="672"/>
+  <object gid="465" x="2656" y="704"/>
+  <object gid="465" x="2688" y="704"/>
+  <object gid="465" x="2720" y="704"/>
+  <object gid="465" x="2848" y="704"/>
+  <object gid="465" x="2880" y="704"/>
+  <object gid="465" x="2912" y="704"/>
+  <object gid="473" x="2784" y="704"/>
+  <object gid="472" x="6176" y="384"/>
+  <object gid="472" x="6240" y="384"/>
+  <object gid="465" x="6144" y="384"/>
+  <object gid="465" x="6272" y="384"/>
+  <object gid="465" x="6112" y="384"/>
+  <object gid="465" x="6304" y="384"/>
+  <object gid="472" x="6208" y="384"/>
+  <object gid="465" x="6080" y="384"/>
+  <object gid="465" x="6336" y="384"/>
+  <object gid="474" x="7232" y="288"/>
+  <object gid="474" x="7264" y="256"/>
+  <object gid="474" x="7360" y="256"/>
+  <object gid="474" x="7392" y="288"/>
+  <object gid="474" x="7648" y="288"/>
+  <object gid="474" x="7680" y="256"/>
+  <object gid="474" x="7776" y="256"/>
+  <object gid="474" x="7808" y="288"/>
+  <object gid="474" x="7296" y="256"/>
+  <object gid="474" x="7328" y="256"/>
+  <object gid="474" x="7712" y="256"/>
+  <object gid="474" x="7744" y="256"/>
+  <object gid="473" x="7680" y="160"/>
+  <object gid="485" x="7360" y="128"/>
+  <object gid="472" x="7360" y="160"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="1696" y="832"/>
   <object gid="7" x="2240" y="832"/>
-  <object gid="7" x="7392" y="512"/>
-  <object gid="7" x="7680" y="512"/>
+  <object gid="7" x="7376" y="512"/>
+  <object gid="7" x="7696" y="512"/>
   <object gid="5" x="5056" y="736"/>
   <object gid="5" x="5376" y="704"/>
   <object gid="5" x="5696" y="672"/>
   <object gid="7" x="5760" y="672"/>
-  <object gid="7" x="7392" y="384"/>
-  <object gid="7" x="7680" y="384"/>
+  <object gid="7" x="7376" y="384"/>
+  <object gid="7" x="7696" y="384"/>
+  <object gid="2" x="6336" y="352"/>
+  <object gid="2" x="6272" y="352"/>
+  <object gid="2" x="6080" y="480"/>
+  <object gid="5" x="3360" y="800"/>
+  <object gid="5" x="3552" y="800"/>
+  <object gid="5" x="3744" y="800"/>
+  <object gid="4" x="3456" y="800"/>
+  <object gid="4" x="3648" y="800"/>
+  <object gid="4" x="3936" y="736"/>
+  <object gid="4" x="4032" y="736"/>
+  <object gid="5" x="4576" y="736"/>
+  <object gid="5" x="4512" y="736"/>
+  <object gid="5" x="4384" y="736"/>
+  <object gid="5" x="4320" y="736"/>
  </objectgroup>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="832"/>
+ </objectgroup>
  <layer name="Front Tiles" width="300" height="28">
   <data encoding="base64" compression="zlib">
    eJzt1DENACAQBMHHv1Eo8EAwQOjgkhkFW20VAAAAAACwjfa6AOBO9ysghF8BKfwKSOFXQAq/AlL4FZDi9KvpZQAAAAAAAAAAAAAAAAAAAAAAAHxkATRhCDg=
