@@ -1017,8 +1017,15 @@ class TitleScreen(Level):
 
 class CreditsScreen(Level):
 
-    def event_room_resume(self):
-        super(CreditsScreen, self).event_room_resume()
+    def event_room_start(self):
+        super(CreditsScreen, self).event_room_start()
+
+        if self.fname in current_areas:
+            del current_areas[self.fname]
+
+        if self.fname in loaded_levels:
+            del loaded_levels[self.fname]
+
         with open(os.path.join(DATA, "credits.json"), 'r') as f:
             sections = json.load(f)
 
