@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="48"/>
+  <property name="bgname" value="arctis_castle"/>
+  <property name="music" value="credits.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../../tilesets/snow.tsx"/>
+ <tileset firstgid="249" source="../../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="488" source="../../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects"/>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+  </data>
+ </layer>
+</map>

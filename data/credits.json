@@ -1,17 +1,22 @@
 [
     {
+        "lines": [
+            " "
+        ]
+    },
+    {
         "title": "Programming",
         "lines": [
-            "onpon4 <https://onpon4.github.io>"
+            "Julian Marchant (onpon4)"
         ]
     },
     {
         "title": "Graphics",
         "lines": [
-            "SuperTux development team <http://supertux.lethargik.org>",
-            "Pow Studios <http://powstudios.com>",
-            "C.Nilsson <http://opengameart.org/users/cnilsson>",
-            "onpon4 <https://onpon4.github.io>"
+            "SuperTux development team",
+            "Pow Studios",
+            "C.Nilsson",
+            "Julian Marchant (onpon4)"
         ]
     },
     {
@@ -27,17 +32,17 @@
             "Bastian Zapf",
             "Ricardo Cruz",
             "cameron",
-            "theundecided <http://freesound.org/people/theundecided/>",
-            "RMAudio <http://freesound.org/people/RMAudio/>",
-            "Imitatia Dei <http://freesound.org/people/Imitatia%20Dei/>",
-            "NenadSimic <http://opengameart.org/users/nenadsimic>",
-            "onpon4 <https://onpon4.github.io>"
+            "theundecided",
+            "RMAudio",
+            "Imitatia Dei",
+            "NenadSimic",
+            "Julian Marchant (onpon4)"
         ]
     },
     {
         "title": "Music",
         "lines": [
-            "SuperTux development team <http://supertux.lethargik.org>",
+            "SuperTux development team",
             "wansti",
             "Lukas Nystrand",
             "Mortimer Twang",
@@ -48,22 +53,26 @@
     {
         "title": "Level Design",
         "lines": [
-            "onpon4 <https://onpon4.github.io>"
+            "Julian Marchant (onpon4)"
         ]
     },
     {
         "title": "Software Used",
         "lines": [
-            "Python <https://www.python.org/>",
-            "SGE Game Engine <http://stellarengine.nongnu.org>",
-            "xSGE <http://xsge.nongnu.org>,
-            "Tiled <http://www.mapeditor.org>
+            "Python",
+            "SGE Game Engine",
+            "xSGE",
+            "Tiled"
         ]
     },
     {
         "title": "Special Thanks",
         "lines": [
-            "Jason Self"
+            "Jason Self",
+            " "
         ]
+    },
+    {
+        "title": "Thank you for playing!"
     }
 ]

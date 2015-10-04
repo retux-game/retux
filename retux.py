@@ -474,12 +474,13 @@ class Level(sge.Room):
         global save_slots
         global current_save_slot
 
-        # TODO: Show credits first before leaving the game!
         if current_save_slot is not None:
             save_slots[current_save_slot] = None
             current_save_slot = None
 
-        sge.game.start_room.start()
+        credits_room = CreditsScreen.load(os.path.join("special",
+                                                       "credits.tmx"))
+        credits_room.start()
 
     def event_room_start(self):
         self.add(coin_animation)
@@ -1012,6 +1013,60 @@ class TitleScreen(Level):
         else:
             if key == "f11":
                 sge.game.fullscreen = not sge.game.fullscreen
+
+
+class CreditsScreen(Level):
+
+    def event_room_resume(self):
+        super(CreditsScreen, self).event_room_resume()
+        with open(os.path.join(DATA, "credits.json"), 'r') as f:
+            sections = json.load(f)
+
+        logo_section = sge.Object.create(self.width / 2, self.height,
+                                         sprite=logo_sprite, tangible=False)
+        self.sections = [logo_section]
+        for section in sections:
+            if "title" in section:
+                head_sprite = sge.Sprite.from_text(
+                    font_big, section["title"], width=self.width,
+                    color=sge.Color("white"), halign="center")
+                x = self.width / 2
+                y = self.sections[-1].bbox_bottom + font_big.size * 2
+                head_section = sge.Object.create(x, y, sprite=head_sprite,
+                                                 tangible=False)
+                self.sections.append(head_section)
+
+            if "lines" in section:
+                for line in section["lines"]:
+                    list_sprite = sge.Sprite.from_text(
+                        font, line, width=self.width - 2 * TILE_SIZE,
+                        color=sge.Color("white"), halign="center")
+                    x = self.width / 2
+                    y = self.sections[-1].bbox_bottom + font.size
+                    list_section = sge.Object.create(x, y, sprite=list_sprite,
+                                                     tangible=False)
+                    self.sections.append(list_section)
+
+        for obj in self.sections:
+            obj.yvelocity = -0.5
+
+    def event_step(self, time_passed, delta_mult):
+        if self.sections[0].yvelocity > 0 and self.sections[0].y > self.height:
+            for obj in self.sections:
+                obj.yvelocity = 0
+
+        if self.sections[-1].bbox_bottom < 0:
+            sge.game.start_room.start()
+
+    def event_key_press(self, key, char):
+        if key == "up":
+            for obj in self.sections:
+                obj.yvelocity -= 0.25
+        elif key == "down":
+            for obj in self.sections:
+                obj.yvelocity += 0.25
+        elif key in {"escape", "enter"}:
+            sge.game.start_room.start()
 
 
 class Worldmap(sge.Room):
@@ -5457,7 +5512,8 @@ class Menu(xsge_gui.MenuWindow):
 
 class MainMenu(Menu):
 
-    items = ["New Game", "Load Game", "Select Levelset", "Options", "Quit"]
+    items = ["New Game", "Load Game", "Select Levelset", "Options", "Credits",
+             "Quit"]
 
     def event_choose(self):
         if self.choice == 0:
@@ -5468,6 +5524,10 @@ class MainMenu(Menu):
             LevelsetMenu.create_page(default=-1, refreshlist=True)
         elif self.choice == 3:
             OptionsMenu.create_page()
+        elif self.choice == 4:
+            credits_room = CreditsScreen.load(os.path.join("special",
+                                                           "credits.tmx"))
+            credits_room.start()
         else:
             sge.game.end()
 
