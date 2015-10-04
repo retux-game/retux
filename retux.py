@@ -1031,7 +1031,7 @@ class CreditsScreen(Level):
                     font_big, section["title"], width=self.width,
                     color=sge.Color("white"), halign="center")
                 x = self.width / 2
-                y = self.sections[-1].bbox_bottom + font_big.size * 2
+                y = self.sections[-1].bbox_bottom + font_big.size * 3
                 head_section = sge.Object.create(x, y, sprite=head_sprite,
                                                  tangible=False)
                 self.sections.append(head_section)
@@ -1059,10 +1059,10 @@ class CreditsScreen(Level):
             sge.game.start_room.start()
 
     def event_key_press(self, key, char):
-        if key == "up":
+        if key == "down":
             for obj in self.sections:
                 obj.yvelocity -= 0.25
-        elif key == "down":
+        elif key == "up":
             for obj in self.sections:
                 obj.yvelocity += 0.25
         elif key in {"escape", "enter"}:

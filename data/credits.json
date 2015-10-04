@@ -1,7 +1,7 @@
 [
     {
         "lines": [
-            " "
+            "https://onpon4.github.io/games/retux"
         ]
     },
     {
@@ -68,9 +68,11 @@
     {
         "title": "Special Thanks",
         "lines": [
-            "Jason Self",
-            " "
+            "Jason Self"
         ]
+    },
+    {
+        "title": " "
     },
     {
         "title": "Thank you for playing!"
