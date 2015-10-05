@@ -171,6 +171,7 @@
   <object type="object_warp_spawn" x="1760" y="384">
    <properties>
     <property name="cls" value="walking_snowball"/>
+    <property name="limit" value="1"/>
    </properties>
    <polyline points="0,0 -64,0"/>
   </object>

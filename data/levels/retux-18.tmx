@@ -20,16 +20,34 @@
  <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
+   eJztkksKgDAMBeOtvJf2AFUX7vycst7ChEZwI2QRqZU3MLzuWoYSAQAA+BJHU/oF9ZDQygxa2fFqNbIbu+r+Ea9WgV0oN5OVZsPNyeeaoni2kibypzrKvcSejezOzj5XFcOrVVSlTdC9zlG39l5PrVqjALzFCeEKGt8=
   </data>
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztljsKgDAQBbcXtfZXW1gL2kd7wfufxQgRjKxVzEsiOzD1PkaQEAmCEJKJsQy6KF5yxoKkF0fD2BK2Vwa85QLXCt2r0naAO668tUL26rWD5xtfcDZZtOtNRXYv3988pVbPnTvZ7TbPG1JuhSalVjPx7yyUo9kQO9c/iXtnoazNBuE/HHe+EyE=
+   eJxjYBgFo2AUDCSwwIL5B9RFgxfwYsF8DKPhhQ1IY8EyDPQNL2462kUJwBZW9A4vSSCWpYM9lAJcYUXP8FIHYm0a20ENAAoTVyB2g2IXBszwonWcD6WwQnZnCAMi3GA4kMZuGKphNRBgKIWVJQP2dha9sOkAuuENI3HhZMGAKJOwtbPohaUGgRuIwfjqwVGMigHo+SSq
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="2336" y="256" width="64" height="128"/>
+  <object x="64" y="384" width="2336" height="64"/>
+  <object x="1056" y="192" width="64" height="192"/>
+  <object x="128" y="256" width="192" height="32"/>
+  <object x="0" y="128" width="192" height="32"/>
+  <object x="0" y="160" width="224" height="32"/>
+  <object x="0" y="192" width="256" height="32"/>
+  <object x="0" y="224" width="288" height="32"/>
+  <object x="0" y="256" width="64" height="192"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="level_end" x="1888" y="0" width="32" height="384"/>
+  <object gid="497" x="96" y="384">
+   <properties>
+    <property name="dest" value="retux-18b.tmx:enter"/>
+    <property name="spawn_id" value="exit"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
@@ -50,7 +68,7 @@
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
+   eJzt0EENACAQBLHDv1F44AEHZH8HSatgMlUAvGiN7oJ/TK9iXuW8ynmV8yrnVe72avtIgwMMpAg4
   </data>
  </layer>
 </map>

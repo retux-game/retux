@@ -4941,14 +4941,16 @@ class Warp(WarpSpawn):
 
 class ObjectWarpSpawn(WarpSpawn):
 
-    def __init__(self, x, y, cls=None, interval=180, **kwargs):
+    def __init__(self, x, y, cls=None, interval=180, limit=None, **kwargs):
         # If dest is defined, that will cause the player to
         # automatically switch to the destination room whenever an
         # object spawns, which is not desirable at all.
         kwargs["dest"] = None
         self.cls = TYPES.get(cls)
         self.interval = interval
+        self.limit = limit
         self.__steps_passed = 0
+        self.__objects = []
         super(ObjectWarpSpawn, self).__init__(x, y, **kwargs)
 
     def event_begin_step(self, time_passed, delta_mult):
@@ -4963,12 +4965,16 @@ class ObjectWarpSpawn(WarpSpawn):
             self.__steps_passed += delta_mult
             while self.__steps_passed >= self.interval:
                 self.__steps_passed -= self.interval
-                obj = self.cls.create(self.x, self.y, z=self.z)
-                obj.activate()
-                obj.warping = True
-                obj.visible = False
-                obj.tangible = False
-                self.follow_start(obj, WARP_SPEED)
+                self.__objects = [ref for ref in self.__objects
+                                  if ref() is not None]
+                if not self.limit or len(self.__objects) < self.limit:
+                    obj = self.cls.create(self.x, self.y, z=self.z)
+                    obj.activate()
+                    obj.warping = True
+                    obj.visible = False
+                    obj.tangible = False
+                    self.follow_start(obj, WARP_SPEED)
+                    self.__objects.append(weakref.ref(obj))
 
 
 class MovingObjectPath(xsge_path.PathLink):
