@@ -589,7 +589,9 @@ class Level(sge.Room):
 
         # Show darkness
         if self.ambient_light:
-            xsge_lighting.project_darkness(ambient_light=self.ambient_light)
+            buffer = max(PLAYER_MAX_SPEED, PLAYER_FALL_SPEED) * FPS / DELTA_MIN
+            xsge_lighting.project_darkness(ambient_light=self.ambient_light,
+                                           buffer=buffer)
         else:
             xsge_lighting.clear_lights()
 
