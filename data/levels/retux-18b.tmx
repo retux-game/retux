@@ -24,15 +24,13 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmktOwzAURfuKGgTIjiUGIMGUAQMWAAixHlYAM7ptQHxe1Fi6eThqSNIGR/dIV02c2vlUPnGcOlksbjXHJnct5QzDMPtOpNTlQ1iPrFrKCSFkKugrQkguePqKEJIJgb4iI/KmeTf5mPSIyJygr8iYfGq+TL4nPSIyJzh/RQjJhTZfHWnZyUx9dSV8XiEkR9p81YVnrfeSmdMqV11rlpBHobOGgHNWqeu4bTshXXEDfPWq9dYZ+Sq66kY2nq7ejRaaezprEDhnlZqr2radkK60/Z+hCzn5yrqq8lTl6lB/RmfZd1t/CX1HyG6pfPXQs58+ySZD+vi+gq5y9djKJ5y1HJAD4+7Uu/1d5jSTewchfQkj9NMcgs+ADsZXJZR7KPe1x+w2LC/q5fhpx6my53M805zL9PeGsUKIxUOfDJA4Dimk2W+xf2Lfj0EH4FimqNdj+86s+8R+cf8Bypxpt5C0d7AOHn+sj/t20jwfb+rG75WmTgntWV+tzHXx0jzXYNot5fc1Sf0+1p3xXC80lz08919DiOUHbMrTCw==
+   eJztmttKxDAQhndWWlFJWvBCQW+98MIHUBGfxyfQO31tFQ8TNgPTMcuuLW2T8n/w0za76ZH5mu3W0Wp1yzk2udvSjiAIMnWCjwINTw/jvKba0g4AAFNTwVcAgEIQX3n4CgCQOeKrFr4CAGQOfAUAKAU8vwJj8M75MPmcdY/AEtjlqyNuO1mor64I9TQWX5xvk59Z9wgsgV2+2odn7vdSmNOCq645a5VHgrMAyBnxlRvgq1fu91aQr8RVN7TxdPhvtObcw1kAZM2u9xn2oSRfWVcFTwVXt3EqzrLPXv4T+A6AcdC+euhZp0+0yZAanyraVS6OrXzCWesBOTDuTj17HjOnhdw7pqTvNQB5od9nGFqnJUT/BnRqfNWodq/affSY/Uy313FepnacShMf4xnnnOa/N8yV1Pi27zUAeeJVTbYqMg6pqVu3uj517Uu0A/RYpo7Lsn5nln1iu3r7rWpzZr01pb2j++j9l/562466x+NNX/leY/o0an3WV5U5L566x9qa9Tb095ykro91pxzrBeeyZ30uIXZ8K9cALIdfDX3efQ==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="4736" y="160" width="192" height="32"/>
-  <object x="4896" y="288" width="128" height="32"/>
-  <object x="4640" y="288" width="128" height="32"/>
+  <object x="4736" y="224" width="192" height="32"/>
   <object x="2784" y="384" width="896" height="32"/>
-  <object x="2784" y="416" width="2560" height="32"/>
+  <object x="2784" y="416" width="2976" height="32"/>
   <object x="0" y="0" width="64" height="448"/>
   <object x="64" y="384" width="2624" height="64"/>
   <object x="1984" y="352" width="704" height="32"/>
@@ -40,9 +38,11 @@
   <object x="1984" y="288" width="160" height="32"/>
   <object x="1984" y="256" width="128" height="32"/>
   <object x="480" y="352" width="64" height="32"/>
+  <object x="192" y="32" width="64" height="224"/>
+  <object x="64" y="0" width="9472" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object gid="497" x="4832" y="160">
+  <object gid="497" x="4832" y="416">
    <properties>
     <property name="dest" value="__main__:exit"/>
     <property name="spawn_id" value="enter"/>
@@ -64,6 +64,18 @@
   <object gid="484" x="224" y="320"/>
   <object gid="484" x="224" y="352"/>
   <object gid="484" x="224" y="384"/>
+  <object gid="484" x="4736" y="224"/>
+  <object gid="484" x="4736" y="192"/>
+  <object gid="484" x="4736" y="160"/>
+  <object gid="484" x="4736" y="128"/>
+  <object gid="484" x="4736" y="96"/>
+  <object gid="484" x="4736" y="64"/>
+  <object gid="484" x="4896" y="64"/>
+  <object gid="484" x="4896" y="96"/>
+  <object gid="484" x="4896" y="128"/>
+  <object gid="484" x="4896" y="160"/>
+  <object gid="484" x="4896" y="192"/>
+  <object gid="484" x="4896" y="224"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
@@ -89,6 +101,8 @@
   <object gid="465" x="1440" y="288"/>
   <object gid="465" x="1312" y="288"/>
   <object gid="465" x="1280" y="288"/>
+  <object gid="465" x="4800" y="128"/>
+  <object gid="471" x="4832" y="128"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="4032" y="416"/>
@@ -124,9 +138,11 @@
   <object gid="3" x="896" y="384"/>
   <object gid="9" x="480" y="64"/>
   <object gid="9" x="512" y="64"/>
+  <object gid="7" x="4672" y="416"/>
+  <object gid="7" x="4992" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
-  <object gid="1" x="4832" y="160"/>
+  <object gid="1" x="4832" y="416"/>
  </objectgroup>
  <layer name="Front Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
