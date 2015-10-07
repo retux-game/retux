@@ -24,7 +24,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmt1KwzAYhvdNrCAkDXigoKceeOAFiIjX4xXomd62Dn9S1sDXz5RN27k2Pg+8rE2X9GfkaZrOyWJxE3NMCCETTaKOy0dqHQBgquArAJgLHl8BwEwI+ApG5DXmzWS11yOCksBXMCbvMR8mn3s9IigJ5q8AYC78R19dCs8rAHOkz1ePseypQI81rrqKWarcC84agp6zyl3HTdsBtsX1+Oo5lr0U5qvkqmtZe7p5N1rF3OKsQeg5q9xc1abtANvS93+G0nxlXdV4qnF1aD+Ts+y7rZ8E3wHslsZXd5l++iDrDOm/U4p2lWvHVj7jrOWAHBi/597t7zInBd1fAHKEEfrpHKKfAZ0aX9Wq3Kty33rMbtPlVbucPu04Vf74HE9jzmT/94axAmDxqk8GlTQOqaTbb3X/1H0/RTtAj2Wqdj2178y6z+xX7z+oMmfarSTvHV1HH3+qr/ftpHs+3tRN36tNnVq1Z311aK6Ll+65BtNuLd+vSe73se5M53oec/ELz001AJYvbePSQg==
+   eJztmktOwzAURfuKGgTIjiUGIMGUAQMWAAixHlYAM7ptQHxe1Fi6eThqSNIGR/dIV02c2vlUPnGcOlksbjXHJnct5QzDMPtOpNTlQ1iPrFrKCSFkKugrQkguePqKEJIJgb4iI/KmeTf5mPSIyJygr8iYfGq+TL4nPSIyJzh/RQjJhTZfHWnZyUx9dSV8XiEkR9p81YVnrfeSmdMqV11rlpBHobOGgHNWqeu4bTshXXEDfPWq9dYZ+Sq66kY2nq7ejRaaezprEDhnlZqr2radkK60/Z+hCzn5yrqq8lTl6lB/RmfZd1t/CX1HyG6pfPXQs58+ySZD+vi+gq5y9djKJ5y1HJAD4+7Uu/1d5jSTewchfQkj9NMcgs+ADsZXJZR7KPe1x+w2LC/q5fhpx6my53M805zL9PeGsUKIxUOfDJA4Dimk2W+xf2Lfj0EH4FimqNdj+86s+8R+cf8Bypxpt5C0d7AOHn+sj/t20jwfb+rG75WmTgntWV+tzHXx0jzXYNot5fc1Sf0+1p3xXC80lz08919DiOUHbMrTCw==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -39,7 +39,7 @@
   <object x="1984" y="320" width="192" height="32"/>
   <object x="1984" y="288" width="160" height="32"/>
   <object x="1984" y="256" width="128" height="32"/>
-  <object x="192" y="352" width="64" height="32"/>
+  <object x="480" y="352" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object gid="497" x="4832" y="160">
@@ -55,18 +55,40 @@
   </object>
   <object type="slope_topleft" x="1856" y="256" width="128" height="128"/>
   <object type="slope_topright" x="3680" y="384" width="64" height="32"/>
-  <object type="solid_top" x="192" y="256" width="64" height="32"/>
+  <object type="solid_top" x="480" y="256" width="64" height="32"/>
+  <object gid="484" x="192" y="384"/>
+  <object gid="484" x="192" y="352"/>
+  <object gid="484" x="192" y="320"/>
+  <object gid="484" x="192" y="288"/>
+  <object gid="484" x="224" y="288"/>
+  <object gid="484" x="224" y="320"/>
+  <object gid="484" x="224" y="352"/>
+  <object gid="484" x="224" y="384"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object type="object_warp_spawn" x="224" y="320">
+  <object type="object_warp_spawn" x="512" y="320">
    <properties>
     <property name="cls" value="fireflower"/>
     <property name="limit" value="1"/>
    </properties>
    <polyline points="0,0 0,-64"/>
   </object>
+  <object gid="465" x="3552" y="288"/>
+  <object gid="465" x="3488" y="288"/>
+  <object gid="465" x="3424" y="288"/>
+  <object gid="472" x="3520" y="288"/>
+  <object gid="472" x="3456" y="288"/>
+  <object gid="465" x="3456" y="160"/>
+  <object gid="465" x="3520" y="160"/>
+  <object gid="472" x="3488" y="160"/>
+  <object gid="465" x="1632" y="288"/>
+  <object gid="465" x="1600" y="288"/>
+  <object gid="465" x="1472" y="288"/>
+  <object gid="465" x="1440" y="288"/>
+  <object gid="465" x="1312" y="288"/>
+  <object gid="465" x="1280" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="4032" y="416"/>
@@ -81,6 +103,27 @@
   <object gid="4" x="1920" y="288"/>
   <object gid="4" x="2016" y="256"/>
   <object gid="4" x="1824" y="384"/>
+  <object gid="9" x="3264" y="64"/>
+  <object gid="9" x="3232" y="64"/>
+  <object gid="9" x="2848" y="64"/>
+  <object gid="9" x="2880" y="64"/>
+  <object gid="9" x="2944" y="64"/>
+  <object gid="9" x="2976" y="64"/>
+  <object gid="9" x="3168" y="64"/>
+  <object gid="9" x="3136" y="64"/>
+  <object gid="9" x="3072" y="64"/>
+  <object gid="9" x="3040" y="64"/>
+  <object gid="5" x="2816" y="384"/>
+  <object gid="5" x="2880" y="384"/>
+  <object gid="5" x="3040" y="384"/>
+  <object gid="5" x="3104" y="384"/>
+  <object gid="3" x="2432" y="352"/>
+  <object gid="3" x="2496" y="352"/>
+  <object gid="3" x="768" y="384"/>
+  <object gid="3" x="832" y="384"/>
+  <object gid="3" x="896" y="384"/>
+  <object gid="9" x="480" y="64"/>
+  <object gid="9" x="512" y="64"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="4832" y="160"/>
