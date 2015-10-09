@@ -3,7 +3,7 @@
  <properties>
   <property name="bgname" value="nightsky"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="An Icy Combination"/>
+  <property name="name" value="An Icy Blend"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>

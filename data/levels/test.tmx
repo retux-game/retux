@@ -122,20 +122,12 @@
   <object gid="455" x="3936" y="64"/>
   <object gid="433" x="5856" y="288"/>
   <object gid="433" x="5856" y="256"/>
-  <object gid="433" x="5856" y="224"/>
-  <object gid="433" x="5856" y="192"/>
-  <object gid="433" x="5856" y="160"/>
-  <object gid="433" x="5824" y="160"/>
-  <object gid="433" x="5792" y="160"/>
-  <object gid="433" x="5760" y="160"/>
-  <object gid="433" x="5728" y="160"/>
-  <object gid="433" x="5696" y="160"/>
-  <object gid="433" x="5696" y="192"/>
-  <object gid="433" x="5696" y="224"/>
   <object gid="433" x="5696" y="256"/>
   <object gid="433" x="5696" y="288"/>
   <object gid="10" x="4480" y="416"/>
   <object gid="10" x="2112" y="352"/>
+  <object gid="433" x="5952" y="416"/>
+  <object gid="433" x="5984" y="416"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="464" x="512" y="96"/>
@@ -176,6 +168,13 @@
    <polyline points="0,0 -64,0"/>
   </object>
   <object gid="7" x="3840" y="416"/>
+  <object type="object_warp_spawn" x="5984" y="448">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>

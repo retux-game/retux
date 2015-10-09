@@ -2198,6 +2198,7 @@ class InteractiveObject(sge.Object):
     knockable = False
     burnable = False
     freezable = False
+    blastable = False
     activated = False
     parent = None
     warping = False
@@ -2266,6 +2267,9 @@ class InteractiveObject(sge.Object):
 
     def freeze(self):
         pass
+
+    def blast(self):
+        self.burn()
 
     def kick(self):
         self.drop()
@@ -2521,6 +2525,7 @@ class KnockableObject(InteractiveObject):
     """Provides basic knocking behavior."""
 
     knockable = True
+    blastable = True
 
     def knock(self, other=None):
         play_sound(fall_sound)
@@ -2537,6 +2542,7 @@ class BurnableObject(InteractiveObject):
     """Provides basic burn behavior."""
 
     burnable = True
+    blastable = True
 
     def burn(self):
         play_sound(fall_sound)
@@ -2704,6 +2710,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
 class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     burnable = True
+    blastable = True
     stayonplatform = True
 
     def __init__(self, x, y, z=0, **kwargs):
@@ -2721,6 +2728,9 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
         super(Spiky, self).knock(other)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
+    def blast(self):
+        self.knock()
+
     def touch_hurt(self):
         pass
 
@@ -2729,6 +2739,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
                   WinPuffObject):
 
     burnable = True
+    blastable = True
     stayonplatform = True
 
     def __init__(self, x, y, z=0, **kwargs):
@@ -2763,6 +2774,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
 class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     burnable = True
+    blastable = True
     walk_speed = 0
 
     def __init__(self, x, y, z=0, **kwargs):
@@ -2791,8 +2803,8 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
         super(Jumpy, self).knock(other)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
-    def burn(self):
-        pass
+    def blast(self):
+        self.knock()
 
     def touch_hurt(self):
         pass
@@ -3036,6 +3048,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
     active_range = ICEBLOCK_ACTIVE_RANGE
     burnable = True
     freezable = True
+    blastable = True
     gravity = BOMB_GRAVITY
     thrower = None
 
@@ -3117,6 +3130,7 @@ class Explosion(InteractiveObject):
     def event_create(self):
         super(Explosion, self).event_create()
         self.__life = EXPLOSION_TIME
+        self.__friends = set()
         play_sound(explosion_sound)
 
     def deactivate(self):
@@ -3138,16 +3152,20 @@ class Explosion(InteractiveObject):
             self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject):
-            if other.burnable:
-                other.burn()
-            elif other.knockable:
-                other.knock(self)
-        elif isinstance(other, (Iceblock, ThinIce)):
+        if other not in (friend() for friend in self.__friends):
+            self.__friends.add(weakref.ref(other))
+            if isinstance(other, InteractiveObject):
+                if other.blastable:
+                    other.blast()
+            if isinstance(other, HittableBlock):
+                if self.detonator is not None:
+                    other.hit(self.detonator)
+
+        # This is outside of the "friend" check because we *want* thin
+        # ice to be hit by the explosion repeatedly (to facilitate
+        # an instant shattering effect).
+        if isinstance(other, (Iceblock, ThinIce)):
             other.burn()
-        if isinstance(other, HittableBlock):
-            if self.detonator is not None:
-                other.hit(self.detonator)
 
         super(Explosion, self).event_collision(other, xdirection, ydirection)
 
@@ -3437,6 +3455,7 @@ class Snowman(FallingObject, Boss):
     burnable = True
     freezable = True
     knockable = True
+    blastable = True
 
     def __init__(self, x, y, hp=SNOWMAN_HP, strong_stage=SNOWMAN_STRONG_STAGE,
                  final_stage=SNOWMAN_FINAL_STAGE, **kwargs):
@@ -3575,6 +3594,11 @@ class Snowman(FallingObject, Boss):
             if other is not None and other.knockable:
                 other.knock(self)
 
+    def blast(self):
+        if self.stage > 0:
+            play_sound(sizzle_sound)
+            self.next_stage()
+
     def touch_hurt(self):
         pass
 
@@ -3615,6 +3639,7 @@ class Raccot(FallingObject, Boss):
     burnable = True
     freezable = True
     knockable = True
+    blastable = True
 
 
 class FireFlower(FallingObject, WinPuffObject):
