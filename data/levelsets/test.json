@@ -1,6 +1,7 @@
 {
     "name": "Test",
     "levels": [
-        "test.tmx"
+        "test.tmx",
+        "test2.tmx"
     ]
 }

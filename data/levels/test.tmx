@@ -35,11 +35,6 @@
  <objectgroup name="Collision Objects">
   <object type="level_end" x="7456" y="0" width="32" height="416"/>
   <object type="solid_left" x="1696" y="352" width="32" height="64"/>
-  <object type="timeline_switcher" x="5792" y="288" width="32" height="128">
-   <properties>
-    <property name="timeline" value="boss_start.json"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
@@ -59,10 +54,6 @@
   <object gid="454" x="1024" y="416"/>
   <object gid="454" x="1056" y="416"/>
   <object gid="454" x="1088" y="416"/>
-  <object gid="433" x="5728" y="288"/>
-  <object gid="433" x="5760" y="288"/>
-  <object gid="433" x="5792" y="288"/>
-  <object gid="433" x="5824" y="288"/>
   <object gid="449" x="1920" y="384"/>
   <object gid="449" x="1952" y="384"/>
   <object gid="449" x="1984" y="384"/>
@@ -120,14 +111,8 @@
   <object gid="446" x="3648" y="416"/>
   <object gid="454" x="3936" y="96"/>
   <object gid="455" x="3936" y="64"/>
-  <object gid="433" x="5856" y="288"/>
-  <object gid="433" x="5856" y="256"/>
-  <object gid="433" x="5696" y="256"/>
-  <object gid="433" x="5696" y="288"/>
   <object gid="10" x="4480" y="416"/>
   <object gid="10" x="2112" y="352"/>
-  <object gid="433" x="5952" y="416"/>
-  <object gid="433" x="5984" y="416"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="464" x="512" y="96"/>
@@ -152,7 +137,6 @@
   <object type="flying_snowball_path" x="6592" y="320">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="466" x="5792" y="288"/>
   <object gid="6" x="1088" y="384"/>
   <object gid="6" x="992" y="288"/>
   <object gid="6" x="1024" y="352"/>
@@ -168,13 +152,6 @@
    <polyline points="0,0 -64,0"/>
   </object>
   <object gid="7" x="3840" y="416"/>
-  <object type="object_warp_spawn" x="5984" y="448">
-   <properties>
-    <property name="cls" value="bomb"/>
-    <property name="limit" value="1"/>
-   </properties>
-   <polyline points="0,0 0,-64"/>
-  </object>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="416"/>

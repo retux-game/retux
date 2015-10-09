@@ -444,6 +444,10 @@ class Level(sge.Room):
         if not shaking:
             self.event_alarm("shake_down")
 
+        for obj in self.objects:
+            if isinstance(obj, SteadyIcicle):
+                obj.check_shake(True)
+
     def die(self):
         global current_areas
         current_areas = {}
@@ -3180,37 +3184,41 @@ class Icicle(InteractiveObject):
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.shake_counter = SHAKE_FRAME_TIME
 
-    def check_shake(self):
-        players = []
-        crash_y = sge.game.current_room.height
-        objects = (
-            sge.game.current_room.get_objects_at(
-                self.bbox_left, self.bbox_bottom, self.bbox_width,
-                (sge.game.current_room.height - self.bbox_bottom +
-                 sge.game.current_room.object_area_height)) |
-            sge.game.current_room.object_area_void)
-        for obj in objects:
-            if (obj.bbox_top > self.bbox_bottom and
-                    self.bbox_right > obj.bbox_left and
-                    self.bbox_left < obj.bbox_right):
-                if isinstance(obj, xsge_physics.SolidTop):
-                    crash_y = min(crash_y, obj.bbox_top)
-                elif isinstance(obj, xsge_physics.SlopeTopLeft):
-                    crash_y = min(crash_y, obj.get_slope_y(self.bbox_right))
-                elif isinstance(obj, xsge_physics.SlopeTopRight):
-                    crash_y = min(crash_y, obj.get_slope_y(self.bbox_left))
-            if (obj.bbox_bottom > self.bbox_top and
-                    self.bbox_right + ICICLE_LAX > obj.bbox_left and
-                    self.bbox_left - ICICLE_LAX < obj.bbox_right):
-                if isinstance(obj, Player):
-                    players.append(obj)
+    def do_shake(self):
+        self.shaking = True
+        play_sound(icicle_shake_sound)
+        self.alarms["fall"] = ICICLE_SHAKE_TIME
 
-        for player in players:
-            if player.bbox_top < crash_y:
-                self.shaking = True
-                play_sound(icicle_shake_sound)
-                self.alarms["fall"] = ICICLE_SHAKE_TIME
-                break
+    def check_shake(self):
+        if not self.warping:
+            players = []
+            crash_y = sge.game.current_room.height
+            objects = (
+                sge.game.current_room.get_objects_at(
+                    self.bbox_left, self.bbox_bottom, self.bbox_width,
+                    (sge.game.current_room.height - self.bbox_bottom +
+                     sge.game.current_room.object_area_height)) |
+                sge.game.current_room.object_area_void)
+            for obj in objects:
+                if (obj.bbox_top > self.bbox_bottom and
+                        self.bbox_right > obj.bbox_left and
+                        self.bbox_left < obj.bbox_right):
+                    if isinstance(obj, xsge_physics.SolidTop):
+                        crash_y = min(crash_y, obj.bbox_top)
+                    elif isinstance(obj, xsge_physics.SlopeTopLeft):
+                        crash_y = min(crash_y, obj.get_slope_y(self.bbox_right))
+                    elif isinstance(obj, xsge_physics.SlopeTopRight):
+                        crash_y = min(crash_y, obj.get_slope_y(self.bbox_left))
+                if (obj.bbox_bottom > self.bbox_top and
+                        self.bbox_right + ICICLE_LAX > obj.bbox_left and
+                        self.bbox_left - ICICLE_LAX < obj.bbox_right):
+                    if isinstance(obj, Player):
+                        players.append(obj)
+
+            for player in players:
+                if player.bbox_top < crash_y:
+                    self.do_shake()
+                    break
 
     def deactivate(self):
         self.shaking = False
@@ -3253,6 +3261,12 @@ class SteadyIcicle(Icicle):
     def check_shake(self, earthquake=False):
         if earthquake:
             super(SteadyIcicle, self).check_shake()
+
+
+class RaccotIcicle(SteadyIcicle):
+
+    def do_shake(self):
+        self.event_alarm("fall")
 
 
 class FallingIcicle(FallingObject):
@@ -3427,10 +3441,11 @@ class CircoflameCenter(InteractiveObject):
 
 class Boss(InteractiveObject):
 
-    def __init__(self, x, y, ID="boss", death_timeline=None, **kwargs):
+    def __init__(self, x, y, ID="boss", death_timeline=None, stage=0,
+                 **kwargs):
         self.ID = ID
         self.death_timeline = death_timeline
-        self.stage = 0
+        self.stage = stage
         super(Boss, self).__init__(x, y, **kwargs)
 
     def event_create(self):
@@ -4993,7 +5008,13 @@ class ObjectWarpSpawn(WarpSpawn):
                 self.__steps_passed -= self.interval
                 self.__objects = [ref for ref in self.__objects
                                   if ref() is not None]
-                if not self.limit or len(self.__objects) < self.limit:
+                num_objects = 0
+                for ref in self.__objects:
+                    obj = ref()
+                    if obj is not None and obj in sge.game.current_room.objects:
+                        num_objects += 1
+
+                if not self.limit or num_objects < self.limit:
                     obj = self.cls.create(self.x, self.y, z=self.z)
                     obj.activate()
                     obj.warping = True
@@ -6347,6 +6368,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "icicle": Icicle,
+         "steady_icicle": SteadyIcicle, "raccot_icicle": RaccotIcicle,
          "krush": Krush, "krosh": Krosh, "circoflame": CircoflamePath,
          "snowman": Snowman, "fireflower": FireFlower, "iceflower": IceFlower,
          "tuxdoll": TuxDoll, "rock": Rock, "fixed_spring": FixedSpring,
