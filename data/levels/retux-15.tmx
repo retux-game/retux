@@ -13,20 +13,20 @@
  <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1MEJgDAURMGklHThLf1XYsqwAYWA4GdxBva+p9caAAAAAAAAvDerD/zA6tUPAPacegWE0CsghV4BKfSKL43qA0TTKyCFXgEpnnp1bA4AAAAAAAAAAAAAAAAAAAAAAAAAuHcBPbYJ0g==
+   eJzt1MEJgDAURMGklHThLf13YrqwAYWA4GdxBva+p9caAAAAAAAAvDerD/zA6tUPAPacegWE0CsghV4BKfSKL43qA0TTKyCFXgEpnnp1bA4AAAAAAAAAAAAAAAAAAAAAAAAAuHcBQMMJ2g==
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -176,8 +176,8 @@
   <object gid="3" x="2144" y="928"/>
   <object gid="5" x="4352" y="672"/>
   <object gid="5" x="4288" y="640"/>
-  <object gid="2" x="4096" y="672"/>
-  <object gid="2" x="4032" y="736"/>
+  <object gid="2" x="4096" y="684"/>
+  <object gid="2" x="4032" y="747"/>
   <object gid="2" x="4160" y="640"/>
   <object gid="4" x="3872" y="832"/>
   <object gid="4" x="3808" y="800"/>
@@ -199,7 +199,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1DENACAQBMHHv1AoEIED8lTkkhkFW20VAAAAAAAAkGSN3wUAPdOvgBB+BaTwKyCFXwEp/ApI4VdAituvtpcBAAAAAAAAAAAAAAAAAAAAAAAAwLMDby4ILw==
+   eJzt1DENACAQBMHHv1Eo8IAD8lTkkhkFW20VAAAAAAAAkGSN3wUAPdOvgBB+BaTwKyCFXwEp/ApI4VdAituvtpcBAAAAAAAAAAAAAAAAAAAAAAAAwLMDwcsIOA==
   </data>
  </layer>
 </map>

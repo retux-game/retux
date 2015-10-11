@@ -1769,6 +1769,10 @@ class Player(xsge_physics.Collider):
         self.last_x = self.x
         self.last_y = self.y
 
+        if self.bbox_bottom <= self.view.y:
+            sge.game.current_room.project_sprite(tux_offscreen_sprite, 0,
+                                                 self.x, 0, self.z)
+
         while self.coins >= HEAL_COINS:
             self.coins -= HEAL_COINS
             play_sound(heal_sound)
@@ -6436,7 +6440,8 @@ tux_arms_grab_sprite = sge.Sprite(
     "tux_arms_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_skid_grab_sprite = sge.Sprite(
     "tux_arms_skid_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_die_sprite = sge.Sprite("tux_die", d, origin_x=32, origin_y=11, fps=8)
+tux_die_sprite = sge.Sprite("tux_die", d, origin_x=29, origin_y=11, fps=8)
+tux_offscreen_sprite = sge.Sprite("tux_offscreen", d, origin_x=16)
 
 tux_stand_sprite = tux_body_stand_sprite.copy()
 tux_idle_sprite = tux_body_idle_sprite.copy()

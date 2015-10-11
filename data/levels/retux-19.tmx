@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="42" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="896"/>
+  <property name="bgname" value="bluemountain"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="In Need of a Lift"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="300" height="42">
+  <data encoding="base64" compression="zlib">
+   eJzt1rEJAAAIBDH3d2lXsBDkIZngyqsCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACS9HcAAAArvg0A4Ja/AgAAAAAAAAAAAACSDazTAaI=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="300" height="42">
+  <data encoding="base64" compression="zlib">
+   eJzt3UFOwzAQQNFeAHEAxAm4AKeD7BF3hk1FVLVTx7GJp35PyqZKOpZovkypyukEAAAAAAAAAMBMPn6PzzvHd8E5y4FrvLe+nmsDxvJ19ALu6LG+W4281calwxqA7Wbs1QizgO1Gv0f1CvLo/bvL6PeoXkF+re6t0e9RvYL89Cr3LJiJXuWeBTPRq9yzYCZ6lXsWzESvcs+CmfTq1bXPT1z77MTSaP7W9T3KLJjJlntr3aB1e5bC5znyPtYryK/23rq8rrZXl/uwyz3YUrm+ktm96BX0cXSvas6poVeQX/Zele7P9Aryy96r0uv1Cv5E3xcXfVfccsBa1/SqPb0is5Ffv3rV3sg/b7in9vX7H38706v29IrMRv4MuV61p1dklrVXW/Z3enXMLGgta6+ic+2vtq8BMpipV+c92XkvtgTn9HhfTq9gn5l6FT1vSUtG31+VtFavyEyv4lnrx/f+X4y9vYr2h6XPq1dkplfxrJL9Vek6W+2v9sy79tho368Dt+hVPGuGXu2ZAaVavDesV/EsvYI+al5jGXoVfRfftfl6dfs8vSLy3uh4Lpj1qL0qmaNXZefpFZGnRsdrwayRe1Xznq5etZ+nV0ReGh1vBbNG7lXNNXrVfp5eEdGr+mv0qv08vSKiV/XX6FX7eXpF5Ae5xCe9
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects">
+  <object type="moving_platform_path" x="1120" y="1216">
+   <polyline points="0,0 0,-352 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="2048" y="896">
+   <polyline points="0,0 0,224 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="4192" y="1024">
+   <polyline points="0,0 288,0 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="3552" y="224">
+   <polyline points="0,0 320,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="465" x="1152" y="672"/>
+  <object gid="465" x="1184" y="672"/>
+  <object gid="465" x="1216" y="672"/>
+  <object gid="465" x="1248" y="672"/>
+  <object gid="465" x="1280" y="672"/>
+  <object gid="465" x="1312" y="672"/>
+  <object gid="465" x="1376" y="672"/>
+  <object gid="465" x="1408" y="672"/>
+  <object gid="466" x="1344" y="672"/>
+  <object gid="480" x="4096" y="704"/>
+  <object gid="480" x="2912" y="608"/>
+  <object gid="480" x="2752" y="1152"/>
+  <object gid="465" x="3744" y="544"/>
+  <object gid="465" x="3712" y="544"/>
+  <object gid="465" x="3488" y="480"/>
+  <object gid="465" x="3456" y="480"/>
+  <object gid="465" x="3328" y="480"/>
+  <object gid="465" x="3296" y="480"/>
+  <object gid="473" x="3392" y="480"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="5" x="1376" y="640"/>
+  <object gid="5" x="1216" y="640"/>
+  <object gid="3" x="960" y="1120"/>
+  <object gid="7" x="4784" y="1024"/>
+  <object gid="8" x="4672" y="800"/>
+  <object gid="8" x="4512" y="768"/>
+  <object gid="2" x="1984" y="832"/>
+  <object gid="2" x="1920" y="832"/>
+  <object gid="3" x="2400" y="1216"/>
+  <object gid="3" x="2336" y="1216"/>
+  <object type="flying_snowball_path" x="2688" y="992">
+   <polyline points="0,0 160,0 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="2848" y="992">
+   <polyline points="0,0 -160,0 0,0"/>
+  </object>
+  <object gid="5" x="3296" y="960"/>
+  <object gid="4" x="4032" y="1024"/>
+  <object gid="4" x="3968" y="1024"/>
+  <object gid="4" x="3840" y="1024"/>
+  <object gid="4" x="3776" y="1024"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="1216"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="300" height="42">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAlwHE4AAB
+  </data>
+ </layer>
+</map>
