@@ -2827,6 +2827,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
                      WinPuffObject):
 
+    always_active = True
     freezable = True
     had_xv = 0
 
