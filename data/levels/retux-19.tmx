@@ -49,6 +49,9 @@
    <polyline points="0,0 320,0 0,0"/>
   </object>
   <object type="moving_platform_path" x="5920" y="192">
+   <properties>
+    <property name="path_speed" value="2"/>
+   </properties>
    <polyline points="0,0 128,0 0,0"/>
   </object>
   <object type="moving_platform_path" x="7552" y="768">
