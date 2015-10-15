@@ -18,12 +18,12 @@
  <tileset firstgid="466" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt06ENACAUQ8HPVuwvYSkmQCAISblL6mteFQAAAAAA/Gu21w+A24bOIZ7OIZ/OIZ/OIZ/OIZ/OId+u8344IN8CLlQI+g==
+   eJzt18EJgDAQRNHYlY1YQSqwTW3KCjwEZhHW9yDXYS//kDEAAAAAAOC/7u3rC4Bql86hPZ1Df6nOj8wMUCDV+czMAAVSnZ+ZGaCA/zn099b5vviA/h7ikwoj
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt2rEJgDAQQNFkAPdxAUvH0E53snQZZ/KwFkStPN+D36Y4CLkipTzX1+sAAAAAAAAAAIBznf81APB7S+wDQzTaC+DQJmyN+z1Fc313Ttb56PttN9+wRlL6dmkSRqw=
+   eJzt2jEKwnAMxeF/D2BPoPfwAo4dXV1Ep1Zw9TaOXsYzNSkERISiNY2G3wdvLaHweBUs5XNNNR4AADCvXfQBANy10QcAcKVbfok+AoAr2/Jt6BUAvNiWa8f3kjr2HAAOdMut42fJstB1IBPd8seOG7oO5KFb/txxo11fzXvOYMP/a4Cv0t/lrzoOAL/sKt8DB8mR7wJgsE6Ym/S7k5yqac/J+n7I/+f+5oYtCCHp0wP0J1CB
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -31,10 +31,16 @@
   <object x="7904" y="288" width="64" height="128"/>
   <object x="480" y="0" width="288" height="32"/>
   <object x="1184" y="288" width="32" height="32"/>
+  <object x="256" y="288" width="32" height="32"/>
+  <object x="224" y="256" width="32" height="32"/>
+  <object x="192" y="224" width="32" height="32"/>
+  <object x="160" y="192" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="7456" y="0" width="32" height="416"/>
   <object type="solid_left" x="1696" y="352" width="32" height="64"/>
+  <object type="slope_topleft" x="0" y="192" width="160" height="160"/>
+  <object type="slope_bottomright" x="0" y="64" width="128" height="256"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
@@ -154,7 +160,7 @@
   <object gid="7" x="3840" y="416"/>
  </objectgroup>
  <objectgroup name="Players">
-  <object gid="1" x="96" y="416"/>
+  <object gid="1" x="224" y="416"/>
   <object type="flying_snowball_path" x="6944" y="128">
    <properties>
     <property name="parent" value="2"/>
