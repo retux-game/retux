@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="84" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="1056"/>
+  <property name="bgname" value="bluemountain"/>
+  <property name="music" value="chipdisko.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="11" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="75" height="84">
+  <data encoding="base64" compression="zlib">
+   eJzt0MEJgEAUQ8G1BhtwsQn7r0a7cAtQyEH8CjOQe3itAfAlx1T94D92rWJa5bTKaZXTKqdV7q7VFq7SPLYUfwAAAAAAAAAAAAAAAHhLrz4AAAAAAABwYa0+AADAI05o9gnx
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="75" height="84">
+  <data encoding="base64" compression="zlib">
+   eJztnMmKFEEQhqPPbjiKWyuOrehBHPUgKD3qRYVxOQwKLhcdD8qc9OZy0fdyO4rLo/gQRtAVmCaZWZFVlVt1/vAz3TA02R+ZXZURf9YUAKaKz0KVTVOorKSqrOSqrOSqrOSqrOSqrOSqrOSqrORKyeoq+prB1yOOwUcpWd1B3zX4XsQx+CglqxPoGXoDfQ59u3l/0vL/O9CXB/afiWys9L+xWNnW20HFh9DrYGd1GL0roWOxsq031afBPa/OGMab0qFYnUevoOewWG+z5i+tv/Xm9Rp6L/qi5TOWhRWJeRGftcbrzXti6OJEWiZWJOJ1wWIXJ9ID9C30Q/QjGD+rofQCfQPSsroC5mvrnoDfu6tSr8mjYL5e7ob8eKVm5WKYG69cWam8bPfAsTnmzMq1RsnHAvBwKXdWLse+ho6N1VPcmz7z8JZwLztGVn2l7rn1ulYprB6jn8DiPpq9OQAbXeqeW69r5c6KGb0cCkaLqMZF+0XTXjEVq5vw/xyxORYjFu8fTXvFVKxK2QeSuD56CSqrNnF99AhUVm1K/ZteWVVWlVVlJdUysbL1CqV9+tJZ+WQTJL1CV5++dFbSbMI+9CoselzU75o1r8nUI6S9TFtPJzUrW0+C/An9uYWV3staaVgcR+9XvNowYTbEivqEtj1fjqxc9c4f6J/o5+j7gu9CcvUBu/YHWalZtfkV+jV6C/yYhVDurHJiVgorE7Mv6K/gn33q2vcpjZXK7Bf6N/jnmbr2G0tl1cd0PenSJxsDK1MNvs1davQls4pdgy+RVWxGrNJYUS8jJiM1g5yqzt7VsWs4agY5VZ09F1amOoVao+D8o8mp832xWZnqFJLzE98mANuT9DxisuKMMme5ybacu6rvS8RKX3vqGQoJKxJfF7l3vt3wk9zfxcg0D8XKViOkMxS+rHhMH5DTR49sEmWaQzIbihWvPTq3tAH/zlHMIR4rVqgc+JC/V8zL5wyFKp3VO+T0vgMr9bNyZUXS66hSTiSdVR/lxErPRPpkHm0aK6sQqqzk4u/n6kW5arKh95o5snL1okxZ/De4/t9Owu81U7CynXfuMhdo/HxvEbrGk4KV7bxzl7kwBlax8uw0fr4PK5WVK8/uqsv4elP73JB1nZBnyLvcj/ZVyLmV03VwCFVWcuXCqu2s1xD7nL7KhVUJKpVVW540xDOfSmXVlicN8cynUlnxfQPV//iZM9yzmIO8XuqjUlmx6OwgsaE8KWdLD0CYNVk6K1Ne9xSEWZOls9Kl1uVprtE886nLuzQ2VqQ+dXmXcmEV4jl7Qztk9kbKijjthLTP2ZM4ZPaGWHENto1TaRmgoU19AM4N2OZ15bSwpA8wNk5/AWdnuAc=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="480" y="2624" width="64" height="32"/>
+  <object x="0" y="0" width="160" height="608"/>
+  <object x="0" y="608" width="352" height="32"/>
+  <object x="0" y="640" width="384" height="32"/>
+  <object x="0" y="672" width="416" height="32"/>
+  <object x="0" y="704" width="640" height="128"/>
+  <object x="0" y="832" width="384" height="64"/>
+  <object x="0" y="896" width="96" height="384"/>
+  <object x="0" y="1280" width="320" height="128"/>
+  <object x="0" y="1408" width="1024" height="32"/>
+  <object x="0" y="1472" width="480" height="1184"/>
+  <object x="736" y="2624" width="1664" height="32"/>
+  <object x="768" y="2592" width="1632" height="32"/>
+  <object x="800" y="2560" width="1600" height="32"/>
+  <object x="0" y="2656" width="2400" height="32"/>
+  <object x="1568" y="1728" width="96" height="256"/>
+  <object x="1376" y="2048" width="192" height="64"/>
+  <object x="1344" y="1600" width="96" height="32"/>
+  <object x="1568" y="1984" width="832" height="128"/>
+  <object x="2112" y="2112" width="288" height="448"/>
+  <object x="2176" y="1728" width="224" height="256"/>
+  <object x="1568" y="1632" width="832" height="96"/>
+  <object x="1440" y="960" width="960" height="672"/>
+  <object x="1504" y="512" width="896" height="448"/>
+  <object x="1376" y="384" width="1024" height="128"/>
+  <object x="800" y="2240" width="288" height="32"/>
+  <object x="896" y="1888" width="160" height="32"/>
+  <object x="768" y="768" width="416" height="32"/>
+  <object x="1696" y="1728" width="64" height="32"/>
+  <object x="2336" y="256" width="64" height="128"/>
+  <object x="0" y="1440" width="1056" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_top" x="480" y="2592" width="64" height="32"/>
+  <object type="moving_platform_path" x="640" y="2176">
+   <polyline points="0,0 0,-192 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="288" y="480">
+   <polyline points="0,0 320,0 0,0"/>
+  </object>
+  <object type="slope_bottomleft" x="2048" y="1728" width="128" height="64"/>
+  <object type="solid_bottom" x="1696" y="1824" width="64" height="32"/>
+  <object type="solid_left" x="1536" y="1664" width="32" height="64"/>
+  <object type="solid_top" x="1184" y="2336" width="288" height="32"/>
+  <object type="solid_top" x="1408" y="2432" width="192" height="32"/>
+  <object type="solid_top" x="1152" y="2112" width="128" height="32"/>
+  <object type="solid_top" x="1088" y="1664" width="192" height="32"/>
+  <object type="solid_top" x="1024" y="1760" width="224" height="32"/>
+  <object type="solid_top" x="576" y="1216" width="224" height="32"/>
+  <object type="solid_top" x="928" y="1184" width="320" height="32"/>
+  <object type="slope_bottomright" x="384" y="832" width="128" height="64"/>
+  <object type="solid_top" x="1280" y="832" width="128" height="32"/>
+  <object type="slope_bottomleft" x="1440" y="512" width="64" height="32"/>
+  <object type="solid_top" x="832" y="416" width="320" height="32"/>
+  <object type="solid_top" x="992" y="320" width="224" height="32"/>
+  <object type="slope_topright" x="320" y="1280" width="256" height="128"/>
+  <object type="slope_bottomright" x="480" y="1472" width="192" height="96"/>
+  <object type="level_end" x="1888" y="0" width="32" height="384"/>
+  <object gid="487" x="608" y="2560">
+   <properties>
+    <property name="dest" value="midpoint"/>
+   </properties>
+  </object>
+  <object gid="486" x="608" y="2656">
+   <properties>
+    <property name="spawn_id" value="midpoint"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="1728" y="1856">
+   <polyline points="0,0 0,-160 -192,-160"/>
+  </object>
+  <object x="2048" y="2112">
+   <polyline points="0,0 0,-128"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="512" y="2656">
+   <properties>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items" opacity="0.94">
+  <object gid="477" x="1408" y="2240">
+   <properties>
+    <property name="text" value="Traveller's Note:\n\nThat pipe to the right is too high to be reached even by jumping off a spring. It would be possible if that Jumpy could be magically suspended in the air and the spring placed on top, but that would be silly!"/>
+   </properties>
+  </object>
+  <object gid="467" x="704" y="1792"/>
+  <object gid="467" x="672" y="1792">
+   <properties>
+    <property name="item" value="spring"/>
+   </properties>
+  </object>
+  <object gid="467" x="640" y="1792"/>
+  <object gid="474" x="640" y="1728"/>
+  <object gid="474" x="672" y="1728"/>
+  <object gid="474" x="704" y="1728"/>
+  <object gid="474" x="704" y="1696"/>
+  <object gid="474" x="672" y="1664"/>
+  <object gid="480" x="1376" y="1600"/>
+  <object gid="466" x="128" y="1024"/>
+  <object gid="480" x="1184" y="1184"/>
+  <object gid="474" x="1184" y="1728"/>
+  <object gid="474" x="1120" y="1728"/>
+  <object gid="474" x="1056" y="1728"/>
+  <object gid="471" x="2112" y="1888"/>
+  <object gid="473" x="1888" y="1920"/>
+  <object gid="473" x="1856" y="1920"/>
+  <object gid="473" x="1824" y="1920"/>
+  <object gid="473" x="1920" y="1920"/>
+  <object gid="473" x="1824" y="1824"/>
+  <object gid="473" x="1856" y="1824"/>
+  <object gid="473" x="1888" y="1824"/>
+  <object gid="473" x="1920" y="1824"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="7" x="2048" y="2560"/>
+  <object gid="3" x="832" y="768"/>
+  <object gid="3" x="928" y="768"/>
+  <object gid="3" x="1024" y="768"/>
+  <object gid="2" x="192" y="608"/>
+  <object gid="2" x="256" y="608"/>
+  <object gid="2" x="320" y="608"/>
+  <object gid="2" x="1120" y="416"/>
+  <object gid="2" x="1184" y="320"/>
+  <object gid="2" x="1056" y="416"/>
+  <object gid="2" x="1280" y="2560"/>
+  <object gid="2" x="1216" y="2560"/>
+  <object gid="2" x="1152" y="2560"/>
+  <object gid="5" x="896" y="2240"/>
+  <object gid="2" x="416" y="1316"/>
+  <object gid="2" x="352" y="1284"/>
+  <object gid="2" x="192" y="1280"/>
+  <object gid="2" x="128" y="1280"/>
+  <object gid="5" x="992" y="1184"/>
+  <object type="flying_snowball_path" x="1216" y="2304">
+   <polyline points="0,0 224,0 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="864" y="1280">
+   <polyline points="0,-32 0,-160 0,-32"/>
+  </object>
+  <object type="flying_snowball_path" x="1280" y="416">
+   <polyline points="0,0 32,-192 0,0"/>
+  </object>
+  <object gid="2" x="1568" y="2432"/>
+  <object gid="2" x="1504" y="2432"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="512" y="2592"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="75" height="84">
+  <data encoding="base64" compression="zlib">
+   eJzt0EkNACAQBMHFv1F44AEHZH4cqVLQ6SoAbjTa6YJ3dK9iXuW8ynmV8yrnVW73avoIAAAAAAAAAAAAAAAAAAAAAAAAAADfWmXiCDg=
+  </data>
+ </layer>
+</map>
