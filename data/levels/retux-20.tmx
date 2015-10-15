@@ -20,21 +20,90 @@
  <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="150">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4GevyAAB
+   eJztzrENACAMBLHswAIg9t+RDECdb2zp+qsCAACAOavb6QkAAAAAAAAAAAAAAIAhJz0AAAAAAADwcdMDAAAAAAAAAAAAAAAAAAAAAAAAAAAA0B4sgQB4
   </data>
  </layer>
  <layer name="Middle Tiles" width="75" height="150">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="544" y="3072" width="384" height="32"/>
+  <object x="1056" y="3328" width="320" height="32"/>
+  <object x="960" y="4000" width="192" height="32"/>
+  <object x="352" y="2944" width="96" height="64"/>
+  <object x="480" y="2624" width="64" height="32"/>
+  <object x="352" y="2752" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_top" x="736" y="4352" width="288" height="32"/>
+  <object type="solid_top" x="384" y="4288" width="224" height="32"/>
+  <object type="solid_top" x="480" y="4064" width="352" height="32"/>
+  <object type="solid_top" x="1344" y="3808" width="128" height="32"/>
+  <object type="solid_top" x="288" y="3584" width="64" height="32"/>
+  <object type="solid_top" x="640" y="3392" width="256" height="32"/>
+  <object type="solid_top" x="1248" y="3104" width="288" height="32"/>
+  <object type="solid_top" x="480" y="2592" width="64" height="32"/>
+  <object type="solid_top" x="352" y="2816" width="64" height="32"/>
+  <object type="moving_platform_path" x="640" y="2176">
+   <polyline points="0,0 0,-192 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="288" y="480">
+   <polyline points="0,0 416,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="384" y="2848">
+   <polyline points="0,0 0,-128 128,-128 128,-256"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="Items" opacity="0.94">
+  <object gid="465" x="1344" y="4480"/>
+  <object gid="465" x="1312" y="4480"/>
+  <object gid="465" x="1280" y="4480"/>
+  <object gid="465" x="1248" y="4480"/>
+  <object gid="465" x="1216" y="4480"/>
+  <object gid="465" x="1184" y="4480"/>
+  <object gid="465" x="1152" y="4480"/>
+  <object type="object_warp_spawn" x="320" y="3648">
+   <properties>
+    <property name="cls" value="iceflower"/>
+    <property name="interval" value="30"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object gid="480" x="1280" y="3104"/>
+  <object gid="477" x="1408" y="2240">
+   <properties>
+    <property name="text" value="Traveller's Note:\n\nThat pipe to the right is too high to be reached by jumping off a spring. The only possible way I can imagine being able to reach it is if the Jumpy below it was made to magically float in the air, but that would be silly."/>
+   </properties>
+  </object>
+  <object gid="467" x="704" y="1792"/>
+  <object gid="467" x="672" y="1792">
+   <properties>
+    <property name="item" value="spring"/>
+   </properties>
+  </object>
+  <object gid="467" x="640" y="1792"/>
+  <object gid="474" x="640" y="1728"/>
+  <object gid="474" x="672" y="1728"/>
+  <object gid="474" x="704" y="1728"/>
+  <object gid="474" x="704" y="1696"/>
+  <object gid="474" x="672" y="1664"/>
+  <object gid="480" x="1376" y="1600"/>
+  <object gid="466" x="128" y="1024"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="7" x="512" y="3648"/>
+  <object gid="7" x="1536" y="3360"/>
+  <object gid="7" x="2048" y="2560"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="224" y="4704"/>
+ </objectgroup>
  <layer name="Front Tiles" width="75" height="150">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4GevyAAB

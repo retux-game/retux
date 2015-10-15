@@ -104,6 +104,7 @@
   <object type="object_warp_spawn" x="512" y="320">
    <properties>
     <property name="cls" value="fireflower"/>
+    <property name="interval" value="30"/>
     <property name="limit" value="1"/>
    </properties>
    <polyline points="0,0 0,-64"/>
@@ -127,6 +128,7 @@
   <object type="object_warp_spawn" x="9472" y="352">
    <properties>
     <property name="cls" value="iceflower"/>
+    <property name="interval" value="30"/>
     <property name="limit" value="1"/>
    </properties>
    <polyline points="0,0 0,-64"/>
