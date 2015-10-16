@@ -5092,12 +5092,13 @@ class MovingPlatformPath(MovingObjectPath):
 
 class TriggeredMovingPlatformPath(MovingPlatformPath):
 
+    default_speed = 2
     default_accel = None
     default_decel = None
     auto_follow = False
     followed = False
 
-    def event_step(self, time_passed, delta_mult):
+    def event_begin_step(self, time_passed, delta_mult):
         if not self.followed:
             obj = self.obj()
             if obj:
