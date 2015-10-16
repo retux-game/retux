@@ -5036,6 +5036,7 @@ class MovingObjectPath(xsge_path.PathLink):
     default_accel = None
     default_decel = None
     default_loop = None
+    auto_follow = True
 
     def __init__(self, x, y, path_speed=None, path_accel=None, path_decel=None,
                  path_loop=None, path_id=None, prime=False, parent=None,
@@ -5056,6 +5057,7 @@ class MovingObjectPath(xsge_path.PathLink):
         self.path_id = path_id
         self.prime = prime
         self.parent = parent
+        self.obj = lambda: None
         super(MovingObjectPath, self).__init__(x, y, **kwargs)
 
     def event_create(self):
@@ -5074,8 +5076,10 @@ class MovingObjectPath(xsge_path.PathLink):
 
         if self.prime and self.cls in TYPES:
             obj = TYPES[self.cls].create(self.x, self.y, z=self.z)
-            self.follow_start(obj, self.path_speed, accel=self.path_accel,
-                              decel=self.path_decel, loop=self.path_loop)
+            self.obj = weakref.ref(obj)
+            if self.auto_follow:
+                self.follow_start(obj, self.path_speed, accel=self.path_accel,
+                                  decel=self.path_decel, loop=self.path_loop)
 
 
 class MovingPlatformPath(MovingObjectPath):
@@ -5084,6 +5088,26 @@ class MovingPlatformPath(MovingObjectPath):
     default_speed = 3
     default_accel = 0.02
     default_decel = 0.02
+
+
+class TriggeredMovingPlatformPath(MovingPlatformPath):
+
+    auto_follow = False
+    followed = False
+
+    def event_step(self):
+        if not self.followed:
+            obj = self.obj()
+            if obj:
+                objects = sge.game.current_room.get_objects_at(
+                    obj.bbox_left, obj.bbox_top - 1, obj.bbox_width, 1)
+                if any((isinstance(o, Player) and
+                        obj in o.get_bottom_touching_wall() for o in objects)):
+                    self.follow_start(obj, self.path_speed,
+                                      accel=self.path_accel,
+                                      decel=self.path_decel,
+                                      loop=self.path_loop)
+                    self.followed = True
 
 
 class FlyingSnowballPath(MovingObjectPath):
@@ -6385,6 +6409,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "thin_ice": ThinIce, "lava": Lava, "lava_surface": LavaSurface,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
+         "triggered_moving_platform_path": TriggeredMovingPlatformPath,
          "flying_snowball_path": FlyingSnowballPath, "spawn": Spawn,
          "checkpoint": Checkpoint, "bell": Bell, "door": Door,
          "warp_spawn": WarpSpawn, "object_warp_spawn": ObjectWarpSpawn,

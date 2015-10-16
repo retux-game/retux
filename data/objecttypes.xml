@@ -23,4 +23,5 @@
  <objecttype name="timeline_switcher" color="#00ffff"/>
  <objecttype name="object_warp_spawn" color="#ff5500"/>
  <objecttype name="checkpoint" color="#ffffff"/>
+ <objecttype name="triggered_moving_platform_path" color="#ffff00"/>
 </objecttypes>
