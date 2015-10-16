@@ -2586,6 +2586,9 @@ class FreezableObject(InteractiveObject):
             self.frozen_sprite.draw_sprite(colorizer, 0, 0, 0,
                                            blend_mode=sge.BLEND_RGB_MULTIPLY)
 
+        # Set image_index to 0 so it doesn't look weird when it thaws
+        self.image_index = 0
+
         frozen_self = FrozenObject.create(self.x, self.y, self.z,
                                           sprite=self.frozen_sprite,
                                           image_xscale=self.image_xscale,
