@@ -12,19 +12,19 @@
  <tileset firstgid="321" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="345" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="433" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="457" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="461" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="463" source="../tilesets/krush.tsx"/>
- <tileset firstgid="464" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="465" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="458" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="462" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="464" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="465" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="466" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJzt07ENABAARFG2sn/HVEagEVzeS66/5pcCAAAAAAAAAAAAAAAAAADAr0a9/QA4resc4ukc8ukc8ukc8ukc8ukc8ukc8q06b5sDAAAA3jABGsgJTA==
+   eJzt07ENABAARFG2sn/JUkagEVzeS66/5pcCAAAAAAAAAAAAAAAAAADAr0a9/QA4resc4ukc8ukc8ukc8ukc8ukc8ukc8q06b5sDAAAA3jABNsMJVQ==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -129,7 +129,7 @@
   <object gid="443" x="2080" y="192"/>
   <object gid="447" x="6944" y="672">
    <properties>
-    <property name="text" value="Traveller's Note:\nI swear, there are no fire flowers anywhere in this level! How am I supposed to melt this ice?! What's more, that ledge over there is shaped like a grin, almost like it's taunting me!"/>
+    <property name="text" value="Traveller's Note:\n\nI swear, there are no fire flowers anywhere in this level! How am I supposed to melt this ice?! What's more, that ledge over there is shaped like a grin, almost like it's taunting me!"/>
    </properties>
   </object>
  </objectgroup>
@@ -222,7 +222,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="28">
   <data encoding="base64" compression="zlib">
-   eJzt1DERACAQA8HHvzIo0IQFGgbI7CpIc6kCAAAAAAAAAAAAAAAAAADgd6PdXgCc1nUO8XQO+XQO+XQO+XQO+XQO+XQO+XY6n74AAAAAnrcANgUH6w==
+   eJzt1DERACAQA8HHvzMosIQFGgbI7CpIc6kCAAAAAAAAAAAAAAAAAADgd6PdXgCc1nUO8XQO+XQO+XQO+XQO+XQO+XQO+XY6n74AAAAAnrcAYXgH9Q==
   </data>
  </layer>
 </map>

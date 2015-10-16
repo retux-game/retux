@@ -13,19 +13,19 @@
  <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt28Fu00AUBdDpX7Hjo5yswckCdkko/wifgUf1lV8sISFh4tKeIz3ZcRzHbaWrN+NpawDA2se9bwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgP3eZapzqOO9f5v3TVOdSw1TX+fh1lzsF3rueTz2Demad522vW3vJreRVP2+Yt4dd7hR473oW3eZKf3WdXyfHDqvSXwF76PnUsyljvvRbNcPyXu21AB4t2dR7poz1TnP1/Z5Tmd8aS32b6ut8jS9TPT/0rnnNfj7tfQe8RemdehZlnJesyvxVP5a8GtrScyWzek59n9+D7oe8YmPpk3o2JYvSXx1LJaMObZnfOq+OeWZIJa/Y0tCW9QmZv6qVXiuVefZ87tDu86pvx4f+BLxm8oqtZF4qaxZga/Jqf5+mv8Hnp5e55T5fU8dMyYC6NqA+/894KeuZMv+TdQOXcuxUrpMxW3qbfEeukXmn2hPl9a0t/VDWJtQ1Cvoh/hV5ta/nUuusWmdHza2sATi2Zf46eTKW87IW81rOq/NK+fw6B5N5ybTc06Vsa1Ylv87b/nrgzu/y6sMfFn8nz8wyV5P1SmPZTw9Ve6aaKzXTkkV5PbSlr0o/lGsn//KsLlm2HtcN5bp1zVQyK8/+PMeDty1ZkDyq/6cytPusqGuZkmW110q/lPVM63UCdY47mVTHeBk33so18p1juVZdp1DHggDAdn4BeQO7Og==
+   eJzt28Fu00AUBdDpX7Hjo5yswckCdkkoHwl/gUf1lV8sISFh4tKeIz3ZcRzHbaWrN+NpawDA2se9bwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgP3eZapzqOO9f5v3TVOdSw1TX+fh1lzsF3rueTz2Demad522vW3vJreRVP2+Yt4dd7hR473oW3eZKf3WdXyfHDqvSXwF76PnUsyljvvRbNcPyXu21AB4t2dR7poz1TnP1/Z5Tmd8aS32b6ut8jS9TPT/0rnnNfj7tfQe8RemdehZlnJesyvxVP5a8GtrScyWzek59n9+D7oe8YmPpk3o2JYvSXx1LJaMObZnfOq+OeWZIJa/Y0tCW9QmZv6qVXiuVefZ87tDu86pvx4f+BLxm8oqtZF4qaxZga/Jqf5+mv8Hnp5e55T5fU8dMyYC6NqA+/894KeuZMv+TdQOXcuxUrpMxW3qbfEeukXmn2hPl9a0t/VDWJtQ1Cvoh/hV5ta/nUuusWmdHza2sATi2Zf46eTKW87IW81rOq/NK+fw6B5N5ybTc06Vsa1Ylv87b/nrgzu/y6sMfFn8nz8wyV5P1SmPZTw9Ve6aaKzXTkkV5PbSlr0o/lGsn//KsLlm2HtcN5bp1zVQyK8/+PMeDty1ZkDyq/6cytPusqGuZkmW110q/lPVM63UCdY47mVTHeBk33so18p1juVZdp1DHggDAdn4BP867QQ==
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJztncluFDEQhj1nNsENCAfIISwKy4ElSoBLQCLAge2GWE8g1hOQC0hwgxcCCZJbkCB5EV6CsmhLVjPdbttlu7r7/6RfE5bMdPeM/6lyV9lKAZCPtYlSH0mfJqWPBAAwVs6TLnTQBvnUZ9IX+BUAoBBXSdc66DrpPXnVB/gVAKPnK+kb6Vwi7Wp43ROkPaQl0vFKS5UWq8crpFkFvwKgz2xT8T6yRlonbZB+knYk0oGW8zio/vnSCmm++vlQ9Thf/az96h151Sr8CowMjnHuE0OkYq+K95FN0hbpBWk/k47W/nyPdKPlPHSMddKSibe0T+nYSvvYbNAVAqD/cIxz3xgiBXPqf684TDoy5e9L6pnnedX9S+uU53MAMBSmjXMOHct5Emr6eZwhnQ049qbYyCWXP+rYajXVBQBgBMT6VdOYluBXueXyR9/YCoCh88RzDrY+zrlyqAXSrchziTkPaUJsBUA89XEem0MZzZAekh6pPL4V6le+OV+oEFuBPtO1lvli4uNIGZe8JL1SeXzLPo9cHoTYCgydN5SvvZ341TKnhMOvXDmk7VvfST8Uf/3EaYbz4FLdLxFbgb5i6pJ1XaCupzF1zIvW40r1b7tV+nvXdb8KiU265pDat36Rfiv++ol9Da95iXS5sBBbgb5i+5X2J+1Lum5Ze1OJOpsc89Ql87Pc9ykBGBLGr+p1gKVqALv6lbQ5IfgVAOmR1qcqsQ6ga01FFw+FXwEQjrQ+VYl+xVVTwe1X5l4JAKAMEv2KU5x+JS02BmBs5PKrnPNf9mvBrwAYDiF+latGYDng2LjjK3u9Hd3rpJVqHT9J6/MAIJEuflWPjXLNYXPEfrHHmmq9Henr8wAgkRBPyOVXt1V8jNa2Nl4XSs3vlfqOAEAyZjz6zC+NaexIuR9hX3PTe5q6txQAaUiIryTXCfj2K6W6r2Bfc9N7mrq3FABphORcsTlWHcn33STGV6Y3AusiA5Af+FV8TIscEYA8wK/cOabLr5AjAsBH2x6kJeuaUq6rFVKnttzwe64cHDkiAPHcJN1X6fcgTaWmdbWM2nqzQ+5LzAX+3jSQI4KxEHvPzvjUA9JzxbMHqcQ1bdp6s0v7FXJEMBZC55RcPlWqj7DEc8T4lR0b6Z6gkH4c5IhgKLj2ofedU1ojrSveeMpHEvdyDvErXV+i56rs2Ej3BHH14yBHBH2Euy9uk7Sl8vuUEeeaWRy6q+Lq1OzYCDkiGDs579NzrhcaqxSvUX9O7VVPu78VTjj9Cjki6CMcftV17EuLfVLKeNUdxVtTkbJnU0KO6JqfcCnnXuIgPxz7eEHNXvVY8dZUpPSr0jmi9qrtKu4a5dxLHORHQt22loT9Ablke9Vr5uuU0q9K5ojGq+w6t5Dvzpx7ifedPq4lKcWv9DiUtgdHKE1eFRq7plrXWQrTvCpWdd8q3R/RdWzH5sN/Oo4f/X+5a6p3Zrhudp9JyVqAoYxDjriq7X1YUDLHmSZ0rHF71TTfKt0fUVdTXUrOdWxd342+mslwzPbnJHY+POZcS49DLnHkgG3vQ47PRMg404SOtViv4ppz5Zy7dT1X0/ezlHyntKTNo9ePp/Q45BL3fJW0z0JbHOwaa9I+gyXl61cpPPkvFJsIJg==
+   eJztncluFDEQhj1nNsENCAfIISwKy4ElSoBLQCLAge2GWE8g1hOQC0hwgxcCCZJbkCB5Eh6CsmhLVjPdbttlu7r7/6RfE5bMdPeM/6lyV9lKAZCPtYlSH0mfJqWPBAAwVs6TLnTQBvnUZ9IX+BUAoBBXSdc66DrpPXnVB/gVAKPnK+kb6Vwi7Wp43ROkPaQl0vFKS5UWq8crpFkFvwKgz2xT8T6yRlonbZB+knYk0oGW8zio/vnSCmm++vlQ9Thf/az96h151Sr8CowMjnHuE0OkYq+K95FN0hbpBWk/k47W/nyPdKPlPHSMddKSibe0T+nYSvvYbNAVAqD/cIxz3xgiBXPqf684TDoy5e9L6pnnedX9S+uU53MAMBSmjXMOHct5Emr6eZwhnQ049qbYyCWXP+rYajXVBQBgBMT6VdOYluBXueXyR9/YCoCh88RzDrY+zrlyqAXSrchziTkPaUJsBUA89XEem0MZzZAekh6pPL4V6le+OV+oEFuBPtO1lvli4uNIGZe8JL1SeXzLPo9cHoTYCgydN5SvvZ341TKnhMOvXDmk7VvfST8Uf/3EaYbz4FLdLxFbgb5i6pJ1XaCupzF1zIvW40r1b7tV+nvXdb8KiU265pDat36Rfiv++ol9Da95iXS5sBBbgb5i+5X2J+1Lum5Ze1OJOpsc89Ql87Pc9ykBGBLGr+p1gKVqALv6lbQ5IfgVAOmR1qcqsQ6ga01FFw+FXwEQjrQ+VYl+xVVTwe1X5l4JAKAMEv2KU5x+JS02BmBs5PKrnPNf9mvBrwAYDiF+latGYDng2LjjK3u9Hd3rpJVqHT9J6/MAIJEuflWPjXLNYXPEfrHHmmq9Henr8wAgkRBPyOVXt1V8jNa2Nl4XSs3vlfqOAEAyZjz6zC+NaexIuR9hX3PTe5q6txQAaUiIryTXCfj2K6W6r2Bfc9N7mrq3FABphORcsTlWHcn33STGV6Y3AusiA5Af+FV8TIscEYA8wK/cOabLr5AjAsBH2x6kJeuaUq6rFVKnttzwe64cHDkiAPHcJN1X6fcgTaWmdbWM2nqzQ+5LzAX+3jSQI4KxEHvPzvjUA9JzxbMHqcQ1bdp6s0v7FXJEMBZC55RcPlWqj7DEc8T4lR0b6Z6gkH4c5IhgKLj2ofedU1ojrSveeMpHEvdyDvErXV+i56rs2Ej3BHH14yBHBH2Euy9uk7Sl8vuUEeeaWRy6q+Lq1OzYCDkiGDs579NzrhcaqxSvUX9O7VVPu78VTjj9Cjki6CMcftV17EuLfVLKeNUdxVtTkbJnU0KO6JqfcCnnXuIgPxz7eEHNXvVY8dZUpPSr0jmi9qrtKu4a5dxLHORHQt22loT9Ablke9Vr5uuU0q9K5ojGq+w6t5Dvzpx7ifedPq4lKcWv9DiUtgdHKE1eFRq7plrXWQrTvCpWdd8q3R/RdWzH5sN/Oo4f/X+5a6p3Zrhudp9JyVqAoYxDjriq7X1YUDLHmSZ0rHF71TTfKt0fUVdTXUrOdWxd342+mslwzPbnJHY+POZcS49DLnHkgG3vQ47PRMg404SOtViv4ppz5Zy7dT1X0/ezlHyntKTNo9ePp/Q45BL3fJW0z0JbHOwaa9I+gyXl61cpPPkvItcIJw==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -194,7 +194,7 @@
   <object gid="474" x="7776" y="1056"/>
   <object gid="477" x="5152" y="1184">
    <properties>
-    <property name="text" value="Traveller's note:\nThat cave to the left appears to be inaccessible from here. There has to be another way inside!"/>
+    <property name="text" value="Traveller's note:\n\nThat cave to the left appears to be inaccessible from here. There has to be another way inside!"/>
    </properties>
   </object>
  </objectgroup>
@@ -283,7 +283,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQBMG3/0I1sAgbEBEM5GCmgo22CgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAV6P9LgC40/0KCOFXQAq/AlL4FZDCr4AUp19NLwMAAGBjAQSyB0c=
+   eJzt1LEJACAQBMG3/0Y1sAcbEBEM5GCmgo22CgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAV6P9LgC40/0KCOFXQAq/AlL4FZDCr4AUp19NLwMAAGBjAdlmB08=
   </data>
  </layer>
 </map>

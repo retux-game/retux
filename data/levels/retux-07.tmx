@@ -13,19 +13,19 @@
  <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAUQ0Hdyv2X0TFcQQu/EO4gfZrXGgAAAAAAAAAAAAAAAAAAAAAAlVb//QB4beoc4ukc8ukc8ukc8ukc8ukc8t10Pg4HAAAAANTY3oIJcg==
+   eJzt07EJACAUQ0Hdyv2n0S1cQQu/EO4gfZrXGgAAAAAAAAAAAAAAAAAAAAAAlVb//QB4beoc4ukc8ukc8ukc8ukc8ukc8t10Pg4HAAAAANTY6vEJeg==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztm7lOQzEQRSc1W81Ws9VAPgDRIxA9iwQdiN9j6Vk6+AFoKeATmBQWj8iOt/HYL9wj3S7Ri+25M2P7hQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyjLDGgprQXUEAAAfi6w5Ya2qjgAA4GONtRygzcDPjbSlOgIAgI9Qn8eoBZ/n7EeOK/xeAEpyxNpP1B616/Oc/cg5wesAGMZ7AdPbt+Dz2D6luy+5IXgdAIPLS330+bjgdaCF1J1XqXuuPvl8nbVBaV6vPc9gupG685qnMjHo2tsfFHhWLOM+32HtUpzPjddL3Cfm5vDYPuNswDlrEPkloILUWfgKlfN6q5S4R5C8Z8jN4bF7igv2+CV83iQpseq65/5vXpf2ecj7AzE+1z4/QD1vF+lYNV739YS3rDuF8dmQOpPYprbreXdtU84OYr2Oet4uJXrPkdd9PeEj64l1yjosPsq/SJ1JLJFMjdbweerZQdfrr6y3Cc9DPW8Xm8+lY9OlK9Y164R0/S65V9FSynsDkjl85PV31seE56Get0tOLKT2grX9bsZc27sp81jK5yFz8cX6Jvca/bd6rvU/TInn5Owxc3rBmn6vcU4uNY+16rltje5ZD/QbS6aeS8b9Z2DeGEbMiwQj782Szv8wJfaZIXvMHKXUzNJ+b83nMart8+4aPbNeSD7WU6WF8bjPO77Yt/VxtvXtc7yG9KqTakdOH+SaN6l9SMgap6oVn9eWba2ke2iXQjweIlsfp+lzyXiPGaNLObXD1ge55k16H1JCKT7XOIfQPuuwrZVW31CyB87xeewa9CHeNeZNck5Dv+vLsaXquUZub1W5OUoyx01b3661Vn2bN1+OLeXzFnJ7rl9+AI9wHOg=
+   eJztm7lOQzEQRSc1W81Ws9VAPgDRIxA9iwQdiN9j6Vk6+AGokeATmBQWj8iOt/HYL9wj3S7Ri+25M2P7hQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyjLDGgprQXUEAAAfi6w5Ya2qjgAA4GONtRygzcDPjbSlOgIAgI9Qn8eoBZ/n7EeOK/xeAEpyxNpP1B616/Oc/cg5wesAGMZ7AdPbt+Dz2D6luy+5IXgdAIPLS330+bjgdaCF1J1XqXuuPvl8nbVBaV6vPc9gupG685qnMjHo2tsfFHhWLOM+32HtUpzPjddL3Cfm5vDYPuNswDlrEPkloILUWfgKlfN6q5S4R5C8Z8jN4bF7igv2+CV83iQpseq65/5vXpf2ecj7AzE+1z4/QD1vF+lYNV739YS3rDuF8dmQOpPYprbreXdtU84OYr2Oet4uJXrPkdd9PeEj64l1yjosPsq/SJ1JLJFMjdbweerZQdfrr6y3Cc9DPW8Xm8+lY9OlK9Y164R0/S65V9FSynsDkjl85PV31seE56Get0tOLKT2grX9bsZc27sp81jK5yFz8cX6Jvca/bd6rvU/TInn5Owxc3rBmn6vcU4uNY+16rltje5ZD/QbS6aeS8b9Z2DeGEbMiwQj782Szv8wJfaZIXvMHKXUzNJ+b83nMart8+4aPbNeSD7WU6WF8bjPO77Yt/VxtvXtc7yG9KqTakdOH+SaN6l9SMgap6oVn9eWba2ke2iXQjweIlsfp+lzyXiPGaNLObXD1ge55k16H1JCKT7XOIfQPuuwrZVW31CyB87xeewa9CHeNeZNck5Dv+vLsaXquUZub1W5OUoyx01b3661Vn2bN1+OLeXzFnJ7rl9+AKMkHOk=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -112,7 +112,7 @@
   <object gid="480" x="5696" y="544"/>
   <object gid="477" x="7104" y="704">
    <properties>
-    <property name="text" value="Traveller's Note:\nIt is said that this level contains 7 springs, but I have only managed to find 6. Could the seventh one be in a hidden block somewhere?"/>
+    <property name="text" value="Traveller's Note:\n\nIt is said that this level contains 7 springs, but I have only managed to find 6. Could the seventh one be in a hidden block somewhere?"/>
    </properties>
   </object>
  </objectgroup>
@@ -163,7 +163,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8Gw/6BQMAQzUESRrLsJ3LyrAAAAAAAAAAAAAAAAAAAAAACYcNb0AqDb1jnE0znk0znk0znk0znk0znk++38+gUAAAAAGPcA4yoILw==
+   eJzt1LENACAMA8Gw/6JQsAMzUESRrLsJ3LyrAAAAAAAAAAAAAAAAAAAAAACYcNb0AqDb1jnE0znk0znk0znk0znk0znk++38+gUAAAAAGPcAAxAIOA==
   </data>
  </layer>
 </map>

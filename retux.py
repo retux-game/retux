@@ -2578,19 +2578,23 @@ class FreezableObject(InteractiveObject):
 
     def freeze(self):
         if self.frozen_sprite is None:
-            self.frozen_sprite = self.sprite.copy()
+            self.frozen_sprite = sge.Sprite(width=self.sprite.width,
+                                            height=self.sprite.height,
+                                            fps=THAW_FPS)
+            self.frozen_sprite.append_frame()
+            self.frozen_sprite.draw_sprite(self.sprite, self.image_index,
+                                           self.sprite.origin_x,
+                                           self.sprite.origin_y)
             colorizer = sge.Sprite(width=self.frozen_sprite.width,
                                    height=self.frozen_sprite.height)
             colorizer.draw_rectangle(0, 0, colorizer.width, colorizer.height,
                                      fill=sge.Color((128, 128, 255)))
-            self.frozen_sprite.draw_sprite(colorizer, 0, 0, 0,
+            self.frozen_sprite.draw_sprite(colorizer, 0, 0, 0, frame=0,
                                            blend_mode=sge.BLEND_RGB_MULTIPLY)
-
-        # Set image_index to 0 so it doesn't look weird when it thaws
-        self.image_index = 0
 
         frozen_self = FrozenObject.create(self.x, self.y, self.z,
                                           sprite=self.frozen_sprite,
+                                          image_fps=0,
                                           image_xscale=self.image_xscale,
                                           image_yscale=self.image_yscale)
         frozen_self.unfrozen = self
@@ -2628,13 +2632,6 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
     def event_alarm(self, alarm_id):
         if self.unfrozen is not None:
             if alarm_id == "thaw_warn":
-                self.sprite = self.sprite.copy()
-                self.sprite.append_frame()
-                self.sprite.draw_sprite(self.unfrozen.sprite,
-                                        self.unfrozen.image_index,
-                                        self.unfrozen.image_origin_x,
-                                        self.unfrozen.image_origin_y,
-                                        frame=(self.sprite.frames - 1))
                 self.image_fps = THAW_FPS
                 self.alarms["thaw"] = THAW_WARN_TIME
             elif alarm_id == "thaw":
@@ -6487,14 +6484,20 @@ spiky_walk_sprite = sge.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
                                bbox_x=-13, bbox_y=0, bbox_width=26,
                                bbox_height=32)
 spiky_iced_sprite = sge.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
-                               fps=8, bbox_x=-13, bbox_y=0, bbox_width=26,
-                               bbox_height=32)
+                               fps=THAW_FPS, bbox_x=-13, bbox_y=0,
+                               bbox_width=26, bbox_height=32)
+spiky_iced_sprite.append_frame()
+spiky_iced_sprite.draw_sprite(spiky_walk_sprite, 1, spiky_walk_sprite.origin_x,
+                              spiky_walk_sprite.origin_y, frame=1)
 bomb_walk_sprite = sge.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
                               bbox_x=-13, bbox_y=0, bbox_width=26,
                               bbox_height=32)
 bomb_iced_sprite = sge.Sprite("bomb_iced", d, origin_x=21, origin_y=8,
-                              bbox_x=-13, bbox_y=0, bbox_width=26,
-                              bbox_height=32)
+                              fps=THAW_FPS, bbox_x=-13, bbox_y=0,
+                              bbox_width=26, bbox_height=32)
+bomb_iced_sprite.append_frame()
+bomb_iced_sprite.draw_sprite(bomb_walk_sprite, 1, bomb_iced_sprite.origin_x,
+                             bomb_iced_sprite.origin_y, frame=1)
 bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=8,
                                  bbox_x=-13, bbox_y=0, bbox_width=26,
                                  bbox_height=29)
@@ -6505,8 +6508,11 @@ jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,
                                  bbox_x=-17, bbox_y=0, bbox_width=33,
                                  bbox_height=32)
 jumpy_iced_sprite = sge.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
-                               bbox_x=-17, bbox_y=0, bbox_width=33,
-                               bbox_height=32)
+                               fps=THAW_FPS, bbox_x=-17, bbox_y=0,
+                               bbox_width=33, bbox_height=32)
+jumpy_iced_sprite.append_frame()
+jumpy_iced_sprite.draw_sprite(jumpy_sprite, 0, jumpy_sprite.origin_x,
+                              jumpy_sprite.origin_y, frame=1)
 flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
                                     origin_y=11, fps=15, bbox_x=-13, bbox_y=0,
                                     bbox_width=26, bbox_height=32)
