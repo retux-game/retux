@@ -5092,17 +5092,19 @@ class MovingPlatformPath(MovingObjectPath):
 
 class TriggeredMovingPlatformPath(MovingPlatformPath):
 
+    default_accel = None
+    default_decel = None
     auto_follow = False
     followed = False
 
-    def event_step(self):
+    def event_step(self, time_passed, delta_mult):
         if not self.followed:
             obj = self.obj()
             if obj:
                 objects = sge.game.current_room.get_objects_at(
                     obj.bbox_left, obj.bbox_top - 1, obj.bbox_width, 1)
-                if any((isinstance(o, Player) and
-                        obj in o.get_bottom_touching_wall() for o in objects)):
+                if any((isinstance(o, Player) and obj in o.on_floor
+                        for o in objects)):
                     self.follow_start(obj, self.path_speed,
                                       accel=self.path_accel,
                                       decel=self.path_decel,

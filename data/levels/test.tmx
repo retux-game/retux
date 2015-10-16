@@ -41,6 +41,9 @@
   <object type="solid_left" x="1696" y="352" width="32" height="64"/>
   <object type="slope_topleft" x="0" y="192" width="160" height="160"/>
   <object type="slope_bottomright" x="0" y="64" width="128" height="256"/>
+  <object type="triggered_moving_platform_path" x="320" y="320">
+   <polyline points="0,0 0,-160 0,0"/>
+  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
