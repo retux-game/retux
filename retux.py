@@ -1278,6 +1278,16 @@ class MovingPlatform(xsge_physics.SolidTop, xsge_physics.MobileWall, Tile):
     def __init__(self, x, y, z=0, **kwargs):
         kwargs.setdefault("sprite", platform_sprite)
         super(MovingPlatform, self).__init__(x, y, z, **kwargs)
+        self.path = None
+        self.following = False
+
+    def event_physics_collision_top(self, other, move_loss):
+        if isinstance(other, Player):
+            if self.path and not self.following:
+                self.path.follow_start(self, self.path.path_speed,
+                                       accel=self.path.path_accel,
+                                       decel=self.path.path_decel,
+                                       loop=self.path.path_loop)
 
 
 class HurtLeft(SolidLeft):
@@ -5089,6 +5099,22 @@ class MovingPlatformPath(MovingObjectPath):
     default_accel = 0.02
     default_decel = 0.02
 
+    def event_create(self):
+        super(MovingPlatformPath, self).event_create()
+        obj = self.obj()
+        if obj:
+            obj.path = self
+
+    def follow_start(self, obj, *args, **kwargs):
+        super(MovingPlatformPath, self).follow_start(obj, *args, **kwargs)
+        obj.following = True
+
+    def event_follow_end(self, obj):
+        obj.following = False
+        obj.speed = 0
+        obj.x = self.x
+        obj.y = self.y
+
 
 class TriggeredMovingPlatformPath(MovingPlatformPath):
 
@@ -5097,20 +5123,6 @@ class TriggeredMovingPlatformPath(MovingPlatformPath):
     default_decel = None
     auto_follow = False
     followed = False
-
-    def event_begin_step(self, time_passed, delta_mult):
-        if not self.followed:
-            obj = self.obj()
-            if obj:
-                objects = sge.game.current_room.get_objects_at(
-                    obj.bbox_left, obj.bbox_top - 1, obj.bbox_width, 1)
-                if any((isinstance(o, Player) and obj in o.on_floor
-                        for o in objects)):
-                    self.follow_start(obj, self.path_speed,
-                                      accel=self.path_accel,
-                                      decel=self.path_decel,
-                                      loop=self.path_loop)
-                    self.followed = True
 
 
 class FlyingSnowballPath(MovingObjectPath):
