@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4GdTAAAQ==
+   eJztz1EJACAMQMEVEAOICSxg/2RG2NcGwh28AC8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAPt6DZegBkRkG79QDIrIJO6wGQeS0UCDg=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>

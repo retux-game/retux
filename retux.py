@@ -3163,7 +3163,7 @@ class Explosion(InteractiveObject):
         other.hurt()
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, fire_flower_light_sprite)
+        xsge_lighting.project_light(self.x, self.y, explosion_light_sprite)
 
     def event_step(self, time_passed, delta_mult):
         self.__life -= delta_mult
@@ -3424,7 +3424,7 @@ class Circoflame(InteractiveObject):
         self.destroy()
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, fireball_light_sprite)
+        xsge_lighting.project_light(self.x, self.y, circoflame_light_sprite)
 
 
 class CircoflameCenter(InteractiveObject):
@@ -5112,8 +5112,8 @@ class MovingPlatformPath(MovingObjectPath):
     def event_follow_end(self, obj):
         obj.following = False
         obj.speed = 0
-        obj.x = self.x
-        obj.y = self.y
+        obj.x = self.x + self.points[-1][0]
+        obj.y = self.y + self.points[-1][1]
 
 
 class TriggeredMovingPlatformPath(MovingPlatformPath):
@@ -6696,25 +6696,14 @@ fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
 item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=80, height=80,
                                      origin_x=40, origin_y=40, fps=30)
 item_spawn_cloud_sprite.delete_frame(0)
-light_sprite = sge.Sprite("light", d, origin_x=288, origin_y=288)
+light_sprite = sge.Sprite("light", d, origin_x=192, origin_y=192)
+light_small_sprite = sge.Sprite("light_small", d, origin_x=64, origin_y=64)
+light_tiny_sprite = sge.Sprite("light_tiny", d, origin_x=32, origin_y=32)
 heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
 heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
 
-# Various different lights
-small_light_sprite = light_sprite.copy()
-small_light_sprite.width /= 2
-small_light_sprite.height /= 2
-small_light_sprite.origin_x /= 2
-small_light_sprite.origin_y /= 2
-
-tiny_light_sprite = light_sprite.copy()
-tiny_light_sprite.width /= 4
-tiny_light_sprite.height /= 4
-tiny_light_sprite.origin_x /= 4
-tiny_light_sprite.origin_y /= 4
-
-fire_flower_light_sprite = small_light_sprite.copy()
+fire_flower_light_sprite = light_small_sprite.copy()
 blender = sge.Sprite(width=fire_flower_light_sprite.width,
                      height=fire_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
@@ -6723,7 +6712,7 @@ fire_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                      blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
-ice_flower_light_sprite = small_light_sprite.copy()
+ice_flower_light_sprite = light_small_sprite.copy()
 blender = sge.Sprite(width=ice_flower_light_sprite.width,
                      height=ice_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
@@ -6732,13 +6721,31 @@ ice_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                     blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
-fireball_light_sprite = tiny_light_sprite.copy()
+fireball_light_sprite = light_tiny_sprite.copy()
 blender = sge.Sprite(width=fireball_light_sprite.width,
                      height=fireball_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
                        fill=sge.Color("#FF5B11"))
 fireball_light_sprite.draw_sprite(blender, 0, 0, 0,
                                   blend_mode=sge.BLEND_RGB_MULTIPLY)
+del blender
+
+explosion_light_sprite = light_small_sprite.copy()
+blender = sge.Sprite(width=fire_flower_light_sprite.width,
+                     height=fire_flower_light_sprite.height)
+blender.draw_rectangle(0, 0, blender.width, blender.height,
+                       fill=sge.Color("#FFBC00"))
+explosion_light_sprite.draw_sprite(blender, 0, 0, 0,
+                                   blend_mode=sge.BLEND_RGB_MULTIPLY)
+del blender
+
+circoflame_light_sprite = light_tiny_sprite.copy()
+blender = sge.Sprite(width=fireball_light_sprite.width,
+                     height=fireball_light_sprite.height)
+blender.draw_rectangle(0, 0, blender.width, blender.height,
+                       fill=sge.Color("#D5CD49"))
+circoflame_light_sprite.draw_sprite(blender, 0, 0, 0,
+                                    blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
 coin_icon_sprite = coin_sprite.copy()

@@ -31,7 +31,8 @@ images/misc/ice_bullet.png
 images/misc/icon.ico
 images/misc/icon.png
 images/misc/light.png
-images/misc/lightmap_light.png
+images/misc/light_small.png
+images/misc/light_tiny.png
 images/misc/spawn_point.png
 images/objects/bonus/bonus_empty.png
 images/objects/bonus/bonus_full-0.png
