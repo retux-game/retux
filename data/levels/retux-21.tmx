@@ -20,12 +20,12 @@
  <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4GdTAAAQ==
+   eJzt08EJACAAAzHdyv2n0S2cQBBExJJA//1cKQAAAMCJUV8/AG7rOod4Ood8Ood8Ood8Ood8Ood8q87b5gAAAAAAAAAAAAAAAAAAAAAAAPjHBIDHCXo=
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztz1EJACAMQMEVEAOICSxg/2RG2NcGwh28AC8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAPt6DZegBkRkG79QDIrIJO6wGQeS0UCDg=
+   eJzt3DkOwjAQhWFTA6JmKxFbzXb/63AITIEUIUIc42E8k/+TpkiRFT0vkUMIAAAAAAAAAAAAAAAAAAAAqNk41tVp3Udpz+Ca+KwAq+axphTg2jbWspI6KB4f8OxTzqXzVkPbsIu1b2wDnuX05+8ZsVjnWJfGNuBZTs7fM+KhAM9qmp+Tc0DGt5z/Ok/P2b9rTiD17gDwrLb+XGJOkNI2QNc4Y59Z8avwq7ac/7Oa+YeunHUca5UrtWnIOW8WdG0z9jkWvwq/yDk5rwE5l5WTc0vraMi5DeRcFv05Oa8BOZfVlvN/rXkrMTYocQwpmt8DWnofTc5lteVcc82bxrxAwjPjk6D3DZ6l99HkXFaJcbul+XrbOEWiP31mfKFwj6/fw1IOyLmsoc3P28YpEv1pV8al28dbrI2ROoX+yHm6oeU8pzTHK7+cexX0/7+jT5vYFzlPp/39ufaY/3X+B5VTuDY=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -37,7 +37,7 @@
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4GdTAAAQ==
+   eJzt1LENACAMA8Gw/6JQsAMbUAUhWXcTuHlXAQAAAB3W+L0AeG3qHOLpHPLpHPLpHPLpHPLpHPLdOt8+AAAAAAAAAAAAAAAAAAAAAAAAIMIBy2wIOA==
   </data>
  </layer>
 </map>

@@ -39,7 +39,12 @@
   <object type="moving_platform_path" x="1120" y="1216">
    <polyline points="0,0 0,-352 0,0"/>
   </object>
-  <object type="moving_platform_path" x="2048" y="896">
+  <object type="triggered_moving_platform_path" x="2048" y="896">
+   <properties>
+    <property name="path_accel" value="0.02"/>
+    <property name="path_decel" value="0.02"/>
+    <property name="path_speed" value="3"/>
+   </properties>
    <polyline points="0,0 0,224 0,0"/>
   </object>
   <object type="moving_platform_path" x="4192" y="1024">
