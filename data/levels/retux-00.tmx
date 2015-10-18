@@ -33,7 +33,13 @@
  <objectgroup name="Collision Objects"/>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="477" x="1088" y="288">
+   <properties>
+    <property name="text" value="Citizens of Icy Island,\n\nBeginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow King. You will now pay reparations to your new king once a week: 50% of your fish."/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
   <object gid="1" x="1504" y="384">

@@ -459,20 +459,9 @@ class Level(sge.Room):
         sge.Music.stop(DEATH_FADE_TIME)
 
     def return_to_map(self):
-        m = Worldmap.load(current_worldmap)
-
-        for obj in self.objects:
-            if isinstance(obj, Player):
-                x = obj.x - obj.view.x + obj.view.xport
-                y = obj.y - obj.view.y + obj.view.yport
-                arg = (x, y)
-                break
-        else:
-            arg = None
-
         save_game()
-        m.start(transition="iris_in", transition_time=TRANSITION_TIME,
-                transition_arg=arg)
+        m = Worldmap.load(current_worldmap)
+        m.start(transition="iris_out", transition_time=TRANSITION_TIME)
 
     def win_game(self):
         global save_slots
