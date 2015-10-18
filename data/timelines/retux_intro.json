@@ -1,0 +1,42 @@
+{
+    "0": [
+        "setattr player sneak_pressed 1"
+    ], 
+    "101": [
+        "dialog tux It's a nice, cold day for fishing! I wonder what I'll catch today?",
+        "setattr player left_pressed 1"
+    ], 
+    "200": [
+        "setattr player left_pressed 0"
+    ], 
+    "220": [
+        "dialog tux Oh, looks like I have a message! I wonder what it's about?"
+    ],
+    "230": [
+        "setattr player left_pressed 1"
+    ], 
+    "321": [
+        "call player jump", 
+        "setattr player jump_pressed 1"
+    ], 
+    "339": [
+        "call player jump_release", 
+        "setattr player jump_pressed 0"
+    ], 
+    "364": [
+        "setattr player right_pressed 1"
+    ], 
+    "370": [
+        "setattr player right_pressed 0"
+    ],
+    "479": [
+        "dialog tux Half of my fish?! Who does this \"Snow King\" think he is? I will not stand for this!"
+    ],
+    "489": [
+        "setattr player sneak_pressed 0"
+        "setattr player left_pressed 1"
+    ], 
+    "600": [
+        "call __level__ return_to_map"
+    ]
+}

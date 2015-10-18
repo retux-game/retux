@@ -495,6 +495,8 @@ tilesets/wm_shallow_water.tsx
 tilesets/wm_snow.tsx
 tilesets/wm_thin_ice.tsx
 tilesets/wm_trees.tsx
+timelines/boss_start.json
+timelines/retux_intro.json
 timelines/title_demo.json
 worldmaps/base.tmx
 worldmaps/retux-1.tmx
