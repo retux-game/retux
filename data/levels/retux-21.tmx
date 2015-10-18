@@ -26,12 +26,11 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt3DtOxDAUhWGnBkTNq0S8amBYDVCyAuhgwSxiHKFINyOcWI5vru38n3SKEWFe5CR2FOMcAAAAAAAAAAAAAAAAtuqzc+6rs34XADR9+47/0HOgekc+u0A+ur+Efl56fiOPUbvobwuo05nPCQGaduNzUUjuDZ8faNl/PdfuWwnHhlufO/EYaFnK+fywIzXmyedZPAbW8No595aY9wXXxFN6ftiRFgK0rKT5OT0HdEz1fOk8PeX35+YEWtcOgJaVdj7XmBPEHBtgS97HcZphO4yV1vM1I/sPW/I+jqsM22Fsyz2XgS25Hz5k2A5j9Jyel4Ce60rpeU330dDzOtBzXZzP6XkJ5vo7rJGm52lCPV/rnrccY4Mcz6Flaj2gdmq6Hj3X32GNND1PE+q55T1vFvMCDX3Hj53dGryarkf3++Hwd6fn+eUYt9c0Xw+NUzTOp33Hzw0+41RfSiX3wxcX/l8Ij2K7mj6fta3Nz0PjFI3z6VzHtY+PfV+uK4ns72Xkd0rP422t5ymxHK8see2pvpSWlHEPPY9nvf7cesw/vP4ebg/NnA==
+   eJzt3MlOwzAQxnHnzHYGyhGx9AyUpwGOPAHc4IH7EDiqIjkBJ8HxZDzJ/yfNocJd3ObzEiU4BwAAAAAAAAAAAAAAgLX6qJz7rLQ/BQBJXz7j3+QcMO/I1y5S79WhYn8vvfYjx6jd6G8LsOnc1wkFuBc/L7xG6s34uvbG12Uhda/4+sCS/ZVz6byVMDbc+roLHgNLljKfdzNisR59PQWPgTn07Q2GasreISXn3YwsoYAlK2l/Ts4BGX05n7pPT3n+0J5A6twBsGSlzecSe4IxYwN0hddxnGVoh7bScj5nhfmHrvA6jqsM7dC25pyHBV3hcbjN0A5t5Jycl4Ccy0rJuaXraMi5DeRcFvM5OS/BUH6be6TDds++ruf7iKbFcj7XNW851gY5XkNK3/2A0mXpfPRQzpt7pMN2G8e5uLFiOde85k1jXyChzvix07sHz1IG6uOw+d3H5jzWFr/lWLdb2q/H1ikS82md8QuFPvblpVTd9XjsfyE8uHZfLfVR09r257F1isR8OpRx6fGx2b9aqDC/m398p6l9XJu15TylNNcrU967Ly+lVeq6J6WPp05/XNMcRzWOa+01f/P+P/8C3JU=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="0" y="896" width="1728" height="32"/>
-  <object x="0" y="928" width="3072" height="32"/>
+  <object x="0" y="896" width="1728" height="64"/>
   <object x="3072" y="640" width="128" height="256"/>
   <object x="3392" y="640" width="128" height="256"/>
   <object x="3328" y="864" width="64" height="32"/>
@@ -42,27 +41,41 @@
   <object x="5888" y="352" width="2112" height="608"/>
   <object x="7936" y="224" width="64" height="128"/>
   <object x="6112" y="320" width="64" height="32"/>
+  <object x="4128" y="384" width="256" height="32"/>
+  <object x="3520" y="800" width="32" height="128"/>
+  <object x="3520" y="928" width="448" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="triggered_moving_platform_path" x="1824" y="800">
    <polyline points="0,0 544,0 544,-128 1024,-128 1024,0 0,0"/>
   </object>
   <object type="triggered_moving_platform_path" x="3616" y="608">
-   <polyline points="0,0 0,224 416,224 224,96 224,-192 -64,-192 -64,-416 384,-416 384,-192 768,-192 768,288 416,288 416,64 1024,64 1184,-96 1824,-96 1824,-352 2048,-352 2048,288 1824,288 1824,0 0,0"/>
+   <polyline points="0,0 0,224 224,224 224,-192 -64,-192 -64,-416 384,-416 384,-192 768,-192 768,224 416,224 416,64 1024,64 1184,-96 1824,-96 1824,-352 2048,-352 2048,256 1824,256 1824,0 0,0"/>
   </object>
   <object type="level_end" x="7488" y="0" width="32" height="352"/>
   <object type="solid_top" x="3328" y="768" width="64" height="32"/>
   <object type="solid_top" x="6112" y="256" width="64" height="32"/>
+  <object type="spike_top" x="1728" y="896" width="1344" height="64"/>
+  <object type="spike_top" x="3552" y="896" width="416" height="32"/>
+  <object type="spike_top" x="3520" y="768" width="32" height="32"/>
+  <object type="spike_top" x="3968" y="928" width="1920" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="3360" y="768">
    <properties>
-    <property name="dest" value="__main__:level_end"/>
+    <property name="dest" value="retux-bonus1.tmx:bonus_enter"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>
  </objectgroup>
- <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="6144" y="320">
+   <properties>
+    <property name="spawn_id" value="bonus_exit"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Items">
   <object gid="465" x="2080" y="704"/>
   <object gid="465" x="2368" y="608"/>
@@ -70,7 +83,7 @@
   <object gid="465" x="2432" y="608"/>
   <object gid="465" x="2464" y="608"/>
   <object gid="465" x="3776" y="736"/>
-  <object gid="466" x="4256" y="800"/>
+  <object gid="466" x="4256" y="768"/>
   <object gid="465" x="3744" y="320"/>
   <object gid="474" x="4256" y="672"/>
   <object gid="474" x="3840" y="672"/>
@@ -109,6 +122,11 @@
   <object gid="484" x="3296" y="704"/>
   <object gid="484" x="3328" y="704"/>
   <object gid="484" x="3360" y="704"/>
+  <object gid="465" x="1440" y="736"/>
+  <object gid="465" x="1472" y="736"/>
+  <object gid="465" x="1504" y="736"/>
+  <object gid="465" x="1536" y="736"/>
+  <object gid="465" x="1568" y="736"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="8" x="2240" y="800"/>
@@ -120,9 +138,6 @@
   <object gid="8" x="3936" y="672"/>
   <object gid="8" x="3872" y="544"/>
   <object gid="8" x="3936" y="416"/>
-  <object gid="8" x="4128" y="416"/>
-  <object gid="8" x="4384" y="416"/>
-  <object gid="8" x="4256" y="416"/>
   <object gid="8" x="4192" y="672"/>
   <object gid="8" x="4352" y="672"/>
   <object gid="8" x="4704" y="672"/>
@@ -130,13 +145,27 @@
   <object gid="7" x="5024" y="480"/>
   <object gid="7" x="5344" y="480"/>
   <object gid="7" x="5184" y="480"/>
+  <object gid="5" x="6880" y="352"/>
+  <object gid="2" x="928" y="832"/>
+  <object gid="2" x="992" y="832"/>
+  <object gid="2" x="1056" y="832"/>
+  <object gid="5" x="1184" y="832"/>
+  <object gid="5" x="1248" y="832"/>
+  <object gid="2" x="1376" y="832"/>
+  <object gid="2" x="1440" y="832"/>
+  <object gid="7" x="3136" y="640"/>
+  <object gid="7" x="3456" y="640"/>
+  <object gid="5" x="6944" y="352"/>
+  <object gid="5" x="7072" y="352"/>
+  <object gid="5" x="7136" y="352"/>
+  <object gid="5" x="4320" y="384"/>
+  <object gid="2" x="6528" y="352"/>
+  <object gid="2" x="6464" y="352"/>
   <object gid="2" x="6592" y="352"/>
-  <object gid="2" x="6656" y="352"/>
-  <object gid="2" x="6720" y="352"/>
-  <object gid="5" x="6912" y="352"/>
-  <object gid="5" x="6976" y="352"/>
  </objectgroup>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="896"/>
+ </objectgroup>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
    eJzt1LENACAMA8Gw/6JQsAMbUAUhWXcTuHlXAQAAAB3W+L0AeG3qHOLpHPLpHPLpHPLpHPLpHPLdOt8+AAAAAAAAAAAAAAAAAAAAAAAAIMIBy2wIOA==
