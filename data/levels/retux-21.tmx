@@ -4,6 +4,7 @@
   <property name="background_y" value="512"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Going In Circles"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
@@ -25,15 +26,75 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt3DkOwjAQhWFTA6JmKxFbzXb/63AITIEUIUIc42E8k/+TpkiRFT0vkUMIAAAAAAAAAAAAAAAAAAAAqNk41tVp3Udpz+Ca+KwAq+axphTg2jbWspI6KB4f8OxTzqXzVkPbsIu1b2wDnuX05+8ZsVjnWJfGNuBZTs7fM+KhAM9qmp+Tc0DGt5z/Ok/P2b9rTiD17gDwrLb+XGJOkNI2QNc4Y59Z8avwq7ac/7Oa+YeunHUca5UrtWnIOW8WdG0z9jkWvwq/yDk5rwE5l5WTc0vraMi5DeRcFv05Oa8BOZfVlvN/rXkrMTYocQwpmt8DWnofTc5lteVcc82bxrxAwjPjk6D3DZ6l99HkXFaJcbul+XrbOEWiP31mfKFwj6/fw1IOyLmsoc3P28YpEv1pV8al28dbrI2ROoX+yHm6oeU8pzTHK7+cexX0/7+jT5vYFzlPp/39ufaY/3X+B5VTuDY=
+   eJzt3E1TwjAQxvFwVsezb0dHxTOKn0b9/n4I0wMzGaYpy9LtZtP/b2YPHIAS+jQvpKQEAAAAAAAAAAAAAAAAAACAll3l2ndafxtZG+yFbQVEdZfrhgK69pLroZHaOr4+0LOxnFvnrYVrw2uut+Ix0DNNf36ckYj1keuzeAws4XuT0o+yfoXrTWM0OT/OSA8F9Kyl+Tk5B2xM5fzSebrm+afmBFZrB0DPWuvPLeYEkmsDfGn2cdy6HGlMreV8ySrzD1+afRxPLkca05pzXhZ8ac7Dd5cjjYmck/MWlOehdA2GnMtpch5pHw05j4H+3Bb9OTlvwdR5WPsNhpzL1dp3qT1vc4wN5ngNK573A0Zaj57Kee03GHIuV2tfzz1vHvMCC0PGr5PfPXiR1qOH8/Dc752cy80xbo80X6+NUyz60yHj9w6f8fB9RMoB83Nba5uf18YpFv3pqYxbXx+/cj0HqZ3wM5VtRs7l1pZzTXmOVy5578fk//8dc10Tx4qcy3nff+495j+8/z+OmczJ
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
+ <objectgroup name="Collision Objects">
+  <object type="triggered_moving_platform_path" x="1824" y="800">
+   <polyline points="0,0 544,0 544,-128 1024,-128 1024,0 0,0"/>
+  </object>
+  <object type="triggered_moving_platform_path" x="3616" y="608">
+   <polyline points="0,0 0,224 416,224 224,96 224,-192 -64,-192 -64,-416 384,-416 384,-192 768,-192 768,288 416,288 416,64 1024,64 1184,-96 1824,-96 1824,-352 2048,-352 2048,288 1824,288 1824,0 0,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
+ <objectgroup name="Items">
+  <object gid="465" x="2080" y="704"/>
+  <object gid="465" x="2368" y="608"/>
+  <object gid="465" x="2400" y="608"/>
+  <object gid="465" x="2432" y="608"/>
+  <object gid="465" x="2464" y="608"/>
+  <object gid="465" x="3776" y="736"/>
+  <object gid="466" x="4256" y="800"/>
+  <object gid="465" x="3744" y="320"/>
+  <object gid="474" x="4256" y="672"/>
+  <object gid="474" x="3840" y="672"/>
+  <object gid="474" x="3936" y="544"/>
+  <object gid="474" x="3840" y="416"/>
+  <object gid="464" x="5120" y="256"/>
+  <object gid="465" x="5216" y="256"/>
+  <object gid="472" x="5152" y="256"/>
+  <object gid="472" x="5184" y="256"/>
+  <object gid="474" x="5408" y="608"/>
+  <object gid="474" x="5376" y="608"/>
+  <object gid="474" x="5344" y="608"/>
+  <object gid="474" x="5312" y="608"/>
+  <object gid="474" x="5280" y="608"/>
+  <object gid="474" x="5248" y="608"/>
+  <object gid="474" x="5216" y="608"/>
+  <object gid="474" x="5184" y="608"/>
+  <object gid="474" x="5152" y="608"/>
+  <object gid="474" x="5120" y="608"/>
+  <object gid="474" x="5088" y="608"/>
+  <object gid="474" x="5056" y="608"/>
+  <object gid="474" x="5024" y="608"/>
+  <object gid="474" x="4992" y="608"/>
+  <object gid="474" x="4960" y="608"/>
+  <object gid="474" x="4928" y="608"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="8" x="2240" y="800"/>
+  <object gid="8" x="2656" y="672"/>
+  <object gid="8" x="2816" y="672"/>
+  <object type="flying_snowball_path" x="3023" y="544">
+   <polyline points="0,0 0,160 0,0"/>
+  </object>
+  <object gid="8" x="3936" y="672"/>
+  <object gid="8" x="3872" y="544"/>
+  <object gid="8" x="3936" y="416"/>
+  <object gid="8" x="4128" y="416"/>
+  <object gid="8" x="4384" y="416"/>
+  <object gid="8" x="4256" y="416"/>
+  <object gid="8" x="4192" y="672"/>
+  <object gid="8" x="4352" y="672"/>
+  <object gid="8" x="4704" y="672"/>
+  <object gid="8" x="4864" y="512"/>
+  <object gid="7" x="5024" y="480"/>
+  <object gid="7" x="5344" y="480"/>
+  <object gid="7" x="5184" y="480"/>
+ </objectgroup>
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
