@@ -26,10 +26,23 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt3E1TwjAQxvFwVsezb0dHxTOKn0b9/n4I0wMzGaYpy9LtZtP/b2YPHIAS+jQvpKQEAAAAAAAAAAAAAAAAAACAll3l2ndafxtZG+yFbQVEdZfrhgK69pLroZHaOr4+0LOxnFvnrYVrw2uut+Ix0DNNf36ckYj1keuzeAws4XuT0o+yfoXrTWM0OT/OSA8F9Kyl+Tk5B2xM5fzSebrm+afmBFZrB0DPWuvPLeYEkmsDfGn2cdy6HGlMreV8ySrzD1+afRxPLkca05pzXhZ8ac7Dd5cjjYmck/MWlOehdA2GnMtpch5pHw05j4H+3Bb9OTlvwdR5WPsNhpzL1dp3qT1vc4wN5ngNK573A0Zaj57Kee03GHIuV2tfzz1vHvMCC0PGr5PfPXiR1qOH8/Dc752cy80xbo80X6+NUyz60yHj9w6f8fB9RMoB83Nba5uf18YpFv3pqYxbXx+/cj0HqZ3wM5VtRs7l1pZzTXmOVy5578fk//8dc10Tx4qcy3nff+495j+8/z+OmczJ
+   eJzt3DtOxDAUhWGnBkTNq0S8amBYDVCyAuhgwSxiHKFINyOcWI5vru38n3SKEWFe5CR2FOMcAAAAAAAAAAAAAAAAtuqzc+6rs34XADR9+47/0HOgekc+u0A+ur+Efl56fiOPUbvobwuo05nPCQGaduNzUUjuDZ8faNl/PdfuWwnHhlufO/EYaFnK+fywIzXmyedZPAbW8No595aY9wXXxFN6ftiRFgK0rKT5OT0HdEz1fOk8PeX35+YEWtcOgJaVdj7XmBPEHBtgS97HcZphO4yV1vM1I/sPW/I+jqsM22Fsyz2XgS25Hz5k2A5j9Jyel4Ce60rpeU330dDzOtBzXZzP6XkJ5vo7rJGm52lCPV/rnrccY4Mcz6Flaj2gdmq6Hj3X32GNND1PE+q55T1vFvMCDX3Hj53dGryarkf3++Hwd6fn+eUYt9c0Xw+NUzTOp33Hzw0+41RfSiX3wxcX/l8Ij2K7mj6fta3Nz0PjFI3z6VzHtY+PfV+uK4ns72Xkd0rP422t5ymxHK8see2pvpSWlHEPPY9nvf7cesw/vP4ebg/NnA==
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="896" width="1728" height="32"/>
+  <object x="0" y="928" width="3072" height="32"/>
+  <object x="3072" y="640" width="128" height="256"/>
+  <object x="3392" y="640" width="128" height="256"/>
+  <object x="3328" y="864" width="64" height="32"/>
+  <object x="3072" y="896" width="448" height="64"/>
+  <object x="672" y="864" width="1056" height="32"/>
+  <object x="704" y="832" width="1024" height="32"/>
+  <object x="4928" y="480" width="512" height="32"/>
+  <object x="5888" y="352" width="2112" height="608"/>
+  <object x="7936" y="224" width="64" height="128"/>
+  <object x="6112" y="320" width="64" height="32"/>
+ </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="triggered_moving_platform_path" x="1824" y="800">
    <polyline points="0,0 544,0 544,-128 1024,-128 1024,0 0,0"/>
@@ -37,8 +50,18 @@
   <object type="triggered_moving_platform_path" x="3616" y="608">
    <polyline points="0,0 0,224 416,224 224,96 224,-192 -64,-192 -64,-416 384,-416 384,-192 768,-192 768,288 416,288 416,64 1024,64 1184,-96 1824,-96 1824,-352 2048,-352 2048,288 1824,288 1824,0 0,0"/>
   </object>
+  <object type="level_end" x="7488" y="0" width="32" height="352"/>
+  <object type="solid_top" x="3328" y="768" width="64" height="32"/>
+  <object type="solid_top" x="6112" y="256" width="64" height="32"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="3360" y="768">
+   <properties>
+    <property name="dest" value="__main__:level_end"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
   <object gid="465" x="2080" y="704"/>
@@ -73,6 +96,19 @@
   <object gid="474" x="4992" y="608"/>
   <object gid="474" x="4960" y="608"/>
   <object gid="474" x="4928" y="608"/>
+  <object gid="471" x="3200" y="800"/>
+  <object gid="484" x="3200" y="672"/>
+  <object gid="484" x="3232" y="672"/>
+  <object gid="484" x="3264" y="672"/>
+  <object gid="484" x="3296" y="672"/>
+  <object gid="484" x="3328" y="672"/>
+  <object gid="484" x="3360" y="672"/>
+  <object gid="484" x="3200" y="704"/>
+  <object gid="484" x="3232" y="704"/>
+  <object gid="484" x="3264" y="704"/>
+  <object gid="484" x="3296" y="704"/>
+  <object gid="484" x="3328" y="704"/>
+  <object gid="484" x="3360" y="704"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="8" x="2240" y="800"/>
@@ -94,6 +130,11 @@
   <object gid="7" x="5024" y="480"/>
   <object gid="7" x="5344" y="480"/>
   <object gid="7" x="5184" y="480"/>
+  <object gid="2" x="6592" y="352"/>
+  <object gid="2" x="6656" y="352"/>
+  <object gid="2" x="6720" y="352"/>
+  <object gid="5" x="6912" y="352"/>
+  <object gid="5" x="6976" y="352"/>
  </objectgroup>
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="250" height="30">

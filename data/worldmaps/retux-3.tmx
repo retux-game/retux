@@ -78,7 +78,11 @@
     <property name="level" value="retux-20.tmx"/>
    </properties>
   </object>
-  <object gid="2" x="352" y="288"/>
+  <object gid="2" x="352" y="288">
+   <properties>
+    <property name="level" value="retux-21.tmx"/>
+   </properties>
+  </object>
   <object gid="2" x="960" y="416">
    <properties>
     <property name="level" value="retux-16.tmx"/>
