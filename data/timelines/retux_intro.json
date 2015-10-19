@@ -32,13 +32,16 @@
         "setattr player right_pressed 0"
     ],
     "379": [
-        "dialog tux 50% of my fish?! That's almost half!",
-        "dialog tux I will not stand for this! Nobody messes with MY fish! Time to teach this \"Snow King\" a lesson, whoever he is!"
+        "dialog tux What?! They're taking my fish?!",
+        "dialog tux I will not stand for this! Nobody takes away MY fish!"
     ],
     "389": [
         "setattr player sneak_pressed 0",
         "setattr player left_pressed 1"
     ], 
+    "495": [
+        "dialog tux DOWN WITH THE SNOW KING!!"
+    ],
     "500": [
         "call __level__ return_to_map"
     ]

@@ -6,25 +6,25 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="223" source="../tilesets/castle.tsx"/>
- <tileset firstgid="253" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="277" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="365" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="389" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="393" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="395" source="../tilesets/krush.tsx"/>
- <tileset firstgid="396" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="397" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="398" source="../tilesets/door.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="497" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0aERADAIADE6PYzdBSowHKLJAi8+AgAAAAAAAICuOn/3mZHLX7f7LxdnYAIj
+   eJzt0TERADAIADHq3ymYqIEOLBxDEwM/fAQAAAAAAAAAXXX+7jMjl79u918uf40Drw==
   </data>
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmMsKwjAQRdOv1++sC92oBSu0koWRdCFhpqRDJi/ugUM3IW2Sm1dnY8wMYWI/BrTO4lwFao39S7FukI/fOErWlLfi9yBX7VNbrhbFukE+sA8CDWrMFdar9qktV9gHgQbIlQ63zRiuzvv27AXsg56H8xk4JSirwZHMlgLndg91PuH6hbrTx8xNSR5ayBAF1isPd+4NsxVbLjfUGipxOlgfV350XoTv7gnuv2I45/ZydR7KKf0vSrXX7rSTardl+k9yN7Wd+d8vsfNsDMbjNJQzVa5S+gUdORpb
+   eJztmN0KwjAMhdd3mxd64xQ2YY69P/oSBqogJR1ZaNYfzgeH3YSWJafpz+S6boKgxFpIoG5mquFTIavaj/BVE4zKnvKAr8AGpflqNhwbHAf2QWBBib5Cv6qf0nyFfRBYAF/ZcHFeEs4Ud3X+2wrYBz0D5eAW6B7Jy55YC/Z4Nhc4t3u480ksL9ydXrI2NX6owUMc6Fee2Lk39JY07mi4HqrRr+9Kx4vF96STcu6WiL0rhmtuy1fvjNK+i3L/uzr5/XL5xnPza+6ma2P6z4t0nfVBPV4ZlcpXKfUBG9XuZw==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -62,12 +62,12 @@
   <object type="death" x="2624" y="416" width="992" height="32"/>
   <object type="timeline_switcher" x="4416" y="32" width="32" height="320">
    <properties>
-    <property name="timeline" value="boss_start.json"/>
+    <property name="timeline" value="retux_boss2.json"/>
    </properties>
   </object>
   <object type="spike_top" x="4224" y="384" width="32" height="32"/>
   <object type="spike_top" x="4608" y="384" width="32" height="32"/>
-  <object gid="398" x="96" y="384">
+  <object gid="497" x="96" y="384">
    <properties>
     <property name="dest" value="retux-13.tmx:exit"/>
     <property name="spawn_id" value="enter"/>
@@ -77,64 +77,64 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="376" x="1472" y="256"/>
-  <object gid="376" x="1504" y="256"/>
-  <object gid="376" x="1440" y="288"/>
-  <object gid="376" x="1536" y="288"/>
-  <object gid="376" x="960" y="256"/>
-  <object gid="376" x="992" y="256"/>
-  <object gid="376" x="1024" y="288"/>
-  <object gid="376" x="928" y="288"/>
-  <object gid="387" x="2336" y="416"/>
-  <object gid="376" x="2880" y="320"/>
-  <object gid="376" x="2912" y="320"/>
-  <object gid="376" x="2720" y="256"/>
-  <object gid="376" x="2752" y="256"/>
-  <object gid="376" x="3296" y="320"/>
-  <object gid="376" x="3328" y="320"/>
-  <object gid="376" x="3456" y="288"/>
-  <object gid="376" x="3488" y="288"/>
-  <object gid="375" x="256" y="288"/>
-  <object gid="367" x="224" y="288"/>
-  <object gid="367" x="288" y="288"/>
-  <object gid="385" x="4064" y="256">
+  <object gid="474" x="1472" y="256"/>
+  <object gid="474" x="1504" y="256"/>
+  <object gid="474" x="1440" y="288"/>
+  <object gid="474" x="1536" y="288"/>
+  <object gid="474" x="960" y="256"/>
+  <object gid="474" x="992" y="256"/>
+  <object gid="474" x="1024" y="288"/>
+  <object gid="474" x="928" y="288"/>
+  <object gid="485" x="2336" y="416"/>
+  <object gid="474" x="2880" y="320"/>
+  <object gid="474" x="2912" y="320"/>
+  <object gid="474" x="2720" y="256"/>
+  <object gid="474" x="2752" y="256"/>
+  <object gid="474" x="3296" y="320"/>
+  <object gid="474" x="3328" y="320"/>
+  <object gid="474" x="3456" y="288"/>
+  <object gid="474" x="3488" y="288"/>
+  <object gid="473" x="256" y="288"/>
+  <object gid="465" x="224" y="288"/>
+  <object gid="465" x="288" y="288"/>
+  <object gid="483" x="4064" y="256">
    <properties>
     <property name="ID" value="bossblock1"/>
    </properties>
   </object>
-  <object gid="385" x="4064" y="288">
+  <object gid="483" x="4064" y="288">
    <properties>
     <property name="ID" value="bossblock5"/>
    </properties>
   </object>
-  <object gid="385" x="4064" y="320">
+  <object gid="483" x="4064" y="320">
    <properties>
     <property name="ID" value="bossblock9"/>
    </properties>
   </object>
-  <object gid="385" x="4064" y="352">
+  <object gid="483" x="4064" y="352">
    <properties>
     <property name="ID" value="bossblock13"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Iceblocks">
-  <object gid="386" x="2336" y="416"/>
-  <object gid="386" x="2304" y="320"/>
-  <object gid="386" x="2368" y="320"/>
-  <object gid="386" x="2336" y="320"/>
-  <object gid="386" x="2304" y="352"/>
-  <object gid="386" x="2336" y="352"/>
-  <object gid="386" x="2368" y="352"/>
-  <object gid="386" x="2304" y="384"/>
-  <object gid="386" x="2336" y="384"/>
-  <object gid="386" x="2368" y="384"/>
-  <object gid="386" x="2272" y="352"/>
-  <object gid="386" x="2400" y="352"/>
-  <object gid="386" x="2272" y="320"/>
-  <object gid="386" x="2400" y="320"/>
-  <object gid="386" x="2368" y="416"/>
-  <object gid="386" x="2304" y="416"/>
+  <object gid="484" x="2336" y="416"/>
+  <object gid="484" x="2304" y="320"/>
+  <object gid="484" x="2368" y="320"/>
+  <object gid="484" x="2336" y="320"/>
+  <object gid="484" x="2304" y="352"/>
+  <object gid="484" x="2336" y="352"/>
+  <object gid="484" x="2368" y="352"/>
+  <object gid="484" x="2304" y="384"/>
+  <object gid="484" x="2336" y="384"/>
+  <object gid="484" x="2368" y="384"/>
+  <object gid="484" x="2272" y="352"/>
+  <object gid="484" x="2400" y="352"/>
+  <object gid="484" x="2272" y="320"/>
+  <object gid="484" x="2400" y="320"/>
+  <object gid="484" x="2368" y="416"/>
+  <object gid="484" x="2304" y="416"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object type="flying_snowball_path" x="480" y="384">
@@ -180,7 +180,7 @@
   <object gid="9" x="2752" y="64"/>
   <object gid="9" x="3456" y="64"/>
   <object gid="9" x="3488" y="64"/>
-  <object gid="397" x="4672" y="384"/>
+  <object gid="496" x="4672" y="384"/>
   <object gid="9" x="3104" y="64"/>
  </objectgroup>
  <objectgroup name="Players">

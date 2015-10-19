@@ -14,11 +14,10 @@
         "skip_to 35"
     ],
     "30": [
-        "dialog snowman What are you doing here? You're trespassing!",
-        "dialog tux The reign of the Snow King is over! I'm taking him out of office!",
-        "dialog snowman What are you talking about? His reign has only just begun!",
-        "dialog tux Yeah, and now it's gonna end! He should have thought about that before taking away MY fish!",
-        "dialog snowman You are reprehensible! I will not allow you to hurt our king!"
+        "dialog snowman Who are y-",
+        "dialog tux DOWN WITH THE SNOW KING!",
+        "dialog snowman ...",
+        "dialog snowman I will not allow you to dethrone our king. Your rampage ends here."
     ],
     "35": [
         "timeline boss_start.json"
