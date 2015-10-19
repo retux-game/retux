@@ -422,7 +422,7 @@ class Level(sge.Room):
         self.timeline_step = step
         while t_keys and t_keys[0] < step:
             i = t_keys.pop(0)
-            del self.timeline[i]
+            self.timeline[i] = []
 
     def add_points(self, x):
         if main_area not in cleared_levels:
@@ -613,8 +613,8 @@ class Level(sge.Room):
         t_keys = sorted(self.timeline.keys())
         while t_keys:
             i = t_keys.pop(0)
-            if i in self.timeline and i <= self.timeline_step:
-                while self.timeline[i]:
+            if i <= self.timeline_step:
+                while i in self.timeline and self.timeline[i]:
                     command = self.timeline[i].pop(0)
                     command = command.split(None, 1)
                     if command:
@@ -697,16 +697,16 @@ class Level(sge.Room):
                                 r = False
                             finally:
                                 if not r:
-                                    del self.timeline[i]
+                                    self.timeline[i] = []
                                     break
                         elif command == "if_watched":
                             if self.timeline_name not in watched_timelines:
-                                del self.timeline[i]
+                                self.timeline[i] = []
                                 break
 
                         elif command == "if_not_watched":
                             if self.timeline_name in watched_timelines:
-                                del self.timeline[i]
+                                self.timeline[i] = []
                                 break
                 else:
                     del self.timeline[i]
@@ -6040,6 +6040,9 @@ class DialogBox(xsge_gui.Dialog):
                 self.label.text = self.label.full_text
             else:
                 self.destroy()
+        elif key == "escape":
+            self.destroy()
+            sge.game.current_room.event_key_press(key, char)
 
     def event_joystick_button_press(self, js_name, js_id, button):
         self.event_key_press("enter", "\n")
