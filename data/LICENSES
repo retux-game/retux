@@ -263,6 +263,8 @@ images/objects/tux/tux_body_walk-7.png
 images/objects/tux/tux_die-0.png
 images/objects/tux/tux_die-1.png
 images/objects/tux/tux_offscreen.png
+images/portraits/portrait_snowman.png
+images/portraits/portrait_tux.png
 images/tiles/tileset_blocks.png
 images/tiles/tileset_castle.png
 images/tiles/tileset_cave.png
@@ -496,6 +498,7 @@ tilesets/wm_snow.tsx
 tilesets/wm_thin_ice.tsx
 tilesets/wm_trees.tsx
 timelines/boss_start.json
+timelines/retux_boss1.json
 timelines/retux_intro.json
 timelines/title_demo.json
 worldmaps/base.tmx

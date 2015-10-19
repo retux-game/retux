@@ -401,7 +401,7 @@ class Level(sge.Room):
     def load_timeline(self, timeline):
         self.timeline = {}
         self.timeline_step = 0
-        if timeline is not None:
+        if timeline:
             fname = os.path.join(DATA, "timelines", timeline)
             with open(fname, 'r') as f:
                 jt = json.load(f)
@@ -644,7 +644,9 @@ class Level(sge.Room):
                             play_music(arg)
                         elif command == "timeline":
                             self.load_timeline(arg)
-                del self.timeline[i]
+                            break
+                else:
+                    del self.timeline[i]
             else:
                 break
 
@@ -6667,6 +6669,10 @@ bell_sprite = sge.Sprite("bell", d, origin_x=-1, fps=10, bbox_x=0,
 door_sprite = sge.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
 door_back_sprite = sge.Sprite("door_back", d, origin_x=21, origin_y=41)
 
+d = os.path.join(DATA, "images", "portraits")
+portrait_tux = sge.Sprite("portrait_tux", d)
+portrait_snowman = sge.Sprite("portrait_snowman", d)
+
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
@@ -6742,7 +6748,7 @@ coin_icon_sprite.width = 16
 coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
 
-portrait_sprites = {"tux": tux_stand_sprite}
+portrait_sprites = {"tux": portrait_tux, "snowman": portrait_snowman}
 
 d = os.path.join(DATA, "images", "worldmap")
 worldmap_tux_sprite = sge.Sprite("tux", d)

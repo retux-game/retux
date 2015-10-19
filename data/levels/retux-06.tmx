@@ -65,7 +65,7 @@
  <objectgroup name="Collision Objects">
   <object type="timeline_switcher" x="7616" y="64" width="32" height="352">
    <properties>
-    <property name="timeline" value="retux-boss1.json"/>
+    <property name="timeline" value="retux_boss1.json"/>
    </properties>
   </object>
   <object type="solid_top" x="5088" y="224" width="480" height="32"/>

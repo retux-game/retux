@@ -16,7 +16,7 @@
         "dialog snowman Snow King?",
         "dialog snowman You are mistaken. I'm not the king of this land, just the lord of this castle.",
         "dialog snowman What business do you have with our king?",
-        "dialog tux I'm gonna teach him a lesson with my fins!",
+        "dialog tux I don't like his rules! I'm gonna teach him a lesson about messing with MY fish!",
         "dialog snowman What?! You would dare attack the good king? I will not allow this!",
         "timeline boss_start.json"
     ]
