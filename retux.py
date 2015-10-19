@@ -312,6 +312,7 @@ level_timers = {}
 cleared_levels = []
 tuxdolls_available = []
 tuxdolls_found = []
+watched_timelines = []
 level_time_bonus = 0
 current_worldmap = None
 current_worldmap_space = None
@@ -400,8 +401,11 @@ class Level(sge.Room):
 
     def load_timeline(self, timeline):
         self.timeline = {}
+        self.timeline_name = ""
         self.timeline_step = 0
+        self.timeline_skip_target = None
         if timeline:
+            self.timeline_name = timeline
             fname = os.path.join(DATA, "timelines", timeline)
             with open(fname, 'r') as f:
                 jt = json.load(f)
@@ -412,6 +416,13 @@ class Level(sge.Room):
     def add_timeline_object(self, obj):
         if obj.ID is not None:
             self.timeline_objects[obj.ID] = weakref.ref(obj)
+
+    def timeline_skipto(self, step):
+        t_keys = sorted(self.timeline.keys())
+        self.timeline_step = step
+        while t_keys and t_keys[0] < step:
+            i = t_keys.pop(0)
+            del self.timeline[i]
 
     def add_points(self, x):
         if main_area not in cleared_levels:
@@ -436,6 +447,13 @@ class Level(sge.Room):
                 else:
                     s = tuxdoll_transparent_sprite
                 sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
+
+            if (self.timeline_skip_target is not None and
+                    self.timeline_step < self.timeline_skip_target):
+                text = "Press Escape to skip..."
+                sge.game.project_text(font, text, sge.game.width / 2,
+                                      sge.game.height, color=sge.Color("white"),
+                                      halign="center", valign="bottom")
 
     def shake(self, num=1):
         shaking = (self.shake_queue or "shake_up" in self.alarms or
@@ -549,6 +567,7 @@ class Level(sge.Room):
                     player.warping = False
 
     def event_step(self, time_passed, delta_mult):
+        global watched_timelines
         global level_timers
         global current_level
         global score
@@ -592,9 +611,11 @@ class Level(sge.Room):
 
         # Timeline events
         t_keys = sorted(self.timeline.keys())
-        for i in t_keys:
-            if i <= self.timeline_step:
-                for command in self.timeline[i]:
+        while t_keys:
+            i = t_keys.pop(0)
+            if i in self.timeline and i <= self.timeline_step:
+                while self.timeline[i]:
+                    command = self.timeline[i].pop(0)
                     command = command.split(None, 1)
                     if command:
                         if len(command) >= 2:
@@ -643,12 +664,59 @@ class Level(sge.Room):
                             self.music = arg
                             play_music(arg)
                         elif command == "timeline":
+                            if self.timeline_name not in watched_timelines:
+                                watched_timelines.append(self.timeline_name)
                             self.load_timeline(arg)
                             break
+                        elif command == "skip_to":
+                            try:
+                                arg = float(arg)
+                            except ValueError:
+                                pass
+                            else:
+                                self.timeline_skipto(arg)
+                                break
+                        elif command == "exec":
+                            try:
+                                six.exec_(arg)
+                            except Exception as e:
+                                m = "An error occurred in the timeline 'exec' statement:\n\n{}".format(
+                                    traceback.format_exc())
+                                xsge_gui.show_message(message=m, title="Error",
+                                                      buttons=["Ok"],
+                                                      width=640)
+                        elif command == "if":
+                            try:
+                                r = eval(arg)
+                            except Exception as e:
+                                m = "An error occurred in the timeline 'if' statement:\n\n{}".format(
+                                    traceback.format_exc())
+                                xsge_gui.show_message(message=m, title="Error",
+                                                      buttons=["Ok"],
+                                                      width=640)
+                                r = False
+                            finally:
+                                if not r:
+                                    del self.timeline[i]
+                                    break
+                        elif command == "if_watched":
+                            if self.timeline_name not in watched_timelines:
+                                del self.timeline[i]
+                                break
+
+                        elif command == "if_not_watched":
+                            if self.timeline_name in watched_timelines:
+                                del self.timeline[i]
+                                break
                 else:
                     del self.timeline[i]
             else:
                 break
+        else:
+            if (self.timeline_name and
+                    self.timeline_name not in watched_timelines):
+                watched_timelines.append(self.timeline_name)
+                self.timeline_name = ""
 
         self.timeline_step += delta_mult
 
@@ -793,11 +861,15 @@ class Level(sge.Room):
             if key == "f11":
                 sge.game.fullscreen = not sge.game.fullscreen
             elif key == "escape":
-                rush_save()
-                if current_worldmap:
-                    self.return_to_map()
+                if (self.timeline_skip_target is not None and
+                        self.timeline_step < self.timeline_skip_target):
+                    self.timeline_skipto(self.timeline_skip_target)
                 else:
-                    sge.game.start_room.start()
+                    rush_save()
+                    if current_worldmap:
+                        self.return_to_map()
+                    else:
+                        sge.game.start_room.start()
             elif key == "enter":
                 if self.pause_delay <= 0 and not self.won:
                     sge.Music.pause()
@@ -830,7 +902,7 @@ class Level(sge.Room):
                     traceback.format_exc())
                 if sge.game.current_room is not None:
                     xsge_gui.show_message(message=m, title="Error",
-                                          buttons=["Ok"])
+                                          buttons=["Ok"], width=640)
                 else:
                     print(m)
                 r = None
@@ -6218,6 +6290,7 @@ def set_new_game():
     global level_timers
     global cleared_levels
     global tuxdolls_found
+    global watched_timelines
     global current_worldmap
     global current_worldmap_space
     global current_level
@@ -6229,6 +6302,7 @@ def set_new_game():
     level_timers = {}
     cleared_levels = []
     tuxdolls_found = []
+    watched_timelines = []
     current_worldmap = worldmap
     current_worldmap_space = None
     current_level = None
@@ -6248,6 +6322,7 @@ def save_game():
         save_slots[current_save_slot] = {
             "levelset": current_levelset, "level_timers": level_timers,
             "cleared_levels": cleared_levels, "tuxdolls_found": tuxdolls_found,
+            "watched_timelines": watched_timelines,
             "current_worldmap": current_worldmap,
             "current_worldmap_space": current_worldmap_space,
             "current_level": current_level,
@@ -6259,6 +6334,7 @@ def load_game():
     global level_timers
     global cleared_levels
     global tuxdolls_found
+    global watched_timelines
     global current_worldmap
     global current_worldmap_space
     global current_level
@@ -6272,6 +6348,7 @@ def load_game():
         level_timers = slot.get("level_timers", {})
         cleared_levels = slot.get("cleared_levels", [])
         tuxdolls_found = slot.get("tuxdolls_found", [])
+        watched_timelines = slot.get("watched_timelines", [])
         current_worldmap = slot.get("current_worldmap")
         current_worldmap_space = slot.get("current_worldmap_space")
         current_level = slot.get("current_level", 0)

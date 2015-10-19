@@ -8,16 +8,19 @@
         "setattr player jump_pressed 0",
         "setattr player action_pressed 0",
         "setattr player sneak_pressed 0",
-        "setattr player xvelocity 0"
+        "setattr player xvelocity 0",
+        "setattr __level__ timeline_skip_target 35",
+        "if_watched",
+        "skip_to 35"
     ],
     "30": [
-        "dialog snowman You! What is your business here? Why are you attacking us?",
+        "dialog snowman What are you doing here? You're trespassing!",
         "dialog tux You must be the Snow King!",
-        "dialog snowman Snow King?",
-        "dialog snowman You are mistaken. I'm not the king of this land, just the lord of this castle.",
-        "dialog snowman What business do you have with our king?",
-        "dialog tux I don't like his rules! I'm gonna teach him a lesson about messing with MY fish!",
-        "dialog snowman What?! You would dare attack the good king? I will not allow this!",
+        "dialog snowman No, I'm just the guardian of this castle. What business do you have with the king?",
+        "dialog tux I'm gonna teach him a lesson! Nobody takes away MY fish!",
+        "dialog snowman You would dare attack our king?! I will not allow this!"
+    ],
+    "35": [
         "timeline boss_start.json"
     ]
 }

@@ -1,5 +1,6 @@
 {
     "0": [
+        "setattr __level__ timeline_skip_target 500",
         "setattr player sneak_pressed 1"
     ], 
     "101": [
