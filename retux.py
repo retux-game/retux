@@ -71,6 +71,10 @@ del dirs
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
+    "-p", "--print-errors",
+    help="Print errors directly to stdout rather than saving them in a file.",
+    action="store_true")
+parser.add_argument(
     "--scale-basic",
     help="Use basic rather than smooth scaling. Faster if you're in fullscreen or resizing the window, but much uglier.",
     action="store_true")
@@ -96,6 +100,7 @@ parser.add_argument(
     action="store_true")
 args = parser.parse_args()
 
+PRINT_ERRORS = args.print_errors
 SCALE_SMOOTH = not args.scale_basic
 DELTA = not args.nodelta
 JOYSTICK_THRESHOLD = args.js_threshold
@@ -7036,15 +7041,16 @@ if not os.path.exists(CONFIG):
     os.makedirs(CONFIG)
 
 # Save error messages to a text file (so they aren't lost).
-stderr = os.path.join(CONFIG, "stderr.txt")
-if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
-    sys.stderr = open(stderr, 'w')
-else:
-    sys.stderr = open(stderr, 'a')
-dt = datetime.datetime.now()
-sys.stderr.write("\n{}-{}-{} {}:{}:{}\n".format(dt.year, dt.month, dt.day,
-                                                dt.hour, dt.minute, dt.second))
-del dt
+if not PRINT_ERRORS:
+    stderr = os.path.join(CONFIG, "stderr.txt")
+    if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
+        sys.stderr = open(stderr, 'w')
+    else:
+        sys.stderr = open(stderr, 'a')
+    dt = datetime.datetime.now()
+    sys.stderr.write("\n{}-{}-{} {}:{}:{}\n".format(
+        dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second))
+    del dt
 
 try:
     with open(os.path.join(CONFIG, "config.json")) as f:
