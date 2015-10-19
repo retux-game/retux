@@ -7,24 +7,24 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="171" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="195" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="283" source="../tilesets/castle.tsx"/>
- <tileset firstgid="313" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="336" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="340" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="342" source="../tilesets/krush.tsx"/>
- <tileset firstgid="343" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="344" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="249" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="345" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="433" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="494" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1MERACAMAjC6ou6/izv0pTW5YwAekAAAAAAAAAAAAAAAJLv6Ad6wqp8pfBvT2fmfnW9yAD0cFdQ=
+   eJzt1MERACAMAjC6/6a6hDv0pTW5YwAekAAAAAAAAAAAAAAAJLv6Ad6wqp8pfBvT2fmfnW9yAAkXPZw=
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztWdkOgjAQhO/wVtSgJsUEjf//ZbaJGNwgR69t6Uwy8QEE9pidQqs8yyoQBGfNBwiCsycQLkTO7wOmvKPHvqh7dPh0mCeBGgSP2LUOnf/in9Zd6rxGDaJAnw+ETpf9Gyu66gk/BxRi9XX4eTdoPV3mCX4OAHwQnnQOP+fDQea+kCw/v0WCtVjImJcaXM0oV80aHut2u7jImK+eeUswzybYynztJPeJ5E3M2M+p3nxoQd1zncA7amn5fravNwSbOp8612kfjv1/yLOc8/3c53cIhUbjMX1z5lh7hLCmOcpzT5Jnw57QqTmt1di9jk3AWheMdfapcy4fN40t5v00k1lnw8915zp9zin7HKFqvWbsddrDNL82vYzLx039PNa9NJNZZ6vuunN9qE9j9HXfOn+12OXn7eOpelkbKeqcO2alU1OPoNfgporhDXqIKYg=
+   eJztWdkOgjAQhP//Gm9FDWpSTND4TbaJGNwgR69t6Uwy8QEE9pidQqs8yyoQBGfNBwiCsycQLkTO7wOmvKPHvqh7dPh0mCeBGgSP2LUOnf/in9Zd6rxGDaJAnw+ETpf9Gyu66gk/BxRi9XX4eTdoPV3mCX4OAHwQnnQOP+fDQea+kCw/v0WCtVjImJcaXM0oV80aHut2u7jImK+eeUswzybYynztJPeJ5E3M2M+p3nxoQd1zncA7amn5fravNwSbOp8612kfjv1/yLOc8/3c53cIhUbjMX1z5lh7hLCmOcpzT5Jnw57QqTmt1di9jk3AWheMdfapcy4fN40t5v00k1lnw8915zp9zin7HKFqvWbsddrDNL82vYzLx039PNa9NJNZZ6vuunN9qE9j9HXfOn+12OXn7eOpelkbKeqcO2alU1OPoNfgporhDRv3rR8=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -65,7 +65,7 @@
  <objectgroup name="Collision Objects">
   <object type="timeline_switcher" x="7616" y="64" width="32" height="352">
    <properties>
-    <property name="timeline" value="boss_start.json"/>
+    <property name="timeline" value="retux-boss1.json"/>
    </properties>
   </object>
   <object type="solid_top" x="5088" y="224" width="480" height="32"/>
@@ -77,56 +77,56 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="314" x="1024" y="192"/>
-  <object gid="333" x="7232" y="416">
+  <object gid="464" x="1024" y="192"/>
+  <object gid="483" x="7232" y="416">
    <properties>
     <property name="ID" value="bossblock13"/>
    </properties>
   </object>
-  <object gid="333" x="7232" y="384">
+  <object gid="483" x="7232" y="384">
    <properties>
     <property name="ID" value="bossblock9"/>
    </properties>
   </object>
-  <object gid="333" x="7232" y="352">
+  <object gid="483" x="7232" y="352">
    <properties>
     <property name="ID" value="bossblock5"/>
    </properties>
   </object>
-  <object gid="333" x="7232" y="320">
+  <object gid="483" x="7232" y="320">
    <properties>
     <property name="ID" value="bossblock1"/>
    </properties>
   </object>
-  <object gid="334" x="6304" y="320"/>
-  <object gid="334" x="6336" y="320"/>
-  <object gid="334" x="6368" y="320"/>
-  <object gid="323" x="7008" y="320"/>
-  <object gid="323" x="6976" y="320"/>
-  <object gid="315" x="5696" y="288"/>
-  <object gid="315" x="5664" y="288"/>
-  <object gid="315" x="5312" y="128"/>
-  <object gid="315" x="2336" y="160"/>
-  <object gid="315" x="2528" y="160"/>
-  <object gid="315" x="3072" y="128"/>
-  <object gid="315" x="256" y="256"/>
-  <object gid="315" x="288" y="256"/>
-  <object gid="315" x="448" y="256"/>
-  <object gid="315" x="480" y="256"/>
-  <object gid="315" x="640" y="256"/>
-  <object gid="315" x="672" y="256"/>
-  <object gid="315" x="6560" y="192"/>
-  <object gid="315" x="6528" y="192"/>
-  <object gid="315" x="6592" y="192"/>
-  <object gid="315" x="1408" y="288"/>
-  <object gid="315" x="1440" y="288"/>
-  <object gid="315" x="1472" y="288"/>
-  <object gid="315" x="1504" y="288"/>
-  <object gid="315" x="1536" y="288"/>
-  <object gid="335" x="6336" y="416"/>
-  <object gid="322" x="6304" y="288"/>
-  <object gid="322" x="6336" y="288"/>
-  <object gid="322" x="6368" y="288"/>
+  <object gid="484" x="6304" y="320"/>
+  <object gid="484" x="6336" y="320"/>
+  <object gid="484" x="6368" y="320"/>
+  <object gid="473" x="7008" y="320"/>
+  <object gid="473" x="6976" y="320"/>
+  <object gid="465" x="5696" y="288"/>
+  <object gid="465" x="5664" y="288"/>
+  <object gid="465" x="5312" y="128"/>
+  <object gid="465" x="2336" y="160"/>
+  <object gid="465" x="2528" y="160"/>
+  <object gid="465" x="3072" y="128"/>
+  <object gid="465" x="256" y="256"/>
+  <object gid="465" x="288" y="256"/>
+  <object gid="465" x="448" y="256"/>
+  <object gid="465" x="480" y="256"/>
+  <object gid="465" x="640" y="256"/>
+  <object gid="465" x="672" y="256"/>
+  <object gid="465" x="6560" y="192"/>
+  <object gid="465" x="6528" y="192"/>
+  <object gid="465" x="6592" y="192"/>
+  <object gid="465" x="1408" y="288"/>
+  <object gid="465" x="1440" y="288"/>
+  <object gid="465" x="1472" y="288"/>
+  <object gid="465" x="1504" y="288"/>
+  <object gid="465" x="1536" y="288"/>
+  <object gid="485" x="6336" y="416"/>
+  <object gid="472" x="6304" y="288"/>
+  <object gid="472" x="6336" y="288"/>
+  <object gid="472" x="6368" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="9" x="960" y="96"/>
@@ -134,7 +134,7 @@
   <object type="circoflame" x="3072" y="224">
    <polyline points="0,0 0,-96"/>
   </object>
-  <object gid="344" x="7904" y="448"/>
+  <object gid="496" x="7904" y="448"/>
   <object gid="9" x="1792" y="96"/>
   <object gid="9" x="1824" y="96"/>
   <object gid="9" x="1856" y="96"/>
