@@ -137,8 +137,8 @@
   </object>
   <object gid="8" x="4192" y="672"/>
   <object gid="8" x="4352" y="672"/>
-  <object gid="8" x="4704" y="672"/>
-  <object gid="8" x="4864" y="512"/>
+  <object gid="8" x="4736" y="672"/>
+  <object gid="8" x="4864" y="544"/>
   <object gid="7" x="5024" y="480"/>
   <object gid="7" x="5344" y="480"/>
   <object gid="7" x="5184" y="480"/>
@@ -158,10 +158,10 @@
   <object gid="5" x="4320" y="384"/>
   <object gid="2" x="6528" y="352"/>
   <object gid="2" x="6464" y="352"/>
-  <object gid="2" x="6592" y="352"/>
   <object gid="8" x="3936" y="416"/>
   <object gid="8" x="3872" y="544"/>
   <object gid="8" x="3936" y="672"/>
+  <object gid="8" x="4800" y="608"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="896"/>
