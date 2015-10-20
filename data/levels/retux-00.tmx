@@ -37,7 +37,7 @@
  <objectgroup name="Items">
   <object gid="477" x="1088" y="288">
    <properties>
-    <property name="text" value="Citizens of Icy Island,\n\nBeginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow King. All residents are expected to pay 5% of their fish in tax. Failure to pay this tax will be punished."/>
+    <property name="text" value="Citizens of Icy Island,\n\nBeginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow King. All residents must pay 5% of their fish in tax. Failure to pay this tax will be punished."/>
    </properties>
   </object>
  </objectgroup>

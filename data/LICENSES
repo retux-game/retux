@@ -330,6 +330,20 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable
 
 ------------------------------------------------------------------------
 
+images/objects/enemies/flying_spiky-0.png
+images/objects/enemies/flying_spiky-1.png
+
+Authors:
+  SuperTux development team <http://supertux.github.io>
+  onpon4 <https://onpon4.github.io>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Details:
+  Made by replacing the spring in the "snowjumpy" sprite with the
+  helicopter blade from the "flying snowball" sprite.
+
+------------------------------------------------------------------------
+
 images/objects/misc/door-0.png
 images/objects/misc/door-1.png
 images/objects/misc/door-2.png
@@ -345,8 +359,8 @@ Authors:
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
 Details:
-Made by replacing the black in SuperTux's door with transparency, then
-pasting that over door_shadow.png.
+  Made by replacing the black in SuperTux's door with transparency, then
+  pasting that over door_shadow.png.
 
 ------------------------------------------------------------------------
 

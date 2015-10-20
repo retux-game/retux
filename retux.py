@@ -6635,6 +6635,9 @@ flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
 flying_snowball_squished_sprite = sge.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
     bbox_y=11, bbox_width=26, bbox_height=21)
+flying_spiky_sprite = sge.Sprite("flying_spiky", d, origin_x=24,
+                                 origin_y=9, fps=15, bbox_x=-13, bbox_y=0,
+                                 bbox_width=26, bbox_height=32)
 icicle_sprite = sge.Sprite("icicle", d, bbox_x=0, bbox_y=0, bbox_width=32,
                            bbox_height=48)
 icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=0, bbox_y=32,
