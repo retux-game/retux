@@ -2913,10 +2913,6 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
         kwargs["sprite"] = flying_snowball_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
 
-    def update_active(self):
-        super(FlyingSnowball, self).update_active()
-        self.active = True
-
     def move(self):
         if abs(self.xvelocity) > abs(self.yvelocity):
             self.image_xscale = math.copysign(self.image_xscale, self.xvelocity)
@@ -2954,6 +2950,31 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
 
     def freeze(self):
         self.burn()
+
+
+class FlyingSpiky(CrowdBlockingObject, KnockableObject, FreezableObject,
+                  WinPuffObject):
+
+    always_active = True
+    burnable = True
+    had_xv = 0
+
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = flying_spiky_sprite
+        sge.Object.__init__(self, x, y, z, **kwargs)
+
+    def move(self):
+        FlyingSnowball.move(self)
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.hurt()
+
+    def knock(self, other=None):
+        super(FlyingSnowball, self).knock(other)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
 
 class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
@@ -6487,12 +6508,13 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "bouncing_snowball": BouncingSnowball,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
-         "flying_snowball": FlyingSnowball, "icicle": Icicle,
-         "steady_icicle": SteadyIcicle, "raccot_icicle": RaccotIcicle,
-         "krush": Krush, "krosh": Krosh, "circoflame": CircoflamePath,
-         "snowman": Snowman, "fireflower": FireFlower, "iceflower": IceFlower,
-         "tuxdoll": TuxDoll, "rock": Rock, "fixed_spring": FixedSpring,
-         "spring": Spring, "rusty_spring": RustySpring, "lantern": Lantern,
+         "flying_snowball": FlyingSnowball, "flying_spiky": FlyingSpiky,
+         "icicle": Icicle, "steady_icicle": SteadyIcicle,
+         "raccot_icicle": RaccotIcicle, "krush": Krush, "krosh": Krosh,
+         "circoflame": CircoflamePath, "snowman": Snowman,
+         "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
+         "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
+         "rusty_spring": RustySpring, "lantern": Lantern,
          "timeline_switcher": TimelineSwitcher, "iceblock": Iceblock,
          "boss_block": BossBlock, "brick": Brick, "coinbrick": CoinBrick,
          "emptyblock": EmptyBlock, "itemblock": ItemBlock,
