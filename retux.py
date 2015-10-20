@@ -2656,9 +2656,12 @@ class FreezableObject(InteractiveObject):
 
     def freeze(self):
         if self.frozen_sprite is None:
-            self.frozen_sprite = sge.Sprite(width=self.sprite.width,
-                                            height=self.sprite.height,
-                                            fps=THAW_FPS)
+            self.frozen_sprite = sge.Sprite(
+                width=self.sprite.width, height=self.sprite.height,
+                origin_x=self.sprite.origin_x, origin_y=self.sprite.origin_y,
+                fps=THAW_FPS, bbox_x=self.sprite.bbox_x,
+                bbox_y=self.sprite.bbox_y, bbox_width=self.sprite.bbox_width,
+                bbox_height=self.sprite.bbox_height)
             self.frozen_sprite.append_frame()
             self.frozen_sprite.draw_sprite(self.sprite, self.image_index,
                                            self.sprite.origin_x,

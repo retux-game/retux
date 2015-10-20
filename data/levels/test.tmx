@@ -164,6 +164,7 @@
    <polyline points="0,0 -64,0"/>
   </object>
   <object gid="7" x="3840" y="416"/>
+  <object gid="11" x="3488" y="320"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="224" y="416"/>
