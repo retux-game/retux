@@ -14,10 +14,10 @@
         "skip_to 35"
     ],
     "30": [
-        "dialog snowman Who are y-",
-        "dialog tux DOWN WITH THE SNOW KING!",
+        "dialog snowman Who are you?",
+        "dialog tux I am Tux, and I am putting an end to the Snow King's reign, one castle at a time!",
         "dialog snowman ...",
-        "dialog snowman I will not allow you to dethrone our king. Your rampage ends here."
+        "dialog snowman That's too bad, Tux. I would have liked to let you leave in peace."
     ],
     "35": [
         "timeline boss_start.json"
