@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="creatures" tilewidth="32" tileheight="32">
  <tileoffset x="-16" y="0"/>
- <image source="../images/tiles/tileset_creatures.png" width="160" height="64"/>
+ <image source="../images/tiles/tileset_creatures.png" width="160" height="96"/>
  <tile id="0">
   <properties>
    <property name="cls" value="player"/>
@@ -50,6 +50,21 @@
  <tile id="9">
   <properties>
    <property name="cls" value="lantern"/>
+  </properties>
+ </tile>
+ <tile id="10">
+  <properties>
+   <property name="cls" value="flying_spiky"/>
+  </properties>
+ </tile>
+ <tile id="11">
+  <properties>
+   <property name="cls" value="steady_icicle"/>
+  </properties>
+ </tile>
+ <tile id="12">
+  <properties>
+   <property name="cls" value="raccot_icicle"/>
   </properties>
  </tile>
 </tileset>

@@ -5222,6 +5222,14 @@ class FlyingSnowballPath(MovingObjectPath):
     default_decel = 0.02
 
 
+class FlyingSpikyPath(MovingObjectPath):
+
+    cls = "flying_spiky"
+    default_speed = 2
+    default_accel = 0.02
+    default_decel = 0.02
+
+
 class CircoflamePath(xsge_path.Path):
 
     def __init__(self, x, y, z=0, points=(), rvelocity=2):
@@ -6523,7 +6531,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "goal": Goal, "goal_top": GoalTop, "coin": Coin, "warp": Warp,
          "moving_platform_path": MovingPlatformPath,
          "triggered_moving_platform_path": TriggeredMovingPlatformPath,
-         "flying_snowball_path": FlyingSnowballPath, "spawn": Spawn,
+         "flying_snowball_path": FlyingSnowballPath,
+         "flying_spiky_path": FlyingSpikyPath, "spawn": Spawn,
          "checkpoint": Checkpoint, "bell": Bell, "door": Door,
          "warp_spawn": WarpSpawn, "object_warp_spawn": ObjectWarpSpawn,
          "map_player": MapPlayer, "map_level": MapSpace, "map_warp": MapWarp,
@@ -6658,7 +6667,7 @@ flying_snowball_squished_sprite = sge.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
     bbox_y=11, bbox_width=26, bbox_height=21)
 flying_spiky_sprite = sge.Sprite("flying_spiky", d, origin_x=24,
-                                 origin_y=9, fps=15, bbox_x=-13, bbox_y=0,
+                                 origin_y=14, fps=15, bbox_x=-13, bbox_y=0,
                                  bbox_width=26, bbox_height=32)
 icicle_sprite = sge.Sprite("icicle", d, bbox_x=0, bbox_y=0, bbox_width=32,
                            bbox_height=48)
