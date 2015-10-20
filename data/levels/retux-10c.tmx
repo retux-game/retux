@@ -5,25 +5,25 @@
   <property name="music" value="bonuscave.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="151" source="../tilesets/cave.tsx"/>
- <tileset firstgid="223" source="../tilesets/castle.tsx"/>
- <tileset firstgid="253" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="277" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="365" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="389" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="393" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="395" source="../tilesets/krush.tsx"/>
- <tileset firstgid="396" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="397" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjAL6gBkk4OEMAD9yBok=
+   eJxjYBgFo2AUjAL6gP8k4OEMAHeSCvY=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJy9lEEKwjAQRScHUFDRnYLu9A66cOkJXQpWEJr2Olr1MP7QfDpGo4USBx6Tpsl8pjOdXERKkHncugC58m7fRtZ5cLdUd3WsCzgn4Kq0TpLGjirvlBr8Xik1WJt/a4zMK1012HvUCON31XEaLgfWvIdYfRP3oY2xN/mhT43MawxwfmjiPrQp9mYtNMK+iuWw/cAabNTzHCzMu0bmNe5g/yWXXQuWYGXqOOQhzX9egUMCblLXm3OMM81K02/sCSvNbLPKF+oMY+h5yndPxXNn4A==
+   eJzFlE0KwjAQhZOV0AhC0l7H3yspqOhOQXd6B1249IT6CvNwjKYWSnDgY9JpM49pJuOtMRVwQr0ugVe+jofE2kd7K7VX5xqCQQZGSqsPclih6s6pwf+VU8P/SWNt3+mqwd6jRpy/q04hNfDM52DR4GPbILb9oU8NJxpLsGrwse0Q27fQiPsqVcPtCxdwVc8HcLSfGk40puBh0jXcW3ACZ8lDZuqej0EvAxM5b84xzrSg+o09EexrtgXlS/UNc+h5yndPRFEwHA==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -56,7 +56,7 @@
   </object>
  </objectgroup>
  <objectgroup name="Items">
-  <object gid="373" x="672" y="288"/>
+  <object gid="476" x="672" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">

@@ -8,18 +8,18 @@
   <property name="time_bonus" value="50000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="67">
   <data encoding="base64" compression="zlib">
    eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAADwYk6EAAE=
@@ -27,7 +27,7 @@
  </layer>
  <layer name="Middle Tiles" width="75" height="67">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -88,13 +88,13 @@
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items" opacity="0.94">
-  <object gid="465" x="1344" y="1824"/>
-  <object gid="465" x="1312" y="1824"/>
-  <object gid="465" x="1280" y="1824"/>
-  <object gid="465" x="1248" y="1824"/>
-  <object gid="465" x="1216" y="1824"/>
-  <object gid="465" x="1184" y="1824"/>
-  <object gid="465" x="1152" y="1824"/>
+  <object gid="470" x="1344" y="1824"/>
+  <object gid="470" x="1312" y="1824"/>
+  <object gid="470" x="1280" y="1824"/>
+  <object gid="470" x="1248" y="1824"/>
+  <object gid="470" x="1216" y="1824"/>
+  <object gid="470" x="1184" y="1824"/>
+  <object gid="470" x="1152" y="1824"/>
   <object type="object_warp_spawn" x="320" y="992">
    <properties>
     <property name="cls" value="iceflower"/>
@@ -103,15 +103,15 @@
    </properties>
    <polyline points="0,0 0,-64"/>
   </object>
-  <object gid="480" x="1280" y="448"/>
-  <object gid="465" x="832" y="320"/>
-  <object gid="465" x="800" y="320"/>
-  <object gid="465" x="608" y="320"/>
-  <object gid="465" x="640" y="320"/>
-  <object gid="465" x="704" y="320"/>
-  <object gid="465" x="736" y="320"/>
-  <object gid="472" x="768" y="320"/>
-  <object gid="472" x="672" y="320"/>
+  <object gid="485" x="1280" y="448"/>
+  <object gid="470" x="832" y="320"/>
+  <object gid="470" x="800" y="320"/>
+  <object gid="470" x="608" y="320"/>
+  <object gid="470" x="640" y="320"/>
+  <object gid="470" x="704" y="320"/>
+  <object gid="470" x="736" y="320"/>
+  <object gid="477" x="768" y="320"/>
+  <object gid="477" x="672" y="320"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="512" y="992"/>

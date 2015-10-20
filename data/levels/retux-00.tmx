@@ -6,26 +6,26 @@
   <property name="timeline" value="retux_intro.json"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYHMBimGDeYYKlhwkGAJfGEsE=
+   eJxjYBgFo2AUjIJRMApGwSgYHMB2mGChYYIVhgkGAAzGFa8=
   </data>
  </layer>
  <layer name="Middle Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBYTAG8aBdsEoIBcAAKYKAO4=
+   eJxjYBgFo2AUjIJRMApGwSgYBYTAR8aBdsEoIBcAAK62APM=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -35,7 +35,7 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="477" x="1088" y="288">
+  <object gid="482" x="1088" y="288">
    <properties>
     <property name="text" value="Citizens of Icy Island,\n\nBeginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow King. All residents must pay 5% of their fish in tax. Failure to pay this tax will be punished."/>
    </properties>
@@ -54,7 +54,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6DZP6sdzLDLBxKQAADQ2Pke0DicngDv
+   eJztzjEBAAAIA6DZv60JzLDLBxKQAADQ2Pke0DilDgD0
   </data>
  </layer>
 </map>

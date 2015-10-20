@@ -6,26 +6,26 @@
   <property name="name" value="The Cold Shoulder"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="90" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0LENACAMA8GwVfZfJoxBQ4tEGkPgT3JvvRkAADX1dvrBH4LOEnTWoLMGnTXorHFTZ5+rIPt11dk3B7xmAKlhClI=
+   eJzt0LENACAMA8EwWPafJsxAQ4tEGkPgT3JvvRkAADX1dvrBH4LOEnTWoLMGnTXorHFTZ5+rIPt11dk3B7xmAAMiCsg=
   </data>
  </layer>
  <layer name="Middle Tiles" width="90" height="14">
   <data encoding="base64" compression="zlib">
-   eJztl80OgyAMgOt5WTxvurP7Oc/NJ5s3fd+9xMqBLDHtZEgpQZt8B4MK/aQIAHLRIFUi3ATz1Iwdcgc65zNyYdokuEK+ng/IEei8W+TBtLk483muQ0rRjHUipTXDUCMn0Yx1IjXPhhzXDsqzb81vnvlwnc8x3a/Z8zafl0UIz//u/+ZqIwfPrwKgL77XITwv2f/l6nlAxyPjWeP/R9WC9TydEzHiGQjr2V5zZ8FYULXQMWP15e34rcy9eyG4s6AmtWC+c/wal9Z+N1a/kv1M3/0BZStQ6Q==
+   eJztl80OwiAMgLs3MMazOs/qPPuzJ9ObPrBvYDkQk6WVDWhpmE2+A2Eb9NvKAEAu9sjWCKekTOzGAjkDnfMBOTJ9EnRQr+c1sgE67wtyZfpCdJH39cgqLSWTYWnNcLTILj4ds2HNs6PGtYPyHFvzuZiLZwpN93P2rMnfM83U/V+oNmrwfG8AHs23ncNzyv6PogbPT3T8YjyX+P9RteA9D78Jjbhlwnv2be4sqAVVCz0z11jeI9+Vu3YpBHcWLEkrmG+IX/Mqtd/VGldynOGzP9D3Xjw=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -63,7 +63,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="90" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0UENACAQA8HDv1B4IAIHPEvIzShotlUA8Lc1Xi/oYeocoXOGzhk6Z+icoXPGrfP2AY0coj8ILw==
+   eJzt0UENACAQA8HDv1Z4oAAHPEvIzShotlUA8Lc1Xi/oYeocoXOGzhk6Z+icoXPGrfP2AY0cMn0IZQ==
   </data>
  </layer>
 </map>

@@ -2902,16 +2902,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
         self.yvelocity = get_jump_speed(JUMPY_BOUNCE_HEIGHT, self.gravity)
 
 
-class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
-                     WinPuffObject):
-
-    always_active = True
-    freezable = True
-    had_xv = 0
-
-    def __init__(self, x, y, z=0, **kwargs):
-        kwargs["sprite"] = flying_snowball_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+class FlyingEnemy(CrowdBlockingObject):
 
     def move(self):
         if abs(self.xvelocity) > abs(self.yvelocity):
@@ -2926,6 +2917,18 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
                     self.image_xscale = abs(self.image_xscale)
                 else:
                     self.image_xscale = -abs(self.image_xscale)
+
+
+class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
+                     WinPuffObject):
+
+    always_active = True
+    freezable = True
+    had_xv = 0
+
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = flying_snowball_sprite
+        sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -2952,7 +2955,7 @@ class FlyingSnowball(CrowdBlockingObject, KnockableObject, BurnableObject,
         self.burn()
 
 
-class FlyingSpiky(CrowdBlockingObject, KnockableObject, FreezableObject,
+class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
                   WinPuffObject):
 
     always_active = True
@@ -2962,9 +2965,6 @@ class FlyingSpiky(CrowdBlockingObject, KnockableObject, FreezableObject,
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = flying_spiky_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
-
-    def move(self):
-        FlyingSnowball.move(self)
 
     def touch(self, other):
         other.hurt()

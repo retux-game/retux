@@ -6,26 +6,26 @@
   <property name="name" value="Spring Factory"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="487" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="491" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="493" source="../tilesets/krush.tsx"/>
- <tileset firstgid="494" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="495" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="496" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMJjAC8aBdsHQAc9Hw4poMBpWxIPRsCIeDJaw6gfiUiQ8GAG1wsoCiskFoPApRsKDEQyGdNUGxM0MkLTVBKUHI8AVVhZEYkpANxC3A/EUBtSwaqLQ3FEwPAAAOe0UAw==
+   eJxjYBgFo2AUjIJRMJjAO8aBdsHQAW9Hw4poMBpWxIPRsCIeDJawmgLEVUh4MAJqhZUtFJMLQOFTgYQHIxgM6aobiDsYIGmrHUoPRoArrGyJxJSACUDcA8QzGVDDqp1Cc0fB8AAAhhoU0w==
   </data>
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1jFrAjEUB/B3c5HOVjtX7axed+1eFHele0sXnfS+gJ9I615baKFzBV0V7EfoP/QOwsHdS6IkAX3wQxwu9+5/uSRE57JVFxAyZjB31aBHVYQC4w2WMICOmza9qBsoQS3+zfIEz9Cn080syUqVnNknfNlv2VlxWWXNN5HZD6ygZ71rNyVnVYEq8XMryW8LO3ik08hLzqoBTeKzSnuh/7y+LfduUsOAaBSYXau7XuXltYaN+WNYqQlyig7Iqg33sRbprVuyPfySv/ukOCsmWXFnSuEydb3I6jb1/5D55fPZgjtHpl3DGKYQQRcepPFUsuL2ADEH5cxeYUFq71LXVvF7CnN6zXqOO+bedYWsdPYAkdk7fJD+ez023W+kzIx3ZTCmCZX179j3+APuK0p+
+   eJzt1j9rwkAYBvA336CIs7XOVjur6a7u0tK94l5x0UnzBfqJrO7+AQXnCnat0O4+Rw0cB9f3LkmTA/vCj+CQy+uTy90R/VdadQU+YwpvGfXnUhUgx1jAErrwkE2bTlQZilA9X3VeoA/PdLmZhVmZkjPbwDalPl0oLivdfBOZvcMenlLpNPuSs7qFCvFzK8zvE47Qo8vIS86qDg3is1IN6Cev3Z93G7+GHtHIi3av7XqlI/I6wEe0NlKrCXIKYmTVgvZZk+zWLdkXfJO7+6Q4K4ZZcWdKIa/cL7K6U34XY3D5bMGdI1UlGMMrBPAIHWk8k6y4PUDMQTmzGczJ7F3aOhp+T/4vver+xz3z7JpBVjZ7gMhsBWuyf69JM+lXdsOMdx1hzChM1r+kn3EC9wNShg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -44,7 +44,7 @@
   <object type="slope_topright" x="1024" y="160" width="128" height="128"/>
   <object type="slope_topright" x="1152" y="288" width="192" height="96"/>
   <object type="level_end" x="1888" y="0" width="32" height="384"/>
-  <object gid="496" x="608" y="416">
+  <object gid="502" x="608" y="416">
    <properties>
     <property name="dest" value="retux-10b.tmx:cave_exit"/>
     <property name="spawn_id" value="cave_exit"/>
@@ -68,7 +68,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0EENACAQBLHDv1B4IAIHZH8HSatgMlUAvGiN7oJ/TK9iXuW8ynmV8yrnVe72avtIgwPUrQgv
+   eJzt0EENACAQBLHDv1Z4oAAHZH8HSatgMlUAvGiN7oJ/TK9iXuW8ynmV8yrnVe72avtIgwMkOwhl
   </data>
  </layer>
 </map>

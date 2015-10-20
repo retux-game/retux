@@ -7,25 +7,25 @@
   <property name="name" value="The Seven Deadly Springs"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAUQ0Hdyv2n0S1cQQu/EO4gfZrXGgAAAAAAAAAAAAAAAAAAAAAAlVb//QB4beoc4ukc8ukc8ukc8ukc8ukc8t10Pg4HAAAAANTY6vEJeg==
+   eJzt07EJACAUQ0EdzP2n0RlcQQu/EO4gfZrXGgAAAAAAAAAAAAAAAAAAAAAAlVb//QB4beoc4ukc8ukc8ukc8ukc8ukc8t10Pg4HAAAAANTY/vwJ1A==
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJztm7lOQzEQRSc1W81Ws9VAPgDRIxA9iwQdiN9j6Vk6+AGokeATmBQWj8iOt/HYL9wj3S7Ri+25M2P7hQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyjLDGgprQXUEAAAfi6w5Ya2qjgAA4GONtRygzcDPjbSlOgIAgI9Qn8eoBZ/n7EeOK/xeAEpyxNpP1B616/Oc/cg5wesAGMZ7AdPbt+Dz2D6luy+5IXgdAIPLS330+bjgdaCF1J1XqXuuPvl8nbVBaV6vPc9gupG685qnMjHo2tsfFHhWLOM+32HtUpzPjddL3Cfm5vDYPuNswDlrEPkloILUWfgKlfN6q5S4R5C8Z8jN4bF7igv2+CV83iQpseq65/5vXpf2ecj7AzE+1z4/QD1vF+lYNV739YS3rDuF8dmQOpPYprbreXdtU84OYr2Oet4uJXrPkdd9PeEj64l1yjosPsq/SJ1JLJFMjdbweerZQdfrr6y3Cc9DPW8Xm8+lY9OlK9Y164R0/S65V9FSynsDkjl85PV31seE56Get0tOLKT2grX9bsZc27sp81jK5yFz8cX6Jvca/bd6rvU/TInn5Owxc3rBmn6vcU4uNY+16rltje5ZD/QbS6aeS8b9Z2DeGEbMiwQj782Szv8wJfaZIXvMHKXUzNJ+b83nMart8+4aPbNeSD7WU6WF8bjPO77Yt/VxtvXtc7yG9KqTakdOH+SaN6l9SMgap6oVn9eWba2ke2iXQjweIlsfp+lzyXiPGaNLObXD1ge55k16H1JCKT7XOIfQPuuwrZVW31CyB87xeewa9CHeNeZNck5Dv+vLsaXquUZub1W5OUoyx01b3661Vn2bN1+OLeXzFnJ7rl9+AKMkHOk=
+   eJztm7lOAzEQhp034Kq5aq4ayAMgegSi55CgA/F6HD1HBy8ANRL0jAuLaLVeXzOz3uT/pL9LtLE9v2fG3hgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLMkcbMWlIdAQAgxDJpgVnrqiMAAITYIK1GaDvyc1Y7cj8XAJBBrM9TVIPPS/qR0x5+LwCSnJAOM3Vg6vV5ST9yaeB1ABzNWsDV9jX4PLVOmexL7gy8DoDD56Uh+rwpeB1owXXnJXXPNSSfb5K2TJ7X+55nMN1w3XktGpkY9PX2RwLPSqXp8z3SvknzuZX1usR9YukenlpnXIxozxolfgmowHUWvmbkvF4rEvcIIaXUMaV7eGpPcUUev4bPqyQnVn333LPmdW6fx7w/kOJz7fMD5PN64Y5V5/VQTXhPemAeSyxcZxK7pu58Prm2OWcHVileRz6vF4na03o9VBM+k15I56Rj1hGF4TqTWDE8OTpFuT7PPTuwcl5/J310PA/5vF7afM4dmz7dkG5JZ0bX75y9ipZy3hvg3MOt1z9JXx3PQz6vl5JYyK0Fm9L2uxtz3951SplHKZ/HzMUP6df412jW8rnW/zA5nlPSY5bUgm3S8nsf5+RdSpnHvvK50+QaPZKezH8suXzOGfffkfvGOO5jbFjvzRud/2Fy9JkxPWaJcnKmtN9r83mK+va5k12jV9Kb4Y/1XGnhPB7yTij22+q4tvUdcrzG1KpduaOkDvLNG1cfYiXVE9Ti877VtlbcNbRPMR6PUVsdp+lzznhPGaNPJbmjrQ7yzRt3HyKhHJ9rnENon3W0rZVW3SBZA5f4PHUNhhDvsZLaH0viuuu7oT1WKp9r7O21qnSP4tzjpq1u55Zvroc2b6E9VsrnNeztpX75A+B8R0E=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -61,56 +61,56 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="467" x="3840" y="608">
+  <object gid="472" x="3840" y="608">
    <properties>
     <property name="item" value="fixed_spring"/>
    </properties>
   </object>
-  <object gid="474" x="3840" y="832"/>
-  <object gid="474" x="3840" y="800"/>
-  <object gid="474" x="3808" y="800"/>
-  <object gid="474" x="3872" y="800"/>
-  <object gid="474" x="3840" y="768"/>
-  <object gid="474" x="3840" y="736"/>
-  <object gid="480" x="4032" y="864"/>
-  <object gid="480" x="2176" y="800"/>
-  <object gid="465" x="320" y="800"/>
-  <object gid="465" x="352" y="800"/>
-  <object gid="465" x="384" y="800"/>
-  <object gid="465" x="416" y="800"/>
-  <object gid="465" x="448" y="800"/>
-  <object gid="471" x="3168" y="224"/>
-  <object gid="474" x="3424" y="288"/>
-  <object gid="474" x="3456" y="288"/>
-  <object gid="474" x="3488" y="288"/>
-  <object gid="474" x="3520" y="288"/>
-  <object gid="474" x="3552" y="288"/>
-  <object gid="474" x="3584" y="288"/>
-  <object gid="474" x="3616" y="288"/>
-  <object gid="474" x="3392" y="288"/>
-  <object gid="474" x="3360" y="288"/>
-  <object gid="474" x="3392" y="224"/>
-  <object gid="474" x="3424" y="224"/>
-  <object gid="474" x="3456" y="224"/>
-  <object gid="474" x="3488" y="224"/>
-  <object gid="474" x="3520" y="224"/>
-  <object gid="474" x="3552" y="224"/>
-  <object gid="474" x="3584" y="224"/>
-  <object gid="480" x="6912" y="800"/>
-  <object gid="480" x="6112" y="576"/>
-  <object gid="480" x="4736" y="672"/>
-  <object gid="464" x="1440" y="704"/>
-  <object gid="465" x="1472" y="704"/>
-  <object gid="473" x="2336" y="448"/>
-  <object gid="473" x="2368" y="448"/>
-  <object gid="465" x="4896" y="320"/>
-  <object gid="465" x="4960" y="320"/>
-  <object gid="465" x="5024" y="320"/>
-  <object gid="465" x="3072" y="576"/>
-  <object gid="465" x="3104" y="576"/>
-  <object gid="465" x="3136" y="576"/>
-  <object gid="480" x="5696" y="544"/>
-  <object gid="477" x="7104" y="704">
+  <object gid="479" x="3840" y="832"/>
+  <object gid="479" x="3840" y="800"/>
+  <object gid="479" x="3808" y="800"/>
+  <object gid="479" x="3872" y="800"/>
+  <object gid="479" x="3840" y="768"/>
+  <object gid="479" x="3840" y="736"/>
+  <object gid="485" x="4032" y="864"/>
+  <object gid="485" x="2176" y="800"/>
+  <object gid="470" x="320" y="800"/>
+  <object gid="470" x="352" y="800"/>
+  <object gid="470" x="384" y="800"/>
+  <object gid="470" x="416" y="800"/>
+  <object gid="470" x="448" y="800"/>
+  <object gid="476" x="3168" y="224"/>
+  <object gid="479" x="3424" y="288"/>
+  <object gid="479" x="3456" y="288"/>
+  <object gid="479" x="3488" y="288"/>
+  <object gid="479" x="3520" y="288"/>
+  <object gid="479" x="3552" y="288"/>
+  <object gid="479" x="3584" y="288"/>
+  <object gid="479" x="3616" y="288"/>
+  <object gid="479" x="3392" y="288"/>
+  <object gid="479" x="3360" y="288"/>
+  <object gid="479" x="3392" y="224"/>
+  <object gid="479" x="3424" y="224"/>
+  <object gid="479" x="3456" y="224"/>
+  <object gid="479" x="3488" y="224"/>
+  <object gid="479" x="3520" y="224"/>
+  <object gid="479" x="3552" y="224"/>
+  <object gid="479" x="3584" y="224"/>
+  <object gid="485" x="6912" y="800"/>
+  <object gid="485" x="6112" y="576"/>
+  <object gid="485" x="4736" y="672"/>
+  <object gid="469" x="1440" y="704"/>
+  <object gid="470" x="1472" y="704"/>
+  <object gid="478" x="2336" y="448"/>
+  <object gid="478" x="2368" y="448"/>
+  <object gid="470" x="4896" y="320"/>
+  <object gid="470" x="4960" y="320"/>
+  <object gid="470" x="5024" y="320"/>
+  <object gid="470" x="3072" y="576"/>
+  <object gid="470" x="3104" y="576"/>
+  <object gid="470" x="3136" y="576"/>
+  <object gid="485" x="5696" y="544"/>
+  <object gid="482" x="7104" y="704">
    <properties>
     <property name="text" value="Traveller's Note:\n\nIt is said that this level contains 7 springs, but I have only managed to find 6. Could the seventh one be in a hidden block somewhere?"/>
    </properties>
@@ -163,7 +163,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8Gw/6JQsAMzUESRrLsJ3LyrAAAAAAAAAAAAAAAAAAAAAACYcNb0AqDb1jnE0znk0znk0znk0znk0znk++38+gUAAAAAGPcAAxAIOA==
+   eJzt1LENACAMA8Gw/6xQMAEzUESRrLsJ3LyrAAAAAAAAAAAAAAAAAAAAAACYcNb0AqDb1jnE0znk0znk0znk0znk0znk++38+gUAAAAAGPcAokMIZQ==
   </data>
  </layer>
 </map>

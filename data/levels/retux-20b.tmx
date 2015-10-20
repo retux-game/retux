@@ -6,26 +6,26 @@
   <property name="music" value="chipdisko.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="84">
   <data encoding="base64" compression="zlib">
-   eJzt0MEJgEAUQ8G1BhtwsQn7r0a7cAtQyEH8CjOQe3itAfAlx1T94D92rWJa5bTKaZXTKqdV7q7VFq7SPLYUfwAAAAAAAAAAAAAAAHhLrz4AAAAAAABwYa0+AADAI05o9gnx
+   eJzt0MEJgEAUQ8G1CxtwsQn7r0ZrcAtQyEH8CjOQe3itAfAlx1T94D92rWJa5bTKaZXTKqdV7q7VFq7SPLYUfwAAAAAAAAAAAAAAAHhLrz4AAAAAAABwYa0+AADAI07tuApf
   </data>
  </layer>
  <layer name="Middle Tiles" width="75" height="84">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -87,12 +87,12 @@
   <object type="slope_topright" x="320" y="1280" width="256" height="128"/>
   <object type="slope_bottomright" x="480" y="1472" width="192" height="96"/>
   <object type="level_end" x="1888" y="0" width="32" height="384"/>
-  <object gid="487" x="608" y="2560">
+  <object gid="492" x="608" y="2560">
    <properties>
     <property name="dest" value="midpoint"/>
    </properties>
   </object>
-  <object gid="486" x="608" y="2656">
+  <object gid="491" x="608" y="2656">
    <properties>
     <property name="spawn_id" value="midpoint"/>
    </properties>
@@ -115,38 +115,38 @@
   </object>
  </objectgroup>
  <objectgroup name="Items" opacity="0.94">
-  <object gid="477" x="1408" y="2240">
+  <object gid="482" x="1408" y="2240">
    <properties>
     <property name="text" value="Traveller's Note:\n\nThat pipe to the right is too high to be reached even by jumping off a spring. It would be possible if that Jumpy could be magically suspended in the air and the spring placed on top, but that would be silly!"/>
    </properties>
   </object>
-  <object gid="467" x="704" y="1792"/>
-  <object gid="467" x="672" y="1792">
+  <object gid="472" x="704" y="1792"/>
+  <object gid="472" x="672" y="1792">
    <properties>
     <property name="item" value="spring"/>
    </properties>
   </object>
-  <object gid="467" x="640" y="1792"/>
-  <object gid="474" x="640" y="1728"/>
-  <object gid="474" x="672" y="1728"/>
-  <object gid="474" x="704" y="1728"/>
-  <object gid="474" x="704" y="1696"/>
-  <object gid="474" x="672" y="1664"/>
-  <object gid="480" x="1376" y="1600"/>
-  <object gid="466" x="128" y="1024"/>
-  <object gid="480" x="1184" y="1184"/>
-  <object gid="474" x="1184" y="1728"/>
-  <object gid="474" x="1120" y="1728"/>
-  <object gid="474" x="1056" y="1728"/>
-  <object gid="471" x="2112" y="1888"/>
-  <object gid="473" x="1888" y="1920"/>
-  <object gid="473" x="1856" y="1920"/>
-  <object gid="473" x="1824" y="1920"/>
-  <object gid="473" x="1920" y="1920"/>
-  <object gid="473" x="1824" y="1824"/>
-  <object gid="473" x="1856" y="1824"/>
-  <object gid="473" x="1888" y="1824"/>
-  <object gid="473" x="1920" y="1824"/>
+  <object gid="472" x="640" y="1792"/>
+  <object gid="479" x="640" y="1728"/>
+  <object gid="479" x="672" y="1728"/>
+  <object gid="479" x="704" y="1728"/>
+  <object gid="479" x="704" y="1696"/>
+  <object gid="479" x="672" y="1664"/>
+  <object gid="485" x="1376" y="1600"/>
+  <object gid="471" x="128" y="1024"/>
+  <object gid="485" x="1184" y="1184"/>
+  <object gid="479" x="1184" y="1728"/>
+  <object gid="479" x="1120" y="1728"/>
+  <object gid="479" x="1056" y="1728"/>
+  <object gid="476" x="2112" y="1888"/>
+  <object gid="478" x="1888" y="1920"/>
+  <object gid="478" x="1856" y="1920"/>
+  <object gid="478" x="1824" y="1920"/>
+  <object gid="478" x="1920" y="1920"/>
+  <object gid="478" x="1824" y="1824"/>
+  <object gid="478" x="1856" y="1824"/>
+  <object gid="478" x="1888" y="1824"/>
+  <object gid="478" x="1920" y="1824"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="2048" y="2560"/>
@@ -185,7 +185,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="75" height="84">
   <data encoding="base64" compression="zlib">
-   eJzt0EkNACAQBMHFv1F44AEHZH4cqVLQ6SoAbjTa6YJ3dK9iXuW8ynmV8yrnVW73avoIAAAAAAAAAAAAAAAAAAAAAAAAAADfWmXiCDg=
+   eJzt0EkNACAQBMHFv1Z4oAAHZH4cqVLQ6SoAbjTa6YJ3dK9iXuW8ynmV8yrnVW73avoIAAAAAAAAAAAAAAAAAAAAAAAAAADfWumzCGU=
   </data>
  </layer>
 </map>

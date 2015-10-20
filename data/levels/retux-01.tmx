@@ -6,20 +6,20 @@
   <property name="name" value="Not exactly 1:1"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="273" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="361" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="385" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="389" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="278" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="366" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="391" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="395" source="../tilesets/igloo.tsx"/>
  <layer name="Back Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07ENgDAAA8GwVdaDyWnoQTTwyp3k3s2PAQAAAP90bF8/AN7a9QtZ+oUu/UKXfqFLv9ClX+jSb9+8xnr026ffdd31Ox8OaDsB9ekIJg==
+   eJzt07ENgDAAA8EwWOaDsWnoQTTwyp3k3s2PAQAAAP90bF8/AN7a9QtZ+oUu/UKXfqFLv9ClX+jSb9+8xnr026ffdd31Ox8OaDsBPC4IqA==
   </data>
  </layer>
  <layer name="Middle Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmUsKwjAQhqe4FJ+71sdW0LXgSTyBJ+gdvLcpNhKHpNYkbR79P/hxoehknG+CSAQAAAAAMA02BdG2CF0FAMCGUrhbwV8AkgT+ApAu8DcPZsU7YFrA3/SR7sLf6QF/00Z1F/4Ox1zkpmQVtpwP8DdduLvwdzhKkYWSJcXhsPSX75cmd8f31s0UZswPOnfR2+E4ieyU7CkOh6W/fL80eZC9w6aZynXOxvwf3eRujn2NBe6v6jC/90zhruvuzH8j/b1q6qvJzuGumcp11sb6HdLlbsieus5h7FH9ONO3w/zeM+XAeqa7M21TaWpTHe57TtNMrdua+XOhvxdfGeM8v9z1/fnPnvugea2vOYw10g+XXFjfdHe6z0iXa4dzy51zbB997hwknrwAeJtGYQ==
+   eJztmUsKwjAQhqc7l+Jz1/rYCroWPIkn8AQ9hJe2wY7EIam1Sdsk/T/4caHoZJxvgkgEAAAAADANNhnRNhu7CgBAF/LK3QL+AhAl8BeAeIG/aTDL3gHTAv7GD7sLf6cH/I0b3V342x/zKjctq3HL+QB/40W6C3/7I6+y0LKkMBxmf+V+Ubk7vrdppjBjfjC5i972x6nKTsuewnCY/ZX7ReVB3R22zVSqczbk/+g2d1PsayhIf1XYYXnv2SJdN92Z/4b9vRrqK6mbw00zleqsDfU7pMndMXvqOoehR/fjTN8Oy3vPloPomenO7JrCUJsKO9z2nLaZWtc1y+fG/l58ZYjz/HLX9+c/W+4D9Vpfcxhq2A+XXETfTHe6z7DLpcO5eecc60efOwcJJy+ILVJH
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -73,71 +73,71 @@
   </object>
  </objectgroup>
  <objectgroup name="Items">
-  <object gid="365" x="2144" y="288"/>
-  <object gid="365" x="2208" y="288"/>
-  <object gid="363" x="1152" y="320"/>
-  <object gid="363" x="1216" y="320"/>
-  <object gid="370" x="1184" y="320"/>
-  <object gid="363" x="864" y="320"/>
-  <object gid="363" x="1248" y="320"/>
-  <object gid="363" x="1120" y="320"/>
-  <object gid="362" x="1184" y="192"/>
-  <object gid="371" x="1536" y="320"/>
-  <object gid="371" x="1568" y="320"/>
-  <object gid="370" x="2272" y="160"/>
-  <object gid="370" x="2304" y="160"/>
-  <object gid="370" x="2336" y="160"/>
-  <object gid="370" x="2368" y="160"/>
-  <object gid="370" x="2400" y="160"/>
-  <object gid="370" x="2432" y="160"/>
-  <object gid="370" x="2464" y="160"/>
-  <object gid="370" x="2496" y="160"/>
-  <object gid="370" x="2528" y="160"/>
-  <object gid="370" x="2688" y="160"/>
-  <object gid="370" x="2880" y="160"/>
-  <object gid="370" x="2656" y="160"/>
-  <object gid="370" x="2720" y="160"/>
-  <object gid="370" x="2848" y="160"/>
-  <object gid="370" x="2912" y="160"/>
-  <object gid="372" x="2304" y="128"/>
-  <object gid="372" x="2336" y="128"/>
-  <object gid="372" x="2368" y="128"/>
-  <object gid="372" x="2400" y="128"/>
-  <object gid="372" x="2432" y="128"/>
-  <object gid="372" x="2464" y="128"/>
-  <object gid="372" x="2496" y="128"/>
-  <object gid="370" x="4576" y="416"/>
-  <object gid="370" x="4608" y="416"/>
-  <object gid="370" x="4608" y="384"/>
-  <object gid="370" x="4640" y="384"/>
-  <object gid="370" x="4640" y="416"/>
-  <object gid="370" x="4672" y="416"/>
-  <object gid="372" x="4576" y="288"/>
-  <object gid="372" x="4608" y="256"/>
-  <object gid="372" x="4640" y="256"/>
-  <object gid="372" x="4672" y="288"/>
-  <object gid="371" x="5056" y="224"/>
-  <object gid="370" x="5024" y="320"/>
-  <object gid="370" x="5056" y="320"/>
-  <object gid="370" x="5088" y="320"/>
-  <object gid="363" x="5120" y="320"/>
-  <object gid="363" x="5152" y="320"/>
-  <object gid="363" x="5184" y="320"/>
-  <object gid="363" x="4992" y="320"/>
-  <object gid="363" x="4960" y="320"/>
-  <object gid="363" x="4928" y="320"/>
-  <object gid="371" x="6208" y="320"/>
-  <object gid="370" x="5984" y="320"/>
-  <object gid="370" x="5952" y="320"/>
-  <object gid="370" x="5920" y="320"/>
-  <object gid="370" x="5888" y="320"/>
-  <object gid="363" x="5856" y="320"/>
-  <object gid="365" x="2176" y="288">
+  <object gid="370" x="2144" y="288"/>
+  <object gid="370" x="2208" y="288"/>
+  <object gid="368" x="1152" y="320"/>
+  <object gid="368" x="1216" y="320"/>
+  <object gid="375" x="1184" y="320"/>
+  <object gid="368" x="864" y="320"/>
+  <object gid="368" x="1248" y="320"/>
+  <object gid="368" x="1120" y="320"/>
+  <object gid="367" x="1184" y="192"/>
+  <object gid="376" x="1536" y="320"/>
+  <object gid="376" x="1568" y="320"/>
+  <object gid="375" x="2272" y="160"/>
+  <object gid="375" x="2304" y="160"/>
+  <object gid="375" x="2336" y="160"/>
+  <object gid="375" x="2368" y="160"/>
+  <object gid="375" x="2400" y="160"/>
+  <object gid="375" x="2432" y="160"/>
+  <object gid="375" x="2464" y="160"/>
+  <object gid="375" x="2496" y="160"/>
+  <object gid="375" x="2528" y="160"/>
+  <object gid="375" x="2688" y="160"/>
+  <object gid="375" x="2880" y="160"/>
+  <object gid="375" x="2656" y="160"/>
+  <object gid="375" x="2720" y="160"/>
+  <object gid="375" x="2848" y="160"/>
+  <object gid="375" x="2912" y="160"/>
+  <object gid="377" x="2304" y="128"/>
+  <object gid="377" x="2336" y="128"/>
+  <object gid="377" x="2368" y="128"/>
+  <object gid="377" x="2400" y="128"/>
+  <object gid="377" x="2432" y="128"/>
+  <object gid="377" x="2464" y="128"/>
+  <object gid="377" x="2496" y="128"/>
+  <object gid="375" x="4576" y="416"/>
+  <object gid="375" x="4608" y="416"/>
+  <object gid="375" x="4608" y="384"/>
+  <object gid="375" x="4640" y="384"/>
+  <object gid="375" x="4640" y="416"/>
+  <object gid="375" x="4672" y="416"/>
+  <object gid="377" x="4576" y="288"/>
+  <object gid="377" x="4608" y="256"/>
+  <object gid="377" x="4640" y="256"/>
+  <object gid="377" x="4672" y="288"/>
+  <object gid="376" x="5056" y="224"/>
+  <object gid="375" x="5024" y="320"/>
+  <object gid="375" x="5056" y="320"/>
+  <object gid="375" x="5088" y="320"/>
+  <object gid="368" x="5120" y="320"/>
+  <object gid="368" x="5152" y="320"/>
+  <object gid="368" x="5184" y="320"/>
+  <object gid="368" x="4992" y="320"/>
+  <object gid="368" x="4960" y="320"/>
+  <object gid="368" x="4928" y="320"/>
+  <object gid="376" x="6208" y="320"/>
+  <object gid="375" x="5984" y="320"/>
+  <object gid="375" x="5952" y="320"/>
+  <object gid="375" x="5920" y="320"/>
+  <object gid="375" x="5888" y="320"/>
+  <object gid="368" x="5856" y="320"/>
+  <object gid="370" x="2176" y="288">
    <properties>
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="375" x="1504" y="320">
+  <object gid="380" x="1504" y="320">
    <properties>
     <property name="text" value="Having trouble finding secret areas? The clue is in the name!"/>
    </properties>
@@ -172,7 +172,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="240" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt07ERABAUBcGvdAJ1a8FIeGa3gkuuCgAAAN422u0C4FT3L8TyL+TyL+TyL+TyL+TyL+TyL+TyL+Ta+Xd6HL61AIF9BZ0=
+   eJzt07ERABAUBcGvegJFa8FIeGa3gkuuCgAAAN422u0C4FT3L8TyL+TyL+TyL+TyL+TyL+TyL+TyL+Ta+Xd6HL61AH54Bd8=
   </data>
  </layer>
 </map>

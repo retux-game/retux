@@ -6,24 +6,24 @@
   <property name="name" value="Over the Five Pillars of Snow"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="345" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="433" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="457" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="461" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="463" source="../tilesets/krush.tsx"/>
- <tileset firstgid="464" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="465" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="350" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="438" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="463" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="467" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="469" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="470" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="471" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQBMG3K/vPtCorED7Tgxm4/KKtAgAAIM0erx8A9Cy9AkLoFZBCr4AUegWk0CsghV4BKW69ms0BAAAAwO8OW5MIgg==
+   eJzt1LEJACAQBMG3MPsPtSQrED7Tgxm4/KKtAgAAIM0erx8A9Cy9AkLoFZBCr4AUegWk0CsghV4BKW69ms0BAAAAwO8Orv0I5A==
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmc9KAzEQxtOziGeRHkXQm3joMfTB6t6lj+Y7NaLCdpgkk83kb78fDIXsZvNldvZLQo0BAAAAAAAAAAAAuE1OLj5dnP9+l6ZqAEjjv35pnD3ti+I43Bhbnw/S+GotAABFatQzvpkwvrUktqZIvB+558H+c0zgV/2Tkz/kPgzyc8167Vyvk0tDTWu496V9pgvVRK/nR6qLaqqpB371S4l3MnN+Sn63rZBqqvnNjJyn3sbuMZdaaMxt5vz8MHLtvLv4IG21/YrToDlWKeBX/SE5G8T2YPQZdy4OmfG9k+k/yG7LYuTasS6OpK22X3EaNMcqRQ1NPi8fueYkbD3HSOYWu4def3RxXzFyvfEhc/5b+pb8f2iNNfP6VSyHkjyGchnT9JwYHNbwuZndrzg0vEhyD73+4uJJOV4D13L9bp85/xJ9tWrOmnn9KlWH5Fzq68uRsi77asya2/Ur+j5686uQ57SMt8z5l+gLv9IhVYevL0fKuuyrMZ+mEjWXuh/UDoo113Pvza9K7bkuDgmqJQ==
+   eJztmcFKBDEMhtc3EPEs4lEEvYmHPS4+mHqXfTVfyIoujCFtk2maSbv/Bz8Lnek0zaR/p+xuBwAAAAAAAAAAAHCevCW9Jx3/fj+2DQcAFaf6pTpm2tfWNzcONwbWjw+fWwcAgCEe9Yw1Uya3l9T2FIn3I/c8+P4cE/hVfFryh9yXQX7+s9w7l/tkFD/n3pf1ma5UE1HPjzQuGpNnPPCrX3q8k5nz03PdboU0Js81M3Keoo0dMZdWWMxt5vz8MHLtPCe9kDZvv+JisByrF/CreEjOBrVvMPqMy6R9o74uZPHvZbc1MXLtHJJeSZu3X3ExWI7VC4+Ycl4+cs1JWHuOkcytdg+9fpN05ahWb7xunP+avj3/H1oys1/VcijJYymXtZjuleLI5WZ2v+Kw8CLJPfT6Q9KtsR4L11r97k45Pw1r+1rV3Mx+pY1Dci7N9eXQ7Mu5Gjtnv6LvI5pflTxnSz0p56cBfhXHryRx5PpyaPblXI15+pX2e9BaFDr3aH5lrZP/fQNG57S3
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -69,65 +69,65 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="442" x="1696" y="256"/>
-  <object gid="442" x="1664" y="256"/>
-  <object gid="442" x="1728" y="256"/>
-  <object gid="442" x="1632" y="256"/>
-  <object gid="442" x="1600" y="256"/>
-  <object gid="442" x="1760" y="256"/>
-  <object gid="442" x="1792" y="256"/>
-  <object gid="442" x="1568" y="256"/>
-  <object gid="442" x="1824" y="256"/>
-  <object gid="434" x="2304" y="64"/>
-  <object gid="443" x="3328" y="64"/>
-  <object gid="443" x="3360" y="64"/>
-  <object gid="435" x="2272" y="64"/>
-  <object gid="437" x="4416" y="96"/>
-  <object gid="437" x="4448" y="96">
+  <object gid="447" x="1696" y="256"/>
+  <object gid="447" x="1664" y="256"/>
+  <object gid="447" x="1728" y="256"/>
+  <object gid="447" x="1632" y="256"/>
+  <object gid="447" x="1600" y="256"/>
+  <object gid="447" x="1760" y="256"/>
+  <object gid="447" x="1792" y="256"/>
+  <object gid="447" x="1568" y="256"/>
+  <object gid="447" x="1824" y="256"/>
+  <object gid="439" x="2304" y="64"/>
+  <object gid="448" x="3328" y="64"/>
+  <object gid="448" x="3360" y="64"/>
+  <object gid="440" x="2272" y="64"/>
+  <object gid="442" x="4416" y="96"/>
+  <object gid="442" x="4448" y="96">
    <properties>
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="435" x="5600" y="64"/>
-  <object gid="435" x="5568" y="64"/>
-  <object gid="435" x="5632" y="64"/>
-  <object gid="435" x="5664" y="64"/>
-  <object gid="443" x="7616" y="224"/>
-  <object gid="443" x="7648" y="224"/>
-  <object gid="444" x="736" y="160"/>
-  <object gid="444" x="768" y="160"/>
-  <object gid="444" x="800" y="160"/>
-  <object gid="444" x="1696" y="320"/>
-  <object gid="444" x="1664" y="320"/>
-  <object gid="444" x="1728" y="320"/>
-  <object gid="444" x="1600" y="320"/>
-  <object gid="444" x="1568" y="320"/>
-  <object gid="444" x="1536" y="320"/>
-  <object gid="444" x="1792" y="320"/>
-  <object gid="444" x="1824" y="320"/>
-  <object gid="444" x="1856" y="320"/>
-  <object gid="444" x="2752" y="96"/>
-  <object gid="444" x="2720" y="96"/>
-  <object gid="444" x="2784" y="96"/>
-  <object gid="444" x="2816" y="128"/>
-  <object gid="444" x="2688" y="128"/>
-  <object gid="444" x="3552" y="160"/>
-  <object gid="444" x="3584" y="128"/>
-  <object gid="444" x="3616" y="160"/>
-  <object gid="444" x="3648" y="128"/>
-  <object gid="444" x="3680" y="160"/>
-  <object gid="444" x="4288" y="288"/>
-  <object gid="444" x="4320" y="288"/>
-  <object gid="444" x="4352" y="288"/>
-  <object gid="444" x="4352" y="256"/>
-  <object gid="444" x="4320" y="224"/>
-  <object gid="444" x="6784" y="64"/>
-  <object gid="444" x="6816" y="64"/>
-  <object gid="444" x="7168" y="128"/>
-  <object gid="444" x="7200" y="128"/>
-  <object gid="444" x="6752" y="64"/>
-  <object gid="444" x="7136" y="128"/>
-  <object gid="447" x="3168" y="64">
+  <object gid="440" x="5600" y="64"/>
+  <object gid="440" x="5568" y="64"/>
+  <object gid="440" x="5632" y="64"/>
+  <object gid="440" x="5664" y="64"/>
+  <object gid="448" x="7616" y="224"/>
+  <object gid="448" x="7648" y="224"/>
+  <object gid="449" x="736" y="160"/>
+  <object gid="449" x="768" y="160"/>
+  <object gid="449" x="800" y="160"/>
+  <object gid="449" x="1696" y="320"/>
+  <object gid="449" x="1664" y="320"/>
+  <object gid="449" x="1728" y="320"/>
+  <object gid="449" x="1600" y="320"/>
+  <object gid="449" x="1568" y="320"/>
+  <object gid="449" x="1536" y="320"/>
+  <object gid="449" x="1792" y="320"/>
+  <object gid="449" x="1824" y="320"/>
+  <object gid="449" x="1856" y="320"/>
+  <object gid="449" x="2752" y="96"/>
+  <object gid="449" x="2720" y="96"/>
+  <object gid="449" x="2784" y="96"/>
+  <object gid="449" x="2816" y="128"/>
+  <object gid="449" x="2688" y="128"/>
+  <object gid="449" x="3552" y="160"/>
+  <object gid="449" x="3584" y="128"/>
+  <object gid="449" x="3616" y="160"/>
+  <object gid="449" x="3648" y="128"/>
+  <object gid="449" x="3680" y="160"/>
+  <object gid="449" x="4288" y="288"/>
+  <object gid="449" x="4320" y="288"/>
+  <object gid="449" x="4352" y="288"/>
+  <object gid="449" x="4352" y="256"/>
+  <object gid="449" x="4320" y="224"/>
+  <object gid="449" x="6784" y="64"/>
+  <object gid="449" x="6816" y="64"/>
+  <object gid="449" x="7168" y="128"/>
+  <object gid="449" x="7200" y="128"/>
+  <object gid="449" x="6752" y="64"/>
+  <object gid="449" x="7136" y="128"/>
+  <object gid="452" x="3168" y="64">
    <properties>
     <property name="text" value="Studies have shown that penguins have the ability to kick iceblocks, and possibly other items, straight up. They do this by holding down the &quot;up&quot; button while pressing the &quot;action&quot; button."/>
    </properties>
@@ -170,7 +170,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1DENACEAwEDwr+wZ0ISDDxtpcqegU8cAAACgas3XBQB3Pr8CIvwKqPAroMKvgAq/Air8Cqj4+9X2MgAAAADCDi3EByE=
+   eJzt1DENACEAwEDwL+4ZEISDDxtpcqegU8cAAACgas3XBQB3Pr8CIvwKqPAroMKvgAq/Air8Cqj4+9X2MgAAAADCDkItB1c=
   </data>
  </layer>
 </map>

@@ -5,18 +5,18 @@
   <property name="music" value="cave.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
    eJztwYEAAAAAw6D5U9/gBFUBAAAAAAAAAAAAAAAAAAAA8AxBoAAB
@@ -24,7 +24,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztWtuO0zAUrEEJWlBSCwS7sLyCBBJ959b9Hr5g9233twGx4AiPNB3cpLRuG6dnpFFzcS72OWfOsdPGzWYfAx8LP605bjQajYdmp0fzyEeBimrNcYPBYDg0Oj1qTa8MBkMB6PSoiZplemUwGMaMKtZW3vTKYJgMvgf+6OHP473af0H7sYz1lemVwTAduBCzD3p45crQLO3HF1u/MuwBqfxeQnxMBViX9rEemdO6T7f9uRDNOkt8H/Q9etW1fzJRvXrjLJ72hV+B98LfR32j00JFOtXG7Zp0yxekWYyh74Ob4Dpcd1OYpnVa9a7QGtlgGEIV9cnH+IZWqX6VplkV1Yzb6tVtuO6uIL2CVn0g+5VoO8M48NT1r21vyrcZY4jng9AnH/28JZ8voc7ieqiimD0FvVKtqsmWDdluF78bq90NedHp1PPAFwNr25vyvcunWaxXXGd52ka9hVz9cKQxzPrC/7/6umWcfnN/mSPH7JusVeg35x9o1i5+p3Yf+racm89G6nfHRG4bQKdeBr6i+MeaEfJgS8dYJ2qqdTBXW2TULNQhqEXaxL7q1rbxv2+yvixJc3eN0xLIc0DM4eFPbEv2N584x8eRv/CrderQt+XcPA+8GKnvHYKp+ja3DaBTiHmNf/gDfAL7yIuaL9EOmrVrfyu36se8fqVzQrxLCfGP/zNgnLlm5HGt3Wrcap2JNiBrANsG44P7N7LfJp7Lz2e7N3JfXVNkP+B34u+8jTybcyLnv1SO5GvmdD/VK6x9qgbqWHOu0zFJ2Ue1E329DHy9hS9Mhal5ja4/cx3Uun/tqMe9tK8T7dRGHBNce/G5lK8uMvVXY5DrPvWbPvI7s8/Vcp9UfOt5bqfraTpuXLNybHRt/gAenU2F
+   eJztWttu1DAUXFNUUFK1KFmrFZTSvhaJSvSdXr+nX1De4LcBW3ik6dTNrrLeJV7OSKPNxbnY55w5x852bjb7FnggvHrhuNFoNG6aUY/miXuBiuaF4waDwbBpRD3qTa8MBkMFiHrUJc0yvTIYDFNGk2orb3plMGwNfgX+HuCskpjWftyl+sr0ymDYHuyGmH0zwPsY0xXEtfbjxtavDGtALr/XEB/bAqxL+1SPzGndJ25fV6JZ+5nvg35Ar2L7dxPv01icO4undeFVGMsd4Wsb342hIZ3q03ZLuuUr0izGou+Dy+AxXPe9oj5HRK36UmmNbDAsQpP0yaf4hlapftWmWQ3VjGP16ke47mcl/Y2AVn0l+9VoO8M0cOiG17aX5eeCfsfzQeiTT37ek8/XUGdxPdRQzP4PeqVa1ZItO7LdKn43VbsbyiLq1PvAD254bXtZXrhymsV6xXWWp23UW8jVbyfqt6wv/P+r25Fx+uD+skSOWTdZq9Bvzj/QrFX8Tu2+6NtyaR5N1O/+JUrbADp1EviJ4h9rRsiDPR1jnWip1sFc7bKgZqEOQS3SZ/ZVt8bG/7rJ+nJHmrtqnNZAngNiDg9/Yluyv/nMOT6O/IVfrVMXfVsuzePAjxP1vU0wV9+WtgF0CjGv8Q9/gE9gH3lR8yXaQbNW7W/jnvoxr1/pnBDvUkP84/8MGGeuGXlcW/c0brXORBuQNYBtg/HB/TvZ7zPP5eez3Tu5r64psh/wO/F33k6ezTmR818uR/I1c7qf6hXWPlUDdaw51+mY5Oyj2om+ngaejfCFbWFuXqPrz1wH9e65HfW4l/Ztpp3aiGOCay8+l/PVy0L91Rjkuk/9Zoj8zuxzrdwnF996ntvpepqOG9esHBuxzR9gtlT2
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -55,13 +55,13 @@
   <object x="5888" y="416" width="1792" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object gid="497" x="4832" y="416">
+  <object gid="502" x="4832" y="416">
    <properties>
     <property name="dest" value="__main__:exit"/>
     <property name="spawn_id" value="enter"/>
    </properties>
   </object>
-  <object gid="497" x="128" y="384">
+  <object gid="502" x="128" y="384">
    <properties>
     <property name="dest" value="__main__:exit"/>
    </properties>
@@ -69,27 +69,27 @@
   <object type="slope_topleft" x="1856" y="256" width="128" height="128"/>
   <object type="slope_topright" x="3680" y="384" width="64" height="32"/>
   <object type="solid_top" x="480" y="256" width="64" height="32"/>
-  <object gid="484" x="192" y="384"/>
-  <object gid="484" x="192" y="352"/>
-  <object gid="484" x="192" y="320"/>
-  <object gid="484" x="192" y="288"/>
-  <object gid="484" x="224" y="288"/>
-  <object gid="484" x="224" y="320"/>
-  <object gid="484" x="224" y="352"/>
-  <object gid="484" x="224" y="384"/>
-  <object gid="484" x="4736" y="224"/>
-  <object gid="484" x="4736" y="192"/>
-  <object gid="484" x="4736" y="160"/>
-  <object gid="484" x="4736" y="128"/>
-  <object gid="484" x="4736" y="96"/>
-  <object gid="484" x="4736" y="64"/>
-  <object gid="484" x="4896" y="64"/>
-  <object gid="484" x="4896" y="96"/>
-  <object gid="484" x="4896" y="128"/>
-  <object gid="484" x="4896" y="160"/>
-  <object gid="484" x="4896" y="192"/>
-  <object gid="484" x="4896" y="224"/>
-  <object gid="497" x="9472" y="160">
+  <object gid="489" x="192" y="384"/>
+  <object gid="489" x="192" y="352"/>
+  <object gid="489" x="192" y="320"/>
+  <object gid="489" x="192" y="288"/>
+  <object gid="489" x="224" y="288"/>
+  <object gid="489" x="224" y="320"/>
+  <object gid="489" x="224" y="352"/>
+  <object gid="489" x="224" y="384"/>
+  <object gid="489" x="4736" y="224"/>
+  <object gid="489" x="4736" y="192"/>
+  <object gid="489" x="4736" y="160"/>
+  <object gid="489" x="4736" y="128"/>
+  <object gid="489" x="4736" y="96"/>
+  <object gid="489" x="4736" y="64"/>
+  <object gid="489" x="4896" y="64"/>
+  <object gid="489" x="4896" y="96"/>
+  <object gid="489" x="4896" y="128"/>
+  <object gid="489" x="4896" y="160"/>
+  <object gid="489" x="4896" y="192"/>
+  <object gid="489" x="4896" y="224"/>
+  <object gid="502" x="9472" y="160">
    <properties>
     <property name="dest" value="__main__:exit"/>
    </properties>
@@ -109,22 +109,22 @@
    </properties>
    <polyline points="0,0 0,-64"/>
   </object>
-  <object gid="465" x="3552" y="288"/>
-  <object gid="465" x="3488" y="288"/>
-  <object gid="465" x="3424" y="288"/>
-  <object gid="472" x="3520" y="288"/>
-  <object gid="472" x="3456" y="288"/>
-  <object gid="465" x="3456" y="160"/>
-  <object gid="465" x="3520" y="160"/>
-  <object gid="472" x="3488" y="160"/>
-  <object gid="465" x="1632" y="288"/>
-  <object gid="465" x="1600" y="288"/>
-  <object gid="465" x="1472" y="288"/>
-  <object gid="465" x="1440" y="288"/>
-  <object gid="465" x="1312" y="288"/>
-  <object gid="465" x="1280" y="288"/>
-  <object gid="465" x="4800" y="128"/>
-  <object gid="471" x="4832" y="128"/>
+  <object gid="470" x="3552" y="288"/>
+  <object gid="470" x="3488" y="288"/>
+  <object gid="470" x="3424" y="288"/>
+  <object gid="477" x="3520" y="288"/>
+  <object gid="477" x="3456" y="288"/>
+  <object gid="470" x="3456" y="160"/>
+  <object gid="470" x="3520" y="160"/>
+  <object gid="477" x="3488" y="160"/>
+  <object gid="470" x="1632" y="288"/>
+  <object gid="470" x="1600" y="288"/>
+  <object gid="470" x="1472" y="288"/>
+  <object gid="470" x="1440" y="288"/>
+  <object gid="470" x="1312" y="288"/>
+  <object gid="470" x="1280" y="288"/>
+  <object gid="470" x="4800" y="128"/>
+  <object gid="476" x="4832" y="128"/>
   <object type="object_warp_spawn" x="9472" y="352">
    <properties>
     <property name="cls" value="iceflower"/>
@@ -133,35 +133,35 @@
    </properties>
    <polyline points="0,0 0,-64"/>
   </object>
-  <object gid="480" x="7616" y="416"/>
-  <object gid="465" x="6016" y="288"/>
-  <object gid="465" x="6048" y="288"/>
-  <object gid="465" x="6080" y="288"/>
-  <object gid="465" x="6144" y="288"/>
-  <object gid="465" x="6176" y="288"/>
-  <object gid="465" x="6208" y="288"/>
-  <object gid="465" x="6272" y="288"/>
-  <object gid="465" x="6304" y="288"/>
-  <object gid="465" x="6336" y="288"/>
-  <object gid="472" x="6112" y="288"/>
-  <object gid="472" x="6240" y="288"/>
-  <object gid="465" x="6080" y="160"/>
-  <object gid="465" x="6112" y="160"/>
-  <object gid="465" x="6144" y="160"/>
-  <object gid="465" x="6208" y="160"/>
-  <object gid="465" x="6240" y="160"/>
-  <object gid="465" x="6272" y="160"/>
-  <object gid="473" x="6176" y="160"/>
-  <object gid="474" x="8576" y="352"/>
-  <object gid="474" x="8640" y="352"/>
-  <object gid="474" x="8704" y="352"/>
-  <object gid="474" x="8608" y="288"/>
-  <object gid="474" x="8672" y="288"/>
-  <object gid="474" x="8832" y="352"/>
-  <object gid="474" x="8896" y="352"/>
-  <object gid="474" x="8960" y="352"/>
-  <object gid="474" x="8864" y="288"/>
-  <object gid="474" x="8928" y="288"/>
+  <object gid="485" x="7616" y="416"/>
+  <object gid="470" x="6016" y="288"/>
+  <object gid="470" x="6048" y="288"/>
+  <object gid="470" x="6080" y="288"/>
+  <object gid="470" x="6144" y="288"/>
+  <object gid="470" x="6176" y="288"/>
+  <object gid="470" x="6208" y="288"/>
+  <object gid="470" x="6272" y="288"/>
+  <object gid="470" x="6304" y="288"/>
+  <object gid="470" x="6336" y="288"/>
+  <object gid="477" x="6112" y="288"/>
+  <object gid="477" x="6240" y="288"/>
+  <object gid="470" x="6080" y="160"/>
+  <object gid="470" x="6112" y="160"/>
+  <object gid="470" x="6144" y="160"/>
+  <object gid="470" x="6208" y="160"/>
+  <object gid="470" x="6240" y="160"/>
+  <object gid="470" x="6272" y="160"/>
+  <object gid="478" x="6176" y="160"/>
+  <object gid="479" x="8576" y="352"/>
+  <object gid="479" x="8640" y="352"/>
+  <object gid="479" x="8704" y="352"/>
+  <object gid="479" x="8608" y="288"/>
+  <object gid="479" x="8672" y="288"/>
+  <object gid="479" x="8832" y="352"/>
+  <object gid="479" x="8896" y="352"/>
+  <object gid="479" x="8960" y="352"/>
+  <object gid="479" x="8864" y="288"/>
+  <object gid="479" x="8928" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="4032" y="416"/>

@@ -6,26 +6,26 @@
   <property name="name" value="The Element Barrier"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztkksKgDAMBeOtvJf2AFUX7vycst7ChEZwI2QRqZU3MLzuWoYSAQAA+BJHU/oF9ZDQygxa2fFqNbIbu+r+Ea9WgV0oN5OVZsPNyeeaoni2kibypzrKvcSejezOzj5XFcOrVVSlTdC9zlG39l5PrVqjALzFCeEKGt8=
+   eJztkksKgDAMBePBvJf2AFUX7vycsp7BhEZwI2QRqZU3MLzuWoYSAQAA+BJHU/oF9ZDQygxa2fFqNbIbu+r+Ea9WgV0oN5OVZsPNyeeaoni2kibypzrKvcSejezOzj5XFcOrVVSlTdC9zlG39l5PrVqjALzFCZpRG+M=
   </data>
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDCSwwIL5B9RFgxfwYsF8DKPhhQ1IY8EyDPQNL2462kUJwBZW9A4vSSCWpYM9lAJcYUXP8FIHYm0a20ENAAoTVyB2g2IXBszwonWcD6WwQnZnCAMi3GA4kMZuGKphNRBgKIWVJQP2dha9sOkAuuENI3HhZMGAKJOwtbPohaUGgRuIwfjqwVGMigHo+SSq
+   eJztljEKgDAMReMNRJ01Ojs4C7qru+D9T+AN7KBUMEqhNm0hD96czxOkAIIg+GQgLLwuCpeMMAfpRYGENfD2Shlv2YAvcvYqlQ3DHVvwQ65erbJzfOMPUDkrl9MJnr1cf/OYWt13bqC7Xa6ON8TaygcxtRqBfmdx2XvcsCdmnQbQ/yTqncVlFcAGE1E09gBR9SpK
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -41,7 +41,7 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="1888" y="0" width="32" height="384"/>
-  <object gid="497" x="96" y="384">
+  <object gid="502" x="96" y="384">
    <properties>
     <property name="dest" value="retux-18b.tmx:enter"/>
     <property name="spawn_id" value="exit"/>
@@ -51,16 +51,16 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="484" x="1056" y="96"/>
-  <object gid="484" x="1056" y="64"/>
-  <object gid="484" x="1088" y="64"/>
-  <object gid="484" x="1088" y="96"/>
-  <object gid="484" x="1056" y="128"/>
-  <object gid="484" x="1088" y="128"/>
-  <object gid="484" x="1088" y="160"/>
-  <object gid="484" x="1056" y="160"/>
-  <object gid="484" x="1056" y="192"/>
-  <object gid="484" x="1088" y="192"/>
+  <object gid="489" x="1056" y="96"/>
+  <object gid="489" x="1056" y="64"/>
+  <object gid="489" x="1088" y="64"/>
+  <object gid="489" x="1088" y="96"/>
+  <object gid="489" x="1056" y="128"/>
+  <object gid="489" x="1088" y="128"/>
+  <object gid="489" x="1088" y="160"/>
+  <object gid="489" x="1056" y="160"/>
+  <object gid="489" x="1056" y="192"/>
+  <object gid="489" x="1088" y="192"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="992" y="384"/>
@@ -70,7 +70,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0EENACAQBLHDv1F44AEHZH8HSatgMlUAvGiN7oJ/TK9iXuW8ynmV8yrnVe72avtIgwMMpAg4
+   eJzt0EENACAQBLHDv1Z4oAAHZH8HSatgMlUAvGiN7oJ/TK9iXuW8ynmV8yrnVe72avtIgwMkOwhl
   </data>
  </layer>
 </map>

@@ -7,26 +7,26 @@
   <property name="name" value="In Need of a Lift"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../tilesets/snow.tsx"/>
- <tileset firstgid="249" source="../tilesets/cave.tsx"/>
- <tileset firstgid="321" source="../tilesets/castle.tsx"/>
- <tileset firstgid="351" source="../tilesets/blocks.tsx"/>
- <tileset firstgid="375" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="463" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="488" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="492" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="494" source="../tilesets/krush.tsx"/>
- <tileset firstgid="495" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="496" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="497" source="../tilesets/door.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt1sEJwDAMBEG7q/SYRp0uUkFABoNyMAP667XcGAAAAAAAAAAAAAAAAAAAAPue2f0BQM3SKyCEXgEp9ApIoVdACr0CUugVkOKrV1fxAAAAAAAAAAAAIMnd/QAAACV2GwDAWfYVwP9pNZBCrwAAAAAAAAAA6PACy1wMMQ==
+   eJzt1sEJwDAMBEG7sPSYRp0aUkFABoNyMAP667XcGAAAAAAAAAAAAAAAAAAAAPue2f0BQM3SKyCEXgEp9ApIoVdACr0CUugVkOKrV1fxAAAAAAAAAAAAIMnd/QAAACV2GwDAWfYVwP9pNZBCrwAAAAAAAAAA6PACVEgMpA==
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -102,50 +102,50 @@
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="465" x="1152" y="672"/>
-  <object gid="465" x="1184" y="672"/>
-  <object gid="465" x="1216" y="672"/>
-  <object gid="465" x="1248" y="672"/>
-  <object gid="465" x="1280" y="672"/>
-  <object gid="465" x="1312" y="672"/>
-  <object gid="465" x="1376" y="672"/>
-  <object gid="465" x="1408" y="672"/>
-  <object gid="466" x="1344" y="672"/>
-  <object gid="480" x="4096" y="704"/>
-  <object gid="480" x="2912" y="608"/>
-  <object gid="480" x="2752" y="1152"/>
-  <object gid="465" x="3744" y="544"/>
-  <object gid="465" x="3712" y="544"/>
-  <object gid="465" x="3488" y="480"/>
-  <object gid="465" x="3456" y="480"/>
-  <object gid="465" x="3328" y="480"/>
-  <object gid="465" x="3296" y="480"/>
-  <object gid="473" x="3392" y="480"/>
-  <object gid="480" x="6048" y="1088"/>
-  <object gid="480" x="6912" y="1152"/>
-  <object gid="473" x="3488" y="864"/>
-  <object gid="465" x="6496" y="960"/>
-  <object gid="465" x="6528" y="960"/>
-  <object gid="465" x="6560" y="960"/>
-  <object gid="465" x="6592" y="960"/>
-  <object gid="465" x="6624" y="960"/>
-  <object gid="471" x="7552" y="256"/>
-  <object gid="465" x="7520" y="256"/>
-  <object gid="465" x="7616" y="256"/>
-  <object gid="465" x="7648" y="256"/>
-  <object gid="465" x="7712" y="256"/>
-  <object gid="465" x="7744" y="256"/>
-  <object gid="472" x="7584" y="256"/>
-  <object gid="473" x="7680" y="256"/>
-  <object gid="465" x="2496" y="256"/>
-  <object gid="465" x="2528" y="256"/>
-  <object gid="465" x="2560" y="256"/>
-  <object gid="465" x="2432" y="256"/>
-  <object gid="465" x="2400" y="256"/>
-  <object gid="465" x="2624" y="256"/>
-  <object gid="465" x="2656" y="256"/>
-  <object gid="472" x="2592" y="256"/>
-  <object gid="472" x="2464" y="256"/>
+  <object gid="470" x="1152" y="672"/>
+  <object gid="470" x="1184" y="672"/>
+  <object gid="470" x="1216" y="672"/>
+  <object gid="470" x="1248" y="672"/>
+  <object gid="470" x="1280" y="672"/>
+  <object gid="470" x="1312" y="672"/>
+  <object gid="470" x="1376" y="672"/>
+  <object gid="470" x="1408" y="672"/>
+  <object gid="471" x="1344" y="672"/>
+  <object gid="485" x="4096" y="704"/>
+  <object gid="485" x="2912" y="608"/>
+  <object gid="485" x="2752" y="1152"/>
+  <object gid="470" x="3744" y="544"/>
+  <object gid="470" x="3712" y="544"/>
+  <object gid="470" x="3488" y="480"/>
+  <object gid="470" x="3456" y="480"/>
+  <object gid="470" x="3328" y="480"/>
+  <object gid="470" x="3296" y="480"/>
+  <object gid="478" x="3392" y="480"/>
+  <object gid="485" x="6048" y="1088"/>
+  <object gid="485" x="6912" y="1152"/>
+  <object gid="478" x="3488" y="864"/>
+  <object gid="470" x="6496" y="960"/>
+  <object gid="470" x="6528" y="960"/>
+  <object gid="470" x="6560" y="960"/>
+  <object gid="470" x="6592" y="960"/>
+  <object gid="470" x="6624" y="960"/>
+  <object gid="476" x="7552" y="256"/>
+  <object gid="470" x="7520" y="256"/>
+  <object gid="470" x="7616" y="256"/>
+  <object gid="470" x="7648" y="256"/>
+  <object gid="470" x="7712" y="256"/>
+  <object gid="470" x="7744" y="256"/>
+  <object gid="477" x="7584" y="256"/>
+  <object gid="478" x="7680" y="256"/>
+  <object gid="470" x="2496" y="256"/>
+  <object gid="470" x="2528" y="256"/>
+  <object gid="470" x="2560" y="256"/>
+  <object gid="470" x="2432" y="256"/>
+  <object gid="470" x="2400" y="256"/>
+  <object gid="470" x="2624" y="256"/>
+  <object gid="470" x="2656" y="256"/>
+  <object gid="477" x="2592" y="256"/>
+  <object gid="477" x="2464" y="256"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="5" x="1376" y="640"/>
@@ -224,7 +224,7 @@
  </objectgroup>
  <layer name="Front Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt1DENACAQBMHHv1Eo8IADQmg+l8wo2GqrAAAAAAAAAAAAAAAAAAAA/q3RXQDwZvoVEMKvgBR+BaTwKyCFXwEp/ApIcfvV9jIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhyOagg4
+   eJzt1DENACAQBMHHv1YoUIADQmg+l8wo2GqrAAAAAAAAAAAAAAAAAAAA/q3RXQDwZvoVEMKvgBR+BaTwKyCFXwEp/ApIcfvV9jIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhxKhQhl
   </data>
  </layer>
 </map>
