@@ -4,6 +4,7 @@
   <property name="background_y" value="512"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="One Is Not Enough"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -20,26 +21,39 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBcDjKAAAQ==
+   eJzt1MEJACAQA8GzMPuvRmuwAuF+EpyB/PPaKgAAAAAAAAAAAAAAAAAAAAAAAAAAAACAfHu8fgDQs/QKCKFXQAq9AlLoFZBCr4AUegWkuPVqNgcAAMC/DiF5CdQ=
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt2clKw2AUhuHTO6jiWqNrp73DbQiuW3Gt4uVZx52zoAu3CrpV0K1fwUCRDE3S/CfB94F3VZqJ9LT9YwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIcqYHacG6m5PH3Omb933Y6JTcCoNG2VE9dqis17dxCvacLoIUe1ZPqqz21r6IGtJpyvPx+gpeuhf2PcaxOQpxYS2yrF/Vq9cyplQrvTZtXk8DMQ1HDWTVlYf9jXKsbdarOLOy6StM8q131oT5tMjOmSEtqOeP1OudVnq7jvtE88ayas/Df2wfqVt3Z/11XeVPv6tDCX/+4NbWe8brnvJp13DeSeT7nGd4PZWeVd56fo6riNfUv9W3+1zKpeBZ6XudFx30jmedznuH9EDlX9jfCpvk/6y/aubqw5q2pZ8W8wqiopv7OgaT7LsS8ylsfKdu8+T/rL9q9erB2zKk45hVGRQnVsdY67rya9L7z1keqFGpN2uO46j63cbfPvMKoH3g1oTs=
+   eJzt2btOFGEYh/F370CM0Q7UAilEiFEblSByAUBjYs0SajVenmc7j5hoQSsJlECCLf8JO81mTjvzncZ9fskTCmB3dubjnS+DGQAAAAAA8ayppwWtxzwoACiwoTYL2op5UABQ4J66plbV3dHXq+pBvEMCgFLz6pZdzKonaiHq0QBAuXyPle2r7ht7KwBpy2YWcwoAAAAAAAAAAAAAAAAAAAAAAAAAAMC9N+qtehy5Ky2Pf3tgNhy1M2j5IgCS9kxtqy/qq7ocuZt+Py6AHvqt/qiheqFequsJtFxyvH3aP12ytPae6MbX9SzrnXof4oP1xHP1Vx2Ynzm11OF3y+aVCyFmXra2Z4y95//C5/Us65v6rj6ojzbd97Z9tatO1Km5mTGTtKjuVHzf57yq4+I+mq3tOQu794Qf+axqez27/E29Uj/UT5vee9uhOlKvLfz5z3uoHlV8P+bf5Kx1vzdWre26WV3XNM6rmP/nydaDr3uP7/q8VvJn6mfqn8U/l0XlszDmeb5tbj5DWXWzuu41x89N6OcqrjoeWCPZz8b8P0/X9eCitnuEFYt/nSftk/ps6T1Tr6rP88p34+fGxX4w9Xydy/E5ULTuQqyHrnvusm5Y/Gs3aXvql/VjTuUxr5qfm9DH6/sZZ9PX93EcTeeV6/dus+duWqhn0jGOK5W1mNq8CnXNm7xP03mV6jpt0zkng+32
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
  <objectgroup name="Collision Objects"/>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
+ <objectgroup name="Items">
+  <object gid="470" x="1120" y="672"/>
+  <object gid="470" x="1152" y="672"/>
+  <object gid="470" x="1216" y="672"/>
+  <object gid="470" x="1248" y="672"/>
+  <object gid="475" x="1184" y="672"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object type="flying_spiky_path" x="1280" y="448">
+   <polyline points="0,-32 0,-96 0,-32"/>
+  </object>
+  <object type="flying_spiky_path" x="1120" y="352">
+   <polyline points="0,0 0,64 0,0"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="128" y="864"/>
  </objectgroup>
  <layer name="Front Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBcDjKAAAQ==
+   eJzt1DENACAQBMHHv1YoUIABQujIkRkFW20VAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMA/RntdAHCn+xUQwq+AFH4FpPArIIVfASn8Ckhx+tX0MgAAADYWnDEIZQ==
   </data>
  </layer>
 </map>
