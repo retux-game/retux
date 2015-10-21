@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
+  <property name="background_y" value="512"/>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
  </properties>
@@ -17,14 +18,14 @@
  <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <layer name="Back Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBcDjKAAAQ==
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJzt2clKw2AUhuHTO6jiWqNrp73DbQiuW3Gt4uVZx52zoAu3CrpV0K1fwUCRDE3S/CfB94F3VZqJ9LT9YwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANIcqYHacG6m5PH3Omb933Y6JTcCoNG2VE9dqis17dxCvacLoIUe1ZPqqz21r6IGtJpyvPx+gpeuhf2PcaxOQpxYS2yrF/Vq9cyplQrvTZtXk8DMQ1HDWTVlYf9jXKsbdarOLOy6StM8q131oT5tMjOmSEtqOeP1OudVnq7jvtE88ayas/Df2wfqVt3Z/11XeVPv6tDCX/+4NbWe8brnvJp13DeSeT7nGd4PZWeVd56fo6riNfUv9W3+1zKpeBZ6XudFx30jmedznuH9EDlX9jfCpvk/6y/aubqw5q2pZ8W8wqiopv7OgaT7LsS8ylsfKdu8+T/rL9q9erB2zKk45hVGRQnVsdY67rya9L7z1keqFGpN2uO46j63cbfPvMKoH3g1oTs=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -33,10 +34,12 @@
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
- <layer name="Front Tiles" width="25" height="14">
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="864"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="300" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBcDjKAAAQ==
   </data>
  </layer>
 </map>
