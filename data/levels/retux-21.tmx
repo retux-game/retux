@@ -26,7 +26,7 @@
  </layer>
  <layer name="Middle Tiles" width="250" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt3E1OhDAYxvFyA7/W6rg0fq3V8TTq0hPoTg88N7DENCmjhVr68rbl/0uexUScgZEHWgIaAwAAAAAAAAAAAAAAgLV674z56LTXAoCkT9vxL3oOVO/AZhvIW/eT0M9Lzy7yGLWN/raAOp3aHBHAPNvzwksgr5WPa69szgvJreL7Ay37q+fSfcuZ1HW9trnxXgMtSzmf73ekxjzYPHqvgSWMzQ2mMmfukNLz/Y60EKBlJc3PNQO0bKznc+fpKb8/NSeQunYAtKy087nEnCDm2ABd/n0cJxmWw1BpPV8yfv+hy7+P4yLDchhac8/9QJe/H95lWA5D9Jyel4Cey0rpeU330cQGuui5LM7n9LwEU/11z0j7yz3ZXC6zetUL9Xype95yjA1yvIeUsecBpVPT9eipnrtnpP3lNoZrcbFCPde8501jXiCh7/ih0XsGr6YO9Puh+7vH9jy0LH7LMW6vab4eGqdInE/7jp8pbONYX0q1Px4P/S+EezPc1pq2UdPa5uehcYrE+XSq49LHRzd/rSF+fzf/+E5Tt3Ft1tbzlGiOV+Z89lhfSkvquCdlG4+N/nFN8zjqsuR+rT3md5//DZgmANo=
+   eJztnLtOxDAQRZ0/4FUDS4l41cDSAz0SEnRAg8QXQAcfzB/gCEVyAk6cie2Zse+RbrEi7K4dn9gTHIwphyObfYE5I7YnB1L7jBrJfQ3iIHXMSh57UvuMGsl9DeIgdcxKHnu5++zG5jZh7gh9AHQBz+eTu88k9wXQATyfDzwH2oDn87k39DXytSmrL4AO4HleKP1dal+AfMDzvFDWArhPBpYCz8Ec3htjPhrubwHmAs/BHD6t41/wXB3wHAzZsFl78tb8xvdz6fkOvEatg3tLB8N68cHm0cDzmtm12UKK59Xw+y7d8yc7Lzx78qJ8XStpjXfK+P61wOm7dM9L5j/PU/sWM9Tvemxz4ryujdZ3yv6OJYHnfFDm86EjGnNhc+m8rpGQcx/zeQv8zXi8NpjKktqB4vnQkRJSIyHnHnNwGUiqzzlTI/C8HsbO9dI6nfL7UzVBqnsHNQLP60HafJ6iJgi5NtRIyL7sXDW1u49jJ8JxoI80z3PG9R/w4u7jOIhwHOhTs+duAC/uOByrFUKPA33gOTyXADxPC8VzTftoQgN4gedpwXwOzyUw5W/3jLR73JXNYZ6vpx6f57n2vMVYG8R4j1SMPQ+YOpruR0953j0j7R63MrgXF4rPc849bxx1QQpaxzcN3zN4mhxox2F33kM99x0L/hJj3a6pXvetU1LMp63jewxtHPNFKsP1uO9/IZybfls1tZGT2upz3zolxXw65Xjq62NXv2qI6+9qRp9S21gbtXlOCed6Zclnj/kiLdR1D6WN24b/usZ5He2Sc1xzr/m7z/8Bq0uGfg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -44,6 +44,12 @@
   <object x="4128" y="384" width="256" height="32"/>
   <object x="3520" y="800" width="32" height="128"/>
   <object x="3520" y="928" width="448" height="32"/>
+  <object x="1952" y="480" width="320" height="128"/>
+  <object x="1952" y="352" width="928" height="128"/>
+  <object x="1632" y="0" width="1248" height="352"/>
+  <object x="5024" y="0" width="768" height="64"/>
+  <object x="4096" y="0" width="928" height="160"/>
+  <object x="4576" y="160" width="448" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="triggered_moving_platform_path" x="1824" y="800">
@@ -59,6 +65,7 @@
   <object type="spike_top" x="3552" y="896" width="416" height="32"/>
   <object type="spike_top" x="3520" y="768" width="32" height="32"/>
   <object type="spike_top" x="3968" y="928" width="1920" height="32"/>
+  <object type="slope_bottomleft" x="1760" y="352" width="192" height="96"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="3360" y="768">
@@ -135,8 +142,6 @@
   <object type="flying_snowball_path" x="3023" y="544">
    <polyline points="0,0 0,160 0,0"/>
   </object>
-  <object gid="8" x="4192" y="672"/>
-  <object gid="8" x="4352" y="672"/>
   <object gid="8" x="4736" y="672"/>
   <object gid="8" x="4864" y="544"/>
   <object gid="7" x="5024" y="480"/>
@@ -161,7 +166,42 @@
   <object gid="8" x="3936" y="416"/>
   <object gid="8" x="3872" y="544"/>
   <object gid="8" x="3936" y="672"/>
-  <object gid="8" x="4800" y="608"/>
+  <object gid="11" x="4352" y="672"/>
+  <object gid="11" x="4192" y="672"/>
+  <object type="flying_snowball_path" x="3904" y="224">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="3616" y="128">
+   <polyline points="0,0 0,96 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="4544" y="704">
+   <polyline points="0,0 0,-160 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="4672" y="544">
+   <polyline points="0,0 0,160 0,0"/>
+  </object>
+  <object type="flying_snowball_path" x="5408" y="288">
+   <polyline points="0,0 192,0 0,0"/>
+  </object>
+  <object gid="9" x="2016" y="640"/>
+  <object gid="9" x="2144" y="640"/>
+  <object gid="9" x="2560" y="512"/>
+  <object gid="9" x="2720" y="512"/>
+  <object gid="9" x="5120" y="288"/>
+  <object gid="9" x="5216" y="288"/>
+  <object gid="11" x="4800" y="608"/>
+  <object gid="9" x="5472" y="96"/>
+  <object gid="9" x="5728" y="96"/>
+  <object gid="9" x="5600" y="96"/>
+  <object gid="9" x="4960" y="256"/>
+  <object gid="9" x="4128" y="192"/>
+  <object gid="9" x="4160" y="192"/>
+  <object gid="9" x="4352" y="192"/>
+  <object gid="9" x="4320" y="192"/>
+  <object gid="9" x="4224" y="192"/>
+  <object gid="9" x="4256" y="192"/>
+  <object gid="9" x="4224" y="448"/>
+  <object gid="9" x="4288" y="448"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="896"/>

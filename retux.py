@@ -2689,13 +2689,11 @@ class FreezableObject(InteractiveObject):
 
 class FrozenObject(InteractiveObject, xsge_physics.Solid):
 
+    always_active = True
+    always_tangible = True
     burnable = True
     freezable = True
     unfrozen = None
-
-    def deactivate(self):
-        self.burn()
-        super(FrozenObject, self).deactivate()
 
     def burn(self):
         if self.unfrozen is not None:
@@ -2713,7 +2711,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
     def event_alarm(self, alarm_id):
         if self.unfrozen is not None:
             if alarm_id == "thaw_warn":
-                self.image_fps = THAW_FPS
+                self.image_fps = None
                 self.alarms["thaw"] = THAW_WARN_TIME
             elif alarm_id == "thaw":
                 self.burn()
@@ -6252,6 +6250,7 @@ def load_levelset(fname):
                     return True
             if isinstance(event, sge.input.QuitRequest):
                 sge.game.end()
+                return True
 
         gui_handler.event_step(0, 0)
         sge.game.refresh()
