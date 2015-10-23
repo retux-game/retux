@@ -171,13 +171,13 @@
   <object type="flying_snowball_path" x="3904" y="224">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object type="flying_snowball_path" x="3616" y="128">
+  <object type="flying_snowball_path" x="3712" y="128">
    <polyline points="0,0 0,96 0,0"/>
   </object>
   <object type="flying_snowball_path" x="4544" y="704">
    <polyline points="0,0 0,-160 0,0"/>
   </object>
-  <object type="flying_snowball_path" x="4672" y="544">
+  <object type="flying_snowball_path" x="4640" y="544">
    <polyline points="0,0 0,160 0,0"/>
   </object>
   <object type="flying_snowball_path" x="5408" y="288">
@@ -200,8 +200,6 @@
   <object gid="9" x="4320" y="192"/>
   <object gid="9" x="4224" y="192"/>
   <object gid="9" x="4256" y="192"/>
-  <object gid="9" x="4224" y="448"/>
-  <object gid="9" x="4288" y="448"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="896"/>
