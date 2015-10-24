@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="arctis"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Spring Ahead"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="300" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt1LEJACAUQ0EdzP2n0RmcQPiNSPAO0qd6rQEAAADAHau/fgBQM/UKCKFXQAq9AlLoFZBCr4AUegWkOPVqFAcAAMC/NtZqCdQ=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="300" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztmTlOBDEQRatvwJoCAylrzHIAyBEngIxoyCCDe7HkLEfhBpSFWhgznnG7qmyL+U96UmuCHq/fSxMBAAAAAAAAAAAAAE0W2GOBK+WLDACYU9bYJYHLhMwCAJRhm90I3JvwW8wRIbMAAGWYlFdDdZm1aV1Q0DTSe4XWxPrbJql5dcqeTfG8UHlBe7isWiTZvUJr+uvvqkYjzRm3HdFdp//e1LzaT3iX5hr7yD5l1smqrcBf+qxap/z9+ZD7h1L6433Le0Z2pXHP8+/BMK922F3KzyvtNfaVfWOv2IuBdbJqK/AbjaySGhu30gz0x/uB9+xn1387A2vtFxzWeXXIHlFeXlmN2zF7w16yz+wLpbX1dfetVt99JrZ77TFW2tpZ5Zw1bnON5ZX/LP223rL9fmHIvLOYg+E9ovQ8qJlVsTXR5dY7+0H1+xH+OLTPWzz3xUzJq9xvVSXbQfJfLcy78DteapufkO4aO+v82aKSvrcaoy1kgGUZStUv/B/LvMotUy1r9YEz3CeltvmIdNbYXqt9/LS6l/ALhYrR2A==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="384" width="3680" height="64"/>
+  <object x="3744" y="288" width="32" height="160"/>
+  <object x="3840" y="320" width="32" height="128"/>
+  <object x="1888" y="352" width="1792" height="32"/>
+  <object x="1920" y="320" width="1760" height="32"/>
+  <object x="1952" y="288" width="1728" height="32"/>
+  <object x="1984" y="256" width="1696" height="32"/>
+  <object x="3936" y="352" width="1792" height="32"/>
+  <object x="3936" y="384" width="2880" height="64"/>
+  <object x="6912" y="128" width="544" height="32"/>
+  <object x="6912" y="160" width="576" height="32"/>
+  <object x="6912" y="192" width="608" height="32"/>
+  <object x="6912" y="224" width="352" height="224"/>
+  <object x="7264" y="416" width="2336" height="32"/>
+  <object x="7424" y="384" width="2176" height="32"/>
+  <object x="7456" y="352" width="2144" height="32"/>
+  <object x="7488" y="320" width="672" height="32"/>
+  <object x="7520" y="288" width="640" height="32"/>
+  <object x="9536" y="224" width="64" height="128"/>
+  <object x="8608" y="320" width="64" height="32"/>
+  <object x="6208" y="352" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object gid="489" x="7488" y="256"/>
+  <object gid="489" x="7488" y="288"/>
+  <object gid="489" x="7488" y="320"/>
+  <object gid="489" x="7456" y="352"/>
+  <object gid="489" x="7456" y="320"/>
+  <object gid="489" x="7456" y="288"/>
+  <object gid="489" x="7456" y="256"/>
+  <object gid="489" x="7424" y="384"/>
+  <object gid="489" x="7424" y="352"/>
+  <object gid="489" x="7424" y="320"/>
+  <object gid="489" x="7424" y="288"/>
+  <object gid="489" x="7424" y="256"/>
+  <object gid="489" x="7520" y="256"/>
+  <object gid="489" x="7520" y="288"/>
+  <object gid="489" x="7392" y="256"/>
+  <object gid="489" x="7392" y="288"/>
+  <object gid="489" x="7392" y="320"/>
+  <object gid="489" x="7392" y="352"/>
+  <object gid="489" x="7392" y="384"/>
+  <object gid="489" x="7392" y="416"/>
+  <object gid="489" x="7360" y="256"/>
+  <object gid="489" x="7360" y="288"/>
+  <object gid="489" x="7360" y="320"/>
+  <object gid="489" x="7360" y="352"/>
+  <object gid="489" x="7360" y="384"/>
+  <object gid="489" x="7360" y="416"/>
+  <object gid="489" x="7264" y="256"/>
+  <object gid="489" x="7296" y="256"/>
+  <object gid="489" x="7328" y="256"/>
+  <object gid="489" x="7264" y="288"/>
+  <object gid="489" x="7296" y="288"/>
+  <object gid="489" x="7328" y="288"/>
+  <object gid="489" x="7328" y="320"/>
+  <object type="slope_topright" x="5728" y="352" width="64" height="32"/>
+  <object type="slope_topright" x="8160" y="288" width="128" height="64"/>
+  <object type="level_end" x="9088" y="0" width="32" height="352"/>
+  <object type="solid_top" x="6208" y="256" width="64" height="32"/>
+  <object type="solid_top" x="8608" y="256" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="6240" y="256">
+   <properties>
+    <property name="dest" value="retux-23b.tmx:left"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="8640" y="256">
+   <properties>
+    <property name="dest" value="retux-23b.tmx:right"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="8640" y="320">
+   <properties>
+    <property name="level_end" value=""/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="6240" y="320">
+   <properties>
+    <property name="spawn_id" value="shortcut"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object gid="476" x="7296" y="320"/>
+  <object gid="469" x="8064" y="64"/>
+  <object gid="487" x="6752" y="384"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="3" x="7840" y="288"/>
+  <object gid="3" x="7904" y="288"/>
+  <object gid="3" x="8160" y="288"/>
+  <object gid="3" x="8096" y="288"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="384"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="300" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt1LEJACAQBMG3/1o1sAIbEDEROZipYKOtAgAAAIC3RvtdAHCn+xUQwq+AFH4FpPArIIVfASn8Ckhx+tX0MgAAADYWUTEIZQ==
+  </data>
+ </layer>
+</map>
