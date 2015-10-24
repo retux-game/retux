@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="512"/>
+  <property name="bgname" value="bluemountain"/>
+  <property name="music" value="chipdisko.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzrEJAAAIwDBP18/1BhdBEujeCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Juc6noCAAAAAAAAAAAAAFhpyUABAg==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt3T9OwzAUx/FwBcQBInb+7MBtgIWBG8BQkGCBwi0YuQMjh8JDK4Uolv38J7afvx/pDah9diLVv7ZpZIYBaNvdQekjAAA/5BXw38bUU0B9BvY9r3NaKpBXqJ0kPySZkTontsLnL53X0vHbjnNj6dOcf/fkFRSRZkZtc4eOUfK81/Rj8uprVy+mXskvNIy8WnZt1vVNwrotlBO/Zt7vXW1NfZBXaBh5VZfUOTnNywdTj+QVGkZeAWgFeQWgFeQVgFaQVwBaMV+383uc5vc3pbxXibwCIOFatznXNXkFQIK8AtAK8gpAK2rPq/31tP11tPn1M/IK6EfteeV6LnkF9ENDXoXs20BeAe3RkFchY8eel23PHtv+PJr3rAHW0ntexe6pJZ0XQLje8yqkN3Tckqa5zGc9lJBiv0zySt4bOm5pb6beSx8EMOT7nYy8krH1uvaodu1LvfQeJH2/Iq9Qi+k6cd2zZOsLeTxGT3mVq0/ST16hFkuvV5/XMHkl7w0dN0efpJ+80u0qQx1Z5or9nYq8ko1NXkGbwwx1LJg/dj3nyqtU/xeLvEozp28/eaXb6FFnjsdPTJ1O/j4XzF9rXknnSNFLXsX3k1e6jQnqwtTl0EdeSb/Tkldp5vTtJ690Gwe/z1CS0pxX0sfJqzRz+vaTV7r9ATHwChE=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects">
+  <object type="moving_platform_path" x="1696" y="832">
+   <polyline points="0,0 320,0 0,0"/>
+  </object>
+  <object type="moving_platform_path" x="2880" y="864">
+   <polyline points="0,0 0,-288 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="470" x="320" y="736"/>
+  <object gid="470" x="352" y="736"/>
+  <object gid="470" x="384" y="736"/>
+  <object gid="470" x="416" y="736"/>
+  <object gid="470" x="480" y="736"/>
+  <object gid="471" x="448" y="736"/>
+  <object gid="485" x="4672" y="160"/>
+  <object gid="476" x="5440" y="96"/>
+  <object gid="470" x="5408" y="96"/>
+  <object gid="470" x="5376" y="96"/>
+  <object gid="470" x="5280" y="96"/>
+  <object gid="470" x="5248" y="96"/>
+  <object gid="470" x="5216" y="96"/>
+  <object gid="477" x="5312" y="96"/>
+  <object gid="477" x="5344" y="96"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object type="flying_spiky_path" x="2720" y="544">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="2560" y="416">
+   <polyline points="0,0 0,96 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="2400" y="480">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="832"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="300" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBcDjKAAAQ==
+  </data>
+ </layer>
+</map>
