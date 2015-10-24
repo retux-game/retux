@@ -40,7 +40,7 @@
   <object x="3552" y="352" width="1184" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="solid_top" x="4672" y="224" width="64" height="32"/>
+  <object type="solid_bottom" x="4672" y="224" width="64" height="32"/>
   <object type="solid_right" x="160" y="320" width="32" height="64"/>
   <object type="slope_topright" x="2688" y="320" width="128" height="64"/>
  </objectgroup>
@@ -133,7 +133,9 @@
   <object gid="5" x="4096" y="352"/>
   <object gid="5" x="4160" y="352"/>
  </objectgroup>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="224" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAL4MINAAAQ==

@@ -3,7 +3,7 @@
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="chipdisko.ogg"/>
-  <property name="name" value="Spring Ahead"/>
+  <property name="name" value="Spring Before You Leap"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -108,7 +108,7 @@
  <objectgroup color="#005500" name="warp_spawn">
   <object x="8640" y="320">
    <properties>
-    <property name="level_end" value=""/>
+    <property name="spawn_id" value="level_end"/>
    </properties>
    <polyline points="0,0 0,-64"/>
   </object>
@@ -123,12 +123,58 @@
   <object gid="476" x="7296" y="320"/>
   <object gid="469" x="8064" y="64"/>
   <object gid="487" x="6752" y="384"/>
+  <object gid="470" x="384" y="288"/>
+  <object gid="470" x="544" y="288"/>
+  <object gid="470" x="704" y="288"/>
+  <object gid="470" x="4768" y="256"/>
+  <object gid="470" x="4800" y="256"/>
+  <object gid="470" x="4832" y="256"/>
+  <object gid="470" x="4864" y="256"/>
+  <object gid="470" x="4960" y="256"/>
+  <object gid="470" x="4992" y="256"/>
+  <object gid="470" x="5024" y="256"/>
+  <object gid="470" x="5056" y="256"/>
+  <object gid="478" x="3744" y="192"/>
+  <object gid="478" x="3840" y="224"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="7840" y="288"/>
   <object gid="3" x="7904" y="288"/>
   <object gid="3" x="8160" y="288"/>
   <object gid="3" x="8096" y="288"/>
+  <object gid="4" x="2016" y="256"/>
+  <object gid="4" x="2144" y="256"/>
+  <object gid="4" x="2272" y="256"/>
+  <object gid="3" x="1280" y="384"/>
+  <object gid="3" x="1376" y="384"/>
+  <object gid="3" x="1472" y="384"/>
+  <object gid="3" x="5664" y="352"/>
+  <object gid="3" x="5600" y="352"/>
+  <object gid="5" x="7360" y="128"/>
+  <object gid="5" x="7296" y="128"/>
+  <object gid="5" x="2496" y="256"/>
+  <object gid="5" x="2560" y="256"/>
+  <object gid="5" x="2688" y="256"/>
+  <object gid="5" x="2752" y="256"/>
+  <object gid="5" x="2944" y="256"/>
+  <object gid="5" x="3008" y="256"/>
+  <object gid="7" x="3520" y="256"/>
+  <object gid="7" x="3360" y="256"/>
+  <object gid="7" x="3200" y="256"/>
+  <object gid="7" x="4128" y="352"/>
+  <object gid="7" x="4256" y="352"/>
+  <object gid="5" x="4480" y="352"/>
+  <object gid="5" x="4544" y="352"/>
+  <object gid="5" x="4608" y="352"/>
+  <object gid="5" x="5856" y="384"/>
+  <object gid="5" x="5920" y="384"/>
+  <object gid="5" x="5984" y="384"/>
+  <object gid="3" x="5536" y="352"/>
+  <object gid="3" x="5056" y="224"/>
+  <object gid="3" x="4864" y="224"/>
+  <object gid="4" x="2624" y="256"/>
+  <object gid="4" x="2880" y="256"/>
+  <object gid="5" x="2816" y="256"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="128" y="384"/>
