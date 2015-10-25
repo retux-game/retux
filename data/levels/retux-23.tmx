@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmTlOBDEQRatvwJoCAylrzHIAyBEngIxoyCCDe7HkLEfhBpSFWhgznnG7qmyL+U96UmuCHq/fSxMBAAAAAAAAAAAAAE0W2GOBK+WLDACYU9bYJYHLhMwCAJRhm90I3JvwW8wRIbMAAGWYlFdDdZm1aV1Q0DTSe4XWxPrbJql5dcqeTfG8UHlBe7isWiTZvUJr+uvvqkYjzRm3HdFdp//e1LzaT3iX5hr7yD5l1smqrcBf+qxap/z9+ZD7h1L6433Le0Z2pXHP8+/BMK922F3KzyvtNfaVfWOv2IuBdbJqK/AbjaySGhu30gz0x/uB9+xn1387A2vtFxzWeXXIHlFeXlmN2zF7w16yz+wLpbX1dfetVt99JrZ77TFW2tpZ5Zw1bnON5ZX/LP223rL9fmHIvLOYg+E9ovQ8qJlVsTXR5dY7+0H1+xH+OLTPWzz3xUzJq9xvVSXbQfJfLcy78DteapufkO4aO+v82aKSvrcaoy1kgGUZStUv/B/LvMotUy1r9YEz3CeltvmIdNbYXqt9/LS6l/ALhYrR2A==
+   eJztmTlOAzEUht/cgC0tEOgQYWnZDgA94gSko4IOOrgXS89yFG7As9AIM8SJx37PfiL/J33SKMXE6+9liAAAAAAAAAAAAACAJAvscYYr5YsMAJhTVtmlDJcJmQUAKMM2u95xd8JvIYeEzAIAlGFSXvXVZdaGdkGBaXLvFayJ9dcmsXl1yp5N8bxQeYE9XFYtUt69gjX99Xcg0Uhzxm1DdNfIvzc2r/Yi3iW5xj6yT4l10mor8Jc2q9YofX/e5/6hlP543/SekV1x3PP8e1DMqxG7Q+l5Jb3GvrJv7Ji96FknrbYCv5HIqlxD4zY3A/3xvu89+9n1387AUvsFh3ZeHbJHlJZXWuP2mr1hL9ln9oXi2vqq+Vaq7z4j2732GCtt7axyzhq3qYbyyn/O/bZu2Xa/0GfeaczB7j1i7nlQMqtCa6LLrXf2g+r3I/yxb59bPPeFjMmr1G9VJdsh578szLvud7zYNj8h2TV21vnTojl9rzVGLWSAZhlK1a/7P5p5lVqmWtbqA6fLnS3Pg8h3DUlmjW3V2sdPq3sJvwBUidJy
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -90,6 +90,7 @@
   <object type="level_end" x="9088" y="0" width="32" height="352"/>
   <object type="solid_top" x="6208" y="256" width="64" height="32"/>
   <object type="solid_top" x="8608" y="256" width="64" height="32"/>
+  <object type="spike_top" x="6816" y="416" width="96" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="6240" y="256">
