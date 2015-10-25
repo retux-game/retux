@@ -6974,7 +6974,7 @@ for i in list(backgrounds.keys()):
                                 xscroll_rate=0.75, yscroll_rate=1,
                                 repeat_left=True, repeat_right=True,
                                 repeat_up=True),
-            sge.BackgroundLayer(castle_bottom_spr, 0, 536, -99000,
+            sge.BackgroundLayer(castle_bottom_spr, 0, 544, -99000,
                                 xscroll_rate=0.75, yscroll_rate=1,
                                 repeat_left=True, repeat_right=True,
                                 repeat_down=True)]
