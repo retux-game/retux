@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="1216"/>
+  <property name="bgname" value="bluemountain_castle"/>
+  <property name="music" value="fortress.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="75" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="75" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztl7EJgDAUBZPxdAALI4h7aKeb2Ag27mDpUL5GiILJ70S4g1vg4H34wTsX0GQj4Z1RfSZZ0ypL3KqjVRJa2WGDdq5WLa2yxK3YYBpa2eFe2eFe5dnVZZHzY4O9HGh241CPTa5Rq1JWmLXw3/+jf/IEW39nFg==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects"/>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="75" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
+  </data>
+ </layer>
+</map>
