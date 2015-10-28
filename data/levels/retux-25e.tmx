@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJxLYGRgSBjFROHoYYZjgJgWIGoQ+G00rIZfWMUzDnwZQG2cOBpWgyKsBjrPDJU8OFpeEQ/iaWj2cANRNMzfww3A0lUbELcD8dHRcMMJoqBh1QfE/UB8djSscAJQWHkBcdgwxuFAHALEoRSq92Qc+PYQrTEsLRDrV3zqAbex4nM=
+   eJxLYGRgSBjFROHoYYZjgJgWIGoQ+G00rIZfWMUzDnwZQG2cOBpWgyKsBjrPDJU8OFpeEQ/iaWj2cANRNMzfww3A0lUbELcD8dHRcMMJoqBh1QfE/UB8djSscAJQWHkBcdgwxuFAHALEoRSq92Qc+PbQUMIAzEni4Q==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -36,7 +36,11 @@
   <object x="0" y="32" width="1696" height="224"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="level_end" x="2016" y="32" width="32" height="352"/>
+  <object type="timeline_switcher" x="2016" y="32" width="32" height="352">
+   <properties>
+    <property name="timeline" value="retux_boss3.json"/>
+   </properties>
+  </object>
   <object gid="488" x="1664" y="288">
    <properties>
     <property name="ID" value="bossblock1"/>

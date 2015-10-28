@@ -1,0 +1,23 @@
+{
+    "0": [
+        "setattr player human 0",
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 0",
+        "setattr player up_pressed 0",
+        "setattr player down_pressed 0",
+        "setattr player jump_pressed 0",
+        "setattr player action_pressed 0",
+        "setattr player sneak_pressed 0",
+        "setattr player xvelocity 0",
+        "setattr __level__ timeline_skip_target 35",
+        "if_watched",
+        "skip_to 35"
+    ],
+    "30": [
+        "dialog snowman So it is you! The lone rebellious penguin, who would see to it that our king's reign ends!",
+        "dialog snowman I'm sorry to inform you, Tux, but your treason ends now."
+    ],
+    "35": [
+        "timeline boss_start.json"
+    ]
+}
