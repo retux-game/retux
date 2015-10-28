@@ -42,6 +42,8 @@
   <object x="768" y="32" width="32" height="64"/>
   <object x="512" y="32" width="32" height="64"/>
   <object x="416" y="32" width="32" height="64"/>
+  <object x="1376" y="128" width="128" height="128"/>
+  <object x="1312" y="256" width="192" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="2304" y="320" width="64" height="32"/>
@@ -86,7 +88,11 @@
    </properties>
    <polyline points="0,0 0,64"/>
   </object>
-  <object gid="476" x="672" y="96"/>
+  <object gid="472" x="672" y="96">
+   <properties>
+    <property name="item" value="tuxdoll"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="64" y="384"/>

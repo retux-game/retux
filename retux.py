@@ -2976,7 +2976,7 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
         other.hurt()
 
     def knock(self, other=None):
-        super(FlyingSnowball, self).knock(other)
+        super(FlyingSpiky, self).knock(other)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
 
@@ -3420,6 +3420,12 @@ class Crusher(FallingObject):
 
     def touch(self, other):
         other.hurt()
+
+    def touch_death(self):
+        pass
+
+    def touch_hurt(self):
+        pass
 
     def stop_up(self):
         self.yvelocity = 0
