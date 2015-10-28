@@ -20,20 +20,113 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
+   eJztzkENADAIBLDD+/DNHwMLSaugCQAAALC9Srp+L+4ZU8UBDA==
   </data>
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztlzsKgEAMBXePpwewUGHxHn4avbevUNhG88DSGZgLDEkgQ05pQMtJrnKT8Ey5WkFMr04jrSwKrWzYwZhZfZZMK4ddfY7MvXK4W3GvYuq5YgffYa58uFc+9Vy1ssPQ5uMv+TdPIEBfrQ==
+   eJyLZmRgiB7FROFEIK4D4nogHgW4QTw0rEYBYRAFDKeY0bAiCsSPkLBKpoIfR0oe9KPAjzVAvbWMo2FFDGgB6m1lHDnlFTXCaqSUV9RKV6N5ED8YaenKf4SXV6FAd4dhweFY/EONsILVg8lDEIPcnoAFY/OPP5Xs88IRP4MdezJi79/Syj8g+wDh5GbG
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="2368" y="32" width="32" height="384"/>
+  <object x="1472" y="352" width="224" height="64"/>
+  <object x="1824" y="160" width="32" height="256"/>
+  <object x="0" y="32" width="32" height="384"/>
+  <object x="0" y="416" width="2400" height="32"/>
+  <object x="0" y="0" width="2400" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="triggered_moving_platform_path" x="2144" y="160">
+   <polyline points="0,0 0,160 -288,160 -288,-64 -448,-64 -448,256 -800,256 -800,-32 -960,-32 -960,32 -1120,192 -1472,192 -1472,0 -2112,0 -2112,192 -1120,192 -960,32 -960,-32 -800,-32 -800,256 -448,256 -448,-64 -288,-64 -288,160 0,160 0,0"/>
+  </object>
+  <object type="solid_bottom" x="32" y="32" width="64" height="32"/>
+  <object type="spike_top" x="32" y="384" width="1440" height="32"/>
+  <object type="spike_top" x="1696" y="384" width="128" height="32"/>
+  <object type="spike_top" x="1824" y="128" width="32" height="32"/>
+  <object type="solid_top" x="2304" y="160" width="64" height="32"/>
+  <object type="spike_top" x="1856" y="384" width="512" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="2336" y="160">
+   <properties>
+    <property name="dest" value="retux-25c.tmx:exit"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="64" y="64">
+   <properties>
+    <property name="dest" value="retux-25e.tmx:enter"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="64" y="0">
+   <properties>
+    <property name="spawn_id" value="exit"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="2336" y="224">
+   <properties>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
+ <objectgroup name="NPCs">
+  <object gid="5" x="1504" y="352"/>
+  <object type="flying_spiky_path" x="2144" y="288">
+   <polyline points="0,0 128,0 0,0"/>
+  </object>
+  <object gid="9" x="2048" y="64"/>
+  <object gid="9" x="2016" y="64"/>
+  <object gid="9" x="1984" y="64"/>
+  <object gid="9" x="2080" y="64"/>
+  <object gid="9" x="2112" y="64"/>
+  <object gid="11" x="1952" y="256"/>
+  <object gid="11" x="1888" y="160"/>
+  <object type="flying_spiky_path" x="1344" y="192">
+   <polyline points="0,0 128,0 0,0"/>
+  </object>
+  <object gid="9" x="1216" y="64"/>
+  <object gid="9" x="1248" y="64"/>
+  <object gid="9" x="1280" y="64"/>
+  <object gid="9" x="1120" y="64"/>
+  <object gid="9" x="1088" y="64"/>
+  <object gid="9" x="1056" y="64"/>
+  <object gid="9" x="1024" y="64"/>
+  <object gid="9" x="1312" y="64"/>
+  <object type="flying_spiky_path" x="992" y="384">
+   <polyline points="0,0 0,-64 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="928" y="384">
+   <polyline points="0,0 0,-64 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="864" y="384">
+   <polyline points="0,0 0,-64 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="672" y="320">
+   <polyline points="0,0 128,-128 128,0 0,-128 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="800" y="320">
+   <polyline points="0,0 -128,-128 -128,0 0,-128 0,0"/>
+  </object>
+  <object gid="9" x="128" y="64"/>
+  <object gid="9" x="160" y="64"/>
+  <object gid="9" x="192" y="64"/>
+  <object gid="9" x="224" y="64"/>
+  <object gid="9" x="608" y="64"/>
+  <object gid="9" x="576" y="64"/>
+  <object gid="9" x="544" y="64"/>
+  <object gid="9" x="512" y="64"/>
+  <object gid="9" x="416" y="64"/>
+  <object gid="9" x="384" y="64"/>
+  <object gid="9" x="352" y="64"/>
+  <object gid="9" x="320" y="64"/>
+ </objectgroup>
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">

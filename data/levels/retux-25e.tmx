@@ -25,15 +25,88 @@
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztl7ENgDAMBMN4MABFhJRkmdDBVJTsxFOkjPIVBbqTboGTZct5CiGjZZEwJqrTRiuLyFzZJFrZ0MqHVj7sdp9EKxvuoE+bqyp3edGtS9tXhzzlTasub6tFrjh0/ujn/IsPq0FeHA==
+   eJxLYGRgSBjFROHoYYZjgJgWIGoQ+G00rIZfWMUzDnwZQG2cOBpWgyKsBjrPDJU8OFpeEQ/iaWj2cANRNMzfww3A0lUbELcD8dHRcMMJoqBh1QfE/UB8djSscAJQWHkBcdgwxuFAHALEoRSq92Qc+PYQrTEsLRDrV3zqAbex4nM=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="2368" y="32" width="32" height="352"/>
+  <object x="0" y="256" width="32" height="128"/>
+  <object x="0" y="384" width="2400" height="64"/>
+  <object x="0" y="0" width="2400" height="32"/>
+  <object x="0" y="32" width="1696" height="224"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="level_end" x="2016" y="32" width="32" height="352"/>
+  <object gid="488" x="1664" y="288">
+   <properties>
+    <property name="ID" value="bossblock1"/>
+   </properties>
+  </object>
+  <object gid="488" x="1664" y="320">
+   <properties>
+    <property name="ID" value="bossblock5"/>
+   </properties>
+  </object>
+  <object gid="488" x="1664" y="352">
+   <properties>
+    <property name="ID" value="bossblock9"/>
+   </properties>
+  </object>
+  <object gid="488" x="1664" y="384">
+   <properties>
+    <property name="ID" value="bossblock13"/>
+   </properties>
+  </object>
+  <object type="solid_right" x="96" y="320" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="128" y="352">
+   <properties>
+    <property name="dest" value="retux-25d.tmx:exit"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="64" y="352">
+   <properties>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object type="circoflame" x="1824" y="384">
+   <polyline points="0,0 0,-96"/>
+  </object>
+  <object type="circoflame" x="1824" y="384">
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object type="circoflame" x="1824" y="384">
+   <polyline points="0,0 0,-32"/>
+  </object>
+  <object type="circoflame" x="2208" y="384">
+   <properties>
+    <property name="rvelocity" value="-2"/>
+   </properties>
+   <polyline points="0,0 0,-96"/>
+  </object>
+  <object type="circoflame" x="2208" y="384">
+   <properties>
+    <property name="rvelocity" value="-2"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object type="circoflame" x="2208" y="384">
+   <properties>
+    <property name="rvelocity" value="-2"/>
+   </properties>
+   <polyline points="0,0 0,-32"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="501" x="2272" y="416"/>
+ </objectgroup>
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">

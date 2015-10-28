@@ -373,12 +373,13 @@ class Level(sge.Room):
                  object_area_height=TILE_SIZE * 2,
                  name=None, bgname=None, music=None,
                  time_bonus=DEFAULT_LEVEL_TIME_BONUS, spawn=None,
-                 timeline=None, ambient_light=None):
+                 timeline=None, ambient_light=None, persistent=True):
         self.fname = None
         self.name = name
         self.music = music
         self.time_bonus = time_bonus
         self.spawn = spawn
+        self.persistent = persistent
         self.points = 0
         self.timeline_objects = {}
         self.warps = []
@@ -915,7 +916,8 @@ class Level(sge.Room):
                 r.fname = fname
 
         if r is not None:
-            current_areas[fname] = r
+            if r.persistent:
+                current_areas[fname] = r
 
             if fname not in level_names:
                 name = r.name
