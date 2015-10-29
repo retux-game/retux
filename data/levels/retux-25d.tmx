@@ -75,45 +75,20 @@
    <polyline points="0,0 0,-64"/>
   </object>
  </objectgroup>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="478" x="1568" y="288"/>
+ </objectgroup>
  <objectgroup name="NPCs">
   <object gid="5" x="1504" y="352"/>
-  <object type="flying_spiky_path" x="2144" y="288">
-   <polyline points="0,0 128,0 0,0"/>
-  </object>
   <object gid="9" x="2048" y="64"/>
   <object gid="9" x="2016" y="64"/>
   <object gid="9" x="1984" y="64"/>
   <object gid="9" x="2080" y="64"/>
   <object gid="9" x="2112" y="64"/>
-  <object gid="11" x="1952" y="256"/>
-  <object gid="11" x="1888" y="160"/>
-  <object type="flying_spiky_path" x="1344" y="192">
-   <polyline points="0,0 128,0 0,0"/>
-  </object>
-  <object gid="9" x="1216" y="64"/>
-  <object gid="9" x="1248" y="64"/>
-  <object gid="9" x="1280" y="64"/>
   <object gid="9" x="1120" y="64"/>
   <object gid="9" x="1088" y="64"/>
   <object gid="9" x="1056" y="64"/>
   <object gid="9" x="1024" y="64"/>
-  <object gid="9" x="1312" y="64"/>
-  <object type="flying_spiky_path" x="992" y="384">
-   <polyline points="0,0 0,-64 0,0"/>
-  </object>
-  <object type="flying_spiky_path" x="928" y="384">
-   <polyline points="0,0 0,-64 0,0"/>
-  </object>
-  <object type="flying_spiky_path" x="864" y="384">
-   <polyline points="0,0 0,-64 0,0"/>
-  </object>
-  <object type="flying_spiky_path" x="672" y="320">
-   <polyline points="0,0 128,-128 128,0 0,-128 0,0"/>
-  </object>
-  <object type="flying_spiky_path" x="800" y="320">
-   <polyline points="0,0 -128,-128 -128,0 0,-128 0,0"/>
-  </object>
   <object gid="9" x="128" y="64"/>
   <object gid="9" x="160" y="64"/>
   <object gid="9" x="192" y="64"/>
@@ -126,8 +101,16 @@
   <object gid="9" x="384" y="64"/>
   <object gid="9" x="352" y="64"/>
   <object gid="9" x="320" y="64"/>
+  <object gid="11" x="896" y="352"/>
+  <object gid="11" x="768" y="288"/>
+  <object gid="11" x="704" y="192"/>
+  <object gid="11" x="1408" y="224"/>
+  <object gid="11" x="1328" y="128"/>
+  <object gid="11" x="1920" y="192"/>
  </objectgroup>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="2336" y="160"/>
+ </objectgroup>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB

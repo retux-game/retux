@@ -63,14 +63,7 @@
   </object>
   <object type="solid_right" x="96" y="320" width="32" height="64"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp">
-  <object x="128" y="352">
-   <properties>
-    <property name="dest" value="retux-25d.tmx:exit"/>
-   </properties>
-   <polyline points="0,0 -64,0"/>
-  </object>
- </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn">
   <object x="64" y="352">
    <properties>
@@ -111,7 +104,9 @@
  <objectgroup name="NPCs">
   <object gid="501" x="2272" y="416"/>
  </objectgroup>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="160" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB

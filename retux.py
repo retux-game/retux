@@ -2279,6 +2279,7 @@ class Smoke(sge.Object):
 class InteractiveObject(sge.Object):
 
     active_range = ENEMY_ACTIVE_RANGE
+    killed_by_void = True
     always_active = False
     never_active = False
     always_tangible = False
@@ -2321,7 +2322,8 @@ class InteractiveObject(sge.Object):
                 if self.activated:
                     self.deactivate()
 
-            if self.bbox_top > sge.game.current_room.height + self.active_range:
+            void_y = sge.game.current_room.height + self.active_range
+            if self.killed_by_void and self.bbox_top > void_y:
                 self.destroy()
 
     def get_nearest_player(self):
@@ -2925,6 +2927,7 @@ class FlyingEnemy(CrowdBlockingObject):
 class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
                      WinPuffObject):
 
+    killed_by_void = False
     always_active = True
     freezable = True
     had_xv = 0
@@ -2961,6 +2964,7 @@ class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
 class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
                   WinPuffObject):
 
+    killed_by_void = False
     always_active = True
     burnable = True
     had_xv = 0
@@ -3236,6 +3240,7 @@ class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
 
 class Explosion(InteractiveObject):
 
+    killed_by_void = False
     detonator = None
 
     def event_create(self):
@@ -3501,6 +3506,7 @@ class Krosh(Crusher):
 
 class Circoflame(InteractiveObject):
 
+    killed_by_void = False
     active_range = 0
     burnable = True
     freezable = True
@@ -3527,6 +3533,10 @@ class Circoflame(InteractiveObject):
 
 class CircoflameCenter(InteractiveObject):
 
+    killed_by_void = False
+    always_active = True
+    never_tangible = True
+
     def __init__(self, x, y, z=0, radius=(TILE_SIZE * 4), pos=180,
                  rvelocity=2):
         self.radius = radius
@@ -3538,10 +3548,6 @@ class CircoflameCenter(InteractiveObject):
 
     def event_create(self):
         sge.game.current_room.add(self.flame)
-
-    def update_active(self):
-        self.active = True
-        self.tangible = False
 
     def event_step(self, time_passed, delta_mult):
         self.pos += self.rvelocity * delta_mult

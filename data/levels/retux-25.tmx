@@ -62,11 +62,12 @@
   <object gid="470" x="512" y="288"/>
   <object gid="477" x="320" y="288"/>
   <object gid="477" x="448" y="288"/>
-  <object gid="482" x="384" y="288">
+  <object gid="482" x="384" y="160">
    <properties>
     <property name="text" value="You'll need a friend to find the Tux doll in this castle, in more ways than one."/>
    </properties>
   </object>
+  <object gid="470" x="384" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="960" y="384"/>

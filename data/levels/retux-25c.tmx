@@ -25,27 +25,26 @@
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJyLZmRgiB7FROEYIMYG/BlR2X5IfD8sfEJmgNSg8wmx0YEfmpuIUUeOPcigBaiuFYij8IQVurno/iQnrCj1A6XqKA2rRCL1jFQwGlbEA2Ly4CiAAFhYxY+GFUGAHFajeRA/GA0r4gGty6tQoJlhZOJwLO7BZh42dbQAtC6vQOYmkIlB6fwDGo4ioQ1NLXAEaP5KIF6ClgdrgLiWinZTGlbv0fBAhNUZoPkbgXgNUlh5UZBfcGFPCsIKm3s8sYQVLdxNyE8D3R8dShgAWC2SFQ==
+   eJyLZmRgiB7FROEYIMYG/Bmxs/3Q2H441NEboLuLFDY+0AJU1wrEUXjCilj7RlJYJQ6g/4YCGA0r4gExeXAUQAAsrOJHw4ogQA6r0TyIH4yGFfGA1uVVKNDMMDJxOBb3YDMPmzpaAFqXVyBzE8jEoHT+AQ1HkdCGphY4AjR/JRAvQcuDNUBcS0W7KQ2r92h4IMLqDND8jUC8BimsvCjIL7iwJwVhhc09nljCihbuJuSnge6PDiUMANzhjcA=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="2368" y="32" width="32" height="352"/>
   <object x="0" y="32" width="32" height="352"/>
   <object x="192" y="32" width="32" height="64"/>
-  <object x="288" y="32" width="64" height="64"/>
-  <object x="416" y="32" width="64" height="64"/>
-  <object x="544" y="32" width="32" height="64"/>
-  <object x="736" y="32" width="32" height="64"/>
-  <object x="832" y="32" width="64" height="64"/>
-  <object x="960" y="32" width="32" height="64"/>
-  <object x="1056" y="32" width="32" height="64"/>
-  <object x="1152" y="32" width="32" height="64"/>
-  <object x="1376" y="32" width="32" height="64"/>
-  <object x="1472" y="32" width="32" height="64"/>
+  <object x="288" y="32" width="32" height="64"/>
+  <object x="384" y="32" width="32" height="64"/>
+  <object x="480" y="32" width="64" height="64"/>
   <object x="0" y="0" width="2400" height="32"/>
   <object x="0" y="384" width="2400" height="64"/>
   <object x="1312" y="288" width="192" height="96"/>
   <object x="672" y="288" width="512" height="96"/>
+  <object x="1984" y="32" width="32" height="64"/>
+  <object x="1888" y="32" width="32" height="64"/>
+  <object x="1792" y="32" width="32" height="64"/>
+  <object x="1696" y="32" width="32" height="64"/>
+  <object x="1600" y="32" width="32" height="64"/>
+  <object x="608" y="32" width="32" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="32" y="352" width="64" height="32"/>
@@ -80,50 +79,65 @@
    <polyline points="0,0 -64,0"/>
   </object>
  </objectgroup>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="479" x="224" y="384"/>
+  <object gid="479" x="256" y="384"/>
+  <object gid="479" x="320" y="384"/>
+  <object gid="479" x="352" y="384"/>
+  <object gid="479" x="416" y="384"/>
+  <object gid="479" x="448" y="384"/>
+  <object gid="479" x="544" y="384"/>
+  <object gid="479" x="576" y="384"/>
+  <object gid="479" x="672" y="224"/>
+  <object gid="479" x="704" y="224"/>
+  <object gid="479" x="736" y="256"/>
+  <object gid="479" x="1152" y="224"/>
+  <object gid="479" x="1184" y="192"/>
+  <object gid="479" x="1280" y="192"/>
+  <object gid="479" x="1312" y="224"/>
+  <object gid="479" x="1888" y="384"/>
+  <object gid="479" x="1920" y="384"/>
+  <object gid="479" x="1952" y="384"/>
+  <object gid="479" x="1984" y="384"/>
+ </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="192" y="384"/>
   <object gid="499" x="224" y="96"/>
-  <object gid="499" x="352" y="96"/>
-  <object gid="499" x="480" y="96"/>
+  <object gid="499" x="320" y="96"/>
+  <object gid="499" x="416" y="96"/>
   <object gid="9" x="288" y="128"/>
-  <object gid="9" x="320" y="128"/>
-  <object gid="9" x="416" y="128"/>
-  <object gid="9" x="448" y="128"/>
-  <object gid="9" x="544" y="128"/>
-  <object gid="9" x="576" y="64"/>
-  <object gid="9" x="608" y="64"/>
+  <object gid="9" x="384" y="128"/>
+  <object gid="9" x="480" y="128"/>
+  <object gid="9" x="512" y="128"/>
+  <object gid="9" x="608" y="128"/>
   <object gid="9" x="640" y="64"/>
   <object gid="9" x="672" y="64"/>
   <object gid="9" x="704" y="64"/>
-  <object gid="9" x="736" y="128"/>
-  <object gid="499" x="768" y="96"/>
-  <object gid="499" x="896" y="96"/>
-  <object gid="499" x="1088" y="96"/>
-  <object gid="499" x="1408" y="96"/>
+  <object gid="9" x="736" y="64"/>
+  <object gid="499" x="1632" y="96"/>
   <object gid="499" x="1728" y="96"/>
   <object gid="499" x="1920" y="96"/>
-  <object gid="9" x="832" y="128"/>
-  <object gid="9" x="864" y="128"/>
-  <object gid="9" x="960" y="128"/>
+  <object gid="9" x="832" y="64"/>
+  <object gid="9" x="864" y="64"/>
+  <object gid="9" x="960" y="64"/>
   <object gid="9" x="992" y="64"/>
   <object gid="9" x="1024" y="64"/>
-  <object gid="9" x="1056" y="128"/>
-  <object gid="9" x="1152" y="128"/>
+  <object gid="9" x="1056" y="64"/>
+  <object gid="9" x="1152" y="64"/>
   <object gid="9" x="1184" y="64"/>
   <object gid="9" x="1216" y="64"/>
   <object gid="9" x="1248" y="64"/>
   <object gid="9" x="1280" y="64"/>
   <object gid="9" x="1312" y="64"/>
   <object gid="9" x="1344" y="64"/>
-  <object gid="9" x="1376" y="128"/>
-  <object gid="9" x="1472" y="128"/>
+  <object gid="9" x="1376" y="64"/>
+  <object gid="9" x="1472" y="64"/>
   <object gid="9" x="1504" y="64"/>
   <object gid="9" x="1536" y="64"/>
   <object gid="9" x="1568" y="64"/>
-  <object gid="9" x="1600" y="64"/>
-  <object gid="9" x="1632" y="64"/>
-  <object gid="9" x="1664" y="64"/>
+  <object gid="9" x="1600" y="128"/>
+  <object gid="9" x="1408" y="64"/>
+  <object gid="9" x="1440" y="64"/>
   <object gid="9" x="1696" y="128"/>
   <object gid="9" x="1792" y="128"/>
   <object gid="9" x="1824" y="64"/>
@@ -139,6 +153,18 @@
   <object gid="9" x="2208" y="64"/>
   <object gid="11" x="1216" y="256"/>
   <object gid="11" x="1280" y="256"/>
+  <object gid="9" x="1120" y="64"/>
+  <object gid="9" x="1088" y="64"/>
+  <object gid="9" x="928" y="64"/>
+  <object gid="9" x="896" y="64"/>
+  <object gid="9" x="768" y="64"/>
+  <object gid="9" x="800" y="64"/>
+  <object gid="499" x="544" y="96"/>
+  <object gid="5" x="1120" y="288"/>
+  <object gid="5" x="1056" y="288"/>
+  <object gid="5" x="992" y="288"/>
+  <object gid="7" x="1440" y="288"/>
+  <object gid="7" x="2176" y="384"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="64" y="352"/>
