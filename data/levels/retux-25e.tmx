@@ -100,6 +100,14 @@
    </properties>
    <polyline points="0,0 0,-32"/>
   </object>
+  <object gid="479" x="480" y="352"/>
+  <object gid="479" x="512" y="320"/>
+  <object gid="479" x="544" y="320"/>
+  <object gid="479" x="576" y="352"/>
+  <object gid="479" x="992" y="352"/>
+  <object gid="479" x="1024" y="320"/>
+  <object gid="479" x="1056" y="320"/>
+  <object gid="479" x="1088" y="352"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="501" x="2272" y="416"/>
