@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="36" height="30" tilewidth="32" tileheight="32" backgroundcolor="#1f4678">
+ <properties>
+  <property name="music" value="salcon.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/map_objects.tsx"/>
+ <tileset firstgid="5" source="../tilesets/wm_roads.tsx"/>
+ <tileset firstgid="25" source="../tilesets/wm_bridge.tsx"/>
+ <tileset firstgid="37" source="../tilesets/wm_pier.tsx"/>
+ <tileset firstgid="45" source="../tilesets/wm_snow.tsx"/>
+ <tileset firstgid="90" source="../tilesets/wm_mountain.tsx"/>
+ <tileset firstgid="118" source="../tilesets/wm_thin_ice.tsx"/>
+ <tileset firstgid="133" source="../tilesets/wm_shallow_water.tsx"/>
+ <tileset firstgid="148" source="../tilesets/wm_trees.tsx"/>
+ <tileset firstgid="163" source="../tilesets/wm_icecave.tsx"/>
+ <tileset firstgid="190" source="../tilesets/wm_cave_cracks.tsx"/>
+ <tileset firstgid="205" source="../tilesets/wm_castle.tsx"/>
+ <layer name="Water" width="36" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAvg0Q4AAB
+  </data>
+ </layer>
+ <layer name="Land" width="36" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKHr9P27LcdAwVVTVVVVffwAiyfXKQ==
+  </data>
+ </layer>
+ <layer name="Roads" width="36" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztl7EOgDAIRFnUqDEa/f9/1cXEQWo5oAxyCUtT6Cu5Ni1R6k/qrlgNYjfi2YzqWCl5yori4Xw7M+N39E48aB+8+ofWHej7rCM99OwPUrsm581jUyBPS48ljz5nJOzMePGg8xEe6d69eaT5yWO3hpbn6SUujoo5kjtcq3ynlaXlWcjm39LSE6l4nULIB/M=
+  </data>
+ </layer>
+ <layer name="Decorations" width="36" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAvg0Q4AAB
+  </data>
+ </layer>
+ <layer name="Cave" width="36" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAvg0Q4AAB
+  </data>
+ </layer>
+ <objectgroup name="Spaces">
+  <object gid="3" x="1088" y="128">
+   <properties>
+    <property name="ID" value="map_enter"/>
+    <property name="dest" value="retux-3.tmx:map_exit"/>
+   </properties>
+  </object>
+  <object gid="3" x="64" y="864">
+   <properties>
+    <property name="ID" value="map_exit"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Objects"/>
+ <layer name="Hue" width="36" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAvg0Q4AAB
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="map_path"/>
+</map>

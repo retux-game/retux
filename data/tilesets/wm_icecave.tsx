@@ -2,7 +2,7 @@
 <tileset name="wm_icecave" tilewidth="32" tileheight="32">
  <image source="../images/tiles/tileset_wm_icecave.png" width="96" height="288"/>
  <terraintypes>
-  <terrain name="icecave" tile="-1"/>
+  <terrain name="icecave" tile="4"/>
  </terraintypes>
  <tile id="0" terrain=",,,0"/>
  <tile id="1" terrain=",,0,0"/>
