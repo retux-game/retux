@@ -488,6 +488,7 @@ levels/retux-25b.tmx
 levels/retux-25c.tmx
 levels/retux-25d.tmx
 levels/retux-25e.tmx
+levels/retux-26.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/test2.tmx
@@ -531,6 +532,7 @@ worldmaps/retux-1.tmx
 worldmaps/retux-2.tmx
 worldmaps/retux-3.tmx
 worldmaps/retux-4.tmx
+worldmaps/retux-5.tmx
 
 Author: onpon4 <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>

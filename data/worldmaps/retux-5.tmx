@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="32" tileheight="32" backgroundcolor="#1f4678">
+ <properties>
+  <property name="music" value="salcon.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/map_objects.tsx"/>
+ <tileset firstgid="5" source="../tilesets/wm_roads.tsx"/>
+ <tileset firstgid="25" source="../tilesets/wm_bridge.tsx"/>
+ <tileset firstgid="37" source="../tilesets/wm_pier.tsx"/>
+ <tileset firstgid="45" source="../tilesets/wm_snow.tsx"/>
+ <tileset firstgid="90" source="../tilesets/wm_mountain.tsx"/>
+ <tileset firstgid="118" source="../tilesets/wm_thin_ice.tsx"/>
+ <tileset firstgid="133" source="../tilesets/wm_shallow_water.tsx"/>
+ <tileset firstgid="148" source="../tilesets/wm_trees.tsx"/>
+ <tileset firstgid="163" source="../tilesets/wm_icecave.tsx"/>
+ <tileset firstgid="190" source="../tilesets/wm_cave_cracks.tsx"/>
+ <tileset firstgid="205" source="../tilesets/wm_castle.tsx"/>
+ <layer name="Water" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANWJAwOfLEgOFoByE80u0YBaNgFIyCUTAKRgHlAADBrgDN
+  </data>
+ </layer>
+ <layer name="Land" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJwzZmBgMMaBTRggwIhMeWIwte2wwsIm1Q5sZhDrD3MgtsCCLakYVoQAJXaYArEeEdiMAjvojdHjkNg4HYl4NKxGw2o0rEbxKB46GABxOnlw
+  </data>
+ </layer>
+ <layer name="Decorations (back)" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+  </data>
+ </layer>
+ <layer name="Roads" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiZQIAOdsjQwQ5ZOtghRwc76BEfo3aM2jFqx6gdo3YMPzs4gZgfDxaigxsGCgAAFrAB7A==
+  </data>
+ </layer>
+ <layer name="Decorations" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJy1k1kKwkAMQOd2Ivghin6qVevuNdwXBLUuVXsh72QCEwyhRWdp4NGFmbwk0wZKqR7QBwZAEwiAoTKLBtuL15YGn0NgBIyBCdDR76aGjjbbi9euJjTM8zZcTzETzC3zUJSBgmApODh6akBVvJMOZOXgwCiy+0pODuylpKmn5N8BW0eHjDzyH4ETw+eMKK7AjeHTQfU/hGOv/H23sn5iofz1kuVYAxuG7ZnjnOSMCLkO53m2cGT1wB28jtjC849DrrkbOp7Ahe2P2DP9J3KWpg7yvDRJSt2SWNmfDcUvh0s/FNRXVu5IfXt2jTzq/8eBPSQ5O3ycd5qDf8++5/UB8QGDAg==
+  </data>
+ </layer>
+ <layer name="Cave" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+  </data>
+ </layer>
+ <objectgroup name="Spaces"/>
+ <objectgroup name="Objects">
+  <object gid="3" x="640" y="736">
+   <properties>
+    <property name="ID" value="map_enter"/>
+    <property name="dest" value="retux-4.tmx:map_exit"/>
+   </properties>
+  </object>
+  <object gid="2" x="384" y="736"/>
+  <object gid="2" x="384" y="512"/>
+  <object gid="2" x="384" y="288"/>
+  <object gid="2" x="384" y="96"/>
+  <object gid="1" x="640" y="736"/>
+ </objectgroup>
+ <layer name="Hue" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ffff00" name="map_path">
+  <object x="640" y="704">
+   <polyline points="0,0 -256,0"/>
+  </object>
+  <object x="384" y="704">
+   <polyline points="0,0 0,-224"/>
+  </object>
+  <object x="384" y="480">
+   <polyline points="0,0 0,-224"/>
+  </object>
+  <object x="384" y="256">
+   <polyline points="0,0 0,-192"/>
+  </object>
+ </objectgroup>
+</map>
