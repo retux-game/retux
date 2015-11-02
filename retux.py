@@ -435,6 +435,13 @@ class Level(sge.Room):
             self.points += x
 
     def show_hud(self):
+        # Show darkness
+        if self.ambient_light:
+            xsge_lighting.project_darkness(ambient_light=self.ambient_light,
+                                           buffer=TILE_SIZE * 2)
+        else:
+            xsge_lighting.clear_lights()
+
         if not NO_HUD:
             if self.points:
                 score_text = "{}+{}".format(score, self.points)
@@ -604,13 +611,6 @@ class Level(sge.Room):
                         obj.image_index = lava_animation.image_index
                     elif isinstance(obj, (Goal, GoalTop)):
                         obj.image_index = goal_animation.image_index
-
-        # Show darkness
-        if self.ambient_light:
-            xsge_lighting.project_darkness(ambient_light=self.ambient_light,
-                                           buffer=TILE_SIZE * 2)
-        else:
-            xsge_lighting.clear_lights()
 
         # Show HUD
         self.show_hud()
