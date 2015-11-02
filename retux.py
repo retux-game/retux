@@ -3863,7 +3863,15 @@ class FireFlower(FallingObject, WinPuffObject):
         self.kick(True)
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, self.light_sprite)
+        if self.parent is not None:
+            x = self.parent.x + self.image_origin_x
+            y = self.parent.y
+            if self.parent.image_xscale < 0:
+                x -= self.sprite.width
+        else:
+            x = self.x
+            y = self.y
+        xsge_lighting.project_light(x, y, self.light_sprite)
 
     def win_puff(self):
         super(FireFlower, self).win_puff()
@@ -3950,7 +3958,15 @@ class IceFlower(FallingObject, WinPuffObject):
                 pass
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, self.light_sprite)
+        if self.parent is not None:
+            x = self.parent.x + self.image_origin_x
+            y = self.parent.y
+            if self.parent.image_xscale < 0:
+                x -= self.sprite.width
+        else:
+            x = self.x
+            y = self.y
+        xsge_lighting.project_light(x, y, self.light_sprite)
 
     def win_puff(self):
         super(IceFlower, self).win_puff()
@@ -4411,7 +4427,15 @@ class Lantern(FallingObject):
             self.parent = None
 
     def project_light(self):
-        xsge_lighting.project_light(self.x, self.y, self.light_sprite)
+        if self.parent is not None:
+            x = self.parent.x + self.image_origin_x
+            y = self.parent.y
+            if self.parent.image_xscale < 0:
+                x -= self.sprite.width
+        else:
+            x = self.x
+            y = self.y
+        xsge_lighting.project_light(x, y, self.light_sprite)
 
     def event_end_step(self, time_passed, delta_mult):
         if (self.yvelocity >= 0 and
