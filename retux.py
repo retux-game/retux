@@ -805,6 +805,19 @@ class Level(sge.Room):
                         self.win_game()
 
     def event_paused_step(self, time_passed, delta_mult):
+        # Handle lighting
+        if self.ambient_light:
+            range_ = max(ACTIVATE_RANGE, LIGHT_RANGE)
+        else:
+            range_ = ACTIVATE_RANGE
+
+        for view in self.views:
+            for obj in self.get_objects_at(
+                    view.x - range_, view.y - range_, view.width + range_ * 2,
+                    view.height + range_ * 2):
+                if isinstance(obj, InteractiveObject):
+                    obj.project_light()
+
         self.show_hud()
 
     def event_alarm(self, alarm_id):
