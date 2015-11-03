@@ -164,6 +164,16 @@ SNOWMAN_STRONG_STAGE = 2
 SNOWMAN_FINAL_STAGE = 3
 SNOWMAN_HITSTUN = 120
 
+RACCOT_WALK_SPEED = 3
+RACCOT_ACCELERATION = 0.2
+RACCOT_HOP_HEIGHT = 2 * TILE_SIZE
+RACCOT_JUMP_HEIGHT = 5 * TILE_SIZE
+RACCOT_STOMP_DELAY = 15
+RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
+RACCOT_HP = 5
+RACCOT_ATTACK_INTERVAL = 90
+RACCOT_STOMP_CHANCE = 0.2
+
 MAX_HP = 5
 HP_POINTS = 1000
 TIMER_FRAMES = 40
@@ -3787,6 +3797,31 @@ class Raccot(FallingObject, Boss):
     freezable = True
     knockable = True
     blastable = True
+
+    @property
+    def stage(self):
+        return self.__stage
+
+    @stage.setter
+    def stage(self, value):
+        self.__stage = value
+        if value:
+            pass
+
+    def __init__(self, x, y, hp=RACCOT_HP,
+                 attack_interval=RACCOT_ATTACK_INTERVAL,
+                 stomp_chance=RACCOT_STOMP_CHANCE, **kwargs):
+        self.hp = hp
+        self.attack_interval = attack_interval
+        self.stomp_chance = stomp_chance
+        super(Raccot, self).__init__(x, y, **kwargs)
+
+    def event_alarm(self, alarm_id):
+        if alarm_id == "attack":
+            if random.random() < stomp_chance:
+                pass
+            else:
+                pass
 
 
 class FireFlower(FallingObject, WinPuffObject):
