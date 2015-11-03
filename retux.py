@@ -1441,6 +1441,11 @@ class LevelEnd(Tile):
 
 class Player(xsge_physics.Collider):
 
+    run_speed = PLAYER_RUN_SPEED
+    jump_height = PLAYER_JUMP_HEIGHT
+    run_jump_height = PLAYER_RUN_JUMP_HEIGHT
+    stomp_height = PLAYER_STOMP_HEIGHT
+
     @property
     def warping(self):
         return self.__warping
@@ -1455,6 +1460,8 @@ class Player(xsge_physics.Collider):
             else:
                 self.held_object.x = self.x + self.held_object.image_origin_x
                 self.held_object.y = self.y
+                if self.image_xscale < 0:
+                    self.held_object.x -= held_object.sprite.width
 
     def __init__(self, x, y, z=0, sprite=None, visible=True, active=True,
                  checks_collisions=True, tangible=True, bbox_x=-13, bbox_y=2,
@@ -1554,10 +1561,10 @@ class Player(xsge_physics.Collider):
             for thin_ice in self.collision(ThinIce, y=(self.y + 1)):
                 thin_ice.crack()
 
-            if abs(self.xvelocity) >= PLAYER_RUN_SPEED:
-                self.yvelocity = get_jump_speed(PLAYER_RUN_JUMP_HEIGHT)
+            if abs(self.xvelocity) >= self.run_speed:
+                self.yvelocity = get_jump_speed(self.run_jump_height)
             else:
-                self.yvelocity = get_jump_speed(PLAYER_JUMP_HEIGHT)
+                self.yvelocity = get_jump_speed(self.jump_height)
             self.on_floor = []
             self.was_on_floor = []
             play_sound(jump_sound)
@@ -1584,11 +1591,14 @@ class Player(xsge_physics.Collider):
                     door.warp(self)
                     break
 
-    def stomp_jump(self, other, jump_height=PLAYER_JUMP_HEIGHT):
+    def stomp_jump(self, other, jump_height=None):
+        if jump_height is None:
+            jump_height = self.jump_height
+
         if self.jump_pressed:
             self.yvelocity = get_jump_speed(jump_height)
         else:
-            self.yvelocity = get_jump_speed(PLAYER_STOMP_HEIGHT)
+            self.yvelocity = get_jump_speed(self.stomp_height)
         T = math.floor(other.bbox_top / TILE_SIZE) * TILE_SIZE
         self.move_y(T - self.bbox_bottom)
 
