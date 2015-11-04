@@ -167,12 +167,12 @@ SNOWMAN_HITSTUN = 120
 RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
 RACCOT_HOP_HEIGHT = 2 * TILE_SIZE
-RACCOT_JUMP_HEIGHT = 5 * TILE_SIZE
+RACCOT_JUMP_HEIGHT = 7 * TILE_SIZE
 RACCOT_STOMP_DELAY = 15
 RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
 RACCOT_HP = 5
-RACCOT_ATTACK_INTERVAL = 90
-RACCOT_STOMP_CHANCE = 0.2
+RACCOT_HOP_INTERVAL = 90
+RACCOT_CHARGE_INTERVAL = 450
 
 MAX_HP = 5
 HP_POINTS = 1000
@@ -1438,6 +1438,7 @@ class LevelEnd(Tile):
         kwargs.setdefault("checks_collisions", False)
         super(LevelEnd, self).__init__(*args, **kwargs)
 
+
 class Player(xsge_physics.Collider):
 
     name = "Tux"
@@ -1454,8 +1455,7 @@ class Player(xsge_physics.Collider):
     fall_speed = PLAYER_FALL_SPEED
     slide_accel = PLAYER_SLIDE_ACCEL
     slide_speed = PLAYER_SLIDE_SPEED
-    walk_frames_per_pizel = PLAYER_WALK_FRAMES_PER_PIXEL
-    run_frames_per_pixel = PLAYER_RUN_FRAMES_PER_PIXEL
+    walk_frames_per_pixel = PLAYER_WALK_FRAMES_PER_PIXEL
     hitstun = PLAYER_HITSTUN
 
     @property
@@ -1778,6 +1778,7 @@ class Player(xsge_physics.Collider):
                 return grab_sprite
 
     def set_image(self):
+        h_control = bool(self.right_pressed) - bool(self.left_pressed)
         hands_free = (self.held_object is None)
 
         if self.on_floor and self.was_on_floor:
@@ -1797,9 +1798,8 @@ class Player(xsge_physics.Collider):
             if speed > 0:
                 if xm != self.facing:
                     skidding = skid_sound.playing
-                    s = speed + self.xdeceleration * delta_mult
                     if (not skidding and h_control and
-                            s >= PLAYER_SKID_THRESHOLD):
+                            speed >= PLAYER_SKID_THRESHOLD):
                         skidding = True
                         play_sound(skid_sound)
                 else:
@@ -1830,7 +1830,7 @@ class Player(xsge_physics.Collider):
                             self.sprite = self.get_grab_sprite(
                                 tux_body_run_sprite)
 
-                        self.image_speed = speed * self.run_frames_per_pixel
+                        self.image_speed = speed * PLAYER_RUN_FRAMES_PER_PIXEL
             else:
                 if hands_free:
                     self.sprite = tux_stand_sprite
@@ -2272,6 +2272,20 @@ class Player(xsge_physics.Collider):
                         abs(self.x - warp.x) < WARP_LAX):
                     self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
+
+
+class RaccotBase(xsge_physics.Collider):
+
+    pass
+
+
+class RaccotPlayer(RaccotBase, Player):
+
+    name = "Raccot"
+    walk_speed = RACCOT_WALK_SPEED
+    acceleration = RACCOT_ACCELERATION
+    jump_height = RACCOT_JUMP_HEIGHT
+    walk_frames_per_pixel = RACCOT_WALK_FRAMES_PER_PIXEL
 
 
 class DeadMan(sge.Object):
@@ -3816,7 +3830,7 @@ class Snowman(FallingObject, Boss):
             self.next_stage()
 
 
-class Raccot(FallingObject, Boss):
+class Raccot(RaccotBase, Boss, FallingObject):
 
     burnable = True
     freezable = True
@@ -3833,12 +3847,11 @@ class Raccot(FallingObject, Boss):
         if value:
             pass
 
-    def __init__(self, x, y, hp=RACCOT_HP,
-                 attack_interval=RACCOT_ATTACK_INTERVAL,
-                 stomp_chance=RACCOT_STOMP_CHANCE, **kwargs):
+    def __init__(self, x, y, hp=RACCOT_HP, hop_interval=RACCOT_HOP_INTERVAL,
+                 charge_interval=RACCOT_CHARGE_INTERVAL, **kwargs):
         self.hp = hp
-        self.attack_interval = attack_interval
-        self.stomp_chance = stomp_chance
+        self.hop_interval = hop_interval
+        self.charge_interval = charge_interval
         super(Raccot, self).__init__(x, y, **kwargs)
 
     def event_alarm(self, alarm_id):
@@ -6808,20 +6821,20 @@ snowman_hurt_walk_sprite = sge.Sprite("snowman_hurt_walk", d, origin_x=28,
 snowman_hurt_jump_sprite = sge.Sprite("snowman_hurt_jump", d, origin_x=28,
                                       origin_y=43, bbox_x=-17, bbox_y=-8,
                                       bbox_width=34, bbox_height=40)
-raccot_stand_sprite = sge.Sprite("raccot_stand", d, origin_x=41, origin_y=10,
-                                 bbox_x=-30, bbox_y=0, bbox_width=60,
+raccot_stand_sprite = sge.Sprite("raccot_stand", d, origin_x=41, origin_y=74,
+                                 bbox_x=-30, bbox_y=-64, bbox_width=60,
                                  bbox_height=96)
-raccot_walk_sprite = sge.Sprite("raccot_walk", d, origin_x=54, origin_y=12,
-                                bbox_x=-30, bbox_y=0, bbox_width=60,
+raccot_walk_sprite = sge.Sprite("raccot_walk", d, origin_x=54, origin_y=76,
+                                bbox_x=-30, bbox_y=-64, bbox_width=60,
                                 bbox_height=96)
-raccot_stomp_sprite = sge.Sprite("raccot_stomp", d, origin_x=41, origin_y=13,
-                                 bbox_x=-30, bbox_y=0, bbox_width=60,
+raccot_stomp_sprite = sge.Sprite("raccot_stomp", d, origin_x=41, origin_y=77,
+                                 bbox_x=-30, bbox_y=-64, bbox_width=60,
                                  bbox_height=96)
-raccot_hop_sprite = sge.Sprite("raccot_hop", d, origin_x=41, origin_y=10,
-                               bbox_x=-30, bbox_y=0, bbox_width=60,
+raccot_hop_sprite = sge.Sprite("raccot_hop", d, origin_x=41, origin_y=74,
+                               bbox_x=-30, bbox_y=-64, bbox_width=60,
                                bbox_height=96)
-raccot_jump_sprite = sge.Sprite("raccot_jump", d, origin_x=60, origin_y=8,
-                                bbox_x=-30, bbox_y=0, bbox_width=60,
+raccot_jump_sprite = sge.Sprite("raccot_jump", d, origin_x=60, origin_y=72,
+                                bbox_x=-30, bbox_y=-64, bbox_width=60,
                                 bbox_height=96)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
