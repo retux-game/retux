@@ -142,7 +142,7 @@ PLAYER_FALL_SPEED = 5
 PLAYER_SLIDE_ACCEL = 0.3
 PLAYER_SLIDE_SPEED = 1
 PLAYER_WALK_FRAMES_PER_PIXEL = 2 / 17
-PLAYER_RUN_IMAGE_SPEED = 0.25
+PLAYER_RUN_FRAMES_PER_PIXEL = 2 / 17
 PLAYER_HITSTUN = 120
 PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
 PLAYER_DIE_FALL_SPEED = 8
@@ -1438,13 +1438,25 @@ class LevelEnd(Tile):
         kwargs.setdefault("checks_collisions", False)
         super(LevelEnd, self).__init__(*args, **kwargs)
 
-
 class Player(xsge_physics.Collider):
 
+    name = "Tux"
+    walk_speed = PLAYER_WALK_SPEED
     run_speed = PLAYER_RUN_SPEED
+    max_speed = PLAYER_MAX_SPEED
+    acceleration = PLAYER_ACCELERATION
+    air_acceleration = PLAYER_AIR_ACCELERATION
+    friction = PLAYER_FRICTION
+    air_friction = PLAYER_AIR_FRICTION
     jump_height = PLAYER_JUMP_HEIGHT
     run_jump_height = PLAYER_RUN_JUMP_HEIGHT
     stomp_height = PLAYER_STOMP_HEIGHT
+    fall_speed = PLAYER_FALL_SPEED
+    slide_accel = PLAYER_SLIDE_ACCEL
+    slide_speed = PLAYER_SLIDE_SPEED
+    walk_frames_per_pizel = PLAYER_WALK_FRAMES_PER_PIXEL
+    run_frames_per_pixel = PLAYER_RUN_FRAMES_PER_PIXEL
+    hitstun = PLAYER_HITSTUN
 
     @property
     def warping(self):
@@ -1611,7 +1623,7 @@ class Player(xsge_physics.Collider):
                 play_sound(hurt_sound)
                 self.hitstun = True
                 self.image_alpha = 128
-                self.alarms["hitstun"] = PLAYER_HITSTUN
+                self.alarms["hitstun"] = self.hitstun
 
     def kill(self, show_fall=True):
         if self.held_object is not None:
@@ -1689,7 +1701,8 @@ class Player(xsge_physics.Collider):
     def show_hud(self):
         if not NO_HUD:
             y = 0
-            sge.game.project_text(font, "Tux", 0, y, color=sge.Color("white"))
+            sge.game.project_text(font, self.name, 0, y,
+                                  color=sge.Color("white"))
 
             x = 0
             y += 36
@@ -1764,6 +1777,78 @@ class Player(xsge_physics.Collider):
                 tux_grab_sprites[i] = grab_sprite
                 return grab_sprite
 
+    def set_image(self):
+        hands_free = (self.held_object is None)
+
+        if self.on_floor and self.was_on_floor:
+            # This method was designed to adjust the walk animation
+            # to account for slopes (so that the animation cycle is
+            # slower when walking up and faster when walking down),
+            # but it's so generic that it also causes nonsensical
+            # animation when the player is on a moving platform.
+            # TODO: Think of a way to achieve this effect without the
+            # silly-looking side-effect on moving platforms.
+            #xdiff = self.x - self.last_x
+            #speed = (math.hypot(abs(xdiff), abs(self.y - self.last_y)) /
+            #         delta_mult)
+            #xm = (xdiff > 0) - (xdiff < 0)
+            xm = (self.xvelocity > 0) - (self.xvelocity < 0)
+            speed = abs(self.xvelocity)
+            if speed > 0:
+                if xm != self.facing:
+                    skidding = skid_sound.playing
+                    s = speed + self.xdeceleration * delta_mult
+                    if (not skidding and h_control and
+                            s >= PLAYER_SKID_THRESHOLD):
+                        skidding = True
+                        play_sound(skid_sound)
+                else:
+                    skidding = False
+
+                if skidding:
+                    if hands_free:
+                        self.sprite = tux_skid_sprite
+                    else:
+                        self.sprite = self.get_grab_sprite(
+                            tux_body_skid_sprite, tux_arms_skid_grab_sprite)
+                else:
+                    if (xm != self.facing or
+                            abs(self.xvelocity) < self.run_speed):
+                        if hands_free:
+                            self.sprite = tux_walk_sprite
+                        else:
+                            self.sprite = self.get_grab_sprite(
+                                tux_body_walk_sprite)
+
+                        self.image_speed = speed * self.walk_frames_per_pixel
+                        if xm != self.facing:
+                            self.image_speed *= -1
+                    else:
+                        if hands_free:
+                            self.sprite = tux_run_sprite
+                        else:
+                            self.sprite = self.get_grab_sprite(
+                                tux_body_run_sprite)
+
+                        self.image_speed = speed * self.run_frames_per_pixel
+            else:
+                if hands_free:
+                    self.sprite = tux_stand_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(
+                        tux_body_stand_sprite)
+        else:
+            if self.yvelocity < 0:
+                if hands_free:
+                    self.sprite = tux_jump_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
+            else:
+                if hands_free:
+                    self.sprite = tux_fall_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_fall_sprite)
+
     def event_create(self):
         sge.game.current_room.add_timeline_object(self)
 
@@ -1808,22 +1893,22 @@ class Player(xsge_physics.Collider):
                 self.facing = h_control
                 self.image_xscale = h_control * abs(self.image_xscale)
                 h_factor = abs(self.right_pressed - self.left_pressed)
-                max_speed = h_factor * PLAYER_MAX_SPEED
+                max_speed = h_factor * self.max_speed
                 if self.sneak_pressed:
-                    max_speed = min(max_speed, PLAYER_WALK_SPEED)
+                    max_speed = min(max_speed, self.walk_speed)
                 if abs(self.xvelocity) < max_speed:
                     if self.on_floor or self.was_on_floor:
-                        self.xacceleration = PLAYER_ACCELERATION * h_control
+                        self.xacceleration = self.acceleration * h_control
                     else:
-                        self.xacceleration = PLAYER_AIR_ACCELERATION * h_control
+                        self.xacceleration = self.air_acceleration * h_control
                 else:
-                    if abs(self.xvelocity) >= PLAYER_MAX_SPEED:
+                    if abs(self.xvelocity) >= self.max_speed:
                         self.xvelocity = max_speed * current_h_movement
 
                     if self.on_floor or self.was_on_floor:
-                        dc = PLAYER_FRICTION
+                        dc = self.friction
                     else:
-                        dc = PLAYER_AIR_FRICTION
+                        dc = self.air_friction
 
                     if self.xvelocity - dc * delta_mult > max_speed:
                         self.xdeceleration = dc
@@ -1832,17 +1917,17 @@ class Player(xsge_physics.Collider):
 
             if current_h_movement and h_control != current_h_movement:
                 if self.on_floor or self.was_on_floor:
-                    self.xdeceleration = PLAYER_FRICTION
+                    self.xdeceleration = self.friction
                 else:
-                    self.xdeceleration = PLAYER_AIR_FRICTION
+                    self.xdeceleration = self.air_friction
 
             if not self.on_floor and not self.was_on_floor:
-                if self.yvelocity < PLAYER_FALL_SPEED:
+                if self.yvelocity < self.fall_speed:
                     self.yacceleration = GRAVITY
                 else:
-                    self.yvelocity = PLAYER_FALL_SPEED
+                    self.yvelocity = self.fall_speed
             elif self.on_slope:
-                self.yvelocity = (PLAYER_SLIDE_SPEED *
+                self.yvelocity = (self.slide_speed *
                                   (self.on_slope[0].bbox_height /
                                    self.on_slope[0].bbox_width))
 
@@ -1910,77 +1995,7 @@ class Player(xsge_physics.Collider):
 
         # Set image
         if "fixed_sprite" not in self.alarms:
-            hands_free = (self.held_object is None)
-
-            if self.on_floor and self.was_on_floor:
-                # This method was designed to adjust the walk animation
-                # to account for slopes (so that the animation cycle is
-                # slower when walking up and faster when walking down),
-                # but it's so generic that it also causes nonsensical
-                # animation when the player is on a moving platform.
-                # TODO: Think of a way to achieve this effect without the
-                # silly-looking side-effect on moving platforms.
-                #xdiff = self.x - self.last_x
-                #speed = (math.hypot(abs(xdiff), abs(self.y - self.last_y)) /
-                #         delta_mult)
-                #xm = (xdiff > 0) - (xdiff < 0)
-                xm = (self.xvelocity > 0) - (self.xvelocity < 0)
-                speed = abs(self.xvelocity)
-                if speed > 0:
-                    if xm != self.facing:
-                        skidding = skid_sound.playing
-                        s = speed + self.xdeceleration * delta_mult
-                        if (not skidding and h_control and
-                                s >= PLAYER_SKID_THRESHOLD):
-                            skidding = True
-                            play_sound(skid_sound)
-                    else:
-                        skidding = False
-
-                    if skidding:
-                        if hands_free:
-                            self.sprite = tux_skid_sprite
-                        else:
-                            self.sprite = self.get_grab_sprite(
-                                tux_body_skid_sprite, tux_arms_skid_grab_sprite)
-                    else:
-                        if (xm != self.facing or
-                                abs(self.xvelocity) < PLAYER_RUN_SPEED):
-                            if hands_free:
-                                self.sprite = tux_walk_sprite
-                            else:
-                                self.sprite = self.get_grab_sprite(
-                                    tux_body_walk_sprite)
-
-                            self.image_speed = (speed *
-                                                PLAYER_WALK_FRAMES_PER_PIXEL)
-                            if xm != self.facing:
-                                self.image_speed *= -1
-                        else:
-                            if hands_free:
-                                self.sprite = tux_run_sprite
-                            else:
-                                self.sprite = self.get_grab_sprite(
-                                    tux_body_run_sprite)
-
-                            self.image_speed = PLAYER_RUN_IMAGE_SPEED
-                else:
-                    if hands_free:
-                        self.sprite = tux_stand_sprite
-                    else:
-                        self.sprite = self.get_grab_sprite(
-                            tux_body_stand_sprite)
-            else:
-                if self.yvelocity < 0:
-                    if hands_free:
-                        self.sprite = tux_jump_sprite
-                    else:
-                        self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
-                else:
-                    if hands_free:
-                        self.sprite = tux_fall_sprite
-                    else:
-                        self.sprite = self.get_grab_sprite(tux_body_fall_sprite)
+            self.set_image()
 
         # Enter warp pipes
         if h_control > 0 and self.xvelocity >= 0:
@@ -2032,7 +2047,7 @@ class Player(xsge_physics.Collider):
             else:
                 self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
 
-            self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+            self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
             if self.xvelocity > 0:
                 self.image_xscale = abs(self.image_xscale)
             else:
@@ -2176,7 +2191,7 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "left" and self.bbox_left == warp.x and
                         abs(self.y - warp.y) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
 
     def event_physics_collision_right(self, other, move_loss):
@@ -2191,7 +2206,7 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "right" and self.bbox_right == warp.x and
                         abs(self.y - warp.y) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
 
     def event_physics_collision_top(self, other, move_loss):
@@ -2235,7 +2250,7 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "up" and self.bbox_top == warp.y and
                         abs(self.x - warp.x) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
                     break
 
@@ -2248,14 +2263,14 @@ class Player(xsge_physics.Collider):
             self.yvelocity = 0
         elif isinstance(other, (xsge_physics.SlopeTopLeft,
                                 xsge_physics.SlopeTopRight)):
-            self.yvelocity = PLAYER_SLIDE_SPEED * (other.bbox_height /
-                                                   other.bbox_width)
+            self.yvelocity = self.slide_speed * (other.bbox_height /
+                                                 other.bbox_width)
 
         if self.down_pressed:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "down" and self.bbox_bottom == warp.y and
                         abs(self.x - warp.x) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
 
 
