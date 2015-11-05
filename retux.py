@@ -1455,7 +1455,6 @@ class Player(xsge_physics.Collider):
     fall_speed = PLAYER_FALL_SPEED
     slide_accel = PLAYER_SLIDE_ACCEL
     slide_speed = PLAYER_SLIDE_SPEED
-    walk_frames_per_pixel = PLAYER_WALK_FRAMES_PER_PIXEL
     hitstun = PLAYER_HITSTUN
 
     @property
@@ -1820,7 +1819,7 @@ class Player(xsge_physics.Collider):
                             self.sprite = self.get_grab_sprite(
                                 tux_body_walk_sprite)
 
-                        self.image_speed = speed * self.walk_frames_per_pixel
+                        self.image_speed = speed * PLAYER_WALK_FRAMES_PER_PIXEL
                         if xm != self.facing:
                             self.image_speed *= -1
                     else:
@@ -1848,6 +1847,32 @@ class Player(xsge_physics.Collider):
                     self.sprite = tux_fall_sprite
                 else:
                     self.sprite = self.get_grab_sprite(tux_body_fall_sprite)
+
+    def set_warp_image(self):
+        hands_free = (self.held_object is None)
+
+        if abs(self.xvelocity) >= WARP_SPEED / 2:
+            if hands_free:
+                self.sprite = tux_walk_sprite
+            else:
+                self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
+
+            self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+            if self.xvelocity > 0:
+                self.image_xscale = abs(self.image_xscale)
+            else:
+                self.image_xscale = -abs(self.image_xscale)
+        else:
+            if self.on_floor and self.was_on_floor and abs(self.yvelocity) < 1:
+                if hands_free:
+                    self.sprite = tux_stand_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_stand_sprite)
+            else:
+                if hands_free:
+                    self.sprite = tux_jump_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
 
     def event_create(self):
         sge.game.current_room.add_timeline_object(self)
@@ -2039,30 +2064,7 @@ class Player(xsge_physics.Collider):
             self.kill(False)
 
     def event_step_warp(self, time_passed, delta_mult):
-        hands_free = (self.held_object is None)
-
-        if abs(self.xvelocity) >= WARP_SPEED / 2:
-            if hands_free:
-                self.sprite = tux_walk_sprite
-            else:
-                self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
-
-            self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
-            if self.xvelocity > 0:
-                self.image_xscale = abs(self.image_xscale)
-            else:
-                self.image_xscale = -abs(self.image_xscale)
-        else:
-            if self.on_floor and self.was_on_floor and abs(self.yvelocity) < 1:
-                if hands_free:
-                    self.sprite = tux_stand_sprite
-                else:
-                    self.sprite = self.get_grab_sprite(tux_body_stand_sprite)
-            else:
-                if hands_free:
-                    self.sprite = tux_jump_sprite
-                else:
-                    self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
+        self.set_warp_image()
 
     def event_paused_step(self, time_passed, delta_mult):
         self.show_hud()
@@ -2191,7 +2193,6 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "left" and self.bbox_left == warp.x and
                         abs(self.y - warp.y) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
 
     def event_physics_collision_right(self, other, move_loss):
@@ -2206,7 +2207,6 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "right" and self.bbox_right == warp.x and
                         abs(self.y - warp.y) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
 
     def event_physics_collision_top(self, other, move_loss):
@@ -2250,7 +2250,6 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "up" and self.bbox_top == warp.y and
                         abs(self.x - warp.x) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
                     break
 
@@ -2270,13 +2269,13 @@ class Player(xsge_physics.Collider):
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "down" and self.bbox_bottom == warp.y and
                         abs(self.x - warp.x) < WARP_LAX):
-                    self.image_speed = WARP_SPEED * self.walk_frames_per_pixel
                     warp.warp(self)
 
 
 class RaccotBase(xsge_physics.Collider):
 
-    pass
+    hopping = False
+    stomping = False
 
 
 class RaccotPlayer(RaccotBase, Player):
@@ -2285,7 +2284,57 @@ class RaccotPlayer(RaccotBase, Player):
     walk_speed = RACCOT_WALK_SPEED
     acceleration = RACCOT_ACCELERATION
     jump_height = RACCOT_JUMP_HEIGHT
-    walk_frames_per_pixel = RACCOT_WALK_FRAMES_PER_PIXEL
+    run_jump_height = RACCOT_JUMP_HEIGHT
+
+    def set_image(self):
+        h_control = bool(self.right_pressed) - bool(self.left_pressed)
+
+        if self.on_floor and self.was_on_floor:
+            if self.hopping:
+                self.sprite = raccot_stomp_sprite
+            else:
+                xm = (self.xvelocity > 0) - (self.xvelocity < 0)
+                speed = abs(self.xvelocity)
+                if speed > 0:
+                    self.sprite = raccot_walk_sprite
+                    self.image_speed = speed * RACCOT_WALK_FRAMES_PER_PIXEL
+                    if xm != self.facing:
+                        self.image_speed *= -1
+                else:
+                    self.sprite = raccot_stand_sprite
+        else:
+            if self.hopping:
+                self.sprite = raccot_hop_sprite
+            elif self.stomping:
+                self.sprite = raccot_stomp_sprite
+            else:
+                self.sprite = raccot_jump_sprite
+
+    def set_warp_image(self):
+        hands_free = (self.held_object is None)
+
+        if abs(self.xvelocity) >= WARP_SPEED / 2:
+            if hands_free:
+                self.sprite = tux_walk_sprite
+            else:
+                self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
+
+            self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+            if self.xvelocity > 0:
+                self.image_xscale = abs(self.image_xscale)
+            else:
+                self.image_xscale = -abs(self.image_xscale)
+        else:
+            if self.on_floor and self.was_on_floor and abs(self.yvelocity) < 1:
+                if hands_free:
+                    self.sprite = tux_stand_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_stand_sprite)
+            else:
+                if hands_free:
+                    self.sprite = tux_jump_sprite
+                else:
+                    self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
 
 
 class DeadMan(sge.Object):
