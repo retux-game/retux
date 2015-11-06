@@ -7318,9 +7318,9 @@ if __name__ == '__main__':
                "keys": keys_cfg, "joystick": js_cfg}
 
         with open(os.path.join(CONFIG, "config.json"), 'w') as f:
-            json.dump(cfg, f, indent=4, sort_keys=True)
+            json.dump(cfg, f, indent=4)
 
         with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
-            json.dump(save_slots, f, indent=4, sort_keys=True)
+            json.dump(save_slots, f, indent=4)
 
         shutil.rmtree(DATA)
