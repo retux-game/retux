@@ -330,6 +330,54 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable
 
 ------------------------------------------------------------------------
 
+images/objects/tux/tux_arms_run-0.png
+images/objects/tux/tux_arms_run-1.png
+images/objects/tux/tux_arms_run-2.png
+images/objects/tux/tux_arms_run-3.png
+images/objects/tux/tux_arms_run-4.png
+images/objects/tux/tux_arms_run-5.png
+images/objects/tux/tux_arms_run-6.png
+images/objects/tux/tux_arms_run-7.png
+images/objects/tux/tux_arms_run-8.png
+images/objects/tux/tux_arms_run-9.png
+images/objects/tux/tux_arms_run-10.png
+images/objects/tux/tux_arms_run-11.png
+images/objects/tux/tux_arms_run-12.png
+images/objects/tux/tux_arms_run-13.png
+images/objects/tux/tux_arms_run-14.png
+images/objects/tux/tux_arms_run-15.png
+images/objects/tux/tux_body_run-0.png
+images/objects/tux/tux_body_run-1.png
+images/objects/tux/tux_body_run-2.png
+images/objects/tux/tux_body_run-3.png
+images/objects/tux/tux_body_run-4.png
+images/objects/tux/tux_body_run-5.png
+images/objects/tux/tux_body_run-6.png
+images/objects/tux/tux_body_run-7.png
+images/objects/tux/tux_body_run-8.png
+images/objects/tux/tux_body_run-9.png
+images/objects/tux/tux_body_run-10.png
+images/objects/tux/tux_body_run-11.png
+images/objects/tux/tux_body_run-12.png
+images/objects/tux/tux_body_run-13.png
+images/objects/tux/tux_body_run-14.png
+images/objects/tux/tux_body_run-15.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  Connie Cartwright
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Details:
+  New animation by Connie Cartwright based on the design of the Tux
+  sprites by the SuperTux development team (from SuperTux 0.3.0).
+
+  Some slight modifications have been made by onpon4, including resizing
+  the images, adjusting their positions, and adding some small
+  touch-ups. The original version, as sent in by Connie Cartwright, can
+  be found under the "sources" directory.
+
+------------------------------------------------------------------------
+
 images/objects/enemies/flying_spiky-0.png
 images/objects/enemies/flying_spiky-1.png
 

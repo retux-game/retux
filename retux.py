@@ -142,7 +142,7 @@ PLAYER_FALL_SPEED = 5
 PLAYER_SLIDE_ACCEL = 0.3
 PLAYER_SLIDE_SPEED = 1
 PLAYER_WALK_FRAMES_PER_PIXEL = 2 / 17
-PLAYER_RUN_FRAMES_PER_PIXEL = 2 / 17
+PLAYER_RUN_FRAMES_PER_PIXEL = 1 / 10
 PLAYER_HITSTUN = 120
 PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
 PLAYER_DIE_FALL_SPEED = 8
@@ -1455,7 +1455,7 @@ class Player(xsge_physics.Collider):
     fall_speed = PLAYER_FALL_SPEED
     slide_accel = PLAYER_SLIDE_ACCEL
     slide_speed = PLAYER_SLIDE_SPEED
-    hitstun = PLAYER_HITSTUN
+    hitstun_time = PLAYER_HITSTUN
 
     @property
     def warping(self):
@@ -1622,7 +1622,7 @@ class Player(xsge_physics.Collider):
                 play_sound(hurt_sound)
                 self.hitstun = True
                 self.image_alpha = 128
-                self.alarms["hitstun"] = self.hitstun
+                self.alarms["hitstun"] = self.hitstun_time
 
     def kill(self, show_fall=True):
         if self.held_object is not None:
@@ -6739,11 +6739,10 @@ tux_body_walk_sprite = sge.Sprite(
     "tux_body_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_walk_sprite = sge.Sprite(
     "tux_arms_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-# TODO: Proper separate run sprite
 tux_body_run_sprite = sge.Sprite(
-    "tux_body_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
+    "tux_body_run", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_run_sprite = sge.Sprite(
-    "tux_arms_kick", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
+    "tux_arms_run", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_skid_sprite = sge.Sprite(
     "tux_body_skid", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_skid_sprite = sge.Sprite(
