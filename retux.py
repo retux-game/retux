@@ -6043,7 +6043,8 @@ class OptionsMenu(Menu):
             "Sound: {}".format("On" if sound_enabled else "Off"),
             "Music: {}".format("On" if music_enabled else "Off"),
             "Show FPS: {}".format("On" if fps_enabled else "Off"),
-            "Configure keyboard", "Configure joysticks", "Back"]
+            "Configure keyboard", "Configure joysticks", "Detect joysticks",
+            "Back"]
         return cls.create(default)
 
     def event_choose(self):
@@ -6070,6 +6071,10 @@ class OptionsMenu(Menu):
             KeyboardMenu.create_page()
         elif self.choice == 5:
             JoystickMenu.create_page()
+        elif self.choice == 6:
+            sge.joystick.refresh()
+            play_sound(heal_sound)
+            OptionsMenu.create_page(default=self.choice)
         else:
             MainMenu.create(default=3)
 
