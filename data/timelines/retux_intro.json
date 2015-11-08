@@ -2,32 +2,32 @@
     "0": [
         "setattr __level__ timeline_skip_target 500",
         "setattr player sneak_pressed 1"
-    ], 
+    ],
     "101": [
         "dialog tux What a nice, cold day for fishing! I wonder what I'll catch today?",
         "setattr player left_pressed 1"
-    ], 
+    ],
     "200": [
         "setattr player left_pressed 0"
-    ], 
+    ],
     "220": [
         "dialog tux Oh, looks like I have a message!"
     ],
     "230": [
         "setattr player left_pressed 1"
-    ], 
+    ],
     "321": [
-        "call player jump", 
+        "call player jump",
         "setattr player jump_pressed 1"
-    ], 
+    ],
     "339": [
-        "call player jump_release", 
+        "call player jump_release",
         "setattr player jump_pressed 0",
         "setattr player left_pressed 0"
-    ], 
+    ],
     "364": [
         "setattr player right_pressed 1"
-    ], 
+    ],
     "370": [
         "setattr player right_pressed 0"
     ],
@@ -38,9 +38,6 @@
     "389": [
         "setattr player sneak_pressed 0",
         "setattr player left_pressed 1"
-    ], 
-    "495": [
-        "dialog tux DOWN WITH THE SNOW KING!!"
     ],
     "500": [
         "call __level__ return_to_map"
