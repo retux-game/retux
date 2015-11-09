@@ -115,7 +115,7 @@ xsge_gui.joystick_threshold = JOYSTICK_THRESHOLD
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
 FPS = 60
-DELTA_MIN = 20
+DELTA_MIN = 30
 TRANSITION_TIME = 750
 
 DEFAULT_LEVELSET = "retux.json"
@@ -6974,9 +6974,9 @@ portrait_snowman = sge.Sprite("portrait_snowman", d)
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
-                                fps=8, bbox_x=-12, bbox_width=24)
+                                fps=8, bbox_x=-8, bbox_width=16)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
-                               bbox_x=-32, bbox_width=48)
+                               bbox_x=-16, bbox_width=32)
 explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
                               bbox_x=-32, bbox_y=-4, bbox_width=64,
                               bbox_height=40)
