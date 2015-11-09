@@ -1472,7 +1472,7 @@ class Player(xsge_physics.Collider):
                 self.held_object.x = self.x + self.held_object.image_origin_x
                 self.held_object.y = self.y
                 if self.image_xscale < 0:
-                    self.held_object.x -= held_object.sprite.width
+                    self.held_object.x -= self.held_object.sprite.width
 
     def __init__(self, x, y, z=0, sprite=None, visible=True, active=True,
                  checks_collisions=True, tangible=True, bbox_x=-13, bbox_y=2,
