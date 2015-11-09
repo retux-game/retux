@@ -182,6 +182,10 @@
   <object gid="9" x="3488" y="64"/>
   <object gid="501" x="4672" y="384"/>
   <object gid="9" x="3104" y="64"/>
+  <object gid="12" x="4320" y="64"/>
+  <object gid="12" x="4512" y="64"/>
+  <object gid="12" x="4672" y="64"/>
+  <object gid="12" x="4160" y="64"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="160" y="384"/>

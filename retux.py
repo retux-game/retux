@@ -3833,7 +3833,8 @@ class Snowman(FallingObject, Boss):
                 self.next_stage()
 
     def knock(self, other=None):
-        if self.stage > 0 and not self.stunned:
+        if (self.stage > 0 and not self.stunned and
+                not isinstance(other, (Icicle, FallingIcicle))):
             play_sound(stomp_sound)
             self.stun()
             if other is not None and other.knockable:
