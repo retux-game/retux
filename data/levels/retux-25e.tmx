@@ -123,14 +123,10 @@
   <object gid="501" x="2272" y="416"/>
   <object gid="12" x="1696" y="64"/>
   <object gid="12" x="1728" y="64"/>
-  <object gid="12" x="1760" y="64"/>
-  <object gid="12" x="1888" y="64"/>
-  <object gid="12" x="1920" y="64"/>
   <object gid="12" x="1952" y="64"/>
+  <object gid="12" x="1984" y="64"/>
+  <object gid="12" x="2048" y="64"/>
   <object gid="12" x="2080" y="64"/>
-  <object gid="12" x="2112" y="64"/>
-  <object gid="12" x="2144" y="64"/>
-  <object gid="12" x="2272" y="64"/>
   <object gid="12" x="2304" y="64"/>
   <object gid="12" x="2336" y="64"/>
  </objectgroup>

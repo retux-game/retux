@@ -1614,7 +1614,7 @@ class Player(xsge_physics.Collider):
         self.move_y(T - self.bbox_bottom)
 
     def hurt(self):
-        if not self.hitstun:
+        if not self.hitstun and not sge.game.current_room.won:
             self.hp -= 1
             if self.hp <= 0:
                 self.kill()
