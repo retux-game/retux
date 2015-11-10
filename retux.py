@@ -2060,7 +2060,8 @@ class Player(xsge_physics.Collider):
                 self.bbox_right = self.view.x + self.view.width
 
         # Off-screen death
-        if self.bbox_top > self.view.y + self.view.height + DEATHZONE:
+        if (not sge.game.current_room.won and
+                self.bbox_top > self.view.y + self.view.height + DEATHZONE):
             self.kill(False)
 
     def event_step_warp(self, time_passed, delta_mult):
