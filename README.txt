@@ -13,7 +13,7 @@ HOW TO RUN
 You will need the following dependencies:
 
 - Python 2 (2.7 or later) or 3 (3.1 or later) <http://www.python.org>
-- SGE Game Engine 0.20 or later <http://stellarengine.nongnu.org>
+- SGE Game Engine 0.21 or later <http://stellarengine.nongnu.org>
 
 Once you have installed the dependencies, you can start ReTux by
 running retux.py. By default, it will use Python 3. To run it with
