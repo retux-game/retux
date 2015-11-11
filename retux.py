@@ -5945,21 +5945,37 @@ class NewGameMenu(Menu):
 
         if self.choice in six.moves.range(len(save_slots)):
             current_save_slot = self.choice
-            m = "Are you sure to override the existing saved game in this slot? This cannot be undone!"
             sge.game.mouse.visible = True
-            if (save_slots[current_save_slot] is None or
-                    xsge_gui.show_message(message=m, buttons=["No", "Yes"],
-                                          default=0)):
+            if save_slots[current_save_slot] is None:
                 set_new_game()
                 if not abort:
                     start_levelset()
                 else:
                     NewGameMenu.create(default=self.choice)
             else:
-                NewGameMenu.create(default=self.choice)
+                OverwriteConfirmMenu.create(default=1)
             sge.game.mouse.visible = False
         else:
             MainMenu.create(default=0)
+
+
+class OverwriteConfirmMenu(Menu):
+
+    items = ["Overwrite this save file", "Cancel"]
+
+    def event_choose(self):
+        global abort
+
+        abort = False
+
+        if self.choice == 0:
+            set_new_game()
+            if not abort:
+                start_levelset()
+            else:
+                NewGameMenu.create(default=current_save_slot)
+        else:
+            NewGameMenu.create(default=current_save_slot)
 
 
 class LoadGameMenu(NewGameMenu):
