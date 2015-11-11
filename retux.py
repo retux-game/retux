@@ -127,6 +127,7 @@ TUX_KICK_TIME = 10
 
 GRAVITY = 0.25
 
+PLAYER_MAX_HP = 5
 PLAYER_WALK_SPEED = 2
 PLAYER_SKID_THRESHOLD = 3
 PLAYER_RUN_SPEED = 4
@@ -174,7 +175,6 @@ RACCOT_HP = 5
 RACCOT_HOP_INTERVAL = 90
 RACCOT_CHARGE_INTERVAL = 450
 
-MAX_HP = 5
 HP_POINTS = 1000
 TIMER_FRAMES = 40
 HEAL_COINS = 20
@@ -1374,13 +1374,17 @@ class MovingPlatform(xsge_physics.SolidTop, xsge_physics.MobileWall, Tile):
         self.path = None
         self.following = False
 
-    def event_physics_collision_top(self, other, move_loss):
-        if isinstance(other, Player):
-            if self.path and not self.following:
-                self.path.follow_start(self, self.path.path_speed,
-                                       accel=self.path.path_accel,
-                                       decel=self.path.path_decel,
-                                       loop=self.path.path_loop)
+    def event_step(self, time_passed, delta_mult):
+        super(MovingPlatform, self).event_step(time_passed, delta_mult)
+
+        if self.path and not self.following:
+            for other in self.collision(Player, y=(self.y - 1)):
+                if self in other.get_bottom_touching_wall():
+                    self.path.follow_start(self, self.path.path_speed,
+                                           accel=self.path.path_accel,
+                                           decel=self.path.path_decel,
+                                           loop=self.path.path_loop)
+                    break
 
 
 class HurtLeft(SolidLeft):
@@ -1442,6 +1446,7 @@ class LevelEnd(Tile):
 class Player(xsge_physics.Collider):
 
     name = "Tux"
+    max_hp = PLAYER_MAX_HP
     walk_speed = PLAYER_WALK_SPEED
     run_speed = PLAYER_RUN_SPEED
     max_speed = PLAYER_MAX_SPEED
@@ -1500,7 +1505,7 @@ class Player(xsge_physics.Collider):
         self.jump_pressed = False
         self.action_pressed = False
         self.sneak_pressed = False
-        self.hp = MAX_HP
+        self.hp = self.max_hp
         self.coins = 0
         self.hitstun = False
         self.warping = False
@@ -1705,7 +1710,7 @@ class Player(xsge_physics.Collider):
 
             x = 0
             y += 36
-            for i in six.moves.range(MAX_HP):
+            for i in six.moves.range(self.max_hp):
                 if self.hp >= i + 1:
                     sge.game.project_sprite(heart_full_sprite, 0, x, y)
                 else:
@@ -1999,7 +2004,7 @@ class Player(xsge_physics.Collider):
         while self.coins >= HEAL_COINS:
             self.coins -= HEAL_COINS
             play_sound(heal_sound)
-            if self.hp < MAX_HP:
+            if self.hp < self.max_hp:
                 self.hp += 1
             else:
                 sge.game.current_room.add_points(HP_POINTS)
@@ -2312,30 +2317,7 @@ class RaccotPlayer(RaccotBase, Player):
                 self.sprite = raccot_jump_sprite
 
     def set_warp_image(self):
-        hands_free = (self.held_object is None)
-
-        if abs(self.xvelocity) >= WARP_SPEED / 2:
-            if hands_free:
-                self.sprite = tux_walk_sprite
-            else:
-                self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
-
-            self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
-            if self.xvelocity > 0:
-                self.image_xscale = abs(self.image_xscale)
-            else:
-                self.image_xscale = -abs(self.image_xscale)
-        else:
-            if self.on_floor and self.was_on_floor and abs(self.yvelocity) < 1:
-                if hands_free:
-                    self.sprite = tux_stand_sprite
-                else:
-                    self.sprite = self.get_grab_sprite(tux_body_stand_sprite)
-            else:
-                if hands_free:
-                    self.sprite = tux_jump_sprite
-                else:
-                    self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
+        self.sprite = raccot_jump_sprite
 
 
 class DeadMan(sge.Object):
