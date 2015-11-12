@@ -167,8 +167,10 @@ SNOWMAN_HITSTUN = 120
 
 RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
-RACCOT_HOP_HEIGHT = 2 * TILE_SIZE
+RACCOT_HOP_HEIGHT = TILE_SIZE
 RACCOT_JUMP_HEIGHT = 7 * TILE_SIZE
+RACCOT_STOMP_GRAVITY = 1
+RACCOT_STOMP_FALL_SPEED = 15
 RACCOT_STOMP_DELAY = 15
 RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
 RACCOT_HP = 5
@@ -1457,6 +1459,7 @@ class Player(xsge_physics.Collider):
     jump_height = PLAYER_JUMP_HEIGHT
     run_jump_height = PLAYER_RUN_JUMP_HEIGHT
     stomp_height = PLAYER_STOMP_HEIGHT
+    gravity = GRAVITY
     fall_speed = PLAYER_FALL_SPEED
     slide_accel = PLAYER_SLIDE_ACCEL
     slide_speed = PLAYER_SLIDE_SPEED
@@ -1578,9 +1581,10 @@ class Player(xsge_physics.Collider):
                 thin_ice.crack()
 
             if abs(self.xvelocity) >= self.run_speed:
-                self.yvelocity = get_jump_speed(self.run_jump_height)
+                self.yvelocity = get_jump_speed(self.run_jump_height,
+                                                self.gravity)
             else:
-                self.yvelocity = get_jump_speed(self.jump_height)
+                self.yvelocity = get_jump_speed(self.jump_height, self.gravity)
             self.on_floor = []
             self.was_on_floor = []
             play_sound(jump_sound)
@@ -1612,9 +1616,9 @@ class Player(xsge_physics.Collider):
             jump_height = self.jump_height
 
         if self.jump_pressed:
-            self.yvelocity = get_jump_speed(jump_height)
+            self.yvelocity = get_jump_speed(jump_height, self.gravity)
         else:
-            self.yvelocity = get_jump_speed(self.stomp_height)
+            self.yvelocity = get_jump_speed(self.stomp_height, self.gravity)
         T = math.floor(other.bbox_top / TILE_SIZE) * TILE_SIZE
         self.move_y(T - self.bbox_bottom)
 
@@ -1953,7 +1957,7 @@ class Player(xsge_physics.Collider):
 
             if not self.on_floor and not self.was_on_floor:
                 if self.yvelocity < self.fall_speed:
-                    self.yacceleration = GRAVITY
+                    self.yacceleration = self.gravity
                 else:
                     self.yvelocity = self.fall_speed
             elif self.on_slope:
@@ -2282,6 +2286,19 @@ class RaccotBase(xsge_physics.Collider):
 
     hopping = False
     stomping = False
+
+    def hop(self):
+        self.hopping = True
+        self.xvelocity = 0
+        self.yvelocity = get_jump_speed(RACCOT_HOP_HEIGHT, self.gravity)
+        play_sound(yeti_gna_sound)
+
+    def stomp(self):
+        self.stomping = True
+        self.xvelocity = 0
+        self.yvelocity = 0
+        self.gravity = RACCOT_STOMP_GRAVITY
+        self.fall_speed = RACCOT_STOMP_FALL_SPEED
 
 
 class RaccotPlayer(RaccotBase, Player):
@@ -7214,6 +7231,8 @@ icicle_shake_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_shake.wav"))
 icicle_crash_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_crash.wav"))
 explosion_sound = sge.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
 fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
+yeti_gna_sound = sge.Sound(os.path.join(DATA, "sounds", "yeti_gna.wav"))
+yeti_roar_sound = sge.Sound(os.path.join(DATA, "sounds", "yeti_roar.wav"))
 pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
 bell_sound = sge.Sound(os.path.join(DATA, "sounds", "bell.wav"))
 pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
