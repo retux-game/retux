@@ -5436,7 +5436,7 @@ class MapPlayer(sge.Object):
     moving = False
 
     def _follow_path(self, space, path):
-        if path is not None:
+        if path is not None and not self.moving:
             if path.points:
                 x, y = path.points[-1]
             else:
