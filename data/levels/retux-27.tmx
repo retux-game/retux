@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt10kKwjAUgOF3BHHYatWdOK0dT+BtvIG6F0/ksHe4kS+oVGqstkkRy//BDxKl1EIeqQgAAAAAAAAAAAAAAADyoKCVLesVh7V31wQAF1WtYVlvOqyZa5aEmQXAr7Y20VqRpg5rA60uzCzg1xba8t7m6fMq8jvzTjRO0FbbZX73r8y8MrOlGGnmsFbTAglnVpLnYIuZh7xx3RNp9sk65jvzThTdx3EdtZO21w4Z/R9b5izUk9t88VVH60o4s5I8B1u291Xgn7nuiTT7JG5emXNLIMlmwVw7a5eM/o+tx1nIZ0Nt5HiN5+fWFyBfghR9miWf9sk388pXvs9A/3QfzCvkzRUXj0RW
+   eJztmElOwzAUhn0ExLCFAjtUhnWZTsCeE8AF4ATAHnGiAnuGG/EsEdUyj8RDbJLyfdK3qNUmtuv324kxAAAAAAAAAAAAAAAAAAAAALAMrIjrSvtGRttv1wQAyGFT3FHadzPa7DXXzDAy6068d3zyPj8ov7F5e+pZeyx+H+bic+U+AAyNqXgm7nmeZ7TNxG0znMxyeQz4js3bVU8t00vi9+FNfBevxcvKfYHx4u7X7l7t79PaHt3m3PzN/mnzymaLX58XGW1b4sQsMitmHjT7zLyQvJp+999Vy/SSzrz7H4o34q14ZcitsZNbEyl10rb2tT26zWb/fBFfC41H09aFrYVJj+6LB2aRWTHzoNnn2SYmr9x56WMcMTaZr+nmVun1MrTz8bJQYs101Unb2tfWfJd2HX6In4XGE1sXqR6LJ5nXcOftyPzEfy+lvZvSzr2p56tQ3awubY31Uvs5+L8wSbArS7Q6cQnJq77s+ww0pn50/Q8NIVlUOq9SsrrGnKbeI3TuIY4vJ8h+yw==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -46,12 +46,51 @@
   <object gid="484" x="3104" y="288"/>
   <object gid="484" x="3072" y="288"/>
   <object gid="484" x="3040" y="288"/>
+  <object gid="484" x="4960" y="320"/>
+  <object gid="484" x="4992" y="320"/>
+  <object gid="484" x="5024" y="320"/>
+  <object gid="484" x="5056" y="320"/>
+  <object gid="484" x="5664" y="320"/>
+  <object gid="484" x="5632" y="320"/>
+  <object gid="484" x="5600" y="320"/>
+  <object gid="484" x="5568" y="320"/>
+  <object gid="484" x="5152" y="320"/>
+  <object gid="484" x="5184" y="320"/>
+  <object gid="484" x="5216" y="320"/>
+  <object gid="484" x="5248" y="320"/>
+  <object gid="484" x="5472" y="320"/>
+  <object gid="484" x="5440" y="320"/>
+  <object gid="484" x="5408" y="320"/>
+  <object gid="484" x="5376" y="320"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="NPCs">
+  <object gid="7" x="4928" y="320"/>
+  <object gid="7" x="5728" y="320"/>
+  <object gid="6" x="5056" y="288"/>
+  <object gid="6" x="5248" y="288"/>
+  <object gid="6" x="5472" y="288"/>
+  <object gid="6" x="5664" y="288"/>
+  <object gid="7" x="5120" y="320"/>
+  <object gid="7" x="5536" y="320"/>
+  <object type="flying_spiky_path" x="5312" y="288">
+   <polyline points="0,0 0,-160 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="5344" y="128">
+   <polyline points="0,0 0,160 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="5056" y="128">
+   <polyline points="0,0 128,0 0,0"/>
+  </object>
+  <object type="flying_spiky_path" x="5600" y="128">
+   <polyline points="0,0 -128,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="64" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
    eJztwYEAAAAAw6D5U9/gBFUBAAAAAAAAAAAAAAAAAAAA8AxBoAAB
