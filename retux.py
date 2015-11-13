@@ -6164,7 +6164,7 @@ class KeyboardMenu(Menu):
                 sneak_key[self.page] = k
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
-            OptionsMenu.create_page(default=3)
+            OptionsMenu.create_page(default=4)
 
 
 class JoystickMenu(Menu):
@@ -6228,7 +6228,7 @@ class JoystickMenu(Menu):
                 sneak_js[self.page] = js
             JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
-            OptionsMenu.create_page(default=4)
+            OptionsMenu.create_page(default=5)
 
 
 class DialogLabel(xsge_gui.ProgressiveLabel):
