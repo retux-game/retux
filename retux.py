@@ -7313,7 +7313,7 @@ else:
     action_key = keys_cfg.get("action", action_key)
     sneak_key = keys_cfg.get("sneak", sneak_key)
 
-    js_cfg = cfg.get("js", {})
+    js_cfg = cfg.get("joystick", {})
     left_js = js_cfg.get("left", left_js)
     right_js = js_cfg.get("right", right_js)
     up_js = js_cfg.get("up", up_js)
