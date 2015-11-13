@@ -50,7 +50,6 @@ if getattr(sys, "frozen", False):
 
 DATA = tempfile.mkdtemp("retux-data")
 CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
-JOYSTICK_THRESHOLD = 0.1
 
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(CONFIG, "data")]
@@ -83,9 +82,6 @@ parser.add_argument(
     help="Disable delta timing. Causes the game to slow down when it can't run at 60 FPS instead of becoming choppier.",
     action="store_true")
 parser.add_argument(
-    "--js-threshold", default=JOYSTICK_THRESHOLD, type=float,
-    help="The threshold at which an axis is considered to be triggered, as a float between 0 and 1. (Default: {})".format(JOYSTICK_THRESHOLD))
-parser.add_argument(
     "-d", "--datadir",
     help='Where to load the game data from (Default: "{}")'.format(DATA))
 parser.add_argument(
@@ -103,14 +99,11 @@ args = parser.parse_args()
 PRINT_ERRORS = args.print_errors
 SCALE_SMOOTH = not args.scale_basic
 DELTA = not args.nodelta
-JOYSTICK_THRESHOLD = args.js_threshold
 if args.datadir:
     DATA = args.datadir
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
-
-xsge_gui.joystick_threshold = JOYSTICK_THRESHOLD
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
@@ -299,6 +292,7 @@ fullscreen = False
 sound_enabled = True
 music_enabled = True
 fps_enabled = False
+joystick_threshold = 0.1
 left_key = ["left"]
 right_key = ["right"]
 up_key = ["up"]
@@ -1552,15 +1546,15 @@ class Player(xsge_physics.Collider):
                     j, t, c = js_controls[i][self.player]
                     if t == "axis+":
                         v = sge.joystick.get_axis(j, c)
-                        if v > JOYSTICK_THRESHOLD:
+                        if v > joystick_threshold:
                             js_states[i] = abs(v)
                     elif t == "axis-":
                         v = sge.joystick.get_axis(j, c)
-                        if v < -JOYSTICK_THRESHOLD:
+                        if v < -joystick_threshold:
                             js_states[i] = abs(v)
                     elif t == "axis0":
                         js_states[i] = (abs(sge.joystick.get_axis(j, c)) <=
-                                        JOYSTICK_THRESHOLD)
+                                        joystick_threshold)
                     elif t == "hatx+":
                         js_states[i] = (sge.joystick.get_hat_x(j, c) == 1)
                     elif t == "hatx-":
@@ -2109,9 +2103,9 @@ class Player(xsge_physics.Collider):
     def event_joystick_axis_move(self, js_name, js_id, axis, value):
         if self.human:
             js_versions = [(js_id, "axis+", axis), (js_id, "axis-", axis)]
-            if value > JOYSTICK_THRESHOLD:
+            if value > joystick_threshold:
                 js = (js_id, "axis+", axis)
-            elif value < -JOYSTICK_THRESHOLD:
+            elif value < -joystick_threshold:
                 js = (js_id, "axis-", axis)
             else:
                 js = (js_id, "axis0", axis)
@@ -5543,15 +5537,15 @@ class MapPlayer(sge.Object):
 
             for j in six.moves.range(sge.joystick.get_joysticks()):
                 x = sge.joystick.get_axis(j, 0)
-                if x > JOYSTICK_THRESHOLD:
+                if x > joystick_threshold:
                     self.move_right()
-                elif x < -JOYSTICK_THRESHOLD:
+                elif x < -joystick_threshold:
                     self.move_left()
 
                 y = sge.joystick.get_axis(j, 1)
-                if y > JOYSTICK_THRESHOLD:
+                if y > joystick_threshold:
                     self.move_down()
-                elif y < -JOYSTICK_THRESHOLD:
+                elif y < -joystick_threshold:
                     self.move_up()
 
                 for h in six.moves.range(sge.joystick.get_hats(j)):
@@ -6084,6 +6078,7 @@ class OptionsMenu(Menu):
             "Sound: {}".format("On" if sound_enabled else "Off"),
             "Music: {}".format("On" if music_enabled else "Off"),
             "Show FPS: {}".format("On" if fps_enabled else "Off"),
+            "Joystick Threshold: {}%".format(int(joystick_threshold * 100)),
             "Configure keyboard", "Configure joysticks", "Detect joysticks",
             "Back"]
         return cls.create(default)
@@ -6093,6 +6088,7 @@ class OptionsMenu(Menu):
         global sound_enabled
         global music_enabled
         global fps_enabled
+        global joystick_threshold
 
         if self.choice == 0:
             play_sound(select_sound)
@@ -6112,12 +6108,20 @@ class OptionsMenu(Menu):
             fps_enabled = not fps_enabled
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 4:
-            play_sound(confirm_sound)
-            KeyboardMenu.create_page()
+            play_sound(select_sound)
+            # This somewhat complicated method is to prevent rounding
+            # irregularities.
+            threshold = ((int(joystick_threshold * 100) + 5) % 100) / 100
+            joystick_threshold = threshold
+            xsge_gui.joystick_threshold = threshold
+            OptionsMenu.create_page(default=self.choice)
         elif self.choice == 5:
             play_sound(confirm_sound)
-            JoystickMenu.create_page()
+            KeyboardMenu.create_page()
         elif self.choice == 6:
+            play_sound(confirm_sound)
+            JoystickMenu.create_page()
+        elif self.choice == 7:
             sge.joystick.refresh()
             play_sound(heal_sound)
             OptionsMenu.create_page(default=self.choice)
@@ -6394,11 +6398,11 @@ def wait_js():
                     sge.game.input_events = []
                     return None
             elif isinstance(event, sge.input.JoystickAxisMove):
-                if event.value > JOYSTICK_THRESHOLD:
+                if event.value > joystick_threshold:
                     sge.game.pump_input()
                     sge.game.input_events = []
                     return (event.js_id, "axis+", event.axis)
-                elif event.value < -JOYSTICK_THRESHOLD:
+                elif event.value < -joystick_threshold:
                     sge.game.pump_input()
                     sge.game.input_events = []
                     return (event.js_id, "axis-", event.axis)
@@ -7346,6 +7350,8 @@ else:
     sound_enabled = cfg.get("sound_enabled", sound_enabled)
     music_enabled = cfg.get("music_enabled", music_enabled)
     fps_enabled = cfg.get("fps_enabled", fps_enabled)
+    joystick_threshold = cfg.get("joystick_threshold", joystick_threshold)
+    xsge_gui.joystick_threshold = joystick_threshold
 
     keys_cfg = cfg.get("keys", {})
     left_key = keys_cfg.get("left", left_key)
@@ -7389,7 +7395,8 @@ if __name__ == '__main__':
 
         cfg = {"fullscreen": fullscreen, "sound_enabled": sound_enabled,
                "music_enabled": music_enabled, "fps_enabled": fps_enabled,
-               "keys": keys_cfg, "joystick": js_cfg}
+               "joystick_threshold": joystick_threshold, "keys": keys_cfg,
+               "joystick": js_cfg}
 
         with open(os.path.join(CONFIG, "config.json"), 'w') as f:
             json.dump(cfg, f, indent=4)
