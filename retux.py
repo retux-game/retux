@@ -1561,9 +1561,17 @@ class Player(xsge_physics.Collider):
                     elif t == "axis0":
                         js_states[i] = (abs(sge.joystick.get_axis(j, c)) <=
                                         JOYSTICK_THRESHOLD)
-                    elif t == "hat":
-                        js_states[i] = (sge.joystick.get_hat_x(j, c[0]) == c[1] and
-                                        sge.joystick.get_hat_y(j, c[0]) == c[2])
+                    elif t == "hatx+":
+                        js_states[i] = (sge.joystick.get_hat_x(j, c) == 1)
+                    elif t == "hatx-":
+                        js_states[i] = (sge.joystick.get_hat_x(j, c) == -1)
+                    elif t == "haty+":
+                        js_states[i] = (sge.joystick.get_hat_y(j, c) == 1)
+                    elif t == "haty-":
+                        js_states[i] = (sge.joystick.get_hat_y(j, c) == -1)
+                    elif t == "hatx0":
+                        js_states[i] = (sge.joystick.get_hat_x(j, c) == 0 and
+                                        sge.joystick.get_hat_y(j, c) == 0)
                     elif t == "button":
                         js_states[i] = sge.joystick.get_pressed(j, c)
 
