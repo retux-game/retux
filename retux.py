@@ -5901,12 +5901,16 @@ class MainMenu(Menu):
 
     def event_choose(self):
         if self.choice == 0:
+            play_sound(confirm_sound)
             NewGameMenu.create_page()
         elif self.choice == 1:
+            play_sound(confirm_sound)
             LoadGameMenu.create_page()
         elif self.choice == 2:
+            play_sound(confirm_sound)
             LevelsetMenu.create_page(default=-1, refreshlist=True)
         elif self.choice == 3:
+            play_sound(confirm_sound)
             OptionsMenu.create_page()
         elif self.choice == 4:
             credits_room = CreditsScreen.load(os.path.join("special",
@@ -5951,6 +5955,7 @@ class NewGameMenu(Menu):
         abort = False
 
         if self.choice in six.moves.range(len(save_slots)):
+            play_sound(confirm_sound)
             current_save_slot = self.choice
             sge.game.mouse.visible = True
             if save_slots[current_save_slot] is None:
@@ -5963,6 +5968,7 @@ class NewGameMenu(Menu):
                 OverwriteConfirmMenu.create(default=1)
             sge.game.mouse.visible = False
         else:
+            play_sound(cancel_sound)
             MainMenu.create(default=0)
 
 
@@ -5978,10 +5984,13 @@ class OverwriteConfirmMenu(Menu):
         if self.choice == 0:
             set_new_game()
             if not abort:
+                play_sound(confirm_sound)
                 start_levelset()
             else:
+                play_sound(cancel_sound)
                 NewGameMenu.create(default=current_save_slot)
         else:
+            play_sound(cancel_sound)
             NewGameMenu.create(default=current_save_slot)
 
 
@@ -5994,15 +6003,18 @@ class LoadGameMenu(NewGameMenu):
         abort = False
 
         if self.choice in six.moves.range(len(save_slots)):
+            play_sound(confirm_sound)
             current_save_slot = self.choice
             load_game()
             if abort:
                 MainMenu.create(default=1)
             elif not start_levelset():
+                play_sound(error_sound)
                 m = "An error occurred when trying to load the game."
                 xsge_gui.show_message(message=m, buttons=["Ok"])
                 MainMenu.create(default=1)
         else:
+            play_sound(cancel_sound)
             MainMenu.create(default=1)
 
 
@@ -6051,10 +6063,14 @@ class LevelsetMenu(Menu):
 
     def event_choose(self):
         if self.choice == len(self.items) - 2:
+            play_sound(select_sound)
             self.create_page(default=-2, page=self.page)
         else:
             if self.choice is not None and self.choice < len(self.items) - 2:
+                play_sound(confirm_sound)
                 load_levelset(self.current_levelsets[self.choice])
+            else:
+                play_sound(cancel_sound)
 
             MainMenu.create(default=2)
 
@@ -6079,28 +6095,34 @@ class OptionsMenu(Menu):
         global fps_enabled
 
         if self.choice == 0:
+            play_sound(select_sound)
             fullscreen = not fullscreen
             sge.game.fullscreen = fullscreen
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 1:
             sound_enabled = not sound_enabled
+            play_sound(bell_sound)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 2:
             music_enabled = not music_enabled
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 3:
+            play_sound(select_sound)
             fps_enabled = not fps_enabled
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 4:
+            play_sound(confirm_sound)
             KeyboardMenu.create_page()
         elif self.choice == 5:
+            play_sound(confirm_sound)
             JoystickMenu.create_page()
         elif self.choice == 6:
             sge.joystick.refresh()
             play_sound(heal_sound)
             OptionsMenu.create_page(default=self.choice)
         else:
+            play_sound(cancel_sound)
             MainMenu.create(default=3)
 
 
@@ -6127,43 +6149,52 @@ class KeyboardMenu(Menu):
 
     def event_choose(self):
         if self.choice == 0:
+            play_sound(select_sound)
             KeyboardMenu.create_page(default=self.choice, page=(self.page + 1))
         elif self.choice == 1:
             k = wait_key()
             if k is not None:
                 left_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 2:
             k = wait_key()
             if k is not None:
                 right_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 3:
             k = wait_key()
             if k is not None:
                 up_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 4:
             k = wait_key()
             if k is not None:
                 down_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 5:
             k = wait_key()
             if k is not None:
                 jump_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 6:
             k = wait_key()
             if k is not None:
                 action_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 7:
             k = wait_key()
             if k is not None:
                 sneak_key[self.page] = k
+            play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
+            play_sound(cancel_sound)
             OptionsMenu.create_page(default=4)
 
 
@@ -6191,43 +6222,52 @@ class JoystickMenu(Menu):
 
     def event_choose(self):
         if self.choice == 0:
+            play_sound(select_sound)
             JoystickMenu.create_page(default=self.choice, page=(self.page + 1))
         elif self.choice == 1:
             js = wait_js()
             if js is not None:
                 left_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 2:
             js = wait_js()
             if js is not None:
                 right_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 3:
             js = wait_js()
             if js is not None:
                 up_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 4:
             js = wait_js()
             if js is not None:
                 down_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 5:
             js = wait_js()
             if js is not None:
                 jump_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 6:
             js = wait_js()
             if js is not None:
                 action_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 7:
             js = wait_js()
             if js is not None:
                 sneak_js[self.page] = js
+            play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
+            play_sound(cancel_sound)
             OptionsMenu.create_page(default=5)
 
 
@@ -7249,6 +7289,9 @@ door_sound = sge.Sound(os.path.join(DATA, "sounds", "door.wav"))
 door_shut_sound = sge.Sound(os.path.join(DATA, "sounds", "door_shut.wav"))
 pause_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
+confirm_sound = coin_sound
+cancel_sound = pop_sound
+error_sound = hurt_sound
 type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))
 
 # Load music
