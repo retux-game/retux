@@ -6213,6 +6213,7 @@ class KeyboardMenu(Menu):
                      "Jump: {}".format(jump_key[page]),
                      "Action: {}".format(action_key[page]),
                      "Sneak: {}".format(sneak_key[page]),
+                     "Pause: {}".format(pause_key[page]),
                      "Back"]
         self = cls.create(default)
         self.page = page
@@ -6264,9 +6265,15 @@ class KeyboardMenu(Menu):
                 sneak_key[self.page] = k
             play_sound(confirm_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 8:
+            k = wait_key()
+            if k is not None:
+                pause_key[self.page] = k
+            play_sound(confirm_sound)
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
             play_sound(cancel_sound)
-            OptionsMenu.create_page(default=4)
+            OptionsMenu.create_page(default=5)
 
 
 class JoystickMenu(Menu):
@@ -6286,6 +6293,7 @@ class JoystickMenu(Menu):
                      "Jump: {}".format(js_template.format(*jump_js[page])),
                      "Action: {}".format(js_template.format(*action_js[page])),
                      "Sneak: {}".format(js_template.format(*sneak_js[page])),
+                     "Pause: {}".format(js_template.format(*pause_js[page])),
                      "Back"]
         self = cls.create(default)
         self.page = page
@@ -6337,9 +6345,15 @@ class JoystickMenu(Menu):
                 sneak_js[self.page] = js
             play_sound(confirm_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 8:
+            js = wait_js()
+            if js is not None:
+                pause_js[self.page] = js
+            play_sound(confirm_sound)
+            JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
             play_sound(cancel_sound)
-            OptionsMenu.create_page(default=5)
+            OptionsMenu.create_page(default=6)
 
 
 class DialogLabel(xsge_gui.ProgressiveLabel):
@@ -7431,6 +7445,7 @@ else:
     jump_key = keys_cfg.get("jump", jump_key)
     action_key = keys_cfg.get("action", action_key)
     sneak_key = keys_cfg.get("sneak", sneak_key)
+    pause_key = keys_cfg.get("pause", pause_key)
 
     js_cfg = cfg.get("joystick", {})
     left_js = js_cfg.get("left", left_js)
@@ -7440,6 +7455,7 @@ else:
     jump_js = js_cfg.get("jump", jump_js)
     action_js = js_cfg.get("action", action_js)
     sneak_js = js_cfg.get("sneak", sneak_js)
+    pause_js = js_cfg.get("pause", pause_js)
 
 try:
     with open(os.path.join(CONFIG, "save_slots.json")) as f:
@@ -7458,10 +7474,10 @@ if __name__ == '__main__':
     finally:
         keys_cfg = {"left": left_key, "right": right_key, "up": up_key,
                     "down": down_key, "jump": jump_key, "action": action_key,
-                    "sneak": sneak_key}
+                    "sneak": sneak_key, "pause": pause_key}
         js_cfg = {"left": left_js, "right": right_js, "up": up_js,
                   "down": down_js, "jump": jump_js, "action": action_js,
-                  "sneak": sneak_js}
+                  "sneak": sneak_js, "pause": pause_js}
 
         cfg = {"fullscreen": fullscreen, "sound_enabled": sound_enabled,
                "music_enabled": music_enabled, "fps_enabled": fps_enabled,
