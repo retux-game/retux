@@ -300,6 +300,7 @@ down_key = ["down"]
 jump_key = ["space"]
 action_key = ["ctrl_left"]
 sneak_key = ["shift_left"]
+pause_key = ["enter"]
 left_js = [(0, "axis-", 0)]
 right_js = [(0, "axis+", 0)]
 up_js = [(0, "axis-", 1)]
@@ -307,6 +308,7 @@ down_js = [(0, "axis+", 1)]
 jump_js = [(0, "button", 1)]
 action_js = [(0, "button", 0)]
 sneak_js = [(0, "button", 2)]
+pause_js = [(0, "button", 9)]
 save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
 abort = False
@@ -484,6 +486,17 @@ class Level(sge.Room):
         for obj in self.objects:
             if isinstance(obj, SteadyIcicle):
                 obj.check_shake(True)
+
+    def pause(self):
+        if self.pause_delay <= 0 and not self.won:
+            sge.Music.pause()
+            play_sound(pause_sound)
+            sge.game.pause(pause_sprite)
+
+    def unpause(self):
+        play_sound(pause_sound)
+        sge.Music.unpause()
+        sge.game.unpause()
 
     def die(self):
         global current_areas
@@ -895,19 +908,9 @@ class Level(sge.Room):
                         self.return_to_map()
                     else:
                         sge.game.start_room.start()
-            elif key == "enter":
-                if self.pause_delay <= 0 and not self.won:
-                    sge.Music.pause()
-                    play_sound(pause_sound)
-                    sge.game.pause(pause_sprite)
 
     def event_paused_key_press(self, key, char):
-        if key == "enter":
-            play_sound(pause_sound)
-            sge.Music.unpause()
-            sge.game.unpause()
-        else:
-            self.event_key_press(key, char)
+        self.event_key_press(key, char)
 
     @classmethod
     def load(cls, fname):
@@ -2096,6 +2099,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if key == up_key[self.player]:
                 self.press_up()
+            if key == pause_key[self.player]:
+                sge.game.current_room.pause()
 
     def event_key_release(self, key):
         if self.human:
@@ -2120,6 +2125,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if js == tuple(up_js[self.player]):
                 self.press_up()
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.pause()
 
     def event_joystick_hat_move(self, js_name, js_id, hat, x, y):
         if self.human:
@@ -2139,6 +2146,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if js == tuple(up_js[self.player]):
                 self.press_up()
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.pause()
 
             js_versions = [(js_id, "haty+", hat), (js_id, "haty-", hat)]
             if y > 0:
@@ -2156,6 +2165,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if js == tuple(up_js[self.player]):
                 self.press_up()
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.pause()
 
     def event_joystick_button_press(self, js_name, js_id, button):
         if self.human:
@@ -2167,6 +2178,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if js == tuple(up_js[self.player]):
                 self.press_up()
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.pause()
 
     def event_joystick_button_release(self, js_name, js_id, button):
         if self.human:
@@ -2174,6 +2187,52 @@ class Player(xsge_physics.Collider):
 
             if js == tuple(jump_js[self.player]):
                 self.jump_release()
+
+    def event_paused_key_press(self, key, char):
+        if self.human:
+            if key == pause_key[self.player]:
+                sge.game.current_room.unpause()
+
+    def event_paused_joystick_axis_move(self, js_name, js_id, axis, value):
+        if self.human:
+            if value > joystick_threshold:
+                js = (js_id, "axis+", axis)
+            elif value < -joystick_threshold:
+                js = (js_id, "axis-", axis)
+            else:
+                js = (js_id, "axis0", axis)
+
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.unpause()
+
+    def event_paused_joystick_hat_move(self, js_name, js_id, hat, x, y):
+        if self.human:
+            if x > 0:
+                js = (js_id, "hatx+", hat)
+            elif x < 0:
+                js = (js_id, "hatx-", hat)
+            else:
+                js = (js_id, "hatx0", hat)
+
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.unpause()
+
+            if y > 0:
+                js = (js_id, "haty+", hat)
+            elif y < 0:
+                js = (js_id, "haty-", hat)
+            else:
+                js = (js_id, "haty0", hat)
+
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.unpause()
+
+    def event_paused_joystick_button_press(self, js_name, js_id, button):
+        if self.human:
+            js = (js_id, "button", button)
+
+            if js == tuple(pause_js[self.player]):
+                sge.game.current_room.unpause()
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, Death):
