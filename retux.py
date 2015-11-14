@@ -5840,6 +5840,7 @@ class MapPath(xsge_path.Path):
 
     def event_follow_end(self, obj):
         global current_worldmap_space
+        global current_level
 
         if self.points:
             x, y = self.points[-1]
@@ -5854,6 +5855,11 @@ class MapPath(xsge_path.Path):
         space = MapSpace.get_at(obj.x, obj.y)
         if space is not None and space.ID is not None:
             current_worldmap_space = space.ID
+
+            # Save the current worldmap space as the current level.
+            # This will make preloading start there next time.
+            if current_worldmap_space in levels:
+                current_level = levels.index(current_worldmap_space)
 
         save_game()
 
@@ -6477,7 +6483,7 @@ def play_music(music, force_restart=False):
         sge.Music.stop()
 
 
-def load_levelset(fname):
+def load_levelset(fname, preload_start=0):
     global current_levelset
     global start_cutscene
     global worldmap
@@ -6543,7 +6549,8 @@ def load_levelset(fname):
         gui_handler.event_step(0, 0)
         sge.game.refresh()
 
-        for level in levels:
+        sorted_levels = levels[preload_start:] + levels[:preload_start]
+        for level in sorted_levels:
             subrooms = [level]
             already_checked = []
 
@@ -6562,7 +6569,8 @@ def load_levelset(fname):
                                         map_f not in {"__main__", "__map__"}):
                                     subrooms.append(map_f)
 
-            progressbar.progress = (levels.index(level) + 1) / len(levels)
+            progressbar.progress = ((sorted_levels.index(level) + 1) /
+                                    len(sorted_levels))
             progressbar.redraw()
             if do_refresh():
                 break
@@ -6630,7 +6638,6 @@ def load_game():
     if (current_save_slot is not None and
             save_slots[current_save_slot].get("levelset") is not None):
         slot = save_slots[current_save_slot]
-        load_levelset(slot["levelset"])
         level_timers = slot.get("level_timers", {})
         cleared_levels = slot.get("cleared_levels", [])
         tuxdolls_found = slot.get("tuxdolls_found", [])
@@ -6640,6 +6647,7 @@ def load_game():
         current_level = slot.get("current_level", 0)
         current_checkpoints = slot.get("current_checkpoints", {})
         score = slot.get("score", 0)
+        load_levelset(slot["levelset"], current_level)
     else:
         set_new_game()
 
