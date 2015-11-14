@@ -1564,8 +1564,9 @@ class Player(xsge_physics.Collider):
                     elif t == "haty-":
                         js_states[i] = (sge.joystick.get_hat_y(j, c) == -1)
                     elif t == "hatx0":
-                        js_states[i] = (sge.joystick.get_hat_x(j, c) == 0 and
-                                        sge.joystick.get_hat_y(j, c) == 0)
+                        js_states[i] = (sge.joystick.get_hat_x(j, c) == 0)
+                    elif t == "haty0":
+                        js_states[i] = (sge.joystick.get_hat_y(j, c) == 0)
                     elif t == "button":
                         js_states[i] = sge.joystick.get_pressed(j, c)
 
@@ -2111,13 +2112,13 @@ class Player(xsge_physics.Collider):
             else:
                 js = (js_id, "axis0", axis)
 
-            if js == jump_js[self.player]:
+            if js == tuple(jump_js[self.player]):
                 self.jump()
-            elif jump_js[self.player] in js_versions:
+            elif tuple(jump_js[self.player]) in js_versions:
                 self.jump_release()
-            if js == action_js[self.player]:
+            if js == tuple(action_js[self.player]):
                 self.action()
-            if js == up_js[self.player]:
+            if js == tuple(up_js[self.player]):
                 self.press_up()
 
     def event_joystick_hat_move(self, js_name, js_id, hat, x, y):
@@ -2130,13 +2131,13 @@ class Player(xsge_physics.Collider):
             else:
                 js = (js_id, "hatx0", hat)
 
-            if js == jump_js[self.player]:
+            if js == tuple(jump_js[self.player]):
                 self.jump()
-            elif jump_js[self.player] in js_versions:
+            elif tuple(jump_js[self.player]) in js_versions:
                 self.jump_release()
-            if js == action_js[self.player]:
+            if js == tuple(action_js[self.player]):
                 self.action()
-            if js == up_js[self.player]:
+            if js == tuple(up_js[self.player]):
                 self.press_up()
 
             js_versions = [(js_id, "haty+", hat), (js_id, "haty-", hat)]
@@ -2147,31 +2148,31 @@ class Player(xsge_physics.Collider):
             else:
                 js = (js_id, "haty0", hat)
 
-            if js == jump_js[self.player]:
+            if js == tuple(jump_js[self.player]):
                 self.jump()
-            elif jump_js[self.player] in js_versions:
+            elif tuple(jump_js[self.player]) in js_versions:
                 self.jump_release()
-            if js == action_js[self.player]:
+            if js == tuple(action_js[self.player]):
                 self.action()
-            if js == up_js[self.player]:
+            if js == tuple(up_js[self.player]):
                 self.press_up()
 
     def event_joystick_button_press(self, js_name, js_id, button):
         if self.human:
             js = (js_id, "button", button)
 
-            if js == jump_js[self.player]:
+            if js == tuple(jump_js[self.player]):
                 self.jump()
-            if js == action_js[self.player]:
+            if js == tuple(action_js[self.player]):
                 self.action()
-            if js == up_js[self.player]:
+            if js == tuple(up_js[self.player]):
                 self.press_up()
 
     def event_joystick_button_release(self, js_name, js_id, button):
         if self.human:
             js = (js_id, "button", button)
 
-            if js == jump_js[self.player]:
+            if js == tuple(jump_js[self.player]):
                 self.jump_release()
 
     def event_collision(self, other, xdirection, ydirection):
@@ -6420,8 +6421,9 @@ def wait_js():
                      "hatx-" if event.x < 0 else
                      "haty+" if event.y > 0 else
                      "haty-" if event.y < 0 else
-                     "hatx0")
-                return (event.js_id, t, event.hat)
+                     None)
+                if t is not None:
+                    return (event.js_id, t, event.hat)
             elif isinstance(event, sge.input.JoystickButtonPress):
                 sge.game.pump_input()
                 sge.game.input_events = []
