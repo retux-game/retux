@@ -491,7 +491,8 @@ class Level(sge.Room):
         if self.pause_delay <= 0 and not self.won:
             sge.Music.pause()
             play_sound(pause_sound)
-            sge.game.pause(pause_sprite)
+            #sge.game.pause(pause_sprite)
+            PauseMenu.create()
 
     def unpause(self):
         play_sound(pause_sound)
@@ -5944,8 +5945,8 @@ class Menu(xsge_gui.MenuWindow):
                 gui_handler, sge.game.width / 2, sge.game.height * 2 / 3,
                 cls.items, font_normal=font, color_normal=sge.Color("white"),
                 color_selected=sge.Color((0, 128, 255)),
-                background_color=sge.Color((64, 64, 255, 64)), margin=9,
-                halign="center", valign="middle")
+                background_color=menu_color, margin=9, halign="center",
+                valign="middle")
             default %= len(self.widgets)
             self.keyboard_focused_widget = self.widgets[default]
             self.show()
@@ -6356,6 +6357,45 @@ class JoystickMenu(Menu):
             OptionsMenu.create_page(default=6)
 
 
+class ModalMenu(xsge_gui.MenuDialog):
+
+    items = []
+
+    @classmethod
+    def create(cls, default=0):
+        if cls.items:
+            self = cls.from_text(
+                gui_handler, sge.game.width / 2, sge.game.height / 2,
+                cls.items, font_normal=font, color_normal=sge.Color("white"),
+                color_selected=sge.Color((0, 128, 255)),
+                background_color=menu_color, margin=9, halign="center",
+                valign="middle")
+            default %= len(self.widgets)
+            self.keyboard_focused_widget = self.widgets[default]
+            self.show()
+            return self
+
+    def event_change_selection(self, selection):
+        play_sound(select_sound)
+
+
+class PauseMenu(ModalMenu):
+
+    items = ["Continue", "Quit"]
+
+    def event_choose(self):
+        if self.choice == 1:
+            play_sound(kill_sound)
+            rush_save()
+            if current_worldmap:
+                sge.game.current_room.return_to_map()
+            else:
+                sge.game.start_room.start()
+        else:
+            play_sound(select_sound)
+            sge.Music.unpause()
+
+
 class DialogLabel(xsge_gui.ProgressiveLabel):
 
     def event_add_character(self):
@@ -6387,7 +6427,7 @@ class DialogBox(xsge_gui.Dialog):
         y = sge.game.height / 2 - height / 2
         super(DialogBox, self).__init__(
             parent, x, y, width, height,
-            background_color=sge.Color((64, 64, 255, 64)), border=False)
+            background_color=menu_color, border=False)
         label_h = max(1, height - y_padding)
 
         self.label = DialogLabel(self, label_x, label_y, 0, text, font=font,
@@ -6883,6 +6923,8 @@ xsge_gui.init()
 gui_handler = xsge_gui.Handler()
 
 print("Loading images...")
+menu_color = sge.Color((128, 128, 255, 192))
+
 # Load sprites
 d = os.path.join(DATA, "images", "objects", "tux")
 tux_body_stand_sprite = sge.Sprite(

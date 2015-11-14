@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="14" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="270" height="14" tilewidth="32" tileheight="32">
  <properties>
   <property name="ambient_light" value="#0f0f0f"/>
   <property name="bgname" value="arctis"/>
@@ -16,32 +16,32 @@
  <tileset firstgid="469" source="../tilesets/krush.tsx"/>
  <tileset firstgid="470" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="471" source="../tilesets/snowman.tsx"/>
- <layer name="Back Tiles" width="250" height="14">
+ <layer name="Back Tiles" width="270" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt18EJgDAQRNFYmI1YQSqwTS3JCjwEZhHW9yDXYS//kDEAAAAAAOC/7u3rC4Bql86hPZ1Df6nOj8wMUCDV+czMAAVSnZ+ZGaCA/zn099b5vviA/h6IFgqW
+   eJzt1DERgFAQQ8GPMIygAAXYBEkouOKqC8zuTPpUby0AAAAAAIB/erbpB8DX3LoBNOkG0JXajWP6AFBK7cY5fQAopXbjmj4AlFK7AeSqurE3B9D1ArQbCpY=
   </data>
  </layer>
- <layer name="Middle Tiles" width="250" height="14">
+ <layer name="Middle Tiles" width="270" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt2jEKwnAMxeF/r2BPoPfwAo4dXV1Ep1Zw9TaOXsYLNSkERISiNY2G3wdvLaHweBUs5XNNNR4AADCvXfQBANy10QcAcKVbfok+AoAr2/Jt6BUAvNiWa8f3kjr2HAAOdMut42fJstB1IBPd8seOG7oO5KFb/txxo11fzXvOYMP/a4Cv0t/lrzoOAL/sKt8DB8mR7wJgsE6Ym/S7k5yqac/J+n7I/+f+5oYtCCHp0wPqh1rg
+   eJzt2rEJwkAYBeBkBZ1A93ABS0tbG9FKBVu3sXQZF/IucBDEEILg3eH3wWvDj8XLI9g05di04wEA6NvlPgCozin3AUBV4ta45T4CqEraGtusVwC1SFsjdsY+ZJ73HKACcWukzriGLBrdAQyLW6PfGYnuAIbErfHeGUnsjuVvz+ms/V8Miha/a3zqDIB/cg975RBytFugs5LRPEJfnEMu7XfP8XtLqXlOfCfOREQm5gWeXmEM
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="0" y="416" width="8000" height="32"/>
-  <object x="7904" y="288" width="64" height="128"/>
-  <object x="480" y="0" width="288" height="32"/>
-  <object x="1184" y="288" width="32" height="32"/>
-  <object x="256" y="288" width="32" height="32"/>
-  <object x="224" y="256" width="32" height="32"/>
-  <object x="192" y="224" width="32" height="32"/>
-  <object x="160" y="192" width="32" height="32"/>
+  <object x="0" y="416" width="8640" height="32"/>
+  <object x="8544" y="288" width="64" height="128"/>
+  <object x="1120" y="0" width="288" height="32"/>
+  <object x="1824" y="288" width="32" height="32"/>
+  <object x="896" y="288" width="32" height="32"/>
+  <object x="864" y="256" width="32" height="32"/>
+  <object x="832" y="224" width="32" height="32"/>
+  <object x="800" y="192" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="level_end" x="7456" y="0" width="32" height="416"/>
-  <object type="solid_left" x="1696" y="352" width="32" height="64"/>
-  <object type="slope_topleft" x="0" y="192" width="160" height="160"/>
-  <object type="slope_bottomright" x="0" y="64" width="128" height="256"/>
-  <object type="triggered_moving_platform_path" x="320" y="320">
+  <object type="level_end" x="8096" y="0" width="32" height="416"/>
+  <object type="solid_left" x="2336" y="352" width="32" height="64"/>
+  <object type="slope_topleft" x="640" y="192" width="160" height="160"/>
+  <object type="slope_bottomright" x="640" y="64" width="128" height="256"/>
+  <object type="triggered_moving_platform_path" x="960" y="320">
    <properties>
     <property name="path_loop" value="0"/>
    </properties>
@@ -51,126 +51,126 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="459" x="928" y="416"/>
-  <object gid="459" x="928" y="352"/>
-  <object gid="459" x="928" y="384"/>
-  <object gid="459" x="992" y="416"/>
-  <object gid="459" x="960" y="416"/>
-  <object gid="459" x="960" y="384"/>
-  <object gid="459" x="896" y="416"/>
-  <object gid="459" x="896" y="384"/>
-  <object gid="459" x="960" y="320"/>
-  <object gid="459" x="960" y="352"/>
-  <object gid="459" x="864" y="416"/>
-  <object gid="459" x="992" y="384"/>
-  <object gid="459" x="1024" y="416"/>
-  <object gid="459" x="1056" y="416"/>
-  <object gid="459" x="1088" y="416"/>
-  <object gid="454" x="1920" y="384"/>
-  <object gid="454" x="1952" y="384"/>
-  <object gid="454" x="1984" y="384"/>
-  <object gid="454" x="2016" y="384"/>
-  <object gid="454" x="2048" y="384"/>
-  <object gid="454" x="2080" y="384"/>
-  <object gid="454" x="2112" y="384"/>
-  <object gid="454" x="2144" y="384"/>
-  <object gid="454" x="2144" y="352"/>
-  <object gid="454" x="2176" y="320"/>
-  <object gid="454" x="2176" y="352"/>
-  <object gid="454" x="2208" y="320"/>
-  <object gid="454" x="2240" y="320"/>
-  <object gid="454" x="2272" y="320"/>
-  <object gid="453" x="2272" y="416"/>
-  <object gid="453" x="2304" y="416"/>
-  <object gid="453" x="2336" y="416"/>
-  <object gid="453" x="2240" y="416"/>
-  <object gid="453" x="2304" y="384"/>
-  <object gid="453" x="2336" y="384"/>
-  <object gid="453" x="2304" y="352"/>
-  <object gid="447" x="2784" y="416">
+  <object gid="459" x="1568" y="416"/>
+  <object gid="459" x="1568" y="352"/>
+  <object gid="459" x="1568" y="384"/>
+  <object gid="459" x="1632" y="416"/>
+  <object gid="459" x="1600" y="416"/>
+  <object gid="459" x="1600" y="384"/>
+  <object gid="459" x="1536" y="416"/>
+  <object gid="459" x="1536" y="384"/>
+  <object gid="459" x="1600" y="320"/>
+  <object gid="459" x="1600" y="352"/>
+  <object gid="459" x="1504" y="416"/>
+  <object gid="459" x="1632" y="384"/>
+  <object gid="459" x="1664" y="416"/>
+  <object gid="459" x="1696" y="416"/>
+  <object gid="459" x="1728" y="416"/>
+  <object gid="454" x="2560" y="384"/>
+  <object gid="454" x="2592" y="384"/>
+  <object gid="454" x="2624" y="384"/>
+  <object gid="454" x="2656" y="384"/>
+  <object gid="454" x="2688" y="384"/>
+  <object gid="454" x="2720" y="384"/>
+  <object gid="454" x="2752" y="384"/>
+  <object gid="454" x="2784" y="384"/>
+  <object gid="454" x="2784" y="352"/>
+  <object gid="454" x="2816" y="320"/>
+  <object gid="454" x="2816" y="352"/>
+  <object gid="454" x="2848" y="320"/>
+  <object gid="454" x="2880" y="320"/>
+  <object gid="454" x="2912" y="320"/>
+  <object gid="453" x="2912" y="416"/>
+  <object gid="453" x="2944" y="416"/>
+  <object gid="453" x="2976" y="416"/>
+  <object gid="453" x="2880" y="416"/>
+  <object gid="453" x="2944" y="384"/>
+  <object gid="453" x="2976" y="384"/>
+  <object gid="453" x="2944" y="352"/>
+  <object gid="447" x="3424" y="416">
    <properties>
     <property name="cls" value="rock"/>
    </properties>
   </object>
-  <object gid="447" x="3136" y="320">
+  <object gid="447" x="3776" y="320">
    <properties>
     <property name="cls" value="itemblock"/>
     <property name="disguised" value="1"/>
     <property name="item" value="fireflower"/>
    </properties>
   </object>
-  <object gid="447" x="3200" y="320">
+  <object gid="447" x="3840" y="320">
    <properties>
     <property name="cls" value="itemblock"/>
     <property name="disguised" value="1"/>
    </properties>
   </object>
-  <object gid="447" x="3392" y="416">
+  <object gid="447" x="4032" y="416">
    <properties>
     <property name="cls" value="iceblock"/>
    </properties>
   </object>
-  <object gid="447" x="3424" y="416">
+  <object gid="447" x="4064" y="416">
    <properties>
     <property name="cls" value="iceblock"/>
    </properties>
   </object>
-  <object gid="447" x="3456" y="416">
+  <object gid="447" x="4096" y="416">
    <properties>
     <property name="cls" value="iceblock"/>
    </properties>
   </object>
-  <object gid="451" x="3648" y="416"/>
-  <object gid="459" x="3936" y="96"/>
-  <object gid="460" x="3936" y="64"/>
-  <object gid="10" x="4480" y="416"/>
-  <object gid="10" x="2112" y="352"/>
+  <object gid="451" x="4288" y="416"/>
+  <object gid="459" x="4576" y="96"/>
+  <object gid="460" x="4576" y="64"/>
+  <object gid="10" x="5120" y="416"/>
+  <object gid="10" x="2752" y="352"/>
  </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="469" x="512" y="96"/>
-  <object gid="469" x="608" y="96"/>
-  <object gid="469" x="704" y="96"/>
-  <object type="circoflame" x="1184" y="288">
+  <object gid="469" x="1152" y="96"/>
+  <object gid="469" x="1248" y="96"/>
+  <object gid="469" x="1344" y="96"/>
+  <object type="circoflame" x="1824" y="288">
    <polyline points="0,0 0,-128"/>
   </object>
-  <object type="circoflame" x="1184" y="288">
+  <object type="circoflame" x="1824" y="288">
    <polyline points="0,0 0,-96"/>
   </object>
-  <object type="circoflame" x="1184" y="288">
+  <object type="circoflame" x="1824" y="288">
    <polyline points="0,0 0,-64"/>
   </object>
-  <object type="circoflame" x="1184" y="288">
+  <object type="circoflame" x="1824" y="288">
    <polyline points="0,0 0,-32"/>
   </object>
-  <object gid="450" x="256" y="416"/>
-  <object type="flying_snowball_path" x="6432" y="288">
+  <object gid="450" x="896" y="416"/>
+  <object type="flying_snowball_path" x="7072" y="288">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object type="flying_snowball_path" x="6592" y="320">
+  <object type="flying_snowball_path" x="7232" y="320">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="6" x="1088" y="384"/>
-  <object gid="6" x="992" y="288"/>
-  <object gid="6" x="1024" y="352"/>
-  <object gid="6" x="800" y="416"/>
-  <object gid="6" x="736" y="416"/>
-  <object gid="6" x="672" y="416"/>
-  <object gid="6" x="912" y="352"/>
-  <object type="object_warp_spawn" x="1760" y="384">
+  <object gid="6" x="1728" y="384"/>
+  <object gid="6" x="1632" y="288"/>
+  <object gid="6" x="1664" y="352"/>
+  <object gid="6" x="1440" y="416"/>
+  <object gid="6" x="1376" y="416"/>
+  <object gid="6" x="1312" y="416"/>
+  <object gid="6" x="1552" y="352"/>
+  <object type="object_warp_spawn" x="2400" y="384">
    <properties>
     <property name="cls" value="walking_snowball"/>
     <property name="limit" value="1"/>
    </properties>
    <polyline points="0,0 -64,0"/>
   </object>
-  <object gid="7" x="3840" y="416"/>
-  <object gid="11" x="3488" y="320"/>
-  <object gid="442" x="3808" y="352"/>
-  <object gid="442" x="3840" y="352"/>
+  <object gid="7" x="4480" y="416"/>
+  <object gid="11" x="4128" y="320"/>
+  <object gid="442" x="4448" y="352"/>
+  <object gid="442" x="4480" y="352"/>
  </objectgroup>
  <objectgroup name="Players">
-  <object gid="1" x="224" y="416"/>
-  <object type="flying_snowball_path" x="6944" y="128">
+  <object gid="1" x="864" y="416"/>
+  <object type="flying_snowball_path" x="7584" y="128">
    <properties>
     <property name="parent" value="2"/>
     <property name="path_accel" value="0.05"/>
@@ -179,7 +179,7 @@
    </properties>
    <polyline points="0,0 128,-32"/>
   </object>
-  <object type="flying_snowball_path" x="7072" y="96">
+  <object type="flying_snowball_path" x="7712" y="96">
    <properties>
     <property name="parent" value="3"/>
     <property name="path_decel" value="0.05"/>
@@ -188,7 +188,7 @@
    </properties>
    <polyline points="0,0 128,32"/>
   </object>
-  <object type="flying_snowball_path" x="7072" y="160">
+  <object type="flying_snowball_path" x="7712" y="160">
    <properties>
     <property name="parent" value="1"/>
     <property name="path_decel" value="0.05"/>
@@ -197,7 +197,7 @@
    </properties>
    <polyline points="0,0 -128,-32"/>
   </object>
-  <object type="flying_snowball_path" x="7200" y="128">
+  <object type="flying_snowball_path" x="7840" y="128">
    <properties>
     <property name="parent" value="4"/>
     <property name="path_accel" value="0.05"/>
@@ -208,9 +208,9 @@
    <polyline points="0,0 -128,32"/>
   </object>
  </objectgroup>
- <layer name="Front Tiles" width="250" height="14">
+ <layer name="Front Tiles" width="270" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMA8Gw/3BQMBBMkA4hWXcTuHlXAQAAAAAAa/xeALw2dQ7xdA75dA75dA75dA75dA75us63DwCuA50cB1c=
+   eJzt1LEJACAQBMG3/+I0sCA7EC4QUWYq2GirAAAAAAAA/jba7QLgNd03gJBvACnfAFK+AaR8A0j5BpDafWN6CnDAAgsiB1c=
   </data>
  </layer>
 </map>
