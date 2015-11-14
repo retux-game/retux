@@ -1925,31 +1925,32 @@ class Player(xsge_physics.Collider):
             self.yacceleration = 0
             self.xdeceleration = 0
 
+            if abs(self.xvelocity) >= self.max_speed:
+                self.xvelocity = self.max_speed * current_h_movement
+
             if h_control:
                 self.facing = h_control
                 self.image_xscale = h_control * abs(self.image_xscale)
                 h_factor = abs(self.right_pressed - self.left_pressed)
-                max_speed = h_factor * self.max_speed
+                target_speed = min(h_factor * self.max_speed, self.max_speed)
                 if self.sneak_pressed:
-                    max_speed = min(max_speed, self.walk_speed)
-                if abs(self.xvelocity) < max_speed:
+                    target_speed = min(target_speed, self.walk_speed)
+                if (abs(self.xvelocity) < target_speed or
+                        h_control != current_h_movement):
                     if self.on_floor or self.was_on_floor:
                         self.xacceleration = self.acceleration * h_control
                     else:
                         self.xacceleration = self.air_acceleration * h_control
                 else:
-                    if abs(self.xvelocity) >= self.max_speed:
-                        self.xvelocity = max_speed * current_h_movement
-
                     if self.on_floor or self.was_on_floor:
                         dc = self.friction
                     else:
                         dc = self.air_friction
 
-                    if self.xvelocity - dc * delta_mult > max_speed:
+                    if abs(self.xvelocity) - dc * delta_mult > target_speed:
                         self.xdeceleration = dc
                     else:
-                        self.xvelocity = max_speed * current_h_movement
+                        self.xvelocity = target_speed * current_h_movement
 
             if current_h_movement and h_control != current_h_movement:
                 if self.on_floor or self.was_on_floor:
