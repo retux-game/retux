@@ -492,7 +492,6 @@ class Level(sge.Room):
         if self.pause_delay <= 0 and not self.won:
             sge.Music.pause()
             play_sound(pause_sound)
-            #sge.game.pause(pause_sprite)
             PauseMenu.create()
 
     def unpause(self):
@@ -7384,9 +7383,6 @@ font_big_sprite = sge.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
     width=20, height=22)
 font_big = sge.Font.from_sprite(font_big_sprite, chars, size=22)
-
-pause_sprite = sge.Sprite.from_text(font_big, "Paused",
-                                    color=sge.Color("white"))
 
 # Load sounds
 jump_sound = sge.Sound(os.path.join(DATA, "sounds", "jump.wav"))
