@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.2"
+__version__ = "0.3a0"
 
 import argparse
 import datetime
@@ -892,23 +892,22 @@ class Level(sge.Room):
         global level_timers
         global score
 
-        if self.death_time is not None or "death" in self.alarms:
-            if level_timers.setdefault(main_area, 0) >= 0:
-                sge.Music.stop()
-                self.alarms["death"] = 0
-        else:
-            if key == "f11":
-                sge.game.fullscreen = not sge.game.fullscreen
-            elif key == "escape":
-                if (self.timeline_skip_target is not None and
-                        self.timeline_step < self.timeline_skip_target):
-                    self.timeline_skipto(self.timeline_skip_target)
+        if key == "f11":
+            sge.game.fullscreen = not sge.game.fullscreen
+        elif key == "escape":
+            if self.death_time is not None or "death" in self.alarms:
+                if level_timers.setdefault(main_area, 0) >= 0:
+                    sge.Music.stop()
+                    self.alarms["death"] = 0
+            elif (self.timeline_skip_target is not None and
+                  self.timeline_step < self.timeline_skip_target):
+                self.timeline_skipto(self.timeline_skip_target)
+            else:
+                rush_save()
+                if current_worldmap:
+                    self.return_to_map()
                 else:
-                    rush_save()
-                    if current_worldmap:
-                        self.return_to_map()
-                    else:
-                        sge.game.start_room.start()
+                    sge.game.start_room.start()
 
     def event_paused_key_press(self, key, char):
         self.event_key_press(key, char)
@@ -6044,9 +6043,9 @@ class OverwriteConfirmMenu(Menu):
         abort = False
 
         if self.choice == 0:
+            play_sound(confirm_sound)
             set_new_game()
             if not abort:
-                play_sound(confirm_sound)
                 start_levelset()
             else:
                 play_sound(cancel_sound)
