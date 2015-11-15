@@ -356,8 +356,9 @@ class Game(sge.Game):
                 self.fps_frames = 0
 
             self.project_text(font_small, self.fps_text, self.width - 8,
-                              self.height - 8, color=sge.Color("yellow"),
-                              halign="right", valign="bottom")
+                              self.height - 8, z=1000,
+                              color=sge.Color("yellow"), halign="right",
+                              valign="bottom")
 
     def event_mouse_button_press(self, button):
         if button == "middle":
@@ -749,6 +750,7 @@ class Level(sge.Room):
         if self.death_time is not None:
             a = int(255 * (DEATH_FADE_TIME - self.death_time) / DEATH_FADE_TIME)
             sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
+                                       z=100,
                                        fill=sge.Color((0, 0, 0, min(a, 255))))
 
             time_bonus = level_timers.setdefault(main_area, 0)
@@ -770,7 +772,7 @@ class Level(sge.Room):
                 self.death_time -= time_passed
         elif "death" in self.alarms:
             sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
-                                       fill=sge.Color("black"))
+                                       z=100, fill=sge.Color("black"))
 
         if self.won:
             if self.win_count_points:
@@ -861,6 +863,11 @@ class Level(sge.Room):
             if self.shake_queue:
                 self.alarms["shake_down"] = SHAKE_FRAME_TIME
         elif alarm_id == "death":
+            # Project a black rectangle to prevent showing the level on
+            # the last frame.
+            sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
+                                       z=100, fill=sge.Color("black"))
+
             if not cleared_levels:
                 level_timers[main_area] = level_time_bonus
 
