@@ -6621,8 +6621,9 @@ def load_levelset(fname, preload_start=0):
         while sge.game.input_events:
             event = sge.game.input_events.pop(0)
             if isinstance(event, sge.input.KeyPress):
-                if event.key == "escape":
-                    return True
+                return True
+            elif isinstance(event, sge.input.JoystickButtonPress):
+                return True
             if isinstance(event, sge.input.QuitRequest):
                 sge.game.end()
                 return True
@@ -6655,7 +6656,7 @@ def load_levelset(fname, preload_start=0):
 
         x = margin
         y = margin
-        text = "Preloading levels...\n\n(press Escape to skip)"
+        text = "Preloading levels...\n\n(press any key to skip)"
         c = sge.Color("white")
         xsge_gui.Label(
             window, x, y, 1, text, font=font, width=(w - 2 * margin),
