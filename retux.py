@@ -2623,9 +2623,11 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
         if isinstance(other, xsge_physics.SolidRight):
             self.stop_left()
         elif isinstance(other, xsge_physics.SlopeTopRight):
-            self.stop_down()
+            if self.yvelocity > 0:
+                self.stop_down()
         elif isinstance(other, xsge_physics.SlopeBottomRight):
-            self.stop_up()
+            if self.yvelocity < 0:
+                self.stop_up()
 
     def event_physics_collision_right(self, other, move_loss):
         if isinstance(other, HurtLeft):
@@ -2634,9 +2636,11 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
         if isinstance(other, xsge_physics.SolidLeft):
             self.stop_right()
         elif isinstance(other, xsge_physics.SlopeTopLeft):
-            self.stop_down()
+            if self.yvelocity > 0:
+                self.stop_down()
         elif isinstance(other, xsge_physics.SlopeBottomLeft):
-            self.stop_up()
+            if self.yvelocity < 0:
+                self.stop_up()
 
     def event_physics_collision_top(self, other, move_loss):
         if isinstance(other, HurtBottom):
