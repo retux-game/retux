@@ -1591,6 +1591,7 @@ class Player(xsge_physics.Collider):
         if not self.warping and (self.on_floor or self.was_on_floor):
             for thin_ice in self.collision(ThinIce, y=(self.y + 1)):
                 thin_ice.crack()
+                thin_ice.crack()
 
             if abs(self.xvelocity) >= self.run_speed:
                 self.yvelocity = get_jump_speed(self.run_jump_height,
