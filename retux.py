@@ -157,6 +157,7 @@ SNOWMAN_HP = 5
 SNOWMAN_STRONG_STAGE = 2
 SNOWMAN_FINAL_STAGE = 3
 SNOWMAN_HITSTUN = 120
+SNOWMAN_SHAKE_NUM = 3
 
 RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
@@ -169,6 +170,7 @@ RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
 RACCOT_HP = 5
 RACCOT_HOP_INTERVAL = 90
 RACCOT_CHARGE_INTERVAL = 450
+RACCOT_SHAKE_NUM = 3
 
 HP_POINTS = 1000
 TIMER_FRAMES = 40
@@ -2352,61 +2354,6 @@ class Player(xsge_physics.Collider):
                     warp.warp(self)
 
 
-class RaccotBase(xsge_physics.Collider):
-
-    hopping = False
-    stomping = False
-
-    def hop(self):
-        self.hopping = True
-        self.xvelocity = 0
-        self.yvelocity = get_jump_speed(RACCOT_HOP_HEIGHT, self.gravity)
-        play_sound(yeti_gna_sound)
-
-    def stomp(self):
-        self.stomping = True
-        self.xvelocity = 0
-        self.yvelocity = 0
-        self.gravity = RACCOT_STOMP_GRAVITY
-        self.fall_speed = RACCOT_STOMP_FALL_SPEED
-
-
-class RaccotPlayer(RaccotBase, Player):
-
-    name = "Raccot"
-    walk_speed = RACCOT_WALK_SPEED
-    acceleration = RACCOT_ACCELERATION
-    jump_height = RACCOT_JUMP_HEIGHT
-    run_jump_height = RACCOT_JUMP_HEIGHT
-
-    def set_image(self):
-        h_control = bool(self.right_pressed) - bool(self.left_pressed)
-
-        if self.on_floor and self.was_on_floor:
-            if self.hopping:
-                self.sprite = raccot_stomp_sprite
-            else:
-                xm = (self.xvelocity > 0) - (self.xvelocity < 0)
-                speed = abs(self.xvelocity)
-                if speed > 0:
-                    self.sprite = raccot_walk_sprite
-                    self.image_speed = speed * RACCOT_WALK_FRAMES_PER_PIXEL
-                    if xm != self.facing:
-                        self.image_speed *= -1
-                else:
-                    self.sprite = raccot_stand_sprite
-        else:
-            if self.hopping:
-                self.sprite = raccot_hop_sprite
-            elif self.stomping:
-                self.sprite = raccot_stomp_sprite
-            else:
-                self.sprite = raccot_jump_sprite
-
-    def set_warp_image(self):
-        self.sprite = raccot_jump_sprite
-
-
 class DeadMan(sge.Object):
 
     """Object which falls off the screen, then gets destroyed."""
@@ -3880,10 +3827,9 @@ class Snowman(FallingObject, Boss):
         if self.stage > 0 and self.yvelocity > 1:
             play_sound(brick_sound)
             self.yvelocity = 0
-            if not self.stunned:
-                self.xvelocity = 0
-                self.xacceleration = 0
-            sge.game.current_room.shake(3)
+            self.xvelocity = 0
+            self.xacceleration = 0
+            sge.game.current_room.shake(SNOWMAN_SHAKE_NUM)
             self.alarms["stomp_delay"] = SNOWMAN_STOMP_DELAY
             if self.stun_end:
                 self.fixed_sprite = False
@@ -3907,12 +3853,12 @@ class Snowman(FallingObject, Boss):
                 self.next_stage()
 
     def knock(self, other=None):
-        if (self.stage > 0 and not self.stunned and
-                not isinstance(other, (Icicle, FallingIcicle))):
+        if self.stage > 0 and not isinstance(other, (Icicle, FallingIcicle)):
             play_sound(stomp_sound)
             self.stun()
-            if other is not None and other.knockable:
-                other.knock(self)
+
+        if other is not None and other.knockable:
+            other.knock(self)
 
     def blast(self):
         if self.stage > 0:
@@ -3954,7 +3900,7 @@ class Snowman(FallingObject, Boss):
             self.next_stage()
 
 
-class Raccot(RaccotBase, Boss, FallingObject):
+class Raccot(Boss, FallingObject):
 
     burnable = True
     freezable = True
@@ -3969,21 +3915,92 @@ class Raccot(RaccotBase, Boss, FallingObject):
     def stage(self, value):
         self.__stage = value
         if value:
-            pass
+            self.alarms["hop"] = self.hop_interval
+            self.alarms["charge"] = self.charge_interval
 
     def __init__(self, x, y, hp=RACCOT_HP, hop_interval=RACCOT_HOP_INTERVAL,
                  charge_interval=RACCOT_CHARGE_INTERVAL, **kwargs):
         self.hp = hp
         self.hop_interval = hop_interval
         self.charge_interval = charge_interval
+        self.hopping = False
+        self.charging = False
+        self.crushing = False
         super(Raccot, self).__init__(x, y, **kwargs)
 
+    def hop(self):
+        if self.was_on_floor:
+            self.hopping = True
+            self.alarms["do_hop"] = 5
+            self.sprite = raccot_stomp_sprite
+            play_sound(yeti_gna_sound)
+
+    def do_hop(self):
+        self.xvelocity = 0
+        self.yvelocity = get_jump_speed(RACCOT_HOP_HEIGHT, self.gravity)
+        self.sprite = raccot_hop_sprite
+
+    def crush(self):
+        if not self.was_on_floor:
+            self.crushing = True
+            self.xvelocity = 0
+            self.yvelocity = 0
+            self.gravity = RACCOT_STOMP_GRAVITY
+            self.fall_speed = RACCOT_STOMP_FALL_SPEED
+
+    def hurt(self):
+        if self.stage > 0:
+            play_sound(yeti_roar_sound)
+            self.hp -= 1
+            if self.hp <= 0:
+                self.kill()
+
+    def kill(self):
+        play_sound(fall_sound)
+        DeadMan.create(self.x, self.y, self.z, sprite=raccot_hop_sprite,
+                       xvelocity=self.xvelocity,
+                       yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
+                       image_xscale=self.image_xscale,
+                       image_yscale=-abs(self.image_yscale))
+        self.destroy()
+
+    def stop_up(self):
+        self.yvelocity = 0
+        if self.get_bottom_touching_wall():
+            self.stop_down()
+
+    def stop_down(self):
+        if self.stage > 0 and self.yvelocity > 1:
+            play_sound(brick_sound)
+            self.yvelocity = 0
+            self.xvelocity = 0
+            self.xacceleration = 0
+            sge.game.current_room.shake(RACCOT_SHAKE_NUM)
+            self.alarms["stomp_delay"] = RACCOT_STOMP_DELAY
+
+            if self.crushing:
+                for obj in self.get_bottom_touching_wall():
+                    if isinstance(obj, Brick):
+                        obj.hit(self)
+
+        self.hopping = False
+        self.crushing = False
+        self.gravity = self.__class__.gravity
+        self.sprite = raccot_stand_sprite
+
+    def knock(self, other=None):
+        if other is not None and other.knockable:
+            other.knock(self)
+
+    def blast(self):
+        self.hurt()
+
     def event_alarm(self, alarm_id):
-        if alarm_id == "attack":
-            if random.random() < stomp_chance:
-                pass
-            else:
-                pass
+        if alarm_id == "hop":
+            if not self.charging:
+                self.hop()
+        elif alarm_id == "do_hop":
+            self.do_hop()
 
 
 class FireFlower(FallingObject, WinPuffObject):

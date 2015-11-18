@@ -35,6 +35,7 @@ images/misc/light_small.png
 images/misc/light_tiny.png
 images/misc/spawn_point.png
 images/objects/bonus/bonus_empty.png
+images/objects/bonus/bonus_fireflower.png
 images/objects/bonus/bonus_full-0.png
 images/objects/bonus/bonus_full-1.png
 images/objects/bonus/bonus_full-2.png
@@ -43,7 +44,14 @@ images/objects/bonus/bonus_full-4.png
 images/objects/bonus/bonus_full-5.png
 images/objects/bonus/bonus_full-6.png
 images/objects/bonus/bonus_full-7.png
+images/objects/bonus/bonus_iceflower.png
+images/objects/bonus/bonus_invisible.png
+images/objects/bonus/bonus_rock.png
+images/objects/bonus/bonus_spring.png
+images/objects/bonus/bonus_spring_fixed.png
+images/objects/bonus/bonus_tuxdoll.png
 images/objects/bonus/brick.png
+images/objects/bonus/brick_full.png
 images/objects/bonus/coin-0.png
 images/objects/bonus/coin-1.png
 images/objects/bonus/coin-2.png
@@ -538,6 +546,7 @@ levels/retux-25d.tmx
 levels/retux-25e.tmx
 levels/retux-26.tmx
 levels/retux-27.tmx
+levels/retux-28.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/test2.tmx
