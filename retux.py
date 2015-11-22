@@ -4374,6 +4374,7 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
 
     def event_destroy(self):
         Smoke.create(self.x, self.y, self.z, sprite=ice_bullet_break_sprite)
+        play_sound(icebullet_break_sound)
 
 
 class TuxDoll(FallingObject):
@@ -7434,6 +7435,8 @@ ice_crack_sounds = [sge.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
 ice_shatter_sound = sge.Sound(os.path.join(DATA, "sounds", "ice_shatter.wav"))
 heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
 shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
+icebullet_break_sound = sge.Sound(os.path.join(DATA, "sounds",
+                                               "icebullet_break.wav"))
 squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))
 stomp_sound = sge.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
 sizzle_sound = sge.Sound(os.path.join(DATA, "sounds", "sizzle.ogg"))

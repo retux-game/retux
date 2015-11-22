@@ -811,6 +811,14 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
 
 ------------------------------------------------------------------------
 
+sounds/icebullet_break.wav
+
+Author: lsprice
+License: CC BY 3.0 <http://creativecommons.org/licenses/by/3.0/>
+Source: http://www.freesound.org/people/lsprice/sounds/88808/
+
+------------------------------------------------------------------------
+
 sounds/ice_crack-0.wav
 sounds/ice_crack-1.wav
 sounds/ice_crack-2.wav
