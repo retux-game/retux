@@ -5673,7 +5673,12 @@ class MapSpace(sge.Object):
         super(MapSpace, self).__init__(x, y, **kwargs)
         self.level = level
         self.level_spawn = level_spawn
-        self.ID = ID if ID is not None else level
+        if ID is not None:
+            self.ID = ID
+        elif level is not None:
+            self.ID = level
+        else:
+            self.ID = "__{}x{}__".format(x, y)
         self.free = free
 
     @property
