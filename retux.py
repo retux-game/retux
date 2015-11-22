@@ -4130,17 +4130,16 @@ class IceFlower(FallingObject, WinPuffObject):
             d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
                 if d < 0:
-                    bbox_x = 0
-                    bbox_width = (ice_bullet_sprite.bbox_width -
-                                  ice_bullet_sprite.bbox_x)
+                    bbox_x = -ice_bullet_sprite.origin_x
                 else:
-                    bbox_x = None
-                    bbox_width = None
+                    bbox_x = (-ice_bullet_sprite.origin_x -
+                              ice_bullet_sprite.bbox_width +
+                              ice_bullet_sprite.width)
                     
                 IceBullet.create(self.x, self.y, self.parent.z,
                                  sprite=ice_bullet_sprite,
                                  xvelocity=(ICEBULLET_SPEED * d),
-                                 bbox_x=bbox_x, bbox_width=bbox_width)
+                                 bbox_x=bbox_x)
                 self.ammo -= 1
                 play_sound(shoot_sound)
 
@@ -4374,10 +4373,7 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
         self.destroy()
 
     def event_destroy(self):
-        # TODO: Some kind of ice breaking sparkly effect, and some kind
-        # of glass-breaking-esque sound.
-        #Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
-        pass
+        Smoke.create(self.x, self.y, self.z, sprite=ice_bullet_break_sprite)
 
 
 class TuxDoll(FallingObject):
@@ -7212,7 +7208,9 @@ logo_sprite = sge.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                 fps=8, bbox_x=-8, bbox_width=16)
 ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
-                               bbox_x=-16, bbox_width=32)
+                               bbox_width=32)
+ice_bullet_break_sprite = sge.Sprite("ice_bullet_break", d, origin_x=8,
+                                     origin_y=7, fps=24)
 explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
                               bbox_x=-32, bbox_y=-4, bbox_width=64,
                               bbox_height=40)
