@@ -386,6 +386,21 @@ Details:
 
 ------------------------------------------------------------------------
 
+images/tiles/tileset_castle.png
+images/tiles/tileset_snow.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Details:
+  2D-Retroperspectives made some improvements to these tiles so that
+  they would tile better, especially the castle tileset, which was
+  previously full of seams.
+
+------------------------------------------------------------------------
+
 images/objects/enemies/flying_spiky-0.png
 images/objects/enemies/flying_spiky-1.png
 
@@ -397,6 +412,24 @@ Source: http://supertux.lethargik.org/wiki/Download/Unstable
 Details:
   Made by replacing the spring in the "snowjumpy" sprite with the
   helicopter blade from the "flying snowball" sprite.
+
+------------------------------------------------------------------------
+
+images/objects/enemies/flying_spiky_iced.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  onpon4 <https://onpon4.github.io>
+  2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+
+------------------------------------------------------------------------
+
+images/objects/bonus/brick_shard.png
+
+Author: 2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Details: Based on images/objects/bonus/brick.png.
 
 ------------------------------------------------------------------------
 
@@ -500,6 +533,8 @@ Source: http://powstudios.com/content/smoke-animation-pack-1
 
 ------------------------------------------------------------------------
 
+credits.json
+LICENSES
 objecttypes.xml
 images/backgrounds/castle-bottom.png
 images/objects/misc/door_back.png
@@ -548,6 +583,7 @@ levels/retux-26.tmx
 levels/retux-27.tmx
 levels/retux-28.tmx
 levels/retux-28b.tmx
+levels/retux-29.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/test2.tmx

@@ -3104,6 +3104,7 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = flying_spiky_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
+        self.frozen_sprite = flying_spiky_iced_sprite
 
     def touch(self, other):
         other.hurt()
@@ -7076,6 +7077,13 @@ flying_snowball_squished_sprite = sge.Sprite(
 flying_spiky_sprite = sge.Sprite("flying_spiky", d, origin_x=24,
                                  origin_y=14, fps=15, bbox_x=-13, bbox_y=0,
                                  bbox_width=26, bbox_height=32)
+flying_spiky_iced_sprite = sge.Sprite("flying_spiky_iced", d, origin_x=24,
+                                      origin_y=14, fps=THAW_FPS, bbox_x=-13,
+                                      bbox_y=0, bbox_width=26, bbox_height=32)
+flying_spiky_iced_sprite.append_frame()
+flying_spiky_iced_sprite.draw_sprite(flying_spiky_sprite, 0,
+                                     flying_spiky_sprite.origin_x,
+                                     flying_spiky_sprite.origin_y, frame=1)
 icicle_sprite = sge.Sprite("icicle", d, bbox_x=0, bbox_y=0, bbox_width=32,
                            bbox_height=48)
 icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=0, bbox_y=32,
