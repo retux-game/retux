@@ -216,14 +216,6 @@ images/objects/spring/fixed_spring_expand-1.png
 images/objects/spring/fixed_spring_expand-2.png
 images/objects/spring/fixed_spring_expand-3.png
 images/objects/spring/fixed_spring_expand-4.png
-images/objects/spring/rusty_spring.png
-images/objects/spring/rusty_spring_dead.png
-images/objects/spring/rusty_spring_expand-0.png
-images/objects/spring/rusty_spring_expand-1.png
-images/objects/spring/rusty_spring_expand-2.png
-images/objects/spring/rusty_spring_expand-3.png
-images/objects/spring/rusty_spring_expand-4.png
-images/objects/spring/rusty_spring_expand-5.png
 images/objects/spring/rusty_spring_expanded.png
 images/objects/spring/spring.png
 images/objects/spring/spring_expand-0.png
@@ -401,6 +393,27 @@ Details:
 
 ------------------------------------------------------------------------
 
+images/objects/spring/rusty_spring.png
+images/objects/spring/rusty_spring_dead.png
+images/objects/spring/rusty_spring_expand-0.png
+images/objects/spring/rusty_spring_expand-1.png
+images/objects/spring/rusty_spring_expand-2.png
+images/objects/spring/rusty_spring_expand-3.png
+images/objects/spring/rusty_spring_expand-4.png
+images/objects/spring/rusty_spring_expand-5.png
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Details:
+  2D-Retroperspectives re-did the expanding animation, based on the
+  original simplistic expand animation and the regular spring expand
+  animation.
+
+------------------------------------------------------------------------
+
 images/objects/enemies/flying_spiky-0.png
 images/objects/enemies/flying_spiky-1.png
 
@@ -427,16 +440,25 @@ License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
 images/objects/bonus/brick_shard.png
 
-Author: 2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Details: Based on images/objects/bonus/brick.png.
+Details:
+  Made by 2D-Retroperspectives based on the "brick" sprite, which is by
+  the SuperTux development team.
 
 ------------------------------------------------------------------------
 
 images/misc/ice_bullet_break-strip5.png
-Author: 2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
+
+Authors:
+  SuperTux development team <http://supertux.lethargik.org>
+  2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Details: Based on images/misc/ice_bullet.png.
+Details:
+  Made by 2D-Retroperspectives based on the ice bullet sprite, which is
+  by the SuperTux development team.
 
 ------------------------------------------------------------------------
 
