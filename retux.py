@@ -234,6 +234,12 @@ THAW_FPS = 15
 THAW_TIME_DEFAULT = FPS * 5
 THAW_WARN_TIME = FPS
 
+BRICK_SHARD_NUM = 6
+BRICK_SHARD_SPEED = 3
+BRICK_SHARD_HEIGHT = TILE_SIZE * 2
+BRICK_SHARD_GRAVITY = 0.75
+BRICK_SHARD_FALL_SPEED = 12
+
 ROCK_GRAVITY = 0.6
 ROCK_FALL_SPEED = 10
 ROCK_FRICTION = 0.4
@@ -4781,7 +4787,15 @@ class HittableBlock(xsge_physics.SolidBottom, Tile):
 class Brick(HittableBlock, xsge_physics.Solid):
 
     def event_hit(self, other):
-        # TODO: Create brick shards (probably DeadMan objects)
+        for _ in six.moves.range(BRICK_SHARD_NUM):
+            xv = random.uniform(-BRICK_SHARD_SPEED, BRICK_SHARD_SPEED)
+            yv = get_jump_speed(BRICK_SHARD_HEIGHT, BRICK_SHARD_GRAVITY)
+            shard = DeadMan.create(
+                self.x, self.y, self.z, sprite=brick_shard_sprite,
+                xvelocity=xv, yvelocity=yv)
+            shard.gravity = BRICK_SHARD_GRAVITY
+            shard.fall_speed = BRICK_SHARD_FALL_SPEED
+
         sge.game.current_room.add_points(10)
         self.destroy()
 
@@ -7127,6 +7141,7 @@ d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.Sprite("bonus_empty", d)
 bonus_full_sprite = sge.Sprite("bonus_full", d, fps=8)
 brick_sprite = sge.Sprite("brick", d)
+brick_shard_sprite = sge.Sprite("brick_shard", d)
 coin_sprite = sge.Sprite("coin", d, fps=8)
 fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=16,
                                 fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
