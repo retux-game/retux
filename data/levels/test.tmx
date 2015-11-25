@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="270" height="14" tilewidth="32" tileheight="32">
  <properties>
-  <property name="ambient_light" value="#0f0f0f"/>
+  <property name="ambient_light" value="#ff0808"/>
   <property name="bgname" value="arctis"/>
+  <property name="disable_lights" value="1"/>
   <property name="music" value="chipdisko.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>

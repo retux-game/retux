@@ -390,7 +390,8 @@ class Level(sge.Room):
                  object_area_height=TILE_SIZE * 2,
                  name=None, bgname=None, music=None,
                  time_bonus=DEFAULT_LEVEL_TIME_BONUS, spawn=None,
-                 timeline=None, ambient_light=None, persistent=True):
+                 timeline=None, ambient_light=None, disable_lights=False,
+                 persistent=True):
         self.fname = None
         self.name = name
         self.music = music
@@ -416,6 +417,8 @@ class Level(sge.Room):
                 self.ambient_light = None
         else:
             self.ambient_light = None
+
+        self.disable_lights = disable_lights or self.ambient_light is None
 
         super(Level, self).__init__(objects, width, height, views, background,
                                     background_x, background_y,
@@ -630,7 +633,8 @@ class Level(sge.Room):
                     view.x - range_, view.y - range_, view.width + range_ * 2,
                     view.height + range_ * 2):
                 if isinstance(obj, InteractiveObject):
-                    obj.project_light()
+                    if not self.disable_lights:
+                        obj.project_light()
 
                 if not obj.active:
                     if isinstance(obj, InteractiveObject):
@@ -845,7 +849,8 @@ class Level(sge.Room):
                     view.x - range_, view.y - range_, view.width + range_ * 2,
                     view.height + range_ * 2):
                 if isinstance(obj, InteractiveObject):
-                    obj.project_light()
+                    if not self.disable_lights:
+                        obj.project_light()
 
         self.show_hud()
 
