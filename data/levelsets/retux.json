@@ -30,7 +30,8 @@
         "retux-25.tmx",
         "retux-26.tmx",
         "retux-27.tmx",
-        "retux-28.tmx"
+        "retux-28.tmx",
+        "retux-29.tmx"
     ],
     "tuxdolls_available": [
         "retux-01.tmx",
@@ -60,6 +61,7 @@
         "retux-25.tmx",
         "retux-26.tmx",
         "retux-27.tmx",
-        "retux-28.tmx"
+        "retux-28.tmx",
+        "retux-29.tmx"
     ]
 }
