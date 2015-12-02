@@ -1675,7 +1675,7 @@ class Player(xsge_physics.Collider):
     def win_level(self, victory_walk=True):
         global current_checkpoints
 
-        for obj in sge.game.current_room.objects:
+        for obj in sge.game.current_room.objects[:]:
             if isinstance(obj, WinPuffObject) and obj.active:
                 obj.win_puff()
 
@@ -6900,9 +6900,9 @@ def warp(dest):
             level.spawn = spawn
             level.points = cr.points
 
-            for nobj in level.objects:
+            for nobj in level.objects[:]:
                 if isinstance(nobj, Player):
-                    for cobj in cr.objects:
+                    for cobj in cr.objects[:]:
                         if (isinstance(cobj, Player) and
                                 cobj.player == nobj.player):
                             nobj.hp = cobj.hp
