@@ -168,11 +168,15 @@
   <object gid="470" x="6912" y="224"/>
   <object gid="470" x="7008" y="224"/>
   <object gid="470" x="640" y="288"/>
+  <object gid="477" x="6848" y="224"/>
+  <object gid="477" x="6880" y="224"/>
+  <object gid="477" x="6944" y="224"/>
+  <object gid="477" x="6976" y="224"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="5" x="1952" y="480"/>
   <object gid="5" x="1888" y="480"/>
-  <object gid="6" x="1824" y="480"/>
+  <object gid="6" x="2272" y="512"/>
   <object gid="2" x="2912" y="640"/>
   <object gid="2" x="2976" y="640"/>
   <object gid="2" x="3040" y="640"/>
@@ -263,6 +267,7 @@
   <object gid="7" x="7936" y="320"/>
   <object gid="7" x="8064" y="320"/>
   <object gid="7" x="8192" y="320"/>
+  <object gid="6" x="7008" y="192"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="224" y="384"/>
