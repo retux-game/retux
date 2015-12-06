@@ -4290,6 +4290,9 @@ class Fireball(FallingObject):
     def deactivate(self):
         self.destroy()
 
+    def dissipate(self):
+        Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
+
     def touch_hurt(self):
         pass
 
@@ -4300,10 +4303,10 @@ class Fireball(FallingObject):
         xsge_lighting.project_light(self.x, self.y, fireball_light_sprite)
 
     def stop_left(self):
-        self.destroy()
+        self.dissipate()
 
     def stop_right(self):
-        self.destroy()
+        self.dissipate()
 
     def stop_down(self):
         self.yvelocity = get_jump_speed(FIREBALL_BOUNCE_HEIGHT, self.gravity)
@@ -4312,7 +4315,7 @@ class Fireball(FallingObject):
         if ((isinstance(other, InteractiveObject) and other.burnable) or
                 isinstance(other, (Iceblock, ThinIce))):
             other.burn()
-            self.destroy()
+            self.dissipate()
 
         super(Fireball, self).event_collision(other, xdirection, ydirection)
 
@@ -4332,15 +4335,17 @@ class Fireball(FallingObject):
         super(Fireball, self).event_physics_collision_bottom(other, move_loss)
         self.event_collision(other, 0, 1)
 
-    def event_destroy(self):
-        Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
-
 
 class IceBullet(InteractiveObject, xsge_physics.Collider):
 
     active_range = BULLET_ACTIVE_RANGE
 
     def deactivate(self):
+        self.destroy()
+
+    def dissipate(self):
+        Smoke.create(self.x, self.y, self.z, sprite=ice_bullet_break_sprite)
+        play_sound(icebullet_break_sound)
         self.destroy()
 
     def stop_left(self):
@@ -4355,7 +4360,7 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, InteractiveObject) and other.freezable:
             other.freeze()
-            self.destroy()
+            self.dissipate()
 
         super(IceBullet, self).event_collision(other, xdirection, ydirection)
 
@@ -4363,29 +4368,25 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
         if isinstance(other, InteractiveObject) and other.freezable:
             other.freeze()
 
-        self.destroy()
+        self.dissipate()
 
     def event_physics_collision_right(self, other, move_loss):
         if isinstance(other, InteractiveObject) and other.freezable:
             other.freeze()
 
-        self.destroy()
+        self.dissipate()
 
     def event_physics_collision_top(self, other, move_loss):
         if isinstance(other, InteractiveObject) and other.freezable:
             other.freeze()
 
-        self.destroy()
+        self.dissipate()
 
     def event_physics_collision_bottom(self, other, move_loss):
         if isinstance(other, InteractiveObject) and other.freezable:
             other.freeze()
 
-        self.destroy()
-
-    def event_destroy(self):
-        Smoke.create(self.x, self.y, self.z, sprite=ice_bullet_break_sprite)
-        play_sound(icebullet_break_sound)
+        self.dissipate()
 
 
 class TuxDoll(FallingObject):
