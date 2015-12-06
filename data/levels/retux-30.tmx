@@ -69,8 +69,6 @@
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="483" x="4288" y="480"/>
-  <object gid="483" x="4320" y="480"/>
   <object gid="483" x="4352" y="480"/>
   <object gid="483" x="4384" y="480"/>
   <object gid="483" x="4416" y="480"/>
@@ -78,8 +76,6 @@
   <object gid="483" x="4480" y="480"/>
   <object gid="483" x="4512" y="480"/>
   <object gid="483" x="4544" y="480"/>
-  <object gid="483" x="4576" y="480"/>
-  <object gid="483" x="4320" y="448"/>
   <object gid="483" x="4352" y="448"/>
   <object gid="483" x="4384" y="448"/>
   <object gid="483" x="4416" y="448"/>
