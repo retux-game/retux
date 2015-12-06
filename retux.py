@@ -4454,7 +4454,8 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
            xsge_physics.SolidTop):
 
     sticky_top = True
-    active_range = ROCK_ACTIVE_RANGE
+    always_active = True
+    always_tangible = True
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
     win_puff_score = 0
