@@ -107,7 +107,7 @@
   <object gid="478" x="4832" y="384"/>
   <object gid="482" x="4832" y="256">
    <properties>
-    <property name="text" value="Please do NOT move the rocks over there! For example, do NOT use them to build a bridge allowing you to cross spike pits, and do NOT use them to build a tower so that you can reach higher places."/>
+    <property name="text" value="Please do NOT touch my rocks! For example, do NOT use them to build a bridge allowing you to cross spike pits, and do NOT use them to build a tower so that you can reach higher places."/>
    </properties>
   </object>
  </objectgroup>
