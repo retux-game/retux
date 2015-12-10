@@ -1,5 +1,5 @@
 This file lists the licenses, authors, and sources for all the
-non-functional data files found in this directory.
+files found in this directory.
 
 ========================================================================
 
@@ -614,6 +614,14 @@ levels/retux-28.tmx
 levels/retux-28b.tmx
 levels/retux-29.tmx
 levels/retux-30.tmx
+levels/retux-32.tmx
+levels/retux-32a.tmx
+levels/retux-32b.tmx
+levels/retux-32c.tmx
+levels/retux-32d.tmx
+levels/retux-32e.tmx
+levels/retux-32f.tmx
+levels/retux-32g.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/test2.tmx

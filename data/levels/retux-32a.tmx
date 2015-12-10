@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="56" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="cave.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="200" height="56">
+  <data encoding="base64" compression="zlib">
+   eJzt3UsOgyAQAFC4e3uYLntCXVhSS3TTBBnwvYS1ExIdPoOktHnklJ45we15FwAAAADu5ZW3Bnwtn/bOW1t6BwQAAACEt1QNAIghQm10hBgAeon0DYwUCwBcRW0gHCv1gQB75o0AwKycH6RQ4/arPj+oTwCgH+MUAABGYE/5f/oOgDuS/wAA4lJPB+f29XT274FRyO1wzl07QDT2T+jFmBHOtT5faa0JgJaM8+KION+LGNOVrA0CAMD4zHvhmDsmgFnUub517vd/akZQ6gvqXN9qzXv/PP+nhvms/rhFcw==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="200" height="56">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects"/>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="200" height="56">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDCvAAAB
+  </data>
+ </layer>
+</map>
