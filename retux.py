@@ -368,6 +368,10 @@ class Game(sge.Game):
                               color=sge.Color("yellow"), halign="right",
                               valign="bottom")
 
+    def event_key_press(self, key, char):
+        if key == "f11":
+            self.fullscreen = not self.fullscreen
+
     def event_mouse_button_press(self, button):
         if button == "middle":
             self.event_close()
@@ -880,7 +884,8 @@ class Level(sge.Room):
             sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
                                        z=100, fill=sge.Color("black"))
 
-            if not cleared_levels:
+            if (not cleared_levels and
+                    current_checkpoints.get(main_area) is None):
                 level_timers[main_area] = level_time_bonus
 
             if current_worldmap:
@@ -911,9 +916,7 @@ class Level(sge.Room):
         global level_timers
         global score
 
-        if key == "f11":
-            sge.game.fullscreen = not sge.game.fullscreen
-        elif key == "escape":
+        if key == "escape":
             if self.death_time is not None or "death" in self.alarms:
                 if level_timers.setdefault(main_area, 0) >= 0:
                     sge.Music.stop()
@@ -1121,14 +1124,6 @@ class TitleScreen(Level):
     def event_room_resume(self):
         super(TitleScreen, self).event_room_resume()
         MainMenu.create()
-
-    def event_key_press(self, key, char):
-        if self.death_time is not None or "death" in self.alarms:
-            sge.Music.stop()
-            self.alarms["death"] = 0
-        else:
-            if key == "f11":
-                sge.game.fullscreen = not sge.game.fullscreen
 
 
 class CreditsScreen(Level):
@@ -2280,7 +2275,7 @@ class Player(xsge_physics.Collider):
                 self.hurt()
 
         if isinstance(other, xsge_physics.SolidRight):
-            self.xvelocity = 0
+            self.xvelocity = max(self.xvelocity, 0)
 
         if self.left_pressed:
             for warp in sge.game.current_room.warps:
@@ -2294,7 +2289,7 @@ class Player(xsge_physics.Collider):
                 self.hurt()
 
         if isinstance(other, xsge_physics.SolidLeft):
-            self.xvelocity = 0
+            self.xvelocity = min(self.xvelocity, 0)
 
         if self.right_pressed:
             for warp in sge.game.current_room.warps:
@@ -2331,7 +2326,7 @@ class Player(xsge_physics.Collider):
             else:
                 self.x -= tmv
                 tmv = 0
-                self.yvelocity = 0
+                self.yvelocity = max(self.yvelocity, 0)
 
         for block in top_touching:
             if isinstance(block, HittableBlock):
@@ -2352,11 +2347,12 @@ class Player(xsge_physics.Collider):
                 self.hurt()
 
         if isinstance(other, xsge_physics.SolidTop):
-            self.yvelocity = 0
+            self.yvelocity = min(self.yvelocity, 0)
         elif isinstance(other, (xsge_physics.SlopeTopLeft,
                                 xsge_physics.SlopeTopRight)):
-            self.yvelocity = self.slide_speed * (other.bbox_height /
-                                                 other.bbox_width)
+            self.yvelocity = min(self.slide_speed * (other.bbox_height /
+                                                     other.bbox_width),
+                                 self.yvelocity)
 
         if self.down_pressed:
             for warp in sge.game.current_room.warps:
@@ -4292,6 +4288,7 @@ class Fireball(FallingObject):
 
     def dissipate(self):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
+        self.destroy()
 
     def touch_hurt(self):
         pass
@@ -6256,7 +6253,8 @@ class KeyboardMenu(Menu):
     @classmethod
     def create_page(cls, default=0, page=0):
         page %= min(len(left_key), len(right_key), len(up_key), len(down_key),
-                    len(jump_key), len(action_key), len(sneak_key))
+                    len(jump_key), len(action_key), len(sneak_key),
+                    len(pause_key))
         cls.items = ["Player {}".format(page + 1),
                      "Left: {}".format(left_key[page]),
                      "Right: {}".format(right_key[page]),
@@ -6335,7 +6333,8 @@ class JoystickMenu(Menu):
     @classmethod
     def create_page(cls, default=0, page=0):
         page %= min(len(left_js), len(right_js), len(up_js), len(down_js),
-                    len(jump_js), len(action_js), len(sneak_js))
+                    len(jump_js), len(action_js), len(sneak_js),
+                    len(pause_js))
         js_template = "Joystick {} {} {}"
         cls.items = ["Player {}".format(page + 1),
                      "Left: {}".format(js_template.format(*left_js[page])),
@@ -6827,7 +6826,7 @@ def rush_save():
     global main_area
 
     if main_area is not None:
-        if not cleared_levels:
+        if not cleared_levels and current_checkpoints.get(main_area) is None:
             level_timers[main_area] = level_time_bonus
 
         won = (isinstance(sge.game.current_room, Level) and
@@ -6974,10 +6973,10 @@ print("Initializing GUI system...")
 xsge_gui.init()
 gui_handler = xsge_gui.Handler()
 
-print("Loading images...")
 menu_color = sge.Color((128, 128, 255, 192))
 
 # Load sprites
+print("Loading images...")
 d = os.path.join(DATA, "images", "objects", "tux")
 tux_body_stand_sprite = sge.Sprite(
     "tux_body_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)

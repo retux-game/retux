@@ -25,6 +25,7 @@ Python 2 instead, you can either change the shebang on line 1 from
 There are some command-line options that can be passed. Run ReTux in a
 terminal with the "-h" command-line option for more information.
 
+
 HOW TO PLAY
 
 Use the arrow keys and Enter to navigate the menus. By default, Tux is
@@ -32,7 +33,6 @@ is controlled by the arrow keys, Space, Left Ctrl, and Left Shift. You
 can change the controls in the Options menu.
 
 Other controls:
-- Enter: Pause the game.
 - F11: Toggle fullscreen.
 - Escape: Return to the title screen.
 - Middle mouse button: Quit the game.
