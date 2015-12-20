@@ -2,6 +2,7 @@
     "name": "Test",
     "levels": [
         "test.tmx",
-        "test2.tmx"
+        "test2.tmx",
+        "test3.tmx"
     ]
 }

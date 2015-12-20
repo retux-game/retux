@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="46" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="cave.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="46" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBg6oIWRgaGVcaBdMQpGwSjABVYO0fy5Eeju/wPtiFEwCkbBkAP/0fBQBgA5qwdj
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="46" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztlU0KwjAQRpuVoIIwidfxp95KdKd30J0uXXoH3dkz6Rc6Q4cimoA1QRx4pKQJ8yYwiTNFMQaWR89AfXsIODABowyYRrj4tUOQMjbIvwX9CJeYtV3F3/u78Sve1wCf3LxLUIF78ZpFZt4z0Atgnpm3vDMC8WjVP5kT7xXGdYIatDcpP2uat/JZHeIt+1N6O+XrlKf4O9O896m8L8h1AjuwZ2/tKzVQy5d4vuT+XZqad738KW7IdQYHcDT1HSFnaxldA7XOP7SHu8bfEQ/u70Vx
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects"/>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="46" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEA8GwKEAAB
+  </data>
+ </layer>
+</map>

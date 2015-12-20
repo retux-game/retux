@@ -6434,6 +6434,8 @@ class PauseMenu(ModalMenu):
     items = ["Continue", "Quit"]
 
     def event_choose(self):
+        sge.Music.unpause()
+
         if self.choice == 1:
             play_sound(kill_sound)
             rush_save()
@@ -6443,7 +6445,6 @@ class PauseMenu(ModalMenu):
                 sge.game.start_room.start()
         else:
             play_sound(select_sound)
-            sge.Music.unpause()
 
 
 class DialogLabel(xsge_gui.ProgressiveLabel):

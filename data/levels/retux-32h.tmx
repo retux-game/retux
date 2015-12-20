@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="39" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="cave.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="39" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjcoIWRgaGVcdQNo2DkgpWDNO39B+KNg9Rto2B4g/9oeBQMbQAAnIkIbg==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="39" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztlk0KwjAQhZuV4AhCmiIo6E38vZdu9Aq607VL76A7PZM+IQ9eQwUr+LMw8BHTDs7XNMzUuywLwIAHOSji7CMhrk1iiwjv+7gOEu+TmFzWllzPJQd/D0H7BxmBFliCFfjmmCP/QhyaP+SWjr9b/XF0n3Xr4P+v2XOcETv7gNvdqQt6oFGDyRvd1KkPBlIvC1euh6ynJjH2BrcqJ0tg3Wad1Vpv4nl3W4MN2IPTi45VTlrr1Yn7pn3CSyyvTcEW7MABXGqcWfLIifnY59LZEk++U8aMa57RKuik74p56ah9U89c7sp7aa78XLr3ep9920u+tB/r+Q0CHat8g8zelZ9DvztuZX85qg==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects"/>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="39" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYGAAACIgAAQ==
+  </data>
+ </layer>
+</map>
