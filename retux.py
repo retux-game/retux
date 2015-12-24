@@ -2270,6 +2270,8 @@ class Player(xsge_physics.Collider):
         for block in self.get_left_touching_wall():
             if isinstance(block, HurtRight):
                 self.hurt()
+            elif isinstance(block, Rock):
+                other.touch(self)
 
         if isinstance(other, xsge_physics.SolidRight):
             self.xvelocity = max(self.xvelocity, 0)
@@ -2284,6 +2286,8 @@ class Player(xsge_physics.Collider):
         for block in self.get_right_touching_wall():
             if isinstance(block, HurtLeft):
                 self.hurt()
+            elif isinstance(block, Rock):
+                other.touch(self)
 
         if isinstance(other, xsge_physics.SolidLeft):
             self.xvelocity = min(self.xvelocity, 0)
@@ -4472,7 +4476,7 @@ class CarriedRock(InteractiveObject):
 
 
 class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
-           xsge_physics.SolidTop):
+           xsge_physics.Solid):
 
     sticky_top = True
     always_active = True
