@@ -27,13 +27,69 @@
    eJyzY2Rg4B+m2B6IeYAYBOqAdD2UPVwAF5L/hiMY9d/QBqP+G9pg1H9DGwwG/9UA7a+lkRsGg/9agPa3jvqPaICcHkD+cwLi/wwDh6sYIZgW5jkDaQcgZh+m2BGIAUeRQGc=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="1792" height="32"/>
+  <object x="1760" y="32" width="32" height="384"/>
+  <object x="0" y="32" width="32" height="384"/>
+  <object x="0" y="416" width="1792" height="32"/>
+  <object x="1664" y="384" width="64" height="32"/>
+  <object x="1024" y="384" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_bottom" x="64" y="32" width="64" height="32"/>
+  <object type="solid_top" x="1024" y="288" width="64" height="32"/>
+  <object type="solid_top" x="1664" y="352" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="1696" y="352">
+   <properties>
+    <property name="dest" value="retux-32f.tmx:e"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="1056" y="288">
+   <properties>
+    <property name="dest" value="retux-32c.tmx:b"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="96" y="0">
+   <properties>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="1056" y="352">
+   <properties>
+    <property name="spawn_id" value="c"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="1696" y="416">
+   <properties>
+    <property name="spawn_id" value="f"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object gid="470" x="256" y="320"/>
+  <object gid="470" x="320" y="320"/>
+  <object gid="470" x="448" y="320"/>
+  <object gid="470" x="512" y="320"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="2" x="1056" y="384"/>
+  <object gid="2" x="992" y="416"/>
+  <object gid="2" x="1632" y="416"/>
+  <object gid="2" x="1568" y="416"/>
+  <object gid="2" x="1504" y="416"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="416"/>
+ </objectgroup>
  <layer name="Front Tiles" width="56" height="14">
   <data encoding="base64" compression="zlib">
    eJztwYEAAAAAw6D5U1/hAFUBAAB8BgxAAAE=

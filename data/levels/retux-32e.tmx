@@ -29,13 +29,55 @@
    eJzt1D0KAjEQhuFYCc6CkE2u4+p6NfcO2mlp6R200zPpK2TgY23drRJ4yN8wXzdpEUJEi1T4PY/erdz9X/+y7CY1Jr2+NljPpEODqdeBjAGrmlfzat5P3hWPiXLv9D3iVPJ63PDCO/zfk75nXLDHFsuZ7GS2+mz2uWoyg032KPXO33x+69lG9R/9Hi1K
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="896" height="64"/>
+  <object x="0" y="384" width="896" height="64"/>
+  <object x="864" y="64" width="32" height="320"/>
+  <object x="0" y="64" width="32" height="320"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_left" x="768" y="320" width="32" height="64"/>
+  <object type="solid_right" x="64" y="320" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="768" y="352">
+   <properties>
+    <property name="dest" value="retux-32f.tmx:e"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object x="96" y="352">
+   <properties>
+    <property name="dest" value="retux-32c.tmx:e"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="832" y="352">
+   <properties>
+    <property name="spawn_id" value="f"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="32" y="352">
+   <properties>
+    <property name="spawn_id" value="c"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object gid="470" x="224" y="288"/>
+  <object gid="470" x="256" y="288"/>
+  <object gid="470" x="608" y="288"/>
+  <object gid="470" x="576" y="288"/>
+  <object gid="470" x="416" y="288"/>
+ </objectgroup>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="28" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMAowAQAGIAAB

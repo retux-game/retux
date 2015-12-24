@@ -21,21 +21,78 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="34" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGAa0BAAdwAAE=
+   eJxjYBgY0MLIwNDKOECWj4JRMApGwSgYBXQGAEpnAQw=
   </data>
  </layer>
  <layer name="Middle Tiles" width="34" height="14">
   <data encoding="base64" compression="zlib">
-   eJztk1EKwjAMQNcfBSMI63Idde5Won96bTWyFh9hSNGNfWjhkY7R5DXLtqGqNjOzM9bG3Gv19/hJj5txL6Cb2GNhuZcFtBN7PPutRpOoB/aS4tgeJ8t3Di+PXEddrBPqPHj+m3WxHFfnIamewEHQkwgPnh/TY6g+HfLzIfQzeww9JfP9Dubp0HvGiO8Sk8++cKY/oUUt9iD3QeHUYJ8jZ0rwjuf8vXi3nDO6ev5fUfAAR38vzg==
+   eJztk90KwjAMRtcbBSsI6/o66ra3En9u9LXVyFI4hCFFN3tj4CMto/lOs3TrqmpTWDvRWlQizuJ7Ue9VQQ7Gn+O3HHfRI0P9zBwLqb3MUDszx6vfUdSo6pG11zw1x1HqnfAek080uVZFw8Hz38RVatwMh1c/DwaPngRw8PyUHGP+ZEj7zg0ze3CDcub7nVinR++ZA/5LUJ595kx/ohZe7EHqQwRTg3XKnCmPbzxn78W7pZrB+Nm3EqEnr2cwzQ==
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="1088" height="32"/>
+  <object x="1056" y="32" width="32" height="160"/>
+  <object x="736" y="192" width="352" height="192"/>
+  <object x="0" y="32" width="32" height="352"/>
+  <object x="0" y="384" width="1088" height="64"/>
+  <object x="640" y="352" width="64" height="32"/>
+  <object x="64" y="352" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_top" x="640" y="256" width="64" height="32"/>
+  <object type="solid_top" x="64" y="288" width="64" height="32"/>
+  <object type="solid_bottom" x="960" y="32" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="992" y="64">
+   <properties>
+    <property name="dest" value="retux-32b.tmx:c"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="672" y="256">
+   <properties>
+    <property name="dest" value="retux-32e.tmx:c"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="96" y="288">
+   <properties>
+    <property name="dest" value="retux-32d.tmx:c"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="992" y="0">
+   <properties>
+    <property name="spawn_id" value="b"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="672" y="320">
+   <properties>
+    <property name="spawn_id" value="e"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="96" y="352">
+   <properties>
+    <property name="spawn_id" value="d"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="NPCs">
+  <object gid="3" x="224" y="384"/>
+  <object gid="3" x="288" y="384"/>
+  <object gid="9" x="864" y="64"/>
+  <object gid="9" x="800" y="64"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="992" y="192"/>
+ </objectgroup>
  <layer name="Front Tiles" width="34" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApGAa0BAAdwAAE=

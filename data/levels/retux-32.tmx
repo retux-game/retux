@@ -42,7 +42,13 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="608" y="256">
    <properties>
-    <property name="dest" value="retux-32a.tmx:enter"/>
+    <property name="dest" value="retux-32b.tmx:enter"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="1568" y="288">
+   <properties>
+    <property name="dest" value="retux-32p.tmx:exit"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>

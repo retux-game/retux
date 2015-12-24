@@ -724,18 +724,14 @@ class Level(sge.Room):
                             except Exception as e:
                                 m = "An error occurred in the timeline 'exec' statement:\n\n{}".format(
                                     traceback.format_exc())
-                                xsge_gui.show_message(message=m, title="Error",
-                                                      buttons=["Ok"],
-                                                      width=640)
+                                show_error(m)
                         elif command == "if":
                             try:
                                 r = eval(arg)
                             except Exception as e:
                                 m = "An error occurred in the timeline 'if' statement:\n\n{}".format(
                                     traceback.format_exc())
-                                xsge_gui.show_message(message=m, title="Error",
-                                                      buttons=["Ok"],
-                                                      width=640)
+                                show_error(m)
                                 r = False
                             finally:
                                 if not r:
@@ -950,11 +946,7 @@ class Level(sge.Room):
             except Exception as e:
                 m = "An error occurred when trying to load the level:\n\n{}".format(
                     traceback.format_exc())
-                if sge.game.current_room is not None:
-                    xsge_gui.show_message(message=m, title="Error",
-                                          buttons=["Ok"], width=640)
-                else:
-                    print(m)
+                show_error(m)
                 r = None
             else:
                 r.fname = fname
@@ -2268,6 +2260,11 @@ class Player(xsge_physics.Collider):
             # until the collision stops.
             elif xdirection or ydirection:
                 other.touch(self)
+        elif isinstance(other, HiddenItemBlock):
+            if ydirection == -1 and not xdirection:
+                self.move_y(max(0, other.bbox_bottom - self.bbox_top),
+                            absolute=True, do_events=False)
+                other.hit(self)
 
     def event_physics_collision_left(self, other, move_loss):
         for block in self.get_left_touching_wall():
@@ -3243,6 +3240,19 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
             other.knock(self)
         elif isinstance(other, Coin):
             other.event_collision(self.thrower, -xdirection, -ydirection)
+        elif isinstance(other, HiddenItemBlock):
+            if ydirection == -1:
+                self.move_y(max(0, other.bbox_bottom - self.bbox_top),
+                            absolute=True, do_events=False)
+                other.hit(self)
+            elif xdirection == -1:
+                self.move_x(max(0, other.bbox_right - self.bbox_left),
+                            absolute=True, do_events=False)
+                other.hit(self)
+            elif xdirection == 1:
+                self.move_x(min(0, other.bbox_left - self.bbox_right),
+                            absolute=True, do_events=False)
+                other.hit(self)
 
         super(ThrownIceblock, self).event_collision(other, xdirection,
                                                     ydirection)
@@ -3293,6 +3303,19 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
             other.knock(self)
         elif isinstance(other, Coin):
             other.event_collision(self.thrower, -xdirection, -ydirection)
+        elif isinstance(other, HiddenItemBlock):
+            if ydirection == -1:
+                self.move_y(max(0, other.bbox_bottom - self.bbox_top),
+                            absolute=True, do_events=False)
+                other.hit(self)
+            elif xdirection == -1:
+                self.move_x(max(0, other.bbox_right - self.bbox_left),
+                            absolute=True, do_events=False)
+                other.hit(self)
+            elif xdirection == 1:
+                self.move_x(min(0, other.bbox_left - self.bbox_right),
+                            absolute=True, do_events=False)
+                other.hit(self)
 
         super(DashingIceblock, self).event_collision(other, xdirection,
                                                      ydirection)
@@ -4728,7 +4751,7 @@ class BossBlock(InteractiveObject):
         pass
 
 
-class HittableBlock(xsge_physics.SolidBottom, Tile):
+class HittableBlock(Tile):
 
     hit_sprite = None
     hit_obj = None
@@ -4891,7 +4914,6 @@ class HiddenItemBlock(HittableBlock):
 
     def hit(self, other):
         b = ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
-        b.hit(other)
         self.destroy()
 
 
@@ -6067,7 +6089,6 @@ class NewGameMenu(Menu):
         if self.choice in six.moves.range(len(save_slots)):
             play_sound(confirm_sound)
             current_save_slot = self.choice
-            sge.game.mouse.visible = True
             if save_slots[current_save_slot] is None:
                 set_new_game()
                 if not abort:
@@ -6076,7 +6097,6 @@ class NewGameMenu(Menu):
                     NewGameMenu.create(default=self.choice)
             else:
                 OverwriteConfirmMenu.create(default=1)
-            sge.game.mouse.visible = False
         else:
             play_sound(cancel_sound)
             MainMenu.create(default=0)
@@ -6120,8 +6140,7 @@ class LoadGameMenu(NewGameMenu):
                 MainMenu.create(default=1)
             elif not start_levelset():
                 play_sound(error_sound)
-                m = "An error occurred when trying to load the game."
-                xsge_gui.show_message(message=m, buttons=["Ok"])
+                show_error("An error occurred when trying to load the game.")
                 MainMenu.create(default=1)
         else:
             play_sound(cancel_sound)
@@ -6608,6 +6627,18 @@ def wait_js():
         sge.game.refresh()
 
 
+def show_error(message):
+    if sge.game.current_room is not None:
+        sge.game.pump_input()
+        sge.game.input_events = []
+        sge.game.mouse.visible = True
+        xsge_gui.show_message(message=message, title="Error", buttons=["Ok"],
+                              width=640)
+        sge.game.mouse.visible = False
+    else:
+        print(message)
+
+
 def play_sound(sound, *args, **kwargs):
     if sound_enabled and sound:
         sound.play(*args, **kwargs)
@@ -6721,8 +6752,12 @@ def load_levelset(fname, preload_start=0):
         for level in sorted_levels:
             subrooms = [level]
             already_checked = []
+            done = False
 
             while subrooms:
+                if do_refresh():
+                    done = True
+                    break
                 subroom = subrooms.pop(0)
                 already_checked.append(subroom)
                 r = Level.load(subroom)
@@ -6736,15 +6771,17 @@ def load_levelset(fname, preload_start=0):
                                         map_f not in already_checked and
                                         map_f not in {"__main__", "__map__"}):
                                     subrooms.append(map_f)
+            else:
+                progressbar.progress = ((sorted_levels.index(level) + 1) /
+                                        len(sorted_levels))
+                progressbar.redraw()
 
-            progressbar.progress = ((sorted_levels.index(level) + 1) /
-                                    len(sorted_levels))
-            progressbar.redraw()
-            if do_refresh():
+            if done or do_refresh():
                 break
 
         window.destroy()
         do_refresh()
+        sge.game.pump_input()
         sge.game.input_events = []
 
 

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="66" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
+  <property name="background_x" value="-1920"/>
+  <property name="background_y" value="-1344"/>
   <property name="bgname" value="cave"/>
   <property name="music" value="cave.ogg"/>
  </properties>
@@ -24,16 +26,93 @@
  </layer>
  <layer name="Middle Tiles" width="66" height="14">
   <data encoding="base64" compression="zlib">
-   eJztlksKwjAQhpuNShWEtAEXCrp24cK9z3vpRg/j0jvoTq+kTmAG/4b0AQWhqYEPScZS5uvMtCsVRcOWsyYGRN46UexcEA9lxSUeDhQ7/j20ZomHe8tdWA874km8o3JGgfqyHjZEtyJjYqLC82E9aCIh+oThvUvKsSkxAx/zQHzEnH/Kvwkjblwvro9FIC5iqIUEfAiGzySm4dyeLdlF0/skhjzFh+wN7A14wD7S7KLpc0P6AmtCc94GckZXqeMh9cyNKu+ePKIfurzRvS7qWw/ufJAaSFS2VtAVOhIn4qPq+8dHz+PhVeCtDg+615XYwzOV3LEfZB64dYB9Y1S2p+QanK3a8x+cwVhfvu/bTk23ZWyJD9gwSOQ=
+   eJzdljtOBDEMhsfNgsJKSHlIFCBBTUFBQ4F4cykKaNjDUHIH6OBKCx6tLf41ntlAtZtI/2RiZ6TkG9vJBXXdbqO6ZO2wIquwMvT6XmTOlDXUntk3G/GvU3ug3+9nzn6j9Fn6XmkFh0f2PW0wh/M/xM0Yhxaax8e2IBzeG2ZRy+GG9cn66lZrr1FePYcr1lal9lkH1B6PIPUzSd0sMrbSmnvIOgIex43wCOYMSSJlY7lYHieNsAgQC8mcqRofGXwR7L3tVFhsep4E2Kfy0HGBcQEOmEdRWKx73Zj3j5G1aV5gTOgdtMCekVU2HLJTN2rOniGNrfe/+52wbduxv7HthX7iwdYHjYFEy7GCrJCRMlEeteePJ2+980qG9/ztnfMfbmlxP7D2D7a90sKv/9Tew7Ee2DjAvCm0nFP6DdbW6MzBGozx5d1vJ5UMr8m/BwzZ0f8NfI9OxQ==
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="2112" height="32"/>
+  <object x="2080" y="32" width="32" height="384"/>
+  <object x="1312" y="416" width="800" height="32"/>
+  <object x="0" y="32" width="32" height="160"/>
+  <object x="0" y="192" width="352" height="192"/>
+  <object x="0" y="384" width="1184" height="64"/>
+  <object x="1792" y="32" width="288" height="64"/>
+  <object x="1632" y="384" width="64" height="32"/>
+  <object x="1824" y="352" width="64" height="64"/>
+  <object x="1888" y="96" width="32" height="64"/>
+  <object x="1792" y="96" width="32" height="64"/>
+  <object x="1696" y="32" width="32" height="64"/>
+  <object x="1600" y="32" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_right" x="32" y="128" width="32" height="64"/>
+  <object type="solid_bottom" x="224" y="64" width="64" height="32"/>
+  <object type="slope_topright" x="352" y="192" width="128" height="64"/>
+  <object type="slope_topright" x="480" y="256" width="64" height="64"/>
+  <object type="slope_topright" x="544" y="320" width="128" height="64"/>
+  <object type="solid_left" x="2016" y="352" width="32" height="64"/>
+  <object type="slope_bottomleft" x="1760" y="32" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="256" y="96">
+   <properties>
+    <property name="dest" value="retux-32i.tmx:j"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+  <object x="64" y="160">
+   <properties>
+    <property name="dest" value="retux-32k.tmx:j"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="2016" y="384">
+   <properties>
+    <property name="dest" value="retux-32l.tmx:j"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="2080" y="384">
+   <properties>
+    <property name="spawn_id" value="l"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object x="256" y="32">
+   <properties>
+    <property name="spawn_id" value="i"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+  <object x="0" y="160">
+   <properties>
+    <property name="spawn_id" value="k"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="NPCs">
+  <object gid="4" x="576" y="328"/>
+  <object gid="4" x="640" y="360"/>
+  <object gid="4" x="768" y="384"/>
+  <object gid="4" x="832" y="384"/>
+  <object gid="5" x="1152" y="384"/>
+  <object gid="5" x="1088" y="384"/>
+  <object gid="5" x="1024" y="384"/>
+  <object type="flying_spiky_path" x="1248" y="384">
+   <polyline points="0,0 0,-128 0,0"/>
+  </object>
+  <object gid="6" x="1536" y="416"/>
+  <object gid="6" x="1600" y="416"/>
+  <object gid="499" x="1632" y="96"/>
+  <object gid="499" x="1824" y="160"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="256" y="192"/>
+ </objectgroup>
  <layer name="Front Tiles" width="66" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20JT6AAAADgbw5wAAE=
