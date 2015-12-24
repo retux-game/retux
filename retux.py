@@ -4436,45 +4436,6 @@ class TuxDoll(FallingObject):
         self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
 
-class CarriedRock(InteractiveObject):
-
-    never_active = True
-    never_tangible = True
-
-    def drop(self):
-        if self.parent is not None:
-            self.parent.drop_object()
-            Rock.create(self.x - self.image_origin_x,
-                        self.y - self.image_origin_y, self.z,
-                        sprite=self.sprite, image_xscale=self.image_xscale,
-                        image_yscale=self.image_yscale)
-            self.destroy()
-
-    def kick(self):
-        if self.parent is not None:
-            self.parent.kick_object()
-            xv = math.copysign(KICK_FORWARD_SPEED, self.parent.image_xscale)
-            yv = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
-            Rock.create(self.x - self.image_origin_x,
-                        self.y - self.image_origin_y, self.z,
-                        sprite=self.sprite, xvelocity=xv, yvelocity=yv,
-                        image_xscale=self.image_xscale,
-                        image_yscale=self.image_yscale)
-            self.destroy()
-
-    def kick_up(self):
-        if self.parent is not None:
-            self.parent.kick_object()
-            xv = self.parent.xvelocity
-            yv = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
-            Rock.create(self.x - self.image_origin_x,
-                        self.y - self.image_origin_y, self.z,
-                        sprite=self.sprite, xvelocity=xv, yvelocity=yv,
-                        image_xscale=self.image_xscale,
-                        image_yscale=self.image_yscale)
-            self.destroy()
-
-
 class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
            xsge_physics.Solid):
 
@@ -4487,20 +4448,17 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = rock_sprite
+        kwargs["checks_collisions"] = False
         x += rock_sprite.origin_x
         y += rock_sprite.origin_y
         sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
-        cr = CarriedRock.create(self.x, self.y, self.z, sprite=self.sprite,
-                                image_xscale=self.image_xscale,
-                                image_yscale=self.image_yscale)
-        if other.pickup(cr):
-            self.destroy()
+        if other.pickup(self):
+            self.active = False
+            self.tangible = False
             if other.action_pressed:
                 other.action()
-        else:
-            cr.destroy()
 
     def stop_left(self):
         self.xvelocity = 0
@@ -4516,6 +4474,32 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
 
     def touch_death(self):
         pass
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.active = True
+            self.tangible = True
+            self.parent = None
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.active = True
+            self.tangible = True
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
+                                           self.parent.image_xscale)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
+            self.parent = None
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.active = True
+            self.tangible = True
+            self.xvelocity = self.parent.xvelocity
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
+            self.parent = None
 
     def event_end_step(self, time_passed, delta_mult):
         if (self.yvelocity >= 0 and
