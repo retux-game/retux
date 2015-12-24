@@ -72,7 +72,6 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs">
   <object gid="7" x="320" y="352"/>
-  <object gid="7" x="448" y="352"/>
   <object gid="9" x="512" y="256"/>
   <object gid="9" x="544" y="256"/>
   <object gid="9" x="576" y="256"/>

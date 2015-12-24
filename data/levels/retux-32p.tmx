@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="46" height="14">
   <data encoding="base64" compression="zlib">
-   eJzNls9OAjEQxrcXMKwB0+2+gMJDeFDk30sRuOE76A2PHnkHvMkrqV/DTPxoWlIxhJ3k226mnemvzbazzhRFDVXSepX07mUhBz1CvYiGNMZJLiexYdyQ8luRzl9Ka2nuKpEjxRJju4Zidgv/3ZHYG4rrCEcpfCWxVeTTfu/rQwNoBT2bfY4US2g5Y+cm/s7Wzdgz7VNetUtyp/LxeN93H4k/F/dfrBt8P8zt+x4ayn2KhdwfGTxN4x5DO+i7OK5Jw7ifoHaGRg3j1jrDd6beqXXgU+4F2uUF1sDclvi0ZtWJdSi3xsfsyz/OtCbmdsTrzGG90jqtNTeHuwX/VaTvP+vZIu4deoFehZt5udYyr9bbsZxff9fOE2d5QuNYM/imGec/pk/EbaA19Gb2c+jeVub3P8FSy/ufc4ZHiXEp/ynyuX4AcpZNxQ==
+   eJzdlk1uwjAQRpMNRQWlyHEuAPQQLNoQfi6F2l25A+xgybJ3KLv2SoXPwqN+suzIogIiLD0cjWfs5yBjdJokBchtb+jQs0EBDV7Bk4eScrSdS9tat66k+ZVF1u/YXtHaeWCOkIvPrQt8rY/4oKa2R3VZxNru2BA8gw+wBI81Lm6LyV2k8c/ufJxjxkaeta7t7WuZ8z1wvhl7uaL3pdu9eO8jfJrmPQE/4JDUM22Y9xg8RFA1zFvuGUHR73/hxMT7Df37DfbA3or85M4qAvsQb6n3tV/zcaE9sbcmX02e4i/3dRHp3UK87Rn7z36+ULcDK7C23uwre1COr7LxiT2/5o5YBM7ylPKYOWKziPPv4xt1n2ADtulpDXm3efr3H0ZRz+8/5gxXgbxQ/BzMXEfdDE22
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -42,17 +42,19 @@
   <object x="704" y="64" width="32" height="64"/>
   <object x="832" y="384" width="64" height="32"/>
   <object x="640" y="352" width="64" height="64"/>
-  <object x="896" y="32" width="352" height="64"/>
-  <object x="960" y="96" width="64" height="64"/>
-  <object x="1088" y="96" width="32" height="64"/>
-  <object x="1184" y="96" width="32" height="64"/>
+  <object x="896" y="32" width="416" height="32"/>
+  <object x="960" y="64" width="64" height="64"/>
+  <object x="1088" y="64" width="32" height="64"/>
+  <object x="1184" y="64" width="32" height="64"/>
+  <object x="800" y="64" width="32" height="32"/>
+  <object x="896" y="64" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="416" y="288" width="64" height="32"/>
   <object type="solid_right" x="32" y="192" width="32" height="64"/>
   <object type="solid_left" x="1312" y="352" width="32" height="64"/>
-  <object type="slope_bottomright" x="1216" y="96" width="32" height="64"/>
-  <object type="slope_bottomright" x="1248" y="32" width="128" height="64"/>
+  <object type="slope_bottomright" x="1216" y="64" width="32" height="64"/>
+  <object type="slope_bottomright" x="1312" y="32" width="64" height="32"/>
   <object type="slope_bottomleft" x="544" y="32" width="64" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
@@ -104,18 +106,18 @@
  <objectgroup name="NPCs">
   <object gid="499" x="640" y="128"/>
   <object gid="499" x="832" y="96"/>
-  <object gid="499" x="1024" y="160"/>
-  <object gid="499" x="1120" y="160"/>
+  <object gid="499" x="1024" y="128"/>
+  <object gid="499" x="1120" y="128"/>
   <object gid="9" x="704" y="160"/>
   <object gid="9" x="736" y="96"/>
   <object gid="9" x="768" y="96"/>
-  <object gid="9" x="800" y="96"/>
+  <object gid="9" x="800" y="128"/>
   <object gid="9" x="896" y="128"/>
-  <object gid="9" x="928" y="128"/>
-  <object gid="9" x="960" y="192"/>
-  <object gid="9" x="992" y="192"/>
-  <object gid="9" x="1088" y="192"/>
-  <object gid="9" x="1184" y="192"/>
+  <object gid="9" x="928" y="96"/>
+  <object gid="9" x="960" y="160"/>
+  <object gid="9" x="992" y="160"/>
+  <object gid="9" x="1088" y="160"/>
+  <object gid="9" x="1184" y="160"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="448" y="288"/>

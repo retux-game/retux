@@ -109,8 +109,8 @@
   <object gid="3" x="832" y="326"/>
   <object gid="5" x="1088" y="320"/>
   <object gid="5" x="1152" y="320"/>
-  <object gid="5" x="2144" y="320"/>
-  <object gid="5" x="2080" y="320"/>
+  <object gid="9" x="1984" y="64"/>
+  <object gid="9" x="2112" y="64"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="256"/>

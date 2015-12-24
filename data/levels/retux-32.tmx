@@ -4,6 +4,7 @@
   <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="Wacky Warps"/>
+  <property name="time_bonus" value="50000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -34,10 +35,12 @@
   <object x="736" y="0" width="32" height="64"/>
   <object x="768" y="0" width="704" height="384"/>
   <object x="1536" y="352" width="64" height="32"/>
+  <object x="2336" y="256" width="64" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="576" y="256" width="64" height="32"/>
   <object type="solid_top" x="1536" y="288" width="64" height="32"/>
+  <object type="level_end" x="1888" y="0" width="32" height="384"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="608" y="256">

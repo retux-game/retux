@@ -20,12 +20,12 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="25" height="56">
   <data encoding="base64" compression="zlib">
-   eJzt2LEJwDAMBEB7/0lcZkIZgTcI7xC4A7Wv8oXGgP9ZM5ddZ57gDgB4I9mDTQ8CAPC19M3b+X3zViD79m9pA/lGC2s=
+   eJzt2DEKgDAMBdB6m17dsSdsCTi5lq+I70HWn2wJaQ2+5zxy2fOqEewBADuSe7DYgwDAXX97AH4nffNWft28M5D99G9pAYpVC5M=
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="56">
   <data encoding="base64" compression="zlib">
-   eJzt2DsKhDAUhWHTKMigoM4GdB8+V2vpHrRztuR4AgGDdU6jR/ixux8IckNaE0U5sQ59EPNJZbzGWDF3NjzjQDvmLmgiGTFmJq6BZGT6B2XIkCHjscZK2oN2B/5dO2kP+juQtQfttylRhQr3Dm3UmNe42V+Scbe0z2XIkCFDhgwZbzQ2guPfLY3oZ65zcKj8u6X+dgYOnT1Tn1t4LFU=
+   eJztmMtOwzAQRZ0NIIQA8eoCViAF2BbKsqSPdXl8CfBXLPmHsiu/BNxRx2I0auo4tpGgtnTURKp84plYvkq/MGYnIbdgC6Qcm9mxMo4p5n0t0jk+wQzzvoFRIsca5lxnBokc23kP/hnHE66fPXlxPON/rVXTMQQjB+NAxz14cPAY6LgGHTABFbgCR6AnuAl0aA9xUfO/0J6TRz93bEeT4XIs25OuvdfUETqmic5BOgO/mBmfg8Nifm8iueQZaM/Biq83IjmoNvvgAOzxryVWzU4xzxnPeci/fT53dyP3xbryeZ4d2ZEdevhknrYOn8zT1mGzyJ2ZZxHKPOfimvKPzg5t+lHyvBUz4fuBWZx/6hy67rLGpVpDl6k8HbrussYlz2/X0GXXojotc8hspvMZOagux+BEULfuNv2wfb80zd6tkEzdU5CXakbvnOxLzH1u+6T7EtNh1xZjf/iO33S8J/DIb0uUdz+KnxwcC/ltyebdVFCm/gYKpVng
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -35,6 +35,9 @@
   <object x="0" y="1760" width="800" height="32"/>
   <object x="0" y="32" width="32" height="1728"/>
   <object x="640" y="832" width="128" height="64"/>
+  <object x="32" y="864" width="64" height="96"/>
+  <object x="224" y="736" width="256" height="32"/>
+  <object x="96" y="448" width="448" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_bottomleft" x="640" y="896" width="128" height="64"/>
@@ -42,6 +45,13 @@
   <object type="solid_left" x="736" y="768" width="32" height="64"/>
   <object type="solid_left" x="704" y="1696" width="32" height="64"/>
   <object type="solid_right" x="32" y="1696" width="32" height="64"/>
+  <object type="moving_platform_path" x="128" y="1216">
+   <polyline points="0,0 0,-256 0,0"/>
+  </object>
+  <object type="solid_top" x="416" y="576" width="320" height="32"/>
+  <object type="solid_top" x="352" y="1312" width="320" height="32"/>
+  <object type="solid_top" x="448" y="1504" width="256" height="32"/>
+  <object type="solid_top" x="160" y="1440" width="160" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="64" y="1728">
@@ -105,8 +115,55 @@
   <object gid="470" x="288" y="1664"/>
   <object gid="470" x="256" y="1664"/>
   <object gid="470" x="512" y="1664"/>
+  <object gid="483" x="128" y="224"/>
+  <object gid="483" x="128" y="192"/>
+  <object gid="483" x="160" y="224"/>
+  <object gid="483" x="192" y="224"/>
+  <object gid="483" x="224" y="224"/>
+  <object gid="483" x="160" y="192"/>
+  <object gid="483" x="192" y="192"/>
+  <object gid="483" x="192" y="160"/>
+  <object gid="477" x="128" y="256"/>
+  <object gid="477" x="160" y="256"/>
+  <object gid="477" x="192" y="256"/>
+  <object gid="477" x="224" y="256"/>
+  <object gid="477" x="256" y="256"/>
+  <object gid="477" x="96" y="256"/>
+  <object gid="482" x="704" y="480">
+   <properties>
+    <property name="text" value="Traveller's Note:\n\nIf only I could reach those rocks on top of those crates, I could build a staircase to that pipe...."/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="NPCs"/>
+ <objectgroup name="NPCs">
+  <object gid="5" x="480" y="1632"/>
+  <object gid="5" x="416" y="1632"/>
+  <object gid="6" x="192" y="1440"/>
+  <object gid="3" x="640" y="1504"/>
+  <object gid="3" x="576" y="1504"/>
+  <object type="flying_snowball_path" x="384" y="1504">
+   <polyline points="0,0 0,-96 0,0"/>
+  </object>
+  <object gid="9" x="256" y="512"/>
+  <object gid="9" x="320" y="512"/>
+  <object gid="9" x="384" y="512"/>
+  <object gid="9" x="128" y="288"/>
+  <object gid="9" x="224" y="288"/>
+  <object gid="6" x="512" y="1312"/>
+  <object gid="6" x="640" y="1312"/>
+  <object gid="5" x="576" y="1312"/>
+  <object gid="2" x="672" y="576"/>
+  <object gid="2" x="608" y="576"/>
+  <object type="flying_snowball_path" x="192" y="832">
+   <polyline points="0,0 -32,-160 0,0"/>
+  </object>
+  <object gid="7" x="672" y="832"/>
+  <object gid="7" x="192" y="448"/>
+  <object gid="5" x="288" y="448"/>
+  <object gid="5" x="352" y="448"/>
+  <object gid="3" x="416" y="736"/>
+  <object gid="3" x="352" y="736"/>
+ </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="1760"/>
  </objectgroup>
