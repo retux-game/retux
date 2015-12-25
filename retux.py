@@ -163,6 +163,7 @@ RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
 RACCOT_HOP_HEIGHT = TILE_SIZE
 RACCOT_JUMP_HEIGHT = 7 * TILE_SIZE
+RACCOT_JUMP_TRIGGER = 2 * TILE_SIZE
 RACCOT_STOMP_GRAVITY = 1
 RACCOT_STOMP_FALL_SPEED = 15
 RACCOT_STOMP_DELAY = 15
@@ -3963,8 +3964,13 @@ class Raccot(Boss, FallingObject):
         self.crushing = False
         super(Raccot, self).__init__(x, y, **kwargs)
 
+    def jump(self):
+        if self.was_on_floor and self.yvelocity == 0:
+            play_sound(bigjump_sound)
+            self.yvelocity = get_jump_speed(RACCOT_JUMP_HEIGHT, self.gravity)
+
     def hop(self):
-        if self.was_on_floor:
+        if self.was_on_floor and self.yvelocity == 0:
             self.hopping = True
             self.alarms["do_hop"] = 5
             self.sprite = raccot_stomp_sprite
@@ -3982,6 +3988,7 @@ class Raccot(Boss, FallingObject):
             self.yvelocity = 0
             self.gravity = RACCOT_STOMP_GRAVITY
             self.fall_speed = RACCOT_STOMP_FALL_SPEED
+            play_sound(yeti_gna_sound)
 
     def hurt(self):
         if self.stage > 0:
@@ -3998,6 +4005,36 @@ class Raccot(Boss, FallingObject):
                        image_xscale=self.image_xscale,
                        image_yscale=-abs(self.image_yscale))
         self.destroy()
+
+    def move(self):
+        super(Raccot, self).move()
+
+        if "stomp_delay" not in self.alarms and not self.stunned:
+            self.xacceleration = 0
+            player = self.get_nearest_player()
+            if player is not None:
+                if self.stage > 0 and self.charging:
+                    d = player.x - self.x
+                    if (abs(self.xvelocity) < walk_speed or
+                            (self.xvelocity > 0) != (d > 0)):
+                        self.xacceleration = math.copysign(RACCOT_ACCELERATION,
+                                                           d)
+                    else:
+                        self.xvelocity = math.copysign(RACCOT_WALK_SPEED, d)
+
+                    if self.y - player.y >= RACCOT_JUMP_TRIGGER:
+                        self.jump()
+                else:
+                    self.image_xscale = math.copysign(self.image_xscale,
+                                                      player.x - self.x)
+
+    def stop_left(self):
+        self.xvelocity = 0
+        self.jump()
+
+    def stop_right(self):
+        self.xvelocity = 0
+        self.jump()
 
     def stop_up(self):
         self.yvelocity = 0
@@ -4029,6 +4066,35 @@ class Raccot(Boss, FallingObject):
 
     def blast(self):
         self.hurt()
+
+    def event_step(self, time_passed, delta_mult):
+        super(Raccot, self).event_step(time_passed, delta_mult)
+
+        if self.was_on_floor:
+            if self.hopping:
+                self.sprite = raccot_stomp_sprite
+            else:
+                xm = (self.xvelocity > 0) - (self.xvelocity < 0)
+                facing = (self.image_xscale > 0) - (self.image_xscale < 0)
+                speed = abs(self.xvelocity)
+                if speed > 0:
+                    self.sprite = raccot_walk_sprite
+                    self.image_speed = speed * RACCOT_WALK_FRAMES_PER_PIXEL
+                    if xm != facing:
+                        self.image_speed *= -1
+                else:
+                    self.sprite = raccot_stand_sprite
+        else:
+            if self.hopping:
+                self.sprite = raccot_hop_sprite
+            elif self.stomping:
+                self.sprite = raccot_stomp_sprite
+            else:
+                self.sprite = raccot_jump_sprite
+
+        if self.xvelocity:
+            self.image_xscale = math.copysign(self.image_xscale,
+                                              self.xvelocity)
 
     def event_alarm(self, alarm_id):
         if alarm_id == "hop":
