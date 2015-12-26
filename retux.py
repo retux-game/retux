@@ -2275,7 +2275,7 @@ class Player(xsge_physics.Collider):
             if isinstance(block, HurtRight):
                 self.hurt()
             elif isinstance(block, Rock):
-                other.touch(self)
+                block.touch(self)
 
         if isinstance(other, xsge_physics.SolidRight):
             self.xvelocity = max(self.xvelocity, 0)
@@ -2291,7 +2291,7 @@ class Player(xsge_physics.Collider):
             if isinstance(block, HurtLeft):
                 self.hurt()
             elif isinstance(block, Rock):
-                other.touch(self)
+                block.touch(self)
 
         if isinstance(other, xsge_physics.SolidLeft):
             self.xvelocity = min(self.xvelocity, 0)
@@ -2339,7 +2339,7 @@ class Player(xsge_physics.Collider):
             elif isinstance(block, HurtBottom):
                 self.hurt()
             elif isinstance(block, Rock):
-                other.touch(self)
+                block.touch(self)
 
         if self.up_pressed:
             for warp in sge.game.current_room.warps:
@@ -4528,6 +4528,8 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
         if other.pickup(self):
             self.active = False
             self.tangible = False
+            self.xvelocity = 0
+            self.yvelocity = 0
             if other.action_pressed:
                 other.action()
 
