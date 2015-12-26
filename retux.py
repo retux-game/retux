@@ -2263,9 +2263,8 @@ class Player(xsge_physics.Collider):
                 other.touch(self)
         elif isinstance(other, HiddenItemBlock):
             if ydirection == -1 and not xdirection:
-                move_loss = abs(other.bbox_bottom - self.bbox_top)
-                self.move_y(max(0, other.bbox_bottom - self.bbox_top),
-                            absolute=True, do_events=False)
+                move_loss = max(0, other.bbox_bottom - self.bbox_top)
+                self.move_y(move_loss, absolute=True, do_events=False)
                 for hblock in self.collision(HiddenItemBlock, y=(self.y - 1)):
                     if not self.collision(hblock):
                         hblock.hit(self)
