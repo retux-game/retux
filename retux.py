@@ -7007,6 +7007,9 @@ def warp(dest):
                                 cobj.player == nobj.player):
                             nobj.hp = cobj.hp
                             nobj.coins = cobj.coins
+                            nobj.facing = cobj.facing
+                            nobj.image_xscale = cobj.image_xscale
+                            nobj.image_yscale = cobj.image_yscale
 
                             held_object = cobj.held_object
                             if held_object is not None:
