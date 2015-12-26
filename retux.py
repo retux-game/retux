@@ -2338,6 +2338,8 @@ class Player(xsge_physics.Collider):
                 block.hit(self)
             elif isinstance(block, HurtBottom):
                 self.hurt()
+            elif isinstance(block, Rock):
+                other.touch(self)
 
         if self.up_pressed:
             for warp in sge.game.current_room.warps:
