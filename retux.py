@@ -4530,8 +4530,6 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
             self.tangible = False
             self.xvelocity = 0
             self.yvelocity = 0
-            if other.action_pressed:
-                other.action()
 
     def stop_left(self):
         self.xvelocity = 0

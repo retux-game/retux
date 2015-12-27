@@ -43,6 +43,8 @@
   <object x="5920" y="448" width="1408" height="32"/>
   <object x="2176" y="736" width="64" height="32"/>
   <object x="7168" y="320" width="64" height="32"/>
+  <object x="3808" y="736" width="320" height="64"/>
+  <object x="4000" y="544" width="128" height="192"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_topright" x="7328" y="352" width="256" height="128"/>

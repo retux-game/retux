@@ -33,6 +33,8 @@
   <object x="0" y="160" width="256" height="192"/>
   <object x="576" y="160" width="224" height="192"/>
   <object x="0" y="352" width="800" height="96"/>
+  <object x="256" y="160" width="96" height="32"/>
+  <object x="256" y="192" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_left" x="544" y="288" width="32" height="64"/>
