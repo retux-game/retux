@@ -4047,7 +4047,7 @@ class Raccot(Boss, FallingObject):
             self.stop_down()
 
     def stop_down(self):
-        if self.stage > 0 and self.yvelocity > 1:
+        if self.stage > 0 and self.yvelocity > 0:
             play_sound(brick_sound)
             self.yvelocity = 0
             self.xvelocity = 0
@@ -4510,6 +4510,9 @@ class TuxDoll(FallingObject):
 class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
            xsge_physics.Solid):
 
+    push_left = False
+    push_right = False
+    push_down = False
     sticky_top = True
     always_active = True
     always_tangible = True
