@@ -134,6 +134,12 @@
     <property name="text" value="Traveller's Note:\n\nIf only I could reach those rocks on top of those crates, I could build a staircase to that pipe...."/>
    </properties>
   </object>
+  <object gid="470" x="608" y="1216"/>
+  <object gid="470" x="544" y="1216"/>
+  <object gid="470" x="480" y="1216"/>
+  <object gid="478" x="576" y="1216"/>
+  <object gid="477" x="512" y="1216"/>
+  <object gid="470" x="32" y="736"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="5" x="480" y="1632"/>
@@ -144,9 +150,6 @@
   <object type="flying_snowball_path" x="384" y="1504">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="9" x="256" y="512"/>
-  <object gid="9" x="320" y="512"/>
-  <object gid="9" x="384" y="512"/>
   <object gid="9" x="128" y="288"/>
   <object gid="9" x="224" y="288"/>
   <object gid="6" x="512" y="1312"/>
@@ -163,6 +166,8 @@
   <object gid="5" x="352" y="448"/>
   <object gid="3" x="416" y="736"/>
   <object gid="3" x="352" y="736"/>
+  <object gid="9" x="448" y="512"/>
+  <object gid="9" x="512" y="512"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="96" y="1760"/>

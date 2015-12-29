@@ -118,6 +118,7 @@
   <object gid="9" x="992" y="160"/>
   <object gid="9" x="1088" y="160"/>
   <object gid="9" x="1184" y="160"/>
+  <object gid="9" x="608" y="160"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="448" y="288"/>

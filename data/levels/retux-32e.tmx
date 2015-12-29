@@ -74,7 +74,10 @@
   <object gid="470" x="576" y="288"/>
   <object gid="470" x="416" y="288"/>
  </objectgroup>
- <objectgroup name="NPCs"/>
+ <objectgroup name="NPCs">
+  <object gid="7" x="352" y="384"/>
+  <object gid="7" x="512" y="384"/>
+ </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="128" y="384"/>
  </objectgroup>

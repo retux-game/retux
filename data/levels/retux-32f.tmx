@@ -69,7 +69,10 @@
    <polyline points="0,0 0,64"/>
   </object>
  </objectgroup>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="470" x="320" y="320"/>
+  <object gid="470" x="384" y="320"/>
+ </objectgroup>
  <objectgroup name="NPCs">
   <object gid="4" x="800" y="256"/>
   <object gid="4" x="896" y="256"/>
