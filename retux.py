@@ -479,7 +479,7 @@ class Level(sge.Room):
             sge.game.project_text(font, text, sge.game.width / 2, 0,
                                   color=sge.Color("white"), halign="center")
 
-            if main_area in tuxdolls_available:
+            if main_area in tuxdolls_available or main_area in tuxdolls_found:
                 if main_area in tuxdolls_found:
                     s = tuxdoll_sprite
                 else:
@@ -4386,6 +4386,7 @@ class Fireball(FallingObject):
 
     def dissipate(self):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
+        play_sound(fire_dissipate_sound)
         self.destroy()
 
     def touch_hurt(self):
@@ -4600,8 +4601,12 @@ class FixedSpring(FallingObject):
         self.normal_sprite = fixed_spring_sprite
         self.expand_sprite = fixed_spring_expand_sprite
 
+    def set_sound(self):
+        self.sound = spring_sound
+
     def __init__(self, x, y, z=0, **kwargs):
         self.set_sprite()
+        self.set_sound()
         kwargs["sprite"] = self.normal_sprite
         x += self.normal_sprite.origin_x
         y += self.normal_sprite.origin_y
@@ -4610,7 +4615,7 @@ class FixedSpring(FallingObject):
     def stomp(self, other):
         if other is not self.parent:
             other.stomp_jump(self, self.jump_height)
-            play_sound(spring_sound)
+            play_sound(self.sound)
             self.sprite = self.expand_sprite
             self.image_index = 0
             self.image_fps = None
@@ -4677,6 +4682,9 @@ class RustySpring(Spring):
     def set_sprite(self):
         self.normal_sprite = rusty_spring_sprite
         self.expand_sprite = rusty_spring_expand_sprite
+
+    def set_sound(self):
+        self.sound = rusty_spring_sound
 
     def event_animation_end(self):
         if self.sprite == self.expand_sprite:
@@ -7561,12 +7569,15 @@ ice_crack_sounds = [sge.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
 ice_shatter_sound = sge.Sound(os.path.join(DATA, "sounds", "ice_shatter.wav"))
 heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
 shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
+fire_dissipate_sound = sge.Sound(os.path.join(DATA, "sounds",
+                                              "fire_dissipate.wav"))
 icebullet_break_sound = sge.Sound(os.path.join(DATA, "sounds",
                                                "icebullet_break.wav"))
 squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))
 stomp_sound = sge.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
 sizzle_sound = sge.Sound(os.path.join(DATA, "sounds", "sizzle.ogg"))
 spring_sound = sge.Sound(os.path.join(DATA, "sounds", "spring.wav"))
+rusty_spring_sound = sge.Sound(os.path.join(DATA, "sounds", "rusty_spring.wav"))
 kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
 iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
                                              "iceblock_bump.wav"))

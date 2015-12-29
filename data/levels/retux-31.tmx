@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="350" height="30" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="background_y" value="512"/>
+  <property name="bgname" value="nightsky"/>
+  <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Lose Your Spring"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="350" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1MENABAABEEK03811KACidcJZpL732tLAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOA2o55+APCXrrsAUboLkKW7AFm6C5CluwBZuguQtepu2xwAALxuAuCcCdQ=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="350" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztncluUzEUhk/egEmwg4ZNWTCJacOgMOyQmBYMG2DRlg3qgmEHO3gtZnaM5Ul4A46VWNxe7iW+xz4+dvJ/0qeqaZSexPZv+zZ1iAAAAAAAAAAAAAAAAACAPKyNiNZnbrAv2Jej7bf36e5fIm/Yt+z5lnssiwIAgB5ecZa+LjRP53GHXWO/sF/ZXS0P2pUGAAC91Ji7Pm/X2SfsU3alw+MGtYG/9O1DYsU+BtROTbkbmrfe2nP3Ens50CtGNXYxbx8SK/YxoHY0c3cHpVmbDM1b79DcTVVvKm6wNwO9ZVRjE2k7DbX2+RQAzdzdz+4m+X7yE/uZ5ON46PiMrTf1vvkUu4+dsBfZE+xJdnX2vb/N/fzQwOeaklx565XkrptTcT0DlIJm7h5mxyTfT26xv0g+joeOz9h6NfbNPntd1nZlrmXu5s5bryR33ZyK6xmgFLRzd8VQSe6WWKfP3us0zdlV2p6/E5LlrmQNmGIfEqskdyVti+sZQAvkrn29IXW67D09069/r9F0Dey+SnJXsgZMsQ+JVSN377MP2KsNbwt+DwAhIHf16+0a0zHj269/Xd5O2L3smYGP4bBuH6kpc9e3zWPBYwIgBbmrV6/mmG6ufyWZ67BuH6kpchd5CyxB7qavt5Yxbd0+UmNyt5a2AYuNZu7eo/69tfMhlTU+Y3OotjGdK3fnXWcZquS6q++LtbQNWGws/19tk3SzN1fu1pa3Hu3crfV1AUAb6/8T1szeobk7b33eZ625ov13xFpfFwC0sc5dh8veVHtQvA8oHOk8s6jzEAC5KCF3AQBgmUDuAgBAXpC7AACQF+QuAADkBblbJtIzayS+Y99neVa2aL+mpZ8b6T9LEegS8jkrm6Opy9wfS8Plw07Kdw7lN/Y7+4i9m+H5WSE9ByhUd3ZzyX0dayxdtD9nBeeY6uEz9wBN3wt7hD1Kce+nPRZwn2fsc3aD/cB+pHzr7Vxzfer3K7fbZkxlZ++i5K5132rbdS7qvHEbMiZjreEc05z7+v/ZzFznWfYc6beR1+XvD/Yn2c/Xqef6du7G9v2utvHZa92Pusyxt5X6O3A+cPe17lttt+jfc1E1x21ov71A9u3atGs9or0HDbWZucvqkDzsW1d0zfW5zqMYk30/WmQlbZJjfVmapfXDkLVQlyW0XQk1lFRP37pCM3etnrP1a21dr3+8P0Xvw9g=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="1440" y="128" width="128" height="32"/>
+  <object x="1632" y="128" width="320" height="32"/>
+  <object x="1568" y="800" width="64" height="32"/>
+  <object x="0" y="896" width="2400" height="64"/>
+  <object x="1312" y="832" width="1088" height="64"/>
+  <object x="2400" y="928" width="1152" height="32"/>
+  <object x="3680" y="896" width="3744" height="64"/>
+  <object x="4768" y="864" width="2656" height="32"/>
+  <object x="4800" y="832" width="928" height="32"/>
+  <object x="4832" y="800" width="896" height="32"/>
+  <object x="7552" y="896" width="3648" height="64"/>
+  <object x="11136" y="768" width="64" height="128"/>
+  <object x="7552" y="864" width="864" height="32"/>
+  <object x="7552" y="832" width="832" height="32"/>
+  <object x="7552" y="800" width="800" height="32"/>
+  <object x="7520" y="320" width="448" height="64"/>
+  <object x="7520" y="384" width="64" height="128"/>
+  <object x="6432" y="224" width="704" height="160"/>
+  <object x="5632" y="384" width="1504" height="128"/>
+  <object x="5632" y="512" width="704" height="96"/>
+  <object x="3712" y="288" width="64" height="32"/>
+  <object x="3712" y="320" width="992" height="96"/>
+  <object x="3712" y="416" width="448" height="160"/>
+  <object x="3168" y="160" width="192" height="160"/>
+  <object x="2304" y="288" width="64" height="32"/>
+  <object x="2304" y="320" width="1056" height="192"/>
+  <object x="2656" y="512" width="704" height="96"/>
+  <object x="9600" y="864" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="slope_bottomleft" x="2560" y="512" width="96" height="96"/>
+  <object type="slope_topleft" x="2848" y="160" width="320" height="160"/>
+  <object type="solid_top" x="1568" y="128" width="64" height="32"/>
+  <object type="slope_bottomright" x="4160" y="416" width="320" height="160"/>
+  <object type="solid_top" x="4864" y="256" width="384" height="32"/>
+  <object type="slope_topleft" x="6112" y="224" width="320" height="160"/>
+  <object type="slope_bottomright" x="6336" y="512" width="192" height="96"/>
+  <object type="slope_bottomright" x="7584" y="384" width="256" height="128"/>
+  <object type="level_end" x="10688" y="0" width="32" height="896"/>
+  <object type="slope_topleft" x="1184" y="832" width="128" height="64"/>
+  <object type="slope_topright" x="5728" y="800" width="128" height="64"/>
+  <object type="solid_top" x="9600" y="768" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="470" x="8192" y="704"/>
+  <object gid="470" x="8160" y="704"/>
+  <object gid="470" x="8064" y="704"/>
+  <object gid="470" x="8000" y="704"/>
+  <object gid="470" x="7904" y="704"/>
+  <object gid="470" x="7872" y="704"/>
+  <object gid="477" x="8128" y="704"/>
+  <object gid="477" x="8096" y="704"/>
+  <object gid="477" x="7936" y="704"/>
+  <object gid="477" x="7968" y="704"/>
+  <object gid="475" x="8032" y="704"/>
+  <object gid="478" x="1472" y="64"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="6" x="1504" y="128"/>
+  <object gid="6" x="1568" y="128"/>
+  <object gid="6" x="1632" y="128"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="896"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="350" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1DERACAQBLHHv1YoUIADymOYTxRstVUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/GqN1wUAvUzfBYjyXYAs3wXI8l2ALN8FyPJdgKzbd7cnAwDQ2AHWfwhl
+  </data>
+ </layer>
+</map>

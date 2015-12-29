@@ -614,6 +614,7 @@ levels/retux-28.tmx
 levels/retux-28b.tmx
 levels/retux-29.tmx
 levels/retux-30.tmx
+levels/retux-31.tmx
 levels/retux-32.tmx
 levels/retux-32b.tmx
 levels/retux-32c.tmx
@@ -637,6 +638,7 @@ levels/test3.tmx
 levels/special/title_screen.tmx
 levelsets/retux.json
 levelsets/test.json
+sounds/fire_dissipate.wav
 tilesets/blocks.tsx
 tilesets/castle.tsx
 tilesets/cave.tsx
@@ -755,6 +757,24 @@ sounds/willowisp.wav
 Author: wansti
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+
+------------------------------------------------------------------------
+
+sounds/rusty_spring.wav
+
+Authors:
+  wansti
+  orginaljun.deviantart.com
+  onpon4
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Sources:
+  http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+  http://freesound.org/people/jih/sounds/57641/
+Details:
+  Made by combining the spring sound effect by wansti ("spring.wav")
+  with "Rusty Spring.mp3" by originaljun, with the pitch decreased
+  slightly. Source code in the form of an Audacity project file can be
+  found under the sources directory.
 
 ------------------------------------------------------------------------
 
