@@ -84,8 +84,22 @@
   <object type="solid_top" x="9600" y="768" width="64" height="32"/>
   <object type="solid_top" x="6400" y="768" width="64" height="32"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp"/>
- <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="1600" y="128">
+   <properties>
+    <property name="dest" value="retux-31b.tmx:bonus_enter"/>
+   </properties>
+   <polyline points="0,0 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object x="9632" y="832">
+   <properties>
+    <property name="spawn_id" value="bonus_exit"/>
+   </properties>
+   <polyline points="0,0 0,-64"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Items">
   <object gid="470" x="8192" y="704"/>
   <object gid="470" x="8160" y="704"/>
