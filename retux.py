@@ -293,6 +293,12 @@ TEXT_SPEED = 1000
 SAVE_NSLOTS = 10
 MENU_MAX_ITEMS = 14
 
+SOUND_MAX_RADIUS = 400
+SOUND_ZERO_RADIUS = 1200
+SOUND_CENTERED_RADIUS = 150
+SOUND_TILTED_RADIUS = 1000
+SOUND_TILT_LIMIT = 0.75
+
 backgrounds = {}
 loaded_music = {}
 tux_grab_sprites = {}
@@ -1623,7 +1629,7 @@ class Player(xsge_physics.Collider):
                 self.yvelocity = get_jump_speed(self.jump_height, self.gravity)
             self.on_floor = []
             self.was_on_floor = []
-            play_sound(jump_sound)
+            play_sound(jump_sound, self.x, self.y)
 
     def jump_release(self):
         if self.yvelocity < 0:
@@ -1664,7 +1670,7 @@ class Player(xsge_physics.Collider):
             if self.hp <= 0:
                 self.kill()
             else:
-                play_sound(hurt_sound)
+                play_sound(hurt_sound, self.x, self.y)
                 self.hitstun = True
                 self.image_alpha = 128
                 self.alarms["hitstun"] = self.hitstun_time
@@ -1672,7 +1678,7 @@ class Player(xsge_physics.Collider):
     def kill(self, show_fall=True):
         if self.held_object is not None:
             self.held_object.drop()
-        play_sound(kill_sound)
+        play_sound(kill_sound, self.x, self.y)
         if show_fall:
             DeadMan.create(self.x, self.y, 100000, sprite=tux_die_sprite,
                            yvelocity=get_jump_speed(PLAYER_DIE_HEIGHT))
@@ -1731,7 +1737,7 @@ class Player(xsge_physics.Collider):
             self.held_object = None
 
     def do_kick(self):
-        play_sound(kick_sound)
+        play_sound(kick_sound, self.x, self.y)
         self.alarms["fixed_sprite"] = TUX_KICK_TIME
         if self.held_object is not None:
             self.sprite = self.get_grab_sprite(tux_body_kick_sprite)
@@ -1845,7 +1851,7 @@ class Player(xsge_physics.Collider):
                     if (not skidding and h_control and
                             speed >= PLAYER_SKID_THRESHOLD):
                         skidding = True
-                        play_sound(skid_sound)
+                        play_sound(skid_sound, self.x, self.y)
                 else:
                     skidding = False
 
@@ -2538,7 +2544,7 @@ class InteractiveObject(sge.Object):
 
     def touch_death(self):
         if self.parent is None:
-            play_sound(fall_sound)
+            play_sound(fall_sound, self.x, self.y)
             DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                            xvelocity=self.xvelocity, yvelocity=0,
                            image_xscale=self.image_xscale,
@@ -2646,7 +2652,7 @@ class WinPuffObject(InteractiveObject):
     win_puff_score = ENEMY_KILL_POINTS
 
     def win_puff(self):
-        play_sound(pop_sound)
+        play_sound(pop_sound, self.x, self.y)
         if self.sprite is None:
             x = self.x
             y = self.y
@@ -2786,7 +2792,7 @@ class KnockableObject(InteractiveObject):
     blastable = True
 
     def knock(self, other=None):
-        play_sound(fall_sound)
+        play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity,
                        yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
@@ -2803,7 +2809,7 @@ class BurnableObject(InteractiveObject):
     blastable = True
 
     def burn(self):
-        play_sound(fall_sound)
+        play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity, yvelocity=0,
                        image_xscale=self.image_xscale,
@@ -2903,7 +2909,7 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        play_sound(squish_sound)
+        play_sound(squish_sound, self.x, self.y)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         Corpse.create(self.x, self.y, self.z, sprite=snowball_squished_sprite,
                       image_xscale=self.image_xscale,
@@ -2950,7 +2956,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        play_sound(stomp_sound)
+        play_sound(stomp_sound, self.x, self.y)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
                             image_xscale=self.image_xscale,
@@ -3011,7 +3017,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        play_sound(stomp_sound)
+        play_sound(stomp_sound, self.x, self.y)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         tb = TickingBomb.create(self.x, self.y, self.z,
                                 sprite=bomb_ticking_sprite,
@@ -3109,7 +3115,7 @@ class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        play_sound(squish_sound)
+        play_sound(squish_sound, self.x, self.y)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         Corpse.create(self.x, self.y, self.z,
                       sprite=flying_snowball_squished_sprite,
@@ -3197,7 +3203,7 @@ class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
     def kick_up(self):
         if self.parent is not None:
             self.parent.kick_object()
-            play_sound(kick_sound)
+            play_sound(kick_sound, self.x, self.y)
             tib = ThrownIceblock.create(
                 self.parent, self.x, self.y, self.z, sprite=self.sprite,
                 image_xscale=self.image_xscale, image_yscale=self.image_yscale,
@@ -3233,7 +3239,7 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
         fib.touch(other)
 
     def stop_left(self):
-        play_sound(iceblock_bump_sound)
+        play_sound(iceblock_bump_sound, self.x, self.y)
         self.xvelocity = abs(self.xvelocity)
         self.set_direction(1)
         for block in self.get_left_touching_wall():
@@ -3241,7 +3247,7 @@ class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
                 block.hit(self.thrower)
 
     def stop_right(self):
-        play_sound(iceblock_bump_sound)
+        play_sound(iceblock_bump_sound, self.x, self.y)
         self.xvelocity = -abs(self.xvelocity)
         self.set_direction(-1)
         for block in self.get_right_touching_wall():
@@ -3310,21 +3316,21 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
 
     def stomp(self, other):
         other.stomp_jump(self)
-        play_sound(stomp_sound)
+        play_sound(stomp_sound, self.x, self.y)
         FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
                             image_xscale=self.image_xscale,
                             image_yscale=self.image_yscale)
         self.destroy()
 
     def stop_left(self):
-        play_sound(iceblock_bump_sound)
+        play_sound(iceblock_bump_sound, self.x, self.y)
         self.set_direction(1)
         for block in self.get_left_touching_wall():
             if isinstance(block, HittableBlock):
                 block.hit(self.thrower)
 
     def stop_right(self):
-        play_sound(iceblock_bump_sound)
+        play_sound(iceblock_bump_sound, self.x, self.y)
         self.set_direction(-1)
         for block in self.get_right_touching_wall():
             if isinstance(block, HittableBlock):
@@ -3442,7 +3448,7 @@ class Explosion(InteractiveObject):
         super(Explosion, self).event_create()
         self.__life = EXPLOSION_TIME
         self.__friends = set()
-        play_sound(explosion_sound)
+        play_sound(explosion_sound, self.x, self.y)
 
     def deactivate(self):
         pass
@@ -3493,7 +3499,7 @@ class Icicle(InteractiveObject):
 
     def do_shake(self):
         self.shaking = True
-        play_sound(icicle_shake_sound)
+        play_sound(icicle_shake_sound, self.x, self.y)
         self.alarms["fall"] = ICICLE_SHAKE_TIME
 
     def check_shake(self):
@@ -3588,14 +3594,14 @@ class FallingIcicle(FallingObject):
         other.hurt()
 
     def touch_death(self):
-        play_sound(sizzle_sound)
+        play_sound(sizzle_sound, self.x, self.y)
         self.destroy()
 
     def touch_hurt(self):
         pass
 
     def stop_down(self):
-        play_sound(icicle_crash_sound)
+        play_sound(icicle_crash_sound, self.x, self.y)
         Corpse.create(self.x, self.y, self.z,
                       sprite=icicle_broken_sprite,
                       image_xscale=self.image_xscale,
@@ -3632,7 +3638,7 @@ class Crusher(FallingObject):
         self.crushing = False
 
     def stop_down(self):
-        play_sound(brick_sound)
+        play_sound(brick_sound, self.x, self.y)
         self.yvelocity = 0
         self.gravity = 0
         sge.game.current_room.shake(CRUSHER_SHAKE_NUM)
@@ -3716,7 +3722,7 @@ class Circoflame(InteractiveObject):
         other.hurt()
 
     def freeze(self):
-        play_sound(sizzle_sound)
+        play_sound(sizzle_sound, self.x, self.y)
         center = self.center()
         if center is not None:
             center.destroy()
@@ -3801,7 +3807,7 @@ class Snowman(FallingObject, Boss):
 
     def jump(self):
         if self.was_on_floor:
-            play_sound(bigjump_sound)
+            play_sound(bigjump_sound, self.x, self.y)
             self.yvelocity = get_jump_speed(SNOWMAN_JUMP_HEIGHT, self.gravity)
 
     def stun(self):
@@ -3822,7 +3828,7 @@ class Snowman(FallingObject, Boss):
             self.kill()
         else:
             if self.was_on_floor:
-                play_sound(bigjump_sound)
+                play_sound(bigjump_sound, self.x, self.y)
                 self.yvelocity = get_jump_speed(SNOWMAN_HOP_HEIGHT,
                                                 self.gravity)
                 self.stage += 1
@@ -3832,7 +3838,7 @@ class Snowman(FallingObject, Boss):
                 self.alarms["stun"] = 1
 
     def kill(self):
-        play_sound(fall_sound)
+        play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
                        image_xscale=self.image_xscale,
@@ -3888,7 +3894,7 @@ class Snowman(FallingObject, Boss):
 
     def stop_down(self):
         if self.stage > 0 and self.yvelocity > 1:
-            play_sound(brick_sound)
+            play_sound(brick_sound, self.x, self.y)
             self.yvelocity = 0
             self.xvelocity = 0
             self.xacceleration = 0
@@ -3905,19 +3911,19 @@ class Snowman(FallingObject, Boss):
     def stomp(self, other):
         other.stomp_jump(self)
         if self.stage > 0 and not self.stunned:
-            play_sound(squish_sound)
+            play_sound(squish_sound, self.x, self.y)
             self.stun()
 
     def burn(self):
         if self.stage > 0:
-            play_sound(sizzle_sound)
+            play_sound(sizzle_sound, self.x, self.y)
             self.hp -= 1
             if self.hp <= 0:
                 self.next_stage()
 
     def knock(self, other=None):
         if self.stage > 0 and not isinstance(other, (Icicle, FallingIcicle)):
-            play_sound(stomp_sound)
+            play_sound(stomp_sound, self.x, self.y)
             self.stun()
 
         if other is not None and other.knockable:
@@ -3925,7 +3931,7 @@ class Snowman(FallingObject, Boss):
 
     def blast(self):
         if self.stage > 0:
-            play_sound(sizzle_sound)
+            play_sound(sizzle_sound, self.x, self.y)
             self.next_stage()
 
     def touch_hurt(self):
@@ -3993,7 +3999,7 @@ class Raccot(Boss, FallingObject):
 
     def jump(self):
         if self.was_on_floor and self.yvelocity == 0:
-            play_sound(bigjump_sound)
+            play_sound(bigjump_sound, self.x, self.y)
             self.yvelocity = get_jump_speed(RACCOT_JUMP_HEIGHT, self.gravity)
 
     def hop(self):
@@ -4001,7 +4007,7 @@ class Raccot(Boss, FallingObject):
             self.hopping = True
             self.alarms["do_hop"] = 5
             self.sprite = raccot_stomp_sprite
-            play_sound(yeti_gna_sound)
+            play_sound(yeti_gna_sound, self.x, self.y)
 
     def do_hop(self):
         self.xvelocity = 0
@@ -4015,17 +4021,17 @@ class Raccot(Boss, FallingObject):
             self.yvelocity = 0
             self.gravity = RACCOT_STOMP_GRAVITY
             self.fall_speed = RACCOT_STOMP_FALL_SPEED
-            play_sound(yeti_gna_sound)
+            play_sound(yeti_gna_sound, self.x, self.y)
 
     def hurt(self):
         if self.stage > 0:
-            play_sound(yeti_roar_sound)
+            play_sound(yeti_roar_sound, self.x, self.y)
             self.hp -= 1
             if self.hp <= 0:
                 self.kill()
 
     def kill(self):
-        play_sound(fall_sound)
+        play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=raccot_hop_sprite,
                        xvelocity=self.xvelocity,
                        yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
@@ -4070,7 +4076,7 @@ class Raccot(Boss, FallingObject):
 
     def stop_down(self):
         if self.stage > 0 and self.yvelocity > 0:
-            play_sound(brick_sound)
+            play_sound(brick_sound, self.x, self.y)
             self.yvelocity = 0
             self.xvelocity = 0
             self.xacceleration = 0
@@ -4171,7 +4177,7 @@ class FireFlower(FallingObject, WinPuffObject):
                                 xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
                 self.ammo -= 1
-                play_sound(shoot_sound)
+                play_sound(shoot_sound, self.x, self.y)
 
                 self.sprite = fire_flower_sprite.copy()
                 lightness = int((self.ammo / FIREBALL_AMMO) * 255)
@@ -4191,7 +4197,7 @@ class FireFlower(FallingObject, WinPuffObject):
                 h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
                 yv = get_jump_speed(h, ThrownFireFlower.gravity)
                 self.parent.kick_object()
-                play_sound(kick_sound)
+                play_sound(kick_sound, self.x, self.y)
                 ThrownFireFlower.create(self.parent, self.x, self.y, self.z,
                                         sprite=self.sprite,
                                         xvelocity=(FIREBALL_SPEED * d),
@@ -4268,7 +4274,7 @@ class IceFlower(FallingObject, WinPuffObject):
                                  xvelocity=(ICEBULLET_SPEED * d),
                                  bbox_x=bbox_x)
                 self.ammo -= 1
-                play_sound(shoot_sound)
+                play_sound(shoot_sound, self.x, self.y)
 
                 self.sprite = ice_flower_sprite.copy()
                 lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
@@ -4288,7 +4294,7 @@ class IceFlower(FallingObject, WinPuffObject):
                 yv = get_jump_speed(FLOWER_THROW_HEIGHT,
                                     ThrownIceFlower.gravity)
                 self.parent.kick_object()
-                play_sound(kick_sound)
+                play_sound(kick_sound, self.x, self.y)
                 ThrownIceFlower.create(self.parent, self.x, self.y, self.z,
                                        sprite=self.sprite,
                                        xvelocity=(FIREBALL_SPEED * d),
@@ -4329,7 +4335,7 @@ class ThrownFlower(FallingObject, WinPuffObject):
         super(ThrownFlower, self).__init__(*args, **kwargs)
 
     def dissipate(self):
-        play_sound(stomp_sound)
+        play_sound(stomp_sound, self.x, self.y)
         self.destroy()
 
     def deactivate(self):
@@ -4408,7 +4414,7 @@ class Fireball(FallingObject):
 
     def dissipate(self):
         Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
-        play_sound(fire_dissipate_sound)
+        play_sound(fire_dissipate_sound, self.x, self.y)
         self.destroy()
 
     def touch_hurt(self):
@@ -4463,7 +4469,7 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
 
     def dissipate(self):
         Smoke.create(self.x, self.y, self.z, sprite=ice_bullet_break_sprite)
-        play_sound(icebullet_break_sound)
+        play_sound(icebullet_break_sound, self.x, self.y)
         self.destroy()
 
     def stop_left(self):
@@ -4519,7 +4525,7 @@ class TuxDoll(FallingObject):
         sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
-        play_sound(tuxdoll_sound)
+        play_sound(tuxdoll_sound, self.x, self.y)
         sge.game.current_room.add_points(TUXDOLL_POINTS)
         if main_area and main_area not in tuxdolls_found:
             tuxdolls_found.append(main_area)
@@ -4637,7 +4643,7 @@ class FixedSpring(FallingObject):
     def stomp(self, other):
         if other is not self.parent:
             other.stomp_jump(self, self.jump_height)
-            play_sound(self.sound)
+            play_sound(self.sound, self.x, self.y)
             self.sprite = self.expand_sprite
             self.image_index = 0
             self.image_fps = None
@@ -4805,7 +4811,7 @@ class Iceblock(xsge_physics.Solid, Tile):
         sge.Object.__init__(self, x, y, **kwargs)
 
     def burn(self):
-        play_sound(sizzle_sound)
+        play_sound(sizzle_sound, self.x, self.y)
         Smoke.create(self.x, self.y, self.z, sprite=iceblock_melt_sprite)
         self.destroy()
 
@@ -4831,7 +4837,7 @@ class BossBlock(InteractiveObject):
         self.child.y += self.child.image_origin_y
         Smoke.create(self.child.x, self.child.y, z=(self.child.z + 0.5),
                      sprite=item_spawn_cloud_sprite)
-        play_sound(pop_sound)
+        play_sound(pop_sound, self.x, self.y)
 
     def deactivate(self):
         if self.child is not None:
@@ -4839,7 +4845,7 @@ class BossBlock(InteractiveObject):
                          sprite=smoke_plume_sprite)
             self.child.destroy()
             self.child = None
-            play_sound(pop_sound)
+            play_sound(pop_sound, self.x, self.y)
 
     def update_active(self):
         pass
@@ -4867,7 +4873,7 @@ class HittableBlock(Tile):
                 self.event_hit_end()
 
     def hit(self, other):
-        play_sound(brick_sound)
+        play_sound(brick_sound, self.x, self.y)
         if self.hit_obj is not None:
             self.hit_obj.destroy()
             self.hit_obj = None
@@ -4984,7 +4990,7 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
             obj.bbox_bottom = self.bbox_top
             Smoke.create(obj.x, obj.y, z=(obj.z + 0.5),
                          sprite=item_spawn_cloud_sprite)
-            play_sound(find_powerup_sound)
+            play_sound(find_powerup_sound, self.x, self.y)
         else:
             CoinCollect.create(self.x, self.y, z=(self.z + 0.5))
             other.coins += 1
@@ -5067,11 +5073,11 @@ class ThinIce(xsge_physics.Solid, Tile):
             self.sprite = thin_ice_break_sprite
             self.image_index = 0
             self.image_fps = None
-            play_sound(ice_shatter_sound)
+            play_sound(ice_shatter_sound, self.x, self.y)
 
     def crack(self):
         if self.image_index + 1 < self.sprite.frames:
-            play_sound(random.choice(ice_crack_sounds))
+            play_sound(random.choice(ice_crack_sounds), self.x, self.y)
             self.image_index += 1
             self.freeze_time = 0
         else:
@@ -5129,7 +5135,7 @@ class CoinCollect(sge.Object):
         sge.Object.__init__(self, x, y, **kwargs)
 
     def event_create(self):
-        play_sound(coin_sound)
+        play_sound(coin_sound, self.x, self.y)
         sge.game.current_room.add_points(COIN_POINTS)
         self.alarms["destroy"] = COIN_COLLECT_TIME
         self.yvelocity = -COIN_COLLECT_SPEED
@@ -5194,7 +5200,7 @@ class Bell(Checkpoint):
 
     def touch(self, other):
         super(Bell, self).touch(other)
-        play_sound(bell_sound)
+        play_sound(bell_sound, self.x, self.y)
 
 
 class Door(sge.Object):
@@ -5212,7 +5218,7 @@ class Door(sge.Object):
     def warp(self, other):
         if self.occupant is None and self.image_index == 0:
             self.occupant = other
-            play_sound(door_sound)
+            play_sound(door_sound, self.x, self.y)
             self.image_fps = self.sprite.fps
 
             other.visible = False
@@ -5260,7 +5266,7 @@ class Door(sge.Object):
                 self.occupant.yvelocity = 0
                 self.occupant = None
         elif self.image_fps < 0:
-            play_sound(door_shut_sound)
+            play_sound(door_shut_sound, self.x, self.y)
             self.image_fps = 0
             self.image_index = 0
             self.occupant = None
@@ -5367,7 +5373,7 @@ class WarpSpawn(xsge_path.Path):
         if self.dest and (':' in self.dest or self.dest == "__map__"):
             warp(self.dest)
         else:
-            play_sound(pipe_sound)
+            play_sound(pipe_sound, obj.x, obj.y)
             self.warps_out.append(obj)
             x, y = self.points[-1]
             x += self.x
@@ -5403,7 +5409,7 @@ class Warp(WarpSpawn):
         self.warps_in = []
 
     def warp(self, other):
-        play_sound(pipe_sound)
+        play_sound(pipe_sound, other.x, other.y)
         self.warps_in.append(other)
 
         if getattr(other, "held_object") is not None:
@@ -6733,9 +6739,56 @@ def show_error(message):
         print(message)
 
 
-def play_sound(sound, *args, **kwargs):
+def play_sound(sound, x=None, y=None):
     if sound_enabled and sound:
-        sound.play(*args, **kwargs)
+        if x is None or y is None:
+            sound.play()
+        else:
+            current_view = None
+            view_x = 0
+            view_y = 0
+            dist = 0
+            for view in sge.game.current_room.views:
+                vx = view.x + view.width / 2
+                vy = view.y + view.height / 2
+                new_dist = math.hypot(vx - x, vy - y)
+                if current_view is None or new_dist < dist:
+                    current_view = view
+                    view_x = vx
+                    view_y = vy
+                    dist = new_dist
+
+            bl = min(x, view_x)
+            bw = abs(x - view_x)
+            bt = min(y, view_y)
+            bh = abs(y - view_y)
+            for obj in sge.game.current_room.get_objects_at(bl, bt, bw, bh):
+                if isinstance(obj, Player):
+                    new_dist = math.hypot(obj.x - x, obj.y - y)
+                    if new_dist < dist:
+                        view_x = obj.x
+                        view_y = obj.y
+                        dist = new_dist
+
+            if dist <= SOUND_MAX_RADIUS:
+                volume = 100
+            elif dist < SOUND_ZERO_RADIUS:
+                rng = SOUND_ZERO_RADIUS - SOUND_MAX_RADIUS
+                reldist = rng - (dist - SOUND_MAX_RADIUS)
+                volume = abs((reldist / rng) * 100)
+            else:
+                # No point in continuing; it's too far away
+                return
+
+            hdist = x - view_x
+            if abs(hdist) < SOUND_CENTERED_RADIUS:
+                balance = 0
+            else:
+                rng = SOUND_TILTED_RADIUS - SOUND_CENTERED_RADIUS
+                balance = max(-SOUND_TILT_LIMIT,
+                              min(hdist / rng, SOUND_TILT_LIMIT))
+
+            sound.play(volume=volume, balance=balance)
 
 
 def play_music(music, force_restart=False):
