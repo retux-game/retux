@@ -1,4 +1,4 @@
-Copyright (C) 2014, 2015 Julian Marchant <onpon4@riseup.net>
+Copyright (C) 2014, 2015, 2016 Julian Marchant <onpon4@riseup.net>
 
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
@@ -16,10 +16,10 @@ You will need the following dependencies:
 - Pygame 1.9.1 or later <http://pygame.org/download.shtml>
 
 Once you have installed the dependencies, you can start ReTux by
-running retux.py. By default, it will use Python 3. To run it with
-Python 2 instead, you can either change the shebang on line 1 from
-"python3" to "python2", or explicitly run the Python 2 executable, e.g.
-with "python2 retux.py".
+running retux.py. By default, it will use Python 2. To run it with
+Python 3 instead, you can either change the shebang on line 1 from
+"python2" to "python3", or explicitly run the Python 3 executable, e.g.
+with "python3 retux.py".
 
 There are some command-line options that can be passed. Run ReTux in a
 terminal with the "-h" command-line option for more information.
