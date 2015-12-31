@@ -667,25 +667,27 @@ class Level(sge.Room):
                             command = command[0]
                             arg = ""
 
-                        if command == "setattr":
+                        if command.startswith("#"):
+                            # Comment; do nothing
+                            pass
+                        elif command == "setattr":
                             args = arg.split(None, 2)
                             if len(args) >= 3:
                                 obj, name, value = args[:3]
 
                                 try:
-                                    value = int(value)
-                                except ValueError:
-                                    try:
-                                        value = float(value)
-                                    except ValueError:
-                                        pass
-
-                                if obj in self.timeline_objects:
-                                    obj = self.timeline_objects[obj]()
-                                    if obj is not None:
-                                        setattr(obj, name, value)
-                                elif obj == "__level__":
-                                    setattr(self, name, value)
+                                    value = eval(value)
+                                except Exception as e:
+                                    m = "An error occurred in a timeline 'setattr' command:\n\n{}".format(
+                                    traceback.format_exc())
+                                    show_error(m)
+                                else:
+                                    if obj in self.timeline_objects:
+                                        obj = self.timeline_objects[obj]()
+                                        if obj is not None:
+                                            setattr(obj, name, value)
+                                    elif obj == "__level__":
+                                        setattr(self, name, value)
                         elif command == "call":
                             args = arg.split(None, 1)
                             if len(args) >= 2:
@@ -723,14 +725,14 @@ class Level(sge.Room):
                             try:
                                 six.exec_(arg)
                             except Exception as e:
-                                m = "An error occurred in the timeline 'exec' statement:\n\n{}".format(
+                                m = "An error occurred in a timeline 'exec' command:\n\n{}".format(
                                     traceback.format_exc())
                                 show_error(m)
                         elif command == "if":
                             try:
                                 r = eval(arg)
                             except Exception as e:
-                                m = "An error occurred in the timeline 'if' statement:\n\n{}".format(
+                                m = "An error occurred in a timeline 'if' statement:\n\n{}".format(
                                     traceback.format_exc())
                                 show_error(m)
                                 r = False
@@ -742,11 +744,31 @@ class Level(sge.Room):
                             if self.timeline_name not in watched_timelines:
                                 self.timeline[i] = []
                                 break
-
                         elif command == "if_not_watched":
                             if self.timeline_name in watched_timelines:
                                 self.timeline[i] = []
                                 break
+                        elif command == "while":
+                            try:
+                                r = eval(arg)
+                            except Exception as e:
+                                m = "An error occurred in a timeline 'while' statement:\n\n{}".format(
+                                    traceback.format_exc())
+                                show_error(m)
+                                r = False
+                            finally:
+                                if r:
+                                    cur_timeline = self.timeline[i][:]
+                                    while_command = "while {}".format(arg)
+                                    self.timeline[i].insert(0, while_command)
+                                    t_keys.insert(0, i)
+                                    self.timeline[i - 1] = cur_timeline
+                                    self.timeline[i] = loop_timeline
+                                    i -= 1
+                                    self.timeline_step -= 1
+                                else:
+                                    self.timeline[i] = []
+                                    break
                 else:
                     del self.timeline[i]
             else:
