@@ -3477,6 +3477,12 @@ class Explosion(InteractiveObject):
             if isinstance(other, HittableBlock):
                 if self.detonator is not None:
                     other.hit(self.detonator)
+                else:
+                    detonator = self.get_nearest_player()
+                    if detonator is not None:
+                        other.hit(detonator)
+                    else:
+                        other.hit(None)
 
         # This is outside of the "friend" check because we *want* thin
         # ice to be hit by the explosion repeatedly (to facilitate
@@ -4951,7 +4957,8 @@ class CoinBrick(Brick):
         if self.coins > 0:
             self.coins -= 1
             CoinCollect.create(self.x, self.y, z=(self.z + 0.5))
-            other.coins += 1
+            if other is not None:
+                other.coins += 1
 
             if "decay" not in self.alarms:
                 self.alarms["decay"] = COINBRICK_DECAY_TIME
@@ -4993,7 +5000,8 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
             play_sound(find_powerup_sound, self.x, self.y)
         else:
             CoinCollect.create(self.x, self.y, z=(self.z + 0.5))
-            other.coins += 1
+            if other is not None:
+                other.coins += 1
 
     def event_hit_end(self):
         EmptyBlock.create(self.x, self.y, z=self.z, sprite=bonus_empty_sprite)
@@ -7422,8 +7430,8 @@ ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
 ice_bullet_break_sprite = sge.Sprite("ice_bullet_break", d, origin_x=8,
                                      origin_y=7, fps=24)
 explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
-                              bbox_x=-32, bbox_y=-4, bbox_width=64,
-                              bbox_height=40)
+                              bbox_x=-28, bbox_y=-11, bbox_width=56,
+                              bbox_height=48)
 smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
                                origin_x=24, origin_y=24, fps=24)
 smoke_plume_sprite = sge.Sprite("smoke_plume", d, width=64, height=64,
