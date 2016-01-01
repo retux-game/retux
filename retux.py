@@ -5558,17 +5558,19 @@ class Warp(WarpSpawn):
 
 class ObjectWarpSpawn(WarpSpawn):
 
-    def __init__(self, x, y, cls=None, interval=180, limit=None, **kwargs):
+    def __init__(self, x, y, points=(), cls=None, interval=180, limit=None,
+                 **kwargs):
         # If dest is defined, that will cause the player to
         # automatically switch to the destination room whenever an
         # object spawns, which is not desirable at all.
         kwargs["dest"] = None
         self.cls = TYPES.get(cls)
+        self.kwargs = kwargs
         self.interval = interval
         self.limit = limit
         self.__steps_passed = 0
         self.__objects = []
-        super(ObjectWarpSpawn, self).__init__(x, y, **kwargs)
+        super(ObjectWarpSpawn, self).__init__(x, y, points=points)
 
     def event_begin_step(self, time_passed, delta_mult):
         in_view = False
@@ -5591,7 +5593,8 @@ class ObjectWarpSpawn(WarpSpawn):
                         num_objects += 1
 
                 if not self.limit or num_objects < self.limit:
-                    obj = self.cls.create(self.x, self.y, z=self.z)
+                    obj = self.cls.create(self.x, self.y, z=self.z,
+                                          **self.kwargs)
                     obj.activate()
                     obj.warping = True
                     obj.visible = False
