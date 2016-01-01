@@ -2832,6 +2832,12 @@ class FreezableObject(InteractiveObject):
         else:
             super(FreezableObject, self).update_active()
 
+    def permafreeze(self):
+        prev_frozen_time = self.frozen_time
+        self.frozen_time = None
+        self.freeze()
+        self.frozen_time = prev_frozen_time
+
     def freeze(self):
         if self.frozen_sprite is None:
             self.frozen_sprite = sge.Sprite(
@@ -2978,7 +2984,8 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     blastable = True
     stayonplatform = True
 
-    def __init__(self, x, y, z=0, **kwargs):
+    def __init__(self, x, y, z=0, start_frozen=False, **kwargs):
+        self.start_frozen = start_frozen
         kwargs["sprite"] = spiky_walk_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = spiky_iced_sprite
@@ -2999,6 +3006,11 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     def touch_hurt(self):
         pass
 
+    def event_create(self):
+        super(Spiky, self).event_create()
+        if self.start_frozen:
+            self.permafreeze()
+
 
 class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
                   WinPuffObject):
@@ -3007,7 +3019,10 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
     blastable = True
     stayonplatform = True
 
-    def __init__(self, x, y, z=0, **kwargs):
+    def __init__(self, x, y, z=0, start_frozen=False, start_ticking=False,
+                 **kwargs):
+        self.start_frozen = start_frozen
+        self.start_ticking = start_ticking
         kwargs["sprite"] = bomb_walk_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = bomb_iced_sprite
@@ -3015,7 +3030,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         self.thrower = None
         self.normal_gravity = self.__class__.gravity
 
-    def start_ticking(self):
+    def init_ticking(self):
         self.ticking = True
         self.active_range = ICEBLOCK_ACTIVE_RANGE
         self.normal_gravity = BOMB_GRAVITY
@@ -3025,7 +3040,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         self.image_index = 0
         self.image_fps = None
 
-    def stop_ticking(self):
+    def cancel_ticking(self):
         self.ticking = False
         self.active_range = self.__class__.active_range
         self.normal_gravity = self.__class__.gravity
@@ -3059,7 +3074,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         else:
             other.stomp_jump(self)
             play_sound(stomp_sound, self.x, self.y)
-            self.start_ticking()
+            self.init_ticking()
             self.thrower = other
 
     def knock(self, other=None):
@@ -3077,7 +3092,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
             if self.image_index > 0:
                 self.image_index -= 1
             elif self.parent is None:
-                self.stop_ticking()
+                self.cancel_ticking()
         else:
             super(WalkingBomb, self).freeze()
 
@@ -3129,6 +3144,13 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         if self.parent is None:
             self.yvelocity = 0
 
+    def event_create(self):
+        super(WalkingBomb, self).event_create()
+        if self.start_ticking:
+            self.init_ticking()
+        if self.start_frozen:
+            self.permafreeze()
+
     def event_end_step(self, time_passed, delta_mult):
         if (self.ticking and self.yvelocity >= 0 and
                 (self.get_bottom_touching_wall() or
@@ -3148,7 +3170,8 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     blastable = True
     walk_speed = 0
 
-    def __init__(self, x, y, z=0, **kwargs):
+    def __init__(self, x, y, z=0, start_frozen=False, **kwargs):
+        self.start_frozen = start_frozen
         kwargs["sprite"] = jumpy_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = jumpy_iced_sprite
@@ -3185,6 +3208,11 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def stop_down(self):
         self.yvelocity = get_jump_speed(JUMPY_BOUNCE_HEIGHT, self.gravity)
+
+    def event_create(self):
+        super(Jumpy, self).event_create()
+        if self.start_frozen:
+            self.permafreeze()
 
 
 class FlyingEnemy(CrowdBlockingObject):
@@ -3249,7 +3277,8 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
     burnable = True
     had_xv = 0
 
-    def __init__(self, x, y, z=0, **kwargs):
+    def __init__(self, x, y, z=0, start_frozen=False, **kwargs):
+        self.start_frozen = start_frozen
         kwargs["sprite"] = flying_spiky_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = flying_spiky_iced_sprite
@@ -3263,6 +3292,11 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
     def knock(self, other=None):
         super(FlyingSpiky, self).knock(other)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def event_create(self):
+        super(FlyingSpiky, self).event_create()
+        if self.start_frozen:
+            self.permafreeze()
 
 
 class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
