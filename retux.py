@@ -3020,6 +3020,15 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
         self.image_fps = None
         self.set_direction(direction)
 
+    def cancel_dash(self):
+        self.flat = True
+        self.dashing = False
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
+        self.walk_speed = self.__class__.walk_speed
+        self.sprite = iceblock_flat_sprite
+        self.image_index = 0
+        self.image_fps = 0
+
     def move(self):
         if not self.flat or self.dashing:
             super(WalkingIceblock, self).move()
@@ -3062,6 +3071,12 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def burn(self):
         super(WalkingIceblock, self).burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def freeze(self):
+        if self.dashing:
+            self.cancel_dash()
+        elif self.flat:
+            self.cancel_flat()
 
     def stop_left(self):
         if self.flat and self.parent is None:
