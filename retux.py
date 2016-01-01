@@ -3011,29 +3011,135 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         kwargs["sprite"] = bomb_walk_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = bomb_iced_sprite
+        self.ticking = False
+        self.thrower = None
+        self.normal_gravity = self.__class__.gravity
+
+    def start_ticking(self):
+        self.ticking = True
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
+        self.normal_gravity = BOMB_GRAVITY
+        self.gravity = self.normal_gravity
+        self.xvelocity = 0
+        self.sprite = bomb_ticking_sprite
+        self.image_index = 0
+        self.image_fps = None
+
+    def stop_ticking(self):
+        self.ticking = False
+        self.active_range = self.__class__.active_range
+        self.normal_gravity = self.__class__.gravity
+        self.gravity = self.normal_gravity
+        self.xvelocity = 0
+        self.sprite = bomb_walk_sprite
+        self.image_index = 0
+        self.image_fps = None
+
+    def move(self):
+        if not self.ticking:
+            super(WalkingBomb, self).move()
+        else:
+            FallingObject.move(self)
 
     def touch(self, other):
-        other.hurt()
+        if self.ticking:
+            if other.pickup(self):
+                self.thrower = other
+                self.gravity = 0
+                self.xvelocity = 0
+                self.yvelocity = 0
+                if other.action_pressed:
+                    other.action()
+        else:
+            other.hurt()
 
     def stomp(self, other):
-        other.stomp_jump(self)
-        play_sound(stomp_sound, self.x, self.y)
-        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
-        tb = TickingBomb.create(self.x, self.y, self.z,
-                                sprite=bomb_ticking_sprite,
-                                image_xscale=self.image_xscale,
-                                image_yscale=self.image_yscale)
-        tb.thrower = other
-        self.destroy()
+        if self.ticking:
+            self.touch(other)
+        else:
+            other.stomp_jump(self)
+            play_sound(stomp_sound, self.x, self.y)
+            self.start_ticking()
+            self.thrower = other
 
     def knock(self, other=None):
-        super(WalkingBomb, self).knock(other)
-        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        self.thrower = other
+        self.burn()
 
     def burn(self):
-        Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
+        e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
+        e.detonator = self.thrower
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         self.destroy()
+
+    def freeze(self):
+        if self.ticking:
+            if self.image_index > 0:
+                self.image_index -= 1
+            elif self.parent is None:
+                self.stop_ticking()
+        else:
+            super(WalkingBomb, self).freeze()
+
+    def touch_hurt(self):
+        pass
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.normal_gravity
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
+                                           self.parent.image_xscale)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT,
+                                            self.normal_gravity)
+            self.parent = None
+            self.gravity = self.normal_gravity
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.xvelocity = self.parent.xvelocity
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT,
+                                            self.normal_gravity)
+            self.parent = None
+            self.gravity = self.normal_gravity
+
+    def stop_left(self):
+        if self.ticking:
+            if self.parent is None:
+                self.xvelocity = abs(self.xvelocity) / 2
+                self.set_direction(1)
+        else:
+            super(WalkingBomb, self).stop_left()
+
+    def stop_right(self):
+        if self.ticking:
+            if self.parent is None:
+                self.xvelocity = -abs(self.xvelocity) / 2
+                self.set_direction(-1)
+        else:
+            super(WalkingBomb, self).stop_right()
+
+    def stop_up(self):
+        if self.parent is None:
+            self.yvelocity = 0
+
+    def event_end_step(self, time_passed, delta_mult):
+        if (self.ticking and self.yvelocity >= 0 and
+                (self.get_bottom_touching_wall() or
+                 self.get_bottom_touching_slope())):
+            self.xdeceleration = ROCK_FRICTION
+        else:
+            self.xdeceleration = 0
+
+    def event_animation_end(self):
+        if self.ticking:
+            self.burn()
 
 
 class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
@@ -3357,86 +3463,6 @@ class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
 
         super(DashingIceblock, self).event_collision(other, xdirection,
                                                      ydirection)
-
-
-class TickingBomb(CrowdBlockingObject, FallingObject, KnockableObject):
-
-    active_range = ICEBLOCK_ACTIVE_RANGE
-    burnable = True
-    freezable = True
-    blastable = True
-    gravity = BOMB_GRAVITY
-    thrower = None
-
-    def touch(self, other):
-        if other.pickup(self):
-            self.thrower = other
-            self.gravity = 0
-            self.xvelocity = 0
-            self.yvelocity = 0
-            if other.action_pressed:
-                other.action()
-
-    def burn(self):
-        e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
-        e.detonator = self.thrower
-        self.destroy()
-
-    def freeze(self):
-        if self.image_index > 0:
-            self.image_index -= 1
-
-    def drop(self):
-        if self.parent is not None:
-            self.parent.drop_object()
-            self.parent = None
-            self.gravity = self.__class__.gravity
-
-    def kick(self):
-        if self.parent is not None:
-            self.parent.kick_object()
-            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
-                                           self.parent.image_xscale)
-            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT,
-                                            self.__class__.gravity)
-            self.parent = None
-            self.gravity = self.__class__.gravity
-
-    def kick_up(self):
-        if self.parent is not None:
-            self.parent.kick_object()
-            self.xvelocity = self.parent.xvelocity
-            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT,
-                                            self.__class__.gravity)
-            self.parent = None
-            self.gravity = self.__class__.gravity
-
-    def stop_left(self):
-        if self.parent is None:
-            self.xvelocity = abs(self.xvelocity) / 2
-            self.set_direction(1)
-
-    def stop_right(self):
-        if self.parent is None:
-            self.xvelocity = -abs(self.xvelocity) / 2
-            self.set_direction(-1)
-
-    def stop_up(self):
-        if self.parent is None:
-            self.yvelocity = 0
-
-    def event_end_step(self, time_passed, delta_mult):
-        if (self.yvelocity >= 0 and
-                (self.get_bottom_touching_wall() or
-                 self.get_bottom_touching_slope())):
-            self.xdeceleration = ROCK_FRICTION
-        else:
-            self.xdeceleration = 0
-
-    def event_animation_end(self):
-        e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
-        e.detonator = self.thrower
-        self.destroy()
 
 
 class Explosion(InteractiveObject):
@@ -4647,7 +4673,7 @@ class FixedSpring(FallingObject):
         sge.Object.__init__(self, x, y, z, **kwargs)
 
     def stomp(self, other):
-        if other is not self.parent:
+        if other is not self.parent and other.yvelocity > 0:
             other.stomp_jump(self, self.jump_height)
             play_sound(self.sound, self.x, self.y)
             self.sprite = self.expand_sprite
@@ -7266,8 +7292,8 @@ bomb_iced_sprite = sge.Sprite("bomb_iced", d, origin_x=21, origin_y=8,
 bomb_iced_sprite.append_frame()
 bomb_iced_sprite.draw_sprite(bomb_walk_sprite, 1, bomb_iced_sprite.origin_x,
                              bomb_iced_sprite.origin_y, frame=1)
-bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=8,
-                                 bbox_x=-13, bbox_y=0, bbox_width=26,
+bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=5,
+                                 bbox_x=-13, bbox_y=3, bbox_width=26,
                                  bbox_height=29)
 bomb_ticking_sprite.fps = bomb_ticking_sprite.frames / BOMB_TICK_TIME
 jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-17,

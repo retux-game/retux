@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="350" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="nightsky"/>
   <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="A Step Through a Minefield"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -17,14 +18,14 @@
  <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="300" height="14">
+ <layer name="Back Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwYEAAAAAw6D5U9/gBFUBAAAAAAAAAAAAAAAAAAAA8AxBoAAB
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAACvBkyQAAE=
   </data>
  </layer>
- <layer name="Middle Tiles" width="300" height="14">
+ <layer name="Middle Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt17EJgDAABEBHELG2sLZwGxfQBXR/MCkEmzQmCuodfBPIk+ohVQUAAAAAAAAAAMDXTRl322KvAEiLOzWHLCHNxfSJ7vrOhwO/cd6pNWTL6BoT511GJ0BUaqcOqb0aCnQDz7j6v7o7pXbqYK+At7BX8H472fMLYA==
+   eJzt2rtOxDAQhWE/ArcaBCWioKbgNUCi5SJaLuL1iYUiVobE48k4Hmf/T5puN7KyyYlnNiEAAAAAADQOWi8AAPbM6VBHmTputjoA2J4rwWfOA9lbStNHnJivAoBHktyNamXvfYVjeiDpI9K6aLJSAGuT5m4Us7c0S3L1PNRL6C9/LzN1ozjmtdnqAHhikQ+WPob6DL/5+9B2OWK5/eyZ4pjkLjTuFnyX2ZZebu+1K80LTT7UMObva+gje0v6BKnbCseU4N7rU8zbx6Gegr7fnJptWb7n1PP1NZerh0F+XmvkhaWv8JO93ucONc5jjTkOc+Xt2c3bt6HeFxxrqsfS/D+x1vWV22fO7TtLvzuXrXN71vS8es/dKGav97lvD+dRaure491uf6zydjT121te39bzs5JnQpr5pc8T7Twg9q6e5rlS6dy3lKa3KXkO9nIeJeb2PPuqRd8hKau8Ha2Ru2kGLa2Se69V/qW9q5d5rtSYvxa9zZKewuo56NEa9x58WuO3t56fldx7vedfb/67nmq8g7AF5O5f35/iPPY=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -34,9 +35,9 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players"/>
- <layer name="Front Tiles" width="300" height="14">
+ <layer name="Front Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwYEAAAAAw6D5U9/gBFUBAAAAAAAAAAAAAAAAAAAA8AxBoAAB
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAACvBkyQAAE=
   </data>
  </layer>
 </map>
