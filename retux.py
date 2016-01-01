@@ -4392,6 +4392,7 @@ class ThrownFlower(FallingObject, WinPuffObject):
 
     def dissipate(self):
         play_sound(stomp_sound, self.x, self.y)
+        Smoke.create(self.x, self.y, self.z, sprite=smoke_puff_sprite)
         self.destroy()
 
     def deactivate(self):
@@ -4403,39 +4404,21 @@ class ThrownFlower(FallingObject, WinPuffObject):
     def touch_death(self):
         self.dissipate()
 
-    def stop_left(self):
-        self.dissipate()
-
-    def stop_right(self):
-        self.dissipate()
-
-    def stop_up(self):
-        self.dissipate()
-
-    def stop_down(self):
-        self.dissipate()
-
     def event_physics_collision_left(self, other, move_loss):
-        super(ThrownFlower, self).event_physics_collision_left(other,
-                                                               move_loss)
         self.event_collision(other, -1, 0)
+        self.dissipate()
 
     def event_physics_collision_right(self, other, move_loss):
-        super(ThrownFlower, self).event_physics_collision_right(other,
-                                                                move_loss)
         self.event_collision(other, 1, 0)
+        self.dissipate()
 
     def event_physics_collision_top(self, other, move_loss):
-        super(ThrownFlower, self).event_physics_collision_top(other, move_loss)
         self.event_collision(other, 0, -1)
+        self.dissipate()
 
     def event_physics_collision_bottom(self, other, move_loss):
-        super(ThrownFlower, self).event_physics_collision_bottom(other,
-                                                                 move_loss)
         self.event_collision(other, 0, 1)
-
-    def event_destroy(self):
-        Smoke.create(self.x, self.y, self.z, sprite=smoke_puff_sprite)
+        self.dissipate()
 
 
 class ThrownFireFlower(ThrownFlower):
@@ -4469,9 +4452,10 @@ class Fireball(FallingObject):
         self.destroy()
 
     def dissipate(self):
-        Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
-        play_sound(fire_dissipate_sound, self.x, self.y)
-        self.destroy()
+        if self in sge.game.current_room.objects:
+            Smoke.create(self.x, self.y, self.z, sprite=fireball_smoke_sprite)
+            play_sound(fire_dissipate_sound, self.x, self.y)
+            self.destroy()
 
     def touch_hurt(self):
         pass
@@ -4524,48 +4508,34 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
         self.destroy()
 
     def dissipate(self):
-        Smoke.create(self.x, self.y, self.z, sprite=ice_bullet_break_sprite)
-        play_sound(icebullet_break_sound, self.x, self.y)
-        self.destroy()
-
-    def stop_left(self):
-        self.destroy()
-
-    def stop_right(self):
-        self.destroy()
-
-    def stop_down(self):
-        self.destroy()
+        if self in sge.game.current_room.objects:
+            Smoke.create(self.x, self.y, self.z,
+                         sprite=ice_bullet_break_sprite)
+            play_sound(icebullet_break_sound, self.x, self.y)
+            self.destroy()
 
     def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.freezable:
+        if ((isinstance(other, InteractiveObject) and other.freezable) or
+                isinstance(other, ThinIce)):
             other.freeze()
             self.dissipate()
 
         super(IceBullet, self).event_collision(other, xdirection, ydirection)
 
     def event_physics_collision_left(self, other, move_loss):
-        if isinstance(other, InteractiveObject) and other.freezable:
-            other.freeze()
-
+        self.event_collision(other, -1, 0)
         self.dissipate()
 
     def event_physics_collision_right(self, other, move_loss):
-        if isinstance(other, InteractiveObject) and other.freezable:
-            other.freeze()
-
+        self.event_collision(other, 1, 0)
         self.dissipate()
 
     def event_physics_collision_top(self, other, move_loss):
-        if isinstance(other, InteractiveObject) and other.freezable:
-            other.freeze()
-
+        self.event_collision(other, 0, -1)
         self.dissipate()
 
     def event_physics_collision_bottom(self, other, move_loss):
-        if isinstance(other, InteractiveObject) and other.freezable:
-            other.freeze()
-
+        self.event_collision(other, 0, 1)
         self.dissipate()
 
 
@@ -5098,6 +5068,10 @@ class ThinIce(xsge_physics.Solid, Tile):
 
     def burn(self):
         self.crack()
+
+    def freeze(self):
+        if self.image_index > 0:
+            self.image_index -= 1
 
     def event_step(self, time_passed, delta_mult):
         if self.sprite is thin_ice_sprite:
