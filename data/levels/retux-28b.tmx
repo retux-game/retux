@@ -121,7 +121,6 @@
   <object gid="470" x="2496" y="544"/>
   <object gid="470" x="2528" y="544"/>
   <object gid="470" x="2560" y="544"/>
-  <object gid="470" x="2592" y="544"/>
   <object gid="470" x="2624" y="544"/>
   <object gid="476" x="4192" y="224"/>
   <object gid="477" x="4800" y="608"/>
@@ -172,6 +171,7 @@
   <object gid="477" x="6880" y="224"/>
   <object gid="477" x="6944" y="224"/>
   <object gid="477" x="6976" y="224"/>
+  <object gid="469" x="2592" y="544"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="5" x="1952" y="480"/>
