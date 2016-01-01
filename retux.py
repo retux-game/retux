@@ -2899,6 +2899,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
     always_tangible = True
     burnable = True
     freezable = True
+    blastable = True
     unfrozen = None
 
     def burn(self):
@@ -2977,7 +2978,8 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     freezable = True
     stayonplatform = True
 
-    def __init__(self, x, y, z=0, **kwargs):
+    def __init__(self, x, y, z=0, start_flat=False, **kwargs):
+        self.start_flat = start_flat
         kwargs["sprite"] = iceblock_walk_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.flat = False
@@ -3129,6 +3131,11 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
             self.xvelocity = self.parent.xvelocity
             self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, self.gravity)
             self.parent = None
+
+    def event_create(self):
+        super(WalkingIceblock, self).event_create()
+        if self.start_flat:
+            self.init_flat()
 
     def event_end_step(self, time_passed, delta_mult):
         if self.parent is None:
@@ -4576,10 +4583,7 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
     win_puff_score = 0
 
     def __init__(self, x, y, z=0, **kwargs):
-        kwargs["sprite"] = rock_sprite
         kwargs["checks_collisions"] = False
-        x += rock_sprite.origin_x
-        y += rock_sprite.origin_y
         sge.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
@@ -5524,10 +5528,6 @@ class ObjectWarpSpawn(WarpSpawn):
 
     def __init__(self, x, y, points=(), cls=None, interval=180, limit=None,
                  **kwargs):
-        # If dest is defined, that will cause the player to
-        # automatically switch to the destination room whenever an
-        # object spawns, which is not desirable at all.
-        kwargs["dest"] = None
         self.cls = TYPES.get(cls)
         self.kwargs = kwargs
         self.interval = interval
@@ -5557,8 +5557,7 @@ class ObjectWarpSpawn(WarpSpawn):
                         num_objects += 1
 
                 if not self.limit or num_objects < self.limit:
-                    obj = self.cls.create(self.x, self.y, z=self.z,
-                                          **self.kwargs)
+                    obj = self.cls.create(self.x, self.y, **self.kwargs)
                     obj.activate()
                     obj.warping = True
                     obj.visible = False
@@ -7429,7 +7428,6 @@ rusty_spring_dead_sprite = sge.Sprite(
 
 d = os.path.join(DATA, "images", "objects", "misc")
 platform_sprite = sge.Sprite("platform", d)
-rock_sprite = sge.Sprite("rock", d, origin_x=16, origin_y=16)
 lantern_sprite = sge.Sprite("lantern", d, origin_x=20, origin_y=9, fps=10,
                             bbox_x=-16, bbox_y=0, bbox_width=32,
                             bbox_height=32)

@@ -152,7 +152,11 @@
   <object type="flying_snowball_path" x="7232" y="320">
    <polyline points="0,0 0,-96 0,0"/>
   </object>
-  <object gid="6" x="1728" y="384"/>
+  <object gid="6" x="1728" y="384">
+   <properties>
+    <property name="start_frozen" value="1"/>
+   </properties>
+  </object>
   <object gid="6" x="1632" y="288"/>
   <object gid="6" x="1664" y="352"/>
   <object gid="6" x="1440" y="416"/>
@@ -161,8 +165,9 @@
   <object gid="6" x="1552" y="352"/>
   <object type="object_warp_spawn" x="2400" y="384">
    <properties>
-    <property name="cls" value="walking_snowball"/>
+    <property name="cls" value="bomb"/>
     <property name="limit" value="1"/>
+    <property name="start_ticking" value="1"/>
    </properties>
    <polyline points="0,0 -64,0"/>
   </object>
@@ -170,6 +175,11 @@
   <object gid="11" x="4128" y="320"/>
   <object gid="442" x="4448" y="352"/>
   <object gid="442" x="4480" y="352"/>
+  <object gid="3" x="192" y="416">
+   <properties>
+    <property name="start_flat" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="864" y="416"/>
