@@ -1496,6 +1496,8 @@ class Player(xsge_physics.Collider):
     slide_accel = PLAYER_SLIDE_ACCEL
     slide_speed = PLAYER_SLIDE_SPEED
     hitstun_time = PLAYER_HITSTUN
+    carry_x = 0
+    carry_y = 20
 
     @property
     def warping(self):
@@ -1775,22 +1777,32 @@ class Player(xsge_physics.Collider):
         if self.held_object is not None:
             obj_sprite = self.held_object.sprite
             obj_image_index = self.held_object.image_index
+            obj_image_xscale = self.held_object.image_xscale
+            obj_image_yscale = self.held_object.image_yscale
 
-            i = (id(body_sprite), id(obj_sprite), obj_image_index)
+            i = (id(body_sprite), id(obj_sprite), obj_image_index,
+                 obj_image_xscale, obj_image_yscale)
             if i in tux_grab_sprites:
                 return tux_grab_sprites[i]
             else:
+                if abs(obj_image_xscale) != 1 or abs(obj_image_yscale) != 1:
+                    obj_sprite = obj_sprite.copy()
+                    obj_sprite.width *= abs(obj_image_xscale)
+                    obj_sprite.height *= abs(obj_image_yscale)
+
                 origin_x = body_sprite.origin_x
                 origin_y = body_sprite.origin_y
                 width = body_sprite.width
                 height = body_sprite.height
 
-                if obj_sprite.origin_x < 0:
-                    origin_x -= obj_sprite.origin_x
-                    width -= obj_sprite.origin_x
-                width = max(width, origin_x + obj_sprite.width)
+                left = body_sprite.origin_x + self.carry_x
+                if left < 0:
+                    origin_x -= left
+                    width -= left
+                width = max(width, left + obj_sprite.width)
 
-                top = body_sprite.origin_y - obj_sprite.origin_y
+                top = (body_sprite.origin_y + self.carry_y -
+                       obj_sprite.origin_y - obj_sprite.height)
                 if top < 0:
                     origin_y -= top
                     height -= top
@@ -1802,9 +1814,11 @@ class Player(xsge_physics.Collider):
                     grab_sprite.append_frame()
                 grab_sprite.draw_lock()
                 for j in six.moves.range(grab_sprite.frames):
-                    grab_sprite.draw_sprite(obj_sprite, obj_image_index,
-                                            origin_x + obj_sprite.origin_x,
-                                            origin_y, j)
+                    x = origin_x + obj_sprite.origin_x
+                    y = (origin_y + self.carry_y + obj_sprite.origin_y -
+                         obj_sprite.height)
+                    grab_sprite.draw_sprite(obj_sprite, obj_image_index, x, y,
+                                            j)
                     grab_sprite.draw_sprite(body_sprite, j, origin_x, origin_y,
                                             j)
                     grab_sprite.draw_sprite(arms_sprite, j, origin_x, origin_y,
@@ -1943,16 +1957,24 @@ class Player(xsge_physics.Collider):
 
         held_object = self.held_object
         if not self.warping and held_object is not None:
-            target_x = self.x + held_object.image_origin_x
-            target_y = self.y
+            target_x = self.x + held_object.sprite.origin_x + self.carry_x
+            h = held_object.sprite.height * abs(held_object.image_yscale)
+            target_y = self.y + held_object.sprite.origin_y - h + self.carry_y
             if self.image_xscale < 0:
-                target_x -= held_object.sprite.width
+                target_x -= (held_object.sprite.width *
+                             abs(held_object.image_xscale))
+                target_x -= 2 * self.carry_x
             if isinstance(held_object, xsge_physics.Collider):
                 held_object.move_x(target_x - held_object.x)
                 held_object.move_y(target_y - held_object.y)
             else:
                 held_object.x = target_x
                 held_object.y = target_y
+
+            held_object.image_xscale = math.copysign(held_object.image_xscale,
+                                                     self.image_xscale)
+            held_object.image_yscale = math.copysign(held_object.image_yscale,
+                                                     self.image_yscale)
 
     def event_begin_step(self, time_passed, delta_mult):
         if not self.warping:
@@ -2950,32 +2972,185 @@ class BouncingSnowball(WalkingSnowball):
 class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
                       WinPuffObject):
 
+    gravity = ICEBLOCK_GRAVITY
+    fall_speed = ICEBLOCK_FALL_SPEED
     freezable = True
     stayonplatform = True
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = iceblock_walk_sprite
         sge.Object.__init__(self, x, y, z, **kwargs)
+        self.flat = False
+        self.dashing = False
+        self.thrower = None
+
+    def init_flat(self):
+        self.flat = True
+        self.dashing = False
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
+        self.walk_speed = self.__class__.walk_speed
+        self.stayonplatform = False
+        self.xvelocity = 0
+        self.xdeceleration = 0
+        self.sprite = iceblock_flat_sprite
+        self.image_index = 0
+        self.image_fps = None
+
+    def cancel_flat(self):
+        self.flat = False
+        self.dashing = False
+        self.active_range = self.__class__.active_range
+        self.walk_speed = self.__class__.walk_speed
+        self.stayonplatform = True
+        self.xvelocity = 0
+        self.xdeceleration = 0
+        self.sprite = iceblock_walk_sprite
+        self.image_index = 0
+        self.image_fps = None
+
+    def init_dash(self, direction):
+        self.flat = True
+        self.dashing = True
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
+        self.walk_speed = ICEBLOCK_DASH_SPEED
+        self.xvelocity = 0
+        self.xdeceleration = 0
+        self.sprite = iceblock_flat_sprite
+        self.image_index = 0
+        self.image_fps = None
+        self.set_direction(direction)
+
+    def move(self):
+        if not self.flat or self.dashing:
+            super(WalkingIceblock, self).move()
+        else:
+            FallingObject.move(self)
+
+    def deactivate(self):
+        if self.dashing:
+            self.destroy()
+        else:
+            super(WalkingIceblock, self).deactivate()
 
     def touch(self, other):
-        other.hurt()
+        if self.flat and not self.dashing:
+            if self.parent is None:
+                self.thrower = other
+                if other.pickup(self):
+                    self.gravity = 0
+                    if other.action_pressed:
+                        other.action()
+                else:
+                    other.do_kick()
+                    self.init_dash(-1 if other.image_xscale < 0 else 1)
+        else:
+            other.hurt()
 
     def stomp(self, other):
-        other.stomp_jump(self)
-        play_sound(stomp_sound, self.x, self.y)
-        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
-        FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
-                            image_xscale=self.image_xscale,
-                            image_yscale=self.image_yscale)
-        self.destroy()
+        if not self.flat or self.dashing:
+            other.stomp_jump(self)
+            play_sound(stomp_sound, self.x, self.y)
+            self.init_flat()
+        else:
+            self.touch(other)
 
     def knock(self, other=None):
-        super(WalkingIceblock, self).knock(other)
-        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        if self.parent is None:
+            super(WalkingIceblock, self).knock(other)
+            sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
         super(WalkingIceblock, self).burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def stop_left(self):
+        if self.flat and self.parent is None:
+            play_sound(iceblock_bump_sound, self.x, self.y)
+            self.xvelocity = abs(self.xvelocity)
+            self.set_direction(1)
+            for block in self.get_left_touching_wall():
+                if isinstance(block, HittableBlock):
+                    block.hit(self.thrower)
+        else:
+            super(WalkingIceblock, self).stop_left()
+
+    def stop_right(self):
+        if self.flat and self.parent is None:
+            play_sound(iceblock_bump_sound, self.x, self.y)
+            self.xvelocity = -abs(self.xvelocity)
+            self.set_direction(-1)
+            for block in self.get_right_touching_wall():
+                if isinstance(block, HittableBlock):
+                    block.hit(self.thrower)
+        else:
+            super(WalkingIceblock, self).stop_right()
+
+    def stop_up(self):
+        self.yvelocity = 0
+        if self.flat and self.parent is None:
+            for block in self.get_top_touching_wall():
+                if isinstance(block, HittableBlock):
+                    block.hit(self.thrower)
+
+    def drop(self):
+        if self.parent is not None:
+            self.parent.drop_object()
+            self.parent = None
+            self.gravity = self.__class__.gravity
+
+    def kick(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            self.gravity = self.__class__.gravity
+            self.init_dash(-1 if self.parent.image_xscale < 0 else 1)
+            self.yvelocity = 0
+            self.parent = None
+
+    def kick_up(self):
+        if self.parent is not None:
+            self.parent.kick_object()
+            play_sound(kick_sound, self.x, self.y)
+            self.gravity = self.__class__.gravity
+            self.xvelocity = self.parent.xvelocity
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, self.gravity)
+            self.parent = None
+
+    def event_end_step(self, time_passed, delta_mult):
+        if self.parent is None:
+            if (self.flat and not self.dashing and self.yvelocity >= 0 and
+                (self.get_bottom_touching_wall() or
+                 self.get_bottom_touching_slope())):
+                self.xdeceleration = ICEBLOCK_FRICTION
+            else:
+                self.xdeceleration = 0
+
+    def event_collision(self, other, xdirection, ydirection):
+        if self.parent is None:
+            if self.flat:
+                if isinstance(other, InteractiveObject) and other.knockable:
+                    if self.dashing or self.xvelocity > 0.05:
+                        other.knock(self)
+                elif isinstance(other, Coin):
+                    other.event_collision(self.thrower, -xdirection,
+                                          -ydirection)
+                elif isinstance(other, HiddenItemBlock):
+                    if ydirection == -1:
+                        self.move_y(max(0, other.bbox_bottom - self.bbox_top),
+                                    absolute=True, do_events=False)
+                        other.hit(self)
+                    elif xdirection == -1:
+                        self.move_x(max(0, other.bbox_right - self.bbox_left),
+                                    absolute=True, do_events=False)
+                        other.hit(self)
+                    elif xdirection == 1:
+                        self.move_x(min(0, other.bbox_left - self.bbox_right),
+                                    absolute=True, do_events=False)
+                        other.hit(self)
+                elif isinstance(other, Death):
+                    self.touch_death()
+            else:
+                super(WalkingIceblock, self).event_collision(other, xdirection,
+                                                             ydirection)
 
 
 class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
@@ -3297,206 +3472,6 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
         super(FlyingSpiky, self).event_create()
         if self.start_frozen:
             self.permafreeze()
-
-
-class FlatIceblock(CrowdBlockingObject, FallingObject, KnockableObject,
-                   BurnableObject, WinPuffObject):
-
-    freezable = True
-
-    def touch(self, other):
-        if self.parent is None:
-            if other.pickup(self):
-                self.gravity = 0
-                if other.action_pressed:
-                    other.action()
-            else:
-                other.do_kick()
-                dib = DashingIceblock.create(other, self.x, self.y, self.z,
-                                             sprite=self.sprite,
-                                             image_xscale=self.image_xscale,
-                                             image_yscale=self.image_yscale)
-                dib.set_direction(-1 if other.image_xscale < 0 else 1)
-                self.destroy()
-
-    def knock(self, other=None):
-        if self.parent is None:
-            super(FlatIceblock, self).knock(other)
-
-    def drop(self):
-        if self.parent is not None:
-            self.parent.drop_object()
-            self.parent = None
-            self.gravity = self.__class__.gravity
-
-    def kick(self):
-        if self.parent is not None:
-            self.parent.kick_object()
-            dib = DashingIceblock.create(self.parent, self.x, self.y, self.z,
-                                         sprite=self.sprite,
-                                         image_xscale=self.image_xscale,
-                                         image_yscale=self.image_yscale)
-            dib.set_direction(-1 if self.parent.image_xscale < 0 else 1)
-            self.parent = None
-            self.destroy()
-
-    def kick_up(self):
-        if self.parent is not None:
-            self.parent.kick_object()
-            play_sound(kick_sound, self.x, self.y)
-            tib = ThrownIceblock.create(
-                self.parent, self.x, self.y, self.z, sprite=self.sprite,
-                image_xscale=self.image_xscale, image_yscale=self.image_yscale,
-                xvelocity=self.parent.xvelocity,
-                yvelocity=get_jump_speed(KICK_UP_HEIGHT,
-                                         ThrownIceblock.gravity))
-            self.parent = None
-            self.destroy()
-
-    def event_end_step(self, time_passed, delta_mult):
-        if self.parent is not None:
-            direction = -1 if self.parent.image_xscale < 0 else 1
-            self.image_xscale = abs(self.image_xscale) * direction
-
-
-class ThrownIceblock(FallingObject, KnockableObject, BurnableObject,
-                     WinPuffObject):
-
-    freezable = True
-    active_range = ICEBLOCK_ACTIVE_RANGE
-    gravity = ICEBLOCK_GRAVITY
-    fall_speed = ICEBLOCK_FALL_SPEED
-
-    def __init__(self, thrower, *args, **kwargs):
-        self.thrower = thrower
-        super(ThrownIceblock, self).__init__(*args, **kwargs)
-
-    def touch(self, other):
-        fib = FlatIceblock.create(self.x, self.y, self.z, sprite=self.sprite,
-                                  image_xscale=self.image_xscale,
-                                  image_yscale=self.image_yscale)
-        self.destroy()
-        fib.touch(other)
-
-    def stop_left(self):
-        play_sound(iceblock_bump_sound, self.x, self.y)
-        self.xvelocity = abs(self.xvelocity)
-        self.set_direction(1)
-        for block in self.get_left_touching_wall():
-            if isinstance(block, HittableBlock):
-                block.hit(self.thrower)
-
-    def stop_right(self):
-        play_sound(iceblock_bump_sound, self.x, self.y)
-        self.xvelocity = -abs(self.xvelocity)
-        self.set_direction(-1)
-        for block in self.get_right_touching_wall():
-            if isinstance(block, HittableBlock):
-                block.hit(self.thrower)
-
-    def stop_up(self):
-        self.yvelocity = 0
-        for block in self.get_top_touching_wall():
-            if isinstance(block, HittableBlock):
-                block.hit(self.thrower)
-
-    def event_end_step(self, time_passed, delta_mult):
-        if (self.yvelocity >= 0 and
-                (self.get_bottom_touching_wall() or
-                 self.get_bottom_touching_slope())):
-            self.xdeceleration = ICEBLOCK_FRICTION
-            if abs(self.xvelocity) <= 0.05:
-                FlatIceblock.create(self.x, self.y, self.z, sprite=self.sprite,
-                                    image_xscale=self.image_xscale,
-                                    image_yscale=self.image_yscale)
-                self.destroy()
-        else:
-            self.xdeceleration = 0
-
-    def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.knockable:
-            other.knock(self)
-        elif isinstance(other, Coin):
-            other.event_collision(self.thrower, -xdirection, -ydirection)
-        elif isinstance(other, HiddenItemBlock):
-            if ydirection == -1:
-                self.move_y(max(0, other.bbox_bottom - self.bbox_top),
-                            absolute=True, do_events=False)
-                other.hit(self)
-            elif xdirection == -1:
-                self.move_x(max(0, other.bbox_right - self.bbox_left),
-                            absolute=True, do_events=False)
-                other.hit(self)
-            elif xdirection == 1:
-                self.move_x(min(0, other.bbox_left - self.bbox_right),
-                            absolute=True, do_events=False)
-                other.hit(self)
-
-        super(ThrownIceblock, self).event_collision(other, xdirection,
-                                                    ydirection)
-
-
-class DashingIceblock(WalkingObject, KnockableObject, BurnableObject,
-                      WinPuffObject):
-
-    freezable = True
-    gravity = ICEBLOCK_GRAVITY
-    active_range = ICEBLOCK_ACTIVE_RANGE
-    walk_speed = ICEBLOCK_DASH_SPEED
-
-    def __init__(self, thrower, *args, **kwargs):
-        self.thrower = thrower
-        super(DashingIceblock, self).__init__(*args, **kwargs)
-
-    def deactivate(self):
-        self.destroy()
-
-    def touch(self, other):
-        other.hurt()
-
-    def stomp(self, other):
-        other.stomp_jump(self)
-        play_sound(stomp_sound, self.x, self.y)
-        FlatIceblock.create(self.x, self.y, self.z, sprite=iceblock_flat_sprite,
-                            image_xscale=self.image_xscale,
-                            image_yscale=self.image_yscale)
-        self.destroy()
-
-    def stop_left(self):
-        play_sound(iceblock_bump_sound, self.x, self.y)
-        self.set_direction(1)
-        for block in self.get_left_touching_wall():
-            if isinstance(block, HittableBlock):
-                block.hit(self.thrower)
-
-    def stop_right(self):
-        play_sound(iceblock_bump_sound, self.x, self.y)
-        self.set_direction(-1)
-        for block in self.get_right_touching_wall():
-            if isinstance(block, HittableBlock):
-                block.hit(self.thrower)
-
-    def event_collision(self, other, xdirection, ydirection):
-        if isinstance(other, InteractiveObject) and other.knockable:
-            other.knock(self)
-        elif isinstance(other, Coin):
-            other.event_collision(self.thrower, -xdirection, -ydirection)
-        elif isinstance(other, HiddenItemBlock):
-            if ydirection == -1:
-                self.move_y(max(0, other.bbox_bottom - self.bbox_top),
-                            absolute=True, do_events=False)
-                other.hit(self)
-            elif xdirection == -1:
-                self.move_x(max(0, other.bbox_right - self.bbox_left),
-                            absolute=True, do_events=False)
-                other.hit(self)
-            elif xdirection == 1:
-                self.move_x(min(0, other.bbox_left - self.bbox_right),
-                            absolute=True, do_events=False)
-                other.hit(self)
-
-        super(DashingIceblock, self).event_collision(other, xdirection,
-                                                     ydirection)
 
 
 class Explosion(InteractiveObject):
@@ -7308,8 +7283,8 @@ snowball_squished_sprite = sge.Sprite("snowball_squished", d, origin_x=17,
 iceblock_walk_sprite = sge.Sprite("iceblock", d, origin_x=18, origin_y=6,
                                   fps=10, bbox_x=-13, bbox_y=1, bbox_width=25,
                                   bbox_height=31)
-iceblock_flat_sprite = sge.Sprite("iceblock_flat", d, origin_x=18, origin_y=6,
-                                  bbox_x=-16, bbox_y=1, bbox_width=31,
+iceblock_flat_sprite = sge.Sprite("iceblock_flat", d, origin_x=18, origin_y=3,
+                                  bbox_x=-16, bbox_y=4, bbox_width=31,
                                   bbox_height=28)
 spiky_walk_sprite = sge.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
                                bbox_x=-13, bbox_y=0, bbox_width=26,
