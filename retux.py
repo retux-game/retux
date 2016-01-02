@@ -5045,7 +5045,7 @@ class HiddenItemBlock(HittableBlock):
         self.item = item
 
     def hit(self, other):
-        b = ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
+        ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
         self.destroy()
 
 
