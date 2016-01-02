@@ -79,10 +79,10 @@
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="479" x="4032" y="288"/>
   <object gid="479" x="4032" y="224"/>
-  <object gid="479" x="4032" y="192"/>
   <object gid="479" x="4032" y="160"/>
+  <object gid="479" x="4032" y="128"/>
+  <object gid="479" x="4032" y="96"/>
   <object gid="470" x="2528" y="224"/>
   <object gid="470" x="2496" y="224"/>
   <object gid="470" x="2464" y="224"/>

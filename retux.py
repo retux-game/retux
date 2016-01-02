@@ -2902,13 +2902,17 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
     blastable = True
     unfrozen = None
 
-    def burn(self):
+    def thaw(self):
         if self.unfrozen is not None:
             self.unfrozen.frozen = False
             self.unfrozen.tangible = True
             self.unfrozen.visible = True
             self.unfrozen.activate()
         self.destroy()
+
+    def burn(self):
+        self.thaw()
+        play_sound(sizzle_sound, self.x, self.y)
 
     def freeze(self):
         if self.unfrozen is not None:
@@ -2921,7 +2925,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
                 self.image_fps = None
                 self.alarms["thaw"] = THAW_WARN_TIME
             elif alarm_id == "thaw":
-                self.burn()
+                self.thaw()
 
 
 class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
