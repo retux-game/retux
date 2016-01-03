@@ -1291,38 +1291,7 @@ class Worldmap(sge.Room):
                                  cls=cls, types=TYPES)
 
 
-class Tile(sge.Object):
-
-    out_frames = 0
-
-    def event_step_wish(self, time_passed, delta_mult):
-        # XXX: This code executed in the step event causes a marginal
-        # speed benefit, but it's also incredibly prone to bugs. In
-        # particular, it causes a bug where enemies will occasionally
-        # fall through the floor they stand on when re-entering the
-        # level, and it prevents objects on moving platforms from moving
-        # with them.  In addition, if the problem with moving platforms
-        # were fixed, there would still be the chance of the object e.g.
-        # getting stuck in a wall somewhere because of where the
-        # platform moves.  All of these problems considered, this code
-        # is currently disabled.
-        for view in sge.game.current_room.views:
-            if (self.bbox_left <= view.x + view.width + TILE_ACTIVE_RANGE and
-                    self.bbox_right >= view.x - TILE_ACTIVE_RANGE and
-                    self.bbox_top <= (view.y + view.height +
-                                      TILE_ACTIVE_RANGE) and
-                    self.bbox_bottom >= view.y - TILE_ACTIVE_RANGE):
-                self.out_frames = 0
-                self.tangible = True
-                break
-        else:
-            if self.tangible:
-                self.out_frames += 1
-                if self.out_frames >= 3:
-                    self.tangible = False
-
-
-class SolidLeft(xsge_physics.SolidLeft, Tile):
+class SolidLeft(xsge_physics.SolidLeft):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1330,7 +1299,7 @@ class SolidLeft(xsge_physics.SolidLeft, Tile):
         super(SolidLeft, self).__init__(*args, **kwargs)
 
 
-class SolidRight(xsge_physics.SolidRight, Tile):
+class SolidRight(xsge_physics.SolidRight):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1338,7 +1307,7 @@ class SolidRight(xsge_physics.SolidRight, Tile):
         super(SolidRight, self).__init__(*args, **kwargs)
 
 
-class SolidTop(xsge_physics.SolidTop, Tile):
+class SolidTop(xsge_physics.SolidTop):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1346,7 +1315,7 @@ class SolidTop(xsge_physics.SolidTop, Tile):
         super(SolidTop, self).__init__(*args, **kwargs)
 
 
-class SolidBottom(xsge_physics.SolidBottom, Tile):
+class SolidBottom(xsge_physics.SolidBottom):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1354,7 +1323,7 @@ class SolidBottom(xsge_physics.SolidBottom, Tile):
         super(SolidBottom, self).__init__(*args, **kwargs)
 
 
-class Solid(xsge_physics.Solid, Tile):
+class Solid(xsge_physics.Solid):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1362,7 +1331,7 @@ class Solid(xsge_physics.Solid, Tile):
         super(Solid, self).__init__(*args, **kwargs)
 
 
-class SlopeTopLeft(xsge_physics.SlopeTopLeft, Tile):
+class SlopeTopLeft(xsge_physics.SlopeTopLeft):
 
     xsticky_top = True
 
@@ -1372,7 +1341,7 @@ class SlopeTopLeft(xsge_physics.SlopeTopLeft, Tile):
         super(SlopeTopLeft, self).__init__(*args, **kwargs)
 
 
-class SlopeTopRight(xsge_physics.SlopeTopRight, Tile):
+class SlopeTopRight(xsge_physics.SlopeTopRight):
 
     xsticky_top = True
 
@@ -1382,7 +1351,7 @@ class SlopeTopRight(xsge_physics.SlopeTopRight, Tile):
         super(SlopeTopRight, self).__init__(*args, **kwargs)
 
 
-class SlopeBottomLeft(xsge_physics.SlopeBottomLeft, Tile):
+class SlopeBottomLeft(xsge_physics.SlopeBottomLeft):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1390,7 +1359,7 @@ class SlopeBottomLeft(xsge_physics.SlopeBottomLeft, Tile):
         super(SlopeBottomLeft, self).__init__(*args, **kwargs)
 
 
-class SlopeBottomRight(xsge_physics.SlopeBottomRight, Tile):
+class SlopeBottomRight(xsge_physics.SlopeBottomRight):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1398,7 +1367,7 @@ class SlopeBottomRight(xsge_physics.SlopeBottomRight, Tile):
         super(SlopeBottomRight, self).__init__(*args, **kwargs)
 
 
-class MovingPlatform(xsge_physics.SolidTop, xsge_physics.MobileWall, Tile):
+class MovingPlatform(xsge_physics.SolidTop, xsge_physics.MobileWall):
 
     sticky_top = True
 
@@ -1461,7 +1430,7 @@ class SpikeBottom(HurtBottom, xsge_physics.Solid):
     pass
 
 
-class Death(Tile):
+class Death(sge.Object):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1469,7 +1438,7 @@ class Death(Tile):
         super(Death, self).__init__(*args, **kwargs)
 
 
-class LevelEnd(Tile):
+class LevelEnd(sge.Object):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -3160,7 +3129,9 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
         if self.parent is None:
             if self.flat:
                 if isinstance(other, InteractiveObject) and other.knockable:
-                    if self.dashing or self.xvelocity > 0.05:
+                    if (self.dashing or abs(self.xvelocity) > 0.05 or
+                            self.yvelocity < 0 or (not self.was_on_floor and
+                                                   self.yvelocity > 0.05)):
                         other.knock(self)
                 elif isinstance(other, Coin):
                     other.event_collision(self.thrower, -xdirection,
@@ -4879,7 +4850,7 @@ class TimelineSwitcher(InteractiveObject):
         self.destroy()
 
 
-class Iceblock(xsge_physics.Solid, Tile):
+class Iceblock(xsge_physics.Solid):
 
     def __init__(self, x, y, **kwargs):
         kwargs["checks_collisions"] = False
@@ -4926,7 +4897,7 @@ class BossBlock(InteractiveObject):
         pass
 
 
-class HittableBlock(Tile):
+class HittableBlock(sge.Object):
 
     hit_sprite = None
     hit_obj = None
@@ -5104,7 +5075,7 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
         DialogBox(gui_handler, self.text, self.sprite).show()
 
 
-class ThinIce(xsge_physics.Solid, Tile):
+class ThinIce(xsge_physics.Solid):
 
     def __init__(self, x, y, z=0, permanent=False, **kwargs):
         kwargs["sprite"] = thin_ice_sprite
@@ -5189,16 +5160,15 @@ class GoalTop(xsge_tmx.Decoration):
         self.sprite = goal_top_sprite
 
 
-class Coin(Tile):
+class Coin(sge.Object):
 
     def __init__(self, x, y, **kwargs):
         kwargs["sprite"] = coin_sprite
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        super(Coin, self).__init__(x, y, **kwargs)
 
     def event_step(self, time_passed, delta_mult):
         self.image_index = coin_animation.image_index
-        Tile.event_step(self, time_passed, delta_mult)
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, Player) and self in sge.game.current_room.objects:
