@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 
 # reTux
-# Copyright (C) 2014, 2015, 2016 Julian Marchant <onpon4@riseup.net>
+# Copyright (C) 2014, 2015, 2016 onpon4 <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2324,8 +2324,10 @@ class Player(xsge_physics.Collider):
         for block in self.get_left_touching_wall():
             if isinstance(block, HurtRight):
                 self.hurt()
-            elif isinstance(block, Rock):
-                block.touch(self)
+            elif isinstance(block, RockWall):
+                rock = block.parent()
+                if rock is not None:
+                    rock.touch(self)
 
         if isinstance(other, xsge_physics.SolidRight):
             self.xvelocity = max(self.xvelocity, 0)
@@ -2340,8 +2342,10 @@ class Player(xsge_physics.Collider):
         for block in self.get_right_touching_wall():
             if isinstance(block, HurtLeft):
                 self.hurt()
-            elif isinstance(block, Rock):
-                block.touch(self)
+            elif isinstance(block, RockWall):
+                rock = block.parent()
+                if rock is not None:
+                    rock.touch(self)
 
         if isinstance(other, xsge_physics.SolidLeft):
             self.xvelocity = min(self.xvelocity, 0)
@@ -2388,8 +2392,10 @@ class Player(xsge_physics.Collider):
                 block.hit(self)
             elif isinstance(block, HurtBottom):
                 self.hurt()
-            elif isinstance(block, Rock):
-                block.touch(self)
+            elif isinstance(block, RockWall):
+                rock = block.parent()
+                if rock is not None:
+                    rock.touch(self)
 
         if self.up_pressed:
             for warp in sge.game.current_room.warps:
@@ -3251,6 +3257,12 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         self.image_index = 0
         self.image_fps = None
 
+    def set_direction(self, direction):
+        if self.ticking:
+            self.xvelocity = abs(self.xvelocity) * direction / 2
+        else:
+            super(WalkingBomb, self).set_direction(direction)
+
     def move(self):
         if not self.ticking:
             super(WalkingBomb, self).move()
@@ -3328,7 +3340,6 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
     def stop_left(self):
         if self.ticking:
             if self.parent is None:
-                self.xvelocity = abs(self.xvelocity) / 2
                 self.set_direction(1)
         else:
             super(WalkingBomb, self).stop_left()
@@ -3336,7 +3347,6 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
     def stop_right(self):
         if self.ticking:
             if self.parent is None:
-                self.xvelocity = -abs(self.xvelocity) / 2
                 self.set_direction(-1)
         else:
             super(WalkingBomb, self).stop_right()
@@ -4573,15 +4583,24 @@ class TuxDoll(FallingObject):
         self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
 
-class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
-           xsge_physics.Solid):
+class RockWall(xsge_physics.MobileWall, xsge_physics.Solid):
 
     push_left = False
     push_right = False
     push_down = False
     sticky_top = True
-    always_active = True
-    always_tangible = True
+
+    def __init__(self, x, y, z=0, parent=None, **kwargs):
+        if parent is not None:
+            self.parent = weakref.ref(parent)
+        else:
+            self.parent = lambda: None
+        super(RockWall, self).__init__(x, y, z, **kwargs)
+
+
+class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
+
+    active_range = ROCK_ACTIVE_RANGE
     gravity = ROCK_GRAVITY
     fall_speed = ROCK_FALL_SPEED
     win_puff_score = 0
@@ -4589,11 +4608,25 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, z, **kwargs)
+        self.wall = RockWall(
+            self.x, self.y, self.z, parent=self, sprite=self.sprite,
+            visible=False, active=False, checks_collisions=False,
+            image_xscale=self.image_xscale, image_yscale=self.image_yscale)
+
+    def move_x(self, move, absolute=False, do_events=True, exclude_events=()):
+        super(Rock, self).move_x(move, absolute=absolute, do_events=do_events,
+                                 exclude_events=exclude_events)
+        self.wall.move_x(self.x - self.wall.x)
+
+    def move_y(self, move, absolute=False, do_events=True, exclude_events=()):
+        super(Rock, self).move_y(move, absolute=absolute, do_events=do_events,
+                                 exclude_events=exclude_events)
+        self.wall.move_y(self.y - self.wall.y)
 
     def touch(self, other):
         if other.pickup(self):
             self.active = False
-            self.tangible = False
+            self.wall.tangible = False
             self.xvelocity = 0
             self.yvelocity = 0
             if other.action_pressed:
@@ -4618,14 +4651,14 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
         if self.parent is not None:
             self.parent.drop_object()
             self.active = True
-            self.tangible = True
+            self.wall.tangible = True
             self.parent = None
 
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
             self.active = True
-            self.tangible = True
+            self.wall.tangible = True
             self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
                                            self.parent.image_xscale)
             self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
@@ -4635,10 +4668,14 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
         if self.parent is not None:
             self.parent.kick_object()
             self.active = True
-            self.tangible = True
+            self.wall.tangible = True
             self.xvelocity = self.parent.xvelocity
             self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
             self.parent = None
+
+    def event_create(self):
+        super(Rock, self).event_create()
+        sge.game.current_room.add(self.wall)
 
     def event_end_step(self, time_passed, delta_mult):
         if (self.yvelocity >= 0 and
@@ -4647,6 +4684,10 @@ class Rock(FallingObject, WinPuffObject, xsge_physics.MobileColliderWall,
             self.xdeceleration = ROCK_FRICTION
         else:
             self.xdeceleration = 0
+
+    def event_destroy(self):
+        if self.wall is not None:
+            self.wall.destroy()
 
 
 class FixedSpring(FallingObject):
