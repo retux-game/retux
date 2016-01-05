@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmrlOxDAURR9/wFbDhBKx1cDwG/ABLD3L78GwdeyLRA0StIwEPS8aRQpWvOY5DuEe6VRoZmLHvrafIQIAAAAAAAAAEMI427c4nezpAACge8ywkxanCNkLAABSLLA9ixkhe31xOUfgXAHA/8Qld3OL7PXNEpMD9jRWwxLjco5QnUvypACAplFzd5nM2eubJSZv2Ft2j92K1L5YzFtcpVGfLbJL5La2rTTw3ACA5tHlQyoP2SN2l31in2u0rUls+9lZGrVvjV0n5C6IxzF7QmFnTtS2wrHtvcqoeVHkg4SmvbLNPH9f2Tf2xanVaXGtz/i4QbJ1HMy9brPJbrNX7DWFnTl1ta2Q+4kuji9Trk6Qe7/GyAspP9kh+85+aPqhLej6sc7ak5FsHQd15W5S5O0Ou88eUPi4052xQu4nmhpftn2mad/p+1lTtpb3rGr/q/3a1twtP/cX+03trvum7sfQeVZVb9bNPak9z4D+3v1pinOHzQv2kn7nbU+j672C7t0X49vnfsL3N0LxWRPUzPddT0LrAfnZNbSeW2fvVtdy3feMPaf4ZxufdTB1XTzUqnpz7D1PcX8a8h4lHY5pGqrQF2q3tA/sI5nzttD1XsGWuz73Ezql62fq3DPlVJ38q2NGMvktqc8amufvHXtPfmO06mxT50whtQ62zXzM2uae6/eY/h76HlMp0ea/oMS7r7LcNxnJvhufuaf+ts9npd5vW8aJxBpqa2PVeHL9HwSX75d+3pTGmnu+tqEviuf4AVgW/Vc=
+   eJztmrlOxDAURR9/wFbDhBKx1cDwG/ABLD3L78GwdeyLRA0StIwEPc8aRQpRvOY5DuEe6VSImXjJtf08RAAAAAAAAAAAQhhn+xankz0dAAB0jxl20uIUIXsBAECKBbZnMSNkry8u5wicKwD4n7jkrjLPXt8sMTlgT2M1LDEu54iyc0meFADQNOXcXSZz9vpmickb9pbdY7citS8W8xZXadRni+wSua1tKw08NwCgeXT5kMpD9ojdZZ/Y5xptaxLbfnaWRu1bY9cJuQviccyeUNiZE7WtcGx7ryLlvMjzQULTXtmmyt9X9o19cWp1WlzrMz5ukGwdB+9et9lkt9kr9prCzpy62lbI/UQX55cpVyfIvV9j5IWUn+yQfWc/NP3QFnT9WGftyUi2joO6cjfJ83aH3WcPKHze6c5YIfcTTcwvtR7Y9pmmfafv/5qytbhnLfd/uV/bmrvF5/5iv6nddd/U/Rj6nlXVm3XvntSeZ0B/7/40xbnD5gV7Sb/ztqfR9V5BN/b5/Pa5n/D9Dl/UfDTloEvm+64nofUAdXYNrefW2bvVtVj3PWPPKf7ZxmcdTF0XD7Wq3hx7z5Pfn4aMo6TDMU1DS/SF2i3tA/tI5rzNdb1XsOWuz/2ETqn6mcrcqhw05VSd/KtjRjL5LanPGqry9469J785WnW2qXOmkFoH26aas7Z3z/VzTH8PHcdUSrT5Lygx9lUW+yYjmTEJeefK3+3zGVLj25Z5IrGG2tpYNZ9cf4Pg8vnSz5vSWO+er23oi/w5fgCaD/00
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -36,7 +36,7 @@
   <object x="0" y="384" width="1888" height="64"/>
   <object x="2048" y="320" width="640" height="128"/>
   <object x="2688" y="416" width="3936" height="32"/>
-  <object x="3296" y="352" width="384" height="64"/>
+  <object x="3264" y="352" width="416" height="32"/>
   <object x="3776" y="352" width="864" height="32"/>
   <object x="4384" y="288" width="256" height="32"/>
   <object x="4160" y="320" width="480" height="32"/>
@@ -52,6 +52,7 @@
   <object x="7616" y="160" width="448" height="64"/>
   <object x="7360" y="224" width="704" height="64"/>
   <object x="7360" y="288" width="1664" height="96"/>
+  <object x="3232" y="384" width="448" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="10688" y="0" width="32" height="384"/>
@@ -74,15 +75,15 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="472" x="4032" y="320">
+  <object gid="472" x="3936" y="320">
    <properties>
     <property name="item" value="tuxdoll"/>
    </properties>
   </object>
-  <object gid="479" x="4032" y="224"/>
-  <object gid="479" x="4032" y="160"/>
-  <object gid="479" x="4032" y="128"/>
-  <object gid="479" x="4032" y="96"/>
+  <object gid="479" x="3936" y="224"/>
+  <object gid="479" x="3936" y="160"/>
+  <object gid="479" x="3936" y="128"/>
+  <object gid="479" x="3936" y="96"/>
   <object gid="470" x="2528" y="224"/>
   <object gid="470" x="2496" y="224"/>
   <object gid="470" x="2464" y="224"/>
@@ -109,7 +110,7 @@
   <object gid="470" x="6464" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="6" x="3968" y="320"/>
+  <object gid="6" x="4128" y="320"/>
   <object gid="6" x="4320" y="288"/>
   <object gid="6" x="4544" y="256"/>
   <object gid="7" x="7296" y="352"/>
@@ -120,7 +121,6 @@
   <object gid="6" x="7488" y="192"/>
   <object gid="6" x="3488" y="320"/>
   <object gid="7" x="3552" y="320"/>
-  <object gid="7" x="4096" y="320"/>
   <object gid="2" x="1184" y="384"/>
   <object gid="2" x="1120" y="384"/>
   <object gid="4" x="1408" y="288"/>
@@ -163,6 +163,7 @@
   <object gid="2" x="9632" y="352"/>
   <object gid="2" x="9568" y="352"/>
   <object gid="6" x="4832" y="224"/>
+  <object gid="6" x="4000" y="320"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="128" y="384"/>
