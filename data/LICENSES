@@ -1,6 +1,10 @@
 This file lists the licenses, authors, and sources for all the
 files found in this directory.
 
+This file itself is dedicated to the public domain via CC0; see
+<http://creativecommons.org/publicdomain/zero/1.0/> for more
+information.
+
 ========================================================================
 
 images/backgrounds/arctis1-bottom.png
@@ -563,7 +567,6 @@ Source: http://powstudios.com/content/smoke-animation-pack-1
 ------------------------------------------------------------------------
 
 credits.json
-LICENSES
 objecttypes.xml
 images/backgrounds/castle-bottom.png
 images/objects/misc/door_back.png
@@ -633,6 +636,7 @@ levels/retux-32n.tmx
 levels/retux-32o.tmx
 levels/retux-32p.tmx
 levels/retux-33.tmx
+levels/retux-34.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/test2.tmx
@@ -667,18 +671,24 @@ tilesets/wm_shallow_water.tsx
 tilesets/wm_snow.tsx
 tilesets/wm_thin_ice.tsx
 tilesets/wm_trees.tsx
-timelines/boss_start.json
-timelines/retux_boss1.json
-timelines/retux_boss2.json
-timelines/retux_boss3.json
-timelines/retux_intro.json
-timelines/title_demo.json
 worldmaps/base.tmx
 worldmaps/retux-1.tmx
 worldmaps/retux-2.tmx
 worldmaps/retux-3.tmx
 worldmaps/retux-4.tmx
 worldmaps/retux-5.tmx
+
+Author: onpon4 <https://onpon4.github.io>
+License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
+
+------------------------------------------------------------------------
+
+timelines/boss_start.json
+timelines/retux_boss1.json
+timelines/retux_boss2.json
+timelines/retux_boss3.json
+timelines/retux_intro.json
+timelines/title_demo.json
 
 Author: onpon4 <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>

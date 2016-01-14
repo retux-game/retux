@@ -2891,7 +2891,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
 
     def freeze(self):
         if self.unfrozen is not None:
-            self.burn()
+            self.thaw()
             self.unfrozen.freeze()
 
     def event_alarm(self, alarm_id):
@@ -4577,6 +4577,7 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
     win_puff_score = 0
 
     def __init__(self, x, y, z=0, **kwargs):
+        kwargs.setdefault("sprite", rock_sprite)
         kwargs["checks_collisions"] = False
         sge.Object.__init__(self, x, y, z, **kwargs)
         self.wall = RockWall(
@@ -4587,12 +4588,20 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
     def move_x(self, move, absolute=False, do_events=True, exclude_events=()):
         super(Rock, self).move_x(move, absolute=absolute, do_events=do_events,
                                  exclude_events=exclude_events)
+        tangible = self.tangible
+        self.tangible = False
         self.wall.move_x(self.x - self.wall.x)
+        self.tangible = tangible
+        self.x = self.wall.x
 
     def move_y(self, move, absolute=False, do_events=True, exclude_events=()):
         super(Rock, self).move_y(move, absolute=absolute, do_events=do_events,
                                  exclude_events=exclude_events)
+        tangible = self.tangible
+        self.tangible = False
         self.wall.move_y(self.y - self.wall.y)
+        self.tangible = tangible
+        self.y = self.wall.y
 
     def touch(self, other):
         if other.pickup(self):
@@ -7443,6 +7452,7 @@ rusty_spring_dead_sprite = sge.Sprite(
 
 d = os.path.join(DATA, "images", "objects", "misc")
 platform_sprite = sge.Sprite("platform", d)
+rock_sprite = sge.Sprite("rock", d)
 lantern_sprite = sge.Sprite("lantern", d, origin_x=20, origin_y=9, fps=10,
                             bbox_x=-16, bbox_y=0, bbox_width=32,
                             bbox_height=32)
