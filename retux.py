@@ -365,8 +365,8 @@ class Game(sge.Game):
             self.fps_time += time_passed
             self.fps_frames += 1
             if self.fps_time >= 250:
-                self.fps_text = str(round((1000 * self.fps_frames) /
-                                          self.fps_time))
+                self.fps_text = str(round(
+                    (1000 * self.fps_frames) / self.fps_time, 2))
                 self.fps_time = 0
                 self.fps_frames = 0
 
@@ -7020,6 +7020,12 @@ def save_game():
         if levels:
             completion = int(100 * (len(cleared_levels) + len(tuxdolls_found)) /
                              (len(levels) + len(tuxdolls_available)))
+            if completion == 0 and (cleared_levels or tuxdolls_found):
+                completion = 1
+            elif (completion == 100 and
+                  (len(cleared_levels) < len(levels) or
+                   len(tuxdolls_found) < len(tuxdolls_available))):
+                completion = 99
         else:
             completion = 100
 
