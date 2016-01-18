@@ -861,7 +861,8 @@ class Level(sge.Room):
                     current_level += 1
                     if current_level < len(levels):
                         save_game()
-                        level = self.__class__.load(levels[current_level])
+                        level = self.__class__.load(levels[current_level],
+                                                    True)
                         level.start(transition="fade")
                     else:
                         self.win_game()
@@ -917,7 +918,7 @@ class Level(sge.Room):
                 self.return_to_map()
             elif main_area is not None:
                 save_game()
-                r = self.__class__.load(main_area)
+                r = self.__class__.load(main_area, True)
                 r.start()
         elif alarm_id == "win_count_points":
             if self.points > 0:
@@ -960,7 +961,7 @@ class Level(sge.Room):
         self.event_key_press(key, char)
 
     @classmethod
-    def load(cls, fname):
+    def load(cls, fname, show_prompt=False):
         global level_names
         global tuxdolls_available
 
@@ -969,6 +970,27 @@ class Level(sge.Room):
         elif fname in loaded_levels:
             r = loaded_levels.pop(fname)
         else:
+            if show_prompt:
+                text = "Loading level..."
+                if isinstance(sge.game.current_room, Worldmap):
+                    sge.game.refresh()
+                    sge.game.current_room.level_text = text
+                    sge.game.current_room.event_step(0, 0)
+                    sge.game.refresh()
+                elif sge.game.current_room is not None:
+                    x = sge.game.width / 2
+                    y = sge.game.height / 2
+                    w = font.get_width(text) + 32
+                    h = font.get_height(text) + 32
+                    sge.game.project_rectangle(x - w / 2, y - h / 2, w, h,
+                                               fill=sge.Color("black"))
+                    sge.game.project_text(font, text, x, y,
+                                          color=sge.Color("white"),
+                                          halign="center", valign="middle")
+                    sge.game.refresh()
+                else:
+                    print("Loading \"{}\"...".format(fname))
+
             try:
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
                                   types=TYPES)
@@ -5792,7 +5814,7 @@ class MapPlayer(sge.Object):
 
         if space is not None:
             if space.level and space.level not in level_names:
-                r = Level.load(space.level)
+                r = Level.load(space.level, True)
                 if r is not None:
                     loaded_levels[space.level] = r
                     current_areas = {}
@@ -6037,14 +6059,14 @@ class MapSpace(sge.Object):
         if self.level:
             main_area = None
             current_areas = {}
-            level = Level.load(self.level)
+            level = Level.load(self.level, True)
             if level is not None:
                 checkpoint = current_checkpoints.get(self.level)
                 if checkpoint is not None:
                     main_area = level.fname
                     level_time_bonus = level.time_bonus
                     area_name, area_spawn = checkpoint.split(':', 1)
-                    level = Level.load(area_name)
+                    level = Level.load(area_name, True)
                     level.spawn = area_spawn
                 else:
                     level.spawn = self.level_spawn
@@ -7106,7 +7128,7 @@ def start_levelset():
 
     if start_cutscene and current_level is None:
         current_level = 0
-        level = Level.load(start_cutscene)
+        level = Level.load(start_cutscene, True)
         if level is not None:
             level.start()
         else:
@@ -7119,7 +7141,7 @@ def start_levelset():
             current_level = 0
 
         if current_level < len(levels):
-            level = Level.load(levels[current_level])
+            level = Level.load(levels[current_level], True)
             if level is not None:
                 level.start()
             else:
@@ -7145,7 +7167,7 @@ def warp(dest):
 
         if level_f == "__main__":
             level_f = main_area
-        level = sge.game.current_room.__class__.load(level_f)
+        level = sge.game.current_room.__class__.load(level_f, True)
         if level is not None:
             level.spawn = spawn
             level.points = cr.points
@@ -7754,14 +7776,13 @@ goal_animation = sge.Object(0, 0, sprite=goal_sprite, visible=False,
                             tangible=False)
 
 # Create rooms
-print("Creating {}...".format("level" if RECORD else "title screen"))
 if RECORD:
-    sge.game.start_room = LevelRecorder.load(RECORD)
+    sge.game.start_room = LevelRecorder.load(RECORD, True)
     if sge.game.start_room is None:
         sys.exit()
 else:
-    sge.game.start_room = TitleScreen.load(os.path.join("special",
-                                                        "title_screen.tmx"))
+    sge.game.start_room = TitleScreen.load(
+        os.path.join("special", "title_screen.tmx"), True)
 
 sge.game.mouse.visible = False
 
