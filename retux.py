@@ -1053,108 +1053,60 @@ class LevelRecorder(Level):
                 json.dump(jt, f, indent=4, sort_keys=True)
 
             sge.game.end()
-        if key in left_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == left_key.index(key)):
+
+        for i in self.timeline_objects:
+            obj = self.timeline_objects[i]()
+            if isinstance(obj, Player) and obj.human:
+                if key in left_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} left_pressed 1".format(obj.ID))
-        if key in right_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == right_key.index(key)):
+                if key in right_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} right_pressed 1".format(obj.ID))
-        if key in up_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == up_key.index(key)):
+                if key in up_key[obj.player]:
+                    self.add_recording_event("call {} press_up".format(obj.ID))
                     self.add_recording_event(
                         "setattr {} up_pressed 1".format(obj.ID))
-        if key in down_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == down_key.index(key)):
+                if key in down_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} down_pressed 1".format(obj.ID))
-        if key in jump_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == jump_key.index(key)):
+                if key in jump_key[obj.player]:
                     self.add_recording_event("call {} jump".format(obj.ID))
                     self.add_recording_event(
                         "setattr {} jump_pressed 1".format(obj.ID))
-        if key in action_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == action_key.index(key)):
+                if key in action_key[obj.player]:
                     self.add_recording_event("call {} action".format(obj.ID))
                     self.add_recording_event(
                         "setattr {} action_pressed 1".format(obj.ID))
-        if key in sneak_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == sneak_key.index(key)):
+                if key in sneak_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} sneak_pressed 1".format(obj.ID))
 
     def event_key_release(self, key):
-        if key in left_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == left_key.index(key)):
+        for i in self.timeline_objects:
+            obj = self.timeline_objects[i]()
+            if isinstance(obj, Player) and obj.human:
+                if key in left_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} left_pressed 0".format(obj.ID))
-        if key in right_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == right_key.index(key)):
+                if key in right_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} right_pressed 0".format(obj.ID))
-        if key in up_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == up_key.index(key)):
+                if key in up_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} up_pressed 0".format(obj.ID))
-        if key in down_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == down_key.index(key)):
+                if key in down_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} down_pressed 0".format(obj.ID))
-        if key in jump_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == jump_key.index(key)):
+                if key in jump_key[obj.player]:
                     self.add_recording_event(
                         "call {} jump_release".format(obj.ID))
                     self.add_recording_event(
                         "setattr {} jump_pressed 0".format(obj.ID))
-        if key in action_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == action_key.index(key)):
+                if key in action_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} action_pressed 0".format(obj.ID))
-        if key in sneak_key:
-            for i in self.timeline_objects:
-                obj = self.timeline_objects[i]()
-                if (isinstance(obj, Player) and obj.human and
-                        obj.player == sneak_key.index(key)):
+                if key in sneak_key[obj.player]:
                     self.add_recording_event(
                         "setattr {} sneak_pressed 0".format(obj.ID))
 
@@ -1167,6 +1119,9 @@ class TitleScreen(Level):
     def event_room_resume(self):
         super(TitleScreen, self).event_room_resume()
         MainMenu.create()
+
+    def event_key_press(self, key, char):
+        pass
 
 
 class CreditsScreen(Level):
