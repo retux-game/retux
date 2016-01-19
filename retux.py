@@ -1575,31 +1575,7 @@ class Player(xsge_physics.Collider):
             for i in six.moves.range(len(js_controls)):
                 if js_controls[i][self.player] is not None:
                     j, t, c = js_controls[i][self.player]
-                    if t == "axis+":
-                        v = sge.joystick.get_axis(j, c)
-                        if v > joystick_threshold:
-                            js_states[i] = abs(v)
-                    elif t == "axis-":
-                        v = sge.joystick.get_axis(j, c)
-                        if v < -joystick_threshold:
-                            js_states[i] = abs(v)
-                    elif t == "axis0":
-                        js_states[i] = (abs(sge.joystick.get_axis(j, c)) <=
-                                        joystick_threshold)
-                    elif t == "hatx+":
-                        js_states[i] = (sge.joystick.get_hat_x(j, c) == 1)
-                    elif t == "hatx-":
-                        js_states[i] = (sge.joystick.get_hat_x(j, c) == -1)
-                    elif t == "haty+":
-                        js_states[i] = (sge.joystick.get_hat_y(j, c) == 1)
-                    elif t == "haty-":
-                        js_states[i] = (sge.joystick.get_hat_y(j, c) == -1)
-                    elif t == "hatx0":
-                        js_states[i] = (sge.joystick.get_hat_x(j, c) == 0)
-                    elif t == "haty0":
-                        js_states[i] = (sge.joystick.get_hat_y(j, c) == 0)
-                    elif t == "button":
-                        js_states[i] = sge.joystick.get_pressed(j, c)
+                    js_states[i] = min(sge.joystick.get_value(j, t, c), 1)
 
             self.left_pressed = self.left_pressed or js_states[0]
             self.right_pressed = self.right_pressed or js_states[1]
@@ -2156,132 +2132,32 @@ class Player(xsge_physics.Collider):
             if key == jump_key[self.player]:
                 self.jump_release()
 
-    def event_joystick_axis_move(self, js_name, js_id, axis, value):
+    def event_joystick(self, js_name, js_id, input_type, input_id, value):
         if self.human:
-            js_versions = [(js_id, "axis+", axis), (js_id, "axis-", axis)]
-            if value > joystick_threshold:
-                js = (js_id, "axis+", axis)
-            elif value < -joystick_threshold:
-                js = (js_id, "axis-", axis)
-            else:
-                js = (js_id, "axis0", axis)
-
+            js = (js_id, input_type, input_id)
             if js == tuple(jump_js[self.player]):
-                self.jump()
-            elif tuple(jump_js[self.player]) in js_versions:
-                self.jump_release()
+                if value > joystick_threshold:
+                    self.jump()
+                else:
+                    self.jump_release()
             if js == tuple(action_js[self.player]):
                 self.action()
             if js == tuple(up_js[self.player]):
                 self.press_up()
             if js == tuple(pause_js[self.player]):
                 sge.game.current_room.pause()
-
-    def event_joystick_hat_move(self, js_name, js_id, hat, x, y):
-        if self.human:
-            js_versions = [(js_id, "hatx+", hat), (js_id, "hatx-", hat)]
-            if x > 0:
-                js = (js_id, "hatx+", hat)
-            elif x < 0:
-                js = (js_id, "hatx-", hat)
-            else:
-                js = (js_id, "hatx0", hat)
-
-            if js == tuple(jump_js[self.player]):
-                self.jump()
-            elif tuple(jump_js[self.player]) in js_versions:
-                self.jump_release()
-            if js == tuple(action_js[self.player]):
-                self.action()
-            if js == tuple(up_js[self.player]):
-                self.press_up()
-            if js == tuple(pause_js[self.player]):
-                sge.game.current_room.pause()
-
-            js_versions = [(js_id, "haty+", hat), (js_id, "haty-", hat)]
-            if y > 0:
-                js = (js_id, "haty+", hat)
-            elif y < 0:
-                js = (js_id, "haty-", hat)
-            else:
-                js = (js_id, "haty0", hat)
-
-            if js == tuple(jump_js[self.player]):
-                self.jump()
-            elif tuple(jump_js[self.player]) in js_versions:
-                self.jump_release()
-            if js == tuple(action_js[self.player]):
-                self.action()
-            if js == tuple(up_js[self.player]):
-                self.press_up()
-            if js == tuple(pause_js[self.player]):
-                sge.game.current_room.pause()
-
-    def event_joystick_button_press(self, js_name, js_id, button):
-        if self.human:
-            js = (js_id, "button", button)
-
-            if js == tuple(jump_js[self.player]):
-                self.jump()
-            if js == tuple(action_js[self.player]):
-                self.action()
-            if js == tuple(up_js[self.player]):
-                self.press_up()
-            if js == tuple(pause_js[self.player]):
-                sge.game.current_room.pause()
-
-    def event_joystick_button_release(self, js_name, js_id, button):
-        if self.human:
-            js = (js_id, "button", button)
-
-            if js == tuple(jump_js[self.player]):
-                self.jump_release()
 
     def event_paused_key_press(self, key, char):
         if self.human:
             if key == pause_key[self.player]:
                 sge.game.current_room.unpause()
 
-    def event_paused_joystick_axis_move(self, js_name, js_id, axis, value):
+    def event_paused_joystick(self, js_name, js_id, input_type, input_id,
+                              value):
         if self.human:
-            if value > joystick_threshold:
-                js = (js_id, "axis+", axis)
-            elif value < -joystick_threshold:
-                js = (js_id, "axis-", axis)
-            else:
-                js = (js_id, "axis0", axis)
-
+            js = (js_id, input_type, input_id)
             if js == tuple(pause_js[self.player]):
-                sge.game.current_room.unpause()
-
-    def event_paused_joystick_hat_move(self, js_name, js_id, hat, x, y):
-        if self.human:
-            if x > 0:
-                js = (js_id, "hatx+", hat)
-            elif x < 0:
-                js = (js_id, "hatx-", hat)
-            else:
-                js = (js_id, "hatx0", hat)
-
-            if js == tuple(pause_js[self.player]):
-                sge.game.current_room.unpause()
-
-            if y > 0:
-                js = (js_id, "haty+", hat)
-            elif y < 0:
-                js = (js_id, "haty-", hat)
-            else:
-                js = (js_id, "haty0", hat)
-
-            if js == tuple(pause_js[self.player]):
-                sge.game.current_room.unpause()
-
-    def event_paused_joystick_button_press(self, js_name, js_id, button):
-        if self.human:
-            js = (js_id, "button", button)
-
-            if js == tuple(pause_js[self.player]):
-                sge.game.current_room.unpause()
+                sge.game.current_room.pause()
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, Death):
@@ -6758,6 +6634,9 @@ def wait_key():
 
 def wait_js():
     # Wait for a joystick press and return it.
+    sge.game.pump_input()
+    sge.game.input_events = []
+
     while True:
         # Input events
         sge.game.pump_input()
@@ -6768,29 +6647,11 @@ def wait_js():
                     sge.game.pump_input()
                     sge.game.input_events = []
                     return None
-            elif isinstance(event, sge.input.JoystickAxisMove):
+            elif isinstance(event, sge.input.JoystickEvent):
                 if event.value > joystick_threshold:
                     sge.game.pump_input()
                     sge.game.input_events = []
-                    return (event.js_id, "axis+", event.axis)
-                elif event.value < -joystick_threshold:
-                    sge.game.pump_input()
-                    sge.game.input_events = []
-                    return (event.js_id, "axis-", event.axis)
-            elif isinstance(event, sge.input.JoystickHatMove):
-                sge.game.pump_input()
-                sge.game.input_events = []
-                t = ("hatx+" if event.x > 0 else
-                     "hatx-" if event.x < 0 else
-                     "haty+" if event.y > 0 else
-                     "haty-" if event.y < 0 else
-                     None)
-                if t is not None:
-                    return (event.js_id, t, event.hat)
-            elif isinstance(event, sge.input.JoystickButtonPress):
-                sge.game.pump_input()
-                sge.game.input_events = []
-                return (event.js_id, "button", event.button)
+                    return (event.js_id, event.input_type, event.input_id)
 
         # Regulate speed
         sge.game.regulate_speed(fps=10)
