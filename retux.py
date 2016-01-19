@@ -308,22 +308,22 @@ sound_enabled = True
 music_enabled = True
 fps_enabled = False
 joystick_threshold = 0.1
-left_key = ["left"]
-right_key = ["right"]
-up_key = ["up"]
-down_key = ["down"]
-jump_key = ["space"]
-action_key = ["ctrl_left"]
-sneak_key = ["shift_left"]
-pause_key = ["enter"]
-left_js = [(0, "axis-", 0)]
-right_js = [(0, "axis+", 0)]
-up_js = [(0, "axis-", 1)]
-down_js = [(0, "axis+", 1)]
-jump_js = [(0, "button", 1)]
-action_js = [(0, "button", 0)]
-sneak_js = [(0, "button", 2)]
-pause_js = [(0, "button", 9)]
+left_key = [["left"]]
+right_key = [["right"]]
+up_key = [["up"]]
+down_key = [["down"]]
+jump_key = [["space"]]
+action_key = [["ctrl_left"]]
+sneak_key = [["shift_left"]]
+pause_key = [["enter", "p"]]
+left_js = [[(0, "axis-", 0), (0, "hat_left", 0)]]
+right_js = [[(0, "axis+", 0), (0, "hat_right", 0)]]
+up_js = [[(0, "axis-", 1), (0, "hat_up", 0)]]
+down_js = [[(0, "axis+", 1), (0, "hat_down", 0)]]
+jump_js = [[(0, "button", 1), (0, "button", 3)]]
+action_js = [[(0, "button", 0)]]
+sneak_js = [[(0, "button", 2)]]
+pause_js = [[(0, "button", 9)]]
 save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
 abort = False
@@ -1557,33 +1557,30 @@ class Player(xsge_physics.Collider):
 
     def refresh_input(self):
         if self.human:
-            self.left_pressed = sge.keyboard.get_pressed(left_key[self.player])
-            self.right_pressed = sge.keyboard.get_pressed(
-                right_key[self.player])
-            self.up_pressed = sge.keyboard.get_pressed(up_key[self.player])
-            self.down_pressed = sge.keyboard.get_pressed(down_key[self.player])
-            self.jump_pressed = sge.keyboard.get_pressed(jump_key[self.player])
-            self.action_pressed = sge.keyboard.get_pressed(
-                action_key[self.player])
-            self.sneak_pressed = sge.keyboard.get_pressed(
-                sneak_key[self.player])
-
-            # Add current joystick state
+            key_controls = [left_key, right_key, up_key, down_key, jump_key,
+                            action_key, sneak_key]
             js_controls = [left_js, right_js, up_js, down_js, jump_js,
                            action_js, sneak_js]
-            js_states = [False for i in js_controls]
-            for i in six.moves.range(len(js_controls)):
-                if js_controls[i][self.player] is not None:
-                    j, t, c = js_controls[i][self.player]
-                    js_states[i] = min(sge.joystick.get_value(j, t, c), 1)
+            states = [0 for i in key_controls]
 
-            self.left_pressed = self.left_pressed or js_states[0]
-            self.right_pressed = self.right_pressed or js_states[1]
-            self.up_pressed = self.up_pressed or js_states[2]
-            self.down_pressed = self.down_pressed or js_states[3]
-            self.jump_pressed = self.jump_pressed or js_states[4]
-            self.action_pressed = self.action_pressed or js_states[5]
-            self.sneak_pressed = self.sneak_pressed or js_states[6]
+            for i in six.moves.range(len(key_controls)):
+                for choice in key_controls[i][self.player]:
+                    value = sge.keyboard.get_pressed(choice)
+                    states[i] = max(states[i], value)
+
+            for i in six.moves.range(len(js_controls)):
+                for choice in js_controls[i][self.player]:
+                    j, t, c = choice
+                    value = min(sge.joystick.get_value(j, t, c), 1)
+                    states[i] = max(states[i], value)
+
+            self.left_pressed = states[0]
+            self.right_pressed = states[1]
+            self.up_pressed = states[2]
+            self.down_pressed = states[3]
+            self.jump_pressed = states[4]
+            self.action_pressed = states[5]
+            self.sneak_pressed = states[6]
 
     def jump(self):
         if not self.warping and (self.on_floor or self.was_on_floor):
@@ -2118,45 +2115,45 @@ class Player(xsge_physics.Collider):
 
     def event_key_press(self, key, char):
         if self.human:
-            if key == jump_key[self.player]:
+            if key in jump_key[self.player]:
                 self.jump()
-            if key == action_key[self.player]:
+            if key in action_key[self.player]:
                 self.action()
-            if key == up_key[self.player]:
+            if key in up_key[self.player]:
                 self.press_up()
-            if key == pause_key[self.player]:
+            if key in pause_key[self.player]:
                 sge.game.current_room.pause()
 
     def event_key_release(self, key):
         if self.human:
-            if key == jump_key[self.player]:
+            if key in jump_key[self.player]:
                 self.jump_release()
 
     def event_joystick(self, js_name, js_id, input_type, input_id, value):
         if self.human:
             js = (js_id, input_type, input_id)
-            if js == tuple(jump_js[self.player]):
+            if js in jump_js[self.player]:
                 if value > joystick_threshold:
                     self.jump()
                 else:
                     self.jump_release()
-            if js == tuple(action_js[self.player]):
+            if js in action_js[self.player]:
                 self.action()
-            if js == tuple(up_js[self.player]):
+            if js in up_js[self.player]:
                 self.press_up()
-            if js == tuple(pause_js[self.player]):
+            if js in pause_js[self.player]:
                 sge.game.current_room.pause()
 
     def event_paused_key_press(self, key, char):
         if self.human:
-            if key == pause_key[self.player]:
+            if key in pause_key[self.player]:
                 sge.game.current_room.unpause()
 
     def event_paused_joystick(self, js_name, js_id, input_type, input_id,
                               value):
         if self.human:
             js = (js_id, input_type, input_id)
-            if js == tuple(pause_js[self.player]):
+            if js in pause_js[self.player]:
                 sge.game.current_room.pause()
 
     def event_collision(self, other, xdirection, ydirection):
@@ -6330,71 +6327,102 @@ class KeyboardMenu(Menu):
         page %= min(len(left_key), len(right_key), len(up_key), len(down_key),
                     len(jump_key), len(action_key), len(sneak_key),
                     len(pause_key))
+
+        def format_key(key):
+            if key:
+                return " ".join(key)
+            else:
+                return None
+
         cls.items = ["Player {}".format(page + 1),
-                     "Left: {}".format(left_key[page]),
-                     "Right: {}".format(right_key[page]),
-                     "Up: {}".format(up_key[page]),
-                     "Down: {}".format(down_key[page]),
-                     "Jump: {}".format(jump_key[page]),
-                     "Action: {}".format(action_key[page]),
-                     "Sneak: {}".format(sneak_key[page]),
-                     "Pause: {}".format(pause_key[page]),
+                     "Left: {}".format(format_key(left_key[page])),
+                     "Right: {}".format(format_key(right_key[page])),
+                     "Up: {}".format(format_key(up_key[page])),
+                     "Down: {}".format(format_key(down_key[page])),
+                     "Jump: {}".format(format_key(jump_key[page])),
+                     "Action: {}".format(format_key(action_key[page])),
+                     "Sneak: {}".format(format_key(sneak_key[page])),
+                     "Pause: {}".format(format_key(pause_key[page])),
                      "Back"]
         self = cls.create(default)
         self.page = page
         return self
 
     def event_choose(self):
+        def toggle_key(key, new_key):
+            if new_key in key:
+                key.remove(new_key)
+            else:
+                key.append(new_key)
+                while len(key) > 2:
+                    key.pop(0)
+
         if self.choice == 0:
             play_sound(select_sound)
             KeyboardMenu.create_page(default=self.choice, page=(self.page + 1))
         elif self.choice == 1:
             k = wait_key()
             if k is not None:
-                left_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(left_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 2:
             k = wait_key()
             if k is not None:
-                right_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(right_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 3:
             k = wait_key()
             if k is not None:
-                up_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(up_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 4:
             k = wait_key()
             if k is not None:
-                down_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(down_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 5:
             k = wait_key()
             if k is not None:
-                jump_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(jump_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 6:
             k = wait_key()
             if k is not None:
-                action_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(action_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 7:
             k = wait_key()
             if k is not None:
-                sneak_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(sneak_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 8:
             k = wait_key()
             if k is not None:
-                pause_key[self.page] = k
-            play_sound(confirm_sound)
+                toggle_key(pause_key[self.page], k)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
             play_sound(cancel_sound)
@@ -6410,72 +6438,106 @@ class JoystickMenu(Menu):
         page %= min(len(left_js), len(right_js), len(up_js), len(down_js),
                     len(jump_js), len(action_js), len(sneak_js),
                     len(pause_js))
-        js_template = "Joystick {} {} {}"
+
+        def format_js(js):
+            js_template = "{},{},{}"
+            sL = []
+            for j in js:
+                sL.append(js_template.format(*j))
+            if sL:
+                return " ".join(sL)
+            else:
+                return "None"
+
         cls.items = ["Player {}".format(page + 1),
-                     "Left: {}".format(js_template.format(*left_js[page])),
-                     "Right: {}".format(js_template.format(*right_js[page])),
-                     "Up: {}".format(js_template.format(*up_js[page])),
-                     "Down: {}".format(js_template.format(*down_js[page])),
-                     "Jump: {}".format(js_template.format(*jump_js[page])),
-                     "Action: {}".format(js_template.format(*action_js[page])),
-                     "Sneak: {}".format(js_template.format(*sneak_js[page])),
-                     "Pause: {}".format(js_template.format(*pause_js[page])),
+                     "Left: {}".format(format_js(left_js[page])),
+                     "Right: {}".format(format_js(right_js[page])),
+                     "Up: {}".format(format_js(up_js[page])),
+                     "Down: {}".format(format_js(down_js[page])),
+                     "Jump: {}".format(format_js(jump_js[page])),
+                     "Action: {}".format(format_js(action_js[page])),
+                     "Sneak: {}".format(format_js(sneak_js[page])),
+                     "Pause: {}".format(format_js(pause_js[page])),
                      "Back"]
         self = cls.create(default)
         self.page = page
         return self
 
     def event_choose(self):
+        def toggle_js(js, new_js):
+            if new_js in js:
+                js.remove(new_js)
+            else:
+                js.append(new_js)
+                while len(js) > 2:
+                    js.pop(0)
+
         if self.choice == 0:
             play_sound(select_sound)
             JoystickMenu.create_page(default=self.choice, page=(self.page + 1))
         elif self.choice == 1:
             js = wait_js()
             if js is not None:
-                left_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(left_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 2:
             js = wait_js()
             if js is not None:
-                right_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(right_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 3:
             js = wait_js()
             if js is not None:
-                up_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(up_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 4:
             js = wait_js()
             if js is not None:
-                down_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(down_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 5:
             js = wait_js()
             if js is not None:
-                jump_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(jump_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 6:
             js = wait_js()
             if js is not None:
-                action_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(action_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 7:
             js = wait_js()
             if js is not None:
-                sneak_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(sneak_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         elif self.choice == 8:
             js = wait_js()
             if js is not None:
-                pause_js[self.page] = js
-            play_sound(confirm_sound)
+                toggle_js(pause_js[self.page], js)
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
             JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
             play_sound(cancel_sound)
@@ -6621,7 +6683,7 @@ def wait_key():
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = "Press the key you wish to use for this function, or Escape to cancel."
+        text = "Press the key you wish to toggle, or Escape to cancel."
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
@@ -6657,7 +6719,7 @@ def wait_js():
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = "Press the joystick button, axis, or hat direction you wish to use for this function, or Escape to cancel."
+        text = "Press the joystick button, axis, or hat direction you wish to toggle, or Escape to cancel."
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
@@ -7668,6 +7730,8 @@ try:
 except (IOError, ValueError):
     pass
 else:
+    cfg_version = cfg.get("version", 0)
+
     fullscreen = cfg.get("fullscreen", fullscreen)
     sge.game.fullscreen = fullscreen
     sound_enabled = cfg.get("sound_enabled", sound_enabled)
@@ -7676,25 +7740,69 @@ else:
     joystick_threshold = cfg.get("joystick_threshold", joystick_threshold)
     xsge_gui.joystick_threshold = joystick_threshold
 
-    keys_cfg = cfg.get("keys", {})
-    left_key = keys_cfg.get("left", left_key)
-    right_key = keys_cfg.get("right", right_key)
-    up_key = keys_cfg.get("up", up_key)
-    down_key = keys_cfg.get("down", down_key)
-    jump_key = keys_cfg.get("jump", jump_key)
-    action_key = keys_cfg.get("action", action_key)
-    sneak_key = keys_cfg.get("sneak", sneak_key)
-    pause_key = keys_cfg.get("pause", pause_key)
+    if cfg_version >= 1:
+        keys_cfg = cfg.get("keys", {})
+        left_key = keys_cfg.get("left", left_key)
+        right_key = keys_cfg.get("right", right_key)
+        up_key = keys_cfg.get("up", up_key)
+        down_key = keys_cfg.get("down", down_key)
+        jump_key = keys_cfg.get("jump", jump_key)
+        action_key = keys_cfg.get("action", action_key)
+        sneak_key = keys_cfg.get("sneak", sneak_key)
+        pause_key = keys_cfg.get("pause", pause_key)
 
-    js_cfg = cfg.get("joystick", {})
-    left_js = js_cfg.get("left", left_js)
-    right_js = js_cfg.get("right", right_js)
-    up_js = js_cfg.get("up", up_js)
-    down_js = js_cfg.get("down", down_js)
-    jump_js = js_cfg.get("jump", jump_js)
-    action_js = js_cfg.get("action", action_js)
-    sneak_js = js_cfg.get("sneak", sneak_js)
-    pause_js = js_cfg.get("pause", pause_js)
+        js_cfg = cfg.get("joystick", {})
+        left_js = [[tuple(j) for j in js]
+                   for js in js_cfg.get("left", left_js)]
+        right_js = [[tuple(j) for j in js]
+                    for js in js_cfg.get("right", right_js)]
+        up_js = [[tuple(j) for j in js] for js in js_cfg.get("up", up_js)]
+        down_js = [[tuple(j) for j in js]
+                   for js in js_cfg.get("down", down_js)]
+        jump_js = [[tuple(j) for j in js]
+                   for js in js_cfg.get("jump", jump_js)]
+        action_js = [[tuple(j) for j in js]
+                     for js in js_cfg.get("action", action_js)]
+        sneak_js = [[tuple(j) for j in js]
+                    for js in js_cfg.get("sneak", sneak_js)]
+        pause_js = [[tuple(j) for j in js]
+                    for js in js_cfg.get("pause", pause_js)]
+    else:
+        keys_cfg = cfg.get("keys", {})
+        if "left" in keys_cfg:
+            left_key = [keys_cfg["left"]]
+        if "right" in keys_cfg:
+            right_key = [keys_cfg["right"]]
+        if "up" in keys_cfg:
+            up_key = [keys_cfg["up"]]
+        if "down" in keys_cfg:
+            down_key = [keys_cfg["down"]]
+        if "jump" in keys_cfg:
+            jump_key = [keys_cfg["jump"]]
+        if "action" in keys_cfg:
+            action_key = [keys_cfg["action"]]
+        if "sneak" in keys_cfg:
+            sneak_key = [keys_cfg["sneak"]]
+        if "pause" in keys_cfg:
+            pause_key = [keys_cfg["pause"]]
+
+        js_cfg = cfg.get("joystick", {})
+        if "left" in js_cfg:
+            left_js = [[tuple(j)] for j in js_cfg["left"]]
+        if "right" in js_cfg:
+            right_js = [[tuple(j)] for j in js_cfg["right"]]
+        if "up" in js_cfg:
+            up_js = [[tuple(j)] for j in js_cfg["up"]]
+        if "down" in js_cfg:
+            down_js = [[tuple(j)] for j in js_cfg["down"]]
+        if "jump" in js_cfg:
+            jump_js = [[tuple(j)] for j in js_cfg["jump"]]
+        if "action" in js_cfg:
+            action_js = [[tuple(j)] for j in js_cfg["action"]]
+        if "sneak" in js_cfg:
+            sneak_js = [[tuple(j)] for j in js_cfg["sneak"]]
+        if "pause" in js_cfg:
+            pause_js = [[tuple(j)] for j in js_cfg["pause"]]
 
 try:
     with open(os.path.join(CONFIG, "save_slots.json")) as f:
@@ -7718,8 +7826,9 @@ if __name__ == '__main__':
                   "down": down_js, "jump": jump_js, "action": action_js,
                   "sneak": sneak_js, "pause": pause_js}
 
-        cfg = {"fullscreen": fullscreen, "sound_enabled": sound_enabled,
-               "music_enabled": music_enabled, "fps_enabled": fps_enabled,
+        cfg = {"version": 1, "fullscreen": fullscreen,
+               "sound_enabled": sound_enabled, "music_enabled": music_enabled,
+               "fps_enabled": fps_enabled,
                "joystick_threshold": joystick_threshold, "keys": keys_cfg,
                "joystick": js_cfg}
 
