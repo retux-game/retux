@@ -6666,7 +6666,9 @@ def wait_js():
                     sge.game.input_events = []
                     return None
             elif isinstance(event, sge.input.JoystickEvent):
-                if event.value > joystick_threshold:
+                if (event.input_type not in {"axis0", "hat_center_x",
+                                             "hat_center_y"} and
+                        event.value > joystick_threshold):
                     sge.game.pump_input()
                     sge.game.input_events = []
                     return (event.js_id, event.input_type, event.input_id)
