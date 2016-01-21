@@ -25,6 +25,7 @@ __version__ = "0.4a0"
 
 import argparse
 import datetime
+import itertools
 import json
 import math
 import os
@@ -5654,19 +5655,19 @@ class MapPlayer(sge.Object):
             room.level_tuxdoll_available = space.level in tuxdolls_available
             room.level_tuxdoll_found = space.level in tuxdolls_found
 
-            for key in sneak_key:
+            for key in itertools.chain.from_iterable(sneak_key):
                 if sge.keyboard.get_pressed(key):
                     self.move_forward()
-            for key in left_key:
+            for key in itertools.chain.from_iterable(left_key):
                 if sge.keyboard.get_pressed(key):
                     self.move_left()
-            for key in right_key:
+            for key in itertools.chain.from_iterable(right_key):
                 if sge.keyboard.get_pressed(key):
                     self.move_right()
-            for key in up_key:
+            for key in itertools.chain.from_iterable(up_key):
                 if sge.keyboard.get_pressed(key):
                     self.move_up()
-            for key in down_key:
+            for key in itertools.chain.from_iterable(down_key):
                 if sge.keyboard.get_pressed(key):
                     self.move_down()
 

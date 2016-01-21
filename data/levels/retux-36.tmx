@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="350" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="bgname" value="arctis"/>
+  <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Close Encounters of the Third Spring"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -17,14 +18,14 @@
  <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <layer name="Back Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAACvBkyQAAE=
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAACvBkyQAAE=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -34,9 +35,9 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players"/>
- <layer name="Front Tiles" width="25" height="14">
+ <layer name="Front Tiles" width="350" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAACvBkyQAAE=
   </data>
  </layer>
 </map>
