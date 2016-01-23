@@ -309,13 +309,13 @@ sound_enabled = True
 music_enabled = True
 fps_enabled = False
 joystick_threshold = 0.1
-left_key = [["left"]]
-right_key = [["right"]]
-up_key = [["up"]]
-down_key = [["down"]]
+left_key = [["left", "a"]]
+right_key = [["right", "d"]]
+up_key = [["up", "w"]]
+down_key = [["down", "s"]]
 jump_key = [["space"]]
-action_key = [["ctrl_left"]]
-sneak_key = [["shift_left"]]
+action_key = [["ctrl_left", "ctrl_right"]]
+sneak_key = [["shift_left", "shift_right"]]
 pause_key = [["enter", "p"]]
 left_js = [[(0, "axis-", 0), (0, "hat_left", 0)]]
 right_js = [[(0, "axis+", 0), (0, "hat_right", 0)]]
@@ -323,7 +323,7 @@ up_js = [[(0, "axis-", 1), (0, "hat_up", 0)]]
 down_js = [[(0, "axis+", 1), (0, "hat_down", 0)]]
 jump_js = [[(0, "button", 1), (0, "button", 3)]]
 action_js = [[(0, "button", 0)]]
-sneak_js = [[(0, "button", 2)]]
+sneak_js = [[(0, "button", 2), (0, "button", 8)]]
 pause_js = [[(0, "button", 9)]]
 save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
@@ -6031,7 +6031,7 @@ class Menu(xsge_gui.MenuWindow):
             self.show()
             return self
 
-    def event_change_selection(self, selection):
+    def event_change_keyboard_focus(self):
         play_sound(select_sound)
 
 
@@ -6320,6 +6320,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(left_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6328,6 +6329,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(right_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6336,6 +6338,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(up_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6344,6 +6347,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(down_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6352,6 +6356,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(jump_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6360,6 +6365,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(action_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6368,6 +6374,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(sneak_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6376,6 +6383,7 @@ class KeyboardMenu(Menu):
             k = wait_key()
             if k is not None:
                 toggle_key(pause_key[self.page], k)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6518,7 +6526,7 @@ class ModalMenu(xsge_gui.MenuDialog):
             self.show()
             return self
 
-    def event_change_selection(self, selection):
+    def event_change_keyboard_focus(self):
         play_sound(select_sound)
 
 
@@ -6618,6 +6626,42 @@ def get_jump_speed(height, gravity=GRAVITY):
     # Get the speed to achieve a given height using a kinematic
     # equation: v[f]^2 = v[i]^2 + 2ad
     return -math.sqrt(2 * gravity * height)
+
+
+def set_gui_controls():
+    # Set the controls for xsge_gui based on the player controls.
+    xsge_gui.next_widget_keys = (list(itertools.chain.from_iterable(down_key)) +
+                                 list(itertools.chain.from_iterable(sneak_key)))
+    if not xsge_gui.next_widget_keys:
+        xsge_gui.next_widget_keys = ["tab"]
+    xsge_gui.previous_widget_keys = list(itertools.chain.from_iterable(up_key))
+    xsge_gui.left_keys = list(itertools.chain.from_iterable(left_key))
+    xsge_gui.right_keys = list(itertools.chain.from_iterable(right_key))
+    xsge_gui.up_keys = list(itertools.chain.from_iterable(up_key))
+    xsge_gui.down_keys = list(itertools.chain.from_iterable(down_key))
+    xsge_gui.enter_keys = (list(itertools.chain.from_iterable(jump_key)) +
+                           list(itertools.chain.from_iterable(action_key)) +
+                           list(itertools.chain.from_iterable(pause_key)))
+    if not xsge_gui.enter_keys:
+        xsge_gui.enter_keys = ["enter"]
+    xsge_gui.next_widget_joystick_events = (
+        list(itertools.chain.from_iterable(down_js)) +
+        list(itertools.chain.from_iterable(sneak_js)))
+    if not xsge_gui.next_widget_joystick_events:
+        xsge_gui.next_widget_joystick_events = [(0, "button", 8)]
+    xsge_gui.previous_widget_joystick_events = (
+        list(itertools.chain.from_iterable(up_js)))
+    xsge_gui.left_joystick_events = list(itertools.chain.from_iterable(left_js))
+    xsge_gui.right_joystick_events = (
+        list(itertools.chain.from_iterable(right_js)))
+    xsge_gui.up_joystick_events = list(itertools.chain.from_iterable(up_js))
+    xsge_gui.down_joystick_events = list(itertools.chain.from_iterable(down_js))
+    xsge_gui.enter_joystick_events = (
+        list(itertools.chain.from_iterable(jump_js)) +
+        list(itertools.chain.from_iterable(action_js)) +
+        list(itertools.chain.from_iterable(pause_js)))
+    if not xsge_gui.enter_joystick_events:
+        xsge_gui.enter_joystick_events = [(0, "button", 9)]
 
 
 def wait_key():
@@ -7761,6 +7805,8 @@ else:
             sneak_js = [[tuple(j)] for j in js_cfg["sneak"]]
         if "pause" in js_cfg:
             pause_js = [[tuple(j)] for j in js_cfg["pause"]]
+
+    set_gui_controls()
 
 try:
     with open(os.path.join(CONFIG, "save_slots.json")) as f:
