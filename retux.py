@@ -6443,6 +6443,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(left_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6451,6 +6452,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(right_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6459,6 +6461,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(up_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6467,6 +6470,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(down_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6475,6 +6479,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(jump_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6483,6 +6488,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(action_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6491,6 +6497,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(sneak_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
@@ -6499,6 +6506,7 @@ class JoystickMenu(Menu):
             js = wait_js()
             if js is not None:
                 toggle_js(pause_js[self.page], js)
+                set_gui_controls()
                 play_sound(confirm_sound)
             else:
                 play_sound(cancel_sound)
