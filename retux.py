@@ -2135,9 +2135,6 @@ class Player(xsge_physics.Collider):
             if ydirection == -1 and not xdirection:
                 move_loss = max(0, other.bbox_bottom - self.bbox_top)
                 self.move_y(move_loss, absolute=True, do_events=False)
-                for hblock in self.collision(HiddenItemBlock, y=(self.y - 1)):
-                    if not self.collision(hblock):
-                        hblock.hit(self)
                 self.event_physics_collision_top(other, move_loss)
 
     def event_physics_collision_left(self, other, move_loss):
@@ -2179,7 +2176,10 @@ class Player(xsge_physics.Collider):
     def event_physics_collision_top(self, other, move_loss):
         top_touching = self.get_top_touching_wall()
 
-        xv = self.xvelocity
+        for hblock in self.collision(HiddenItemBlock, y=(self.y - 1)):
+            if not self.collision(hblock):
+                hblock.hit(self)
+
         tmv = 0
         for i in six.moves.range(CEILING_LAX):
             if (not self.get_left_touching_wall() and
@@ -2915,7 +2915,13 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
             play_sound(iceblock_bump_sound, self.x, self.y)
             self.xvelocity = abs(self.xvelocity)
             self.set_direction(1)
-            for block in self.get_left_touching_wall():
+
+            left_touching = self.get_left_touching_wall()
+            for hblock in self.collision(HiddenItemBlock, x=(self.x - 1)):
+                if not self.collision(hblock):
+                    left_touching.append(hblock)
+
+            for block in left_touching:
                 if isinstance(block, HittableBlock):
                     block.hit(self.thrower)
         else:
@@ -2926,7 +2932,13 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
             play_sound(iceblock_bump_sound, self.x, self.y)
             self.xvelocity = -abs(self.xvelocity)
             self.set_direction(-1)
-            for block in self.get_right_touching_wall():
+
+            right_touching = self.get_right_touching_wall()
+            for hblock in self.collision(HiddenItemBlock, x=(self.x + 1)):
+                if not self.collision(hblock):
+                    right_touching.append(hblock)
+
+            for block in right_touching:
                 if isinstance(block, HittableBlock):
                     block.hit(self.thrower)
         else:
@@ -2935,7 +2947,12 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def stop_up(self):
         self.yvelocity = 0
         if self.flat and self.parent is None:
-            for block in self.get_top_touching_wall():
+            top_touching = self.get_top_touching_wall()
+            for hblock in self.collision(HiddenItemBlock, y=(self.y - 1)):
+                if not self.collision(hblock):
+                    top_touching.append(hblock)
+
+            for block in top_touching:
                 if isinstance(block, HittableBlock):
                     block.hit(self.thrower)
 
@@ -2991,15 +3008,15 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
                     if ydirection == -1:
                         self.move_y(max(0, other.bbox_bottom - self.bbox_top),
                                     absolute=True, do_events=False)
-                        other.hit(self)
+                        self.stop_up()
                     elif xdirection == -1:
                         self.move_x(max(0, other.bbox_right - self.bbox_left),
                                     absolute=True, do_events=False)
-                        other.hit(self)
+                        self.stop_left()
                     elif xdirection == 1:
                         self.move_x(min(0, other.bbox_left - self.bbox_right),
                                     absolute=True, do_events=False)
-                        other.hit(self)
+                        self.stop_right()
                 elif isinstance(other, Death):
                     self.touch_death()
             else:
@@ -4921,7 +4938,8 @@ class HiddenItemBlock(HittableBlock):
         self.item = item
 
     def hit(self, other):
-        ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
+        ib = ItemBlock.create(self.x, self.y, item=self.item, z=self.z)
+        ib.hit(other)
         self.destroy()
 
 
