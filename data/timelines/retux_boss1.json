@@ -17,9 +17,9 @@
         "# along with this program.  If not, see <http://www.gnu.org/licenses/>."
     ],
     "0": [
-        "setattr player human True",
-        "setattr player left_pressed False",
-        "setattr player right_pressed False",
+        "setattr player human False",
+        "setattr player left_pressed 0",
+        "setattr player right_pressed 0",
         "setattr player up_pressed False",
         "setattr player down_pressed False",
         "setattr player jump_pressed False",
