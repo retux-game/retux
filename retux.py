@@ -3098,6 +3098,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
 
     def set_direction(self, direction):
         if self.ticking:
+            self.image_xscale = abs(self.image_xscale) * direction
             self.xvelocity = abs(self.xvelocity) * direction / 2
         else:
             super(WalkingBomb, self).set_direction(direction)
