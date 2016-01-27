@@ -108,8 +108,8 @@ NO_HUD = args.no_hud
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
-FPS = 60
-DELTA_MIN = 30
+FPS = 56
+DELTA_MIN = 28
 TRANSITION_TIME = 750
 
 DEFAULT_LEVELSET = "retux.json"
@@ -119,7 +119,7 @@ TUX_ORIGIN_X = 28
 TUX_ORIGIN_Y = 16
 TUX_KICK_TIME = 10
 
-GRAVITY = 0.25
+GRAVITY = 0.4
 
 PLAYER_MAX_HP = 5
 PLAYER_WALK_SPEED = 2
@@ -133,7 +133,7 @@ PLAYER_AIR_FRICTION = 0.03
 PLAYER_JUMP_HEIGHT = 4 * TILE_SIZE + 2
 PLAYER_RUN_JUMP_HEIGHT = 5 * TILE_SIZE + 2
 PLAYER_STOMP_HEIGHT = TILE_SIZE / 2
-PLAYER_FALL_SPEED = 5
+PLAYER_FALL_SPEED = 8
 PLAYER_SLIDE_ACCEL = 0.3
 PLAYER_SLIDE_SPEED = 1
 PLAYER_WALK_FRAMES_PER_PIXEL = 2 / 17
@@ -207,7 +207,7 @@ SHAKE_FRAME_TIME = FPS / DELTA_MIN
 SHAKE_AMOUNT = 3
 
 ENEMY_WALK_SPEED = 1
-ENEMY_FALL_SPEED = 5
+ENEMY_FALL_SPEED = 7
 ENEMY_SLIDE_SPEED = 0.3
 ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
 SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3 + 2
@@ -3130,8 +3130,17 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
             self.thrower = other
 
     def knock(self, other=None):
-        self.thrower = other
-        self.burn()
+        if isinstance(other, Player):
+            self.thrower = other
+            self.burn()
+        elif isinstance(other, WalkingIceblock):
+            self.thrower = other.thrower
+            self.burn()
+        elif isinstance(other, FallingIcicle):
+            super(WalkingBomb, self).knock(other)
+            sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        else:
+            self.burn()
 
     def burn(self):
         e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
@@ -4010,7 +4019,7 @@ class Raccot(Boss, FallingObject):
         self.sprite = raccot_stand_sprite
 
     def knock(self, other=None):
-        if other is not None and other.knockable:
+        if isinstance(other, InteractiveObject) and other.knockable:
             other.knock(self)
 
     def blast(self):
@@ -4640,7 +4649,9 @@ class RustySpring(Spring):
     def event_animation_end(self):
         if self.sprite == self.expand_sprite:
             Corpse.create(self.x, self.y, self.z,
-                          sprite=rusty_spring_dead_sprite)
+                          sprite=rusty_spring_dead_sprite,
+                          image_xscale=self.image_xscale,
+                          image_yscale=self.image_yscale)
             self.destroy()
 
 
@@ -7299,14 +7310,14 @@ bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=5,
                                  bbox_x=-13, bbox_y=3, bbox_width=26,
                                  bbox_height=29)
 bomb_ticking_sprite.fps = bomb_ticking_sprite.frames / BOMB_TICK_TIME
-jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-17,
-                          bbox_y=0, bbox_width=33, bbox_height=32)
+jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-16,
+                          bbox_y=0, bbox_width=32, bbox_height=32)
 jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,
-                                 bbox_x=-17, bbox_y=0, bbox_width=33,
+                                 bbox_x=-16, bbox_y=0, bbox_width=32,
                                  bbox_height=32)
 jumpy_iced_sprite = sge.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
-                               fps=THAW_FPS, bbox_x=-17, bbox_y=0,
-                               bbox_width=33, bbox_height=32)
+                               fps=THAW_FPS, bbox_x=-16, bbox_y=0,
+                               bbox_width=32, bbox_height=32)
 jumpy_iced_sprite.append_frame()
 jumpy_iced_sprite.draw_sprite(jumpy_sprite, 0, jumpy_sprite.origin_x,
                               jumpy_sprite.origin_y, frame=1)

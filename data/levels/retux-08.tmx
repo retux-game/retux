@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="42">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -47,7 +47,7 @@
   <object x="3104" y="160" width="224" height="544"/>
   <object x="3328" y="160" width="1024" height="256"/>
   <object x="3744" y="128" width="768" height="32"/>
-  <object x="1120" y="288" width="32" height="32"/>
+  <object x="992" y="288" width="32" height="32"/>
   <object x="3904" y="640" width="64" height="32"/>
   <object x="1696" y="1024" width="64" height="32"/>
   <object x="8736" y="1248" width="864" height="96"/>
@@ -59,6 +59,7 @@
   <object x="9536" y="1120" width="64" height="128"/>
   <object x="4704" y="896" width="64" height="128"/>
   <object x="4864" y="1024" width="64" height="128"/>
+  <object x="1248" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_topleft" x="4128" y="1152" width="160" height="160"/>
@@ -111,7 +112,7 @@
   <object gid="479" x="4896" y="64"/>
   <object gid="479" x="4928" y="64"/>
   <object gid="479" x="4736" y="64"/>
-  <object gid="485" x="1120" y="288"/>
+  <object gid="485" x="992" y="288"/>
   <object gid="485" x="704" y="384"/>
   <object gid="485" x="3040" y="416"/>
   <object gid="485" x="5824" y="1280"/>
@@ -197,6 +198,7 @@
     <property name="text" value="Traveller's note:\n\nThat cave to the left appears to be inaccessible from here. There has to be another way inside!"/>
    </properties>
   </object>
+  <object gid="485" x="1248" y="288"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="9" x="1600" y="832"/>

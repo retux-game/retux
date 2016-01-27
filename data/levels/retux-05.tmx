@@ -23,7 +23,7 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmcFKBDEMhtc3EPEs4lEEvYmHPS4+mHqXfTVfyIoujCFtk2maSbv/Bz8Lnek0zaR/p+xuBwAAAAAAAAAAAHCevCW9Jx3/fj+2DQcAFaf6pTpm2tfWNzcONwbWjw+fWwcAgCEe9Yw1Uya3l9T2FIn3I/c8+P4cE/hVfFryh9yXQX7+s9w7l/tkFD/n3pf1ma5UE1HPjzQuGpNnPPCrX3q8k5nz03PdboU0Js81M3Keoo0dMZdWWMxt5vz8MHLtPCe9kDZvv+JisByrF/CreEjOBrVvMPqMy6R9o74uZPHvZbc1MXLtHJJeSZu3X3ExWI7VC4+Ycl4+cs1JWHuOkcytdg+9fpN05ahWb7xunP+avj3/H1oys1/VcijJYymXtZjuleLI5WZ2v+Kw8CLJPfT6Q9KtsR4L11r97k45Pw1r+1rV3Mx+pY1Dci7N9eXQ7Mu5Gjtnv6LvI5pflTxnSz0p56cBfhXHryRx5PpyaPblXI15+pX2e9BaFDr3aH5lrZP/fQNG57S3
+   eJztmc9KAzEQxusbiHgW8SiC3koPPYoPpt6lr+YLmVIL22EmO5NM/vb7wUdhd7OZTCZfNnSzAQAAAAAAAAAAALhOPoO+gg7/v99twwHAxLl+qQ7C9dT65vrh+sD6qcNP6wAAcKRGPWPNxJH2krU9ReP9yD0Pvj/HBH7VPzn5Q+7jID+XLPfO5T7Zi59z8+V9povVRG/nx97iOQK/OkHnhs5LypzMnJ+S67YV2phqrpne8tQ6HvgVj8fYZs7PkZFrZxu0I9dq+xUXg2dfJWgdz8g1VxLN2WDtG4y+4zZon6nfG138e91jWYxcO+9BH+Rabb/iYvDsqwS14pG8fOSa05B6jtGMbe0Zev8h6K6icr3xPnP8KW1L/j+0ZGa/WsuhJo9SLjXxPBvFIeVmdr/i8PAizTP0/kvQo7NeI/dy/e7JOD4LqW29am5mv7LGoTmXcu0kLPuyVGPX7Fd0Pnrzq5jntNSbcXwW4Ff9+JUmDq6dhGVflmqspl9Zvwe9RaFj782vvHX2vz/Y2LW/
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -42,7 +42,7 @@
   <object type="solid_top" x="3072" y="128" width="352" height="32"/>
   <object type="solid_top" x="2240" y="128" width="416" height="32"/>
   <object type="solid_top" x="2592" y="224" width="352" height="32"/>
-  <object type="solid_top" x="4672" y="224" width="288" height="32"/>
+  <object type="solid_top" x="4608" y="224" width="352" height="32"/>
   <object type="solid_top" x="4032" y="352" width="608" height="32"/>
   <object type="moving_platform_path" x="5056" y="160">
    <polyline points="0,0 256,0 0,0"/>

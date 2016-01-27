@@ -25,21 +25,21 @@
  </layer>
  <layer name="Middle Tiles" width="300" height="28">
   <data encoding="base64" compression="zlib">
-   eJztmklOw0AQRYsbMK2BsERMayBcAw7AsGe4HjM7Zk7CDSgLWUIoMd12D+X2e9JbJUq67fRPd7lEAAAAAAAAAAAAAAAAAAAAAAAA0jOrjj28UW9zDBQABs+SOu/hi/qqnqqHGcYLAMNlXV3x9EK9VE+E3AKAdPzNqy0htwDAJi77qw11s+H137l1p96LX01skl8zbuMfu08VAHqOS17tqnsO76ty6019F7+aWFcBYBi0qV9ZsT67AgwJ32f6Li4mnUF7+pxXtQBDocqqOQl/RllNOYkOkFcA/aDOqmUJv4a2PceylsmdCHN38b8avo8ApTHpzOeaVT7P+Gt988q3bzOUMbLa5Xq51vBdBCiNSXkQY63W+uZVCeeyXAKURuo8KCmv2uwvUwrQB6oznutzuC593G1MmVfW8yS2ADlxzaHqjLcgP7Uoa3Vlq/urkHVuK0L5XKnXEr7vqKn3KHQOVRk0knx15b/+3udYzauQde5KC3u73Piupb705lngQD1Sn9RnifPMaVrvUegcipVBIfYgVvOqRHPRdi1Z6c2L0Scdygf1UT1Wz9RzmX7/u/5nTlur1ZocSfscSvVfHmIPkjOvLOx5UmppLblce9/fRixy9dC4+KF+SnNOhbIpr2J/txW75tXQMuc/m65H39bSvuTrD25b0y3h9zhtDtbyKta1bvpczoP2zbUGR5J//xKzntKkxdxzzSuLYw9lSXll/T59AzFYTX8=
+   eJztmklOw0AQRYsbMK2BsERMayBcAw7AsGe4HjM7Zk7CDSgLWUIoMdW2u7tsvye9VaKk207/VJdbBAAAAAAAAAAAAAAAAAAAAAAAID2z6jjAG/U2x0ABYPAsqfMBvqiv6ql6mGG8ADBc1tWVQC/US/VEyC0ASMffvNoScgsAfGKprzbUzYrXf+fWnXovYT2xSX7N2MY/tk8VADqOJa921T3D+4rcelPfJawn1lQAGAZ1+ldeLPeuAEMi9Jl+HReTzSaMLudVKcBQKLJqTuLvWVZTTSgQ8gqgG5RZtSzx19S2cUxrid1JMPdJ/tfDDxGgb0za81mzKuQZ/zSteRV6frOpMbLacr2sPXyLAH1jUg6kqKtKrXnVh/1ZagH6Ru4c6HJetVFfxhSgCxR7POtztybnuNswZl55z5PYAuTEmkPFHm9BfnpRXvvKpV7qqzb73F6E/nOlXkvas0Zt51CRQSPJ11f+a1Wd4yWv2uxzF3qo7XITupa8nsXzyIF6pD6pz5L2rFHbORQrg2LUIF7yqo/mou5a8nIWL8U56bo+qI/qsXqmnsv0+9/0P3Pa2izW4kjq51Cq//K2a5DClHnloeZJqae1ZLn21t9CbFKfnQnxQ/2U6pxqy6q8iv3dXg3Nq6Flzn9WXY+uraV9SX8uuGlPtw+/x2lz8JZXsa51yOeyH/RnrjU4kvz1S8x+SpUec8+aVx7HHssu55X3+/QN4NJRww==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="9536" y="256" width="64" height="128"/>
   <object x="8032" y="256" width="416" height="128"/>
   <object x="8032" y="384" width="1568" height="160"/>
-  <object x="7072" y="544" width="2528" height="352"/>
-  <object x="4800" y="768" width="1920" height="128"/>
-  <object x="5120" y="736" width="1600" height="32"/>
-  <object x="5440" y="704" width="1280" height="32"/>
-  <object x="5792" y="576" width="928" height="128"/>
-  <object x="5952" y="544" width="768" height="32"/>
-  <object x="5984" y="512" width="736" height="32"/>
-  <object x="6016" y="480" width="704" height="32"/>
+  <object x="7136" y="544" width="2464" height="352"/>
+  <object x="4800" y="768" width="2048" height="128"/>
+  <object x="5120" y="736" width="1728" height="32"/>
+  <object x="5440" y="704" width="1408" height="32"/>
+  <object x="5792" y="576" width="1056" height="128"/>
+  <object x="5952" y="544" width="896" height="32"/>
+  <object x="5984" y="512" width="864" height="32"/>
+  <object x="6016" y="480" width="832" height="32"/>
   <object x="3904" y="736" width="736" height="64"/>
   <object x="2496" y="800" width="2144" height="96"/>
   <object x="1056" y="768" width="384" height="64"/>
@@ -57,17 +57,17 @@
   <object type="spike_top" x="4896" y="736" width="224" height="32"/>
   <object type="spike_top" x="5216" y="704" width="224" height="32"/>
   <object type="spike_top" x="5536" y="672" width="256" height="32"/>
-  <object type="spike_top" x="7072" y="512" width="960" height="32"/>
+  <object type="spike_top" x="7136" y="512" width="896" height="32"/>
   <object type="slope_topright" x="8448" y="256" width="256" height="128"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
   <object gid="485" x="1952" y="832"/>
-  <object gid="485" x="7104" y="512"/>
-  <object gid="485" x="6656" y="480"/>
-  <object gid="485" x="7936" y="512"/>
-  <object gid="485" x="7520" y="512"/>
+  <object gid="485" x="7200" y="512"/>
+  <object gid="485" x="6784" y="480"/>
+  <object gid="485" x="7840" y="512"/>
+  <object gid="485" x="7424" y="512"/>
   <object gid="471" x="1120" y="672"/>
   <object gid="470" x="1152" y="672"/>
   <object gid="470" x="1344" y="672"/>
@@ -107,6 +107,7 @@
   <object gid="478" x="7680" y="160"/>
   <object gid="490" x="7360" y="128"/>
   <object gid="477" x="7360" y="160"/>
+  <object gid="485" x="7616" y="512"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="7" x="1696" y="832"/>
