@@ -3,7 +3,7 @@
  <properties>
   <property name="bgname" value="arctis_castle"/>
   <property name="music" value="fortress.ogg"/>
-  <property name="name" value="Castle of Luck"/>
+  <property name="name" value="Lucky Level 13"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
