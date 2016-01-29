@@ -69,8 +69,7 @@
    </properties>
   </object>
   <object gid="2" x="224" y="864"/>
-  <object gid="2" x="448" y="864"/>
-  <object gid="2" x="672" y="864">
+  <object gid="2" x="544" y="864">
    <properties>
     <property name="level" value="retux-36.tmx"/>
    </properties>
@@ -172,13 +171,10 @@
    <polyline points="0,0 96,0 96,192"/>
   </object>
   <object x="704" y="704">
-   <polyline points="0,0 0,128 -32,128"/>
-  </object>
-  <object x="672" y="832">
-   <polyline points="0,0 -224,0"/>
+   <polyline points="0,0 0,128 -160,128"/>
   </object>
   <object x="448" y="832">
-   <polyline points="0,0 -224,0"/>
+   <polyline points="96,0 -224,0"/>
   </object>
   <object x="224" y="832">
    <polyline points="0,0 -160,0"/>
