@@ -172,6 +172,7 @@ RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
 RACCOT_HP = 5
 RACCOT_HOP_INTERVAL = 90
 RACCOT_CHARGE_INTERVAL = 450
+RACCOT_CRUSH_LAX = -8 # A negative lax makes it have the opposite effect.
 RACCOT_SHAKE_NUM = 3
 
 HP_POINTS = 1000
@@ -3594,7 +3595,7 @@ class Crusher(FallingObject):
                         elif isinstance(obj, xsge_physics.SlopeTopRight):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
-                    if (obj.bbox_bottom > self.bbox_top and
+                    if (obj.bbox_top > self.bbox_bottom and
                             self.bbox_right + CRUSHER_LAX > obj.bbox_left and
                             self.bbox_left - CRUSHER_LAX < obj.bbox_right):
                         if isinstance(obj, Player):
@@ -3986,6 +3987,39 @@ class Raccot(Boss, FallingObject):
                 else:
                     self.image_xscale = math.copysign(self.image_xscale,
                                                       player.x - self.x)
+
+        if not self.was_on_floor:
+            players = []
+            crash_y = sge.game.current_room.height
+            objects = (
+                sge.game.current_room.get_objects_at(
+                    self.bbox_left, self.bbox_bottom, self.bbox_width,
+                    (sge.game.current_room.height - self.bbox_bottom +
+                     sge.game.current_room.object_area_height)) |
+                sge.game.current_room.object_area_void)
+
+            for obj in objects:
+                if (obj.bbox_top > self.bbox_bottom and
+                        self.bbox_right > obj.bbox_left and
+                        self.bbox_left < obj.bbox_right):
+                    if isinstance(obj, xsge_physics.SolidTop):
+                        crash_y = min(crash_y, obj.bbox_top)
+                    elif isinstance(obj, xsge_physics.SlopeTopLeft):
+                        crash_y = min(crash_y,
+                                      obj.get_slope_y(self.bbox_right))
+                    elif isinstance(obj, xsge_physics.SlopeTopRight):
+                        crash_y = min(crash_y,
+                                      obj.get_slope_y(self.bbox_left))
+                if (obj.bbox_top > self.bbox_bottom and
+                        self.bbox_right + RACCOT_CRUSH_LAX > obj.bbox_left and
+                        self.bbox_left - RACCOT_CRUSH_LAX < obj.bbox_right):
+                    if isinstance(obj, Player):
+                        players.append(obj)
+
+            for player in players:
+                if player.bbox_top < crash_y:
+                    self.crush()
+                    break
 
     def stop_left(self):
         self.xvelocity = 0
