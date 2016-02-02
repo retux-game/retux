@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="250" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="arctis_castle"/>
+  <property name="music" value="fortress.ogg"/>
+  <property name="name" value="Snowman's Wreckening"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="250" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztysEJADAIADHdf9g6QkfwYaEICdzvIgAAAAAAAAAAAAAAAN6r7Jt+wF8n+6Yfu1ymoCs4
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="250" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzt1k0KwjAQBtB6PN1XoQoq3v8OmoUbQcVOTDPlPfh2WaR0fjIMAAAAAAAAANQ2bpa+Ab0qtbGfmYO66srZ/+CNUhuXmbl2XleRGZZxjk3J7ks7a+7zyLeV7JL1un2eT2QP/ZLtivu87LdjMJl63T7PJ1qfLXJ65NZxavT5s9drzNRv82IMnrPP84m8N1ulVv3/862y9Cx8nYufTMFz+jyfOysgj9w=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="832" y="256" width="512" height="96"/>
+  <object x="0" y="352" width="1344" height="96"/>
+  <object x="2592" y="288" width="544" height="32"/>
+  <object x="2592" y="320" width="576" height="32"/>
+  <object x="2592" y="352" width="608" height="32"/>
+  <object x="2592" y="384" width="1184" height="64"/>
+  <object x="4000" y="384" width="96" height="64"/>
+  <object x="4320" y="384" width="96" height="64"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="spike_top" x="1344" y="384" width="1248" height="32"/>
+  <object type="death" x="3776" y="416" width="736" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="128" y="352"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="250" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20IX6AAAAAAAAAAAAAAAAAA4Dc2sAAB
+  </data>
+ </layer>
+</map>

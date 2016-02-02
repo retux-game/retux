@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 
 # reTux
-# Copyright (C) 2014, 2015, 2016 onpon4 <onpon4@riseup.net>
+# Copyright (C) 2014-2016 onpon4 <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -356,7 +356,7 @@ main_area = None
 level_cleared = False
 
 
-class Game(sge.Game):
+class Game(sge.dsp.Game):
 
     fps_time = 0
     fps_frames = 0
@@ -374,7 +374,7 @@ class Game(sge.Game):
 
             self.project_text(font_small, self.fps_text, self.width - 8,
                               self.height - 8, z=1000,
-                              color=sge.Color("yellow"), halign="right",
+                              color=sge.gfx.Color("yellow"), halign="right",
                               valign="bottom")
 
     def event_key_press(self, key, char):
@@ -393,7 +393,7 @@ class Game(sge.Game):
         self.event_close()
 
 
-class Level(sge.Room):
+class Level(sge.dsp.Room):
 
     """Handles levels."""
 
@@ -423,7 +423,7 @@ class Level(sge.Room):
         self.load_timeline(timeline)
 
         if ambient_light:
-            self.ambient_light = sge.Color(ambient_light)
+            self.ambient_light = sge.gfx.Color(ambient_light)
             if (self.ambient_light.red >= 255 and
                     self.ambient_light.green >= 255 and
                     self.ambient_light.blue >= 255):
@@ -485,7 +485,8 @@ class Level(sge.Room):
                 score_text, "Bonus" if time_bonus >= 0 else "Penalty",
                 abs(time_bonus))
             sge.game.project_text(font, text, sge.game.width / 2, 0,
-                                  color=sge.Color("white"), halign="center")
+                                  color=sge.gfx.Color("white"),
+                                  halign="center")
 
             if main_area in tuxdolls_available or main_area in tuxdolls_found:
                 if main_area in tuxdolls_found:
@@ -498,7 +499,8 @@ class Level(sge.Room):
                     self.timeline_step < self.timeline_skip_target):
                 text = "Press Escape to skip..."
                 sge.game.project_text(font, text, sge.game.width / 2,
-                                      sge.game.height, color=sge.Color("white"),
+                                      sge.game.height,
+                                      color=sge.gfx.Color("white"),
                                       halign="center", valign="bottom")
 
     def shake(self, num=1):
@@ -514,13 +516,13 @@ class Level(sge.Room):
 
     def pause(self):
         if self.pause_delay <= 0 and not self.won:
-            sge.Music.pause()
+            sge.snd.Music.pause()
             play_sound(pause_sound)
             PauseMenu.create()
 
     def unpause(self):
         play_sound(pause_sound)
-        sge.Music.unpause()
+        sge.snd.Music.unpause()
         sge.game.unpause()
 
     def die(self):
@@ -530,8 +532,8 @@ class Level(sge.Room):
         self.death_time_bonus = level_timers.setdefault(main_area, 0)
         if "timer" in self.alarms:
             del self.alarms["timer"]
-        sge.Music.clear_queue()
-        sge.Music.stop(DEATH_FADE_TIME)
+        sge.snd.Music.clear_queue()
+        sge.snd.Music.stop(DEATH_FADE_TIME)
 
     def return_to_map(self):
         save_game()
@@ -791,9 +793,9 @@ class Level(sge.Room):
 
         if self.death_time is not None:
             a = int(255 * (DEATH_FADE_TIME - self.death_time) / DEATH_FADE_TIME)
-            sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
-                                       z=100,
-                                       fill=sge.Color((0, 0, 0, min(a, 255))))
+            sge.game.project_rectangle(
+                0, 0, sge.game.width, sge.game.height, z=100,
+                fill=sge.gfx.Color((0, 0, 0, min(a, 255))))
 
             time_bonus = level_timers.setdefault(main_area, 0)
             if time_bonus < 0 and cleared_levels:
@@ -814,7 +816,7 @@ class Level(sge.Room):
                 self.death_time -= time_passed
         elif "death" in self.alarms:
             sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
-                                       z=100, fill=sge.Color("black"))
+                                       z=100, fill=sge.gfx.Color("black"))
 
         if self.won:
             if self.win_count_points:
@@ -910,7 +912,7 @@ class Level(sge.Room):
             # Project a black rectangle to prevent showing the level on
             # the last frame.
             sge.game.project_rectangle(0, 0, sge.game.width, sge.game.height,
-                                       z=100, fill=sge.Color("black"))
+                                       z=100, fill=sge.gfx.Color("black"))
 
             if (not cleared_levels and
                     current_checkpoints.get(main_area) is None):
@@ -947,7 +949,7 @@ class Level(sge.Room):
         if key == "escape":
             if self.death_time is not None or "death" in self.alarms:
                 if level_timers.setdefault(main_area, 0) >= 0:
-                    sge.Music.stop()
+                    sge.snd.Music.stop()
                     self.alarms["death"] = 0
             elif (self.timeline_skip_target is not None and
                   self.timeline_step < self.timeline_skip_target):
@@ -985,9 +987,9 @@ class Level(sge.Room):
                     w = font.get_width(text) + 32
                     h = font.get_height(text) + 32
                     sge.game.project_rectangle(x - w / 2, y - h / 2, w, h,
-                                               fill=sge.Color("black"))
+                                               fill=sge.gfx.Color("black"))
                     sge.game.project_text(font, text, x, y,
-                                          color=sge.Color("white"),
+                                          color=sge.gfx.Color("white"),
                                           halign="center", valign="middle")
                     sge.game.refresh()
                 else:
@@ -1140,29 +1142,30 @@ class CreditsScreen(Level):
         with open(os.path.join(DATA, "credits.json"), 'r') as f:
             sections = json.load(f)
 
-        logo_section = sge.Object.create(self.width / 2, self.height,
-                                         sprite=logo_sprite, tangible=False)
+        logo_section = sge.dsp.Object.create(self.width / 2, self.height,
+                                             sprite=logo_sprite,
+                                             tangible=False)
         self.sections = [logo_section]
         for section in sections:
             if "title" in section:
-                head_sprite = sge.Sprite.from_text(
+                head_sprite = sge.gfx.Sprite.from_text(
                     font_big, section["title"], width=self.width,
-                    color=sge.Color("white"), halign="center")
+                    color=sge.gfx.Color("white"), halign="center")
                 x = self.width / 2
                 y = self.sections[-1].bbox_bottom + font_big.size * 3
-                head_section = sge.Object.create(x, y, sprite=head_sprite,
-                                                 tangible=False)
+                head_section = sge.dsp.Object.create(x, y, sprite=head_sprite,
+                                                     tangible=False)
                 self.sections.append(head_section)
 
             if "lines" in section:
                 for line in section["lines"]:
-                    list_sprite = sge.Sprite.from_text(
+                    list_sprite = sge.gfx.Sprite.from_text(
                         font, line, width=self.width - 2 * TILE_SIZE,
-                        color=sge.Color("white"), halign="center")
+                        color=sge.gfx.Color("white"), halign="center")
                     x = self.width / 2
                     y = self.sections[-1].bbox_bottom + font.size
-                    list_section = sge.Object.create(x, y, sprite=list_sprite,
-                                                     tangible=False)
+                    list_section = sge.dsp.Object.create(
+                        x, y, sprite=list_sprite, tangible=False)
                     self.sections.append(list_section)
 
         for obj in self.sections:
@@ -1187,7 +1190,7 @@ class CreditsScreen(Level):
             sge.game.start_room.start()
 
 
-class Worldmap(sge.Room):
+class Worldmap(sge.dsp.Room):
 
     """Handles worldmaps."""
 
@@ -1232,20 +1235,20 @@ class Worldmap(sge.Room):
 
         x += tuxdoll_sprite.width - tuxdoll_sprite.origin_x
         sge.game.project_text(font, text, x + 2, y + 2,
-                              color=sge.Color("black"), halign="left",
+                              color=sge.gfx.Color("black"), halign="left",
                               valign="middle")
-        sge.game.project_text(font, text, x, y, color=sge.Color("white"),
+        sge.game.project_text(font, text, x, y, color=sge.gfx.Color("white"),
                               halign="left", valign="middle")
 
         if self.level_text:
             x = sge.game.width / 2
             y = sge.game.height - font.size
             sge.game.project_text(font, self.level_text, x + 2, y + 2,
-                                  color=sge.Color("black"), halign="center",
-                                  valign="bottom")
+                                  color=sge.gfx.Color("black"),
+                                  halign="center", valign="bottom")
             sge.game.project_text(font, self.level_text, x, y,
-                                  color=sge.Color("white"), halign="center",
-                                  valign="bottom")
+                                  color=sge.gfx.Color("white"),
+                                  halign="center", valign="bottom")
 
         if self.level_tuxdoll_available:
             x = sge.game.width / 2
@@ -1409,7 +1412,7 @@ class SpikeBottom(HurtBottom, xsge_physics.Solid):
     pass
 
 
-class Death(sge.Object):
+class Death(sge.dsp.Object):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1417,7 +1420,7 @@ class Death(sge.Object):
         super(Death, self).__init__(*args, **kwargs)
 
 
-class LevelEnd(sge.Object):
+class LevelEnd(sge.dsp.Object):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("visible", False)
@@ -1640,8 +1643,8 @@ class Player(xsge_physics.Collider):
         sge.game.current_room.won = True
         sge.game.current_room.alarms["win_count_points"] = WIN_COUNT_START_TIME
         current_checkpoints[main_area] = None
-        sge.Music.clear_queue()
-        sge.Music.stop()
+        sge.snd.Music.clear_queue()
+        sge.snd.Music.stop()
         if music_enabled:
             level_win_music.play()
 
@@ -1675,7 +1678,7 @@ class Player(xsge_physics.Collider):
         if not NO_HUD:
             y = 0
             sge.game.project_text(font, self.name, 0, y,
-                                  color=sge.Color("white"))
+                                  color=sge.gfx.Color("white"))
 
             x = 0
             y += 36
@@ -1690,7 +1693,7 @@ class Player(xsge_physics.Collider):
             sge.game.project_sprite(coin_icon_sprite,
                                     coin_animation.image_index, 0, y)
             sge.game.project_text(font, "x{}".format(self.coins), 16, y,
-                                  color=sge.Color("white"))
+                                  color=sge.gfx.Color("white"))
 
     def get_grab_sprite(self, body_sprite, arms_sprite=None):
         if arms_sprite is None: arms_sprite = tux_arms_grab_sprite
@@ -1729,8 +1732,9 @@ class Player(xsge_physics.Collider):
                     height -= top
                 height = max(height, top + obj_sprite.height)
 
-                grab_sprite = sge.Sprite(width=width, height=height,
-                                         origin_x=origin_x, origin_y=origin_y)
+                grab_sprite = sge.gfx.Sprite(
+                    width=width, height=height, origin_x=origin_x,
+                    origin_y=origin_y)
                 for j in six.moves.range(1, body_sprite.frames):
                     grab_sprite.append_frame()
                 grab_sprite.draw_lock()
@@ -2245,7 +2249,7 @@ class Player(xsge_physics.Collider):
                     warp.warp(self)
 
 
-class DeadMan(sge.Object):
+class DeadMan(sge.dsp.Object):
 
     """Object which falls off the screen, then gets destroyed."""
 
@@ -2289,13 +2293,13 @@ class Corpse(xsge_physics.Collider):
             self.destroy()
 
 
-class Smoke(sge.Object):
+class Smoke(sge.dsp.Object):
 
     def event_animation_end(self):
         self.destroy()
 
 
-class InteractiveObject(sge.Object):
+class InteractiveObject(sge.dsp.Object):
 
     active_range = ENEMY_ACTIVE_RANGE
     killed_by_void = True
@@ -2689,7 +2693,7 @@ class FreezableObject(InteractiveObject):
 
     def freeze(self):
         if self.frozen_sprite is None:
-            self.frozen_sprite = sge.Sprite(
+            self.frozen_sprite = sge.gfx.Sprite(
                 width=self.sprite.width, height=self.sprite.height,
                 origin_x=self.sprite.origin_x, origin_y=self.sprite.origin_y,
                 fps=THAW_FPS, bbox_x=self.sprite.bbox_x,
@@ -2699,10 +2703,10 @@ class FreezableObject(InteractiveObject):
             self.frozen_sprite.draw_sprite(self.sprite, self.image_index,
                                            self.sprite.origin_x,
                                            self.sprite.origin_y)
-            colorizer = sge.Sprite(width=self.frozen_sprite.width,
-                                   height=self.frozen_sprite.height)
+            colorizer = sge.gfx.Sprite(width=self.frozen_sprite.width,
+                                       height=self.frozen_sprite.height)
             colorizer.draw_rectangle(0, 0, colorizer.width, colorizer.height,
-                                     fill=sge.Color((128, 128, 255)))
+                                     fill=sge.gfx.Color((128, 128, 255)))
             self.frozen_sprite.draw_sprite(colorizer, 0, 0, 0, frame=0,
                                            blend_mode=sge.BLEND_RGB_MULTIPLY)
 
@@ -2762,7 +2766,7 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = snowball_walk_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -2792,7 +2796,7 @@ class BouncingSnowball(WalkingSnowball):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = bouncing_snowball_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
     def stop_up(self):
         self.yvelocity = 0
@@ -2812,7 +2816,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def __init__(self, x, y, z=0, start_flat=False, **kwargs):
         self.start_flat = start_flat
         kwargs["sprite"] = iceblock_walk_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.flat = False
         self.dashing = False
         self.thrower = None
@@ -3034,7 +3038,7 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     def __init__(self, x, y, z=0, start_frozen=False, **kwargs):
         self.start_frozen = start_frozen
         kwargs["sprite"] = spiky_walk_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = spiky_iced_sprite
 
     def touch(self, other):
@@ -3071,7 +3075,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         self.start_frozen = start_frozen
         self.start_ticking = start_ticking
         kwargs["sprite"] = bomb_walk_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = bomb_iced_sprite
         self.ticking = False
         self.thrower = None
@@ -3234,7 +3238,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
     def __init__(self, x, y, z=0, start_frozen=False, **kwargs):
         self.start_frozen = start_frozen
         kwargs["sprite"] = jumpy_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = jumpy_iced_sprite
 
     def move(self):
@@ -3303,7 +3307,7 @@ class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = flying_snowball_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -3341,7 +3345,7 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
     def __init__(self, x, y, z=0, start_frozen=False, **kwargs):
         self.start_frozen = start_frozen
         kwargs["sprite"] = flying_spiky_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.frozen_sprite = flying_spiky_iced_sprite
 
     def touch(self, other):
@@ -3421,7 +3425,7 @@ class Icicle(InteractiveObject):
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = icicle_sprite
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.shake_counter = SHAKE_FRAME_TIME
 
     def do_shake(self):
@@ -3622,14 +3626,14 @@ class Krush(Crusher):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = krush_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
 
 class Krosh(Crusher):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["sprite"] = krosh_sprite
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
 
 class Circoflame(InteractiveObject):
@@ -3643,7 +3647,7 @@ class Circoflame(InteractiveObject):
         self.center = weakref.ref(center)
         kwargs["sprite"] = circoflame_sprite
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         other.hurt()
@@ -4107,7 +4111,7 @@ class FireFlower(FallingObject, WinPuffObject):
         kwargs["sprite"] = fire_flower_sprite
         x += fire_flower_sprite.origin_x
         y += fire_flower_sprite.origin_y
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.ammo = FIREBALL_AMMO
         self.light_sprite = fire_flower_light_sprite
 
@@ -4141,10 +4145,10 @@ class FireFlower(FallingObject, WinPuffObject):
 
                 self.sprite = fire_flower_sprite.copy()
                 lightness = int((self.ammo / FIREBALL_AMMO) * 255)
-                darkener = sge.Sprite(width=self.sprite.width,
-                                      height=self.sprite.height)
+                darkener = sge.gfx.Sprite(width=self.sprite.width,
+                                          height=self.sprite.height)
                 darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
-                                        fill=sge.Color([lightness] * 3))
+                                        fill=sge.gfx.Color([lightness] * 3))
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
 
@@ -4201,7 +4205,7 @@ class IceFlower(FallingObject, WinPuffObject):
         kwargs["sprite"] = ice_flower_sprite
         x += ice_flower_sprite.origin_x
         y += ice_flower_sprite.origin_y
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.ammo = ICEBULLET_AMMO
         self.light_sprite = ice_flower_light_sprite
 
@@ -4238,10 +4242,10 @@ class IceFlower(FallingObject, WinPuffObject):
 
                 self.sprite = ice_flower_sprite.copy()
                 lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
-                darkener = sge.Sprite(width=self.sprite.width,
-                                      height=self.sprite.height)
+                darkener = sge.gfx.Sprite(width=self.sprite.width,
+                                          height=self.sprite.height)
                 darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
-                                        fill=sge.Color([lightness] * 3))
+                                        fill=sge.gfx.Color([lightness] * 3))
                 self.sprite.draw_sprite(darkener, 0, 0, 0,
                                         blend_mode=sge.BLEND_RGB_MULTIPLY)
 
@@ -4452,7 +4456,7 @@ class TuxDoll(FallingObject):
         kwargs["sprite"] = tuxdoll_sprite
         x += tuxdoll_sprite.origin_x
         y += tuxdoll_sprite.origin_y
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
     def touch(self, other):
         play_sound(tuxdoll_sound, self.x, self.y)
@@ -4491,7 +4495,7 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
     def __init__(self, x, y, z=0, **kwargs):
         kwargs.setdefault("sprite", rock_sprite)
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.wall = RockWall(
             self.x, self.y, self.z, parent=self, sprite=self.sprite,
             visible=False, active=False, checks_collisions=False,
@@ -4605,7 +4609,7 @@ class FixedSpring(FallingObject):
         kwargs["sprite"] = self.normal_sprite
         x += self.normal_sprite.origin_x
         y += self.normal_sprite.origin_y
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
 
     def stomp(self, other):
         if other is not self.parent and other.yvelocity > 0:
@@ -4698,13 +4702,13 @@ class Lantern(FallingObject):
 
     def __init__(self, x, y, color="white", **kwargs):
         kwargs["sprite"] = lantern_sprite
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
-        c = sge.Color(color)
+        c = sge.gfx.Color(color)
         if c.red < 255 or c.green < 255 or c.blue < 255:
             self.light_sprite = light_sprite.copy()
-            blender = sge.Sprite(width=self.light_sprite.width,
-                                 height=self.light_sprite.height)
+            blender = sge.gfx.Sprite(width=self.light_sprite.width,
+                                     height=self.light_sprite.height)
             blender.draw_rectangle(0, 0, blender.width, blender.height, fill=c)
             self.light_sprite.draw_sprite(blender, 0, 0, 0,
                                           blend_mode=sge.BLEND_RGB_MULTIPLY)
@@ -4766,7 +4770,7 @@ class TimelineSwitcher(InteractiveObject):
         self.timeline = timeline
         kwargs["visible"] = False
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
     def touch(self, other):
         sge.game.current_room.load_timeline(self.timeline)
@@ -4777,7 +4781,7 @@ class Iceblock(xsge_physics.Solid):
 
     def __init__(self, x, y, **kwargs):
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
     def burn(self):
         play_sound(sizzle_sound, self.x, self.y)
@@ -4793,7 +4797,7 @@ class BossBlock(InteractiveObject):
     def __init__(self, x, y, ID=None, **kwargs):
         self.ID = ID
         kwargs["visible"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
     def event_create(self):
         super(BossBlock, self).event_create()
@@ -4820,14 +4824,14 @@ class BossBlock(InteractiveObject):
         pass
 
 
-class HittableBlock(sge.Object):
+class HittableBlock(sge.dsp.Object):
 
     hit_sprite = None
     hit_obj = None
 
     def __init__(self, x, y, **kwargs):
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
     def event_destroy(self):
         if self.hit_obj is not None:
@@ -4861,7 +4865,7 @@ class HittableBlock(sge.Object):
                 s = self.sprite
 
             self.visible = False
-            self.hit_obj = sge.Object.create(
+            self.hit_obj = sge.dsp.Object.create(
                 self.x, self.y, self.z, sprite=s, tangible=False,
                 yvelocity=get_jump_speed(BLOCK_HIT_HEIGHT),
                 yacceleration=GRAVITY, image_index=self.image_index,
@@ -4909,7 +4913,7 @@ class CoinBrick(Brick):
             kwargs["bbox_width"] = brick_sprite.bbox_width
             kwargs["bbox_height"] = brick_sprite.bbox_height
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
     def event_alarm(self, alarm_id):
         if alarm_id == "decay":
@@ -4945,7 +4949,7 @@ class ItemBlock(HittableBlock, xsge_physics.Solid):
             kwargs["bbox_width"] = bonus_full_sprite.bbox_width
             kwargs["bbox_height"] = bonus_full_sprite.bbox_height
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
         self.hit_sprite = bonus_empty_sprite
         self.item = item
 
@@ -4980,7 +4984,7 @@ class HiddenItemBlock(HittableBlock):
         kwargs["bbox_width"] = bonus_full_sprite.bbox_width
         kwargs["bbox_height"] = bonus_full_sprite.bbox_height
         kwargs["checks_collisions"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
         self.item = item
 
     def hit(self, other):
@@ -5005,7 +5009,7 @@ class ThinIce(xsge_physics.Solid):
         kwargs["sprite"] = thin_ice_sprite
         kwargs["checks_collisions"] = False
         kwargs["image_fps"] = 0
-        sge.Object.__init__(self, x, y, z, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
         self.permanent = permanent
         self.crack_time = 0
         self.freeze_time = 0
@@ -5084,7 +5088,7 @@ class GoalTop(xsge_tmx.Decoration):
         self.sprite = goal_top_sprite
 
 
-class Coin(sge.Object):
+class Coin(sge.dsp.Object):
 
     def __init__(self, x, y, **kwargs):
         kwargs["sprite"] = coin_sprite
@@ -5102,12 +5106,12 @@ class Coin(sge.Object):
             other.coins += 1
 
 
-class CoinCollect(sge.Object):
+class CoinCollect(sge.dsp.Object):
 
     def __init__(self, x, y, **kwargs):
         kwargs["sprite"] = coin_sprite
         kwargs["tangible"] = False
-        sge.Object.__init__(self, x, y, **kwargs)
+        sge.dsp.Object.__init__(self, x, y, **kwargs)
 
     def event_create(self):
         play_sound(coin_sound, self.x, self.y)
@@ -5124,7 +5128,7 @@ class CoinCollect(sge.Object):
             self.destroy()
 
 
-class Spawn(sge.Object):
+class Spawn(sge.dsp.Object):
 
     def __init__(self, x, y, spawn_id=None, **kwargs):
         kwargs["visible"] = False
@@ -5178,7 +5182,7 @@ class Bell(Checkpoint):
         play_sound(bell_sound, self.x, self.y)
 
 
-class Door(sge.Object):
+class Door(sge.dsp.Object):
 
     def __init__(self, x, y, dest=None, spawn_id=None, **kwargs):
         y += 64
@@ -5625,7 +5629,7 @@ class CircoflamePath(xsge_path.Path):
         self.destroy()
 
 
-class MapPlayer(sge.Object):
+class MapPlayer(sge.dsp.Object):
 
     moving = False
 
@@ -5777,7 +5781,7 @@ class MapPlayer(sge.Object):
         self.moving = False
 
 
-class MapSpace(sge.Object):
+class MapSpace(sge.dsp.Object):
 
     def __init__(self, x, y, level=None, level_spawn=None, ID=None, free=False,
                  **kwargs):
@@ -6069,7 +6073,7 @@ class MapPath(xsge_path.Path):
         save_game()
 
 
-class MapWater(sge.Object):
+class MapWater(sge.dsp.Object):
 
     def __init__(self, x, y, **kwargs):
         kwargs["sprite"] = worldmap_water_sprite
@@ -6086,8 +6090,9 @@ class Menu(xsge_gui.MenuWindow):
         if cls.items:
             self = cls.from_text(
                 gui_handler, sge.game.width / 2, sge.game.height * 2 / 3,
-                cls.items, font_normal=font, color_normal=sge.Color("white"),
-                color_selected=sge.Color((0, 128, 255)),
+                cls.items, font_normal=font,
+                color_normal=sge.gfx.Color("white"),
+                color_selected=sge.gfx.Color((0, 128, 255)),
                 background_color=menu_color, margin=9, halign="center",
                 valign="middle")
             default %= len(self.widgets)
@@ -6589,8 +6594,9 @@ class ModalMenu(xsge_gui.MenuDialog):
         if cls.items:
             self = cls.from_text(
                 gui_handler, sge.game.width / 2, sge.game.height / 2,
-                cls.items, font_normal=font, color_normal=sge.Color("white"),
-                color_selected=sge.Color((0, 128, 255)),
+                cls.items, font_normal=font,
+                color_normal=sge.gfx.Color("white"),
+                color_selected=sge.gfx.Color((0, 128, 255)),
                 background_color=menu_color, margin=9, halign="center",
                 valign="middle")
             default %= len(self.widgets)
@@ -6607,7 +6613,7 @@ class PauseMenu(ModalMenu):
     items = ["Continue", "Quit"]
 
     def event_choose(self):
-        sge.Music.unpause()
+        sge.snd.Music.unpause()
 
         if self.choice == 1:
             play_sound(kill_sound)
@@ -6656,7 +6662,7 @@ class DialogBox(xsge_gui.Dialog):
 
         self.label = DialogLabel(self, label_x, label_y, 0, text, font=font,
                                  width=label_w, height=label_h,
-                                 color=sge.Color("white"), rate=rate)
+                                 color=sge.gfx.Color("white"), rate=rate)
 
         if portrait is not None:
             xsge_gui.Widget(self, 8, 8, 0, sprite=portrait)
@@ -6759,7 +6765,7 @@ def wait_key():
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
-                              color=sge.Color("white"),
+                              color=sge.gfx.Color("white"),
                               halign="center", valign="middle")
 
         # Refresh
@@ -6797,7 +6803,7 @@ def wait_js():
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
-                              color=sge.Color("white"),
+                              color=sge.gfx.Color("white"),
                               halign="center", valign="middle")
 
         # Refresh
@@ -6874,10 +6880,11 @@ def play_music(music, force_restart=False):
         music_object = loaded_music.get(music)
         if music_object is None:
             try:
-                music_object = sge.Music(os.path.join(DATA, "music", music))
+                music_object = sge.snd.Music(os.path.join(DATA, "music",
+                                                          music))
             except IOError:
-                sge.Music.clear_queue()
-                sge.Music.stop()
+                sge.snd.Music.clear_queue()
+                sge.snd.Music.stop()
                 return
             else:
                 loaded_music[music] = music_object
@@ -6887,8 +6894,8 @@ def play_music(music, force_restart=False):
         music_start_object = loaded_music.get(music_start)
         if music_start_object is None:
             try:
-                music_start_object = sge.Music(os.path.join(DATA, "music",
-                                                            music_start))
+                music_start_object = sge.snd.Music(os.path.join(DATA, "music",
+                                                                music_start))
             except IOError:
                 music_start_object = music_object
             else:
@@ -6896,13 +6903,13 @@ def play_music(music, force_restart=False):
 
         if (force_restart or
                 (not music_object.playing and not music_start_object.playing)):
-            sge.Music.clear_queue()
-            sge.Music.stop()
+            sge.snd.Music.clear_queue()
+            sge.snd.Music.stop()
             music_start_object.play()
             music_object.queue(loops=None)
     else:
-        sge.Music.clear_queue()
-        sge.Music.stop()
+        sge.snd.Music.clear_queue()
+        sge.snd.Music.stop()
 
 
 def load_levelset(fname, preload_start=0):
@@ -6916,7 +6923,7 @@ def load_levelset(fname, preload_start=0):
     global main_area
 
     def do_refresh():
-        # Refresh the screen, return whether the user pressed Esc.
+        # Refresh the screen, return whether the user pressed a key.
         sge.game.pump_input()
         while sge.game.input_events:
             event = sge.game.input_events.pop(0)
@@ -6950,14 +6957,14 @@ def load_levelset(fname, preload_start=0):
         margin = 16
         x = SCREEN_SIZE[0] / 2 - w / 2
         y = SCREEN_SIZE[1] / 2 - h / 2
-        c = sge.Color("black")
+        c = sge.gfx.Color("black")
         window = xsge_gui.Window(gui_handler, x, y, w, h,
                                  background_color=c, border=False)
 
         x = margin
         y = margin
         text = "Preloading levels...\n\n(press any key to skip)"
-        c = sge.Color("white")
+        c = sge.gfx.Color("white")
         xsge_gui.Label(
             window, x, y, 1, text, font=font, width=(w - 2 * margin),
             height=(h - 3 * margin -
@@ -7244,48 +7251,48 @@ print("Initializing GUI system...")
 xsge_gui.init()
 gui_handler = xsge_gui.Handler()
 
-menu_color = sge.Color((128, 128, 255, 192))
+menu_color = sge.gfx.Color((128, 128, 255, 192))
 
 # Load sprites
 print("Loading images...")
 d = os.path.join(DATA, "images", "objects", "tux")
-tux_body_stand_sprite = sge.Sprite(
+tux_body_stand_sprite = sge.gfx.Sprite(
     "tux_body_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_stand_sprite = sge.Sprite(
+tux_arms_stand_sprite = sge.gfx.Sprite(
     "tux_arms_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_idle_sprite = sge.Sprite(
+tux_body_idle_sprite = sge.gfx.Sprite(
     "tux_body_idle", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_idle_sprite = sge.Sprite(
+tux_arms_idle_sprite = sge.gfx.Sprite(
     "tux_arms_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_walk_sprite = sge.Sprite(
+tux_body_walk_sprite = sge.gfx.Sprite(
     "tux_body_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_walk_sprite = sge.Sprite(
+tux_arms_walk_sprite = sge.gfx.Sprite(
     "tux_arms_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_run_sprite = sge.Sprite(
+tux_body_run_sprite = sge.gfx.Sprite(
     "tux_body_run", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_run_sprite = sge.Sprite(
+tux_arms_run_sprite = sge.gfx.Sprite(
     "tux_arms_run", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_skid_sprite = sge.Sprite(
+tux_body_skid_sprite = sge.gfx.Sprite(
     "tux_body_skid", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_skid_sprite = sge.Sprite(
+tux_arms_skid_sprite = sge.gfx.Sprite(
     "tux_arms_skid", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_jump_sprite = sge.Sprite(
+tux_body_jump_sprite = sge.gfx.Sprite(
     "tux_body_jump", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_jump_sprite = sge.Sprite(
+tux_arms_jump_sprite = sge.gfx.Sprite(
     "tux_arms_jump", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_fall_sprite = tux_body_jump_sprite.copy()
-tux_arms_fall_sprite = sge.Sprite(
+tux_arms_fall_sprite = sge.gfx.Sprite(
     "tux_arms_fall", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_kick_sprite = sge.Sprite(
+tux_body_kick_sprite = sge.gfx.Sprite(
     "tux_body_kick", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_kick_sprite = sge.Sprite(
+tux_arms_kick_sprite = sge.gfx.Sprite(
     "tux_arms_kick", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_grab_sprite = sge.Sprite(
+tux_arms_grab_sprite = sge.gfx.Sprite(
     "tux_arms_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_skid_grab_sprite = sge.Sprite(
+tux_arms_skid_grab_sprite = sge.gfx.Sprite(
     "tux_arms_skid_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_die_sprite = sge.Sprite("tux_die", d, origin_x=29, origin_y=11, fps=8)
-tux_offscreen_sprite = sge.Sprite("tux_offscreen", d, origin_x=16)
+tux_die_sprite = sge.gfx.Sprite("tux_die", d, origin_x=29, origin_y=11, fps=8)
+tux_offscreen_sprite = sge.gfx.Sprite("tux_offscreen", d, origin_x=16)
 
 tux_stand_sprite = tux_body_stand_sprite.copy()
 tux_idle_sprite = tux_body_idle_sprite.copy()
@@ -7308,262 +7315,264 @@ for bs, a in [(tux_stand_sprite, tux_arms_stand_sprite),
         bs.draw_sprite(a, i, bs.origin_x, bs.origin_y, i)
 
 d = os.path.join(DATA, "images", "objects", "enemies")
-snowball_walk_sprite = sge.Sprite("snowball", d, origin_x=19, origin_y=4,
-                                  fps=8, bbox_x=-13, bbox_y=0,
-                                  bbox_width=26, bbox_height=32)
-bouncing_snowball_sprite = sge.Sprite("bouncing_snowball", d, origin_x=17,
-                                      origin_y=0, fps=8, bbox_x=-13, bbox_y=0,
+snowball_walk_sprite = sge.gfx.Sprite("snowball", d, origin_x=19, origin_y=4,
+                                      fps=8, bbox_x=-13, bbox_y=0,
                                       bbox_width=26, bbox_height=32)
-snowball_squished_sprite = sge.Sprite("snowball_squished", d, origin_x=17,
-                                      origin_y=-19, bbox_x=-13, bbox_y=19,
-                                      bbox_width=26, bbox_height=13)
-iceblock_walk_sprite = sge.Sprite("iceblock", d, origin_x=18, origin_y=6,
-                                  fps=10, bbox_x=-13, bbox_y=1, bbox_width=25,
-                                  bbox_height=31)
-iceblock_flat_sprite = sge.Sprite("iceblock_flat", d, origin_x=18, origin_y=3,
-                                  bbox_x=-16, bbox_y=4, bbox_width=31,
-                                  bbox_height=28)
-spiky_walk_sprite = sge.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
-                               bbox_x=-13, bbox_y=0, bbox_width=26,
-                               bbox_height=32)
-spiky_iced_sprite = sge.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
-                               fps=THAW_FPS, bbox_x=-13, bbox_y=0,
-                               bbox_width=26, bbox_height=32)
+bouncing_snowball_sprite = sge.gfx.Sprite(
+    "bouncing_snowball", d, origin_x=17, origin_y=0, fps=8, bbox_x=-13,
+    bbox_y=0, bbox_width=26, bbox_height=32)
+snowball_squished_sprite = sge.gfx.Sprite("snowball_squished", d, origin_x=17,
+                                          origin_y=-19, bbox_x=-13, bbox_y=19,
+                                          bbox_width=26, bbox_height=13)
+iceblock_walk_sprite = sge.gfx.Sprite(
+    "iceblock", d, origin_x=18, origin_y=6, fps=10, bbox_x=-13, bbox_y=1,
+    bbox_width=25, bbox_height=31)
+iceblock_flat_sprite = sge.gfx.Sprite("iceblock_flat", d, origin_x=18,
+                                      origin_y=3, bbox_x=-16, bbox_y=4,
+                                      bbox_width=31, bbox_height=28)
+spiky_walk_sprite = sge.gfx.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
+                                   bbox_x=-13, bbox_y=0, bbox_width=26,
+                                   bbox_height=32)
+spiky_iced_sprite = sge.gfx.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
+                                   fps=THAW_FPS, bbox_x=-13, bbox_y=0,
+                                   bbox_width=26, bbox_height=32)
 spiky_iced_sprite.append_frame()
 spiky_iced_sprite.draw_sprite(spiky_walk_sprite, 1, spiky_walk_sprite.origin_x,
                               spiky_walk_sprite.origin_y, frame=1)
-bomb_walk_sprite = sge.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
-                              bbox_x=-13, bbox_y=0, bbox_width=26,
-                              bbox_height=32)
-bomb_iced_sprite = sge.Sprite("bomb_iced", d, origin_x=21, origin_y=8,
-                              fps=THAW_FPS, bbox_x=-13, bbox_y=0,
-                              bbox_width=26, bbox_height=32)
+bomb_walk_sprite = sge.gfx.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
+                                  bbox_x=-13, bbox_y=0, bbox_width=26,
+                                  bbox_height=32)
+bomb_iced_sprite = sge.gfx.Sprite("bomb_iced", d, origin_x=21, origin_y=8,
+                                  fps=THAW_FPS, bbox_x=-13, bbox_y=0,
+                                  bbox_width=26, bbox_height=32)
 bomb_iced_sprite.append_frame()
 bomb_iced_sprite.draw_sprite(bomb_walk_sprite, 1, bomb_iced_sprite.origin_x,
                              bomb_iced_sprite.origin_y, frame=1)
-bomb_ticking_sprite = sge.Sprite("bomb_ticking", d, origin_x=21, origin_y=5,
-                                 bbox_x=-13, bbox_y=3, bbox_width=26,
-                                 bbox_height=29)
+bomb_ticking_sprite = sge.gfx.Sprite(
+    "bomb_ticking", d, origin_x=21, origin_y=5, bbox_x=-13, bbox_y=3,
+    bbox_width=26, bbox_height=29)
 bomb_ticking_sprite.fps = bomb_ticking_sprite.frames / BOMB_TICK_TIME
-jumpy_sprite = sge.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-16,
-                          bbox_y=0, bbox_width=32, bbox_height=32)
-jumpy_bounce_sprite = sge.Sprite("jumpy_bounce", d, origin_x=24, origin_y=13,
-                                 bbox_x=-16, bbox_y=0, bbox_width=32,
-                                 bbox_height=32)
-jumpy_iced_sprite = sge.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
-                               fps=THAW_FPS, bbox_x=-16, bbox_y=0,
-                               bbox_width=32, bbox_height=32)
+jumpy_sprite = sge.gfx.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-16,
+                              bbox_y=0, bbox_width=32, bbox_height=32)
+jumpy_bounce_sprite = sge.gfx.Sprite(
+    "jumpy_bounce", d, origin_x=24, origin_y=13, bbox_x=-16, bbox_y=0,
+    bbox_width=32, bbox_height=32)
+jumpy_iced_sprite = sge.gfx.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
+                                   fps=THAW_FPS, bbox_x=-16, bbox_y=0,
+                                   bbox_width=32, bbox_height=32)
 jumpy_iced_sprite.append_frame()
 jumpy_iced_sprite.draw_sprite(jumpy_sprite, 0, jumpy_sprite.origin_x,
                               jumpy_sprite.origin_y, frame=1)
-flying_snowball_sprite = sge.Sprite("flying_snowball", d, origin_x=20,
-                                    origin_y=11, fps=15, bbox_x=-13, bbox_y=0,
-                                    bbox_width=26, bbox_height=32)
-flying_snowball_squished_sprite = sge.Sprite(
+flying_snowball_sprite = sge.gfx.Sprite(
+    "flying_snowball", d, origin_x=20, origin_y=11, fps=15, bbox_x=-13,
+    bbox_y=0, bbox_width=26, bbox_height=32)
+flying_snowball_squished_sprite = sge.gfx.Sprite(
     "flying_snowball_squished", d, origin_x=20, origin_y=-11, bbox_x=-13,
     bbox_y=11, bbox_width=26, bbox_height=21)
-flying_spiky_sprite = sge.Sprite("flying_spiky", d, origin_x=24,
-                                 origin_y=14, fps=15, bbox_x=-13, bbox_y=0,
-                                 bbox_width=26, bbox_height=32)
-flying_spiky_iced_sprite = sge.Sprite("flying_spiky_iced", d, origin_x=24,
-                                      origin_y=14, fps=THAW_FPS, bbox_x=-13,
-                                      bbox_y=0, bbox_width=26, bbox_height=32)
+flying_spiky_sprite = sge.gfx.Sprite("flying_spiky", d, origin_x=24,
+                                     origin_y=14, fps=15, bbox_x=-13, bbox_y=0,
+                                     bbox_width=26, bbox_height=32)
+flying_spiky_iced_sprite = sge.gfx.Sprite(
+    "flying_spiky_iced", d, origin_x=24, origin_y=14, fps=THAW_FPS, bbox_x=-13,
+    bbox_y=0, bbox_width=26, bbox_height=32)
 flying_spiky_iced_sprite.append_frame()
 flying_spiky_iced_sprite.draw_sprite(flying_spiky_sprite, 0,
                                      flying_spiky_sprite.origin_x,
                                      flying_spiky_sprite.origin_y, frame=1)
-icicle_sprite = sge.Sprite("icicle", d, bbox_x=0, bbox_y=0, bbox_width=32,
-                           bbox_height=48)
-icicle_broken_sprite = sge.Sprite("icicle_broken", d, bbox_x=0, bbox_y=32,
-                                  bbox_width=32, bbox_height=16)
-krush_sprite = sge.Sprite("krush", d, origin_x=1, bbox_x=0, bbox_y=0,
-                          bbox_width=64, bbox_height=64)
-krosh_sprite = sge.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,
-                          bbox_width=128, bbox_height=128)
-circoflame_sprite = sge.Sprite("circoflame", d, origin_x=16, origin_y=16,
-                               fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
-                               bbox_height=16)
-snowman_stand_sprite = sge.Sprite("snowman_stand", d, origin_x=28, origin_y=43,
-                                  bbox_x=-17, bbox_y=-40, bbox_width=34,
-                                  bbox_height=72)
-snowman_walk_sprite = sge.Sprite("snowman_walk", d, origin_x=28, origin_y=43,
-                                 bbox_x=-17, bbox_y=-40, bbox_width=34,
-                                 bbox_height=72)
-snowman_jump_sprite = sge.Sprite("snowman_jump", d, origin_x=28, origin_y=43,
-                                 bbox_x=-17, bbox_y=-40, bbox_width=34,
-                                 bbox_height=72)
-snowman_hurt_walk_sprite = sge.Sprite("snowman_hurt_walk", d, origin_x=28,
-                                      origin_y=43, bbox_x=-17, bbox_y=-8,
-                                      bbox_width=34, bbox_height=40)
-snowman_hurt_jump_sprite = sge.Sprite("snowman_hurt_jump", d, origin_x=28,
-                                      origin_y=43, bbox_x=-17, bbox_y=-8,
-                                      bbox_width=34, bbox_height=40)
-raccot_stand_sprite = sge.Sprite("raccot_stand", d, origin_x=41, origin_y=74,
-                                 bbox_x=-30, bbox_y=-64, bbox_width=60,
-                                 bbox_height=96)
-raccot_walk_sprite = sge.Sprite("raccot_walk", d, origin_x=54, origin_y=76,
-                                bbox_x=-30, bbox_y=-64, bbox_width=60,
-                                bbox_height=96)
-raccot_stomp_sprite = sge.Sprite("raccot_stomp", d, origin_x=41, origin_y=77,
-                                 bbox_x=-30, bbox_y=-64, bbox_width=60,
-                                 bbox_height=96)
-raccot_hop_sprite = sge.Sprite("raccot_hop", d, origin_x=41, origin_y=74,
-                               bbox_x=-30, bbox_y=-64, bbox_width=60,
-                               bbox_height=96)
-raccot_jump_sprite = sge.Sprite("raccot_jump", d, origin_x=60, origin_y=72,
-                                bbox_x=-30, bbox_y=-64, bbox_width=60,
-                                bbox_height=96)
+icicle_sprite = sge.gfx.Sprite("icicle", d, bbox_x=0, bbox_y=0, bbox_width=32,
+                               bbox_height=48)
+icicle_broken_sprite = sge.gfx.Sprite("icicle_broken", d, bbox_x=0, bbox_y=32,
+                                      bbox_width=32, bbox_height=16)
+krush_sprite = sge.gfx.Sprite("krush", d, origin_x=1, bbox_x=0, bbox_y=0,
+                              bbox_width=64, bbox_height=64)
+krosh_sprite = sge.gfx.Sprite("krosh", d, origin_x=2, bbox_x=0, bbox_y=0,
+                              bbox_width=128, bbox_height=128)
+circoflame_sprite = sge.gfx.Sprite("circoflame", d, origin_x=16, origin_y=16,
+                                   fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
+                                   bbox_height=16)
+snowman_stand_sprite = sge.gfx.Sprite("snowman_stand", d, origin_x=28,
+                                      origin_y=43, bbox_x=-17, bbox_y=-40,
+                                      bbox_width=34, bbox_height=72)
+snowman_walk_sprite = sge.gfx.Sprite("snowman_walk", d, origin_x=28,
+                                     origin_y=43, bbox_x=-17, bbox_y=-40,
+                                     bbox_width=34, bbox_height=72)
+snowman_jump_sprite = sge.gfx.Sprite("snowman_jump", d, origin_x=28,
+                                     origin_y=43, bbox_x=-17, bbox_y=-40,
+                                     bbox_width=34, bbox_height=72)
+snowman_hurt_walk_sprite = sge.gfx.Sprite("snowman_hurt_walk", d, origin_x=28,
+                                          origin_y=43, bbox_x=-17, bbox_y=-8,
+                                          bbox_width=34, bbox_height=40)
+snowman_hurt_jump_sprite = sge.gfx.Sprite("snowman_hurt_jump", d, origin_x=28,
+                                          origin_y=43, bbox_x=-17, bbox_y=-8,
+                                          bbox_width=34, bbox_height=40)
+raccot_stand_sprite = sge.gfx.Sprite("raccot_stand", d, origin_x=41,
+                                     origin_y=74, bbox_x=-30, bbox_y=-64,
+                                     bbox_width=60, bbox_height=96)
+raccot_walk_sprite = sge.gfx.Sprite("raccot_walk", d, origin_x=54, origin_y=76,
+                                    bbox_x=-30, bbox_y=-64, bbox_width=60,
+                                    bbox_height=96)
+raccot_stomp_sprite = sge.gfx.Sprite("raccot_stomp", d, origin_x=41,
+                                     origin_y=77, bbox_x=-30, bbox_y=-64,
+                                     bbox_width=60, bbox_height=96)
+raccot_hop_sprite = sge.gfx.Sprite("raccot_hop", d, origin_x=41, origin_y=74,
+                                   bbox_x=-30, bbox_y=-64, bbox_width=60,
+                                   bbox_height=96)
+raccot_jump_sprite = sge.gfx.Sprite("raccot_jump", d, origin_x=60, origin_y=72,
+                                    bbox_x=-30, bbox_y=-64, bbox_width=60,
+                                    bbox_height=96)
 
 d = os.path.join(DATA, "images", "objects", "bonus")
-bonus_empty_sprite = sge.Sprite("bonus_empty", d)
-bonus_full_sprite = sge.Sprite("bonus_full", d, fps=8)
-brick_sprite = sge.Sprite("brick", d)
-brick_shard_sprite = sge.Sprite("brick_shard", d)
-coin_sprite = sge.Sprite("coin", d, fps=8)
-fire_flower_sprite = sge.Sprite("fire_flower", d, origin_x=16, origin_y=16,
-                                fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
-                                bbox_height=24)
-ice_flower_sprite = sge.Sprite("ice_flower", d, origin_x=16, origin_y=16,
-                               fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
-                               bbox_height=24)
-tuxdoll_sprite = sge.Sprite("tuxdoll", d, origin_x=16, origin_y=16, bbox_x=-16,
-                            bbox_y=-16, bbox_width=32, bbox_height=32)
+bonus_empty_sprite = sge.gfx.Sprite("bonus_empty", d)
+bonus_full_sprite = sge.gfx.Sprite("bonus_full", d, fps=8)
+brick_sprite = sge.gfx.Sprite("brick", d)
+brick_shard_sprite = sge.gfx.Sprite("brick_shard", d)
+coin_sprite = sge.gfx.Sprite("coin", d, fps=8)
+fire_flower_sprite = sge.gfx.Sprite("fire_flower", d, origin_x=16, origin_y=16,
+                                    fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
+                                    bbox_height=24)
+ice_flower_sprite = sge.gfx.Sprite("ice_flower", d, origin_x=16, origin_y=16,
+                                   fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
+                                   bbox_height=24)
+tuxdoll_sprite = sge.gfx.Sprite("tuxdoll", d, origin_x=16, origin_y=16,
+                                bbox_x=-16, bbox_y=-16, bbox_width=32,
+                                bbox_height=32)
 
 tuxdoll_transparent_sprite = tuxdoll_sprite.copy()
-eraser = sge.Sprite(width=tuxdoll_transparent_sprite.width,
-                    height=tuxdoll_transparent_sprite.height)
+eraser = sge.gfx.Sprite(width=tuxdoll_transparent_sprite.width,
+                        height=tuxdoll_transparent_sprite.height)
 eraser.draw_rectangle(0, 0, eraser.width, eraser.height,
-                      fill=sge.Color((0, 0, 0, 128)))
+                      fill=sge.gfx.Color((0, 0, 0, 128)))
 tuxdoll_transparent_sprite.draw_sprite(eraser, 0, 0, 0,
                                        blend_mode=sge.BLEND_RGBA_SUBTRACT)
 del eraser
 
 tuxdoll_shadow_sprite = tuxdoll_sprite.copy()
-darkener = sge.Sprite(width=tuxdoll_shadow_sprite.width,
-                      height=tuxdoll_shadow_sprite.height)
+darkener = sge.gfx.Sprite(width=tuxdoll_shadow_sprite.width,
+                          height=tuxdoll_shadow_sprite.height)
 darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
-                        fill=sge.Color("black"))
+                        fill=sge.gfx.Color("black"))
 tuxdoll_shadow_sprite.draw_sprite(darkener, 0, 0, 0,
                                   blend_mode=sge.BLEND_RGB_MINIMUM)
 del darkener
 
 d = os.path.join(DATA, "images", "objects", "decoration")
-lava_body_sprite = sge.Sprite("lava_body", d, transparent=False, fps=5)
-lava_surface_sprite = sge.Sprite("lava_surface", d, fps=5)
-goal_sprite = sge.Sprite("goal", d, fps=8)
-goal_top_sprite = sge.Sprite("goal_top", d, fps=8)
+lava_body_sprite = sge.gfx.Sprite("lava_body", d, transparent=False, fps=5)
+lava_surface_sprite = sge.gfx.Sprite("lava_surface", d, fps=5)
+goal_sprite = sge.gfx.Sprite("goal", d, fps=8)
+goal_top_sprite = sge.gfx.Sprite("goal_top", d, fps=8)
 
 d = os.path.join(DATA, "images", "objects", "spring")
-fixed_spring_sprite = sge.Sprite(
+fixed_spring_sprite = sge.gfx.Sprite(
     "fixed_spring", d, origin_x=16, origin_y=16, bbox_x=-16, bbox_y=-7,
     bbox_width=32, bbox_height=23)
-fixed_spring_expand_sprite = sge.Sprite(
+fixed_spring_expand_sprite = sge.gfx.Sprite(
     "fixed_spring_expand", d, origin_x=16, origin_y=16, fps=16, bbox_x=-16,
     bbox_y=-7, bbox_width=32, bbox_height=23)
-spring_sprite = sge.Sprite("spring", d, origin_x=16, origin_y=16, bbox_x=-16,
-                           bbox_y=-7, bbox_width=32, bbox_height=23)
-spring_expand_sprite = sge.Sprite(
+spring_sprite = sge.gfx.Sprite("spring", d, origin_x=16, origin_y=16,
+                               bbox_x=-16, bbox_y=-7, bbox_width=32,
+                               bbox_height=23)
+spring_expand_sprite = sge.gfx.Sprite(
     "spring_expand", d, origin_x=16, origin_y=16, fps=16, bbox_x=-16,
     bbox_y=-7, bbox_width=32, bbox_height=23)
-rusty_spring_sprite = sge.Sprite(
+rusty_spring_sprite = sge.gfx.Sprite(
     "rusty_spring", d, origin_x=16, origin_y=16, bbox_x=-16, bbox_y=-7,
     bbox_width=32, bbox_height=23)
-rusty_spring_expand_sprite = sge.Sprite(
+rusty_spring_expand_sprite = sge.gfx.Sprite(
     "rusty_spring_expand", d, origin_x=16, origin_y=26, fps=16, bbox_x=-16,
     bbox_y=-7, bbox_width=32, bbox_height=23)
-rusty_spring_dead_sprite = sge.Sprite(
+rusty_spring_dead_sprite = sge.gfx.Sprite(
     "rusty_spring_dead", d, origin_x=16, origin_y=26, bbox_x=-16, bbox_y=-7,
     bbox_width=32, bbox_height=23)
 
 d = os.path.join(DATA, "images", "objects", "misc")
-platform_sprite = sge.Sprite("platform", d)
-rock_sprite = sge.Sprite("rock", d)
-lantern_sprite = sge.Sprite("lantern", d, origin_x=20, origin_y=9, fps=10,
-                            bbox_x=-16, bbox_y=0, bbox_width=32,
-                            bbox_height=32)
-iceblock_sprite = sge.Sprite("iceblock", d)
-iceblock_melt_sprite = sge.Sprite("iceblock_melt", d, fps=30)
-thin_ice_sprite = sge.Sprite("thin_ice", d, fps=0)
-thin_ice_break_sprite = sge.Sprite("thin_ice_break", d, fps=8)
-boss_block_sprite = sge.Sprite("boss_block", d, transparent=False, origin_x=16,
-                               origin_y=16)
-bell_sprite = sge.Sprite("bell", d, origin_x=-1, fps=10, bbox_x=0,
-                         bbox_width=32, bbox_height=32)
-door_sprite = sge.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
-door_back_sprite = sge.Sprite("door_back", d, origin_x=21, origin_y=41)
+platform_sprite = sge.gfx.Sprite("platform", d)
+rock_sprite = sge.gfx.Sprite("rock", d)
+lantern_sprite = sge.gfx.Sprite("lantern", d, origin_x=20, origin_y=9, fps=10,
+                                bbox_x=-16, bbox_y=0, bbox_width=32,
+                                bbox_height=32)
+iceblock_sprite = sge.gfx.Sprite("iceblock", d)
+iceblock_melt_sprite = sge.gfx.Sprite("iceblock_melt", d, fps=30)
+thin_ice_sprite = sge.gfx.Sprite("thin_ice", d, fps=0)
+thin_ice_break_sprite = sge.gfx.Sprite("thin_ice_break", d, fps=8)
+boss_block_sprite = sge.gfx.Sprite("boss_block", d, transparent=False,
+                                   origin_x=16, origin_y=16)
+bell_sprite = sge.gfx.Sprite("bell", d, origin_x=-1, fps=10, bbox_x=0,
+                             bbox_width=32, bbox_height=32)
+door_sprite = sge.gfx.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
+door_back_sprite = sge.gfx.Sprite("door_back", d, origin_x=21, origin_y=41)
 
 d = os.path.join(DATA, "images", "portraits")
-portrait_tux = sge.Sprite("portrait_tux", d)
-portrait_snowman = sge.Sprite("portrait_snowman", d)
+portrait_tux = sge.gfx.Sprite("portrait_tux", d)
+portrait_snowman = sge.gfx.Sprite("portrait_snowman", d)
 
 d = os.path.join(DATA, "images", "misc")
-logo_sprite = sge.Sprite("logo", d, origin_x=140)
-fire_bullet_sprite = sge.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
-                                fps=8, bbox_x=-8, bbox_width=16)
-ice_bullet_sprite = sge.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
-                               bbox_width=32)
-ice_bullet_break_sprite = sge.Sprite("ice_bullet_break", d, origin_x=8,
-                                     origin_y=7, fps=24)
-explosion_sprite = sge.Sprite("explosion", d, origin_x=32, origin_y=19, fps=15,
-                              bbox_x=-28, bbox_y=-11, bbox_width=56,
-                              bbox_height=48)
-smoke_puff_sprite = sge.Sprite("smoke_puff", d, width=48, height=48,
-                               origin_x=24, origin_y=24, fps=24)
-smoke_plume_sprite = sge.Sprite("smoke_plume", d, width=64, height=64,
-                                origin_x=32, origin_y=32, fps=30)
-fireball_smoke_sprite = sge.Sprite("smoke_plume", d, width=16, height=16,
-                                   origin_x=8, origin_y=8, fps=30)
-item_spawn_cloud_sprite = sge.Sprite("smoke_plume", d, width=80, height=80,
-                                     origin_x=40, origin_y=40, fps=30)
+logo_sprite = sge.gfx.Sprite("logo", d, origin_x=140)
+fire_bullet_sprite = sge.gfx.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
+                                    fps=8, bbox_x=-8, bbox_width=16)
+ice_bullet_sprite = sge.gfx.Sprite("ice_bullet", d, origin_x=8, origin_y=7,
+                                   bbox_width=32)
+ice_bullet_break_sprite = sge.gfx.Sprite("ice_bullet_break", d, origin_x=8,
+                                         origin_y=7, fps=24)
+explosion_sprite = sge.gfx.Sprite("explosion", d, origin_x=32, origin_y=19,
+                                  fps=15, bbox_x=-28, bbox_y=-11,
+                                  bbox_width=56, bbox_height=48)
+smoke_puff_sprite = sge.gfx.Sprite("smoke_puff", d, width=48, height=48,
+                                   origin_x=24, origin_y=24, fps=24)
+smoke_plume_sprite = sge.gfx.Sprite("smoke_plume", d, width=64, height=64,
+                                    origin_x=32, origin_y=32, fps=30)
+fireball_smoke_sprite = sge.gfx.Sprite("smoke_plume", d, width=16, height=16,
+                                       origin_x=8, origin_y=8, fps=30)
+item_spawn_cloud_sprite = sge.gfx.Sprite("smoke_plume", d, width=80, height=80,
+                                         origin_x=40, origin_y=40, fps=30)
 item_spawn_cloud_sprite.delete_frame(0)
-light_sprite = sge.Sprite("light", d, origin_x=192, origin_y=192)
-light_small_sprite = sge.Sprite("light_small", d, origin_x=64, origin_y=64)
-light_tiny_sprite = sge.Sprite("light_tiny", d, origin_x=32, origin_y=32)
-heart_empty_sprite = sge.Sprite("heart_empty", d, origin_y=-1)
-heart_half_sprite = sge.Sprite("heart_half", d, origin_y=-1)
-heart_full_sprite = sge.Sprite("heart_full", d, origin_y=-1)
+light_sprite = sge.gfx.Sprite("light", d, origin_x=192, origin_y=192)
+light_small_sprite = sge.gfx.Sprite("light_small", d, origin_x=64, origin_y=64)
+light_tiny_sprite = sge.gfx.Sprite("light_tiny", d, origin_x=32, origin_y=32)
+heart_empty_sprite = sge.gfx.Sprite("heart_empty", d, origin_y=-1)
+heart_half_sprite = sge.gfx.Sprite("heart_half", d, origin_y=-1)
+heart_full_sprite = sge.gfx.Sprite("heart_full", d, origin_y=-1)
 
 fire_flower_light_sprite = light_small_sprite.copy()
-blender = sge.Sprite(width=fire_flower_light_sprite.width,
-                     height=fire_flower_light_sprite.height)
+blender = sge.gfx.Sprite(width=fire_flower_light_sprite.width,
+                         height=fire_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
-                       fill=sge.Color("#F1670B"))
+                       fill=sge.gfx.Color("#F1670B"))
 fire_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                      blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
 ice_flower_light_sprite = light_small_sprite.copy()
-blender = sge.Sprite(width=ice_flower_light_sprite.width,
-                     height=ice_flower_light_sprite.height)
+blender = sge.gfx.Sprite(width=ice_flower_light_sprite.width,
+                         height=ice_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
-                       fill=sge.Color("#7CF8FA"))
+                       fill=sge.gfx.Color("#7CF8FA"))
 ice_flower_light_sprite.draw_sprite(blender, 0, 0, 0,
                                     blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
 fireball_light_sprite = light_tiny_sprite.copy()
-blender = sge.Sprite(width=fireball_light_sprite.width,
-                     height=fireball_light_sprite.height)
+blender = sge.gfx.Sprite(width=fireball_light_sprite.width,
+                         height=fireball_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
-                       fill=sge.Color("#FF5B11"))
+                       fill=sge.gfx.Color("#FF5B11"))
 fireball_light_sprite.draw_sprite(blender, 0, 0, 0,
                                   blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
 explosion_light_sprite = light_small_sprite.copy()
-blender = sge.Sprite(width=fire_flower_light_sprite.width,
-                     height=fire_flower_light_sprite.height)
+blender = sge.gfx.Sprite(width=fire_flower_light_sprite.width,
+                         height=fire_flower_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
-                       fill=sge.Color("#FFBC00"))
+                       fill=sge.gfx.Color("#FFBC00"))
 explosion_light_sprite.draw_sprite(blender, 0, 0, 0,
                                    blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
 
 circoflame_light_sprite = light_tiny_sprite.copy()
-blender = sge.Sprite(width=fireball_light_sprite.width,
-                     height=fireball_light_sprite.height)
+blender = sge.gfx.Sprite(width=fireball_light_sprite.width,
+                         height=fireball_light_sprite.height)
 blender.draw_rectangle(0, 0, blender.width, blender.height,
-                       fill=sge.Color("#D5CD49"))
+                       fill=sge.gfx.Color("#D5CD49"))
 circoflame_light_sprite.draw_sprite(blender, 0, 0, 0,
                                     blend_mode=sge.BLEND_RGB_MULTIPLY)
 del blender
@@ -7576,11 +7585,11 @@ coin_icon_sprite.origin_y = -1
 portrait_sprites = {"tux": portrait_tux, "snowman": portrait_snowman}
 
 d = os.path.join(DATA, "images", "worldmap")
-worldmap_tux_sprite = sge.Sprite("tux", d)
-worldmap_level_complete_sprite = sge.Sprite("level_complete", d)
-worldmap_level_incomplete_sprite = sge.Sprite("level_incomplete", d, fps=8)
-worldmap_warp_sprite = sge.Sprite("warp", d, fps=3)
-worldmap_water_sprite = sge.Sprite("water", d, transparent=False, fps=8)
+worldmap_tux_sprite = sge.gfx.Sprite("tux", d)
+worldmap_level_complete_sprite = sge.gfx.Sprite("level_complete", d)
+worldmap_level_incomplete_sprite = sge.gfx.Sprite("level_incomplete", d, fps=8)
+worldmap_warp_sprite = sge.gfx.Sprite("warp", d, fps=3)
+worldmap_water_sprite = sge.gfx.Sprite("water", d, transparent=False, fps=8)
 
 # Load backgrounds
 d = os.path.join(DATA, "images", "backgrounds")
@@ -7588,105 +7597,111 @@ layers = []
 
 if not NO_BACKGROUNDS:
     layers = [
-        sge.BackgroundLayer(
-            sge.Sprite("arctis1-middle", d), 0, 0, -100000, xscroll_rate=0.5,
-            yscroll_rate=0.5, repeat_left=True, repeat_right=True),
-        sge.BackgroundLayer(
-            sge.Sprite("arctis1-bottom", d, transparent=False), 0, 352,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("arctis1-middle", d), 0, 0, -100000,
+            xscroll_rate=0.5, yscroll_rate=0.5, repeat_left=True,
+            repeat_right=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("arctis1-bottom", d, transparent=False), 0, 352,
             -100000, xscroll_rate=0.5, yscroll_rate=0.5, repeat_left=True,
             repeat_right=True, repeat_down=True),
-        sge.BackgroundLayer(
-            sge.Sprite("arctis2-middle", d), 0, 0, -100010, xscroll_rate=0.25,
-            yscroll_rate=0.25, repeat_left=True, repeat_right=True),
-        sge.BackgroundLayer(
-            sge.Sprite("arctis2-bottom", d, transparent=False), 0, 352,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("arctis2-middle", d), 0, 0, -100010,
+            xscroll_rate=0.25, yscroll_rate=0.25, repeat_left=True,
+            repeat_right=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("arctis2-bottom", d, transparent=False), 0, 352,
             -100010, xscroll_rate=0.25, yscroll_rate=0.25, repeat_left=True,
             repeat_right=True, repeat_down=True),
-        sge.BackgroundLayer(
-            sge.Sprite("arctis3", d, transparent=False), 0, 0, -100020,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("arctis3", d, transparent=False), 0, 0, -100020,
             xscroll_rate=0, yscroll_rate=0.25, repeat_left=True,
             repeat_right=True)]
 
-backgrounds["arctis"] = sge.Background(layers, sge.Color((109, 92, 230)))
+backgrounds["arctis"] = sge.gfx.Background(layers,
+                                           sge.gfx.Color((109, 92, 230)))
 
 if not NO_BACKGROUNDS:
-    cave_edge_spr = sge.Sprite("cave-edge", d, transparent=False)
+    cave_edge_spr = sge.gfx.Sprite("cave-edge", d, transparent=False)
     layers = [
-        sge.BackgroundLayer(
-            sge.Sprite("cave-middle", d, transparent=False), 0, 128, -100000,
-            xscroll_rate=0.7, yscroll_rate=0.7, repeat_left=True,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("cave-middle", d, transparent=False), 0, 128,
+            -100000, xscroll_rate=0.7, yscroll_rate=0.7, repeat_left=True,
             repeat_right=True),
-        sge.BackgroundLayer(
+        sge.gfx.BackgroundLayer(
             cave_edge_spr, 0, 0, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
             repeat_left=True, repeat_right=True, repeat_up=True),
-        sge.BackgroundLayer(
+        sge.gfx.BackgroundLayer(
             cave_edge_spr, 0, 256, -100000, xscroll_rate=0.7, yscroll_rate=0.7,
             repeat_left=True, repeat_right=True, repeat_down=True)]
     del cave_edge_spr
 
-backgrounds["cave"] = sge.Background(layers, sge.Color("black"))
+backgrounds["cave"] = sge.gfx.Background(layers, sge.gfx.Color("black"))
 
 if not NO_BACKGROUNDS:
-    nightsky_bottom_spr = sge.Sprite("nightsky-bottom", d)
+    nightsky_bottom_spr = sge.gfx.Sprite("nightsky-bottom", d)
     layers = [
-        sge.BackgroundLayer(
-            sge.Sprite("nightsky1-middle", d), 0, 306, -100000, xscroll_rate=0.5,
-            yscroll_rate=0.5, repeat_left=True, repeat_right=True),
-        sge.BackgroundLayer(
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("nightsky1-middle", d), 0, 306, -100000,
+            xscroll_rate=0.5, yscroll_rate=0.5, repeat_left=True,
+            repeat_right=True),
+        sge.gfx.BackgroundLayer(
             nightsky_bottom_spr, 0, 664, -100000, xscroll_rate=0.5,
             yscroll_rate=0.5, repeat_left=True, repeat_right=True,
             repeat_down=True),
-        sge.BackgroundLayer(
-            sge.Sprite("nightsky2-middle", d, transparent=False), 0, 0,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("nightsky2-middle", d, transparent=False), 0, 0,
             -100010, xscroll_rate=0.25, yscroll_rate=0.25, repeat_left=True,
             repeat_right=True),
-        sge.BackgroundLayer(
-            sge.Sprite("nightsky2-top", d, transparent=False), 0, -600,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("nightsky2-top", d, transparent=False), 0, -600,
             -100010, xscroll_rate=0.25, yscroll_rate=0.25, repeat_left=True,
             repeat_right=True, repeat_up=True),
-        sge.BackgroundLayer(
+        sge.gfx.BackgroundLayer(
             nightsky_bottom_spr, 0, 600, -100010, xscroll_rate=0.25,
             yscroll_rate=0.25, repeat_left=True, repeat_right=True,
             repeat_down=True)]
     del nightsky_bottom_spr
 
-backgrounds["nightsky"] = sge.Background(layers, sge.Color("black"))
+backgrounds["nightsky"] = sge.gfx.Background(layers, sge.gfx.Color("black"))
 
 if not NO_BACKGROUNDS:
     layers = [
-        sge.BackgroundLayer(
-            sge.Sprite("bluemountain-middle", d, transparent=False), 0, -128,
-            -100000, xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
-            repeat_right=True),
-        sge.BackgroundLayer(
-            sge.Sprite("bluemountain-top", d, transparent=False), 0, -704,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("bluemountain-middle", d, transparent=False), 0,
+            -128, -100000, xscroll_rate=0.1, yscroll_rate=0.1,
+            repeat_left=True, repeat_right=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("bluemountain-top", d, transparent=False), 0, -704,
             -100000, xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
             repeat_right=True, repeat_up=True),
-        sge.BackgroundLayer(
-            sge.Sprite("bluemountain-bottom", d, transparent=False), 0, 448,
-            -100000, xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("bluemountain-bottom", d, transparent=False), 0,
+            448, -100000, xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
             repeat_right=True, repeat_down=True)]
 
-backgrounds["bluemountain"] = sge.Background(layers, sge.Color((86, 142, 206)))
+backgrounds["bluemountain"] = sge.gfx.Background(layers,
+                                                 sge.gfx.Color((86, 142, 206)))
 
-castle_spr = sge.Sprite("castle", d)
-castle_bottom_spr = sge.Sprite("castle-bottom", d, transparent=False)
+castle_spr = sge.gfx.Sprite("castle", d)
+castle_bottom_spr = sge.gfx.Sprite("castle-bottom", d, transparent=False)
 for i in list(backgrounds.keys()):
     if not NO_BACKGROUNDS:
         layers = backgrounds[i].layers + [
-            sge.BackgroundLayer(castle_spr, 0, -64, -99000,
-                                xscroll_rate=0.75, yscroll_rate=1,
-                                repeat_left=True, repeat_right=True,
-                                repeat_up=True),
-            sge.BackgroundLayer(castle_bottom_spr, 0, 544, -99000,
-                                xscroll_rate=0.75, yscroll_rate=1,
-                                repeat_left=True, repeat_right=True,
-                                repeat_down=True)]
+            sge.gfx.BackgroundLayer(castle_spr, 0, -64, -99000,
+                                    xscroll_rate=0.75, yscroll_rate=1,
+                                    repeat_left=True, repeat_right=True,
+                                    repeat_up=True),
+            sge.gfx.BackgroundLayer(castle_bottom_spr, 0, 544, -99000,
+                                    xscroll_rate=0.75, yscroll_rate=1,
+                                    repeat_left=True, repeat_right=True,
+                                    repeat_down=True)]
 
-        backgrounds["{}_castle".format(i)] = sge.Background(layers,
-                                                            backgrounds[i].color)
+        backgrounds["{}_castle".format(i)] = sge.gfx.Background(
+            layers, backgrounds[i].color)
     else:
-        backgrounds["{}_castle".format(i)] = sge.Background([], sge.Color("black"))
+        backgrounds["{}_castle".format(i)] = sge.gfx.Background(
+            [], sge.gfx.Color("black"))
 del castle_spr
 del castle_bottom_spr
 
@@ -7695,82 +7710,87 @@ print("Loading fonts...")
 chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 128)] +
          [six.unichr(i) for i in six.moves.range(160, 384)])
 
-font_sprite = sge.Sprite.from_tileset(
+font_sprite = sge.gfx.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font.png"), columns=16, rows=20,
     width=16, height=18)
-font = sge.Font.from_sprite(font_sprite, chars, size=18)
+font = sge.gfx.Font.from_sprite(font_sprite, chars, size=18)
 
-font_small_sprite = sge.Sprite.from_tileset(
+font_small_sprite = sge.gfx.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font_small.png"), columns=16,
     rows=20, width=8, height=9)
-font_small = sge.Font.from_sprite(font_small_sprite, chars, size=9)
+font_small = sge.gfx.Font.from_sprite(font_small_sprite, chars, size=9)
 
-font_big_sprite = sge.Sprite.from_tileset(
+font_big_sprite = sge.gfx.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
     width=20, height=22)
-font_big = sge.Font.from_sprite(font_big_sprite, chars, size=22)
+font_big = sge.gfx.Font.from_sprite(font_big_sprite, chars, size=22)
 
 # Load sounds
-jump_sound = sge.Sound(os.path.join(DATA, "sounds", "jump.wav"))
-bigjump_sound = sge.Sound(os.path.join(DATA, "sounds", "bigjump.wav"))
-skid_sound = sge.Sound(os.path.join(DATA, "sounds", "skid.wav"), 50)
-hurt_sound = sge.Sound(os.path.join(DATA, "sounds", "hurt.wav"))
-kill_sound = sge.Sound(os.path.join(DATA, "sounds", "kill.wav"))
-brick_sound = sge.Sound(os.path.join(DATA, "sounds", "brick.wav"))
-coin_sound = sge.Sound(os.path.join(DATA, "sounds", "coin.wav"))
-find_powerup_sound = sge.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
-tuxdoll_sound = sge.Sound(os.path.join(DATA, "sounds", "tuxdoll.wav"))
-ice_crack_sounds = [sge.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
-                    sge.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav")),
-                    sge.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav")),
-                    sge.Sound(os.path.join(DATA, "sounds", "ice_crack-3.wav"))]
-ice_shatter_sound = sge.Sound(os.path.join(DATA, "sounds", "ice_shatter.wav"))
-heal_sound = sge.Sound(os.path.join(DATA, "sounds", "heal.wav"))
-shoot_sound = sge.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
-fire_dissipate_sound = sge.Sound(os.path.join(DATA, "sounds",
-                                              "fire_dissipate.wav"))
-icebullet_break_sound = sge.Sound(os.path.join(DATA, "sounds",
-                                               "icebullet_break.wav"))
-squish_sound = sge.Sound(os.path.join(DATA, "sounds", "squish.wav"))
-stomp_sound = sge.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
-sizzle_sound = sge.Sound(os.path.join(DATA, "sounds", "sizzle.ogg"))
-spring_sound = sge.Sound(os.path.join(DATA, "sounds", "spring.wav"))
-rusty_spring_sound = sge.Sound(os.path.join(DATA, "sounds", "rusty_spring.wav"))
-kick_sound = sge.Sound(os.path.join(DATA, "sounds", "kick.wav"))
-iceblock_bump_sound = sge.Sound(os.path.join(DATA, "sounds",
-                                             "iceblock_bump.wav"))
-icicle_shake_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_shake.wav"))
-icicle_crash_sound = sge.Sound(os.path.join(DATA, "sounds", "icicle_crash.wav"))
-explosion_sound = sge.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
-fall_sound = sge.Sound(os.path.join(DATA, "sounds", "fall.wav"))
-yeti_gna_sound = sge.Sound(os.path.join(DATA, "sounds", "yeti_gna.wav"))
-yeti_roar_sound = sge.Sound(os.path.join(DATA, "sounds", "yeti_roar.wav"))
-pop_sound = sge.Sound(os.path.join(DATA, "sounds", "pop.wav"))
-bell_sound = sge.Sound(os.path.join(DATA, "sounds", "bell.wav"))
-pipe_sound = sge.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
-warp_sound = sge.Sound(os.path.join(DATA, "sounds", "warp.wav"))
-door_sound = sge.Sound(os.path.join(DATA, "sounds", "door.wav"))
-door_shut_sound = sge.Sound(os.path.join(DATA, "sounds", "door_shut.wav"))
-pause_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
-select_sound = sge.Sound(os.path.join(DATA, "sounds", "select.ogg"))
+jump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "jump.wav"))
+bigjump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "bigjump.wav"))
+skid_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "skid.wav"), 50)
+hurt_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "hurt.wav"))
+kill_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "kill.wav"))
+brick_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "brick.wav"))
+coin_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "coin.wav"))
+find_powerup_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
+tuxdoll_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "tuxdoll.wav"))
+ice_crack_sounds = [
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav")),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav")),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-3.wav"))]
+ice_shatter_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                               "ice_shatter.wav"))
+heal_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "heal.wav"))
+shoot_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
+fire_dissipate_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                                  "fire_dissipate.wav"))
+icebullet_break_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                                   "icebullet_break.wav"))
+squish_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "squish.wav"))
+stomp_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
+sizzle_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "sizzle.ogg"))
+spring_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "spring.wav"))
+rusty_spring_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                                "rusty_spring.wav"))
+kick_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "kick.wav"))
+iceblock_bump_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                                 "iceblock_bump.wav"))
+icicle_shake_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                                "icicle_shake.wav"))
+icicle_crash_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
+                                                "icicle_crash.wav"))
+explosion_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
+fall_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "fall.wav"))
+yeti_gna_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "yeti_gna.wav"))
+yeti_roar_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "yeti_roar.wav"))
+pop_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "pop.wav"))
+bell_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "bell.wav"))
+pipe_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
+warp_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "warp.wav"))
+door_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "door.wav"))
+door_shut_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "door_shut.wav"))
+pause_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "select.ogg"))
+select_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 confirm_sound = coin_sound
 cancel_sound = pop_sound
 error_sound = hurt_sound
-type_sound = sge.Sound(os.path.join(DATA, "sounds", "type.wav"))
+type_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "type.wav"))
 
 # Load music
-level_win_music = sge.Music(os.path.join(DATA, "music", "leveldone.ogg"))
+level_win_music = sge.snd.Music(os.path.join(DATA, "music", "leveldone.ogg"))
 loaded_music["leveldone.ogg"] = level_win_music
 
 # Create objects
-coin_animation = sge.Object(0, 0, sprite=coin_sprite, visible=False,
-                            tangible=False)
-bonus_animation = sge.Object(0, 0, sprite=bonus_empty_sprite, visible=False,
-                             tangible=False)
-lava_animation = sge.Object(0, 0, sprite=lava_body_sprite, visible=False,
-                            tangible=False)
-goal_animation = sge.Object(0, 0, sprite=goal_sprite, visible=False,
-                            tangible=False)
+coin_animation = sge.dsp.Object(0, 0, sprite=coin_sprite, visible=False,
+                                tangible=False)
+bonus_animation = sge.dsp.Object(0, 0, sprite=bonus_empty_sprite,
+                                 visible=False, tangible=False)
+lava_animation = sge.dsp.Object(0, 0, sprite=lava_body_sprite, visible=False,
+                                tangible=False)
+goal_animation = sge.dsp.Object(0, 0, sprite=goal_sprite, visible=False,
+                                tangible=False)
 
 # Create rooms
 if RECORD:

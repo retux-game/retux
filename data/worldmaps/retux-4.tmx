@@ -68,7 +68,11 @@
     <property name="dest" value="retux-5.tmx:map_enter"/>
    </properties>
   </object>
-  <object gid="2" x="224" y="864"/>
+  <object gid="2" x="224" y="864">
+   <properties>
+    <property name="level" value="retux-37.tmx"/>
+   </properties>
+  </object>
   <object gid="2" x="544" y="864">
    <properties>
     <property name="level" value="retux-36.tmx"/>
