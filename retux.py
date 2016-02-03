@@ -2093,17 +2093,18 @@ class Player(xsge_physics.Collider):
     def event_joystick(self, js_name, js_id, input_type, input_id, value):
         if self.human:
             js = (js_id, input_type, input_id)
-            if js in jump_js[self.player]:
-                if value > joystick_threshold:
+            if value > joystick_threshold:
+                if js in jump_js[self.player]:
                     self.jump()
-                else:
+                if js in action_js[self.player]:
+                    self.action()
+                if js in up_js[self.player]:
+                    self.press_up()
+                if js in pause_js[self.player]:
+                    sge.game.current_room.pause()
+            else:
+                if js in jump_js[self.player]:
                     self.jump_release()
-            if js in action_js[self.player]:
-                self.action()
-            if js in up_js[self.player]:
-                self.press_up()
-            if js in pause_js[self.player]:
-                sge.game.current_room.pause()
 
     def event_paused_key_press(self, key, char):
         if self.human:
