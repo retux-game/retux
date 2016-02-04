@@ -20,12 +20,12 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztysEJADAIADHdf9g6QkfwYaEICdzvIgAAAAAAAAAAAAAAAN6r7Jt+wF8n+6Yfu1ymoCs4
+   eJztz7ENACAMA0Gy/7AwAhskRWiC7qTv3HgtAAAAAAAAAAAAAACA907UdXfTZX9hgh113d102d8fXdnINn4=
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1k0KwjAQBtB6PN1XoQoq3v8OmoUbQcVOTDPlPfh2WaR0fjIMAAAAAAAAANQ2bpa+Ab0qtbGfmYO66srZ/+CNUhuXmbl2XleRGZZxjk3J7ks7a+7zyLeV7JL1un2eT2QP/ZLtivu87LdjMJl63T7PJ1qfLXJ65NZxavT5s9drzNRv82IMnrPP84m8N1ulVv3/862y9Cx8nYufTMFz+jyfOysgj9w=
+   eJztmUEOwjAMBMvz6L0gpUgB8f8/0By4URVwbMfWjLS3XursriNlPU3TihBCCKHQemwCgLwUcg6QnpbzGzkHSE1lnwOkh5wD5Iecwz8sm2cuCrriRRWK4Vwl3uD8x6Lth7uSPM9aq7+8vWyZc4k3Rr9zSP0RrceabzTfer3modlfnl6u5LwLUn/MwbJukQePvardX00e71vVYJ5vnQVnPnrOe/gjUtYt8uCRN4v+mjvl6dfsec/72zN5Dqxevu/lgaO+WITfWeRBW592R4b+2pP3vEftwMh9eXQ3LMLvsuY8w3/t6QXPVwKN
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -37,10 +37,21 @@
   <object x="2592" y="384" width="1184" height="64"/>
   <object x="4000" y="384" width="96" height="64"/>
   <object x="4320" y="384" width="96" height="64"/>
+  <object x="7968" y="64" width="32" height="288"/>
+  <object x="0" y="64" width="32" height="192"/>
+  <object x="0" y="0" width="8000" height="64"/>
+  <object x="4512" y="224" width="736" height="32"/>
+  <object x="4512" y="256" width="768" height="32"/>
+  <object x="4512" y="288" width="800" height="32"/>
+  <object x="4512" y="320" width="1600" height="128"/>
+  <object x="6240" y="256" width="832" height="96"/>
+  <object x="6240" y="352" width="1760" height="96"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="spike_top" x="1344" y="384" width="1248" height="32"/>
   <object type="death" x="3776" y="416" width="736" height="32"/>
+  <object type="death" x="6112" y="416" width="128" height="32"/>
+  <object gid="502" x="7904" y="352"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
