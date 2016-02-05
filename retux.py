@@ -5369,11 +5369,11 @@ class WarpSpawn(xsge_path.Path):
             elif self.end_direction == "up":
                 obj.x = x
                 obj.y = y + obj.sprite.origin_y
-                obj.move_direction = 90
+                obj.move_direction = 270
             elif self.end_direction == "down":
                 obj.x = x
                 obj.y = y + obj.sprite.origin_y - obj.sprite.height
-                obj.move_direction = 270
+                obj.move_direction = 90
 
             obj.speed = WARP_SPEED
             obj.xacceleration = 0
@@ -5398,8 +5398,8 @@ class Warp(WarpSpawn):
         other.visible = False
         other.tangible = False
         other.warping = True
-        other.move_direction = {"right": 0, "up": 90, "left": 180,
-                                "down": 270}.get(self.direction, 0)
+        other.move_direction = {"right": 0, "up": 270, "left": 180,
+                                "down": 90}.get(self.direction, 0)
         other.speed = WARP_SPEED
         other.xacceleration = 0
         other.yacceleration = 0
@@ -5476,7 +5476,7 @@ class ObjectWarpSpawn(WarpSpawn):
         self.kwargs = kwargs
         self.interval = interval
         self.limit = limit
-        self.__steps_passed = 0
+        self.__steps_passed = interval
         self.__objects = []
         super(ObjectWarpSpawn, self).__init__(x, y, points=points)
 
