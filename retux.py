@@ -3548,8 +3548,14 @@ class FallingIcicle(FallingObject):
                                                    ydirection)
 
 
-class Crusher(FallingObject):
+class Crusher(FallingObject, xsge_physics.MobileColliderWall,
+              xsge_physics.Solid):
 
+    nonstick_left = True
+    nonstick_right = True
+    nonstick_top = True
+    nonstick_bottom = True
+    sticky_top = True
     burnable = True
     freezable = True
     gravity = 0
