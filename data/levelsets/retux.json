@@ -38,7 +38,8 @@
         "retux-33.tmx",
         "retux-34.tmx",
         "retux-35.tmx",
-        "retux-36.tmx"
+        "retux-36.tmx",
+        "retux-37.tmx"
     ],
     "tuxdolls_available": [
         "retux-01.tmx",
@@ -76,6 +77,7 @@
         "retux-33.tmx",
         "retux-34.tmx",
         "retux-35.tmx",
-        "retux-36.tmx"
+        "retux-36.tmx",
+        "retux-37.tmx"
     ]
 }

@@ -60,7 +60,12 @@
   <object type="spike_top" x="1344" y="384" width="1248" height="32"/>
   <object type="death" x="3776" y="416" width="736" height="32"/>
   <object type="death" x="6112" y="416" width="128" height="32"/>
-  <object gid="502" x="7904" y="352"/>
+  <object gid="502" x="7904" y="352">
+   <properties>
+    <property name="dest" value="retux-37b.tmx:enter"/>
+    <property name="spawn_id" value="exit"/>
+   </properties>
+  </object>
   <object type="solid_bottom" x="6848" y="64" width="64" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
@@ -103,6 +108,19 @@
   <object gid="477" x="7040" y="128"/>
   <object gid="477" x="7040" y="160"/>
   <object gid="477" x="7040" y="192"/>
+  <object gid="479" x="5568" y="224"/>
+  <object gid="479" x="5600" y="224"/>
+  <object gid="479" x="5536" y="256"/>
+  <object gid="479" x="5632" y="256"/>
+  <object gid="479" x="5792" y="224"/>
+  <object gid="479" x="5824" y="224"/>
+  <object gid="479" x="5856" y="256"/>
+  <object gid="479" x="5760" y="256"/>
+  <object gid="479" x="4800" y="160"/>
+  <object gid="479" x="4832" y="128"/>
+  <object gid="479" x="4864" y="128"/>
+  <object gid="479" x="4896" y="128"/>
+  <object gid="479" x="4928" y="160"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="6" x="1056" y="256"/>
