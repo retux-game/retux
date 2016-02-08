@@ -19,12 +19,12 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztzrENACAMA0HYf1gYgT6iSNIh7iR3X3gMAAAAAAAAAAAAAAD41573VdrYZ7vuD6BmzfsqbeyzXfcHvOoAITMw2w==
+   eJzt07ENwCAMRUG8/ySUTJaMQI8oMFJEkO4kd6/4jUsBAAAAAAAAAAAAgH+rcXoB8LV28M/fmF+mHfvVbncHkPPE/DLt2K92uzvgVh1eNDI3
   </data>
  </layer>
  <layer name="Middle Tiles" width="250" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmk1OwzAQhevL8dMWCohSKW0oP9eAsoGbsEFi0zuw7KE6kVJRRrY7iceJTd8nPamJbMsa+9ljp3MzGMwhCPrXeiT5uDR/f/NnzsTyblduV5+3A0BTfPNMgq2sxpycHPBHU1bUxltgO0uqv1D2ue+ddgzA8RLq01x8rkEh8HlTDu3n/B0AWqTg8xQpBHl7U0LzKQDaAp/bkeTtIH+eBWOsVQakxzLCfg7SoqTxvSXde8ZZqwxIkxh5e+5U83lKugvQLLGYPgn6o1VmnxMqf9pCZ4nFL1deKI6vJs49XO6UdVxCvlUOE/R6SowoNmPSBWIUlXeK74fB+dyGhs9jeN2WZ8wyzaOvqM/XpJsM+54T+z6X5O38u3l1p267V5fgq1vd87jUFWUdlwcFDVvk/D6ds7VkkanPsZ/H5Yfi+kX6rH1eRJiLIWdY1z7qyjmk64Fv/eB1NH0eW32NXV/CWUjGhuK0Jn2bX5/39X9bm3dd/nLlHLz/rvXA51vetlbeDunr2NY1LfE8sEvB5xDUnbbdC40U
+   eJztmd1OAjEQheHl/AEFNSjJAuLPe+jzeOk7cOlDMb0gWce2zG6ny4ycLzkJNG3TTHvaaXc1Ho1WEAT9a72ScszGv3/z/5x5pOxQ79Ce9wNAV3LrTEKsrsaanB/xR1c+qI/Pwn621H6t7PNcmXYMwPlS6lMvPtegEfi8K8fOc14GgBYWfG6RRpC3d6U0nwKgL/B5HEneDvzzLphjrTrAHtsK5zmwxYbmd0F6zsyzVh1gkxp5u3fCen4kPRVoaSymb4LxaNVpc0H1L3voylj8vFPjHc47wedN4bfKiUGvW2JKsbkh3SJGg4D7+V80fF7D67E8Y+k0j76jMd+THhyO3SPS+zn/bh7e1GPv6hJybcM7T0pDEfwU4vKioElh/s91zfaStVOf4zyvy47i+tVSU2EtltxhU+doKueQ7ge5/YO30fR5bZ1q7k4l3IVk/FCcvlvSyE/7KubdlL9SOQcff2o/yPmW962Vt0P6Ord9TUs8DxxS8DkEDac9d92KXQ==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -87,7 +87,6 @@
   <object gid="484" x="1984" y="352"/>
   <object gid="484" x="2016" y="352"/>
   <object gid="484" x="2048" y="352"/>
-  <object type="solid_top" x="7904" y="224" width="64" height="32"/>
   <object type="solid_left" x="7840" y="320" width="32" height="64"/>
   <object type="spike_left" x="2176" y="224" width="32" height="224"/>
   <object type="spike_top" x="1824" y="352" width="256" height="96"/>
@@ -117,12 +116,6 @@
     <property name="dest" value="retux-37c.tmx:enter"/>
    </properties>
    <polyline points="0,0 64,0"/>
-  </object>
-  <object x="7936" y="224">
-   <properties>
-    <property name="dest" value="retux-37c.tmx:enter"/>
-   </properties>
-   <polyline points="0,0 0,64"/>
   </object>
   <object x="7456" y="64">
    <properties>
@@ -285,10 +278,6 @@
   <object gid="5" x="4128" y="352"/>
   <object gid="5" x="4416" y="352"/>
   <object gid="5" x="4704" y="352"/>
-  <object gid="2" x="4224" y="352"/>
-  <object gid="2" x="4320" y="352"/>
-  <object gid="2" x="4512" y="352"/>
-  <object gid="2" x="4608" y="352"/>
   <object gid="500" x="6112" y="160"/>
   <object gid="9" x="5888" y="192"/>
   <object gid="9" x="5920" y="192"/>

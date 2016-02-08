@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="51" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="background_y" value="-608"/>
   <property name="bgname" value="arctis_castle"/>
+  <property name="music" value="fortress.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -19,12 +19,12 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="51" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBaMAApIZIfQHRoQYjJ3MiKl+MIL3jLj5+OTQAQBreQZr
+   eJxjYBgFo2AUjIJRMApGwUgBKxkH2gXUAxuHkV8GE0iGhusHpPCFsZOHSJi/Z8TNxyeHDgAzGwfH
   </data>
  </layer>
  <layer name="Middle Tiles" width="51" height="14">
   <data encoding="base64" compression="zlib">
-   eJxLYGRgSBjFJONEIKYViAeaHU1HHENjvwyXeIkaZvEyXPwSNYzS2HDLLyDzW4C4lYb20AMMJ7/EQ/MjyC9LgfjoEPYPsl/WAvHZIewXUBrzAuKwAcYhQPwBCYciyYWjyYXgMMOTzuUYvvLtPRJGrsNj8MihYwAl/pLS
+   eJxLYGRgSBjFJONEIKYViAeaHU1HHENjvwyXeIkaZvEyXPwSNYzS2HDLL7Q0n55gOPklHpofV0Lx0SHsL5hfNkLx2SHsF1Aa8wLisAHGIUD8AQmHIsmFo8mF4DDDk87lGL7y7T0SRq7DY/DIoWMAA/KRFg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
