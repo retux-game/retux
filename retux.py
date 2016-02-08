@@ -3232,6 +3232,10 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
 
 class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
+    nonstick_left = True
+    nonstick_right = True
+    nonstick_top = True
+    nonstick_bottom = True
     burnable = True
     blastable = True
     walk_speed = 0
