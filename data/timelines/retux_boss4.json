@@ -25,6 +25,7 @@
         "setattr player jump_pressed False",
         "setattr player action_pressed False",
         "setattr player sneak_pressed False",
+        "setattr player image_xscale 1",
         "setattr player xvelocity 0",
         "setattr __level__ timeline_skip_target 35",
         "if_watched",

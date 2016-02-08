@@ -90,18 +90,6 @@
   <object gid="12" x="1504" y="64"/>
   <object gid="12" x="1536" y="64"/>
   <object gid="12" x="1568" y="64"/>
-  <object type="flying_spiky_path" x="992" y="224">
-   <polyline points="0,0 80,-64 160,0 0,0"/>
-  </object>
-  <object type="flying_spiky_path" x="1504" y="224">
-   <polyline points="0,0 -80,-64 -160,0 0,0"/>
-  </object>
-  <object type="circoflame" x="1408" y="384">
-   <properties>
-    <property name="rvelocity" value="-2"/>
-   </properties>
-   <polyline points="0,0 0,-128"/>
-  </object>
   <object type="circoflame" x="1408" y="384">
    <properties>
     <property name="rvelocity" value="-2"/>
@@ -119,9 +107,6 @@
     <property name="rvelocity" value="-2"/>
    </properties>
    <polyline points="0,0 0,-32"/>
-  </object>
-  <object type="circoflame" x="1056" y="384">
-   <polyline points="0,0 0,-128"/>
   </object>
   <object type="circoflame" x="1056" y="384">
    <polyline points="0,0 0,-96"/>

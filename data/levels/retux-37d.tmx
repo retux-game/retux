@@ -114,7 +114,9 @@
   <object gid="3" x="256" y="352"/>
   <object gid="3" x="320" y="352"/>
  </objectgroup>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="704" y="256"/>
+ </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRQE8AAAV4AAE=
