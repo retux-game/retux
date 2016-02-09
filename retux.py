@@ -6351,6 +6351,7 @@ class OptionsMenu(Menu):
             OptionsMenu.create_page(default=self.choice)
         else:
             play_sound(cancel_sound)
+            write_to_disk()
             MainMenu.create(default=3)
 
 
@@ -7050,6 +7051,28 @@ def set_new_game():
     score = 0
 
 
+def write_to_disk():
+    # Write our saves and settings to disk.
+    keys_cfg = {"left": left_key, "right": right_key, "up": up_key,
+                "down": down_key, "jump": jump_key, "action": action_key,
+                "sneak": sneak_key, "pause": pause_key}
+    js_cfg = {"left": left_js, "right": right_js, "up": up_js,
+              "down": down_js, "jump": jump_js, "action": action_js,
+              "sneak": sneak_js, "pause": pause_js}
+
+    cfg = {"version": 1, "fullscreen": fullscreen,
+           "sound_enabled": sound_enabled, "music_enabled": music_enabled,
+           "fps_enabled": fps_enabled,
+           "joystick_threshold": joystick_threshold, "keys": keys_cfg,
+           "joystick": js_cfg}
+
+    with open(os.path.join(CONFIG, "config.json"), 'w') as f:
+        json.dump(cfg, f, indent=4)
+
+    with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
+        json.dump(save_slots, f, indent=4)
+
+
 def save_game():
     global save_slots
 
@@ -7075,6 +7098,8 @@ def save_game():
             "current_level": current_level,
             "current_checkpoints": current_checkpoints, "score": score,
             "completion": completion}
+
+    write_to_disk()
 
 
 def load_game():
@@ -7926,23 +7951,5 @@ if __name__ == '__main__':
     try:
         sge.game.start()
     finally:
-        keys_cfg = {"left": left_key, "right": right_key, "up": up_key,
-                    "down": down_key, "jump": jump_key, "action": action_key,
-                    "sneak": sneak_key, "pause": pause_key}
-        js_cfg = {"left": left_js, "right": right_js, "up": up_js,
-                  "down": down_js, "jump": jump_js, "action": action_js,
-                  "sneak": sneak_js, "pause": pause_js}
-
-        cfg = {"version": 1, "fullscreen": fullscreen,
-               "sound_enabled": sound_enabled, "music_enabled": music_enabled,
-               "fps_enabled": fps_enabled,
-               "joystick_threshold": joystick_threshold, "keys": keys_cfg,
-               "joystick": js_cfg}
-
-        with open(os.path.join(CONFIG, "config.json"), 'w') as f:
-            json.dump(cfg, f, indent=4)
-
-        with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
-            json.dump(save_slots, f, indent=4)
-
+        write_to_disk()
         shutil.rmtree(DATA)
