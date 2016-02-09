@@ -120,6 +120,7 @@
   <object gid="501" x="1536" y="416">
    <properties>
     <property name="final_stage" value="4"/>
+    <property name="strong_stage" value="1"/>
    </properties>
   </object>
   <object gid="488" x="864" y="288">
