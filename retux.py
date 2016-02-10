@@ -170,8 +170,11 @@ RACCOT_STOMP_FALL_SPEED = 15
 RACCOT_STOMP_DELAY = 15
 RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
 RACCOT_HP = 5
-RACCOT_HOP_INTERVAL = 90
-RACCOT_CHARGE_INTERVAL = 450
+RACCOT_HOP_TIME = 5
+RACCOT_HOP_INTERVAL_MIN = 45
+RACCOT_HOP_INTERVAL_MAX = 120
+RACCOT_CHARGE_INTERVAL_MIN = 300
+RACCOT_CHARGE_INTERVAL_MAX = 600
 RACCOT_CRUSH_LAX = -8 # A negative lax makes it have the opposite effect.
 RACCOT_SHAKE_NUM = 3
 
@@ -3926,14 +3929,22 @@ class Raccot(Boss, FallingObject):
     def stage(self, value):
         self.__stage = value
         if value:
-            self.alarms["hop"] = self.hop_interval
-            self.alarms["charge"] = self.charge_interval
+            self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                                self.hop_interval_max)
+            self.alarms["charge"] = random.uniform(self.charge_interval_min,
+                                                   self.charge_interval_max)
 
-    def __init__(self, x, y, hp=RACCOT_HP, hop_interval=RACCOT_HOP_INTERVAL,
-                 charge_interval=RACCOT_CHARGE_INTERVAL, **kwargs):
+    def __init__(self, x, y, hp=RACCOT_HP, hop_time=RACCOT_HOP_TIME,
+                 hop_interval_min=RACCOT_HOP_INTERVAL_MIN,
+                 hop_interval_max=RACCOT_HOP_INTERVAL_MAX,
+                 charge_interval_min=RACCOT_CHARGE_INTERVAL_MIN,
+                 charge_interval_max=RACCOT_CHARGE_INTERVAL_MAX, **kwargs):
         self.hp = hp
-        self.hop_interval = hop_interval
-        self.charge_interval = charge_interval
+        self.hop_time = hop_time
+        self.hop_interval_min = hop_interval_min
+        self.hop_interval_max = hop_interval_max
+        self.charge_interval_min = charge_interval_min
+        self.charge_interval_max = charge_interval_max
         self.hopping = False
         self.charging = False
         self.crushing = False
@@ -3947,7 +3958,7 @@ class Raccot(Boss, FallingObject):
     def hop(self):
         if self.was_on_floor and self.yvelocity == 0:
             self.hopping = True
-            self.alarms["do_hop"] = 5
+            self.alarms["do_hop"] = self.hop_time
             self.sprite = raccot_stomp_sprite
             play_sound(yeti_gna_sound, self.x, self.y)
 
@@ -3955,6 +3966,18 @@ class Raccot(Boss, FallingObject):
         self.xvelocity = 0
         self.yvelocity = get_jump_speed(RACCOT_HOP_HEIGHT, self.gravity)
         self.sprite = raccot_hop_sprite
+        self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                            self.hop_interval_max)
+
+    def charge(self):
+        self.charging = True
+        self.alarms["charge_end"] = random.uniform(self.charge_interval_min,
+                                                   self.charge_interval_max)
+
+    def charge_end(self):
+        self.charging = False
+        self.alarms["charge"] = random.uniform(self.charge_interval_min,
+                                               self.charge_interval_max)
 
     def crush(self):
         if not self.was_on_floor:
@@ -4050,7 +4073,7 @@ class Raccot(Boss, FallingObject):
             self.stop_down()
 
     def stop_down(self):
-        if self.stage > 0 and self.yvelocity > 0:
+        if self.stage > 0:
             play_sound(brick_sound, self.x, self.y)
             self.yvelocity = 0
             self.xvelocity = 0
@@ -4110,6 +4133,10 @@ class Raccot(Boss, FallingObject):
                 self.hop()
         elif alarm_id == "do_hop":
             self.do_hop()
+        elif alarm_id == "charge":
+            self.charge()
+        elif alarm_id == "charge_end":
+            self.charge_end()
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -5316,7 +5343,7 @@ class WarpSpawn(xsge_path.Path):
                         math.ceil(x - left_edge), 0, warp_sprite.width,
                         warp_sprite.height)
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
             elif self.end_direction == "right":
                 if obj.bbox_left >= x:
                     obj.bbox_left = x
@@ -5326,7 +5353,7 @@ class WarpSpawn(xsge_path.Path):
                     warp_sprite.draw_erase(0, 0, math.floor(x - left_edge),
                                            warp_sprite.height)
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
             elif self.end_direction == "up":
                 if obj.bbox_bottom <= y:
                     obj.bbox_bottom = y
@@ -5337,7 +5364,7 @@ class WarpSpawn(xsge_path.Path):
                         0, math.ceil(y - top_edge), warp_sprite.width,
                         warp_sprite.height)
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
             elif self.end_direction == "down":
                 if obj.bbox_top >= y:
                     obj.bbox_top = y
@@ -5347,7 +5374,7 @@ class WarpSpawn(xsge_path.Path):
                     warp_sprite.draw_erase(0, 0, warp_sprite.width,
                                            math.floor(y - top_edge))
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
 
         for obj in finished:
             obj.visible = True
@@ -5436,7 +5463,7 @@ class Warp(WarpSpawn):
                         0, 0, math.floor(self.x - left_edge),
                         warp_sprite.height)
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
             elif self.direction == "right":
                 if obj.x >= self.x + obj.image_origin_x:
                     finished.append(obj)
@@ -5446,7 +5473,7 @@ class Warp(WarpSpawn):
                         math.ceil(self.x - left_edge), 0, warp_sprite.width,
                         warp_sprite.height)
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
             elif self.direction == "up":
                 if obj.y <= self.y + obj.image_origin_y - obj.sprite.height:
                     finished.append(obj)
@@ -5455,7 +5482,7 @@ class Warp(WarpSpawn):
                     warp_sprite.draw_erase(0, 0, warp_sprite.width,
                                            math.floor(self.y - top_edge))
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
             elif self.direction == "down":
                 if obj.y >= self.y + obj.image_origin_y:
                     finished.append(obj)
@@ -5465,7 +5492,7 @@ class Warp(WarpSpawn):
                         0, math.ceil(self.y - top_edge), warp_sprite.width,
                         warp_sprite.height)
                     sge.game.current_room.project_sprite(
-                        warp_sprite, obj.image_index, obj.x, obj.y, obj.z)
+                        warp_sprite, obj.image_index, obj.x, obj.y, self.z)
 
         for obj in finished:
             obj.x = self.x
