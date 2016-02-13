@@ -1,0 +1,27 @@
+Copyright (C) 2015 onpon4 <onpon4@riseup.net>
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
+
+========================================================================
+
+
+For most GNU/Linux distributions, the proper way to install Python and
+Pygame is through the package manager.  This is what you should be
+doing.  In Debian and its derivatives (such as Ubuntu and Mint), the
+packages needed are "python" and "python-pygame".  In Fedora, the
+packages needed are "python" and "pygame".  In Arch, the packages
+needed are "python2" and "python2-pygame".
+
+In almost all cases, a version of Python will already be available, and
+this will usually be Python 2.
+
+If you do not have any of the distros listed above and can't figure out
+what packages to install, or if you're just a rebel, you can compile
+Pygame yourself.  The source code to a version of Pygame which should
+work is included here.  Make sure the "dev" or "devel" packages for SDL,
+SDL_mixer, and SDL_image are installed, then open the directory
+containing the Pygame source code and run "python2 setup.py install" as
+root.

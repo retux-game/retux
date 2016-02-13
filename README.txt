@@ -1,4 +1,4 @@
-Copyright (C) 2014, 2015, 2016 Julian Marchant <onpon4@riseup.net>
+Copyright (C) 2014-2016 onpon4 <onpon4@riseup.net>
 
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
@@ -10,16 +10,25 @@ without any warranty.
 
 HOW TO RUN
 
-You will need the following dependencies:
+To run ReTux, you will need the following dependencies:
 
 - Python 2 (2.7 or later) or 3 (3.1 or later) <http://www.python.org>
 - Pygame 1.9.1 or later <http://pygame.org/download.shtml>
 
+If you have downloaded a version of ReTux designated for a particular
+system, these dependencies can be found under the "deps" folder.  Please
+see any "README" files in that folder for instructions and tips.
+
 Once you have installed the dependencies, you can start ReTux by
-running retux.py. By default, it will use Python 2. To run it with
-Python 3 instead, you can either change the shebang on line 1 from
-"python2" to "python3", or explicitly run the Python 3 executable, e.g.
-with "python3 retux.py".
+running retux.py. On most systems, this should be done by
+double-clicking on it; if you are shown a dialog asking you if you want
+to display or run the file, choose to run it.
+
+Python 2 will be used by default. To run ReTux with Python 3 instead,
+you can either change the shebang on line 1 from "python2" to "python3",
+or explicitly run the Python 3 executable, e.g. with
+"python3 pacewar.py" (the exact command may be different depending on
+your system).
 
 There are some command-line options that can be passed. Run ReTux in a
 terminal with the "-h" command-line option for more information.
