@@ -4,6 +4,7 @@
   <property name="bgname" value="arctis_castle"/>
   <property name="music" value="fortress.ogg"/>
   <property name="name" value="Snowman's Wreckening"/>
+  <property name="time_bonus" value="50000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
