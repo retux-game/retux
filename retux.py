@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.4"
+__version__ = "0.5a0"
 
 import argparse
 import datetime
@@ -311,6 +311,7 @@ tux_grab_sprites = {}
 fullscreen = False
 sound_enabled = True
 music_enabled = True
+stereo_enabled = True
 fps_enabled = False
 joystick_threshold = 0.1
 left_key = [["left", "a"]]
@@ -6328,6 +6329,7 @@ class OptionsMenu(Menu):
             "Fullscreen: {}".format("On" if sge.game.fullscreen else "Off"),
             "Sound: {}".format("On" if sound_enabled else "Off"),
             "Music: {}".format("On" if music_enabled else "Off"),
+            "Stereo: {}".format("On" if stereo_enabled else "Off"),
             "Show FPS: {}".format("On" if fps_enabled else "Off"),
             "Joystick Threshold: {}%".format(int(joystick_threshold * 100)),
             "Configure keyboard", "Configure joysticks", "Detect joysticks",
@@ -6338,6 +6340,7 @@ class OptionsMenu(Menu):
         global fullscreen
         global sound_enabled
         global music_enabled
+        global stereo_enabled
         global fps_enabled
         global joystick_threshold
 
@@ -6355,10 +6358,14 @@ class OptionsMenu(Menu):
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 3:
+            stereo_enabled = not stereo_enabled
+            play_sound(confirm_sound)
+            OptionsMenu.create_page(default=self.choice)
+        elif self.choice == 4:
             play_sound(select_sound)
             fps_enabled = not fps_enabled
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 4:
+        elif self.choice == 5:
             play_sound(select_sound)
             # This somewhat complicated method is to prevent rounding
             # irregularities.
@@ -6366,13 +6373,13 @@ class OptionsMenu(Menu):
             joystick_threshold = threshold
             xsge_gui.joystick_threshold = threshold
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 5:
-            play_sound(confirm_sound)
-            KeyboardMenu.create_page()
         elif self.choice == 6:
             play_sound(confirm_sound)
-            JoystickMenu.create_page()
+            KeyboardMenu.create_page()
         elif self.choice == 7:
+            play_sound(confirm_sound)
+            JoystickMenu.create_page()
+        elif self.choice == 8:
             sge.joystick.refresh()
             play_sound(heal_sound)
             OptionsMenu.create_page(default=self.choice)
@@ -6902,13 +6909,16 @@ def play_sound(sound, x=None, y=None):
                 # No point in continuing; it's too far away
                 return
 
-            hdist = x - view_x
-            if abs(hdist) < SOUND_CENTERED_RADIUS:
-                balance = 0
+            if stereo_enabled:
+                hdist = x - view_x
+                if abs(hdist) < SOUND_CENTERED_RADIUS:
+                    balance = 0
+                else:
+                    rng = SOUND_TILTED_RADIUS - SOUND_CENTERED_RADIUS
+                    balance = max(-SOUND_TILT_LIMIT,
+                                  min(hdist / rng, SOUND_TILT_LIMIT))
             else:
-                rng = SOUND_TILTED_RADIUS - SOUND_CENTERED_RADIUS
-                balance = max(-SOUND_TILT_LIMIT,
-                              min(hdist / rng, SOUND_TILT_LIMIT))
+                balance = 0
 
             sound.play(volume=volume, balance=balance)
 
@@ -7089,7 +7099,7 @@ def write_to_disk():
 
     cfg = {"version": 1, "fullscreen": fullscreen,
            "sound_enabled": sound_enabled, "music_enabled": music_enabled,
-           "fps_enabled": fps_enabled,
+           "stereo_enabled": stereo_enabled, "fps_enabled": fps_enabled,
            "joystick_threshold": joystick_threshold, "keys": keys_cfg,
            "joystick": js_cfg}
 
@@ -7893,6 +7903,7 @@ else:
     sge.game.fullscreen = fullscreen
     sound_enabled = cfg.get("sound_enabled", sound_enabled)
     music_enabled = cfg.get("music_enabled", music_enabled)
+    stereo_enabled = cfg.get("stereo_enabled", stereo_enabled)
     fps_enabled = cfg.get("fps_enabled", fps_enabled)
     joystick_threshold = cfg.get("joystick_threshold", joystick_threshold)
     xsge_gui.joystick_threshold = joystick_threshold
