@@ -18,18 +18,21 @@
  <tileset firstgid="471" source="../tilesets/snowman.tsx"/>
  <layer name="Back Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQBMG3MPsPtSQrED7Tgxm4/KKtAgAAIM0erx8A9Cy9AkLoFZBCr4AUegWk0CsghV4BKW69ms0BAAAAwO8Orv0I5A==
+   eJzt1LEJACEUREEtzND6vZKsQPiR3sIMbL7Raw0AAIA0X3/9AKBm6RUQQq+AFHoFpNArIIVeASn0Ckhx6tUoDgAAbpqvDwAU6RX8ywbgYglu
   </data>
  </layer>
  <layer name="Middle Tiles" width="300" height="14">
   <data encoding="base64" compression="zlib">
-   eJztmc9KAzEQxusbiHgW8SiC3koPPYoPpt6lr+YLmVIL22EmO5NM/vb7wUdhd7OZTCZfNnSzAQAAAAAAAAAAALhOPoO+gg7/v99twwHAxLl+qQ7C9dT65vrh+sD6qcNP6wAAcKRGPWPNxJH2krU9ReP9yD0Pvj/HBH7VPzn5Q+7jID+XLPfO5T7Zi59z8+V9povVRG/nx97iOQK/OkHnhs5LypzMnJ+S67YV2phqrpne8tQ6HvgVj8fYZs7PkZFrZxu0I9dq+xUXg2dfJWgdz8g1VxLN2WDtG4y+4zZon6nfG138e91jWYxcO+9BH+Rabb/iYvDsqwS14pG8fOSa05B6jtGMbe0Zev8h6K6icr3xPnP8KW1L/j+0ZGa/WsuhJo9SLjXxPBvFIeVmdr/i8PAizTP0/kvQo7NeI/dy/e7JOD4LqW29am5mv7LGoTmXcu0kLPuyVGPX7Fd0Pnrzq5jntNSbcXwW4Ff9+JUmDq6dhGVflmqspl9Zvwe9RaFj782vvHX2vz/Y2LW/
+   eJztmU1KBDEQhdsbiMxaZZYiODtRmKV4MHUvczUvZIIOtKGqUvmvtO+DYqC706lUXl46zLIAAAAAAAAAAAAA/E/eXLy7OP3+foxNB4AkzvoN48Rcz9U31Q/VB9ZPHz5HJwBARXroGWtGhttLYnuKxvtRexp8f84J/Mo+JfVD7WVQn7+s9871PmnFz6n5qn2mkzRh7fxoLR8P/OqHcG7CecmZky3Xp+W6HYU2p55rxlqdRucDv6KpMbYt18czs3YeXTwF13r7FZVDzb5aMDqfmTXXEs3ZIPYNFr7j0sWxML4udPkfdY8VMbN2Xly8Btd6+xWVQ82+WqDJJ0XnO+YdnJfPrDkNuecYzdhiz4T3r11cdYxSb+S0pB1/TtuW/w+t2bJfxWqoqSNXS00+KTrfM+/gaiP1L/nkTpm7RWp4keaZ8P69i9vK8SDcK/U7Tkvc+FLIbZvajtOw1+9W/So1D825lGrnoer7vOj1e2D6yfErySf3kbaWCOfDml9JnjMyOC1x40uhl19xGvb6ndmv7iJROw8uH6q+N8sYv5K+Bw5C21gtW0ds7Nb8qnac/e8b/nm/Yw==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
   <object x="0" y="384" width="544" height="64"/>
   <object x="9536" y="192" width="64" height="128"/>
   <object x="8704" y="320" width="896" height="128"/>
+  <object x="5056" y="352" width="384" height="64"/>
+  <object x="4896" y="416" width="544" height="32"/>
+  <object x="6016" y="384" width="256" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="solid_top" x="608" y="256" width="352" height="32"/>
@@ -64,7 +67,7 @@
   <object type="solid_top" x="8512" y="160" width="160" height="32"/>
   <object type="solid_top" x="8192" y="288" width="288" height="32"/>
   <object type="spike_top" x="6464" y="416" width="1024" height="32"/>
-  <object type="spike_top" x="5056" y="352" width="384" height="32"/>
+  <object type="spike_top" x="3808" y="416" width="256" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
