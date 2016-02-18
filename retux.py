@@ -6946,7 +6946,7 @@ def play_music(music, force_restart=False):
                 music_start_object = sge.snd.Music(os.path.join(DATA, "music",
                                                                 music_start))
             except IOError:
-                music_start_object = music_object
+                pass
             else:
                 loaded_music[music_start] = music_start_object
 
@@ -6954,8 +6954,11 @@ def play_music(music, force_restart=False):
                 (not music_object.playing and not music_start_object.playing)):
             sge.snd.Music.clear_queue()
             sge.snd.Music.stop()
-            music_start_object.play()
-            music_object.queue(loops=None)
+            if music_start_object is not None:
+                music_start_object.play()
+                music_object.queue(loops=None)
+            else:
+                music_object.play(loops=None)
     else:
         sge.snd.Music.clear_queue()
         sge.snd.Music.stop()
@@ -7895,8 +7898,8 @@ try:
     with open(os.path.join(CONFIG, "config.json")) as f:
         cfg = json.load(f)
 except (IOError, ValueError):
-    pass
-else:
+    cfg = {}
+finally:
     cfg_version = cfg.get("version", 0)
 
     fullscreen = cfg.get("fullscreen", fullscreen)
