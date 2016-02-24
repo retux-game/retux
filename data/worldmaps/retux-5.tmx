@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="32" tileheight="32" backgroundcolor="#1f4678">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="27" tilewidth="32" tileheight="32" backgroundcolor="#1f4678">
  <properties>
   <property name="music" value="salcon.ogg"/>
  </properties>
@@ -15,38 +15,42 @@
  <tileset firstgid="163" source="../tilesets/wm_icecave.tsx"/>
  <tileset firstgid="190" source="../tilesets/wm_cave_cracks.tsx"/>
  <tileset firstgid="205" source="../tilesets/wm_castle.tsx"/>
- <layer name="Water" width="25" height="25">
+ <layer name="Water" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJxjYMANWJAwOfLEgOFoByE80u0YBaNgFIyCUTAKRgHlAADBrgDN
+   eJxjYMANWJAwOfLEgOFoByE80u0YBaNgFIyCUTAKRsEogAEAYeUAzQ==
   </data>
  </layer>
- <layer name="Land" width="25" height="25">
+ <layer name="Land" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJwzZmBgMMaBTRggwIhMeWIwte2wwsIm1Q5sZhDrD3MgtsCCLakYVoQAJXaYArEeEdiMAjvojdHjkNg4HYl4NKxGw2o0rEbxKB46GABxOnlw
+   eJwzZmBgMMaBTRggwIhMeWIwte2wwsIm1Q5sZhDrD3MgtsCCLakYVoQAJXaYArEeEdiMAjvojdHjkNg4HYl4NKxGw2o0rEbxKB7F9MYATouDZg==
   </data>
  </layer>
- <layer name="Decorations (back)" width="25" height="25">
+ <layer name="Decorations (back)" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+   eJztwTEBAAAAwqD1T20MH6AAAOBjCowAAQ==
   </data>
  </layer>
- <layer name="Roads" width="25" height="25">
+ <layer name="Roads" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJxjYBiZQIAOdsjQwQ5ZOtghRwc76BEfo3aM2jFqx6gdo3YMPzs4gZgfDxaigxsGCgAAFrAB7A==
+   eJxjYBiZQIAOdsjQwQ5ZOtghRwc76BEfo3aM2jFqx6gdo3YMPzs4gZgfDxaigxtGAWUAAJcfAew=
   </data>
  </layer>
- <layer name="Decorations" width="25" height="25">
+ <layer name="Decorations" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJy1k1kKwkAMQOd2Ivghin6qVevuNdwXBLUuVXsh72QCEwyhRWdp4NGFmbwk0wZKqR7QBwZAEwiAoTKLBtuL15YGn0NgBIyBCdDR76aGjjbbi9euJjTM8zZcTzETzC3zUJSBgmApODh6akBVvJMOZOXgwCiy+0pODuylpKmn5N8BW0eHjDzyH4ETw+eMKK7AjeHTQfU/hGOv/H23sn5iofz1kuVYAxuG7ZnjnOSMCLkO53m2cGT1wB28jtjC849DrrkbOp7Ahe2P2DP9J3KWpg7yvDRJSt2SWNmfDcUvh0s/FNRXVu5IfXt2jTzq/8eBPSQ5O3ycd5qDf8++5/UB8QGDAg==
+   eJy1ltlOQjEQhuftiIkXKAHvUFYX9DVcQCEkCCKLvBDvxD+xEyeT03i6nEm+nK3t12l7mnaIaAhuwR24Bh1wT2HRVnX5euPg5wF4ACPwCHru3VOgo6vq8rXvGAS2cwwsL/FseIlsR6IOaoY3wzzR0wQN8846mHGCg+NM3V9W5OBczh2tgvan4CPRYaOK9hfgU5FzjCTW4FuR0yH93xnHjPKtW9t/4ZXy5eJzTMC7InbOeZzsGAm2HI/nMsLhy0E7dD+2EZ4yDltmE+jYgy9Vf6We5T+xYxnqEM+P41DQb8uW4udG4j9HSj4Skpev7RX95ZwaVfS/jINzOFTsyDHfOvSaLnLl8Pj2mDIePoNceL7pfcmuo6K8Nqqe9vHZ4Ip+zzfaZfelE7tals8=
   </data>
  </layer>
- <layer name="Cave" width="25" height="25">
+ <layer name="Cave" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+   eJztwTEBAAAAwqD1T20MH6AAAOBjCowAAQ==
   </data>
  </layer>
  <objectgroup name="Spaces">
-  <object gid="2" x="384" y="736"/>
+  <object gid="2" x="384" y="736">
+   <properties>
+    <property name="level" value="retux-38.tmx"/>
+   </properties>
+  </object>
   <object gid="2" x="384" y="96"/>
   <object gid="3" x="640" y="736">
    <properties>
@@ -60,9 +64,9 @@
  <objectgroup name="Objects">
   <object gid="1" x="640" y="736"/>
  </objectgroup>
- <layer name="Hue" width="25" height="25">
+ <layer name="Hue" width="25" height="27">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+   eJztwTEBAAAAwqD1T20MH6AAAOBjCowAAQ==
   </data>
  </layer>
  <objectgroup color="#ffff00" name="map_path">

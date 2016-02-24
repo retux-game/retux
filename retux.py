@@ -6939,7 +6939,7 @@ def play_music(music, force_restart=False):
                 loaded_music[music] = music_object
 
         name, ext = os.path.splitext(music)
-        music_start = ''.join((name, "-start", ext))
+        music_start = ''.join([name, "-start", ext])
         music_start_object = loaded_music.get(music_start)
         if music_start_object is None:
             try:
@@ -6950,8 +6950,9 @@ def play_music(music, force_restart=False):
             else:
                 loaded_music[music_start] = music_start_object
 
-        if (force_restart or
-                (not music_object.playing and not music_start_object.playing)):
+        if (force_restart or (not music_object.playing and
+                              (music_start_object is None or
+                               not music_start_object.playing))):
             sge.snd.Music.clear_queue()
             sge.snd.Music.stop()
             if music_start_object is not None:
