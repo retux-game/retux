@@ -1184,14 +1184,30 @@ class CreditsScreen(Level):
             sge.game.start_room.start()
 
     def event_key_press(self, key, char):
-        if key == "down":
+        if key in itertools.chain.from_iterable(down_key):
             for obj in self.sections:
                 obj.yvelocity -= 0.25
-        elif key == "up":
+        elif key in itertools.chain.from_iterable(up_key):
             for obj in self.sections:
                 obj.yvelocity += 0.25
-        elif key in {"escape", "enter"}:
+        elif (key in itertools.chain.from_iterable(jump_key) or
+                key in itertools.chain.from_iterable(action_key) or
+                key in itertools.chain.from_iterable(pause_key)):
             sge.game.start_room.start()
+
+    def event_joystick(self, js_name, js_id, input_type, input_id, value):
+        js = (js_id, input_type, input_id)
+        if value > joystick_threshold:
+            if js in itertools.chain.from_iterable(down_js):
+                for obj in self.sections:
+                    obj.yvelocity -= 0.25
+            elif js in itertools.chain.from_iterable(up_js):
+                for obj in self.sections:
+                    obj.yvelocity += 0.25
+            elif (js in itertools.chain.from_iterable(jump_js) or
+                    js in itertools.chain.from_iterable(action_js) or
+                    js in itertools.chain.from_iterable(pause_js)):
+                sge.game.start_room.start()
 
 
 class Worldmap(sge.dsp.Room):
@@ -5762,47 +5778,39 @@ class MapPlayer(sge.dsp.Object):
             room.level_tuxdoll_available = space.level in tuxdolls_available
             room.level_tuxdoll_found = space.level in tuxdolls_found
 
-            for key in itertools.chain.from_iterable(sneak_key):
-                if sge.keyboard.get_pressed(key):
-                    self.move_forward()
-            for key in itertools.chain.from_iterable(left_key):
-                if sge.keyboard.get_pressed(key):
-                    self.move_left()
-            for key in itertools.chain.from_iterable(right_key):
-                if sge.keyboard.get_pressed(key):
-                    self.move_right()
-            for key in itertools.chain.from_iterable(up_key):
-                if sge.keyboard.get_pressed(key):
-                    self.move_up()
-            for key in itertools.chain.from_iterable(down_key):
-                if sge.keyboard.get_pressed(key):
-                    self.move_down()
+            key_controls = [left_key, right_key, up_key, down_key, sneak_key]
+            js_controls = [left_js, right_js, up_js, down_js, sneak_js]
+            states = [0 for i in key_controls]
 
-            for j in six.moves.range(sge.joystick.get_joysticks()):
-                x = sge.joystick.get_axis(j, 0)
-                if x > joystick_threshold:
-                    self.move_right()
-                elif x < -joystick_threshold:
-                    self.move_left()
+            for i in six.moves.range(len(key_controls)):
+                for player in six.moves.range(len(key_controls[i])):
+                    for choice in key_controls[i][player]:
+                        value = sge.keyboard.get_pressed(choice)
+                        states[i] = max(states[i], value)
 
-                y = sge.joystick.get_axis(j, 1)
-                if y > joystick_threshold:
-                    self.move_down()
-                elif y < -joystick_threshold:
-                    self.move_up()
+            for i in six.moves.range(len(js_controls)):
+                for player in six.moves.range(len(key_controls[i])):
+                    for choice in js_controls[i][player]:
+                        j, t, c = choice
+                        value = min(sge.joystick.get_value(j, t, c), 1)
+                        states[i] = max(states[i], value)
 
-                for h in six.moves.range(sge.joystick.get_hats(j)):
-                    x = sge.joystick.get_hat_x(j, h)
-                    if x > 0:
-                        self.move_right()
-                    elif x < 0:
-                        self.move_left()
+            left_pressed = states[0]
+            right_pressed = states[1]
+            up_pressed = states[2]
+            down_pressed = states[3]
+            sneak_pressed = states[4]
 
-                    y = sge.joystick.get_hat_y(j, h)
-                    if y > 0:
-                        self.move_down()
-                    elif y < 0:
-                        self.move_up()
+            if sneak_pressed > joystick_threshold:
+                self.move_forward()
+            if right_pressed - left_pressed > joystick_threshold:
+                self.move_right()
+            elif left_pressed - right_pressed > joystick_threshold:
+                self.move_left()
+            if down_pressed - up_pressed > joystick_threshold:
+                self.move_down()
+            elif up_pressed - down_pressed > joystick_threshold:
+                self.move_up()
 
         if room.views:
             view = room.views[0]
@@ -5810,8 +5818,18 @@ class MapPlayer(sge.dsp.Object):
             view.y = self.y - view.height / 2 + self.sprite.height / 2
 
     def event_key_press(self, key, char):
-        if key in jump_key or key in action_key or key == "enter":
+        if (key in itertools.chain.from_iterable(jump_key) or
+                key in itertools.chain.from_iterable(action_key) or
+                key in itertools.chain.from_iterable(pause_key)):
             self.start_level()
+
+    def event_joystick(self, js_name, js_id, input_type, input_id, value):
+        js = (js_id, input_type, input_id)
+        if value > joystick_threshold:
+            if (js in itertools.chain.from_iterable(jump_js) or
+                    js in itertools.chain.from_iterable(action_js) or
+                    js in itertools.chain.from_iterable(pause_js)):
+                self.start_level()
 
     def event_joystick_button_press(self, js_name, js_id, button):
         self.start_level()
@@ -6713,18 +6731,15 @@ class DialogBox(xsge_gui.Dialog):
         if portrait is not None:
             xsge_gui.Widget(self, 8, 8, 0, sprite=portrait)
 
-    def event_key_press(self, key, char):
-        if key == "enter" or key in jump_key or key in action_key:
-            if len(self.label.text) < len(self.label.full_text):
-                self.label.text = self.label.full_text
-            else:
-                self.destroy()
-        elif key == "escape":
+    def event_press_enter(self):
+        if len(self.label.text) < len(self.label.full_text):
+            self.label.text = self.label.full_text
+        else:
             self.destroy()
-            sge.game.current_room.event_key_press(key, char)
 
-    def event_joystick_button_press(self, js_name, js_id, button):
-        self.event_key_press("enter", "\n")
+    def event_press_escape(self):
+        self.destroy()
+        sge.game.current_room.event_key_press("escape", "")
 
 
 def get_object(x, y, cls=None, **kwargs):
