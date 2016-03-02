@@ -7728,7 +7728,7 @@ if not NO_BACKGROUNDS:
             repeat_left=True, repeat_right=True, repeat_down=True)]
     del cave_edge_spr
 
-backgrounds["cave"] = sge.gfx.Background(layers, sge.gfx.Color("black"))
+backgrounds["cave"] = sge.gfx.Background(layers, sge.gfx.Color("#024"))
 
 if not NO_BACKGROUNDS:
     nightsky_bottom_spr = sge.gfx.Sprite("nightsky-bottom", d)
@@ -7755,7 +7755,7 @@ if not NO_BACKGROUNDS:
             repeat_down=True)]
     del nightsky_bottom_spr
 
-backgrounds["nightsky"] = sge.gfx.Background(layers, sge.gfx.Color("black"))
+backgrounds["nightsky"] = sge.gfx.Background(layers, sge.gfx.Color("#002"))
 
 if not NO_BACKGROUNDS:
     layers = [
@@ -7793,7 +7793,7 @@ for i in list(backgrounds.keys()):
             layers, backgrounds[i].color)
     else:
         backgrounds["{}_castle".format(i)] = sge.gfx.Background(
-            [], sge.gfx.Color("black"))
+            [], sge.gfx.Color("#222"))
 del castle_spr
 del castle_bottom_spr
 
