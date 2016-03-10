@@ -59,6 +59,7 @@
   <object x="9536" y="192" width="352" height="96"/>
   <object x="11136" y="256" width="64" height="128"/>
   <object x="5024" y="160" width="64" height="32"/>
+  <object x="5760" y="192" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="level_end" x="10688" y="0" width="32" height="384"/>

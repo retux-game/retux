@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="nightsky"/>
+  <property name="music" value="greatgigantic.ogg"/>
+  <property name="name" value="Danger Doors"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BogJWMtLdjIx3sGAWowBYPHq4AABCBAwg=
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAc5AFxAhAr4MDUAvjsoSYA2eMNxJ40tAMGdIahHfpUNruNkYGhnZG2/ugDmt9PYztagOa3DjE7jgDNWomGZwDxTCx22JKJzwDN2oiGFwDxQiC2QrNDiAZYHs0OdKxPQJ5YjGwOADTgH7E=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="640" y="0" width="160" height="64"/>
+  <object x="672" y="64" width="128" height="384"/>
+  <object x="0" y="384" width="672" height="64"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="slope_bottomleft" x="576" y="0" width="64" height="64"/>
+  <object type="solid_right" x="448" y="320" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="448" y="352">
+   <properties>
+    <property name="dest" value="retux-39b.tmx:enter"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="384"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+  </data>
+ </layer>
+</map>

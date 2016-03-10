@@ -7793,7 +7793,7 @@ for i in list(backgrounds.keys()):
             layers, backgrounds[i].color)
     else:
         backgrounds["{}_castle".format(i)] = sge.gfx.Background(
-            [], sge.gfx.Color("#222"))
+            [], sge.gfx.Color("#221833"))
 del castle_spr
 del castle_bottom_spr
 

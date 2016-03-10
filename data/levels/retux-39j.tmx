@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="2">
+ <properties>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="greatgigantic.ogg"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <layer name="Back Tiles" width="125" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwYEAAAAAw6D5Ux/hAlUBAAAAAAAAzwAbWAAB
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="125" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztlesKwjAMhdcf3lpFaDfwh4K+iM7L+z+SmkILIdZZq4NCcuDQuQk7ydd0R9U0azEbn8BLsIiPtDBnJ2HOT8Kcn4Q5PwlzfhLm/CTM+WkM5koNr3fwI8Obyvdibh1NZXV45heVlz23nkW4N3mzTmGdZXgL3ql62efWcfP5K6rBM+8zs6c8T9Sy+lCff6cNdsEtuAs2wXvwAbGvbY40yRyvHarBhv7WxF2jnluUN+aPbLrwH0Oep74LOcwN6ZdDPWrRuxxiPzRH/zifSnrXoswG/Y69i73tC3OO4SuZOYt4RA50T2D2pczpfDv1urfw/fiMzpRRZedU6nz6Vhrlbcm8WJQvXv9ynv7TZ/ATkDtsuw==
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid"/>
+ <objectgroup name="Collision Objects">
+  <object id="1" type="moving_platform_path" x="2080" y="352">
+   <polyline points="0,0 192,0 0,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items"/>
+ <objectgroup name="NPCs"/>
+ <objectgroup name="Players"/>
+ <layer name="Front Tiles" width="125" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwYEAAAAAw6D5Ux/hAlUBAAAAAAAAzwAbWAAB
+  </data>
+ </layer>
+</map>
