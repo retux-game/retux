@@ -55,7 +55,9 @@
   <object gid="476" x="320" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="160" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRQE8AAAV4AAE=

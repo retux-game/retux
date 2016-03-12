@@ -1595,9 +1595,11 @@ class Player(xsge_physics.Collider):
             for door in sorted(self.collision(Door),
                                key=lambda o, x=self.x: -abs(x - o.x)):
                 if self.y == door.y and abs(self.x - door.x) <= WARP_LAX:
-                    self.x = door.x
-                    door.warp(self)
-                    break
+                    self.move_x(door.x - self.x)
+                    if abs(self.x - door.x) < 1:
+                        self.x = door.x
+                        door.warp(self)
+                        break
 
     def stomp_jump(self, other, jump_height=None):
         if jump_height is None:

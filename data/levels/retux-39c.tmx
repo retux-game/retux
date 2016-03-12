@@ -43,7 +43,12 @@
    <property name="dest" value="retux-39d.tmx:c"/>
    <property name="spawn_id" value="d"/>
   </properties>
-  <object gid="502" x="3744" y="320" width="32" height="96"/>
+  <object gid="502" x="3744" y="320" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39d.tmx:c"/>
+    <property name="spawn_id" value="d"/>
+   </properties>
+  </object>
   <object gid="502" x="96" y="416" width="32" height="96">
    <properties>
     <property name="dest" value="retux-39b.tmx:c"/>

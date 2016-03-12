@@ -62,9 +62,17 @@
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="477" x="192" y="128"/>
+  <object gid="477" x="224" y="128"/>
+  <object gid="477" x="256" y="128"/>
+  <object gid="477" x="288" y="128"/>
+  <object gid="10" x="256" y="96"/>
+ </objectgroup>
  <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="Players">
+  <object gid="1" x="160" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="100" height="14">
   <data encoding="base64" compression="zlib">
    eJztwQENAAAAwqD3T20ON6AAAAAAAHg0FeAAAQ==
