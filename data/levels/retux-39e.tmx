@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="37">
  <properties>
   <property name="ambient_light" value="black"/>
   <property name="bgname" value="cave"/>
@@ -29,50 +29,60 @@
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="2080" y="224" width="96" height="96"/>
-  <object x="2080" y="320" width="320" height="64"/>
-  <object x="2080" y="416" width="320" height="32"/>
-  <object x="2080" y="384" width="160" height="32"/>
-  <object x="2304" y="384" width="96" height="32"/>
-  <object x="2368" y="32" width="32" height="288"/>
-  <object x="1856" y="192" width="128" height="96"/>
-  <object x="1600" y="256" width="32" height="32"/>
-  <object x="0" y="0" width="2400" height="32"/>
-  <object x="1248" y="352" width="736" height="96"/>
-  <object x="1472" y="288" width="512" height="64"/>
-  <object x="1088" y="288" width="32" height="160"/>
-  <object x="992" y="224" width="32" height="224"/>
-  <object x="0" y="32" width="32" height="320"/>
-  <object x="0" y="352" width="896" height="96"/>
-  <object x="640" y="320" width="256" height="32"/>
-  <object x="512" y="128" width="128" height="128"/>
-  <object x="352" y="256" width="288" height="96"/>
+  <object id="1" x="2080" y="224" width="96" height="96"/>
+  <object id="2" x="2080" y="320" width="320" height="64"/>
+  <object id="3" x="2080" y="416" width="320" height="32"/>
+  <object id="4" x="2080" y="384" width="160" height="32"/>
+  <object id="5" x="2304" y="384" width="96" height="32"/>
+  <object id="6" x="2368" y="32" width="32" height="288"/>
+  <object id="7" x="1856" y="192" width="128" height="96"/>
+  <object id="8" x="1600" y="256" width="32" height="32"/>
+  <object id="9" x="0" y="0" width="2400" height="32"/>
+  <object id="10" x="1248" y="352" width="736" height="96"/>
+  <object id="11" x="1472" y="288" width="512" height="64"/>
+  <object id="12" x="1088" y="288" width="32" height="160"/>
+  <object id="13" x="992" y="224" width="32" height="224"/>
+  <object id="14" x="0" y="32" width="32" height="320"/>
+  <object id="15" x="0" y="352" width="896" height="96"/>
+  <object id="16" x="640" y="320" width="256" height="32"/>
+  <object id="17" x="512" y="128" width="128" height="128"/>
+  <object id="18" x="352" y="256" width="288" height="96"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object gid="502" x="2272" y="320"/>
-  <object gid="502" x="96" y="352"/>
-  <object type="spike_top" x="448" y="224" width="64" height="32"/>
-  <object type="slope_topleft" x="1344" y="288" width="128" height="64"/>
-  <object type="spike_left" x="1568" y="256" width="32" height="32"/>
-  <object type="spike_top" x="1600" y="224" width="32" height="32"/>
-  <object type="spike_right" x="1632" y="256" width="32" height="32"/>
+  <object id="19" gid="502" x="2272" y="320" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39d.tmx:e"/>
+    <property name="spawn_id" value="d"/>
+   </properties>
+  </object>
+  <object id="20" gid="502" x="96" y="352" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39f.tmx:e"/>
+    <property name="spawn_id" value="f"/>
+   </properties>
+  </object>
+  <object id="21" type="spike_top" x="448" y="224" width="64" height="32"/>
+  <object id="22" type="slope_topleft" x="1344" y="288" width="128" height="64"/>
+  <object id="23" type="spike_left" x="1568" y="256" width="32" height="32"/>
+  <object id="24" type="spike_top" x="1600" y="224" width="32" height="32"/>
+  <object id="25" type="spike_right" x="1632" y="256" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="10" x="2272" y="416"/>
+  <object id="26" gid="10" x="2272" y="416" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="NPCs">
-  <object gid="499" x="640" y="96"/>
-  <object gid="9" x="1856" y="64"/>
-  <object gid="9" x="1888" y="64"/>
-  <object gid="9" x="1920" y="64"/>
-  <object gid="9" x="1952" y="64"/>
-  <object gid="5" x="1280" y="352"/>
-  <object gid="5" x="1344" y="344"/>
-  <object gid="7" x="800" y="320"/>
-  <object gid="9" x="992" y="64"/>
-  <object gid="9" x="1088" y="64"/>
+  <object id="27" gid="499" x="640" y="96" width="66" height="64"/>
+  <object id="28" gid="9" x="1856" y="64" width="32" height="32"/>
+  <object id="29" gid="9" x="1888" y="64" width="32" height="32"/>
+  <object id="30" gid="9" x="1920" y="64" width="32" height="32"/>
+  <object id="31" gid="9" x="1952" y="64" width="32" height="32"/>
+  <object id="32" gid="5" x="1280" y="352" width="32" height="32"/>
+  <object id="33" gid="5" x="1344" y="344" width="32" height="32"/>
+  <object id="34" gid="7" x="800" y="320" width="32" height="32"/>
+  <object id="35" gid="9" x="992" y="64" width="32" height="32"/>
+  <object id="36" gid="9" x="1088" y="64" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Players"/>
  <layer name="Front Tiles" width="75" height="14">

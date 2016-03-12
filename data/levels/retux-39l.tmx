@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="1">
  <properties>
   <property name="bgname" value="cave"/>
   <property name="music" value="greatgigantic.ogg"/>
@@ -17,14 +17,14 @@
  <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <layer name="Back Tiles" width="100" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwQENAAAAwqD3T20ON6AAAAAAAHg0FeAAAQ==
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="100" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztlutugzAMhfGfdg2rKgWiVV0v24ts7db3f6RtjhRLB5cgBkNkVSwdOaURsfOdAG9UFJusJPTOemTlSCNM5pFUZB5pReaRVmQeaUXmkVbcK48v1vdIFTPsyxQ8nmj+/ha81nKkHv45D89hx3qO9Hf16/xyLe/zIRx9X5ZVh1wG1ZAryCXMl7kfLb7aTszoL3gghyPrxHKgKug8gMki4lOi7mzC3mINwsaF/XbqN46lXu2pPetA03ExER/0leaAfQkHGVtg0vf+nxG/rKg7Cw/0f6VkVa1t5wYZeb2wXifkYiI+6CvkIP1jXw6u2Q7fxXSJ8FhTdzbK67KvVo11fdIDztXPubqFy9hvB/RfCfVIjY5uz7tVNeNzuYRr2Ic+H9qzjppexDMl9xnKo4Z7YrbUPDPYO75ztKec+g/Py9hvB/TfD1n2YsI=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -34,9 +34,9 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players"/>
- <layer name="Front Tiles" width="25" height="14">
+ <layer name="Front Tiles" width="100" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwQENAAAAwqD3T20ON6AAAAAAAHg0FeAAAQ==
   </data>
  </layer>
 </map>

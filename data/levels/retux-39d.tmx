@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="20" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="20" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="5">
  <properties>
   <property name="background_y" value="128"/>
   <property name="bgname" value="cave"/>
@@ -30,10 +30,30 @@
  </layer>
  <objectgroup color="#000000" name="solid"/>
  <objectgroup name="Collision Objects">
-  <object gid="502" x="3136" y="352"/>
-  <object gid="502" x="4704" y="608"/>
-  <object gid="502" x="96" y="576"/>
-  <object gid="502" x="2048" y="416"/>
+  <object id="1" gid="502" x="3136" y="352" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39e.tmx:d"/>
+    <property name="spawn_id" value="e"/>
+   </properties>
+  </object>
+  <object id="2" gid="502" x="4704" y="608" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39g.tmx:d"/>
+    <property name="spawn_id" value="g"/>
+   </properties>
+  </object>
+  <object id="3" gid="502" x="96" y="576" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39c.tmx:d"/>
+    <property name="spawn_id" value="c"/>
+   </properties>
+  </object>
+  <object id="4" gid="502" x="2048" y="416" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39b.tmx:d"/>
+    <property name="spawn_id" value="b"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>

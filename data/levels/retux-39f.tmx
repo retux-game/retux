@@ -29,7 +29,12 @@
  </layer>
  <objectgroup color="#000000" name="solid"/>
  <objectgroup name="Collision Objects">
-  <object id="1" gid="502" x="96" y="384" width="32" height="96"/>
+  <object id="1" gid="502" x="96" y="384" width="32" height="96">
+   <properties>
+    <property name="dest" value="retux-39e.tmx:f"/>
+    <property name="spawn_id" value="e"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
