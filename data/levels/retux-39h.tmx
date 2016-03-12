@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="56" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="56" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="background_y" value="1798"/>
   <property name="bgname" value="cave"/>
@@ -28,14 +28,52 @@
    eJztl/1KwzAUxRsVlUVUmg5BQUEfwv/mx15IfX/UBHrwLLTJbXqjznnhsLGV+wtJc06yMk1zVlEPXideNWuxY4x3r49CrYWMPf/MfkZHI3pSnKtb3+fOa9mr9er6T+31AAsMV3HNwfrfH9vDkO67JjPGFEOy74IOZjC0qhaD51nqV1PrsJJfcZ3+4hx88c+9ZvQ20Gub36uY8WzK97CU8ZjIyWMlBvKq6zPS0Xt3rsQIPS1l8H2ir8Qn4/llRpfpH0rik7FHgrEU9C8tMGr1B+Ov7MFdZkw5x5fmIOdcTqU5uDBf53NL37GfrZl/bo+zFP0s9YU3WYU1x/ncka/CY/Gb9h2H/RVzWOuOYxXnKsf6rrMP57lGfg8xOM818nuIsVLO7yHGT3nimOeVrNcYY+xskLszTWFo1lyGJEfm3qMkOVKSHxdmc4wt+RL7IHuvlBF6X3pdRWPkvGBvd+TtqbsBhN7XXjeURZx7NmJwXqXuBhD3Rr66aI7QvzWbeRX+/wRLHW5a
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="800" height="32"/>
+  <object x="288" y="160" width="480" height="32"/>
+  <object x="192" y="448" width="352" height="32"/>
+  <object x="672" y="544" width="96" height="64"/>
+  <object x="320" y="640" width="320" height="32"/>
+  <object x="352" y="864" width="320" height="32"/>
+  <object x="32" y="768" width="224" height="64"/>
+  <object x="416" y="1120" width="352" height="96"/>
+  <object x="32" y="1408" width="96" height="64"/>
+  <object x="160" y="1536" width="224" height="32"/>
+  <object x="480" y="1632" width="288" height="64"/>
+  <object x="416" y="1696" width="352" height="64"/>
+  <object x="0" y="1760" width="800" height="32"/>
+  <object x="768" y="32" width="32" height="1728"/>
+  <object x="0" y="32" width="32" height="1728"/>
+ </objectgroup>
  <objectgroup name="Collision Objects">
-  <object id="1" type="moving_platform_path" x="224" y="1344">
+  <object type="moving_platform_path" x="224" y="1344">
    <polyline points="0,0 0,-192 0,0"/>
   </object>
-  <object id="2" type="moving_platform_path" x="32" y="416">
+  <object type="moving_platform_path" x="32" y="416">
    <polyline points="0,0 0,-224 0,0"/>
   </object>
+  <object gid="502" x="96" y="1760">
+   <properties>
+    <property name="dest" value="retux-39g.tmx:h"/>
+    <property name="spawn_id" value="g"/>
+   </properties>
+  </object>
+  <object gid="502" x="704" y="160">
+   <properties>
+    <property name="dest" value="retux-39j.tmx:h"/>
+    <property name="spawn_id" value="j"/>
+   </properties>
+  </object>
+  <object gid="502" x="736" y="544">
+   <properties>
+    <property name="dest" value="retux-39i.tmx:h"/>
+    <property name="spawn_id" value="i"/>
+   </properties>
+  </object>
+  <object type="slope_bottomleft" x="576" y="192" width="192" height="96"/>
+  <object type="slope_bottomright" x="32" y="832" width="128" height="128"/>
+  <object type="slope_bottomleft" x="512" y="1216" width="256" height="128"/>
+  <object type="slope_topleft" x="288" y="1696" width="128" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>

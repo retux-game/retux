@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="cave"/>
   <property name="music" value="greatgigantic.ogg"/>
@@ -27,8 +27,39 @@
    eJztlutugzAMhfGfdg2rKgWiVV0v24ts7db3f6RtjhRLB5cgBkNkVSwdOaURsfOdAG9UFJusJPTOemTlSCNM5pFUZB5pReaRVmQeaUXmkVbcK48v1vdIFTPsyxQ8nmj+/ha81nKkHv45D89hx3qO9Hf16/xyLe/zIRx9X5ZVh1wG1ZAryCXMl7kfLb7aTszoL3gghyPrxHKgKug8gMki4lOi7mzC3mINwsaF/XbqN46lXu2pPetA03ExER/0leaAfQkHGVtg0vf+nxG/rKg7Cw/0f6VkVa1t5wYZeb2wXifkYiI+6CvkIP1jXw6u2Q7fxXSJ8FhTdzbK67KvVo11fdIDztXPubqFy9hvB/RfCfVIjY5uz7tVNeNzuYRr2Ic+H9qzjppexDMl9xnKo4Z7YrbUPDPYO75ztKec+g/Py9hvB/TfD1n2YsI=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="3200" height="32"/>
+  <object x="3168" y="32" width="32" height="384"/>
+  <object x="1696" y="256" width="576" height="64"/>
+  <object x="1696" y="320" width="704" height="96"/>
+  <object x="1696" y="416" width="1504" height="32"/>
+  <object x="1632" y="352" width="32" height="96"/>
+  <object x="1568" y="352" width="32" height="96"/>
+  <object x="1504" y="352" width="32" height="96"/>
+  <object x="1440" y="352" width="32" height="96"/>
+  <object x="1248" y="320" width="64" height="128"/>
+  <object x="0" y="32" width="32" height="352"/>
+  <object x="0" y="384" width="1248" height="64"/>
+  <object x="672" y="288" width="192" height="32"/>
+  <object x="672" y="320" width="224" height="32"/>
+  <object x="672" y="352" width="256" height="32"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object gid="502" x="96" y="384">
+   <properties>
+    <property name="dest" value="retux-39k.tmx:l"/>
+    <property name="spawn_id" value="k"/>
+   </properties>
+  </object>
+  <object gid="502" x="3104" y="416">
+   <properties>
+    <property name="dest" value="retux-39i.tmx:l"/>
+    <property name="spawn_id" value="i"/>
+   </properties>
+  </object>
+  <object type="slope_topleft" x="480" y="288" width="192" height="96"/>
+  <object type="slope_topright" x="2400" y="320" width="192" height="96"/>
+ </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>

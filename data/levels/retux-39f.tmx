@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="cave"/>
   <property name="music" value="greatgigantic.ogg"/>
@@ -27,19 +27,32 @@
    eJyzY2Rg4KchtgdiHiCmBWgBmtsKxFxUtKMNaE47EK+E4hlAPJPKdvQBzekH4o1QvACIF1LZjmlAc6YDcQcQdyKZSU075gHNmQ/EE4B4Io3sgAFYXI/aMXB2HMGSL5DtcALi/wyU4TNY8gVMzhnIdgBidhpiRyDmBmJhKC0ExCJIWBSJzY2mFqZeGKpOGE2dKFQeRAMA1XswRg==
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="0" width="800" height="32"/>
+  <object x="768" y="32" width="32" height="352"/>
+  <object x="0" y="32" width="32" height="352"/>
+  <object x="0" y="384" width="800" height="64"/>
+ </objectgroup>
  <objectgroup name="Collision Objects">
-  <object id="1" gid="502" x="96" y="384" width="32" height="96">
+  <object gid="502" x="96" y="384" width="32" height="96">
    <properties>
     <property name="dest" value="retux-39e.tmx:f"/>
     <property name="spawn_id" value="e"/>
    </properties>
   </object>
+  <object type="solid_left" x="544" y="320" width="32" height="64"/>
  </objectgroup>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="544" y="352">
+   <properties>
+    <property name="dest" value="retux-39n.tmx:f"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object id="2" gid="476" x="320" y="288" width="32" height="32"/>
+  <object gid="476" x="320" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players"/>
