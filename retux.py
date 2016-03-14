@@ -7593,7 +7593,8 @@ boss_block_sprite = sge.gfx.Sprite("boss_block", d, transparent=False,
 bell_sprite = sge.gfx.Sprite("bell", d, origin_x=-1, fps=10, bbox_x=0,
                              bbox_width=32, bbox_height=32)
 door_sprite = sge.gfx.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
-door_back_sprite = sge.gfx.Sprite("door_back", d, origin_x=21, origin_y=41)
+door_back_sprite = sge.gfx.Sprite("door_back", d, origin_x=21, origin_y=41,
+                                  transparent=False)
 
 d = os.path.join(DATA, "images", "portraits")
 portrait_tux = sge.gfx.Sprite("portrait_tux", d)
