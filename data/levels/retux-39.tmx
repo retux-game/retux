@@ -4,6 +4,7 @@
   <property name="bgname" value="nightsky"/>
   <property name="music" value="greatgigantic.ogg"/>
   <property name="name" value="Danger Doors"/>
+  <property name="time_bonus" value="100000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -35,7 +36,7 @@
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="slope_bottomleft" x="576" y="0" width="64" height="64"/>
-  <object type="solid_right" x="448" y="320" width="32" height="64"/>
+  <object type="solid_left" x="448" y="320" width="32" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
   <object x="448" y="352">

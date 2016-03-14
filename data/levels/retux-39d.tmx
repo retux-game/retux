@@ -101,8 +101,56 @@
   <object gid="489" x="3136" y="320"/>
   <object gid="489" x="3136" y="288"/>
   <object gid="489" x="3168" y="288"/>
+  <object gid="470" x="2592" y="448"/>
+  <object gid="470" x="2560" y="448"/>
+  <object gid="479" x="4480" y="512"/>
+  <object gid="479" x="4512" y="512"/>
+  <object gid="479" x="4352" y="512"/>
+  <object gid="479" x="4384" y="512"/>
+  <object gid="470" x="192" y="480"/>
+  <object gid="470" x="288" y="480"/>
+  <object gid="477" x="224" y="480"/>
+  <object gid="477" x="256" y="480"/>
  </objectgroup>
- <objectgroup name="NPCs"/>
+ <objectgroup name="NPCs">
+  <object gid="5" x="1888" y="512"/>
+  <object gid="5" x="1824" y="512"/>
+  <object gid="4" x="992" y="480"/>
+  <object gid="4" x="1088" y="480"/>
+  <object gid="4" x="1184" y="480"/>
+  <object gid="6" x="1504" y="480"/>
+  <object gid="6" x="1440" y="480"/>
+  <object gid="3" x="736" y="576"/>
+  <object gid="3" x="672" y="576"/>
+  <object gid="4" x="3008" y="448"/>
+  <object gid="4" x="2912" y="448"/>
+  <object gid="4" x="3104" y="352"/>
+  <object gid="4" x="3328" y="256"/>
+  <object gid="4" x="3424" y="256"/>
+  <object gid="4" x="3520" y="256"/>
+  <object gid="7" x="4576" y="608"/>
+  <object gid="7" x="4448" y="608"/>
+  <object gid="7" x="4320" y="608"/>
+  <object gid="9" x="2272" y="160"/>
+  <object gid="9" x="2240" y="160"/>
+  <object gid="9" x="2208" y="160"/>
+  <object gid="9" x="2176" y="160"/>
+  <object gid="9" x="2144" y="160"/>
+  <object gid="9" x="1056" y="256"/>
+  <object gid="9" x="1440" y="256"/>
+  <object gid="9" x="1248" y="256"/>
+  <object gid="9" x="1152" y="256"/>
+  <object gid="9" x="1344" y="256"/>
+  <object gid="9" x="3232" y="64"/>
+  <object gid="9" x="3616" y="64"/>
+  <object gid="9" x="3424" y="64"/>
+  <object gid="9" x="3456" y="64"/>
+  <object gid="9" x="3392" y="64"/>
+  <object gid="9" x="3200" y="64"/>
+  <object gid="9" x="3648" y="64"/>
+  <object gid="9" x="3520" y="64"/>
+  <object gid="9" x="3328" y="64"/>
+ </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="2112" y="416"/>
  </objectgroup>

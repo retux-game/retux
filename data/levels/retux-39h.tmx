@@ -77,10 +77,39 @@
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
+ <objectgroup name="Items">
+  <object gid="485" x="704" y="1120"/>
+ </objectgroup>
  <objectgroup name="NPCs">
   <object gid="3" x="256" y="448"/>
   <object gid="3" x="320" y="448"/>
+  <object gid="5" x="736" y="1632"/>
+  <object gid="5" x="672" y="1632"/>
+  <object gid="5" x="608" y="1632"/>
+  <object gid="6" x="256" y="1536"/>
+  <object gid="6" x="320" y="1536"/>
+  <object gid="9" x="320" y="64"/>
+  <object gid="9" x="352" y="64"/>
+  <object gid="9" x="384" y="64"/>
+  <object gid="9" x="608" y="64"/>
+  <object gid="9" x="576" y="64"/>
+  <object gid="9" x="544" y="64"/>
+  <object gid="9" x="480" y="64"/>
+  <object gid="9" x="448" y="64"/>
+  <object gid="9" x="512" y="512"/>
+  <object gid="9" x="416" y="512"/>
+  <object gid="9" x="448" y="512"/>
+  <object gid="9" x="480" y="512"/>
+  <object gid="7" x="576" y="640"/>
+  <object gid="7" x="384" y="640"/>
+  <object gid="3" x="64" y="768"/>
+  <object gid="3" x="128" y="768"/>
+  <object gid="6" x="416" y="864"/>
+  <object gid="6" x="480" y="864"/>
+  <object gid="6" x="544" y="864"/>
+  <object gid="5" x="704" y="1120"/>
+  <object gid="5" x="640" y="1120"/>
+  <object gid="5" x="576" y="1120"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="160" y="1760"/>

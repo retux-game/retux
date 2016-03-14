@@ -55,7 +55,16 @@
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
+ <objectgroup name="NPCs">
+  <object gid="7" x="672" y="352"/>
+  <object gid="7" x="768" y="352"/>
+  <object gid="2" x="480" y="288"/>
+  <object gid="2" x="544" y="288"/>
+  <object gid="4" x="928" y="384"/>
+  <object gid="4" x="1024" y="384"/>
+  <object gid="5" x="1184" y="384"/>
+  <object gid="5" x="1248" y="384"/>
+ </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="160" y="384"/>
  </objectgroup>
