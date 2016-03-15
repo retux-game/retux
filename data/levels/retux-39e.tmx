@@ -2,6 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="ambient_light" value="black"/>
+  <property name="background_x" value="501"/>
   <property name="bgname" value="cave"/>
   <property name="music" value="greatgigantic.ogg"/>
  </properties>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
+  <property name="background_x" value="548"/>
   <property name="bgname" value="cave"/>
   <property name="music" value="greatgigantic.ogg"/>
  </properties>
