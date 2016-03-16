@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztk2EKwjAMRjcVlU0Q2g5BQW+iznkqD6+m0MC3sOpmux9qA4/VzjXpIznmWbZOvOVErIiQuOXd61+LIrnqHTFc/UskV/0jueofyVX/GNvVnXgIskj5us5+RWjesV1N6OypYBYp35zOWQzgavMG5P6GGdx47mhr14QhKodyT95HzoG+YrnieYg1Xzasoy2xI5YeV8p5sG5K4c2AMy18DZldponkiufh0zok7GhPHDw1FuAIXWnoLX7H68r5GjK7TE1cItyvCaxDwo6M6x2fKwUucB7ZF7tSYh/7Tudtv0b8nz2rSPerobYSchvYV3n7LryW99Ad3/tcGTgbewj7jPNiz3FeBb9xhvk7OcNP7LpY4A==
+   eJztl+1qwjAUhts5thEHQpoyUNhAr8Ifwjq9Ki9ePZG88O6sUdOmP0Z74IE02p7k4Zx+VGVROGEuWGExccUGJ55KqGnO+9oKqXEs28f/Pdaylw15cmGM493k6k+wM3jqUlNjChN6sGtNjSnMVFMPhwn3rKmm7od39T6gp5NwVhSZ8rVd+xZ98w7t6kmuPVM8Z8r3Itd5TeDg8/bIPbSrHPER2aMJz3AX7rl4V6xpnvnu6SuXK/RDrv7y4R0thZXwFnFl6R1xrrw5clYpXym9C/aZXKEfuq5DA0efwldkjYYcsSu8L/JvGNfBV0rvgkb4ybC/fc91aODIhdqJubLkgvsRvuDKqnn9zcJ+nfo/PNtM+2tobfyt6Wjelr/3grHeR9VyfswVf/NzDXGdIS/XHPJaOuYexnm6hy9VWFtj
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -64,6 +64,8 @@
    </properties>
   </object>
   <object type="slope_topleft" x="1184" y="320" width="128" height="64"/>
+  <object type="slope_bottomright" x="32" y="32" width="96" height="192"/>
+  <object type="slope_bottomleft" x="2240" y="32" width="128" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>

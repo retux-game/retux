@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="125" height="14">
   <data encoding="base64" compression="zlib">
-   eJztlW0LwiAQx+eLnrQIdINeFNQXqfXwqfrwlYLCcdl22UaC94c/Ojfw7n6eO4qqWrOL8cl6ac36v+4ifd61hiWZeTZi5qw+MfPyxMxZVDHz8sTMyxMzL09jMBeie3xYPwneZH4WqXlUmeXhmF8ELXZqPgu/NvkwTu04I3hrvRP5sqfmcXPxZ5SDY94SY495Hsll1ZOf21N7G+/auvFW3nvrA2CfWx9JFHOYG5CD9vXNibsENdcg3hB/YNP4bxR6H/svUJgrVC8DalSDvQxg39VHQ9xPKbWrQcwKPIfahdq2iXGO4SvqOQ14BA74TED2qcxxfxvxfrbgeniHe0qJtHsqdj99KwnirVG/aBBfmP9ynw7ps/UL3VR0aw==
+   eJztWdtOwzAMbR5gkGyAklTigUnwE33sxuX/PwlIJVs6mLQLZRtB9ZGO3DlSavvEker1pmlulWdnmxgSHT33sLYjv8/4I631mT15PdKeHqwj//DOdaLi/OhAByd0sHAepJ/1zOlmYb+WLDMQvWr+p+igR+9Ah5sJP+s3pjmvY3+3YMfOi6JedAc098QAdODTPv+f6ET/M/B+GONONV8crGq+OKjmy4NqvjycQnNjpu174kcB7ys/i6V5NJXlMWj+YspiL83nmnwXI/Yy2VUBHxK3pl7tS/N4G+KvKIdB831h7DleZXLZHMgv9w3JsyWcHT0mPoH2tfWRFTHzc4AcPNW3Jt0t1Nybr/NfnuPwzDZCLlPznBLNnagXzg0ivCuA9lN9dIz7aU7tIsTs4DfXjmu7nxnnKfgqeg5ndayDPBOo/VzNZX8H8/1soZ/XZE85M++eyt1PP4WFePm/C47NQ3z8/Jv79Jh8TvwEEhVy6g==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -44,12 +44,11 @@
   <object x="896" y="416" width="1088" height="32"/>
   <object x="896" y="384" width="672" height="32"/>
   <object x="896" y="320" width="320" height="64"/>
-  <object x="3680" y="32" width="32" height="128"/>
+  <object x="3680" y="32" width="288" height="128"/>
   <object x="3520" y="32" width="32" height="128"/>
-  <object x="3424" y="32" width="32" height="64"/>
-  <object x="3328" y="32" width="32" height="64"/>
-  <object x="3232" y="32" width="32" height="64"/>
-  <object x="3136" y="32" width="32" height="64"/>
+  <object x="3424" y="32" width="96" height="64"/>
+  <object x="3232" y="32" width="128" height="64"/>
+  <object x="3072" y="32" width="96" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object type="moving_platform_path" x="2080" y="352">
@@ -68,6 +67,8 @@
    </properties>
   </object>
   <object type="slope_topright" x="1216" y="320" width="128" height="64"/>
+  <object type="slope_bottomleft" x="3456" y="96" width="64" height="64"/>
+  <object type="slope_bottomleft" x="3008" y="32" width="64" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>

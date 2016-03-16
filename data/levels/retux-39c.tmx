@@ -20,12 +20,12 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="120" height="14">
   <data encoding="base64" compression="zlib">
-   eJztlGFLwzAQhpsvKq0gJCmCgv4Tder+/z9SE+jhs3fthLYbNuTgpUvW3uXuucuLa5q7qiL1mnSbVK1Mayvfoq3yLdsq37Kt8i3bKt+ybYt879N5v5tlajaW81zbEt/M9SHpMel6oW5O5PzVLO+f/9JHW+BLrk9Jz0l9UkjqBoVBeT8Oyr89nvZ+/CPnqxX6x/S5wl2zRB8X4jt3JpSr8TKuHiyNr8c6Dk/yzXrPOU/k3cKPH4nj4dP6yWPfzpefbyv2yhztLsA3s93PPB/nlTW331ZHm2HyjO53Xu1/Y5XrPnVHt/guTMRm/3BtcW3f4nXuuGe4x2/ZU+o7uMNeYm/pPnv5nHfEfuijTs5BLjp3nay1xpwV3s3KkXlqzKm+bt1xfckkQsaInLuRmIyt37P/NGfmw5zYQwHrsZqc+w7ZyRmDrJXbmKwOvfjpxWfA+zoXJqvhKb46a5yrIH7Jj3cz54j7vTtmGt0hE+auPvRcUXwyVt77AfHKjng=
+   eJztwTEBAAAAwqD1T+1pCaAAAAAAAADgBhpAAAE=
   </data>
  </layer>
  <layer name="Middle Tiles" width="120" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1pCaAAAAAAAADgBhpAAAE=
+   eJztmGFLwzAQhpMvTlphkKQIDvRniB9Ep+7//yM1Bzn67l0zoe2GCTl4yZK1l9w9d/lQZ40Zovool0aZ+zRum4rVW+IYMv8/RzUr17rE9qVxrNKU72vjW6UJ37vGtlprfOu2xrduK5HvfTzvj1kmU1jMc60kvsL1IWoXtVmo2zMxf5vl9fNf6qgEvsj1MerJjt9f+iRvx+8xIUl+Oxj1+fBHzDcr1I/qa4W7Zok+r8R3bk8wV+WlXB2wVL4O5iGNyFf0ITFn4u7Aj5vYx4FPrScH63o+Gd9XrJU52l+Br7A9zDwf9ivmXH9rHrWHkWewY7/q/8pK8p67ozt4z2f2xvrBue6r6/zNF2sG1/BdrCn27e1xLWFt8TrW8iXviEOqo57OgVy473qac46xV/BuZo4YJ++Zq+vOnuYXmQSQMkLO/cSeuDe/j/XHMWM8GBPWkIf5VE4ufYfs6Yye5sxtSpqHgfwM5NPD89wXKs3hOb7ca9hXnvwiP7ybsY9wfbCnTIM9ZoKxsw8+VyCfuJes/QIuCI+J
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -38,6 +38,7 @@
   <object x="768" y="384" width="1248" height="32"/>
   <object x="800" y="352" width="1216" height="32"/>
   <object x="1440" y="256" width="544" height="96"/>
+  <object x="32" y="32" width="192" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object gid="502" x="3744" y="320" width="32" height="96">
@@ -59,6 +60,8 @@
    </properties>
   </object>
   <object type="slope_topleft" x="1248" y="256" width="192" height="96"/>
+  <object type="slope_bottomright" x="224" y="32" width="32" height="32"/>
+  <object type="slope_bottomright" x="32" y="64" width="32" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>

@@ -26,7 +26,7 @@
  </layer>
  <layer name="Middle Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
-   eJztl+tKw0AQhbN/qiYWYS8ICvV/H6Ia81Y+q0/gQ1gnsIeejJvdJAYRycIhZS/Ts9/MpPRkqupuU1HPolvRNsqj3lhNHmuw+hSdo6p/zH0NVjs5fxV1vbEqxggi/8f7+af1vyarZkEs84tsc/UPjjmGc1lxbo5RnZx3C+vqZkVWx8J6rv53Iwz1+Tn349xArchGXnNZ7Wn/nBq7N5ec9XoXvcncRzWcZ3XRZ0j4rCf0xVxWiOnoif7rfbyaca+pGmdWU2qsZ/QgekzkrKQ2+rUZVjn/3YT76f2BWNn49PH5UvCra5xZ7dVaP7jnweggeooe4IM9YB4+fZSjPWOscv7bCffT++ENObLqM/hhHl5T+Syx4p4Ho0CxA9W1T6xx/Tdm/DeopjP9+ZMZ/rfBPXQfeTPMBeenoXjwFmitoTmn1lPv1BKrWvnBd1jzvb75HjznaD+UYsX7udfwnvNmWMecF+4x5oW7WyVmy/yY2xJWVsVADXmad2of17eu7RwrxOReaynOF/LPUGo=
+   eJztl11OwzAQhOOXAgkVkn+EBBK89wA8FkJuxVk5AYco2JJHnSyOHYcIIZRIo1T+2Y6/3U3ao2qam01ZOS/tde21XfnraWNVdbUrsDp5fUY1/5j7Gqx2fv9F1OXGqhgjPPvsH+/nn9b/mqy6BbHUL7LN1T845hjWsuLcHKIGv98srKurFVkdCvO5+t9NMJT7a87HuYH6+D41C1jtaX1Njd2qc86C3r3e/NhHMx5nDdGnS/hsZ/RFLSvENHRH/wUfr2raa6rGmdWcGguM7rzuEzkrqY9+U7+TcK6c/2HG+eR6R6x0vNt4fyn4lTXOrPZiLlzc82D04PUYPcAHe8A4fNooQ2umWOX89zPOJ9fDG3KkxWfwwzi8pvJZYsU9D0aOYjuqa5uY4/rv1PQ7qKU9Yf9Rnf/fPNM5ZB9ZNc4F56ejePDmaK6jMSPmU8/UEqtW+MF3aPW9vvkcPGZoPZRixeu51/Ccs2pcx5wX7jHmhbNrIWbL/JjbElZaxEANWRo3Yh3Xt6ztHCvE5F7rKc4XGAxQgg==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -34,10 +34,8 @@
   <object x="2080" y="320" width="320" height="64"/>
   <object x="2080" y="416" width="320" height="32"/>
   <object x="2080" y="384" width="160" height="32"/>
-  <object x="2304" y="384" width="96" height="32"/>
   <object x="2368" y="32" width="32" height="288"/>
   <object x="1856" y="192" width="128" height="96"/>
-  <object x="1600" y="256" width="32" height="32"/>
   <object x="0" y="0" width="2400" height="32"/>
   <object x="1248" y="352" width="736" height="96"/>
   <object x="1472" y="288" width="512" height="64"/>
@@ -67,6 +65,7 @@
   <object type="spike_left" x="1568" y="256" width="32" height="32"/>
   <object type="spike_top" x="1600" y="224" width="32" height="32"/>
   <object type="spike_right" x="1632" y="256" width="32" height="32"/>
+  <object type="slope_bottomleft" x="2336" y="32" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
@@ -82,8 +81,6 @@
   <object gid="5" x="1280" y="352" width="32" height="32"/>
   <object gid="5" x="1344" y="344" width="32" height="32"/>
   <object gid="7" x="800" y="320" width="32" height="32"/>
-  <object gid="9" x="992" y="64" width="32" height="32"/>
-  <object gid="9" x="1088" y="64" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Players">
   <object gid="1" x="2208" y="320"/>

@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJyzY2Rg4KchtgdiHiCmBWgBmtsKxFxUtKMNaE47EK+E4hlAPJPKdvQBzekH4o1QvACIF1LZjmlAc6YDcQcQdyKZSU075gHNmQ/EE4B4Io3sgAFYXI/aMXB2HMGSL5DtcALi/wyU4TNY8gVMzhnIdgBidhpiRyDmBmJhKC0ExCJIWBSJzY2mFqZeGKpOGE2dKFQeRAMA1XswRg==
+   eJwTYmRgEAFiUSAWgtJ2QMxPJWwPNRNmvgjUfAEgphS0AM1oBWIuLG4m1/w2oL52IF4JxTOAeCbUDh4quBkE+oDm9APxRiheAMQLqWzHNKA504G4A4g7kcykph3zgObMB+IJQDyRRnbAACyuR+0YODuOYMkXyHY4AfF/BsrwGSz5AibnDGQ7ADE7DbEjEHMDsTCUhpVZMCyKxOZGUwtTLwxVJ4ymDrmMBQBfPDFn
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -33,6 +33,8 @@
   <object x="768" y="32" width="32" height="352"/>
   <object x="0" y="32" width="32" height="352"/>
   <object x="0" y="384" width="800" height="64"/>
+  <object x="32" y="32" width="160" height="32"/>
+  <object x="32" y="64" width="128" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object gid="502" x="96" y="384" width="32" height="96">
