@@ -4,6 +4,7 @@
   <property name="bgname" value="nightsky"/>
   <property name="music" value="wisphunt.ogg"/>
   <property name="name" value="Final Frost"/>
+  <property name="time_bonus" value="50000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -107,7 +108,7 @@
   <object gid="470" x="192" y="768" width="32" height="32"/>
   <object gid="470" x="320" y="768" width="32" height="32"/>
   <object gid="470" x="448" y="768" width="32" height="32"/>
-  <object gid="472" x="7840" y="160" width="32" height="32">
+  <object gid="472" x="7840" y="128" width="32" height="32">
    <properties>
     <property name="item" value="spring"/>
    </properties>
@@ -160,12 +161,9 @@
   <object gid="6" x="7680" y="448" width="32" height="32"/>
   <object gid="6" x="7616" y="448" width="32" height="32"/>
   <object gid="7" x="2912" y="192" width="32" height="32"/>
-  <object gid="5" x="3840" y="544" width="32" height="32"/>
-  <object gid="5" x="3904" y="544" width="32" height="32"/>
-  <object gid="5" x="3968" y="544" width="32" height="32"/>
+  <object gid="5" x="4000" y="544" width="32" height="32"/>
+  <object gid="5" x="4064" y="544" width="32" height="32"/>
   <object gid="5" x="4128" y="544" width="32" height="32"/>
-  <object gid="5" x="4192" y="544" width="32" height="32"/>
-  <object gid="5" x="4256" y="544" width="32" height="32"/>
   <object gid="4" x="4640" y="672" width="32" height="32"/>
   <object gid="4" x="4736" y="672" width="32" height="32"/>
   <object gid="4" x="4832" y="672" width="32" height="32"/>
