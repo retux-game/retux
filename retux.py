@@ -163,10 +163,9 @@ SNOWMAN_SHAKE_NUM = 3
 RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
 RACCOT_HOP_HEIGHT = TILE_SIZE
-RACCOT_JUMP_HEIGHT = 7 * TILE_SIZE
+RACCOT_JUMP_HEIGHT = 6 * TILE_SIZE
 RACCOT_JUMP_TRIGGER = 2 * TILE_SIZE
-RACCOT_STOMP_GRAVITY = 1
-RACCOT_STOMP_FALL_SPEED = 15
+RACCOT_STOMP_SPEED = 4
 RACCOT_STOMP_DELAY = 15
 RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
 RACCOT_HP = 5
@@ -176,6 +175,10 @@ RACCOT_HOP_INTERVAL_MAX = 120
 RACCOT_CHARGE_INTERVAL_MIN = 300
 RACCOT_CHARGE_INTERVAL_MAX = 600
 RACCOT_CRUSH_LAX = -8 # A negative lax makes it have the opposite effect.
+RACCOT_CRUSH_GRAVITY = 0.6
+RACCOT_CRUSH_FALL_SPEED = 15
+RACCOT_CRUSH_SPEED = 12
+RACCOT_CRUSH_CHARGE = TILE_SIZE
 RACCOT_SHAKE_NUM = 3
 
 HP_POINTS = 1000
@@ -3933,7 +3936,7 @@ class Snowman(FallingObject, Boss):
             self.next_stage()
 
 
-class Raccot(Boss, FallingObject):
+class Raccot(FallingObject, Boss):
 
     burnable = True
     freezable = True
@@ -3947,7 +3950,7 @@ class Raccot(Boss, FallingObject):
     @stage.setter
     def stage(self, value):
         self.__stage = value
-        if value:
+        if value and self.__ready:
             self.alarms["hop"] = random.uniform(self.hop_interval_min,
                                                 self.hop_interval_max)
             self.alarms["charge"] = random.uniform(self.charge_interval_min,
@@ -3967,7 +3970,15 @@ class Raccot(Boss, FallingObject):
         self.hopping = False
         self.charging = False
         self.crushing = False
+        self.__ready = False
+        kwargs["sprite"] = raccot_stand_sprite
         super(Raccot, self).__init__(x, y, **kwargs)
+        self.__ready = True
+        if self.stage:
+            self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                                self.hop_interval_max)
+            self.alarms["charge"] = random.uniform(self.charge_interval_min,
+                                                   self.charge_interval_max)
 
     def jump(self):
         if self.was_on_floor and self.yvelocity == 0:
@@ -3995,17 +4006,18 @@ class Raccot(Boss, FallingObject):
 
     def charge_end(self):
         self.charging = False
+        self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                            self.hop_interval_max)
         self.alarms["charge"] = random.uniform(self.charge_interval_min,
                                                self.charge_interval_max)
 
     def crush(self):
-        if not self.was_on_floor:
-            self.crushing = True
-            self.xvelocity = 0
-            self.yvelocity = 0
-            self.gravity = RACCOT_STOMP_GRAVITY
-            self.fall_speed = RACCOT_STOMP_FALL_SPEED
-            play_sound(yeti_gna_sound, self.x, self.y)
+        self.crushing = True
+        self.gravity = RACCOT_CRUSH_GRAVITY
+        self.fall_speed = RACCOT_CRUSH_FALL_SPEED
+        self.xvelocity = 0
+        self.yvelocity = get_jump_speed(RACCOT_CRUSH_CHARGE, self.gravity)
+        play_sound(yeti_gna_sound, self.x, self.y)
 
     def hurt(self):
         if self.stage > 0:
@@ -4026,57 +4038,60 @@ class Raccot(Boss, FallingObject):
     def move(self):
         super(Raccot, self).move()
 
-        if "stomp_delay" not in self.alarms and not self.stunned:
-            self.xacceleration = 0
-            player = self.get_nearest_player()
-            if player is not None:
-                if self.stage > 0 and self.charging:
-                    d = player.x - self.x
-                    if (abs(self.xvelocity) < walk_speed or
-                            (self.xvelocity > 0) != (d > 0)):
-                        self.xacceleration = math.copysign(RACCOT_ACCELERATION,
-                                                           d)
+        if not self.crushing and "crush" not in self.alarms:
+            if "stomp_delay" not in self.alarms:
+                self.xacceleration = 0
+                player = self.get_nearest_player()
+                if player is not None:
+                    if self.stage > 0 and self.charging:
+                        d = player.x - self.x
+                        if (abs(self.xvelocity) < RACCOT_WALK_SPEED or
+                                (self.xvelocity > 0) != (d > 0)):
+                            self.xacceleration = math.copysign(
+                                RACCOT_ACCELERATION, d)
+                        else:
+                            self.xvelocity = math.copysign(RACCOT_WALK_SPEED, d)
+
+                        if self.y - player.y >= RACCOT_JUMP_TRIGGER:
+                            self.jump()
                     else:
-                        self.xvelocity = math.copysign(RACCOT_WALK_SPEED, d)
+                        self.image_xscale = math.copysign(self.image_xscale,
+                                                          player.x - self.x)
 
-                    if self.y - player.y >= RACCOT_JUMP_TRIGGER:
-                        self.jump()
-                else:
-                    self.image_xscale = math.copysign(self.image_xscale,
-                                                      player.x - self.x)
+            if not self.was_on_floor:
+                players = []
+                crash_y = sge.game.current_room.height
+                objects = (
+                    sge.game.current_room.get_objects_at(
+                        self.bbox_left, self.bbox_bottom, self.bbox_width,
+                        (sge.game.current_room.height - self.bbox_bottom +
+                         sge.game.current_room.object_area_height)) |
+                    sge.game.current_room.object_area_void)
 
-        if not self.was_on_floor:
-            players = []
-            crash_y = sge.game.current_room.height
-            objects = (
-                sge.game.current_room.get_objects_at(
-                    self.bbox_left, self.bbox_bottom, self.bbox_width,
-                    (sge.game.current_room.height - self.bbox_bottom +
-                     sge.game.current_room.object_area_height)) |
-                sge.game.current_room.object_area_void)
+                for obj in objects:
+                    if (obj.bbox_top > self.bbox_bottom and
+                            self.bbox_right > obj.bbox_left and
+                            self.bbox_left < obj.bbox_right):
+                        if isinstance(obj, xsge_physics.SolidTop):
+                            crash_y = min(crash_y, obj.bbox_top)
+                        elif isinstance(obj, xsge_physics.SlopeTopLeft):
+                            crash_y = min(crash_y,
+                                          obj.get_slope_y(self.bbox_right))
+                        elif isinstance(obj, xsge_physics.SlopeTopRight):
+                            crash_y = min(crash_y,
+                                          obj.get_slope_y(self.bbox_left))
+                    if (obj.bbox_top > self.bbox_bottom and
+                            (self.bbox_right + RACCOT_CRUSH_LAX >
+                             obj.bbox_left) and
+                            (self.bbox_left - RACCOT_CRUSH_LAX <
+                             obj.bbox_right)):
+                        if isinstance(obj, Player):
+                            players.append(obj)
 
-            for obj in objects:
-                if (obj.bbox_top > self.bbox_bottom and
-                        self.bbox_right > obj.bbox_left and
-                        self.bbox_left < obj.bbox_right):
-                    if isinstance(obj, xsge_physics.SolidTop):
-                        crash_y = min(crash_y, obj.bbox_top)
-                    elif isinstance(obj, xsge_physics.SlopeTopLeft):
-                        crash_y = min(crash_y,
-                                      obj.get_slope_y(self.bbox_right))
-                    elif isinstance(obj, xsge_physics.SlopeTopRight):
-                        crash_y = min(crash_y,
-                                      obj.get_slope_y(self.bbox_left))
-                if (obj.bbox_top > self.bbox_bottom and
-                        self.bbox_right + RACCOT_CRUSH_LAX > obj.bbox_left and
-                        self.bbox_left - RACCOT_CRUSH_LAX < obj.bbox_right):
-                    if isinstance(obj, Player):
-                        players.append(obj)
-
-            for player in players:
-                if player.bbox_top < crash_y:
-                    self.crush()
-                    break
+                for player in players:
+                    if player.bbox_top < crash_y:
+                        self.crush()
+                        break
 
     def stop_left(self):
         self.xvelocity = 0
@@ -4092,23 +4107,31 @@ class Raccot(Boss, FallingObject):
             self.stop_down()
 
     def stop_down(self):
-        if self.stage > 0:
+        if self.stage > 0 and self.yvelocity >= RACCOT_STOMP_SPEED:
             play_sound(brick_sound, self.x, self.y)
-            self.yvelocity = 0
             self.xvelocity = 0
             self.xacceleration = 0
             sge.game.current_room.shake(RACCOT_SHAKE_NUM)
             self.alarms["stomp_delay"] = RACCOT_STOMP_DELAY
 
-            if self.crushing:
+            if self.crushing and self.yvelocity >= RACCOT_CRUSH_SPEED:
                 for obj in self.get_bottom_touching_wall():
                     if isinstance(obj, Brick):
                         obj.hit(self)
+
+            self.yvelocity = 0
 
         self.hopping = False
         self.crushing = False
         self.gravity = self.__class__.gravity
         self.sprite = raccot_stand_sprite
+
+    def touch(self, other):
+        if self.stage:
+            other.hurt()
+
+    def stomp(self, other):
+        other.stomp_jump(self)
 
     def knock(self, other=None):
         if isinstance(other, InteractiveObject) and other.knockable:
@@ -4137,7 +4160,7 @@ class Raccot(Boss, FallingObject):
         else:
             if self.hopping:
                 self.sprite = raccot_hop_sprite
-            elif self.stomping:
+            elif self.crushing:
                 self.sprite = raccot_stomp_sprite
             else:
                 self.sprite = raccot_jump_sprite
@@ -7315,7 +7338,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "flying_snowball": FlyingSnowball, "flying_spiky": FlyingSpiky,
          "icicle": Icicle, "steady_icicle": SteadyIcicle,
          "raccot_icicle": RaccotIcicle, "krush": Krush, "krosh": Krosh,
-         "circoflame": CircoflamePath, "snowman": Snowman,
+         "circoflame": CircoflamePath, "snowman": Snowman, "raccot": Raccot,
          "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
          "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
          "rusty_spring": RustySpring, "lantern": Lantern,

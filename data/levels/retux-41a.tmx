@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
-  <property name="bgname" value="arctis"/>
-  <property name="music" value="chipdisko.ogg"/>
+  <property name="bgname" value="nightsky_castle"/>
+  <property name="music" value="darkforestkeep.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -10,14 +10,13 @@
  <tileset firstgid="326" source="../tilesets/castle.tsx"/>
  <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
- <tileset firstgid="468" source="../tilesets/door.tsx"/>
- <tileset firstgid="469" source="../tilesets/special_blocks.tsx"/>
- <tileset firstgid="494" source="../tilesets/decoration_small.tsx"/>
- <tileset firstgid="498" source="../tilesets/igloo.tsx"/>
- <tileset firstgid="500" source="../tilesets/krush.tsx"/>
- <tileset firstgid="501" source="../tilesets/krosh.tsx"/>
- <tileset firstgid="502" source="../tilesets/snowman.tsx"/>
- <tileset firstgid="503" source="../tilesets/raccot.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRQE8AAAV4AAE=
