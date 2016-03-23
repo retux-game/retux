@@ -163,7 +163,7 @@ SNOWMAN_SHAKE_NUM = 3
 RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
 RACCOT_HOP_HEIGHT = TILE_SIZE
-RACCOT_JUMP_HEIGHT = 6 * TILE_SIZE
+RACCOT_JUMP_HEIGHT = 5 * TILE_SIZE
 RACCOT_JUMP_TRIGGER = 2 * TILE_SIZE
 RACCOT_STOMP_SPEED = 4
 RACCOT_STOMP_DELAY = 15
@@ -3539,8 +3539,16 @@ class SteadyIcicle(Icicle):
 
 class RaccotIcicle(SteadyIcicle):
 
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["visible"] = False
+        kwargs["tangible"] = False
+        super(RaccotIcicle, self).__init__(x, y, z, **kwargs)
+
     def do_shake(self):
-        self.event_alarm("fall")
+        if random.random() < 0.5:
+            FallingIcicle.create(self.x, self.y, self.z, sprite=self.sprite,
+                                 image_xscale=self.image_xscale,
+                                 image_yscale=self.image_yscale)
 
 
 class FallingIcicle(FallingObject):
@@ -4015,6 +4023,7 @@ class Raccot(FallingObject, Boss):
         self.crushing = True
         self.gravity = RACCOT_CRUSH_GRAVITY
         self.fall_speed = RACCOT_CRUSH_FALL_SPEED
+        self.xacceleration = 0
         self.xvelocity = 0
         self.yvelocity = get_jump_speed(RACCOT_CRUSH_CHARGE, self.gravity)
         play_sound(yeti_gna_sound, self.x, self.y)
@@ -4038,7 +4047,7 @@ class Raccot(FallingObject, Boss):
     def move(self):
         super(Raccot, self).move()
 
-        if not self.crushing and "crush" not in self.alarms:
+        if not self.crushing:
             if "stomp_delay" not in self.alarms:
                 self.xacceleration = 0
                 player = self.get_nearest_player()
@@ -4119,6 +4128,8 @@ class Raccot(FallingObject, Boss):
                     if isinstance(obj, Brick):
                         obj.hit(self)
 
+                self.alarms["charge_end"] = 0
+
             self.yvelocity = 0
 
         self.hopping = False
@@ -4176,7 +4187,10 @@ class Raccot(FallingObject, Boss):
         elif alarm_id == "do_hop":
             self.do_hop()
         elif alarm_id == "charge":
-            self.charge()
+            if self.was_on_floor and "do_hop" not in self.alarms:
+                self.charge()
+            else:
+                self.alarms["charge"] = 0
         elif alarm_id == "charge_end":
             self.charge_end()
 
@@ -5569,24 +5583,22 @@ class ObjectWarpSpawn(WarpSpawn):
 
         if in_view and self.cls is not None:
             self.__steps_passed += delta_mult
+            
+            self.__objects = [ref for ref in self.__objects
+                              if (ref() is not None and
+                                  ref() in sge.game.current_room.objects)]
+            if self.limit and len(self.__objects) >= self.limit:
+                self.__steps_passed = 0
+
             while self.__steps_passed >= self.interval:
                 self.__steps_passed -= self.interval
-                self.__objects = [ref for ref in self.__objects
-                                  if ref() is not None]
-                num_objects = 0
-                for ref in self.__objects:
-                    obj = ref()
-                    if obj is not None and obj in sge.game.current_room.objects:
-                        num_objects += 1
-
-                if not self.limit or num_objects < self.limit:
-                    obj = self.cls.create(self.x, self.y, **self.kwargs)
-                    obj.activate()
-                    obj.warping = True
-                    obj.visible = False
-                    obj.tangible = False
-                    self.follow_start(obj, WARP_SPEED)
-                    self.__objects.append(weakref.ref(obj))
+                obj = self.cls.create(self.x, self.y, **self.kwargs)
+                obj.activate()
+                obj.warping = True
+                obj.visible = False
+                obj.tangible = False
+                self.follow_start(obj, WARP_SPEED)
+                self.__objects.append(weakref.ref(obj))
 
 
 class MovingObjectPath(xsge_path.PathLink):
