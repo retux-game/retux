@@ -3537,18 +3537,21 @@ class SteadyIcicle(Icicle):
             super(SteadyIcicle, self).check_shake()
 
 
-class RaccotIcicle(SteadyIcicle):
+class RaccotIcicle(Icicle):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["visible"] = False
         kwargs["tangible"] = False
         super(RaccotIcicle, self).__init__(x, y, z, **kwargs)
 
+    def check_shake(self, raccot=False):
+        if raccot:
+            super(RaccotIcicle, self).check_shake()
+
     def do_shake(self):
-        if random.random() < 0.5:
-            FallingIcicle.create(self.x, self.y, self.z, sprite=self.sprite,
-                                 image_xscale=self.image_xscale,
-                                 image_yscale=self.image_yscale)
+        FallingIcicle.create(self.x, self.y, self.z, sprite=self.sprite,
+                             image_xscale=self.image_xscale,
+                             image_yscale=self.image_yscale)
 
 
 class FallingIcicle(FallingObject):
@@ -4036,7 +4039,7 @@ class Raccot(FallingObject, Boss):
                 self.kill()
 
     def kill(self):
-        play_sound(fall_sound, self.x, self.y)
+        play_sound(yeti_roar_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=raccot_hop_sprite,
                        xvelocity=self.xvelocity,
                        yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
@@ -4123,6 +4126,11 @@ class Raccot(FallingObject, Boss):
             sge.game.current_room.shake(RACCOT_SHAKE_NUM)
             self.alarms["stomp_delay"] = RACCOT_STOMP_DELAY
 
+            if self.hopping:
+                for obj in sge.game.current_room.objects:
+                    if isinstance(obj, RaccotIcicle):
+                        obj.check_shake(True)
+
             if self.crushing and self.yvelocity >= RACCOT_CRUSH_SPEED:
                 for obj in self.get_bottom_touching_wall():
                     if isinstance(obj, Brick):
@@ -4154,7 +4162,7 @@ class Raccot(FallingObject, Boss):
     def event_step(self, time_passed, delta_mult):
         super(Raccot, self).event_step(time_passed, delta_mult)
 
-        if self.was_on_floor:
+        if self.was_on_floor or self.get_bottom_touching_wall():
             if self.hopping:
                 self.sprite = raccot_stomp_sprite
             else:

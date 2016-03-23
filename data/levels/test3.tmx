@@ -20,12 +20,12 @@
  <tileset firstgid="503" source="../tilesets/raccot.tsx"/>
  <layer name="Back Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJxjYBgFo2AUjIJRgA18ZKSNOQBnxgHl
   </data>
  </layer>
  <layer name="Middle Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJxLZGSgKYgHmp9IYzui6GAHvfwRM2oHUYAe8TGc4twLiMOgOJxK9oUimekJxNFImFp+AsVBAg5MrbiJQnM7PewAAAOpEt4=
+   eJxLZGSgKYgHmp9IYzui6GAHvfwRM2oHUYAe8TGc4twLiMOgOJxK9oUimekJxNFImFp+AsVBAg5MrbiJQnM7uh0fqYDR7QAAR20i8A==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -34,7 +34,9 @@
   <object x="672" y="320" width="128" height="128"/>
   <object x="0" y="320" width="128" height="128"/>
  </objectgroup>
- <objectgroup name="Collision Objects"/>
+ <objectgroup name="Collision Objects">
+  <object type="death" x="128" y="448" width="544" height="32"/>
+ </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
