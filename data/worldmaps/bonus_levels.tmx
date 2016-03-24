@@ -1,24 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#1f4678">
  <properties>
   <property name="music" value="salcon.ogg"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/icyisland.tsx"/>
- <tileset firstgid="61" source="../tilesets/map_objects.tsx"/>
- <layer name="Tiles" width="25" height="14">
+ <tileset firstgid="1" source="../tilesets/map_objects.tsx"/>
+ <tileset firstgid="5" source="../tilesets/wm_bridge.tsx"/>
+ <tileset firstgid="17" source="../tilesets/wm_castle.tsx"/>
+ <tileset firstgid="18" source="../tilesets/wm_cave_cracks.tsx"/>
+ <tileset firstgid="33" source="../tilesets/wm_icecave.tsx"/>
+ <tileset firstgid="60" source="../tilesets/wm_mountain.tsx"/>
+ <tileset firstgid="88" source="../tilesets/wm_pier.tsx"/>
+ <tileset firstgid="96" source="../tilesets/wm_roads.tsx"/>
+ <tileset firstgid="116" source="../tilesets/wm_shallow_water.tsx"/>
+ <tileset firstgid="131" source="../tilesets/wm_snow.tsx"/>
+ <tileset firstgid="176" source="../tilesets/wm_thin_ice.tsx"/>
+ <tileset firstgid="191" source="../tilesets/wm_trees.tsx"/>
+ <layer name="Land" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJy1lLsKgDAMRYtOFnHwPfgcnASd/P9f8xYihCJF6HU4kELJIemlpTFmAxfICFhweJTgBJXQRNbXi8c5OnWPUeudWHGkYBV6Uu1IQP3THPr85phJdcjBoJVdFcrxvMdCdoXmiM3vFwczA/6u2PnNf55jByOYxOFnLja/u/R+/pJBfEx0f8cNmfsfJA==
+   eJzrYGBgmAjE3UDcQiXcyoAKOoB4GhB3UhF3o9nTQWXzke2B+YlWdsBw1wi2Y8Iw8ceoHdTHbUDcB8T9NLKjDWo2DPRC7aMmRjYfBACGLrYg
+  </data>
+ </layer>
+ <layer name="Roads" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA/yKQSGx1k04CNDpKAOAuK06jEBuFEIu2nBBDrx8FqRwYDJKzSkcRg8ZFLZbuGelhhMxc57YJwMpXYqXj8QYt8mIOHTwmbngAAiW0kkQ==
   </data>
  </layer>
  <objectgroup name="Spaces">
-  <object gid="62" x="128" y="64">
+  <object gid="2" x="128" y="64">
    <properties>
     <property name="level" value="concept_castle.tmx"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Objects">
-  <object gid="61" x="32" y="64"/>
+  <object gid="1" x="32" y="64"/>
  </objectgroup>
  <objectgroup color="#ffff00" name="map_path">
   <object x="32" y="96">

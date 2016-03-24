@@ -2,7 +2,8 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="nightsky_castle"/>
-  <property name="music" value="treeboss.ogg"/>
+  <property name="music" value="bossattack.ogg"/>
+  <property name="name" value="Raccot Test"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -35,45 +36,11 @@
   <object x="0" y="320" width="128" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="death" x="128" y="448" width="544" height="32"/>
+  <object type="death" x="128" y="416" width="544" height="32"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
  <objectgroup name="Items">
-  <object gid="478" x="128" y="352"/>
-  <object gid="478" x="160" y="352"/>
-  <object gid="478" x="192" y="352"/>
-  <object gid="478" x="224" y="352"/>
-  <object gid="478" x="256" y="352"/>
-  <object gid="478" x="288" y="352"/>
-  <object gid="478" x="320" y="352"/>
-  <object gid="478" x="352" y="352"/>
-  <object gid="478" x="384" y="352"/>
-  <object gid="478" x="416" y="352"/>
-  <object gid="478" x="448" y="352"/>
-  <object gid="478" x="480" y="352"/>
-  <object gid="478" x="512" y="352"/>
-  <object gid="478" x="544" y="352"/>
-  <object gid="478" x="576" y="352"/>
-  <object gid="478" x="608" y="352"/>
-  <object gid="478" x="640" y="352"/>
-  <object gid="478" x="128" y="384"/>
-  <object gid="478" x="160" y="384"/>
-  <object gid="478" x="192" y="384"/>
-  <object gid="478" x="224" y="384"/>
-  <object gid="478" x="256" y="384"/>
-  <object gid="478" x="288" y="384"/>
-  <object gid="478" x="320" y="384"/>
-  <object gid="478" x="352" y="384"/>
-  <object gid="478" x="384" y="384"/>
-  <object gid="478" x="416" y="384"/>
-  <object gid="478" x="448" y="384"/>
-  <object gid="478" x="480" y="384"/>
-  <object gid="478" x="512" y="384"/>
-  <object gid="478" x="544" y="384"/>
-  <object gid="478" x="576" y="384"/>
-  <object gid="478" x="608" y="384"/>
-  <object gid="478" x="640" y="384"/>
   <object gid="478" x="128" y="416"/>
   <object gid="478" x="160" y="416"/>
   <object gid="478" x="192" y="416"/>

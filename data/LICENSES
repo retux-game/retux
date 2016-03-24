@@ -273,7 +273,6 @@ images/tiles/tileset_blocks.png
 images/tiles/tileset_castle.png
 images/tiles/tileset_cave.png
 images/tiles/tileset_creatures.png
-images/tiles/tileset_icyisland.png
 images/tiles/tileset_pipes.png
 images/tiles/tileset_snow.png
 images/tiles/tileset_snowman.png
@@ -663,7 +662,6 @@ levels/retux-40.tmx
 levels/retux-41.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
-levels/test2.tmx
 levels/test3.tmx
 levels/special/title_screen.tmx
 levelsets/retux.json
@@ -675,7 +673,6 @@ tilesets/cave.tsx
 tilesets/creatures.tsx
 tilesets/decoration_small.tsx
 tilesets/door.tsx
-tilesets/icyisland.tsx
 tilesets/igloo.tsx
 tilesets/krosh.tsx
 tilesets/krush.tsx

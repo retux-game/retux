@@ -5,6 +5,7 @@
   <property name="bgname" value="arctis"/>
   <property name="disable_lights" value="1"/>
   <property name="music" value="chipdisko.ogg"/>
+  <property name="name" value="Test Level"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>

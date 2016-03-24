@@ -86,6 +86,9 @@ parser.add_argument(
     "-d", "--datadir",
     help='Where to load the game data from (Default: "{}")'.format(DATA))
 parser.add_argument(
+    "--level",
+    help="Play the indicated level and then exit.")
+parser.add_argument(
     "--record",
     help="Start the indicated level and record player actions in a timeline. Useful for making cutscenes.")
 parser.add_argument(
@@ -102,6 +105,7 @@ SCALE_SMOOTH = not args.scale_basic
 DELTA = not args.nodelta
 if args.datadir:
     DATA = args.datadir
+LEVEL = args.level
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
@@ -1043,6 +1047,22 @@ class Level(sge.dsp.Room):
                         break
 
         return r
+
+
+class LevelTester(Level):
+
+    def win_game(self):
+        sge.game.end()
+
+    def event_key_press(self, key, char):
+        if key == "escape":
+            sge.game.end()
+
+    def event_alarm(self, alarm_id):
+        if alarm_id == "death":
+            sge.game.end()
+        else:
+            super(LevelTester, self).event_alarm(alarm_id)
 
 
 class LevelRecorder(Level):
@@ -4039,7 +4059,7 @@ class Raccot(FallingObject, Boss):
                 self.kill()
 
     def kill(self):
-        play_sound(yeti_roar_sound, self.x, self.y)
+        play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=raccot_hop_sprite,
                        xvelocity=self.xvelocity,
                        yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
@@ -4120,7 +4140,7 @@ class Raccot(FallingObject, Boss):
 
     def stop_down(self):
         if self.stage > 0 and self.yvelocity >= RACCOT_STOMP_SPEED:
-            play_sound(brick_sound, self.x, self.y)
+            crushed_brick = False
             self.xvelocity = 0
             self.xacceleration = 0
             sge.game.current_room.shake(RACCOT_SHAKE_NUM)
@@ -4135,10 +4155,13 @@ class Raccot(FallingObject, Boss):
                 for obj in self.get_bottom_touching_wall():
                     if isinstance(obj, Brick):
                         obj.hit(self)
+                        crushed_brick = True
 
                 self.alarms["charge_end"] = 0
 
             self.yvelocity = 0
+            if not crushed_brick:
+                play_sound(brick_sound, self.x, self.y)
 
         self.hopping = False
         self.crushing = False
@@ -4158,6 +4181,12 @@ class Raccot(FallingObject, Boss):
 
     def blast(self):
         self.hurt()
+
+    def touch_hurt(self):
+        pass
+
+    def touch_death(self):
+        self.kill()
 
     def event_step(self, time_passed, delta_mult):
         super(Raccot, self).event_step(time_passed, delta_mult)
@@ -4201,6 +4230,10 @@ class Raccot(FallingObject, Boss):
                 self.alarms["charge"] = 0
         elif alarm_id == "charge_end":
             self.charge_end()
+
+    def event_destroy(self):
+        super(Raccot, self).event_destroy()
+        play_sound(yeti_roar_sound, self.x, self.y)
 
 
 class FireFlower(FallingObject, WinPuffObject):
@@ -7931,7 +7964,11 @@ goal_animation = sge.dsp.Object(0, 0, sprite=goal_sprite, visible=False,
                                 tangible=False)
 
 # Create rooms
-if RECORD:
+if LEVEL:
+    sge.game.start_room = LevelTester.load(LEVEL, True)
+    if sge.game.start_room is None:
+        sys.exit()
+elif RECORD:
     sge.game.start_room = LevelRecorder.load(RECORD, True)
     if sge.game.start_room is None:
         sys.exit()
