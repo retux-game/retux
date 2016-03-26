@@ -3981,11 +3981,19 @@ class Raccot(FallingObject, Boss):
     @stage.setter
     def stage(self, value):
         self.__stage = value
-        if value and self.__ready:
-            self.alarms["hop"] = random.uniform(self.hop_interval_min,
-                                                self.hop_interval_max)
-            self.alarms["charge"] = random.uniform(self.charge_interval_min,
-                                                   self.charge_interval_max)
+        if self.__ready:
+            if value >= 2:
+                self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                                    self.hop_interval_max)
+                self.alarms["charge"] = random.uniform(self.charge_interval_min,
+                                                       self.charge_interval_max)
+            else:
+                if "hop" in self.alarms:
+                    del self.alarms["hop"]
+                if "charge" in self.alarms:
+                    del self.alarms["charge"]
+                if "charge_end" in self.alarms:
+                    del self.alarms["charge_end"]
 
     def __init__(self, x, y, hp=RACCOT_HP, hop_time=RACCOT_HOP_TIME,
                  hop_interval_min=RACCOT_HOP_INTERVAL_MIN,
@@ -4005,7 +4013,7 @@ class Raccot(FallingObject, Boss):
         kwargs["sprite"] = raccot_stand_sprite
         super(Raccot, self).__init__(x, y, **kwargs)
         self.__ready = True
-        if self.stage:
+        if self.stage >= 2:
             self.alarms["hop"] = random.uniform(self.hop_interval_min,
                                                 self.hop_interval_max)
             self.alarms["charge"] = random.uniform(self.charge_interval_min,
@@ -4169,7 +4177,7 @@ class Raccot(FallingObject, Boss):
         self.sprite = raccot_stand_sprite
 
     def touch(self, other):
-        if self.stage:
+        if self.stage > 0:
             other.hurt()
 
     def stomp(self, other):

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="1">
  <properties>
+  <property name="background_y" value="608"/>
   <property name="bgname" value="nightsky_castle"/>
   <property name="music" value="darkforestkeep.ogg"/>
  </properties>
@@ -17,14 +18,14 @@
  <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
  <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
- <layer name="Back Tiles" width="25" height="14">
+ <layer name="Back Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAgJcBK8AAAQ==
   </data>
  </layer>
- <layer name="Middle Tiles" width="25" height="14">
+ <layer name="Middle Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAgJcBK8AAAQ==
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
@@ -34,9 +35,9 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players"/>
- <layer name="Front Tiles" width="25" height="14">
+ <layer name="Front Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQE8AAAV4AAE=
+   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAgJcBK8AAAQ==
   </data>
  </layer>
 </map>
