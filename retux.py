@@ -552,13 +552,9 @@ class Level(sge.dsp.Room):
         m.start(transition="iris_out", transition_time=TRANSITION_TIME)
 
     def win_game(self):
-        global save_slots
-        global current_save_slot
-
-        if current_save_slot is not None:
-            save_slots[current_save_slot] = None
-            current_save_slot = None
-
+        global current_level
+        current_level = 0
+        save_game()
         credits_room = CreditsScreen.load(os.path.join("special",
                                                        "credits.tmx"))
         credits_room.start()
@@ -7256,6 +7252,7 @@ def load_game():
     global score
 
     if (current_save_slot is not None and
+            save_slots[current_save_slot] is not None and
             save_slots[current_save_slot].get("levelset") is not None):
         slot = save_slots[current_save_slot]
         level_timers = slot.get("level_timers", {})
