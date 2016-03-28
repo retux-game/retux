@@ -328,6 +328,7 @@ down_key = [["down", "s"]]
 jump_key = [["space"]]
 action_key = [["ctrl_left", "ctrl_right"]]
 sneak_key = [["shift_left", "shift_right"]]
+menu_key = [["tab", "backspace"]]
 pause_key = [["enter", "p"]]
 left_js = [[(0, "axis-", 0), (0, "hat_left", 0)]]
 right_js = [[(0, "axis+", 0), (0, "hat_right", 0)]]
@@ -335,7 +336,8 @@ up_js = [[(0, "axis-", 1), (0, "hat_up", 0)]]
 down_js = [[(0, "axis+", 1), (0, "hat_down", 0)]]
 jump_js = [[(0, "button", 1), (0, "button", 3)]]
 action_js = [[(0, "button", 0)]]
-sneak_js = [[(0, "button", 2), (0, "button", 8)]]
+sneak_js = [[(0, "button", 2)]]
+menu_js = [[(0, "button", 8)]]
 pause_js = [[(0, "button", 9)]]
 save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
 
@@ -508,7 +510,7 @@ class Level(sge.dsp.Room):
 
             if (self.timeline_skip_target is not None and
                     self.timeline_step < self.timeline_skip_target):
-                text = "Press Escape to skip..."
+                text = "Press the Menu button to skip..."
                 sge.game.project_text(font, text, sge.game.width / 2,
                                       sge.game.height,
                                       color=sge.gfx.Color("white"),
@@ -526,15 +528,20 @@ class Level(sge.dsp.Room):
                 obj.check_shake(True)
 
     def pause(self):
-        if self.pause_delay <= 0 and not self.won:
+        global level_timers
+        global score
+
+        if self.death_time is not None or "death" in self.alarms:
+            if level_timers.setdefault(main_area, 0) >= 0:
+                sge.snd.Music.stop()
+                self.alarms["death"] = 0
+        elif (self.timeline_skip_target is not None and
+              self.timeline_step < self.timeline_skip_target):
+            self.timeline_skipto(self.timeline_skip_target)
+        elif self.pause_delay <= 0 and not self.won:
             sge.snd.Music.pause()
             play_sound(pause_sound)
             PauseMenu.create()
-
-    def unpause(self):
-        play_sound(pause_sound)
-        sge.snd.Music.unpause()
-        sge.game.unpause()
 
     def die(self):
         global current_areas
@@ -949,28 +956,6 @@ class Level(sge.dsp.Room):
             else:
                 self.alarms["win"] = WIN_FINISH_DELAY
 
-    def event_key_press(self, key, char):
-        global level_timers
-        global score
-
-        if key == "escape":
-            if self.death_time is not None or "death" in self.alarms:
-                if level_timers.setdefault(main_area, 0) >= 0:
-                    sge.snd.Music.stop()
-                    self.alarms["death"] = 0
-            elif (self.timeline_skip_target is not None and
-                  self.timeline_step < self.timeline_skip_target):
-                self.timeline_skipto(self.timeline_skip_target)
-            else:
-                rush_save()
-                if current_worldmap:
-                    self.return_to_map()
-                else:
-                    sge.game.start_room.start()
-
-    def event_paused_key_press(self, key, char):
-        self.event_key_press(key, char)
-
     @classmethod
     def load(cls, fname, show_prompt=False):
         global level_names
@@ -1242,6 +1227,11 @@ class Worldmap(sge.dsp.Room):
                                        background, background_x, background_y,
                                        object_area_width, object_area_height)
 
+    def show_menu(self):
+        sge.snd.Music.pause()
+        play_sound(pause_sound)
+        WorldmapMenu.create()
+
     def event_room_start(self):
         self.level_text = None
         self.level_tuxdoll_available = False
@@ -1297,11 +1287,6 @@ class Worldmap(sge.dsp.Room):
                 sge.game.project_sprite(tuxdoll_sprite, 0, x, y)
             else:
                 sge.game.project_sprite(tuxdoll_transparent_sprite, 0, x, y)
-
-    def event_key_press(self, key, char):
-        if key == "escape":
-            rush_save()
-            sge.game.start_room.start()
 
     @classmethod
     def load(cls, fname):
@@ -2123,7 +2108,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if key in up_key[self.player]:
                 self.press_up()
-            if key in pause_key[self.player]:
+            if (key == "escape" or key in pause_key[self.player] or
+                    key in menu_key[self.player]):
                 sge.game.current_room.pause()
 
     def event_key_release(self, key):
@@ -2141,23 +2127,11 @@ class Player(xsge_physics.Collider):
                     self.action()
                 if js in up_js[self.player]:
                     self.press_up()
-                if js in pause_js[self.player]:
+                if js in pause_js[self.player] or js in menu_js[self.player]:
                     sge.game.current_room.pause()
             else:
                 if js in jump_js[self.player]:
                     self.jump_release()
-
-    def event_paused_key_press(self, key, char):
-        if self.human:
-            if key in pause_key[self.player]:
-                sge.game.current_room.unpause()
-
-    def event_paused_joystick(self, js_name, js_id, input_type, input_id,
-                              value):
-        if self.human:
-            js = (js_id, input_type, input_id)
-            if js in pause_js[self.player]:
-                sge.game.current_room.pause()
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, Death):
@@ -5904,6 +5878,8 @@ class MapPlayer(sge.dsp.Object):
                 key in itertools.chain.from_iterable(action_key) or
                 key in itertools.chain.from_iterable(pause_key)):
             self.start_level()
+        elif key == "escape" or key in itertools.chain.from_iterable(menu_key):
+            sge.game.current_room.show_menu()
 
     def event_joystick(self, js_name, js_id, input_type, input_id, value):
         js = (js_id, input_type, input_id)
@@ -5912,9 +5888,8 @@ class MapPlayer(sge.dsp.Object):
                     js in itertools.chain.from_iterable(action_js) or
                     js in itertools.chain.from_iterable(pause_js)):
                 self.start_level()
-
-    def event_joystick_button_press(self, js_name, js_id, button):
-        self.start_level()
+            elif js in itertools.chain.from_iterable(menu_js):
+                sge.game.current_room.show_menu()
 
     def event_stop(self):
         self.moving = False
@@ -6497,7 +6472,7 @@ class KeyboardMenu(Menu):
     def create_page(cls, default=0, page=0):
         page %= min(len(left_key), len(right_key), len(up_key), len(down_key),
                     len(jump_key), len(action_key), len(sneak_key),
-                    len(pause_key))
+                    len(menu_key), len(pause_key))
 
         def format_key(key):
             if key:
@@ -6513,6 +6488,7 @@ class KeyboardMenu(Menu):
                      "Jump: {}".format(format_key(jump_key[page])),
                      "Action: {}".format(format_key(action_key[page])),
                      "Sneak: {}".format(format_key(sneak_key[page])),
+                     "Menu: {}".format(format_key(menu_key[page])),
                      "Pause: {}".format(format_key(pause_key[page])),
                      "Back"]
         self = cls.create(default)
@@ -6597,6 +6573,15 @@ class KeyboardMenu(Menu):
         elif self.choice == 8:
             k = wait_key()
             if k is not None:
+                toggle_key(menu_key[self.page], k)
+                set_gui_controls()
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
+            KeyboardMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 9:
+            k = wait_key()
+            if k is not None:
                 toggle_key(pause_key[self.page], k)
                 set_gui_controls()
                 play_sound(confirm_sound)
@@ -6615,7 +6600,7 @@ class JoystickMenu(Menu):
     @classmethod
     def create_page(cls, default=0, page=0):
         page %= min(len(left_js), len(right_js), len(up_js), len(down_js),
-                    len(jump_js), len(action_js), len(sneak_js),
+                    len(jump_js), len(action_js), len(sneak_js), len(menu_js),
                     len(pause_js))
 
         def format_js(js):
@@ -6636,6 +6621,7 @@ class JoystickMenu(Menu):
                      "Jump: {}".format(format_js(jump_js[page])),
                      "Action: {}".format(format_js(action_js[page])),
                      "Sneak: {}".format(format_js(sneak_js[page])),
+                     "Menu: {}".format(format_js(menu_js[page])),
                      "Pause: {}".format(format_js(pause_js[page])),
                      "Back"]
         self = cls.create(default)
@@ -6720,6 +6706,15 @@ class JoystickMenu(Menu):
         elif self.choice == 8:
             js = wait_js()
             if js is not None:
+                toggle_js(menu_js[self.page], js)
+                set_gui_controls()
+                play_sound(confirm_sound)
+            else:
+                play_sound(cancel_sound)
+            JoystickMenu.create_page(default=self.choice, page=self.page)
+        elif self.choice == 9:
+            js = wait_js()
+            if js is not None:
                 toggle_js(pause_js[self.page], js)
                 set_gui_controls()
                 play_sound(confirm_sound)
@@ -6756,18 +6751,51 @@ class ModalMenu(xsge_gui.MenuDialog):
 
 class PauseMenu(ModalMenu):
 
-    items = ["Continue", "Quit"]
+    @classmethod
+    def create(cls, default=0):
+        if current_worldmap:
+            items = ["Continue", "Return to Map", "Return to Title Screen"]
+        else:
+            items = ["Continue", "Return to Title Screen"]
+
+        self = cls.from_text(
+            gui_handler, sge.game.width / 2, sge.game.height / 2,
+            items, font_normal=font, color_normal=sge.gfx.Color("white"),
+            color_selected=sge.gfx.Color((0, 128, 255)),
+            background_color=menu_color, margin=9, halign="center",
+            valign="middle")
+        default %= len(self.widgets)
+        self.keyboard_focused_widget = self.widgets[default]
+        self.show()
+        return self
 
     def event_choose(self):
         sge.snd.Music.unpause()
 
         if self.choice == 1:
-            play_sound(kill_sound)
             rush_save()
             if current_worldmap:
+                play_sound(kill_sound)
                 sge.game.current_room.return_to_map()
             else:
                 sge.game.start_room.start()
+        elif self.choice == 2:
+            rush_save()
+            sge.game.start_room.start()
+        else:
+            play_sound(select_sound)
+
+
+class WorldmapMenu(ModalMenu):
+
+    items = ["Continue", "Return to Title Screen"]
+
+    def event_choose(self):
+        sge.snd.Music.unpause()
+
+        if self.choice == 1:
+            rush_save()
+            sge.game.start_room.start()
         else:
             play_sound(select_sound)
 
@@ -6821,7 +6849,6 @@ class DialogBox(xsge_gui.Dialog):
 
     def event_press_escape(self):
         self.destroy()
-        sge.game.current_room.event_key_press("escape", "")
 
 
 def get_object(x, y, cls=None, **kwargs):
@@ -6851,8 +6878,9 @@ def get_jump_speed(height, gravity=GRAVITY):
 
 def set_gui_controls():
     # Set the controls for xsge_gui based on the player controls.
-    xsge_gui.next_widget_keys = (list(itertools.chain.from_iterable(down_key)) +
-                                 list(itertools.chain.from_iterable(sneak_key)))
+    xsge_gui.next_widget_keys = (
+        list(itertools.chain.from_iterable(down_key)) +
+        list(itertools.chain.from_iterable(sneak_key)))
     if not xsge_gui.next_widget_keys:
         xsge_gui.next_widget_keys = ["tab"]
     xsge_gui.previous_widget_keys = list(itertools.chain.from_iterable(up_key))
@@ -6865,11 +6893,13 @@ def set_gui_controls():
                            list(itertools.chain.from_iterable(pause_key)))
     if not xsge_gui.enter_keys:
         xsge_gui.enter_keys = ["enter"]
+    xsge_gui.escape_keys = (list(itertools.chain.from_iterable(menu_key)) +
+                            ["escape"])
     xsge_gui.next_widget_joystick_events = (
         list(itertools.chain.from_iterable(down_js)) +
         list(itertools.chain.from_iterable(sneak_js)))
     if not xsge_gui.next_widget_joystick_events:
-        xsge_gui.next_widget_joystick_events = [(0, "button", 8)]
+        xsge_gui.next_widget_joystick_events = [(0, "axis+", 1)]
     xsge_gui.previous_widget_joystick_events = (
         list(itertools.chain.from_iterable(up_js)))
     xsge_gui.left_joystick_events = list(itertools.chain.from_iterable(left_js))
@@ -6883,6 +6913,10 @@ def set_gui_controls():
         list(itertools.chain.from_iterable(pause_js)))
     if not xsge_gui.enter_joystick_events:
         xsge_gui.enter_joystick_events = [(0, "button", 9)]
+    xsge_gui.escape_joystick_events = (
+        list(itertools.chain.from_iterable(menu_js)))
+    if not xsge_gui.escape_joystick_events:
+        xsge_gui.escape_joystick_events = [(0, "button", 8)]
 
 
 def wait_key():
@@ -6942,7 +6976,7 @@ def wait_js():
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = "Press the joystick button, axis, or hat direction you wish to toggle, or Escape to cancel."
+        text = "Press the joystick button, axis, or hat direction you wish to toggle, or the Escape key to cancel."
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
@@ -7193,10 +7227,10 @@ def write_to_disk():
     # Write our saves and settings to disk.
     keys_cfg = {"left": left_key, "right": right_key, "up": up_key,
                 "down": down_key, "jump": jump_key, "action": action_key,
-                "sneak": sneak_key, "pause": pause_key}
+                "sneak": sneak_key, "menu": menu_key, "pause": pause_key}
     js_cfg = {"left": left_js, "right": right_js, "up": up_js,
               "down": down_js, "jump": jump_js, "action": action_js,
-              "sneak": sneak_js, "pause": pause_js}
+              "sneak": sneak_js, "menu": menu_js, "pause": pause_js}
 
     cfg = {"version": 1, "fullscreen": fullscreen,
            "sound_enabled": sound_enabled, "music_enabled": music_enabled,
@@ -8024,6 +8058,7 @@ finally:
         jump_key = keys_cfg.get("jump", jump_key)
         action_key = keys_cfg.get("action", action_key)
         sneak_key = keys_cfg.get("sneak", sneak_key)
+        menu_key = keys_cfg.get("menu", menu_key)
         pause_key = keys_cfg.get("pause", pause_key)
 
         js_cfg = cfg.get("joystick", {})
@@ -8040,6 +8075,8 @@ finally:
                      for js in js_cfg.get("action", action_js)]
         sneak_js = [[tuple(j) for j in js]
                     for js in js_cfg.get("sneak", sneak_js)]
+        menu_js = [[tuple(j) for j in js]
+                   for js in js_cfg.get("menu", menu_js)]
         pause_js = [[tuple(j) for j in js]
                     for js in js_cfg.get("pause", pause_js)]
     else:
