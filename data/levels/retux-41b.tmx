@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="nightsky_castle"/>
   <property name="music" value="darkforestkeep.ogg"/>
@@ -19,12 +19,12 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAL4MINAAAQ==
+   eJzt0jENAEAIwEDwr4TxHb4JEhK4U9ChEQAAAAAAd1ROF7DR8xUAQLsPdAABXQ==
   </data>
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAL4MINAAAQ==
+   eJztlkEKwjAQRZvLaVsVVFAhFarHc+kdXHoopwuhhLTWziSZhv/hLZOWPz8z05iiaAAQ5kpAkKRa5AoKIOQKCiFLmbojV4vXiWp4drgkrCv6VR6yyvZm9Ks8pC1XLXKlTiuqx3oCZa9uXR1vDrVnNv5CanZaBXPQtxtwSLFXDGWhFPiXDd2xJXYjd/lyNYea6d+Lzj6Mjjno6+EcuN5wNCUD/2pPdx2IY4RccbP1pnNPo2Nvl/Tki++txOiLOeRq7gztUynIlXS/GtpZtXkvSRXAQ67/sf1x3/lScwXG50WKbyJXedPV+AN04CTI
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>

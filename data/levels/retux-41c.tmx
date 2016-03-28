@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="background_y" value="608"/>
   <property name="bgname" value="nightsky_castle"/>
@@ -25,7 +25,7 @@
  </layer>
  <layer name="Middle Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAAAAAAAAAAAgJcBK8AAAQ==
+   eJztmcEOwiAQROvn6V1N1IQaf0Nv+t/CwdggS4UFGcu8ZK4Nu2XYoR1XwzBSFBXU2YoQ8smB/iBExPnjRH8QEsQAzo+tXc8uoD3YOsnyQZwfhvckAgLi/UPyx0aYK3Pi3CG5IPrDrelYUGjzUYuUP3PPCubZN1db821SN+L9g/6QcXt5/eV3eymjXjzF5nVvHrnbeh+TmhHvH/RHmJc3NL0IZdTYM3vziO8PI/SsZZ6XzrOl/f9MzUlab2g8heYRTcZM7Xnqfqvdr178UbrOmkLzSOmMEVNuv5A8O+cPP3Mj6J/8Ufudt94jMbWY2b/OB63fJ1JeotL0BOdVczs=
   </data>
  </layer>
  <objectgroup color="#000000" name="solid"/>
