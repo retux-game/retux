@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <properties>
+  <property name="bgname" value="nightsky_castle"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="493" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="497" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="499" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="501" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="502" source="../tilesets/door.tsx"/>
+ <tileset firstgid="503" source="../tilesets/raccot.tsx"/>
+ <layer name="Back Tiles" width="50" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBcMJfGCkjVp6g/ckuA2fWgA/fgPD
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="50" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxLYGRgSKADTgRiWoF4oNnRdMIxo/4gCKLolKboka5oGU70AsPFH1HDxB/xNE639AIgf3gBcRgdcTgVwy0UaqYnHctdWpS/8UjlIb39gR7/pMRPKJpe5HigV/1BjXolHo859I4PbOnsA5E4Co85gyE+3hOJ8fkDAGZUkBQ=
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object x="1568" y="-288" width="32" height="544"/>
+  <object x="0" y="-288" width="864" height="416"/>
+  <object x="1504" y="256" width="96" height="64"/>
+  <object x="1376" y="320" width="224" height="128"/>
+  <object x="0" y="128" width="32" height="128"/>
+  <object x="0" y="256" width="928" height="64"/>
+  <object x="0" y="320" width="1056" height="128"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object gid="488" x="832" y="160"/>
+  <object gid="488" x="832" y="192"/>
+  <object gid="488" x="832" y="224"/>
+  <object gid="488" x="832" y="256"/>
+  <object type="death" x="1056" y="416" width="320" height="32"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#005500" name="warp_spawn"/>
+ <objectgroup name="Items">
+  <object gid="477" x="1056" y="384"/>
+  <object gid="477" x="1088" y="384"/>
+  <object gid="477" x="1120" y="384"/>
+  <object gid="477" x="1152" y="384"/>
+  <object gid="477" x="1184" y="384"/>
+  <object gid="477" x="1216" y="384"/>
+  <object gid="477" x="1248" y="384"/>
+  <object gid="477" x="1280" y="384"/>
+  <object gid="477" x="1312" y="384"/>
+  <object gid="477" x="1344" y="384"/>
+  <object gid="477" x="1056" y="352"/>
+  <object gid="477" x="1088" y="352"/>
+  <object gid="477" x="1120" y="352"/>
+  <object gid="477" x="1152" y="352"/>
+  <object gid="477" x="1184" y="352"/>
+  <object gid="477" x="1216" y="352"/>
+  <object gid="477" x="1248" y="352"/>
+  <object gid="477" x="1280" y="352"/>
+  <object gid="477" x="1312" y="352"/>
+  <object gid="477" x="1344" y="352"/>
+  <object gid="477" x="928" y="320"/>
+  <object gid="477" x="960" y="320"/>
+  <object gid="477" x="992" y="320"/>
+  <object gid="477" x="1024" y="320"/>
+  <object gid="477" x="1056" y="320"/>
+  <object gid="477" x="1088" y="320"/>
+  <object gid="477" x="1120" y="320"/>
+  <object gid="477" x="1152" y="320"/>
+  <object gid="477" x="1184" y="320"/>
+  <object gid="477" x="1216" y="320"/>
+  <object gid="477" x="1248" y="320"/>
+  <object gid="477" x="1280" y="320"/>
+  <object gid="477" x="1312" y="320"/>
+  <object gid="477" x="1344" y="320"/>
+  <object gid="477" x="1376" y="320"/>
+  <object gid="477" x="1408" y="320"/>
+  <object gid="477" x="1440" y="320"/>
+  <object gid="477" x="1472" y="320"/>
+  <object gid="479" x="992" y="64"/>
+  <object gid="479" x="992" y="96"/>
+  <object gid="479" x="1024" y="96"/>
+  <object gid="479" x="1088" y="64"/>
+  <object gid="479" x="1184" y="64"/>
+  <object gid="479" x="1216" y="64"/>
+  <object gid="479" x="1184" y="96"/>
+  <object gid="479" x="1184" y="128"/>
+  <object gid="479" x="1280" y="128"/>
+  <object gid="479" x="1280" y="96"/>
+  <object gid="479" x="1280" y="64"/>
+  <object gid="479" x="1312" y="64"/>
+  <object gid="479" x="1376" y="64"/>
+  <object gid="479" x="1408" y="64"/>
+  <object gid="479" x="1408" y="96"/>
+  <object gid="479" x="1408" y="128"/>
+  <object gid="479" x="1376" y="128"/>
+  <object gid="479" x="992" y="192"/>
+  <object gid="479" x="992" y="224"/>
+  <object gid="479" x="1024" y="224"/>
+  <object gid="479" x="1088" y="192"/>
+  <object gid="479" x="1184" y="192"/>
+  <object gid="479" x="1216" y="192"/>
+  <object gid="479" x="1408" y="192"/>
+  <object gid="479" x="1408" y="256"/>
+  <object gid="479" x="1376" y="256"/>
+  <object gid="479" x="1280" y="192"/>
+  <object gid="479" x="1280" y="256"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="13" x="864" y="-32"/>
+  <object gid="13" x="992" y="-32"/>
+  <object gid="13" x="1184" y="-32"/>
+  <object gid="13" x="896" y="-32"/>
+  <object gid="13" x="1248" y="-32"/>
+  <object gid="13" x="1408" y="-32"/>
+  <object gid="13" x="960" y="-32"/>
+  <object gid="13" x="1088" y="-32"/>
+  <object gid="13" x="1440" y="-32"/>
+  <object gid="13" x="1312" y="-32"/>
+  <object gid="13" x="1056" y="-32"/>
+  <object gid="13" x="1536" y="-32"/>
+  <object gid="503" x="352" y="320"/>
+  <object gid="13" x="1152" y="-32"/>
+  <object gid="13" x="1376" y="-32"/>
+  <object gid="13" x="1504" y="-32"/>
+  <object gid="13" x="1472" y="-32"/>
+  <object gid="13" x="1280" y="-32"/>
+  <object gid="13" x="928" y="-32"/>
+  <object gid="13" x="1024" y="-32"/>
+  <object gid="13" x="1216" y="-32"/>
+  <object gid="13" x="1344" y="-32"/>
+  <object gid="13" x="1120" y="-32"/>
+ </objectgroup>
+ <objectgroup name="Boss"/>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="256"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="50" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAPwaCvAAAQ==
+  </data>
+ </layer>
+</map>

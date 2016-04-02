@@ -19,21 +19,83 @@
  <tileset firstgid="502" source="../tilesets/door.tsx"/>
  <layer name="Back Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0jENAEAIwEDwr4TxHb4JEhK4U9ChEQAAAAAAd1ROF7DR8xUAQLsPdAABXQ==
+   eJzt07EJACAMBEDdfxJLJ9MR7CWFjQjxrvwiBD4pBQAAAADgH62+3oCMuruCYzP4lygjj73fG32PYGaUkcfe742+3dV7C3TpCsE=
   </data>
  </layer>
  <layer name="Middle Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
-   eJztlkEKwjAQRZvLaVsVVFAhFarHc+kdXHoopwuhhLTWziSZhv/hLZOWPz8z05iiaAAQ5kpAkKRa5AoKIOQKCiFLmbojV4vXiWp4drgkrCv6VR6yyvZm9Ks8pC1XLXKlTiuqx3oCZa9uXR1vDrVnNv5CanZaBXPQtxtwSLFXDGWhFPiXDd2xJXYjd/lyNYea6d+Lzj6Mjjno6+EcuN5wNCUD/2pPdx2IY4RccbP1pnNPo2Nvl/Tki++txOiLOeRq7gztUynIlXS/GtpZtXkvSRXAQ67/sf1x3/lScwXG50WKbyJXedPV+AN04CTI
+   eJztlt0OgjAMhdnLKeC/iZIME/TxvPQdvPRd9BEsFyTLLIp0Y93Sk3wJIWGQnkPbWmVZLQiOOQExaK0+r7F7ovBqIs3VRnLFWjHlShSPNGTqIrmKXgfw8GhRBfRV+lUa0sz2ZulXaYhbrhrJFTvNwI/5AHLDt9bHs0WJzMZfuJqdmsEcxHYDCiH2ir4s5A6+ZQFnLIHVl7OwXI2hJNbvDs9eFY85iPVwCtTaUDQkA/9qC2ftgP0EuaJm6wHP3RSPvd1lTTqwf2WKvphCrsbOUJOCQa5c96tuZ31ZcKu9SwoPNaTWf+r6VJbfvnL1tPDRF4X+eRHinabfkqv0aD1+A2iPOCg=
   </data>
  </layer>
- <objectgroup color="#000000" name="solid"/>
- <objectgroup name="Collision Objects"/>
- <objectgroup color="#00ff00" name="warp"/>
+ <objectgroup color="#000000" name="solid">
+  <object x="0" y="32" width="32" height="352"/>
+  <object x="0" y="384" width="928" height="64"/>
+  <object x="0" y="0" width="4800" height="32"/>
+  <object x="4768" y="32" width="32" height="288"/>
+  <object x="1024" y="256" width="672" height="32"/>
+  <object x="1024" y="288" width="704" height="160"/>
+  <object x="1856" y="320" width="672" height="128"/>
+  <object x="3616" y="128" width="192" height="320"/>
+  <object x="2528" y="352" width="1088" height="96"/>
+  <object x="3808" y="224" width="416" height="32"/>
+  <object x="3808" y="256" width="448" height="32"/>
+  <object x="3808" y="288" width="480" height="160"/>
+  <object x="4288" y="320" width="512" height="128"/>
+  <object x="1504" y="32" width="32" height="64"/>
+  <object x="1600" y="32" width="32" height="64"/>
+  <object x="1440" y="32" width="32" height="64"/>
+  <object x="1344" y="32" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object type="solid_left" x="4704" y="256" width="32" height="64"/>
+  <object type="solid_top" x="3200" y="224" width="352" height="32"/>
+  <object type="solid_top" x="2592" y="256" width="224" height="32"/>
+  <object type="death" x="928" y="416" width="96" height="32"/>
+  <object type="death" x="1728" y="384" width="128" height="64"/>
+  <object gid="502" x="96" y="384">
+   <properties>
+    <property name="dest" value="retux-41.tmx:b"/>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object x="4704" y="288">
+   <properties>
+    <property name="dest" value="retux-41d.tmx:b"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
  <objectgroup color="#005500" name="warp_spawn"/>
- <objectgroup name="Items"/>
- <objectgroup name="NPCs"/>
- <objectgroup name="Players"/>
+ <objectgroup name="Items">
+  <object gid="470" x="288" y="288"/>
+  <object gid="470" x="416" y="288"/>
+  <object gid="469" x="544" y="288"/>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object gid="5" x="3488" y="224"/>
+  <object gid="5" x="3392" y="224"/>
+  <object gid="5" x="2752" y="256"/>
+  <object gid="5" x="2912" y="352"/>
+  <object gid="5" x="2848" y="352"/>
+  <object gid="9" x="3872" y="64"/>
+  <object gid="9" x="3904" y="64"/>
+  <object gid="9" x="4128" y="64"/>
+  <object gid="9" x="4096" y="64"/>
+  <object gid="9" x="4000" y="64"/>
+  <object gid="6" x="2400" y="320"/>
+  <object gid="6" x="2336" y="320"/>
+  <object gid="6" x="2208" y="320"/>
+  <object gid="6" x="2144" y="320"/>
+  <object gid="499" x="1536" y="96"/>
+  <object gid="499" x="1376" y="96"/>
+  <object gid="7" x="1120" y="256"/>
+  <object gid="7" x="1248" y="256"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object gid="1" x="96" y="384"/>
+ </objectgroup>
  <layer name="Front Tiles" width="150" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAL4MINAAAQ==

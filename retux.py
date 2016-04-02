@@ -183,7 +183,7 @@ RACCOT_CRUSH_GRAVITY = 0.6
 RACCOT_CRUSH_FALL_SPEED = 15
 RACCOT_CRUSH_SPEED = 12
 RACCOT_CRUSH_CHARGE = TILE_SIZE
-RACCOT_SHAKE_NUM = 3
+RACCOT_SHAKE_NUM = 4
 
 HP_POINTS = 1000
 TIMER_FRAMES = 40
@@ -3728,6 +3728,9 @@ class CircoflameCenter(InteractiveObject):
 
 
 class Boss(InteractiveObject):
+
+    always_active = True
+    always_tangible = True
 
     def __init__(self, x, y, ID="boss", death_timeline=None, stage=0,
                  **kwargs):
