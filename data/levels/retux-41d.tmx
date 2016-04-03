@@ -45,7 +45,8 @@
   <object type="solid_right" x="128" y="288" width="32" height="64"/>
   <object gid="502" x="2784" y="256">
    <properties>
-    <property name="dest" value="retux-41e.tmx"/>
+    <property name="dest" value="retux-41e.tmx:enter"/>
+    <property name="spawn_id" value="e"/>
    </properties>
   </object>
   <object gid="491" x="2688" y="256">

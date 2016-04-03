@@ -2,6 +2,8 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <properties>
   <property name="bgname" value="nightsky_castle"/>
+  <property name="music" value="darkforestkeep.ogg"/>
+  <property name="timeline" value="retux_finalboss.json"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -37,11 +39,33 @@
   <object x="0" y="320" width="1056" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object gid="488" x="832" y="160"/>
-  <object gid="488" x="832" y="192"/>
-  <object gid="488" x="832" y="224"/>
-  <object gid="488" x="832" y="256"/>
+  <object gid="488" x="832" y="160">
+   <properties>
+    <property name="ID" value="bossblock1"/>
+   </properties>
+  </object>
+  <object gid="488" x="832" y="192">
+   <properties>
+    <property name="ID" value="bossblock2"/>
+   </properties>
+  </object>
+  <object gid="488" x="832" y="224">
+   <properties>
+    <property name="ID" value="bossblock3"/>
+   </properties>
+  </object>
+  <object gid="488" x="832" y="256">
+   <properties>
+    <property name="ID" value="bossblock4"/>
+   </properties>
+  </object>
   <object type="death" x="1056" y="416" width="320" height="32"/>
+  <object gid="502" x="112" y="256">
+   <properties>
+    <property name="dest" value="retux-41d.tmx:e"/>
+    <property name="spawn_id" value="enter"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp"/>
  <objectgroup color="#005500" name="warp_spawn"/>
@@ -84,34 +108,10 @@
   <object gid="477" x="1408" y="320"/>
   <object gid="477" x="1440" y="320"/>
   <object gid="477" x="1472" y="320"/>
-  <object gid="479" x="992" y="64"/>
-  <object gid="479" x="992" y="96"/>
-  <object gid="479" x="1024" y="96"/>
-  <object gid="479" x="1088" y="64"/>
-  <object gid="479" x="1184" y="64"/>
-  <object gid="479" x="1216" y="64"/>
-  <object gid="479" x="1184" y="96"/>
-  <object gid="479" x="1184" y="128"/>
-  <object gid="479" x="1280" y="128"/>
-  <object gid="479" x="1280" y="96"/>
-  <object gid="479" x="1280" y="64"/>
-  <object gid="479" x="1312" y="64"/>
-  <object gid="479" x="1376" y="64"/>
-  <object gid="479" x="1408" y="64"/>
-  <object gid="479" x="1408" y="96"/>
-  <object gid="479" x="1408" y="128"/>
-  <object gid="479" x="1376" y="128"/>
-  <object gid="479" x="992" y="192"/>
-  <object gid="479" x="992" y="224"/>
-  <object gid="479" x="1024" y="224"/>
-  <object gid="479" x="1088" y="192"/>
-  <object gid="479" x="1184" y="192"/>
-  <object gid="479" x="1216" y="192"/>
-  <object gid="479" x="1408" y="192"/>
-  <object gid="479" x="1408" y="256"/>
-  <object gid="479" x="1376" y="256"/>
-  <object gid="479" x="1280" y="192"/>
-  <object gid="479" x="1280" y="256"/>
+  <object gid="477" x="1536" y="256"/>
+  <object gid="477" x="1504" y="256"/>
+  <object gid="12" x="64" y="160"/>
+  <object gid="12" x="128" y="160"/>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="13" x="864" y="-32"/>
@@ -140,7 +140,11 @@
  </objectgroup>
  <objectgroup name="Boss"/>
  <objectgroup name="Players">
-  <object gid="1" x="96" y="256"/>
+  <object gid="1" x="112" y="256">
+   <properties>
+    <property name="human" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Front Tiles" width="50" height="14">
   <data encoding="base64" compression="zlib">

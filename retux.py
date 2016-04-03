@@ -171,7 +171,7 @@ RACCOT_JUMP_HEIGHT = 5 * TILE_SIZE
 RACCOT_JUMP_TRIGGER = 2 * TILE_SIZE
 RACCOT_STOMP_SPEED = 4
 RACCOT_STOMP_DELAY = 15
-RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 38
+RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 22
 RACCOT_HP = 5
 RACCOT_HOP_TIME = 5
 RACCOT_HOP_INTERVAL_MIN = 45
@@ -555,8 +555,11 @@ class Level(sge.dsp.Room):
 
     def return_to_map(self):
         save_game()
-        m = Worldmap.load(current_worldmap)
-        m.start(transition="iris_out", transition_time=TRANSITION_TIME)
+        if current_worldmap:
+            m = Worldmap.load(current_worldmap)
+            m.start(transition="iris_out", transition_time=TRANSITION_TIME)
+        else:
+            sge.game.start_room.start()
 
     def win_game(self):
         global current_level
@@ -1032,12 +1035,11 @@ class Level(sge.dsp.Room):
 
 class LevelTester(Level):
 
-    def win_game(self):
+    def return_to_map(self):
         sge.game.end()
 
-    def event_key_press(self, key, char):
-        if key == "escape":
-            sge.game.end()
+    def win_game(self):
+        sge.game.end()
 
     def event_alarm(self, alarm_id):
         if alarm_id == "death":
@@ -1046,7 +1048,7 @@ class LevelTester(Level):
             super(LevelTester, self).event_alarm(alarm_id)
 
 
-class LevelRecorder(Level):
+class LevelRecorder(LevelTester):
 
     def __init__(self, *args, **kwargs):
         super(LevelRecorder, self).__init__(*args, **kwargs)
@@ -1056,7 +1058,7 @@ class LevelRecorder(Level):
         self.recording.setdefault(self.timeline_step, []).append(command)
 
     def event_key_press(self, key, char):
-        if key == "escape":
+        if key == "f12":
             jt = self.recording
 
             import time
@@ -3979,6 +3981,7 @@ class Raccot(FallingObject, Boss):
         self.hop_interval_max = hop_interval_max
         self.charge_interval_min = charge_interval_min
         self.charge_interval_max = charge_interval_max
+        self.direction = 0
         self.hopping = False
         self.charging = False
         self.crushing = False
@@ -3993,13 +3996,15 @@ class Raccot(FallingObject, Boss):
                                                    self.charge_interval_max)
 
     def jump(self):
-        if self.was_on_floor and self.yvelocity == 0:
+        if (self.was_on_floor and self.yvelocity == 0 and
+                "stomp_delay" not in self.alarms):
             play_sound(bigjump_sound, self.x, self.y)
             self.yvelocity = get_jump_speed(RACCOT_JUMP_HEIGHT, self.gravity)
 
     def hop(self):
         if self.was_on_floor and self.yvelocity == 0:
             self.hopping = True
+            self.xvelocity = 0
             self.alarms["do_hop"] = self.hop_time
             self.sprite = raccot_stomp_sprite
             play_sound(yeti_gna_sound, self.x, self.y)
@@ -4008,8 +4013,9 @@ class Raccot(FallingObject, Boss):
         self.xvelocity = 0
         self.yvelocity = get_jump_speed(RACCOT_HOP_HEIGHT, self.gravity)
         self.sprite = raccot_hop_sprite
-        self.alarms["hop"] = random.uniform(self.hop_interval_min,
-                                            self.hop_interval_max)
+        if self.stage > 1:
+            self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                                self.hop_interval_max)
 
     def charge(self):
         self.charging = True
@@ -4018,10 +4024,11 @@ class Raccot(FallingObject, Boss):
 
     def charge_end(self):
         self.charging = False
-        self.alarms["hop"] = random.uniform(self.hop_interval_min,
-                                            self.hop_interval_max)
-        self.alarms["charge"] = random.uniform(self.charge_interval_min,
-                                               self.charge_interval_max)
+        if self.stage > 1:
+            self.alarms["hop"] = random.uniform(self.hop_interval_min,
+                                                self.hop_interval_max)
+            self.alarms["charge"] = random.uniform(self.charge_interval_min,
+                                                   self.charge_interval_max)
 
     def crush(self):
         self.crushing = True
@@ -4050,28 +4057,33 @@ class Raccot(FallingObject, Boss):
 
     def move(self):
         super(Raccot, self).move()
+        player = self.get_nearest_player()
+        if player is not None:
+            if self.stage > 1:
+                if self.charging:
+                    self.direction = player.x - self.x
+                    if self.y - player.y >= RACCOT_JUMP_TRIGGER:
+                        self.jump()
+                else:
+                    self.direction = 0
+
+            if not self.xvelocity:
+                self.image_xscale = math.copysign(self.image_xscale,
+                                                  player.x - self.x)
 
         if not self.crushing:
             if "stomp_delay" not in self.alarms:
                 self.xacceleration = 0
-                player = self.get_nearest_player()
-                if player is not None:
-                    if self.stage > 0 and self.charging:
-                        d = player.x - self.x
-                        if (abs(self.xvelocity) < RACCOT_WALK_SPEED or
-                                (self.xvelocity > 0) != (d > 0)):
-                            self.xacceleration = math.copysign(
-                                RACCOT_ACCELERATION, d)
-                        else:
-                            self.xvelocity = math.copysign(RACCOT_WALK_SPEED, d)
-
-                        if self.y - player.y >= RACCOT_JUMP_TRIGGER:
-                            self.jump()
+                if self.direction and not self.hopping:
+                    if (abs(self.xvelocity) < RACCOT_WALK_SPEED or
+                            (self.xvelocity > 0) != (self.direction > 0)):
+                        self.xacceleration = math.copysign(
+                            RACCOT_ACCELERATION, self.direction)
                     else:
-                        self.image_xscale = math.copysign(self.image_xscale,
-                                                          player.x - self.x)
+                        self.xvelocity = math.copysign(RACCOT_WALK_SPEED,
+                                                       self.direction)
 
-            if not self.was_on_floor:
+            if self.stage > 1 and not self.was_on_floor:
                 players = []
                 crash_y = sge.game.current_room.height
                 objects = (
@@ -4108,11 +4120,13 @@ class Raccot(FallingObject, Boss):
 
     def stop_left(self):
         self.xvelocity = 0
-        self.jump()
+        if self.charging:
+            self.jump()
 
     def stop_right(self):
         self.xvelocity = 0
-        self.jump()
+        if self.charging:
+            self.jump()
 
     def stop_up(self):
         self.yvelocity = 0
@@ -4128,6 +4142,7 @@ class Raccot(FallingObject, Boss):
             self.alarms["stomp_delay"] = RACCOT_STOMP_DELAY
 
             if self.hopping:
+                self.hopping = False
                 for obj in sge.game.current_room.objects:
                     if isinstance(obj, RaccotIcicle):
                         obj.check_shake(True)
@@ -6756,7 +6771,9 @@ class PauseMenu(ModalMenu):
 
     @classmethod
     def create(cls, default=0):
-        if current_worldmap:
+        if LEVEL or RECORD:
+            items = ["Continue", "Abort"]
+        elif current_worldmap:
             items = ["Continue", "Return to Map", "Return to Title Screen"]
         else:
             items = ["Continue", "Return to Title Screen"]
@@ -6779,9 +6796,8 @@ class PauseMenu(ModalMenu):
             rush_save()
             if current_worldmap:
                 play_sound(kill_sound)
-                sge.game.current_room.return_to_map()
-            else:
-                sge.game.start_room.start()
+
+            sge.game.current_room.return_to_map()
         elif self.choice == 2:
             rush_save()
             sge.game.start_room.start()
@@ -7717,6 +7733,7 @@ door_back_sprite = sge.gfx.Sprite("door_back", d, origin_x=21, origin_y=41,
 d = os.path.join(DATA, "images", "portraits")
 portrait_tux = sge.gfx.Sprite("portrait_tux", d)
 portrait_snowman = sge.gfx.Sprite("portrait_snowman", d)
+portrait_raccot = sge.gfx.Sprite("portrait_raccot", d)
 
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.gfx.Sprite("logo", d, origin_x=140)
@@ -7795,7 +7812,8 @@ coin_icon_sprite.width = 16
 coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
 
-portrait_sprites = {"tux": portrait_tux, "snowman": portrait_snowman}
+portrait_sprites = {"tux": portrait_tux, "snowman": portrait_snowman,
+                    "raccot": portrait_raccot}
 
 d = os.path.join(DATA, "images", "worldmap")
 worldmap_tux_sprite = sge.gfx.Sprite("tux", d)

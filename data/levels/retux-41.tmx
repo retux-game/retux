@@ -26,7 +26,7 @@
  </layer>
  <layer name="Middle Tiles" width="200" height="33">
   <data encoding="base64" compression="zlib">
-   eJztnEtuwzAMROPjJYtm0w/gFEiD3h/tERothBoq6VqO+JE4DxggFbKwZQ1JOWIv0+FwgSAIgsLr/a6SeeX7HxAUSLfprz+uDq4L+v85WbMWR9fi8JPDe+GgrvXMXD98A2+ULNdP/kyNnYmxHqCulbv+a0W8gGRrYC9s9UcEavIpFMMfWjwzc1A7LgnqK9RXgGd2sFYiCv7oA9RXqK8AD+or5A8tXu73/NpYb8LzCH/AHxTpHVX5nir9Xf5OQH2PInnjOOnk4ZY+PDpYKxFl5Q+JGL51nUnVqd+FWsd861o8oqz2H6PVCynOfBWCP/oX/NFGp0kvV0Hj+yOBd5Z1so4BEWW9Px8tj0BjydofCeQR5A+v8uCPBPJIX1qum5GfnRd/JJBH+skfo/vDky8yWv5YvpOYN4x70QhngfaefbY4Mx0Vrodk+Znr48tY+MdjTAOAAv4AgMei5h6hvgIxgD/ao7XHwF5GHgt/9FhfSZ9Dle4rAPuw2H9osXdNU2tVep5O8IhLLPKHBrk/plV+05inKB7pqa9vxPzxaO9Y7f9LRR6pQ2IuuXmjehDz+JY+RIv84b13jPKH5jxRPQbe4uojSMWalvNm2duh7cc99ZV0D6XmvXw6U69zCf2uqbKH0uM5HauY2iImWz9jz/oBTIvr2g==
+   eJztnN1qAjEQhd3H04t601pYC7b0/amPUHMRuoRJ2cT5y+R8cMAuItmYMzPZZrwuh8MVgiAIUtfHQxKsjOP577M+IUhIX4uMNzI3pjH1fA409trpoSUmb+Pwi8N7qUGN9VwZP3wDb5Rs109+TV07E9dGgBprbfy3hngB+a/JOdjrjxno3eNAcf2hxWtlDlqvS4L6CvUVqLM6WCszCv4YA9RXqK9AHdRXyB9avD3u+cKsd+F5hD/gD4r0jKp8TpX+Lv9PQL2PInnjuOjkYU4fHh2slRll5Q+JGL53nUnVqfdC3DHfuhafUVb7j2j1QoozP4Xgj/EFf/DotOjlKii+PxJ4Ztkm6xgwo6z359HyCBRL1v5III8gf3iVB38kkEfG0nbdRP7uvPgjgTwyTv6I7g9Pvsho+WP7TGLdcd2LIpwF6j37bHFmelZqPSTb17U+voyFfzzGNAAo4A8A6ljU3BHqKzAH8Ac/WnsM7GXksfDHiPWV9DlU6b4C0IfF/kOL3jVNrVXpeTrBIy6xyB8a5P4YrvymMU+zeGSkvr6I+ePZ3rHW30tFHmlDYi5r80b1IObre/oQLfKH994xyh+a80T1GHiLq88gFWs4582yt0Pbjz31lXQPpea9fDvTqHMJ/a2psofS4zkdq5jKEZOtv2PP+gVsqduX
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
@@ -44,8 +44,8 @@
   <object x="4096" y="928" width="736" height="32"/>
   <object x="4096" y="960" width="2304" height="96"/>
   <object x="5472" y="672" width="928" height="288"/>
-  <object x="0" y="0" width="6048" height="96"/>
-  <object x="6048" y="0" width="352" height="32"/>
+  <object x="0" y="0" width="4864" height="96"/>
+  <object x="4864" y="0" width="1536" height="32"/>
   <object x="6176" y="32" width="224" height="64"/>
   <object x="6176" y="96" width="32" height="64"/>
   <object x="6016" y="96" width="32" height="64"/>
@@ -90,6 +90,9 @@
   <object x="4256" y="352" width="64" height="32"/>
   <object x="4416" y="352" width="64" height="32"/>
   <object x="4576" y="352" width="64" height="32"/>
+  <object x="5568" y="32" width="480" height="32"/>
+  <object x="5600" y="64" width="448" height="32"/>
+  <object x="4864" y="32" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
   <object gid="502" x="5408" y="960" width="32" height="96">
@@ -304,7 +307,6 @@
   <object gid="7" x="5856" y="352"/>
   <object gid="9" x="5888" y="128"/>
   <object gid="9" x="5920" y="128"/>
-  <object gid="9" x="6016" y="192"/>
   <object gid="9" x="5792" y="128"/>
   <object gid="9" x="5760" y="128"/>
   <object gid="4" x="1152" y="864"/>
@@ -364,8 +366,6 @@
   <object type="circoflame" x="5248" y="192">
    <polyline points="0,0 32,0"/>
   </object>
-  <object gid="4" x="5024" y="320"/>
-  <object gid="4" x="4928" y="320"/>
   <object gid="499" x="4576" y="160"/>
   <object gid="499" x="4416" y="192"/>
   <object gid="499" x="4256" y="192"/>
