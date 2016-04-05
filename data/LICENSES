@@ -667,10 +667,8 @@ levels/retux-41d.tmx
 levels/retux-41e.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
-levels/test3.tmx
 levels/special/title_screen.tmx
 levelsets/retux.json
-levelsets/test.json
 sounds/fire_dissipate.wav
 tilesets/blocks.tsx
 tilesets/castle.tsx
@@ -710,9 +708,12 @@ License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
 ------------------------------------------------------------------------
 
 timelines/boss_start.json
+timelines/game_end.json
 timelines/retux_boss1.json
 timelines/retux_boss2.json
 timelines/retux_boss3.json
+timelines/retux_boss4.json
+timelines/retux_finalboss.json
 timelines/retux_intro.json
 timelines/title_demo.json
 
