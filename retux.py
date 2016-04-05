@@ -101,7 +101,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 PRINT_ERRORS = args.print_errors
-SCALE_SMOOTH = not args.scale_basic
+SCALE_METHOD = "smooth" if not args.scale_basic else None
 DELTA = not args.nodelta
 if args.datadir:
     DATA = args.datadir
@@ -7486,7 +7486,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
 
 
 print("Initializing game system...")
-Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_smooth=(not args.scale_basic),
+Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_method=SCALE_METHOD,
      fps=FPS, delta=(not args.nodelta), delta_min=DELTA_MIN, delta_max=240,
      window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
