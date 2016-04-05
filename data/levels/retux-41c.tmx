@@ -23,9 +23,6 @@
    eJzt07ENADAIwDD4/1h6Qh9gYETCHrMnAgAAAAAA2OzlrMFF1bzQNQAAAIBNPikbA8M=
   </data>
  </layer>
- <objectgroup name="Lava Jumpy">
-  <object gid="7" x="4032" y="256"/>
- </objectgroup>
  <layer name="Middle Tiles" width="200" height="14">
   <data encoding="base64" compression="zlib">
    eJztmc0OgjAQhOHx9CAXfxKUgPE19KbPq49gPZAQ3C60BTramWQSRUPa0q+zq02eZQ1N06LPxhTlq03+/boQrknfs723XVtaJfmgAiWx4MpHAczHCWAcVNpCzY8aLD8qM5a9xQegcVLTSmJBypSlhZYfFfskKlDbgX0y9HlXaP2HxsdayRbNzB3KV4h8HCc2Uj5OoZ3nOdGeFa+ebfdL8Vy5mjnfOvNG7D/Ih12fvbxSMnbMb/nPnmslr1Nj5G7m++jMGbH/IB+yWjZC1kKqUbV7psZIn4/asmax6nmt//i3/z9d66RQNkKYQmMkpMZ0XXPX/TbneqXEh62uQTQaI+VE7I+x73ohMTvExwXQv8TH3M889h7RHCOzl64PYj9PpHqJdvMbMJiDAg==

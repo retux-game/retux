@@ -5,6 +5,7 @@
   <property name="bgname" value="nightsky_castle"/>
   <property name="music" value="darkforestkeep.ogg"/>
   <property name="name" value="Making a Raccot"/>
+  <property name="time_bonus" value="50000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>

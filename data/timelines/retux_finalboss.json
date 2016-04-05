@@ -51,29 +51,41 @@
         "setattr player right_pressed False",
         "setattr player sneak_pressed False"
     ],
-    "1080": [
+    "940": [
         "call boss jump"
     ],
-    "1110": [
+    "970": [
         "setattr boss direction 0",
         "call boss crush"
     ],
-    "1289": [
+    "1085": [
         "call bossblock1 activate"
     ],
-    "1423": [
+    "1115": [
         "call bossblock2 activate"
     ],
-    "1559": [
+    "1145": [
         "call bossblock3 activate"
     ],
-    "1692": [
-        "call bossblock4 activate"
-    ],
-    "1825": [
+    "1175": [
+        "call bossblock4 activate",
         "setattr player view_frozen True",
-        "setattr player human True",
+        "setattr player human True"
+    ],
+    "1289": [
+        "call boss hop"
+    ],
+    "1414": [
+        "call boss hop"
+    ],
+    "1549": [
+        "call boss hop"
+    ],
+    "1684": [
         "call boss hop",
         "setattr boss stage 2"
+    ],
+    "1825": [
+        "# call boss hop"
     ]
 }

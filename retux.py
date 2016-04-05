@@ -429,6 +429,7 @@ class Level(sge.dsp.Room):
         self.warps = []
         self.shake_queue = 0
         self.pause_delay = TRANSITION_TIME
+        self.game_won = False
 
         if bgname is not None:
             background = backgrounds.get(bgname, background)
@@ -560,6 +561,42 @@ class Level(sge.dsp.Room):
             m.start(transition="iris_out", transition_time=TRANSITION_TIME)
         else:
             sge.game.start_room.start()
+
+    def win_level(self, victory_walk=True):
+        global current_checkpoints
+
+        for obj in self.objects[:]:
+            if isinstance(obj, WinPuffObject) and obj.active:
+                obj.win_puff()
+
+        for obj in self.objects:
+            if isinstance(obj, Player):
+                obj.human = False
+                obj.left_pressed = False
+                obj.right_pressed = False
+                obj.up_pressed = False
+                obj.down_pressed = False
+                obj.jump_pressed = False
+                obj.action_pressed = False
+                obj.sneak_pressed = True
+                obj.jump_release()
+
+                if victory_walk:
+                    if obj.xvelocity >= 0:
+                        obj.right_pressed = True
+                    else:
+                        obj.left_pressed = True
+
+        if "timer" in self.alarms:
+            del self.alarms["timer"]
+
+        self.won = True
+        self.alarms["win_count_points"] = WIN_COUNT_START_TIME
+        current_checkpoints[main_area] = None
+        sge.snd.Music.clear_queue()
+        sge.snd.Music.stop()
+        if music_enabled:
+            level_win_music.play()
 
     def win_game(self):
         global current_level
@@ -716,16 +753,17 @@ class Level(sge.dsp.Room):
                                     elif obj == "__level__":
                                         setattr(self, name, value)
                         elif command == "call":
-                            args = arg.split(None, 1)
+                            args = arg.split()
                             if len(args) >= 2:
                                 obj, method = args[:2]
+                                fa = [eval(s) for s in args[2:]]
 
                                 if obj in self.timeline_objects:
                                     obj = self.timeline_objects[obj]()
                                     if obj is not None:
-                                        getattr(obj, method, lambda: None)()
+                                        getattr(obj, method, lambda: None)(*fa)
                                 elif obj == "__level__":
-                                    getattr(self, method, lambda: None)()
+                                    getattr(self, method, lambda: None)(*fa)
                         elif command == "dialog":
                             args = arg.split(None, 1)
                             if len(args) >= 2:
@@ -875,7 +913,9 @@ class Level(sge.dsp.Room):
                 current_areas = {}
                 level_cleared = True
 
-                if current_worldmap:
+                if self.game_won:
+                    self.win_game()
+                elif current_worldmap:
                     self.return_to_map()
                 else:
                     main_area = None
@@ -1125,7 +1165,12 @@ class LevelRecorder(LevelTester):
                         "setattr {} sneak_pressed 0".format(obj.ID))
 
 
-class TitleScreen(Level):
+class SpecialScreen(Level):
+
+    pass
+
+
+class TitleScreen(SpecialScreen):
 
     def show_hud(self):
         pass
@@ -1138,7 +1183,7 @@ class TitleScreen(Level):
         pass
 
 
-class CreditsScreen(Level):
+class CreditsScreen(SpecialScreen):
 
     def event_room_start(self):
         super(CreditsScreen, self).event_room_start()
@@ -1642,40 +1687,6 @@ class Player(xsge_physics.Collider):
 
         self.destroy()
 
-    def win_level(self, victory_walk=True):
-        global current_checkpoints
-
-        for obj in sge.game.current_room.objects[:]:
-            if isinstance(obj, WinPuffObject) and obj.active:
-                obj.win_puff()
-
-        self.human = False
-        self.left_pressed = False
-        self.right_pressed = False
-        self.up_pressed = False
-        self.down_pressed = False
-        self.jump_pressed = False
-        self.action_pressed = False
-        self.sneak_pressed = True
-        self.jump_release()
-
-        if victory_walk:
-            if self.xvelocity >= 0:
-                self.right_pressed = True
-            else:
-                self.left_pressed = True
-
-        if "timer" in sge.game.current_room.alarms:
-            del sge.game.current_room.alarms["timer"]
-
-        sge.game.current_room.won = True
-        sge.game.current_room.alarms["win_count_points"] = WIN_COUNT_START_TIME
-        current_checkpoints[main_area] = None
-        sge.snd.Music.clear_queue()
-        sge.snd.Music.stop()
-        if music_enabled:
-            level_win_music.play()
-
     def pickup(self, other):
         if self.held_object is None and other.parent is None:
             other.visible = False
@@ -2110,6 +2121,8 @@ class Player(xsge_physics.Collider):
                 self.action()
             if key in up_key[self.player]:
                 self.press_up()
+
+        if not isinstance(sge.game.current_room, SpecialScreen):
             if (key == "escape" or key in pause_key[self.player] or
                     key in menu_key[self.player]):
                 sge.game.current_room.pause()
@@ -2139,7 +2152,7 @@ class Player(xsge_physics.Collider):
         if isinstance(other, Death):
             self.kill()
         elif isinstance(other, LevelEnd):
-            self.win_level()
+            sge.game.current_room.win_level()
             other.destroy()
         elif isinstance(other, Explosion):
             other.touch(self)
@@ -3753,9 +3766,7 @@ class Boss(InteractiveObject):
             if self.death_timeline:
                 sge.game.current_room.load_timeline(self.death_timeline)
             else:
-                player = self.get_nearest_player()
-                if player is not None:
-                    player.win_level(False)
+                sge.game.current_room.win_level(False)
 
 
 class Snowman(FallingObject, Boss):
@@ -6868,6 +6879,11 @@ class DialogBox(xsge_gui.Dialog):
 
     def event_press_escape(self):
         self.destroy()
+        room = sge.game.current_room
+        if (isinstance(room, Level) and
+                room.timeline_skip_target is not None and
+                room.timeline_step < room.timeline_skip_target):
+            room.timeline_skipto(room.timeline_skip_target)
 
 
 def get_object(x, y, cls=None, **kwargs):
