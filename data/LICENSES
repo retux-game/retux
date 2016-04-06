@@ -668,6 +668,8 @@ levels/retux-41e.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/special/title_screen.tmx
+levelsets/base.json
+levelsets/bonus_levels.json
 levelsets/retux.json
 sounds/fire_dissipate.wav
 tilesets/blocks.tsx
