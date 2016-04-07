@@ -6852,14 +6852,17 @@ class ExportLevelsetMenu(LevelsetMenu):
                 worldmap = data.get("worldmap")
                 levels = data.get("levels", [])
 
-                files = [levelset_fname]
+                files = [(levelset_fname, os.path.join("levelsets", levelset))]
                 if start_cutscene:
-                    files.append(os.path.join(DATA, "levels",
-                                              start_cutscene))
+                    files.append((os.path.join(DATA, "levels",
+                                               start_cutscene),
+                                  os.path.join("levels", start_cutscene)))
                 if worldmap:
-                    files.append(os.path.join(DATA, "worldmaps", worldmap))
+                    files.append((os.path.join(DATA, "worldmaps", worldmap),
+                                  os.path.join("worldmaps", worldmap)))
                 for level in levels:
-                    files.append(os.path.join(DATA, "levels", level))
+                    files.append((os.path.join(DATA, "levels", level),
+                                  os.path.join("levels", level)))
 
                 fname = tkinter_filedialog.asksaveasfilename(
                     defaultextension=".rtz",
@@ -6896,7 +6899,7 @@ class ExportLevelsetMenu(LevelsetMenu):
 
                 with zipfile.ZipFile(fname, 'w') as rtz:
                     for i in six.moves.range(len(files)):
-                        rtz.write(files[i])
+                        rtz.write(*files[i])
                         progressbar.progress = (i + 1) / len(files)
                         progressbar.redraw()
                         sge.game.pump_input()
