@@ -36,6 +36,7 @@ import tempfile
 import traceback
 import warnings
 import weakref
+import zipfile
 
 import sge
 import six
@@ -44,6 +45,18 @@ import xsge_lighting
 import xsge_path
 import xsge_physics
 import xsge_tmx
+
+try:
+    from six.moves.tkinter import Tk
+    # six.moves.tkinter_filedialog doesn't work correctly.
+    if six.PY2:
+        import tkFileDialog as tkinter_filedialog
+    else:
+        import tkinter.filedialog as tkinter_filedialog
+except ImportError:
+    HAVE_TK = False
+else:
+    HAVE_TK = True
 
 
 if getattr(sys, "frozen", False):
@@ -6437,7 +6450,7 @@ class OptionsMenu(Menu):
             "Show FPS: {}".format("On" if fps_enabled else "Off"),
             "Joystick Threshold: {}%".format(int(joystick_threshold * 100)),
             "Configure keyboard", "Configure joysticks", "Detect joysticks",
-            "Back"]
+            "Import levelset", "Export levelset", "Back"]
         return cls.create(default)
 
     def event_choose(self):
@@ -6487,6 +6500,73 @@ class OptionsMenu(Menu):
             sge.joystick.refresh()
             play_sound(heal_sound)
             OptionsMenu.create_page(default=self.choice)
+        elif self.choice == 9:
+            if HAVE_TK:
+                play_sound(confirm_sound)
+                fname = tkinter_filedialog.askopenfilename(
+                    filetypes=[("ReTux levelset files", ".rtz"),
+                               ("all files", ".*")])
+
+                w = 400
+                h = 128
+                margin = 16
+                x = SCREEN_SIZE[0] / 2 - w / 2
+                y = SCREEN_SIZE[1] / 2 - h / 2
+                c = sge.gfx.Color("black")
+                window = xsge_gui.Window(gui_handler, x, y, w, h,
+                                         background_color=c, border=False)
+
+                x = margin
+                y = margin
+                text = "Importing levelset..."
+                c = sge.gfx.Color("white")
+                xsge_gui.Label(
+                    window, x, y, 1, text, font=font, width=(w - 2 * margin),
+                    height=(h - 3 * margin -
+                            xsge_gui.progressbar_container_sprite.height),
+                    color=c)
+
+                x = margin
+                y = h - margin - xsge_gui.progressbar_container_sprite.height
+                progressbar = xsge_gui.ProgressBar(window, x, y, 0,
+                                                   width=(w - 2 * margin))
+
+                window.show()
+                gui_handler.event_step(0, 0)
+                sge.game.refresh()
+
+                with zipfile.ZipFile(fname, 'r') as rtz:
+                    infolist = rtz.infolist()
+                    for i in six.moves.range(len(infolist)):
+                        member = infolist[i]
+                        rtz.extract(member, DATA)
+                        rtz.extract(member, os.path.join(CONFIG, "data"))
+                        progressbar.progress = (i + 1) / len(infolist)
+                        progressbar.redraw()
+                        sge.game.pump_input()
+                        gui_handler.event_step(0, 0)
+                        sge.game.refresh()
+
+                window.destroy()
+                sge.game.pump_input()
+                gui_handler.event_step(0, 0)
+                sge.game.refresh()
+                sge.game.pump_input()
+                sge.game.input_events = []
+            else:
+                play_sound(kill_sound)
+                e = "This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again."
+                show_error(e)
+            OptionsMenu.create_page(default=self.choice)
+        elif self.choice == 10:
+            if HAVE_TK:
+                play_sound(confirm_sound)
+                ExportLevelsetMenu.create_page(default=-1, refreshlist=True)
+            else:
+                play_sound(kill_sound)
+                e = "This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again."
+                show_error(e)
+                OptionsMenu.create_page(default=self.choice)
         else:
             play_sound(cancel_sound)
             write_to_disk()
@@ -6753,6 +6833,86 @@ class JoystickMenu(Menu):
         else:
             play_sound(cancel_sound)
             OptionsMenu.create_page(default=6)
+
+
+class ExportLevelsetMenu(LevelsetMenu):
+
+    def event_choose(self):
+        if self.choice == len(self.items) - 2:
+            play_sound(select_sound)
+            self.create_page(default=-2, page=self.page)
+        else:
+            if self.choice is not None and self.choice < len(self.items) - 2:
+                play_sound(confirm_sound)
+                levelset = self.current_levelsets[self.choice]
+                levelset_fname = os.path.join(DATA, "levelsets", levelset)
+                with open(levelset_fname, 'r') as f:
+                    data = json.load(f)
+                start_cutscene = data.get("start_cutscene")
+                worldmap = data.get("worldmap")
+                levels = data.get("levels", [])
+
+                files = [levelset_fname]
+                if start_cutscene:
+                    files.append(os.path.join(DATA, "levels",
+                                              start_cutscene))
+                if worldmap:
+                    files.append(os.path.join(DATA, "worldmaps", worldmap))
+                for level in levels:
+                    files.append(os.path.join(DATA, "levels", level))
+
+                fname = tkinter_filedialog.asksaveasfilename(
+                    defaultextension=".rtz",
+                    filetypes=[("ReTux levelset files", ".rtz"),
+                               ("all files", ".*")])
+
+                w = 400
+                h = 128
+                margin = 16
+                x = SCREEN_SIZE[0] / 2 - w / 2
+                y = SCREEN_SIZE[1] / 2 - h / 2
+                c = sge.gfx.Color("black")
+                window = xsge_gui.Window(gui_handler, x, y, w, h,
+                                         background_color=c, border=False)
+
+                x = margin
+                y = margin
+                text = "Exporting levelset..."
+                c = sge.gfx.Color("white")
+                xsge_gui.Label(
+                    window, x, y, 1, text, font=font, width=(w - 2 * margin),
+                    height=(h - 3 * margin -
+                            xsge_gui.progressbar_container_sprite.height),
+                    color=c)
+
+                x = margin
+                y = h - margin - xsge_gui.progressbar_container_sprite.height
+                progressbar = xsge_gui.ProgressBar(window, x, y, 0,
+                                                   width=(w - 2 * margin))
+
+                window.show()
+                gui_handler.event_step(0, 0)
+                sge.game.refresh()
+
+                with zipfile.ZipFile(fname, 'w') as rtz:
+                    for i in six.moves.range(len(files)):
+                        rtz.write(files[i])
+                        progressbar.progress = (i + 1) / len(files)
+                        progressbar.redraw()
+                        sge.game.pump_input()
+                        gui_handler.event_step(0, 0)
+                        sge.game.refresh()
+
+                window.destroy()
+                sge.game.pump_input()
+                gui_handler.event_step(0, 0)
+                sge.game.refresh()
+                sge.game.pump_input()
+                sge.game.input_events = []
+            else:
+                play_sound(cancel_sound)
+
+            OptionsMenu.create(default=10)
 
 
 class ModalMenu(xsge_gui.MenuDialog):
@@ -8167,6 +8327,8 @@ else:
 
 if __name__ == '__main__':
     print("Starting game...")
+    tkwindow = Tk()
+    tkwindow.withdraw()
     try:
         sge.game.start()
     finally:
