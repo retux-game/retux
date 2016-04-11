@@ -40,6 +40,7 @@ import zipfile
 
 import sge
 import six
+import tmx
 import xsge_gui
 import xsge_lighting
 import xsge_path
@@ -1823,17 +1824,6 @@ class Player(xsge_physics.Collider):
         hands_free = (self.held_object is None)
 
         if self.on_floor and self.was_on_floor:
-            # This method was designed to adjust the walk animation
-            # to account for slopes (so that the animation cycle is
-            # slower when walking up and faster when walking down),
-            # but it's so generic that it also causes nonsensical
-            # animation when the player is on a moving platform.
-            # TODO: Think of a way to achieve this effect without the
-            # silly-looking side-effect on moving platforms.
-            #xdiff = self.x - self.last_x
-            #speed = (math.hypot(abs(xdiff), abs(self.y - self.last_y)) /
-            #         delta_mult)
-            #xm = (xdiff > 0) - (xdiff < 0)
             xm = (self.xvelocity > 0) - (self.xvelocity < 0)
             speed = abs(self.xvelocity)
             if speed > 0:
@@ -6844,25 +6834,6 @@ class ExportLevelsetMenu(LevelsetMenu):
         else:
             if self.choice is not None and self.choice < len(self.items) - 2:
                 play_sound(confirm_sound)
-                levelset = self.current_levelsets[self.choice]
-                levelset_fname = os.path.join(DATA, "levelsets", levelset)
-                with open(levelset_fname, 'r') as f:
-                    data = json.load(f)
-                start_cutscene = data.get("start_cutscene")
-                worldmap = data.get("worldmap")
-                levels = data.get("levels", [])
-
-                files = [(levelset_fname, os.path.join("levelsets", levelset))]
-                if start_cutscene:
-                    files.append((os.path.join(DATA, "levels",
-                                               start_cutscene),
-                                  os.path.join("levels", start_cutscene)))
-                if worldmap:
-                    files.append((os.path.join(DATA, "worldmaps", worldmap),
-                                  os.path.join("worldmaps", worldmap)))
-                for level in levels:
-                    files.append((os.path.join(DATA, "levels", level),
-                                  os.path.join("levels", level)))
 
                 fname = tkinter_filedialog.asksaveasfilename(
                     defaultextension=".rtz",
@@ -6897,9 +6868,181 @@ class ExportLevelsetMenu(LevelsetMenu):
                 gui_handler.event_step(0, 0)
                 sge.game.refresh()
 
+                levelset = self.current_levelsets[self.choice]
+                levelset_fname = os.path.join(DATA, "levelsets", levelset)
+                with open(levelset_fname, 'r') as f:
+                    data = json.load(f)
+                start_cutscene = data.get("start_cutscene")
+                worldmap = data.get("worldmap")
+                levels = data.get("levels", [])
+                include_files = data.get("include_files", [])
+
+                def get_extra_files(fd, exclude_files):
+                    if fd in exclude_files:
+                        return set()
+
+                    tmx_dir = os.path.relpath(os.path.dirname(fd), DATA)
+                    extra_files = {fd}
+                    exclude_files.add(fd)
+                    try:
+                        tilemap = tmx.TileMap.load(fd)
+                    except IOError as e:
+                        show_error(str(e))
+                        return extra_files
+
+                    for prop in tilemap.properties:
+                        if prop.name == "music":
+                            extra_files.add(os.path.join(DATA, "music",
+                                                         prop.value))
+                        elif prop.name == "timeline":
+                            extra_files.add(os.path.join(DATA, "timelines",
+                                                         prop.value))
+
+                    for tileset in tilemap.tilesets:
+                        ts_dir = tmx_dir
+                        if tileset.source is not None:
+                            extra_files.add(os.path.join(DATA, tmx_dir,
+                                                         tileset.source))
+                            ts_dir = os.path.dirname(os.path.join(
+                                tmx_dir, tileset.source))
+
+                        if (tileset.image is not None and
+                                tileset.image.source is not None):
+                            extra_files.add(os.path.join(DATA, ts_dir,
+                                                         tileset.image.source))
+
+                    def check_obj(cls, properties, exclude_files,
+                                  get_extra_files=get_extra_files):
+                        if cls == get_object:
+                            for prop in properties:
+                                if prop.name == "cls":
+                                    cls = TYPES.get(prop.value,
+                                                    xsge_tmx.Decoration)
+
+                        extra_files = set()
+                        for prop in properties:
+                            if prop.name == "dest":
+                                if ":" in prop.value:
+                                    level_f, _ = prop.value.split(':', 1)
+                                elif cls in {Warp, MapWarp}:
+                                    level_f = prop.value
+                                else:
+                                    level_f = None
+
+                                if level_f and level_f not in {
+                                        "__main__", "__map__"}:
+                                    if cls == MapWarp:
+                                        sdir = "worldmaps"
+                                    else:
+                                        sdir = "levels"
+
+                                    fname = os.path.join(DATA, sdir, level_f)
+                                    extra_files |= get_extra_files(
+                                        fname, exclude_files)
+                            elif prop.name.endswith("timeline"):
+                                extra_files.add(
+                                    os.path.join(DATA, "timelines", prop.value))
+                            elif prop.name == "level":
+                                fname = os.path.join(DATA, "levels",
+                                                     prop.value)
+                                extra_files |= get_extra_files(fname,
+                                                               exclude_files)
+
+                        return extra_files
+
+                    for layer in tilemap.layers:
+                        if isinstance(layer, tmx.Layer):
+                            layer_cls = TYPES.get(layer.name)
+                            layer_prop = layer.properties
+                            for tile in layer.tiles:
+                                if tile.gid:
+                                    tile_ts = None
+                                    for ts in sorted(tilemap.tilesets,
+                                                     key=lambda x: x.firstgid):
+                                        if ts.firstgid <= tile.gid:
+                                            tile_ts = ts
+                                        else:
+                                            break
+
+                                    if tile_ts is not None:
+                                        ts_cls = TYPES.get(tile_ts.name)
+                                        ts_prop = tile_ts.properties
+                                        tile_prop = []
+                                        i = tile.gid - tile_ts.firstgid
+                                        for tile_def in tile_ts.tiles:
+                                            if tile_def.id == i:
+                                                tile_prop = tile_def.properties
+                                                break
+                                        cls = ts_cls or layer_cls
+                                        prop = layer_prop + ts_prop + tile_prop
+                                        extra_files |= check_obj(cls, prop,
+                                                                 exclude_files)
+                        elif isinstance(layer, tmx.ObjectGroup):
+                            layer_cls = TYPES.get(layer.name)
+                            layer_prop = layer.properties
+                            for obj in layer.objects:
+                                cls = TYPES.get(obj.name) or TYPES.get(obj.type)
+                                prop = obj.properties
+                                if obj.gid:
+                                    obj_ts = None
+                                    for ts in sorted(tilemap.tilesets,
+                                                     key=lambda x: x.firstgid):
+                                        if ts.firstgid <= obj.gid:
+                                            obj_ts = ts
+                                        else:
+                                            break
+
+                                    if obj_ts is not None:
+                                        ts_cls = TYPES.get(obj_ts.name)
+                                        ts_prop = obj_ts.properties
+                                        tile_prop = []
+                                        i = obj.gid - obj_ts.firstgid
+                                        for tile_def in obj_ts.tiles:
+                                            if tile_def.id == i:
+                                                tile_prop = tile_def.properties
+                                                break
+                                        cls = cls or ts_cls
+                                        prop = tile_prop + prop
+                                cls = cls or layer_cls
+                                prop = layer_prop + prop
+                                extra_files |= check_obj(cls, prop,
+                                                         exclude_files)
+                        elif isinstance(layer, tmx.ImageLayer):
+                            extra_files |= check_obj(TYPES.get(layer.name),
+                                                     layer.properties,
+                                                     exclude_files)
+                            if (layer.image is not None and
+                                    layer.image.source is not None):
+                                extra_files.add(
+                                    os.path.join(DATA, tmx_dir,
+                                                 layer.image.source))
+
+                    return extra_files
+
+                files = {levelset_fname}
+                exclude_files = set()
+                if start_cutscene:
+                    fd = os.path.join(DATA, "levels", start_cutscene)
+                    files |= get_extra_files(fd, exclude_files)
+                if worldmap:
+                    fd = os.path.join(DATA, "worldmaps", worldmap)
+                    files |= get_extra_files(fd, exclude_files)
+                for level in levels:
+                    fd = os.path.join(DATA, "levels", level)
+                    files |= get_extra_files(fd, exclude_files)
+                for include_file in include_files:
+                    files.add(os.path.join(DATA, include_file))
+
+                files = list(files)
+                inst_dir = os.path.join(os.path.dirname(__file__), "data")
+
                 with zipfile.ZipFile(fname, 'w') as rtz:
                     for i in six.moves.range(len(files)):
-                        rtz.write(*files[i])
+                        fname = files[i]
+                        aname = os.path.relpath(fname, DATA)
+                        if not os.path.exists(os.path.join(inst_dir, aname)):
+                            rtz.write(fname, aname)
+
                         progressbar.progress = (i + 1) / len(files)
                         progressbar.redraw()
                         sge.game.pump_input()

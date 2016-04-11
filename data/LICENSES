@@ -697,6 +697,7 @@ tilesets/wm_snow.tsx
 tilesets/wm_thin_ice.tsx
 tilesets/wm_trees.tsx
 worldmaps/base.tmx
+worldmaps/bonus_levels.tmx
 worldmaps/retux-1.tmx
 worldmaps/retux-2.tmx
 worldmaps/retux-3.tmx
