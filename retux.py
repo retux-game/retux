@@ -1262,7 +1262,7 @@ class CreditsScreen(SpecialScreen):
 
     def event_joystick(self, js_name, js_id, input_type, input_id, value):
         js = (js_id, input_type, input_id)
-        if value > joystick_threshold:
+        if value >= joystick_threshold:
             if js in itertools.chain.from_iterable(down_js):
                 for obj in self.sections:
                     obj.yvelocity -= 0.25
@@ -1617,7 +1617,8 @@ class Player(xsge_physics.Collider):
                 for choice in js_controls[i][self.player]:
                     j, t, c = choice
                     value = min(sge.joystick.get_value(j, t, c), 1)
-                    states[i] = max(states[i], value)
+                    if value >= joystick_threshold:
+                        states[i] = max(states[i], value)
 
             self.left_pressed = states[0]
             self.right_pressed = states[1]
@@ -2138,7 +2139,7 @@ class Player(xsge_physics.Collider):
     def event_joystick(self, js_name, js_id, input_type, input_id, value):
         if self.human:
             js = (js_id, input_type, input_id)
-            if value > joystick_threshold:
+            if value >= joystick_threshold:
                 if js in jump_js[self.player]:
                     self.jump()
                 if js in action_js[self.player]:
@@ -5881,7 +5882,8 @@ class MapPlayer(sge.dsp.Object):
                     for choice in js_controls[i][player]:
                         j, t, c = choice
                         value = min(sge.joystick.get_value(j, t, c), 1)
-                        states[i] = max(states[i], value)
+                        if value >= joystick_threshold:
+                            states[i] = max(states[i], value)
 
             left_pressed = states[0]
             right_pressed = states[1]
@@ -5889,15 +5891,15 @@ class MapPlayer(sge.dsp.Object):
             down_pressed = states[3]
             sneak_pressed = states[4]
 
-            if sneak_pressed > joystick_threshold:
+            if sneak_pressed:
                 self.move_forward()
-            if right_pressed - left_pressed > joystick_threshold:
+            if right_pressed - left_pressed > 0:
                 self.move_right()
-            elif left_pressed - right_pressed > joystick_threshold:
+            elif left_pressed - right_pressed > 0:
                 self.move_left()
-            if down_pressed - up_pressed > joystick_threshold:
+            if down_pressed - up_pressed > 0:
                 self.move_down()
-            elif up_pressed - down_pressed > joystick_threshold:
+            elif up_pressed - down_pressed > 0:
                 self.move_up()
 
         if room.views:
@@ -5915,7 +5917,7 @@ class MapPlayer(sge.dsp.Object):
 
     def event_joystick(self, js_name, js_id, input_type, input_id, value):
         js = (js_id, input_type, input_id)
-        if value > joystick_threshold:
+        if value >= joystick_threshold:
             if (js in itertools.chain.from_iterable(jump_js) or
                     js in itertools.chain.from_iterable(action_js) or
                     js in itertools.chain.from_iterable(pause_js)):
@@ -6477,6 +6479,8 @@ class OptionsMenu(Menu):
             # This somewhat complicated method is to prevent rounding
             # irregularities.
             threshold = ((int(joystick_threshold * 100) + 5) % 100) / 100
+            if not threshold:
+                threshold = 0.0001
             joystick_threshold = threshold
             xsge_gui.joystick_threshold = threshold
             OptionsMenu.create_page(default=self.choice)
@@ -7308,7 +7312,7 @@ def wait_js():
             elif isinstance(event, sge.input.JoystickEvent):
                 if (event.input_type not in {"axis0", "hat_center_x",
                                              "hat_center_y"} and
-                        event.value > joystick_threshold):
+                        event.value >= joystick_threshold):
                     sge.game.pump_input()
                     sge.game.input_events = []
                     return (event.js_id, event.input_type, event.input_id)
