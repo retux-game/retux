@@ -523,14 +523,6 @@ class Level(sge.dsp.Room):
                     s = tuxdoll_transparent_sprite
                 sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
 
-            if (self.timeline_skip_target is not None and
-                    self.timeline_step < self.timeline_skip_target):
-                text = "Press the Menu button to skip..."
-                sge.game.project_text(font, text, sge.game.width / 2,
-                                      sge.game.height,
-                                      color=sge.gfx.Color("white"),
-                                      halign="center", valign="bottom")
-
     def shake(self, num=1):
         shaking = (self.shake_queue or "shake_up" in self.alarms or
                    "shake_down" in self.alarms)
@@ -1748,6 +1740,18 @@ class Player(xsge_physics.Collider):
                                     coin_animation.image_index, 0, y)
             sge.game.project_text(font, "x{}".format(self.coins), 16, y,
                                   color=sge.gfx.Color("white"))
+
+            if not self.human:
+                room = sge.game.current_room
+                if (room.timeline_skip_target is not None and
+                        room.timeline_step < room.timeline_skip_target):
+                    text = "Press the Menu button to skip..."
+                else:
+                    text = "Cinematic mode enabled"
+                sge.game.project_text(font, text, sge.game.width / 2,
+                                      sge.game.height - 16,
+                                      color=sge.gfx.Color("white"),
+                                      halign="center", valign="middle")
 
     def get_grab_sprite(self, body_sprite, arms_sprite=None):
         if arms_sprite is None: arms_sprite = tux_arms_grab_sprite
