@@ -4078,13 +4078,12 @@ class Raccot(FallingObject, Boss):
         super(Raccot, self).move()
         player = self.get_nearest_player()
         if player is not None:
-            if self.stage > 1:
-                if self.charging:
-                    self.direction = player.x - self.x
-                    if self.y - player.y >= RACCOT_JUMP_TRIGGER:
-                        self.jump()
-                else:
-                    self.direction = 0
+            if self.charging:
+                self.direction = player.x - self.x
+                if self.y - player.y >= RACCOT_JUMP_TRIGGER:
+                    self.jump()
+            elif self.stage > 1:
+                self.direction = 0
 
             if not self.xvelocity:
                 self.image_xscale = math.copysign(self.image_xscale,
@@ -4102,7 +4101,7 @@ class Raccot(FallingObject, Boss):
                         self.xvelocity = math.copysign(RACCOT_WALK_SPEED,
                                                        self.direction)
 
-            if self.stage > 1 and not self.was_on_floor:
+            if (self.stage > 1 or self.charging) and not self.was_on_floor:
                 players = []
                 crash_y = sge.game.current_room.height
                 objects = (
@@ -7724,12 +7723,17 @@ def warp(dest):
         if ":" in dest:
             level_f, spawn = dest.split(':', 1)
         else:
-            level_f = dest
-            spawn = None
+            level_f = None
+            spawn = dest
 
         if level_f == "__main__":
             level_f = main_area
-        level = sge.game.current_room.__class__.load(level_f, True)
+
+        if level_f:
+            level = sge.game.current_room.__class__.load(level_f, True)
+        else:
+            level = cr
+
         if level is not None:
             level.spawn = spawn
             level.points = cr.points
