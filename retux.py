@@ -5403,6 +5403,8 @@ class Door(sge.dsp.Object):
 
 class WarpSpawn(xsge_path.Path):
 
+    silent = False
+
     def __init__(self, x, y, points=(), dest=None, spawn_id=None, **kwargs):
         super(WarpSpawn, self).__init__(x, y, points=points, **kwargs)
         self.dest = dest
@@ -5501,7 +5503,9 @@ class WarpSpawn(xsge_path.Path):
         if self.dest and (':' in self.dest or self.dest == "__map__"):
             warp(self.dest)
         else:
-            play_sound(pipe_sound, obj.x, obj.y)
+            if not self.silent:
+                play_sound(pipe_sound, obj.x, obj.y)
+
             self.warps_out.append(obj)
             x, y = self.points[-1]
             x += self.x
@@ -5537,7 +5541,9 @@ class Warp(WarpSpawn):
         self.warps_in = []
 
     def warp(self, other):
-        play_sound(pipe_sound, other.x, other.y)
+        if not self.silent:
+            play_sound(pipe_sound, other.x, other.y)
+
         self.warps_in.append(other)
 
         if getattr(other, "held_object") is not None:
@@ -5619,11 +5625,12 @@ class Warp(WarpSpawn):
 class ObjectWarpSpawn(WarpSpawn):
 
     def __init__(self, x, y, points=(), cls=None, interval=180, limit=None,
-                 **kwargs):
+                 silent=False, **kwargs):
         self.cls = TYPES.get(cls)
         self.kwargs = kwargs
         self.interval = interval
         self.limit = limit
+        self.silent = silent
         self.__steps_passed = interval
         self.__objects = []
         super(ObjectWarpSpawn, self).__init__(x, y, points=points)
@@ -7783,9 +7790,10 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "flying_snowball": FlyingSnowball, "flying_spiky": FlyingSpiky,
          "icicle": Icicle, "steady_icicle": SteadyIcicle,
          "raccot_icicle": RaccotIcicle, "krush": Krush, "krosh": Krosh,
-         "circoflame": CircoflamePath, "snowman": Snowman, "raccot": Raccot,
-         "fireflower": FireFlower, "iceflower": IceFlower, "tuxdoll": TuxDoll,
-         "rock": Rock, "fixed_spring": FixedSpring, "spring": Spring,
+         "circoflame": CircoflamePath, "circoflamecenter": CircoflameCenter,
+         "snowman": Snowman, "raccot": Raccot, "fireflower": FireFlower,
+         "iceflower": IceFlower, "tuxdoll": TuxDoll, "rock": Rock,
+         "fixed_spring": FixedSpring, "spring": Spring,
          "rusty_spring": RustySpring, "lantern": Lantern,
          "timeline_switcher": TimelineSwitcher, "iceblock": Iceblock,
          "boss_block": BossBlock, "brick": Brick, "coinbrick": CoinBrick,

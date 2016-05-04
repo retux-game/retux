@@ -67,4 +67,9 @@
    <property name="cls" value="raccot_icicle"/>
   </properties>
  </tile>
+ <tile id="13">
+  <properties>
+   <property name="cls" value="circoflame_center"/>
+  </properties>
+ </tile>
 </tileset>
