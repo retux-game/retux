@@ -297,6 +297,11 @@
     <property name="spawn_id" value="checkpoint3"/>
    </properties>
   </object>
+  <object gid="482" x="224" y="1504">
+   <properties>
+    <property name="text" value="Welcome to Concept Castle!\n\nThis level was created to demonstrate what ReTux is capable of. It's a bit heavier than most of the actual game, so it may run slightly slower."/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="NPCs">
   <object gid="2" x="960" y="1504"/>
