@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.6a0"
+__version__ = "0.6a1"
 
 import argparse
 import datetime
@@ -381,6 +381,8 @@ score = 0
 current_areas = {}
 main_area = None
 level_cleared = False
+mapdest = None
+mapdest_space = None
 
 
 class Game(sge.dsp.Game):
@@ -560,7 +562,21 @@ class Level(sge.dsp.Room):
         sge.snd.Music.clear_queue()
         sge.snd.Music.stop(DEATH_FADE_TIME)
 
-    def return_to_map(self):
+    def return_to_map(self, completed=False):
+        global current_worldmap
+        global current_worldmap_space
+        global mapdest
+        global mapdest_space
+
+        if completed:
+            if mapdest:
+                current_worldmap = mapdest
+            if mapdest_space:
+                current_worldmap_space = mapdest_space
+
+        mapdest = None
+        mapdest_space = None
+
         save_game()
         if current_worldmap:
             m = Worldmap.load(current_worldmap)
@@ -922,7 +938,7 @@ class Level(sge.dsp.Room):
                 if self.game_won:
                     self.win_game()
                 elif current_worldmap:
-                    self.return_to_map()
+                    self.return_to_map(True)
                 else:
                     main_area = None
                     current_level += 1
@@ -6161,19 +6177,23 @@ class MapWarp(MapSpace):
     def start_level(self):
         global current_worldmap
         global current_worldmap_space
+        global mapdest
+        global mapdest_space
 
         if self.dest and ':' in self.dest:
-            map_f, spawn = self.dest.split(':', 1)
-            current_worldmap = map_f
-            current_worldmap_space = spawn
+            mapdest, mapdest_space = self.dest.split(':', 1)
         else:
-            current_worldmap_space = None
+            mapdest_space = None
             if self.dest:
-                current_worldmap = self.dest
+                mapdest = self.dest
 
         if self.level:
             MapSpace.start_level(self)
         else:
+            current_worldmap = mapdest
+            current_worldmap_space = mapdest_space
+            mapdest = None
+            mapdest_space = None
             m = Worldmap.load(current_worldmap)
             m.start(transition="dissolve", transition_time=TRANSITION_TIME)
             play_sound(warp_sound)
@@ -7723,7 +7743,7 @@ def start_levelset():
 
 def warp(dest):
     if dest == "__map__":
-        sge.game.current_room.return_to_map()
+        sge.game.current_room.return_to_map(True)
     else:
         cr = sge.game.current_room
 
