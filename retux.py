@@ -372,6 +372,7 @@ tuxdolls_found = []
 watched_timelines = []
 level_time_bonus = 0
 current_worldmap = None
+worldmap_entry_space = None
 current_worldmap_space = None
 current_level = 0
 current_checkpoints = {}
@@ -581,6 +582,7 @@ class Level(sge.dsp.Room):
                 current_worldmap = mapdest
             if mapdest_space:
                 current_worldmap_space = mapdest_space
+                worldmap_entry_space = mapdest_space
 
         mapdest = None
         mapdest_space = None
@@ -5864,11 +5866,14 @@ class MapPlayer(sge.dsp.Object):
             space.start_level()
 
     def event_create(self):
-        start_space = MapSpace.get_at(self.x,self.y)
+        global worldmap_entry_space
+
+        start_space = MapSpace.get_at(self.x, self.y)
         if start_space is None:
-            MapSpace.create(self.x, self.y, free=True)
-        else:
-            start_space.free = True
+            start_space = MapSpace.create(self.x, self.y)
+
+        if worldmap_entry_space is None:
+            worldmap_entry_space = start_space.ID
 
         if current_worldmap_space is not None:
             for obj in sge.game.current_room.objects:
@@ -5961,8 +5966,7 @@ class MapPlayer(sge.dsp.Object):
 
 class MapSpace(sge.dsp.Object):
 
-    def __init__(self, x, y, level=None, level_spawn=None, ID=None, free=False,
-                 **kwargs):
+    def __init__(self, x, y, level=None, level_spawn=None, ID=None, **kwargs):
         super(MapSpace, self).__init__(x, y, **kwargs)
         self.level = level
         self.level_spawn = level_spawn
@@ -5972,11 +5976,10 @@ class MapSpace(sge.dsp.Object):
             self.ID = level
         else:
             self.ID = "__{}x{}__".format(x, y)
-        self.free = free
 
     @property
     def cleared(self):
-        if self.free:
+        if self.ID == worldmap_entry_space:
             return True
         else:
             if self.level is not None:
@@ -5994,7 +5997,8 @@ class MapSpace(sge.dsp.Object):
                 while connected_spaces:
                     space = connected_spaces.pop(0)
                     already_checked.append(space)
-                    if space.free or space.level in cleared_levels:
+                    if (space.ID == worldmap_entry_space or
+                            space.level in cleared_levels):
                         return True
                     elif space.level is None:
                         for path in space.get_exits():
@@ -6181,6 +6185,7 @@ class MapWarp(MapSpace):
     def start_level(self):
         global current_worldmap
         global current_worldmap_space
+        global worldmap_entry_space
         global mapdest
         global mapdest_space
 
@@ -6196,6 +6201,7 @@ class MapWarp(MapSpace):
         else:
             current_worldmap = mapdest
             current_worldmap_space = mapdest_space
+            worldmap_entry_space = mapdest_space
             mapdest = None
             mapdest_space = None
             m = Worldmap.load(current_worldmap)
@@ -7646,6 +7652,7 @@ def save_game():
             "watched_timelines": watched_timelines,
             "current_worldmap": current_worldmap,
             "current_worldmap_space": current_worldmap_space,
+            "worldmap_entry_space": worldmap_entry_space,
             "current_level": current_level,
             "current_checkpoints": current_checkpoints, "score": score,
             "completion": completion}
@@ -7660,6 +7667,7 @@ def load_game():
     global watched_timelines
     global current_worldmap
     global current_worldmap_space
+    global worldmap_entry_space
     global current_level
     global current_checkpoints
     global score
@@ -7674,6 +7682,7 @@ def load_game():
         watched_timelines = slot.get("watched_timelines", [])
         current_worldmap = slot.get("current_worldmap")
         current_worldmap_space = slot.get("current_worldmap_space")
+        worldmap_entry_space = slot.get("worldmap_entry_space")
         current_level = slot.get("current_level", 0)
         current_checkpoints = slot.get("current_checkpoints", {})
         score = slot.get("score", 0)
