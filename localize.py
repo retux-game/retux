@@ -53,9 +53,9 @@ if __name__ == '__main__':
     for fname in fnames:
         rp = os.path.relpath(fname, FILEDIR)
         if not rp.startswith(os.pardir):
-            shutil.copy(fname, os.path.join(CONFIG, rp))
-            print("Installed {} to {}".format(fname, os.path.join(CONFIG, rp)))
+            shutil.move(fname, os.path.join(CONFIG, rp))
+            print("Moved {} to {}".format(fname, os.path.join(CONFIG, rp)))
         else:
-            print("{} was not installed (invalid location)".format(fname))
+            print("{} was not localized (invalid location)".format(fname))
     print("Done.")
     tkwindow.destroy()
