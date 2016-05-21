@@ -1012,6 +1012,11 @@ class Level(sge.dsp.Room):
             elif main_area is not None:
                 save_game()
                 r = self.__class__.load(main_area, True)
+                checkpoint = current_checkpoints.get(self.fname)
+                if checkpoint is not None:
+                    area_name, area_spawn = checkpoint.split(':', 1)
+                    r = self.__class__.load(area_name, True)
+                    r.spawn = area_spawn
                 r.start()
         elif alarm_id == "win_count_points":
             if self.points > 0:
