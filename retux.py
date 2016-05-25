@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.6"
+__version__ = "0.7a0"
 
 import argparse
 import datetime
@@ -8531,8 +8531,11 @@ else:
 
 if __name__ == '__main__':
     print("Starting game...")
-    tkwindow = Tk()
-    tkwindow.withdraw()
+
+    if HAVE_TK:
+        tkwindow = Tk()
+        tkwindow.withdraw()
+
     try:
         sge.game.start()
     finally:
