@@ -27,7 +27,7 @@ to display or run the file, choose to run it.
 Python 2 will be used by default. To run ReTux with Python 3 instead,
 you can either change the shebang on line 1 from "python2" to "python3",
 or explicitly run the Python 3 executable, e.g. with
-"python3 pacewar.py" (the exact command may be different depending on
+"python3 retux.py" (the exact command may be different depending on
 your system).
 
 There are some command-line options that can be passed. Run ReTux in a
