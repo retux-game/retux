@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.6.1"
+__version__ = "0.6.2a0"
 
 import argparse
 import datetime
@@ -4051,9 +4051,10 @@ class Raccot(FallingObject, Boss):
         if self.was_on_floor and self.yvelocity == 0:
             self.hopping = True
             self.xvelocity = 0
-            self.alarms["do_hop"] = self.hop_time
             self.sprite = raccot_stomp_sprite
             play_sound(yeti_gna_sound, self.x, self.y)
+
+        self.alarms["do_hop"] = self.hop_time
 
     def do_hop(self):
         self.xvelocity = 0
