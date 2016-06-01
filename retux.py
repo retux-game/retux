@@ -7561,9 +7561,6 @@ def load_levelset(fname, preload_start=0):
             done = False
 
             while subrooms:
-                if do_refresh():
-                    done = True
-                    break
                 subroom = subrooms.pop(0)
                 already_checked.append(subroom)
                 r = Level.load(subroom)
@@ -7577,6 +7574,9 @@ def load_levelset(fname, preload_start=0):
                                         map_f not in already_checked and
                                         map_f not in {"__main__", "__map__"}):
                                     subrooms.append(map_f)
+                if do_refresh():
+                    done = True
+                    break
             else:
                 progressbar.progress = ((sorted_levels.index(level) + 1) /
                                         len(sorted_levels))
