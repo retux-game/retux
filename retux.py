@@ -7500,19 +7500,19 @@ def load_levelset(fname, preload_start=0):
     def do_refresh():
         # Refresh the screen, return whether the user pressed a key.
         sge.game.pump_input()
+        r = False
         while sge.game.input_events:
             event = sge.game.input_events.pop(0)
-            if isinstance(event, sge.input.KeyPress):
-                return True
-            elif isinstance(event, sge.input.JoystickButtonPress):
-                return True
             if isinstance(event, sge.input.QuitRequest):
                 sge.game.end()
-                return True
+                r = True
+            elif isinstance(event, (sge.input.KeyPress,
+                                    sge.input.JoystickButtonPress)):
+                r = True
 
         gui_handler.event_step(0, 0)
         sge.game.refresh()
-        return False
+        return r
 
     if current_levelset != fname:
         current_levelset = fname
