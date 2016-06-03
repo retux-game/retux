@@ -25,6 +25,7 @@ __version__ = "0.6.2a0"
 
 import argparse
 import datetime
+import gettext
 import itertools
 import json
 import math
@@ -83,34 +84,36 @@ for d in dirs:
                 shutil.copy2(os.path.join(dirpath, fname), nd)
 del dirs
 
+gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "-p", "--print-errors",
-    help="Print errors directly to stdout rather than saving them in a file.",
+    help=_("Print errors directly to stdout rather than saving them in a file."),
     action="store_true")
 parser.add_argument(
     "--scale-basic",
-    help="Use basic rather than smooth scaling. Faster if you're in fullscreen or resizing the window, but much uglier.",
+    help=_("Use basic rather than smooth scaling. Faster if you're in fullscreen or resizing the window, but much uglier."),
     action="store_true")
 parser.add_argument(
     "--nodelta",
-    help="Disable delta timing. Causes the game to slow down when it can't run at 60 FPS instead of becoming choppier.",
+    help=_("Disable delta timing. Causes the game to slow down when it can't run at 60 FPS instead of becoming choppier."),
     action="store_true")
 parser.add_argument(
     "-d", "--datadir",
-    help='Where to load the game data from (Default: "{}")'.format(DATA))
+    help=_('Where to load the game data from (Default: "{}")').format(DATA))
 parser.add_argument(
     "--level",
-    help="Play the indicated level and then exit.")
+    help=_("Play the indicated level and then exit."))
 parser.add_argument(
     "--record",
-    help="Start the indicated level and record player actions in a timeline. Useful for making cutscenes.")
+    help=_("Start the indicated level and record player actions in a timeline. Useful for making cutscenes."))
 parser.add_argument(
     "--no-backgrounds",
-    help="Only show solid colors for backgrounds (uses less RAM).",
+    help=_("Only show solid colors for backgrounds (uses less RAM)."),
     action="store_true")
 parser.add_argument(
-    "--no-hud", help="Don't show the player's heads-up display.",
+    "--no-hud", help=_("Don't show the player's heads-up display."),
     action="store_true")
 args = parser.parse_args()
 
@@ -353,7 +356,7 @@ action_js = [[(0, "button", 0)]]
 sneak_js = [[(0, "button", 2)]]
 menu_js = [[(0, "button", 8)]]
 pause_js = [[(0, "button", 9)]]
-save_slots = [None for _ in six.moves.range(SAVE_NSLOTS)]
+save_slots = [None for i in six.moves.range(SAVE_NSLOTS)]
 
 abort = False
 
@@ -513,8 +516,9 @@ class Level(sge.dsp.Room):
             else:
                 score_text = str(score)
             time_bonus = level_timers.get(main_area, 0)
-            text = "Score\n{}\n\nTime {}\n{}".format(
-                score_text, "Bonus" if time_bonus >= 0 else "Penalty",
+            text = "{}\n{}\n\n{}\n{}".format(
+                _("Score"), score_text,
+                _("Time Bonus") if time_bonus >= 0 else _("Time Penalty"),
                 abs(time_bonus))
             sge.game.project_text(font, text, sge.game.width / 2, 0,
                                   color=sge.gfx.Color("white"),
@@ -774,7 +778,7 @@ class Level(sge.dsp.Room):
                                 try:
                                     value = eval(value)
                                 except Exception as e:
-                                    m = "An error occurred in a timeline 'setattr' command:\n\n{}".format(
+                                    m = _("An error occurred in a timeline 'setattr' command:\n\n{}").format(
                                     traceback.format_exc())
                                     show_error(m)
                                 else:
@@ -822,14 +826,14 @@ class Level(sge.dsp.Room):
                             try:
                                 six.exec_(arg)
                             except Exception as e:
-                                m = "An error occurred in a timeline 'exec' command:\n\n{}".format(
+                                m = _("An error occurred in a timeline 'exec' command:\n\n{}").format(
                                     traceback.format_exc())
                                 show_error(m)
                         elif command == "if":
                             try:
                                 r = eval(arg)
                             except Exception as e:
-                                m = "An error occurred in a timeline 'if' statement:\n\n{}".format(
+                                m = _("An error occurred in a timeline 'if' statement:\n\n{}").format(
                                     traceback.format_exc())
                                 show_error(m)
                                 r = False
@@ -849,7 +853,7 @@ class Level(sge.dsp.Room):
                             try:
                                 r = eval(arg)
                             except Exception as e:
-                                m = "An error occurred in a timeline 'while' statement:\n\n{}".format(
+                                m = _("An error occurred in a timeline 'while' statement:\n\n{}").format(
                                     traceback.format_exc())
                                 show_error(m)
                                 r = False
@@ -1065,13 +1069,13 @@ class Level(sge.dsp.Room):
                                           halign="center", valign="middle")
                     sge.game.refresh()
                 else:
-                    print("Loading \"{}\"...".format(fname))
+                    print(_("Loading \"{}\"...").format(fname))
 
             try:
                 r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
                                   types=TYPES)
             except Exception as e:
-                m = "An error occurred when trying to load the level:\n\n{}".format(
+                m = _("An error occurred when trying to load the level:\n\n{}").format(
                     traceback.format_exc())
                 show_error(m)
                 r = None
@@ -1776,9 +1780,9 @@ class Player(xsge_physics.Collider):
                 room = sge.game.current_room
                 if (room.timeline_skip_target is not None and
                         room.timeline_step < room.timeline_skip_target):
-                    room.status_text = "Press the Menu button to skip..."
+                    room.status_text = _("Press the Menu button to skip...")
                 else:
-                    room.status_text = "Cinematic mode enabled"
+                    room.status_text = _("Cinematic mode enabled")
 
     def get_grab_sprite(self, body_sprite, arms_sprite=None):
         if arms_sprite is None: arms_sprite = tux_arms_grab_sprite
@@ -5064,7 +5068,7 @@ class HittableBlock(sge.dsp.Object):
 class Brick(HittableBlock, xsge_physics.Solid):
 
     def event_hit(self, other):
-        for _ in six.moves.range(BRICK_SHARD_NUM):
+        for i in six.moves.range(BRICK_SHARD_NUM):
             xv = random.uniform(-BRICK_SHARD_SPEED, BRICK_SHARD_SPEED)
             yv = get_jump_speed(BRICK_SHARD_HEIGHT, BRICK_SHARD_GRAVITY)
             shard = DeadMan.create(
@@ -5177,7 +5181,7 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
         self.text = text.replace("\\n", "\n")
 
     def event_hit_end(self):
-        DialogBox(gui_handler, self.text, self.sprite).show()
+        DialogBox(gui_handler, _(self.text), self.sprite).show()
 
 
 class ThinIce(xsge_physics.Solid):
@@ -6300,8 +6304,8 @@ class Menu(xsge_gui.MenuWindow):
 
 class MainMenu(Menu):
 
-    items = ["New Game", "Load Game", "Select Levelset", "Options", "Credits",
-             "Quit"]
+    items = [_("New Game"), _("Load Game"), _("Select Levelset"), _("Options"),
+             _("Credits"), _("Quit")]
 
     def event_choose(self):
         if self.choice == 0:
@@ -6331,16 +6335,16 @@ class NewGameMenu(Menu):
         cls.items = []
         for slot in save_slots:
             if slot is None:
-                cls.items.append("-Empty-")
+                cls.items.append(_("-Empty-"))
             elif slot.get("levelset") is None:
-                cls.items.append("-No Levelset-")
+                cls.items.append(_("-No Levelset-"))
             else:
                 fname = os.path.join(DATA, "levelsets", slot["levelset"])
                 try:
                     with open(fname, 'r') as f:
                         data = json.load(f)
                 except (IOError, ValueError):
-                    cls.items.append("-Corrupt Levelset-")
+                    cls.items.append(_("-Corrupt Levelset-"))
                     continue
                 else:
                     levelset_name = data.get("name", slot["levelset"])
@@ -6348,7 +6352,7 @@ class NewGameMenu(Menu):
                     cls.items.append("{} ({}%)".format(levelset_name,
                                                        completion))
 
-        cls.items.append("Back")
+        cls.items.append(_("Back"))
 
         return cls.create(default)
 
@@ -6376,7 +6380,7 @@ class NewGameMenu(Menu):
 
 class OverwriteConfirmMenu(Menu):
 
-    items = ["Overwrite this save file", "Cancel"]
+    items = [_("Overwrite this save file"), _("Cancel")]
 
     def event_choose(self):
         global abort
@@ -6412,7 +6416,7 @@ class LoadGameMenu(NewGameMenu):
                 MainMenu.create(default=1)
             elif not start_levelset():
                 play_sound(error_sound)
-                show_error("An error occurred when trying to load the game.")
+                show_error(_("An error occurred when trying to load the game."))
                 MainMenu.create(default=1)
         else:
             play_sound(cancel_sound)
@@ -6455,8 +6459,8 @@ class LevelsetMenu(Menu):
                 cls.current_levelsets.append(fname)
                 cls.items.append(name)
 
-        cls.items.append("Next page")
-        cls.items.append("Back")
+        cls.items.append(_("Next page"))
+        cls.items.append(_("Back"))
 
         self = cls.create(default)
         self.page = page
@@ -6481,14 +6485,15 @@ class OptionsMenu(Menu):
     @classmethod
     def create_page(cls, default=0):
         cls.items = [
-            "Fullscreen: {}".format("On" if sge.game.fullscreen else "Off"),
-            "Sound: {}".format("On" if sound_enabled else "Off"),
-            "Music: {}".format("On" if music_enabled else "Off"),
-            "Stereo: {}".format("On" if stereo_enabled else "Off"),
-            "Show FPS: {}".format("On" if fps_enabled else "Off"),
-            "Joystick Threshold: {}%".format(int(joystick_threshold * 100)),
-            "Configure keyboard", "Configure joysticks", "Detect joysticks",
-            "Import levelset", "Export levelset", "Back"]
+            _("Fullscreen: {}").format(_("On") if sge.game.fullscreen else _("Off")),
+            _("Sound: {}").format(_("On") if sound_enabled else _("Off")),
+            _("Music: {}").format(_("On") if music_enabled else _("Off")),
+            _("Stereo: {}").format(_("On") if stereo_enabled else _("Off")),
+            _("Show FPS: {}").format(_("On") if fps_enabled else _("Off")),
+            _("Joystick Threshold: {}%").format(int(joystick_threshold * 100)),
+            _("Configure keyboard"), _("Configure joysticks"),
+            _("Detect joysticks"), _("Import levelset"), _("Export levelset"),
+            _("Back")]
         return cls.create(default)
 
     def event_choose(self):
@@ -6544,8 +6549,8 @@ class OptionsMenu(Menu):
             if HAVE_TK:
                 play_sound(confirm_sound)
                 fname = tkinter_filedialog.askopenfilename(
-                    filetypes=[("ReTux levelset files", ".rtz"),
-                               ("all files", ".*")])
+                    filetypes=[(_("ReTux levelset files"), ".rtz"),
+                               (_("all files"), ".*")])
 
                 w = 400
                 h = 128
@@ -6558,7 +6563,7 @@ class OptionsMenu(Menu):
 
                 x = margin
                 y = margin
-                text = "Importing levelset..."
+                text = _("Importing levelset...")
                 c = sge.gfx.Color("white")
                 xsge_gui.Label(
                     window, x, y, 1, text, font=font, width=(w - 2 * margin),
@@ -6595,7 +6600,7 @@ class OptionsMenu(Menu):
                 sge.game.input_events = []
             else:
                 play_sound(kill_sound)
-                e = "This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again."
+                e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
                 show_error(e)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 10:
@@ -6604,7 +6609,7 @@ class OptionsMenu(Menu):
                 ExportLevelsetMenu.create_page(default=-1, refreshlist=True)
             else:
                 play_sound(kill_sound)
-                e = "This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again."
+                e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
                 show_error(e)
                 OptionsMenu.create_page(default=self.choice)
         else:
@@ -6629,17 +6634,17 @@ class KeyboardMenu(Menu):
             else:
                 return None
 
-        cls.items = ["Player {}".format(page + 1),
-                     "Left: {}".format(format_key(left_key[page])),
-                     "Right: {}".format(format_key(right_key[page])),
-                     "Up: {}".format(format_key(up_key[page])),
-                     "Down: {}".format(format_key(down_key[page])),
-                     "Jump: {}".format(format_key(jump_key[page])),
-                     "Action: {}".format(format_key(action_key[page])),
-                     "Sneak: {}".format(format_key(sneak_key[page])),
-                     "Menu: {}".format(format_key(menu_key[page])),
-                     "Pause: {}".format(format_key(pause_key[page])),
-                     "Back"]
+        cls.items = [_("Player {}").format(page + 1),
+                     _("Left: {}").format(format_key(left_key[page])),
+                     _("Right: {}").format(format_key(right_key[page])),
+                     _("Up: {}").format(format_key(up_key[page])),
+                     _("Down: {}").format(format_key(down_key[page])),
+                     _("Jump: {}").format(format_key(jump_key[page])),
+                     _("Action: {}").format(format_key(action_key[page])),
+                     _("Sneak: {}").format(format_key(sneak_key[page])),
+                     _("Menu: {}").format(format_key(menu_key[page])),
+                     _("Pause: {}").format(format_key(pause_key[page])),
+                     _("Back")]
         self = cls.create(default)
         self.page = page
         return self
@@ -6760,19 +6765,19 @@ class JoystickMenu(Menu):
             if sL:
                 return " ".join(sL)
             else:
-                return "None"
+                return _("None")
 
-        cls.items = ["Player {}".format(page + 1),
-                     "Left: {}".format(format_js(left_js[page])),
-                     "Right: {}".format(format_js(right_js[page])),
-                     "Up: {}".format(format_js(up_js[page])),
-                     "Down: {}".format(format_js(down_js[page])),
-                     "Jump: {}".format(format_js(jump_js[page])),
-                     "Action: {}".format(format_js(action_js[page])),
-                     "Sneak: {}".format(format_js(sneak_js[page])),
-                     "Menu: {}".format(format_js(menu_js[page])),
-                     "Pause: {}".format(format_js(pause_js[page])),
-                     "Back"]
+        cls.items = [_("Player {}").format(page + 1),
+                     _("Left: {}").format(format_js(left_js[page])),
+                     _("Right: {}").format(format_js(right_js[page])),
+                     _("Up: {}").format(format_js(up_js[page])),
+                     _("Down: {}").format(format_js(down_js[page])),
+                     _("Jump: {}").format(format_js(jump_js[page])),
+                     _("Action: {}").format(format_js(action_js[page])),
+                     _("Sneak: {}").format(format_js(sneak_js[page])),
+                     _("Menu: {}").format(format_js(menu_js[page])),
+                     _("Pause: {}").format(format_js(pause_js[page])),
+                     _("Back")]
         self = cls.create(default)
         self.page = page
         return self
@@ -6887,8 +6892,8 @@ class ExportLevelsetMenu(LevelsetMenu):
 
                 fname = tkinter_filedialog.asksaveasfilename(
                     defaultextension=".rtz",
-                    filetypes=[("ReTux levelset files", ".rtz"),
-                               ("all files", ".*")])
+                    filetypes=[(_("ReTux levelset files"), ".rtz"),
+                               (_("all files"), ".*")])
 
                 w = 400
                 h = 128
@@ -6901,7 +6906,7 @@ class ExportLevelsetMenu(LevelsetMenu):
 
                 x = margin
                 y = margin
-                text = "Exporting levelset..."
+                text = _("Exporting levelset...")
                 c = sge.gfx.Color("white")
                 xsge_gui.Label(
                     window, x, y, 1, text, font=font, width=(w - 2 * margin),
@@ -7139,11 +7144,12 @@ class PauseMenu(ModalMenu):
     @classmethod
     def create(cls, default=0):
         if LEVEL or RECORD:
-            items = ["Continue", "Abort"]
+            items = [_("Continue"), _("Abort")]
         elif current_worldmap:
-            items = ["Continue", "Return to Map", "Return to Title Screen"]
+            items = [_("Continue"), _("Return to Map"),
+                     _("Return to Title Screen")]
         else:
-            items = ["Continue", "Return to Title Screen"]
+            items = [_("Continue"), _("Return to Title Screen")]
 
         self = cls.from_text(
             gui_handler, sge.game.width / 2, sge.game.height / 2,
@@ -7174,7 +7180,7 @@ class PauseMenu(ModalMenu):
 
 class WorldmapMenu(ModalMenu):
 
-    items = ["Continue", "Return to Title Screen"]
+    items = [_("Continue"), _("Return to Title Screen")]
 
     def event_choose(self):
         sge.snd.Music.unpause()
@@ -7220,7 +7226,7 @@ class DialogBox(xsge_gui.Dialog):
             background_color=menu_color, border=False)
         label_h = max(1, height - y_padding)
 
-        self.label = DialogLabel(self, label_x, label_y, 0, text, font=font,
+        self.label = DialogLabel(self, label_x, label_y, 0, _(text), font=font,
                                  width=label_w, height=label_h,
                                  color=sge.gfx.Color("white"), rate=rate)
 
@@ -7329,7 +7335,7 @@ def wait_key():
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = "Press the key you wish to toggle, or Escape to cancel."
+        text = _("Press the key you wish to toggle, or Escape to cancel.")
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
@@ -7367,7 +7373,7 @@ def wait_js():
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = "Press the joystick button, axis, or hat direction you wish to toggle, or the Escape key to cancel."
+        text = _("Press the joystick button, axis, or hat direction you wish to toggle, or the Escape key to cancel.")
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
@@ -7538,7 +7544,7 @@ def load_levelset(fname, preload_start=0):
 
         x = margin
         y = margin
-        text = "Preloading levels...\n\n(press any key to skip)"
+        text = _("Preloading levels...\n\n(press any key to skip)")
         c = sge.gfx.Color("white")
         xsge_gui.Label(
             window, x, y, 1, text, font=font, width=(w - 2 * margin),
@@ -7850,20 +7856,20 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "map_path": MapPath, "map_water": MapWater}
 
 
-print("Initializing game system...")
+print(_("Initializing game system..."))
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_method=SCALE_METHOD,
      fps=FPS, delta=(not args.nodelta), delta_min=DELTA_MIN, delta_max=240,
      window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 
-print("Initializing GUI system...")
+print(_("Initializing GUI system..."))
 xsge_gui.init()
 gui_handler = xsge_gui.Handler()
 
 menu_color = sge.gfx.Color((128, 128, 255, 192))
 
 # Load sprites
-print("Loading images...")
+print(_("Loading images..."))
 d = os.path.join(DATA, "images", "objects", "tux")
 tux_body_stand_sprite = sge.gfx.Sprite(
     "tux_body_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
@@ -8318,7 +8324,7 @@ del castle_spr
 del castle_bottom_spr
 
 # Load fonts
-print("Loading fonts...")
+print(_("Loading fonts..."))
 chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 128)] +
          [six.unichr(i) for i in six.moves.range(160, 384)])
 
@@ -8531,7 +8537,7 @@ else:
 
 
 if __name__ == '__main__':
-    print("Starting game...")
+    print(_("Starting game..."))
 
     if HAVE_TK:
         tkwindow = Tk()
