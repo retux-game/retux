@@ -197,326 +197,255 @@ msgid ""
 "molten lava!"
 msgstr ""
 
-#: retux.py:92
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr ""
 
-#: retux.py:96
+msgid "Manually choose a different language to use."
+msgstr ""
+
 msgid ""
 "Use basic rather than smooth scaling. Faster if you're in fullscreen or "
 "resizing the window, but much uglier."
 msgstr ""
 
-#: retux.py:100
 msgid ""
 "Disable delta timing. Causes the game to slow down when it can't run at 60 "
 "FPS instead of becoming choppier."
 msgstr ""
 
-#: retux.py:104
 msgid "Where to load the game data from (Default: \"{}\")"
 msgstr ""
 
-#: retux.py:107
 msgid "Play the indicated level and then exit."
 msgstr ""
 
-#: retux.py:110
 msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
 msgstr ""
 
-#: retux.py:113
 msgid "Only show solid colors for backgrounds (uses less RAM)."
 msgstr ""
 
-#: retux.py:116
 msgid "Don't show the player's heads-up display."
 msgstr ""
 
-#: retux.py:520
 msgid "Score"
 msgstr ""
 
-#: retux.py:521
 msgid "Time Bonus"
 msgstr ""
 
-#: retux.py:521
 msgid "Time Penalty"
 msgstr ""
 
-#: retux.py:781
 msgid ""
 "An error occurred in a timeline 'setattr' command:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: retux.py:829
 msgid ""
 "An error occurred in a timeline 'exec' command:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: retux.py:836
 msgid ""
 "An error occurred in a timeline 'if' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: retux.py:856
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: retux.py:1072
 msgid "Loading \"{}\"..."
 msgstr ""
 
-#: retux.py:1078
 msgid ""
 "An error occurred when trying to load the level:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: retux.py:1783
 msgid "Press the Menu button to skip..."
 msgstr ""
 
-#: retux.py:1785
 msgid "Cinematic mode enabled"
 msgstr ""
 
-#: retux.py:6307
 msgid "New Game"
 msgstr ""
 
-#: retux.py:6307
 msgid "Load Game"
 msgstr ""
 
-#: retux.py:6307
 msgid "Select Levelset"
 msgstr ""
 
-#: retux.py:6307
 msgid "Options"
 msgstr ""
 
-#: retux.py:6308
 msgid "Credits"
 msgstr ""
 
-#: retux.py:6308
 msgid "Quit"
 msgstr ""
 
-#: retux.py:6338
 msgid "-Empty-"
 msgstr ""
 
-#: retux.py:6340
 msgid "-No Levelset-"
 msgstr ""
 
-#: retux.py:6347
 msgid "-Corrupt Levelset-"
 msgstr ""
 
-#: retux.py:6355 retux.py:6463 retux.py:6496 retux.py:6647 retux.py:6780
 msgid "Back"
 msgstr ""
 
-#: retux.py:6383
 msgid "Overwrite this save file"
 msgstr ""
 
-#: retux.py:6383
 msgid "Cancel"
 msgstr ""
 
-#: retux.py:6419
 msgid "An error occurred when trying to load the game."
 msgstr ""
 
-#: retux.py:6462
 msgid "Next page"
 msgstr ""
 
-#: retux.py:6488
 msgid "Fullscreen: {}"
 msgstr ""
 
-#: retux.py:6488 retux.py:6489 retux.py:6490 retux.py:6491 retux.py:6492
 msgid "On"
 msgstr ""
 
-#: retux.py:6488 retux.py:6489 retux.py:6490 retux.py:6491 retux.py:6492
 msgid "Off"
 msgstr ""
 
-#: retux.py:6489
 msgid "Sound: {}"
 msgstr ""
 
-#: retux.py:6490
 msgid "Music: {}"
 msgstr ""
 
-#: retux.py:6491
 msgid "Stereo: {}"
 msgstr ""
 
-#: retux.py:6492
 msgid "Show FPS: {}"
 msgstr ""
 
-#: retux.py:6493
 msgid "Joystick Threshold: {}%"
 msgstr ""
 
-#: retux.py:6494
 msgid "Configure keyboard"
 msgstr ""
 
-#: retux.py:6494
 msgid "Configure joysticks"
 msgstr ""
 
-#: retux.py:6495
 msgid "Detect joysticks"
 msgstr ""
 
-#: retux.py:6495
 msgid "Import levelset"
 msgstr ""
 
-#: retux.py:6495
 msgid "Export levelset"
 msgstr ""
 
-#: retux.py:6552 retux.py:6895
 msgid "ReTux levelset files"
 msgstr ""
 
-#: retux.py:6553 retux.py:6896
 msgid "all files"
 msgstr ""
 
-#: retux.py:6566
 msgid "Importing levelset..."
 msgstr ""
 
-#: retux.py:6603 retux.py:6612
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
 "make sure Tkinter is installed and try again."
 msgstr ""
 
-#: retux.py:6637 retux.py:6770
 msgid "Player {}"
 msgstr ""
 
-#: retux.py:6638 retux.py:6771
 msgid "Left: {}"
 msgstr ""
 
-#: retux.py:6639 retux.py:6772
 msgid "Right: {}"
 msgstr ""
 
-#: retux.py:6640 retux.py:6773
 msgid "Up: {}"
 msgstr ""
 
-#: retux.py:6641 retux.py:6774
 msgid "Down: {}"
 msgstr ""
 
-#: retux.py:6642 retux.py:6775
 msgid "Jump: {}"
 msgstr ""
 
-#: retux.py:6643 retux.py:6776
 msgid "Action: {}"
 msgstr ""
 
-#: retux.py:6644 retux.py:6777
 msgid "Sneak: {}"
 msgstr ""
 
-#: retux.py:6645 retux.py:6778
 msgid "Menu: {}"
 msgstr ""
 
-#: retux.py:6646 retux.py:6779
 msgid "Pause: {}"
 msgstr ""
 
-#: retux.py:6768
 msgid "None"
 msgstr ""
 
-#: retux.py:6909
 msgid "Exporting levelset..."
 msgstr ""
 
-#: retux.py:7147 retux.py:7149 retux.py:7152 retux.py:7183
 msgid "Continue"
 msgstr ""
 
-#: retux.py:7147
 msgid "Abort"
 msgstr ""
 
-#: retux.py:7149
 msgid "Return to Map"
 msgstr ""
 
-#: retux.py:7150 retux.py:7152 retux.py:7183
 msgid "Return to Title Screen"
 msgstr ""
 
-#: retux.py:7338
 msgid "Press the key you wish to toggle, or Escape to cancel."
 msgstr ""
 
-#: retux.py:7376
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to toggle, or the "
 "Escape key to cancel."
 msgstr ""
 
-#: retux.py:7547
 msgid ""
 "Preloading levels...\n"
 "\n"
 "(press any key to skip)"
 msgstr ""
 
-#: retux.py:7859
 msgid "Initializing game system..."
 msgstr ""
 
-#: retux.py:7865
 msgid "Initializing GUI system..."
 msgstr ""
 
-#: retux.py:7872
 msgid "Loading images..."
 msgstr ""
 
-#: retux.py:8327
 msgid "Loading fonts..."
 msgstr ""
 
-#: retux.py:8540
 msgid "Starting game..."
 msgstr ""

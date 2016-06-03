@@ -92,6 +92,9 @@ parser.add_argument(
     help=_("Print errors directly to stdout rather than saving them in a file."),
     action="store_true")
 parser.add_argument(
+    "-l", "--lang",
+    help=_("Manually choose a different language to use."))
+parser.add_argument(
     "--scale-basic",
     help=_("Use basic rather than smooth scaling. Faster if you're in fullscreen or resizing the window, but much uglier."),
     action="store_true")
@@ -126,6 +129,10 @@ LEVEL = args.level
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
+
+if args.lang:
+    lang = gettext.translation("retux", languages=[args.lang])
+    lang.install()
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
