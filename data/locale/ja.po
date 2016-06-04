@@ -1,0 +1,449 @@
+# ReTux translatable text.
+# Copyright (C) 2016 onpon4 <onpon4@riseup.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Julie <onpon4@riseup.net>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.7\n"
+"Report-Msgid-Bugs-To: http://retux.nongnu.org\n"
+"POT-Creation-Date: 2016-06-02 20:21-0400\n"
+"PO-Revision-Date: 2016-06-04 08:29-0400\n"
+"Last-Translator: Julie <onpon4@riseup.net>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+msgstr ""
+
+msgid "Oh, looks like I have a message!"
+msgstr ""
+
+msgid "What?! They're taking my fish?!"
+msgstr ""
+
+msgid "I will not stand for this! Nobody takes away MY fish!"
+msgstr ""
+
+msgid "What are you doing here? You're trespassing!"
+msgstr ""
+
+msgid "The reign of the Snow King is over!"
+msgstr ""
+
+msgid "What are you talking about? His reign has only just begun!"
+msgstr ""
+
+msgid ""
+"Yeah, and now it's going to end! He should have thought about that before "
+"taking away MY fish!"
+msgstr ""
+
+msgid ""
+"Fish?! I will not allow you to overthrow the great king over a tax! Your "
+"conquest ends here!"
+msgstr ""
+
+msgid "Who are you?"
+msgstr "omae wa dare da?"
+
+msgid ""
+"I am Tux, and I am putting an end to the Snow King's reign, one castle at a "
+"time!"
+msgstr ""
+
+msgid "That's too bad, Tux. I would have liked to let you leave in peace."
+msgstr ""
+
+msgid ""
+"So it is you! The rebellious penguin who would see to it that our king's "
+"reign ends!"
+msgstr ""
+
+msgid "I'm sorry to inform you, Tux, but your treason ends now."
+msgstr ""
+
+msgid ""
+"You act as if you are rebelling against the Fish Tax, but we know what "
+"you're really up to!"
+msgstr ""
+
+msgid ""
+"I don't know how you found out about our secret plans, but you will not stop "
+"us!"
+msgstr ""
+
+msgid "I've been waiting for you, Tux. We meet again at last!"
+msgstr ""
+
+msgid "Raccot the yeti! I should have known it was you!"
+msgstr ""
+
+msgid ""
+"You may have discovered my evil plan, my old nemesis, but you will not stop "
+"me!"
+msgstr ""
+
+msgid ""
+"When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+msgstr ""
+
+msgid ""
+"Citizens of Icy Island,\n"
+"\n"
+"Beginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow "
+"King. All residents must pay 5% of their fish in tax. Failure to pay this "
+"tax will be punished."
+msgstr ""
+
+msgid "Having trouble finding secret areas? The clue is in the name!"
+msgstr ""
+
+msgid "Sometimes, it's just better to go up."
+msgstr ""
+
+msgid ""
+"Fire can be a great way to melt ice blocking access to certain Tux dolls. "
+"Now, where can one find a fire flower around here?"
+msgstr ""
+
+msgid ""
+"Traveller's Note:\n"
+"\n"
+"I swear, there are no fire flowers anywhere in this level! How am I supposed "
+"to melt this ice?! What's more, that ledge over there is shaped like a grin, "
+"almost like it's taunting me!"
+msgstr ""
+
+msgid ""
+"Studies have shown that penguins have the ability to kick iceblocks, and "
+"possibly other items, straight up. They do this by holding down the \"up\" "
+"button while pressing the \"action\" button."
+msgstr ""
+
+msgid ""
+"Traveller's Note:\n"
+"\n"
+"It is said that this level contains 7 springs, but I have only managed to "
+"find 6. Could the seventh one be in a hidden block somewhere?"
+msgstr ""
+
+msgid ""
+"Traveller's note:\n"
+"\n"
+"That cave to the left appears to be inaccessible from here. There has to be "
+"another way inside!"
+msgstr ""
+
+msgid ""
+"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
+"not climb on Mount Slimmerist; the extra weight may cause it to topple over."
+msgstr ""
+
+msgid ""
+"Traveller's Note:\n"
+"\n"
+"That pipe to the right is too high to be reached even by jumping off a "
+"spring. It would be possible if that Jumpy could be magically suspended in "
+"the air and the spring placed on top, but that would be silly!"
+msgstr ""
+
+msgid ""
+"You'll need a friend to find the Tux doll in this castle, in more ways than "
+"one."
+msgstr ""
+
+msgid ""
+"Please do NOT touch my rocks! For example, do NOT use them to build a bridge "
+"allowing you to cross spike pits, and do NOT use them to build a tower so "
+"that you can reach higher places."
+msgstr ""
+
+msgid ""
+"Traveller's Note:\n"
+"\n"
+"If only I could reach those rocks on top of those crates, I could build a "
+"staircase to that pipe...."
+msgstr ""
+
+msgid ""
+"Welcome to Concept Castle!\n"
+"\n"
+"This level was created to demonstrate what ReTux is capable of. It's a bit "
+"heavier than most of the actual game, so it may run slightly slower."
+msgstr ""
+
+msgid ""
+"All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
+"lava!"
+msgstr ""
+
+msgid "Print errors directly to stdout rather than saving them in a file."
+msgstr ""
+
+msgid "Manually choose a different language to use."
+msgstr ""
+
+msgid ""
+"Use basic rather than smooth scaling. Faster if you're in fullscreen or "
+"resizing the window, but much uglier."
+msgstr ""
+
+msgid ""
+"Disable delta timing. Causes the game to slow down when it can't run at 60 "
+"FPS instead of becoming choppier."
+msgstr ""
+
+msgid "Where to load the game data from (Default: \"{}\")"
+msgstr ""
+
+msgid "Play the indicated level and then exit."
+msgstr ""
+
+msgid ""
+"Start the indicated level and record player actions in a timeline. Useful "
+"for making cutscenes."
+msgstr ""
+
+msgid "Only show solid colors for backgrounds (uses less RAM)."
+msgstr ""
+
+msgid "Don't show the player's heads-up display."
+msgstr ""
+
+msgid "Score"
+msgstr ""
+
+msgid "Time Bonus"
+msgstr ""
+
+msgid "Time Penalty"
+msgstr ""
+
+msgid ""
+"An error occurred in a timeline 'setattr' command:\n"
+"\n"
+"{}"
+msgstr ""
+
+msgid ""
+"An error occurred in a timeline 'exec' command:\n"
+"\n"
+"{}"
+msgstr ""
+
+msgid ""
+"An error occurred in a timeline 'if' statement:\n"
+"\n"
+"{}"
+msgstr ""
+
+msgid ""
+"An error occurred in a timeline 'while' statement:\n"
+"\n"
+"{}"
+msgstr ""
+
+msgid "Loading \"{}\"..."
+msgstr ""
+
+msgid ""
+"An error occurred when trying to load the level:\n"
+"\n"
+"{}"
+msgstr ""
+
+msgid "Press the Menu button to skip..."
+msgstr ""
+
+msgid "Cinematic mode enabled"
+msgstr ""
+
+msgid "New Game"
+msgstr "atarashii geemu"
+
+msgid "Load Game"
+msgstr "furui geemu"
+
+msgid "Select Levelset"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Credits"
+msgstr ""
+
+msgid "Quit"
+msgstr "deru"
+
+msgid "-Empty-"
+msgstr ""
+
+msgid "-No Levelset-"
+msgstr ""
+
+msgid "-Corrupt Levelset-"
+msgstr ""
+
+msgid "Back"
+msgstr "kaeru"
+
+msgid "Overwrite this save file"
+msgstr ""
+
+msgid "Cancel"
+msgstr "kaeru"
+
+msgid "An error occurred when trying to load the game."
+msgstr ""
+
+msgid "Next page"
+msgstr ""
+
+msgid "Fullscreen: {}"
+msgstr ""
+
+msgid "On"
+msgstr "hai"
+
+msgid "Off"
+msgstr "iie"
+
+msgid "Sound: {}"
+msgstr ""
+
+msgid "Music: {}"
+msgstr ""
+
+msgid "Stereo: {}"
+msgstr ""
+
+msgid "Show FPS: {}"
+msgstr ""
+
+msgid "Joystick Threshold: {}%"
+msgstr ""
+
+msgid "Configure keyboard"
+msgstr ""
+
+msgid "Configure joysticks"
+msgstr ""
+
+msgid "Detect joysticks"
+msgstr ""
+
+msgid "Import levelset"
+msgstr ""
+
+msgid "Export levelset"
+msgstr ""
+
+msgid "ReTux levelset files"
+msgstr ""
+
+msgid "all files"
+msgstr ""
+
+msgid "Importing levelset..."
+msgstr ""
+
+msgid ""
+"This feature requires Tkinter, which was not successfully imported. Please "
+"make sure Tkinter is installed and try again."
+msgstr ""
+
+msgid "Player {}"
+msgstr ""
+
+msgid "Left: {}"
+msgstr "hidari: {}"
+
+msgid "Right: {}"
+msgstr "migi: {}"
+
+msgid "Up: {}"
+msgstr "ue: {}"
+
+msgid "Down: {}"
+msgstr "shita: {}"
+
+msgid "Jump: {}"
+msgstr "janpu: {}"
+
+msgid "Action: {}"
+msgstr ""
+
+msgid "Sneak: {}"
+msgstr ""
+
+msgid "Menu: {}"
+msgstr ""
+
+msgid "Pause: {}"
+msgstr ""
+
+msgid "None"
+msgstr "nani mo"
+
+msgid "Exporting levelset..."
+msgstr ""
+
+msgid "Continue"
+msgstr "tsudzuku"
+
+msgid "Abort"
+msgstr "yameru"
+
+msgid "Return to Map"
+msgstr "chizu ni kaeru"
+
+msgid "Return to Title Screen"
+msgstr ""
+
+msgid "Press the key you wish to toggle, or Escape to cancel."
+msgstr ""
+
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to toggle, or the "
+"Escape key to cancel."
+msgstr ""
+
+msgid ""
+"Preloading levels...\n"
+"\n"
+"(press any key to skip)"
+msgstr ""
+
+msgid "Initializing game system..."
+msgstr ""
+
+msgid "Initializing GUI system..."
+msgstr ""
+
+msgid "Loading images..."
+msgstr ""
+
+msgid "Loading fonts..."
+msgstr ""
+
+msgid "Starting game..."
+msgstr ""

@@ -131,7 +131,9 @@ NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
 
 if args.lang:
-    lang = gettext.translation("retux", languages=[args.lang])
+    lang = gettext.translation("retux",
+                               os.path.abspath(os.path.join(DATA, "locale")),
+                               [args.lang])
     lang.install()
 
 SCREEN_SIZE = [800, 448]
