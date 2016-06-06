@@ -118,6 +118,7 @@ parser.add_argument(
 parser.add_argument(
     "--no-hud", help=_("Don't show the player's heads-up display."),
     action="store_true")
+parser.add_argument("--god")
 args = parser.parse_args()
 
 PRINT_ERRORS = args.print_errors
@@ -129,6 +130,7 @@ LEVEL = args.level
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
+GOD = (args.god and args.god.lower() == "plz4giv")
 
 if args.lang:
     lang = gettext.translation("retux",
@@ -1716,7 +1718,9 @@ class Player(xsge_physics.Collider):
 
     def hurt(self):
         if not self.hitstun and not sge.game.current_room.won:
-            self.hp -= 1
+            if not GOD:
+                self.hp -= 1
+
             if self.hp <= 0:
                 self.kill()
             else:
@@ -1726,17 +1730,23 @@ class Player(xsge_physics.Collider):
                 self.alarms["hitstun"] = self.hitstun_time
 
     def kill(self, show_fall=True):
-        if self.held_object is not None:
-            self.held_object.drop()
-        play_sound(kill_sound, self.x, self.y)
-        if show_fall:
-            DeadMan.create(self.x, self.y, 100000, sprite=tux_die_sprite,
-                           yvelocity=get_jump_speed(PLAYER_DIE_HEIGHT))
+        self.hp -= 1
+        if GOD and self.hp > 0:
+            self.yvelocity = get_jump_speed(SCREEN_SIZE[1], self.gravity)
+            play_sound(hurt_sound, self.x, self.y)
+        else:
+            self.hp = 0
+            if self.held_object is not None:
+                self.held_object.drop()
+            play_sound(kill_sound, self.x, self.y)
+            if show_fall:
+                DeadMan.create(self.x, self.y, 100000, sprite=tux_die_sprite,
+                               yvelocity=get_jump_speed(PLAYER_DIE_HEIGHT))
 
-        if self.lose_on_death and not sge.game.current_room.won:
-            sge.game.current_room.die()
+            if self.lose_on_death and not sge.game.current_room.won:
+                sge.game.current_room.die()
 
-        self.destroy()
+            self.destroy()
 
     def pickup(self, other):
         if self.held_object is None and other.parent is None:
