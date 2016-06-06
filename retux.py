@@ -4152,7 +4152,7 @@ class Raccot(FallingObject, Boss):
                         self.xvelocity = math.copysign(RACCOT_WALK_SPEED,
                                                        self.direction)
 
-            if (self.stage > 1 or self.charging) and not self.was_on_floor:
+            if self.charging and not self.was_on_floor:
                 players = []
                 crash_y = sge.game.current_room.height
                 objects = (
