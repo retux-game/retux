@@ -1623,6 +1623,9 @@ class Player(xsge_physics.Collider):
         self.facing = 1
         self.view = None
 
+        if GOD:
+            image_blend = sge.gfx.Color("yellow")
+
         super(Player, self).__init__(
             x, y, z=z, sprite=sprite, visible=visible, active=active,
             checks_collisions=checks_collisions, tangible=tangible,
@@ -1717,10 +1720,8 @@ class Player(xsge_physics.Collider):
         self.move_y(T - self.bbox_bottom)
 
     def hurt(self):
-        if not self.hitstun and not sge.game.current_room.won:
-            if not GOD:
-                self.hp -= 1
-
+        if not GOD and not self.hitstun and not sge.game.current_room.won:
+            self.hp -= 1
             if self.hp <= 0:
                 self.kill()
             else:
@@ -1730,12 +1731,10 @@ class Player(xsge_physics.Collider):
                 self.alarms["hitstun"] = self.hitstun_time
 
     def kill(self, show_fall=True):
-        self.hp -= 1
-        if GOD and self.hp > 0:
+        if GOD:
             self.yvelocity = get_jump_speed(SCREEN_SIZE[1], self.gravity)
             play_sound(hurt_sound, self.x, self.y)
         else:
-            self.hp = 0
             if self.held_object is not None:
                 self.held_object.drop()
             play_sound(kill_sound, self.x, self.y)
@@ -4340,23 +4339,24 @@ class FireFlower(FallingObject, WinPuffObject):
                                 sprite=fire_bullet_sprite,
                                 xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
-                self.ammo -= 1
                 play_sound(shoot_sound, self.x, self.y)
 
-                self.sprite = fire_flower_sprite.copy()
-                lightness = int((self.ammo / FIREBALL_AMMO) * 255)
-                darkener = sge.gfx.Sprite(width=self.sprite.width,
-                                          height=self.sprite.height)
-                darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
-                                        fill=sge.gfx.Color([lightness] * 3))
-                self.sprite.draw_sprite(darkener, 0, 0, 0,
-                                        blend_mode=sge.BLEND_RGB_MULTIPLY)
+                if not GOD:
+                    self.ammo -= 1
+                    self.sprite = fire_flower_sprite.copy()
+                    lightness = int((self.ammo / FIREBALL_AMMO) * 255)
+                    darkener = sge.gfx.Sprite(width=self.sprite.width,
+                                              height=self.sprite.height)
+                    darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
+                                            fill=sge.gfx.Color([lightness] * 3))
+                    self.sprite.draw_sprite(darkener, 0, 0, 0,
+                                            blend_mode=sge.BLEND_RGB_MULTIPLY)
 
-                self.light_sprite = fire_flower_light_sprite.copy()
-                darkener.width = self.light_sprite.width
-                darkener.height = self.light_sprite.height
-                self.light_sprite.draw_sprite(
-                    darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
+                    self.light_sprite = fire_flower_light_sprite.copy()
+                    darkener.width = self.light_sprite.width
+                    darkener.height = self.light_sprite.height
+                    self.light_sprite.draw_sprite(
+                        darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
                 h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
                 yv = get_jump_speed(h, ThrownFireFlower.gravity)
@@ -4437,23 +4437,24 @@ class IceFlower(FallingObject, WinPuffObject):
                                  sprite=ice_bullet_sprite,
                                  xvelocity=(ICEBULLET_SPEED * d),
                                  bbox_x=bbox_x)
-                self.ammo -= 1
                 play_sound(shoot_sound, self.x, self.y)
 
-                self.sprite = ice_flower_sprite.copy()
-                lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
-                darkener = sge.gfx.Sprite(width=self.sprite.width,
-                                          height=self.sprite.height)
-                darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
-                                        fill=sge.gfx.Color([lightness] * 3))
-                self.sprite.draw_sprite(darkener, 0, 0, 0,
-                                        blend_mode=sge.BLEND_RGB_MULTIPLY)
+                if not GOD:
+                    self.ammo -= 1
+                    self.sprite = ice_flower_sprite.copy()
+                    lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
+                    darkener = sge.gfx.Sprite(width=self.sprite.width,
+                                              height=self.sprite.height)
+                    darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
+                                            fill=sge.gfx.Color([lightness] * 3))
+                    self.sprite.draw_sprite(darkener, 0, 0, 0,
+                                            blend_mode=sge.BLEND_RGB_MULTIPLY)
 
-                self.light_sprite = ice_flower_light_sprite.copy()
-                darkener.width = self.light_sprite.width
-                darkener.height = self.light_sprite.height
-                self.light_sprite.draw_sprite(
-                    darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
+                    self.light_sprite = ice_flower_light_sprite.copy()
+                    darkener.width = self.light_sprite.width
+                    darkener.height = self.light_sprite.height
+                    self.light_sprite.draw_sprite(
+                        darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
                 yv = get_jump_speed(FLOWER_THROW_HEIGHT,
                                     ThrownIceFlower.gravity)
@@ -5225,11 +5226,12 @@ class ThinIce(xsge_physics.Solid):
         if self.sprite is thin_ice_sprite:
             players = self.collision(Player, y=(self.y - 1))
             if players:
-                for player in players:
-                    self.crack_time += delta_mult
-                    while self.crack_time >= ICE_CRACK_TIME:
-                        self.crack_time -= ICE_CRACK_TIME
-                        self.crack()
+                if not GOD:
+                    for player in players:
+                        self.crack_time += delta_mult
+                        while self.crack_time >= ICE_CRACK_TIME:
+                            self.crack_time -= ICE_CRACK_TIME
+                            self.crack()
             elif not self.permanent:
                 if self.image_index > 0:
                     rfa = delta_mult * ICE_REFREEZE_RATE
