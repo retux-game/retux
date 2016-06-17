@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "0.7"
+__version__ = "0.7.1a0"
 
 import argparse
 import datetime
@@ -141,7 +141,8 @@ if args.lang:
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
 FPS = 56
-DELTA_MIN = 28
+DELTA_MIN = FPS / 2
+DELTA_MAX = FPS * 4
 TRANSITION_TIME = 750
 
 DEFAULT_LEVELSET = "retux.json"
@@ -7879,7 +7880,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
 
 print(_("Initializing game system..."))
 Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_method=SCALE_METHOD,
-     fps=FPS, delta=(not args.nodelta), delta_min=DELTA_MIN, delta_max=240,
+     fps=FPS, delta=DELTA, delta_min=DELTA_MIN, delta_max=DELTA_MAX,
      window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 
