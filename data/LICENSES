@@ -32,8 +32,6 @@ images/misc/font.png
 images/misc/font_big.png
 images/misc/font_small.png
 images/misc/ice_bullet.png
-images/misc/icon.ico
-images/misc/icon.png
 images/misc/light.png
 images/misc/light_small.png
 images/misc/light_tiny.png
@@ -379,6 +377,20 @@ Details:
   the images, adjusting their positions, and adding some small
   touch-ups. The original version, as sent in by Connie Cartwright, can
   be found under the "sources" directory.
+
+------------------------------------------------------------------------
+
+images/misc/icon.ico
+images/misc/icon.png
+images/misc/icon.svg
+images/misc/icon-is.svg
+
+Author: onpon4 <https://onpon4.github.io>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+Details:
+  Made from frame 11 of the run animation placed on top of some vector
+  graphics made in Inkscape. icon-is.svg is the Inkscape source. The
+  rest of the files are simply rendered from that.
 
 ------------------------------------------------------------------------
 
