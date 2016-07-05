@@ -53,8 +53,11 @@ if __name__ == '__main__':
     for fname in fnames:
         rp = os.path.relpath(fname, FILEDIR)
         if not rp.startswith(os.pardir):
-            shutil.move(fname, os.path.join(CONFIG, rp))
-            print("Moved {} to {}".format(fname, os.path.join(CONFIG, rp)))
+            cd = os.path.dirname(os.path.join(CONFIG, rp))
+            if not os.path.exists(cd):
+                os.makedirs(cd)
+            shutil.move(fname, cd)
+            print("Moved {} to {}".format(fname, cd))
         else:
             print("{} was not localized (invalid location)".format(fname))
     print("Done.")

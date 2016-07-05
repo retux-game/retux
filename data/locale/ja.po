@@ -31,35 +31,37 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
-msgstr ""
+msgstr "yoku samui tenki desu ne! sakana wo toru toki da!"
 
 msgid "Oh, looks like I have a message!"
-msgstr ""
+msgstr "a, meseeji da!"
 
 msgid "What?! They're taking my fish?!"
-msgstr ""
+msgstr "nani!? ore no sakana wo!?"
 
 msgid "I will not stand for this! Nobody takes away MY fish!"
-msgstr ""
+msgstr "yurusanai zo!"
 
 msgid "What are you doing here? You're trespassing!"
 msgstr ""
 
 msgid "The reign of the Snow King is over!"
-msgstr ""
+msgstr "yuki daioo no chisei wa owari da!"
 
 msgid "What are you talking about? His reign has only just begun!"
-msgstr ""
+msgstr "nani? tadani hajimareru ze!"
 
 msgid ""
 "Yeah, and now it's going to end! He should have thought about that before "
 "taking away MY fish!"
-msgstr ""
+msgstr "soshite owari da! kono ore no sakana wo nusumanai!"
 
 msgid ""
 "Fish?! I will not allow you to overthrow the great king over a tax! Your "
 "conquest ends here!"
 msgstr ""
+"sakana da to!? tada no zeikin kara yuki daioo kara yuki daioo ni kougeki, "
+"yurusanai! kisama no kougeki wa owari da!"
 
 msgid "Who are you?"
 msgstr "omae wa dare da?"
@@ -212,18 +214,18 @@ msgid ""
 msgstr ""
 
 msgid "Where to load the game data from (Default: \"{}\")"
-msgstr ""
+msgstr "データーのディレクトリ。（既定は、「{}」）"
 
 msgid "Play the indicated level and then exit."
-msgstr ""
+msgstr "このレベルを始めて止めます。"
 
 msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
-msgstr ""
+msgstr "このレベルを始めてプレーヤーの動作を書き留めます。"
 
 msgid "Only show solid colors for backgrounds (uses less RAM)."
-msgstr ""
+msgstr "背景はただの色になります。"
 
 msgid "Don't show the player's heads-up display."
 msgstr ""
@@ -328,10 +330,10 @@ msgid "Off"
 msgstr "iie"
 
 msgid "Sound: {}"
-msgstr ""
+msgstr "oto: {}"
 
 msgid "Music: {}"
-msgstr ""
+msgstr "ongaku: {}"
 
 msgid "Stereo: {}"
 msgstr ""
@@ -358,10 +360,10 @@ msgid "Export levelset"
 msgstr ""
 
 msgid "ReTux levelset files"
-msgstr ""
+msgstr "ReTuxのレベル"
 
 msgid "all files"
-msgstr ""
+msgstr "すべてのファイル"
 
 msgid "Importing levelset..."
 msgstr ""
@@ -417,7 +419,7 @@ msgid "Return to Map"
 msgstr "chizu ni kaeru"
 
 msgid "Return to Title Screen"
-msgstr ""
+msgstr "taiteru ni kaeru"
 
 msgid "Press the key you wish to toggle, or Escape to cancel."
 msgstr ""
