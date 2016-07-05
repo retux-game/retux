@@ -325,7 +325,7 @@ msgid "An error occurred when trying to load the game."
 msgstr ""
 
 msgid "Next page"
-msgstr ""
+msgstr "tsugi no peeji"
 
 msgid "Fullscreen: {}"
 msgstr ""
@@ -343,37 +343,37 @@ msgid "Music: {}"
 msgstr "ongaku: {}"
 
 msgid "Stereo: {}"
-msgstr ""
+msgstr "sutereo: {}"
 
 msgid "Show FPS: {}"
-msgstr ""
+msgstr "fureemu reeto wo miseru: {}"
 
 msgid "Joystick Threshold: {}%"
-msgstr ""
+msgstr "joisutikku no minimamu: {}%"
 
 msgid "Configure keyboard"
-msgstr ""
+msgstr "kiiboodo wo konfigu suru"
 
 msgid "Configure joysticks"
-msgstr ""
+msgstr "geemupaddo wo konfigu suru"
 
 msgid "Detect joysticks"
-msgstr ""
+msgstr "geemupaddo wo mitsukeru"
 
 msgid "Import levelset"
-msgstr ""
+msgstr "reberusetto wo inpooto suru"
 
 msgid "Export levelset"
-msgstr ""
+msgstr "reberusetto wo ekusupooto suru"
 
 msgid "ReTux levelset files"
-msgstr "ReTuxのレベル"
+msgstr "ReTuxのレベルセットのファイル"
 
 msgid "all files"
 msgstr "すべてのファイル"
 
 msgid "Importing levelset..."
-msgstr ""
+msgstr "reberusetto wo inpooto shiteimasu..."
 
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
@@ -381,7 +381,7 @@ msgid ""
 msgstr ""
 
 msgid "Player {}"
-msgstr ""
+msgstr "pureeaa {} ban"
 
 msgid "Left: {}"
 msgstr "hidari: {}"
@@ -399,22 +399,22 @@ msgid "Jump: {}"
 msgstr "janpu: {}"
 
 msgid "Action: {}"
-msgstr ""
+msgstr "akushon: {}"
 
 msgid "Sneak: {}"
-msgstr ""
+msgstr "sanpo: {}"
 
 msgid "Menu: {}"
-msgstr ""
+msgstr "menyuu: {}"
 
 msgid "Pause: {}"
-msgstr ""
+msgstr "poozu: {}"
 
 msgid "None"
-msgstr "nani mo"
+msgstr "nani mo nai"
 
 msgid "Exporting levelset..."
-msgstr ""
+msgstr "reberusetto wo ekusupooto shiteimasu..."
 
 msgid "Continue"
 msgstr "tsudzuku"
