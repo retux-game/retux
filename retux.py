@@ -100,7 +100,7 @@ parser.add_argument(
     action="store_true")
 parser.add_argument(
     "--nodelta",
-    help=_("Disable delta timing. Causes the game to slow down when it can't run at 60 FPS instead of becoming choppier."),
+    help=_("Disable delta timing. Causes the game to slow down when it can't run at full speed instead of becoming choppier."),
     action="store_true")
 parser.add_argument(
     "-d", "--datadir",
