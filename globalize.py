@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# reTux File Localizer
+# reTux File Globalizer
 # Copyright (C) 2016 onpon4 <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -51,25 +51,25 @@ if __name__ == '__main__':
     tkwindow = Tk()
     tkwindow.withdraw()
     fnames = tkinter_filedialog.askopenfilenames(
-        filetypes=[("all files", ".*")], initialdir=FILEDIR)
+        filetypes=[("all files", ".*")], initialdir=CONFIG)
     for fname in fnames:
-        rp = os.path.relpath(fname, FILEDIR)
+        rp = os.path.relpath(fname, CONFIG)
         if not rp.startswith(os.pardir):
-            cd = os.path.dirname(os.path.join(CONFIG, rp))
-            if not os.path.exists(cd):
-                os.makedirs(cd)
+            gd = os.path.dirname(os.path.join(FILEDIR, rp))
+            if not os.path.exists(gd):
+                os.makedirs(gd)
 
-            new_name = os.path.join(cd, os.path.basename(fname))
+            new_name = os.path.join(gd, os.path.basename(fname))
             if os.path.isfile(new_name):
                 os.remove(new_name)
             elif os.path.isdir(new_name):
                 shutil.rmtree(new_name)
 
-            shutil.move(fname, cd)
+            shutil.move(fname, gd)
             tkinter_messagebox.showinfo(
-                "Message", 'Moved "{}" to "{}"'.format(fname, cd))
+                "Message", 'Moved "{}" to "{}"'.format(fname, gd))
         else:
             tkinter_messagebox.showinfo(
                 "Message",
-                '"{}" was not localized (invalid location)'.format(fname))
+                '"{}" was not globalized (invalid location)'.format(fname))
     tkwindow.destroy()
