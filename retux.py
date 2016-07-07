@@ -8279,7 +8279,8 @@ if not NO_BACKGROUNDS:
 backgrounds["cave"] = sge.gfx.Background(layers, sge.gfx.Color("#024"))
 
 if not NO_BACKGROUNDS:
-    nightsky_bottom_spr = sge.gfx.Sprite("nightsky-bottom", d)
+    nightsky_bottom_spr = sge.gfx.Sprite("nightsky-bottom", d,
+                                         transparent=False)
     layers = [
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("nightsky1-middle", d), 0, 306, -100000,
