@@ -91,21 +91,25 @@ msgid ""
 "I don't know how you found out about our secret plans, but you will not stop "
 "us!"
 msgstr ""
+"douyatte ware ware no himitsu no keikaku wo shitteiru to, ore wa wakaranai. "
+"demo, zettaini makenai!"
 
 msgid "I've been waiting for you, Tux. We meet again at last!"
-msgstr ""
+msgstr "omae wo matteiru, TUX. toutou, mata atteiru."
 
 msgid "Raccot the yeti! I should have known it was you!"
-msgstr ""
+msgstr "ietii no RACCOT! mochiron!"
 
 msgid ""
 "You may have discovered my evil plan, my old nemesis, but you will not stop "
 "me!"
 msgstr ""
+"kisama wa ore-sama no akuna keikaku wo shiru kamoshirenai kedo, katenai!"
 
 msgid ""
 "When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
 msgstr ""
+"ore-sama wa tada no yukiyougakkou no ijimekko datta kedo, ima yuki daioo da!"
 
 msgid ""
 "Citizens of Icy Island,\n"
