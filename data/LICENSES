@@ -714,8 +714,6 @@ levels/test.tmx
 levels/special/title_screen.tmx
 levelsets/concept_castle.json
 levelsets/retux.json
-locale/retux.pot
-locale/ja.po
 sounds/fire_dissipate.wav
 worldmaps/retux-1.tmx
 worldmaps/retux-2.tmx
@@ -728,6 +726,8 @@ License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
 
 ------------------------------------------------------------------------
 
+locale/retux.pot
+locale/ja.po
 timelines/boss_start.json
 timelines/game_end.json
 timelines/retux_boss1.json
