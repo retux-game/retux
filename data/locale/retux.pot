@@ -197,6 +197,9 @@ msgid ""
 "molten lava!"
 msgstr ""
 
+msgid "There must be a way to remove the fire flower from this room."
+msgstr ""
+
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr ""
 

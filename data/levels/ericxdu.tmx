@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="70" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="424">
+ <properties>
+  <property name="bgname" value="cave"/>
+  <property name="music" value="cave.ogg"/>
+  <property name="name" value="EricxDu's Level"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
+ <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
+ <tileset firstgid="468" source="../tilesets/door.tsx"/>
+ <tileset firstgid="469" source="../tilesets/special_blocks.tsx"/>
+ <tileset firstgid="494" source="../tilesets/decoration_small.tsx"/>
+ <tileset firstgid="498" source="../tilesets/igloo.tsx"/>
+ <tileset firstgid="500" source="../tilesets/krush.tsx"/>
+ <tileset firstgid="501" source="../tilesets/krosh.tsx"/>
+ <tileset firstgid="502" source="../tilesets/snowman.tsx"/>
+ <tileset firstgid="503" source="../tilesets/raccot.tsx"/>
+ <layer name="Back Tiles" width="125" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztnUtu1EAQhsc8kogg4AwErhEeuQKPC0AEErACCSLY8NjASVhyB9jBVQJcAKhm1FLLcstd7a6ucvdf0qeMJ7anpv6x2z3/lLw/bDb7DXCROCCuEdcJH1dHz4fLnOdvZOZkMbS1Kqm5ZFwwmFNuaGtVWvM/xN+ADbPuse2huT18fc/Q37MB55h1j20Pze2Bc3t6aGsV4zKTK8L1vWQwp9zQ1jbGZybfEuo7Hqs5Y/5XoZzG+XGvP3JCW9sYX5j8SKjVeKzmjPnfhXIKY4fW35vZ5meBz4S2tjFOMpCMnHy4OblrhrlrgNOGNd9l4o8PqbnazoKcUqN3zbm0MFeD5rL15QY0t8dtV4uZeuRet7vtjjJzmnq9GEcJ25wy9zmFtlaluDnMj5+51+1uLL+VmRP3GqAG2lqV4nCQ+w7EfR+T46sBWSyO56CO5pZ8NVBHc0tzNVBHc6mA5vJY87ByfDXtGq6NFnw17RqujRZ8Ne0aro0WfDXtGq6NtftqewZq2DqYq/UH5mr9YdFXA7JY9NWs4vwo7ncNc99BLN1PjocFXy2dkuNgyu88Uvej+T5K5WSV1jSHr9af5pir6Ws+JOx/vA7O7evW/HzC/sfrWOwN8zlp67UGzXNCqjcMvpqO5uExHTvvS/WGwVfTP85j5/0avWHcaMlXCzV6TY/fLKidG/OmxtWUMT2MJb1h8NXSNXefy/fEh0H+mJkLzNXkNX9OvAg098ta2mOuJovzo14SrwLN/bIfl5b2R3HJ8bD+az6jO3y1LRZ7qnJ7w+Cr9QV8tf7AeN4f8NX6A3O1/sC5ff3AV+sP+Gr9AV+tP+Cr9Qd8NTAH5mr9gblaf6BfrT/gq9mD0xdntV/tUPA916KmP8gZb1v5nYzFe/DUvC6ppbklXw2ay+Zlca4GzWXzwrk9LaxqbrlfzVJOOWFV81b61bj3V6sRVjVvpV+Ne3+1GmFV81b61bT7gaZCS/O5WrTQr+ZzekA8JI4T8yi9/lt6/l3wPw3NU44BzNXKxDN6/Y/Ep2H7OPd9LNE87IPzj6fCYn1L5yR9/D+i9R4HmvvlmpqHfXEnweNS/Wrce5lV66EL4g4t/67EE+JpoLlfrqk5py/O4r3McnJymt8l7hH3h63mv5Rxmv8DS7NCuQ==
+  </data>
+ </layer>
+ <layer name="Middle Tiles" width="125" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt28EJgDAMBdBkBUdyJgXr2F1AXcCDFK3oe5BLLgn8XBMBAAAAAADQz5DPz9xO+rXDLgAAAAAAAAAAAAAAAPB2U0bMfm9+ZTnyLo2Zj24GAAAAAAAAAAAAAIAbrHm9AADgq3YyCApm
+  </data>
+ </layer>
+ <objectgroup color="#000000" name="solid">
+  <object id="61" type="solid" x="1888" y="2016" width="222" height="30"/>
+  <object id="62" type="solid" x="1888" y="1760" width="221" height="30"/>
+  <object id="63" type="solid" x="2176" y="1888" width="160" height="32"/>
+  <object id="64" type="solid" x="1664" y="1888" width="160" height="32"/>
+  <object id="65" type="solid" x="1664" y="2112" width="160" height="32"/>
+  <object id="66" type="solid" x="2176" y="2112" width="160" height="32"/>
+  <object id="125" x="1888" y="1312" width="220" height="31"/>
+  <object id="127" x="2176" y="1664" width="160" height="31"/>
+  <object id="130" x="1664" y="1664" width="160" height="32"/>
+  <object id="134" x="1888" y="1120" width="224" height="32"/>
+  <object id="135" x="2176" y="992" width="160" height="32"/>
+  <object id="136" x="1664" y="992" width="160" height="32"/>
+  <object id="138" x="1888" y="864" width="224" height="32"/>
+  <object id="140" x="1888" y="672" width="224" height="32"/>
+  <object id="141" x="1888" y="224" width="224" height="32"/>
+  <object id="142" x="2176" y="320" width="160" height="32"/>
+  <object id="143" x="1888" y="416" width="224" height="32"/>
+  <object id="144" x="1664" y="320" width="160" height="32"/>
+  <object id="145" x="1664" y="544" width="160" height="32"/>
+  <object id="146" x="2176" y="544" width="160" height="32"/>
+  <object id="147" x="0" y="2208" width="2912" height="32"/>
+  <object id="149" x="1600" y="2208" width="64"/>
+  <object id="152" x="0" y="0" width="1632" height="864"/>
+  <object id="154" x="2368" y="416" width="1632" height="1344"/>
+  <object id="176" x="0" y="1312" width="1664" height="64"/>
+  <object id="177" x="608" y="928" width="64" height="288"/>
+  <object id="183" x="0" y="864" width="1664" height="64"/>
+  <object id="186" x="256" y="1280" width="32" height="32"/>
+  <object id="187" x="96" y="1184" width="64" height="32"/>
+  <object id="188" x="2368" y="1824" width="448" height="352"/>
+  <object id="190" x="3808" y="2112" width="128" height="32"/>
+  <object id="191" x="3840" y="2080" width="64" height="32"/>
+  <object id="193" x="3008" y="2144" width="96" height="32"/>
+  <object id="195" x="3392" y="2144" width="96" height="32"/>
+  <object id="196" x="3584" y="2080" width="96" height="32"/>
+  <object id="197" x="3200" y="2080" width="96" height="32"/>
+  <object id="198" x="3776" y="2144" width="192" height="64"/>
+  <object id="217" x="0" y="1376" width="1632" height="384"/>
+  <object id="228" x="0" y="1760" width="1664" height="64"/>
+  <object id="229" x="2336" y="1760" width="1664" height="64"/>
+  <object id="231" x="1184" y="928" width="448" height="352"/>
+  <object id="237" x="2368" y="0" width="448" height="384"/>
+  <object id="246" x="1664" y="1440" width="160" height="32"/>
+  <object id="247" x="1888" y="1568" width="224" height="32"/>
+  <object id="248" x="2176" y="1440" width="160" height="32"/>
+  <object id="249" x="2176" y="1216" width="160" height="32"/>
+  <object id="250" x="1664" y="1216" width="160" height="32"/>
+  <object id="251" x="1664" y="768" width="160" height="32"/>
+  <object id="252" x="2176" y="768" width="160" height="32"/>
+  <object id="253" x="1664" y="96" width="160" height="32"/>
+  <object id="254" x="2176" y="96" width="160" height="32"/>
+  <object id="276" x="32" y="1248" width="224" height="64"/>
+  <object id="277" x="64" y="1216" width="128" height="32"/>
+  <object id="278" x="2912" y="2176" width="32" height="64"/>
+  <object id="280" x="2816" y="2080" width="96" height="32"/>
+  <object id="282" x="3168" y="224" width="64" height="192"/>
+  <object id="283" x="864" y="2144" width="160" height="64"/>
+  <object id="284" x="896" y="2112" width="96" height="32"/>
+  <object id="285" x="928" y="2080" width="32" height="32"/>
+  <object id="287" x="0" y="1824" width="864" height="384"/>
+  <object id="289" x="1184" y="1824" width="448" height="352"/>
+  <object id="292" x="768" y="1056" width="32" height="32"/>
+  <object id="293" x="896" y="1120" width="32" height="32"/>
+  <object id="294" x="1056" y="1056" width="32" height="32"/>
+  <object id="295" x="992" y="1152" width="32" height="32"/>
+  <object id="296" x="800" y="1184" width="32" height="32"/>
+  <object id="297" x="1056" y="1248" width="64" height="64"/>
+  <object id="414" x="0" y="-32" width="4000" height="32"/>
+  <object id="415" x="3936" y="288" width="64" height="128"/>
+  <object id="416" x="3968" y="1824" width="32" height="416"/>
+  <object id="418" x="0" y="928" width="32" height="384"/>
+  <object id="419" x="2336" y="1312" width="32" height="64"/>
+  <object id="420" x="2336" y="864" width="32" height="64"/>
+  <object id="421" x="2336" y="416" width="32" height="64"/>
+  <object id="423" x="1632" y="416" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup name="Collision Objects">
+  <object id="205" x="2432" y="2240" width="576"/>
+  <object id="209" type="death" x="2944" y="2208" width="1024" height="32"/>
+  <object id="281" type="level_end" x="3488" y="0" width="32" height="416"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="warp">
+  <object id="167" x="1632" y="1120">
+   <polyline points="0,0 -448,0"/>
+  </object>
+  <object id="169" x="2368" y="2016">
+   <polyline points="0,0 448,0"/>
+  </object>
+  <object id="174" x="1184" y="1120">
+   <polyline points="0,0 448,0"/>
+  </object>
+  <object id="201" x="2816" y="224">
+   <polyline points="0,0 -448,0"/>
+  </object>
+  <object id="212" x="2368" y="224">
+   <polyline points="0,0 448,0"/>
+  </object>
+  <object id="256" x="2816" y="2016">
+   <polyline points="0,0 -448,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#005500" name="warp_spawn">
+  <object id="3" type="object_warp_spawn" x="2363" y="31" visible="0">
+   <polyline points="0,0 36,0"/>
+  </object>
+  <object id="273" type="object_warp_spawn" x="3872" y="2112">
+   <properties>
+    <property name="cls" value="fireflower"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 0,-32"/>
+  </object>
+  <object id="274" type="object_warp_spawn" x="128" y="1216">
+   <properties>
+    <property name="cls" value="iceflower"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 0,-32"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object id="300" gid="480" x="3776" y="2144" width="32" height="32"/>
+  <object id="301" gid="480" x="3808" y="2112" width="32" height="32"/>
+  <object id="302" gid="480" x="3904" y="2112" width="32" height="32"/>
+  <object id="303" gid="480" x="3936" y="2144" width="32" height="32"/>
+  <object id="304" gid="480" x="3648" y="2080" width="32" height="32"/>
+  <object id="305" gid="480" x="3616" y="2080" width="32" height="32"/>
+  <object id="306" gid="480" x="3584" y="2080" width="32" height="32"/>
+  <object id="307" gid="480" x="3200" y="2080" width="32" height="32"/>
+  <object id="308" gid="480" x="3232" y="2080" width="32" height="32"/>
+  <object id="309" gid="480" x="3264" y="2080" width="32" height="32"/>
+  <object id="310" gid="491" x="928" y="2080" width="32" height="32"/>
+  <object id="311" gid="480" x="1920" y="2016" width="32" height="32"/>
+  <object id="312" gid="480" x="1952" y="2016" width="32" height="32"/>
+  <object id="313" gid="480" x="1984" y="2016" width="32" height="32"/>
+  <object id="314" gid="480" x="2016" y="2016" width="32" height="32"/>
+  <object id="315" gid="480" x="2048" y="2016" width="32" height="32"/>
+  <object id="316" gid="480" x="2208" y="1888" width="32" height="32"/>
+  <object id="317" gid="480" x="2240" y="1888" width="32" height="32"/>
+  <object id="318" gid="480" x="2272" y="1888" width="32" height="32"/>
+  <object id="320" gid="478" x="2368" y="1760" width="32" height="32"/>
+  <object id="321" gid="478" x="2368" y="2208" width="32" height="32"/>
+  <object id="322" gid="478" x="1600" y="2208" width="32" height="32"/>
+  <object id="323" gid="478" x="1600" y="1760" width="32" height="32"/>
+  <object id="324" gid="480" x="1920" y="1568" width="32" height="32"/>
+  <object id="325" gid="480" x="1952" y="1568" width="32" height="32"/>
+  <object id="326" gid="480" x="1984" y="1568" width="32" height="32"/>
+  <object id="327" gid="480" x="2016" y="1568" width="32" height="32"/>
+  <object id="328" gid="480" x="2048" y="1568" width="32" height="32"/>
+  <object id="329" gid="480" x="1696" y="1440" width="32" height="32"/>
+  <object id="330" gid="480" x="1728" y="1440" width="32" height="32"/>
+  <object id="331" gid="480" x="1760" y="1440" width="32" height="32"/>
+  <object id="332" gid="478" x="1600" y="1312" width="32" height="32"/>
+  <object id="333" gid="478" x="2368" y="1312" width="32" height="32"/>
+  <object id="334" gid="478" x="1600" y="864" width="32" height="32"/>
+  <object id="335" gid="478" x="2368" y="864" width="32" height="32"/>
+  <object id="336" gid="480" x="2208" y="992" width="32" height="32"/>
+  <object id="337" gid="480" x="2240" y="992" width="32" height="32"/>
+  <object id="338" gid="480" x="2272" y="992" width="32" height="32"/>
+  <object id="339" gid="480" x="1952" y="1120" width="32" height="32"/>
+  <object id="340" gid="480" x="1984" y="1120" width="32" height="32"/>
+  <object id="341" gid="480" x="2016" y="1120" width="32" height="32"/>
+  <object id="342" gid="480" x="1056" y="1248" width="32" height="32"/>
+  <object id="343" gid="480" x="1088" y="1248" width="32" height="32"/>
+  <object id="344" gid="480" x="992" y="1152" width="32" height="32"/>
+  <object id="345" gid="480" x="896" y="1120" width="32" height="32"/>
+  <object id="346" gid="480" x="800" y="1184" width="32" height="32"/>
+  <object id="347" gid="479" x="1056" y="992" width="32" height="32"/>
+  <object id="348" gid="479" x="768" y="992" width="32" height="32"/>
+  <object id="357" gid="490" x="608" y="1248" width="32" height="32"/>
+  <object id="358" gid="490" x="640" y="1248" width="32" height="32"/>
+  <object id="359" gid="490" x="640" y="1280" width="32" height="32"/>
+  <object id="360" gid="490" x="608" y="1280" width="32" height="32"/>
+  <object id="361" gid="490" x="608" y="1312" width="32" height="32"/>
+  <object id="362" gid="490" x="640" y="1312" width="32" height="32"/>
+  <object id="363" gid="480" x="512" y="1312" width="32" height="32"/>
+  <object id="364" gid="480" x="480" y="1312" width="32" height="32"/>
+  <object id="365" gid="480" x="448" y="1312" width="32" height="32"/>
+  <object id="366" gid="480" x="416" y="1312" width="32" height="32"/>
+  <object id="367" gid="480" x="384" y="1312" width="32" height="32"/>
+  <object id="368" gid="480" x="352" y="1312" width="32" height="32"/>
+  <object id="369" gid="480" x="256" y="1280" width="32" height="32"/>
+  <object id="370" gid="480" x="224" y="1248" width="32" height="32"/>
+  <object id="371" gid="480" x="192" y="1248" width="32" height="32"/>
+  <object id="372" gid="480" x="160" y="1216" width="32" height="32"/>
+  <object id="373" gid="480" x="64" y="1216" width="32" height="32"/>
+  <object id="374" gid="480" x="32" y="1248" width="32" height="32"/>
+  <object id="375" gid="480" x="1920" y="1120" width="32" height="32"/>
+  <object id="376" gid="480" x="2048" y="1120" width="32" height="32"/>
+  <object id="377" gid="478" x="1600" y="416" width="32" height="32"/>
+  <object id="378" gid="478" x="2368" y="416" width="32" height="32"/>
+  <object id="379" gid="480" x="1984" y="672" width="32" height="32"/>
+  <object id="380" gid="480" x="1952" y="672" width="32" height="32"/>
+  <object id="381" gid="480" x="1920" y="672" width="32" height="32"/>
+  <object id="382" gid="480" x="2016" y="672" width="32" height="32"/>
+  <object id="383" gid="480" x="2048" y="672" width="32" height="32"/>
+  <object id="384" gid="480" x="1696" y="544" width="32" height="32"/>
+  <object id="385" gid="480" x="1728" y="544" width="32" height="32"/>
+  <object id="386" gid="480" x="1760" y="544" width="32" height="32"/>
+  <object id="387" gid="480" x="1984" y="224" width="32" height="32"/>
+  <object id="388" gid="480" x="1952" y="224" width="32" height="32"/>
+  <object id="389" gid="480" x="1920" y="224" width="32" height="32"/>
+  <object id="390" gid="480" x="2016" y="224" width="32" height="32"/>
+  <object id="391" gid="480" x="2048" y="224" width="32" height="32"/>
+  <object id="392" gid="480" x="2240" y="96" width="32" height="32"/>
+  <object id="393" gid="480" x="2208" y="96" width="32" height="32"/>
+  <object id="394" gid="480" x="2272" y="96" width="32" height="32"/>
+  <object id="395" gid="479" x="2816" y="352" width="32" height="32"/>
+  <object id="406" gid="479" x="2848" y="352" width="32" height="32"/>
+  <object id="412" gid="483" x="3904" y="2016" width="32" height="32">
+   <properties>
+    <property name="text" value="There must be a way to remove the fire flower from this room."/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="NPCs">
+  <object id="202" type="object_warp_spawn" x="1600" y="224">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object id="219" type="object_warp_spawn" x="1600" y="2016">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object id="233" type="object_warp_spawn" x="1600" y="1568">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object id="234" type="object_warp_spawn" x="1600" y="672">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object id="235" type="object_warp_spawn" x="2400" y="672">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 -32,0"/>
+  </object>
+  <object id="221" type="object_warp_spawn" x="2400" y="1120">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 -32,0"/>
+  </object>
+  <object id="236" type="object_warp_spawn" x="2400" y="1568">
+   <properties>
+    <property name="cls" value="bomb"/>
+    <property name="limit" value="1"/>
+   </properties>
+   <polyline points="0,0 -32,0"/>
+  </object>
+  <object id="350" gid="3" x="864" y="1312" width="32" height="32"/>
+  <object id="351" gid="2" x="960" y="1312" width="32" height="32"/>
+  <object id="353" gid="2" x="768" y="1312" width="32" height="32"/>
+  <object id="354" gid="6" x="3424" y="2144" width="32" height="32"/>
+  <object id="356" gid="6" x="3040" y="2144" width="32" height="32"/>
+  <object id="411" gid="7" x="3136" y="416" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Players">
+  <object id="319" gid="1" x="1760" y="32" width="32" height="32"/>
+ </objectgroup>
+ <layer name="Front Tiles" width="125" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt20EOgjAQBVC6NQY8kdz/MhrjAbTuiFEEFRnb95JJuvxluvuhaQAAAIBvOKa1E/BrBzuvjp3Xp8Sdd/lOfZ59mnbeLfwN2pl5uoUzlbjzm02+1zZNP9eUZ2zn50LfAwAAAAAA8JperU6ReqyIeQAAAAAAAIbaGd2VXu0zlyezlmg9VrQ8AAAAAAAA9/RqdYrWY0XLAwAAAAAAMPTv/6v1erW3ReuxouUZc0qPhzpdAVBVLWI=
+  </data>
+ </layer>
+</map>

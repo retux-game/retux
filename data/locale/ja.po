@@ -231,6 +231,9 @@ msgstr ""
 "kono reveru ha RETUX no shouraisei wo miseru no tame ni tsukurimashita. "
 "chotto osoi kamoshiremasen."
 
+msgid "There must be a way to remove the fire flower from this room."
+msgstr "tabunni kono heya kara hi no hana wo motte derareru ne."
+
 msgid ""
 "All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
 "lava!"

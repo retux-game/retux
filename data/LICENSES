@@ -712,10 +712,11 @@ levels/retux-41e.tmx
 levels/retux-bonus1.tmx
 levels/test.tmx
 levels/special/title_screen.tmx
-levelsets/bonus_levels.json
+levelsets/concept_castle.json
 levelsets/retux.json
+locale/retux.pot
+locale/ja.po
 sounds/fire_dissipate.wav
-worldmaps/bonus_levels.tmx
 worldmaps/retux-1.tmx
 worldmaps/retux-2.tmx
 worldmaps/retux-3.tmx
@@ -739,6 +740,14 @@ timelines/title_demo.json
 
 Author: onpon4 <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+
+------------------------------------------------------------------------
+
+levels/ericxdu.tmx
+levelsets/ericxdu.json
+
+Author: EricxDu
+License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
 
 ------------------------------------------------------------------------
 
