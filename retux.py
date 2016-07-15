@@ -6338,7 +6338,7 @@ class MainMenu(Menu):
             LoadGameMenu.create_page()
         elif self.choice == 2:
             play_sound(confirm_sound)
-            LevelsetMenu.create_page(default=-1, refreshlist=True)
+            LevelsetMenu.create_page(refreshlist=True)
         elif self.choice == 3:
             play_sound(confirm_sound)
             OptionsMenu.create_page()
@@ -6464,7 +6464,14 @@ class LevelsetMenu(Menu):
                 else:
                     cls.levelsets.append((fname, str(data.get("name", "???"))))
 
-            cls.levelsets.sort(key=lambda T: T[1].lower() + T[0].lower())
+            def sort_key(T):
+                # The current levelset has top priority, followed by the
+                # ReTux levelset, and every other levelset is sorted
+                # alphabetically based first on their displayed names
+                # and secondly on their file names.
+                return (T[0] != current_levelset, T[0] != "retux.json",
+                        T[1].lower(), T[0].lower())
+            cls.levelsets.sort(key=sort_key)
 
         cls.current_levelsets = []
         cls.items = []
@@ -6628,7 +6635,7 @@ class OptionsMenu(Menu):
         elif self.choice == 10:
             if HAVE_TK:
                 play_sound(confirm_sound)
-                ExportLevelsetMenu.create_page(default=-1, refreshlist=True)
+                ExportLevelsetMenu.create_page(refreshlist=True)
             else:
                 play_sound(kill_sound)
                 e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
