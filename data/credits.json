@@ -87,6 +87,16 @@
         "title": " "
     },
     {
+        "lines": [
+            "This game is both libre software and libre culture. The Python source code is under the GNU GPL version 3 or later, and other portions are under either the GNU GPL, CC BY, CC BY-SA, or CC0. See data/LICENSES for more details.",
+            " ",
+            "Copying is not theft. On the contrary, copying is an act of love. If you enjoyed this game, please copy and share."
+        ]
+    },
+    {
+        "title": " "
+    },
+    {
         "title": "Thank you for playing!"
     }
 ]
