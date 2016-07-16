@@ -1284,16 +1284,23 @@ class CreditsScreen(SpecialScreen):
             for obj in self.sections:
                 obj.yvelocity = 0
 
-        if self.sections[-1].bbox_bottom < 0:
+        if self.sections[-1].bbox_bottom < 0 and "end" not in self.alarms:
+            sge.snd.Music.stop(fade_time=3000)
+            self.alarms["end"] = 3.5 * FPS
+
+    def event_alarm(self, alarm_id):
+        if alarm_id == "end":
             sge.game.start_room.start()
 
     def event_key_press(self, key, char):
         if key in itertools.chain.from_iterable(down_key):
-            for obj in self.sections:
-                obj.yvelocity -= 0.25
+            if "end" not in self.alarms:
+                for obj in self.sections:
+                    obj.yvelocity -= 0.25
         elif key in itertools.chain.from_iterable(up_key):
-            for obj in self.sections:
-                obj.yvelocity += 0.25
+            if "end" not in self.alarms:
+                for obj in self.sections:
+                    obj.yvelocity += 0.25
         elif (key in itertools.chain.from_iterable(jump_key) or
                 key in itertools.chain.from_iterable(action_key) or
                 key in itertools.chain.from_iterable(pause_key)):
@@ -1303,11 +1310,13 @@ class CreditsScreen(SpecialScreen):
         js = (js_id, input_type, input_id)
         if value >= joystick_threshold:
             if js in itertools.chain.from_iterable(down_js):
-                for obj in self.sections:
-                    obj.yvelocity -= 0.25
+                if "end" not in self.alarms:
+                    for obj in self.sections:
+                        obj.yvelocity -= 0.25
             elif js in itertools.chain.from_iterable(up_js):
-                for obj in self.sections:
-                    obj.yvelocity += 0.25
+                if "end" not in self.alarms:
+                    for obj in self.sections:
+                        obj.yvelocity += 0.25
             elif (js in itertools.chain.from_iterable(jump_js) or
                     js in itertools.chain.from_iterable(action_js) or
                     js in itertools.chain.from_iterable(pause_js)):
