@@ -7913,10 +7913,6 @@ tux_body_stand_sprite = sge.gfx.Sprite(
     "tux_body_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_stand_sprite = sge.gfx.Sprite(
     "tux_arms_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_body_idle_sprite = sge.gfx.Sprite(
-    "tux_body_idle", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
-tux_arms_idle_sprite = sge.gfx.Sprite(
-    "tux_arms_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_walk_sprite = sge.gfx.Sprite(
     "tux_body_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_walk_sprite = sge.gfx.Sprite(
@@ -7948,7 +7944,6 @@ tux_die_sprite = sge.gfx.Sprite("tux_die", d, origin_x=29, origin_y=11, fps=8)
 tux_offscreen_sprite = sge.gfx.Sprite("tux_offscreen", d, origin_x=16)
 
 tux_stand_sprite = tux_body_stand_sprite.copy()
-tux_idle_sprite = tux_body_idle_sprite.copy()
 tux_walk_sprite = tux_body_walk_sprite.copy()
 tux_run_sprite = tux_body_run_sprite.copy()
 tux_skid_sprite = tux_body_skid_sprite.copy()
@@ -7957,7 +7952,6 @@ tux_fall_sprite = tux_body_fall_sprite.copy()
 tux_kick_sprite = tux_body_kick_sprite.copy()
 
 for bs, a in [(tux_stand_sprite, tux_arms_stand_sprite),
-              (tux_idle_sprite, tux_arms_idle_sprite),
               (tux_walk_sprite, tux_arms_walk_sprite),
               (tux_run_sprite, tux_arms_run_sprite),
               (tux_skid_sprite, tux_arms_skid_sprite),
@@ -8156,9 +8150,15 @@ door_back_sprite = sge.gfx.Sprite("door_back", d, origin_x=21, origin_y=41,
                                   transparent=False)
 
 d = os.path.join(DATA, "images", "portraits")
-portrait_tux = sge.gfx.Sprite("portrait_tux", d)
-portrait_snowman = sge.gfx.Sprite("portrait_snowman", d)
-portrait_raccot = sge.gfx.Sprite("portrait_raccot", d)
+portrait_sprites = {}
+for fname in os.listdir(d):
+    root, ext = os.path.splitext(fname)
+    try:
+        portrait = sge.gfx.Sprite(root, d)
+    except IOError:
+        pass
+    else:
+        portrait_sprites[root] = portrait
 
 d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.gfx.Sprite("logo", d, origin_x=140)
@@ -8236,9 +8236,6 @@ coin_icon_sprite = coin_sprite.copy()
 coin_icon_sprite.width = 16
 coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
-
-portrait_sprites = {"tux": portrait_tux, "snowman": portrait_snowman,
-                    "raccot": portrait_raccot}
 
 d = os.path.join(DATA, "images", "worldmap")
 worldmap_tux_sprite = sge.gfx.Sprite("tux", d)
