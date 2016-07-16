@@ -49,7 +49,7 @@ msgid "The reign of the Snow King is over!"
 msgstr "yuki daioo no chisei ha owari da!"
 
 msgid "What are you talking about? His reign has only just begun!"
-msgstr "nani? tadani hajimareru ze!"
+msgstr "nan da to? tadani hajimeteiru ze!"
 
 msgid ""
 "Yeah, and now it's going to end! He should have thought about that before "

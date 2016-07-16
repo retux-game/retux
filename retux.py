@@ -817,7 +817,7 @@ class Level(sge.dsp.Room):
                             if len(args) >= 2:
                                 portrait, text = args[:2]
                                 sprite = portrait_sprites.get(portrait)
-                                DialogBox(gui_handler, text, sprite).show()
+                                DialogBox(gui_handler, _(text), sprite).show()
                         elif command == "play_music":
                             self.music = arg
                             play_music(arg)
@@ -7255,7 +7255,7 @@ class DialogBox(xsge_gui.Dialog):
             background_color=menu_color, border=False)
         label_h = max(1, height - y_padding)
 
-        self.label = DialogLabel(self, label_x, label_y, 0, _(text), font=font,
+        self.label = DialogLabel(self, label_x, label_y, 0, text, font=font,
                                  width=label_w, height=label_h,
                                  color=sge.gfx.Color("white"), rate=rate)
 
