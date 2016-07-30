@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="8">
  <properties>
   <property name="bgname" value="nightsky"/>
   <property name="music" value="greatgigantic.ogg"/>
   <property name="name" value="Danger Doors"/>
-  <property name="time_bonus" value="100000"/>
+  <property name="time_bonus" value="500000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -30,16 +30,16 @@
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="640" y="0" width="160" height="64"/>
-  <object x="672" y="64" width="128" height="384"/>
-  <object x="0" y="384" width="672" height="64"/>
+  <object id="1" x="640" y="0" width="160" height="64"/>
+  <object id="2" x="672" y="64" width="128" height="384"/>
+  <object id="3" x="0" y="384" width="672" height="64"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="slope_bottomleft" x="576" y="0" width="64" height="64"/>
-  <object type="solid_left" x="448" y="320" width="32" height="64"/>
+  <object id="4" type="slope_bottomleft" x="576" y="0" width="64" height="64"/>
+  <object id="5" type="solid_left" x="448" y="320" width="32" height="64"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
-  <object x="448" y="352">
+  <object id="6" x="448" y="352">
    <properties>
     <property name="dest" value="retux-39b.tmx:enter"/>
    </properties>
@@ -50,7 +50,7 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
-  <object gid="1" x="96" y="384"/>
+  <object id="7" gid="1" x="96" y="384" width="32" height="32"/>
  </objectgroup>
  <layer name="Front Tiles" width="25" height="14">
   <data encoding="base64" compression="zlib">

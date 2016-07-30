@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.0"
+__version__ = "1.1a0"
 
 import argparse
 import datetime
@@ -146,7 +146,7 @@ DELTA_MAX = FPS * 4
 TRANSITION_TIME = 750
 
 DEFAULT_LEVELSET = "retux.json"
-DEFAULT_LEVEL_TIME_BONUS = 30000
+DEFAULT_LEVEL_TIME_BONUS = 90000
 
 TUX_ORIGIN_X = 28
 TUX_ORIGIN_Y = 16
@@ -324,7 +324,7 @@ DEATH_RESTART_WAIT = FPS
 WIN_COUNT_START_TIME = 120
 WIN_COUNT_CONTINUE_TIME = 45
 WIN_COUNT_MULT = 111
-WIN_COUNT_AMOUNT = 1
+WIN_COUNT_AMOUNT = 3
 WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="75" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="14">
  <properties>
   <property name="bgname" value="bluemountain"/>
   <property name="music" value="chipdisko.ogg"/>
   <property name="name" value="Wacky Warps"/>
-  <property name="time_bonus" value="50000"/>
+  <property name="time_bonus" value="150000"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
  <tileset firstgid="16" source="../tilesets/snow.tsx"/>
@@ -30,26 +30,26 @@
   </data>
  </layer>
  <objectgroup color="#000000" name="solid">
-  <object x="576" y="352" width="64" height="32"/>
-  <object x="0" y="384" width="2400" height="64"/>
-  <object x="736" y="0" width="32" height="64"/>
-  <object x="768" y="0" width="704" height="384"/>
-  <object x="1536" y="352" width="64" height="32"/>
-  <object x="2336" y="256" width="64" height="128"/>
+  <object id="1" x="576" y="352" width="64" height="32"/>
+  <object id="2" x="0" y="384" width="2400" height="64"/>
+  <object id="3" x="736" y="0" width="32" height="64"/>
+  <object id="4" x="768" y="0" width="704" height="384"/>
+  <object id="5" x="1536" y="352" width="64" height="32"/>
+  <object id="6" x="2336" y="256" width="64" height="128"/>
  </objectgroup>
  <objectgroup name="Collision Objects">
-  <object type="solid_top" x="576" y="256" width="64" height="32"/>
-  <object type="solid_top" x="1536" y="288" width="64" height="32"/>
-  <object type="level_end" x="1888" y="0" width="32" height="384"/>
+  <object id="7" type="solid_top" x="576" y="256" width="64" height="32"/>
+  <object id="8" type="solid_top" x="1536" y="288" width="64" height="32"/>
+  <object id="9" type="level_end" x="1888" y="0" width="32" height="384"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="warp">
-  <object x="608" y="256">
+  <object id="10" x="608" y="256">
    <properties>
     <property name="dest" value="retux-32b.tmx:enter"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>
-  <object x="1568" y="288">
+  <object id="11" x="1568" y="288">
    <properties>
     <property name="dest" value="retux-32p.tmx:exit"/>
    </properties>
@@ -57,7 +57,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#005500" name="warp_spawn">
-  <object x="1568" y="352">
+  <object id="12" x="1568" y="352">
    <properties>
     <property name="spawn_id" value="exit"/>
    </properties>
@@ -67,7 +67,7 @@
  <objectgroup name="Items"/>
  <objectgroup name="NPCs"/>
  <objectgroup name="Players">
-  <object gid="1" x="128" y="384"/>
+  <object id="13" gid="1" x="128" y="384" width="32" height="32"/>
  </objectgroup>
  <layer name="Front Tiles" width="75" height="14">
   <data encoding="base64" compression="zlib">
