@@ -683,7 +683,7 @@ class Level(sge.dsp.Room):
             level_time_bonus = self.time_bonus
 
         if main_area not in level_timers:
-            if main_area in levels:
+            if main_area in levels and not GOD:
                 level_timers[main_area] = level_time_bonus
             else:
                 level_timers[main_area] = 0
@@ -1042,15 +1042,18 @@ class Level(sge.dsp.Room):
         elif alarm_id == "win_count_time":
             self.win_count_time = True
         elif alarm_id == "win_count_hp":
-            for obj in self.objects:
-                if isinstance(obj, Player) and obj.hp > 0:
-                    obj.hp -= 1
-                    score += HP_POINTS
-                    play_sound(heal_sound)
-                    self.alarms["win_count_hp"] = WIN_COUNT_CONTINUE_TIME
-                    break
-            else:
+            if GOD:
                 self.alarms["win"] = WIN_FINISH_DELAY
+            else:
+                for obj in self.objects:
+                    if isinstance(obj, Player) and obj.hp > 0:
+                        obj.hp -= 1
+                        score += HP_POINTS
+                        play_sound(heal_sound)
+                        self.alarms["win_count_hp"] = WIN_COUNT_CONTINUE_TIME
+                        break
+                else:
+                    self.alarms["win"] = WIN_FINISH_DELAY
 
     @classmethod
     def load(cls, fname, show_prompt=False):
