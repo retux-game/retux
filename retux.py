@@ -95,10 +95,6 @@ parser.add_argument(
     "-l", "--lang",
     help=_("Manually choose a different language to use."))
 parser.add_argument(
-    "--scale-basic",
-    help=_("Use basic rather than smooth scaling. Faster if you're in fullscreen or resizing the window, but much uglier."),
-    action="store_true")
-parser.add_argument(
     "--nodelta",
     help=_("Disable delta timing. Causes the game to slow down when it can't run at full speed instead of becoming choppier."),
     action="store_true")
@@ -118,11 +114,11 @@ parser.add_argument(
 parser.add_argument(
     "--no-hud", help=_("Don't show the player's heads-up display."),
     action="store_true")
+parser.add_argument("--scale-basic", action="store_true")
 parser.add_argument("--god")
 args = parser.parse_args()
 
 PRINT_ERRORS = args.print_errors
-SCALE_METHOD = "smooth" if not args.scale_basic else None
 DELTA = not args.nodelta
 if args.datadir:
     DATA = args.datadir
@@ -345,6 +341,7 @@ loaded_music = {}
 tux_grab_sprites = {}
 
 fullscreen = False
+scale_method = None
 sound_enabled = True
 music_enabled = True
 stereo_enabled = True
@@ -6525,8 +6522,10 @@ class OptionsMenu(Menu):
 
     @classmethod
     def create_page(cls, default=0):
+        smt = scale_method if scale_method else "fastest"
         cls.items = [
-            _("Fullscreen: {}").format(_("On") if sge.game.fullscreen else _("Off")),
+            _("Fullscreen: {}").format(_("On") if fullscreen else _("Off")),
+            _("Scale Method: {}").format(smt),
             _("Sound: {}").format(_("On") if sound_enabled else _("Off")),
             _("Music: {}").format(_("On") if music_enabled else _("Off")),
             _("Stereo: {}").format(_("On") if stereo_enabled else _("Off")),
@@ -6539,6 +6538,7 @@ class OptionsMenu(Menu):
 
     def event_choose(self):
         global fullscreen
+        global scale_method
         global sound_enabled
         global music_enabled
         global stereo_enabled
@@ -6551,22 +6551,35 @@ class OptionsMenu(Menu):
             sge.game.fullscreen = fullscreen
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 1:
+            choices = [None, "noblur", "smooth"] + sge.SCALE_METHODS
+            if scale_method in choices:
+                i = choices.index(scale_method)
+            else:
+                i = 0
+
+            play_sound(select_sound)
+            i += 1
+            i %= len(choices)
+            scale_method = choices[i]
+            sge.game.scale_method = scale_method
+            OptionsMenu.create_page(default=self.choice)
+        elif self.choice == 2:
             sound_enabled = not sound_enabled
             play_sound(bell_sound)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 2:
+        elif self.choice == 3:
             music_enabled = not music_enabled
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 3:
+        elif self.choice == 4:
             stereo_enabled = not stereo_enabled
             play_sound(confirm_sound)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 4:
+        elif self.choice == 5:
             play_sound(select_sound)
             fps_enabled = not fps_enabled
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 5:
+        elif self.choice == 6:
             play_sound(select_sound)
             # This somewhat complicated method is to prevent rounding
             # irregularities.
@@ -6576,17 +6589,17 @@ class OptionsMenu(Menu):
             joystick_threshold = threshold
             xsge_gui.joystick_threshold = threshold
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 6:
-            play_sound(confirm_sound)
-            KeyboardMenu.create_page()
         elif self.choice == 7:
             play_sound(confirm_sound)
-            JoystickMenu.create_page()
+            KeyboardMenu.create_page()
         elif self.choice == 8:
+            play_sound(confirm_sound)
+            JoystickMenu.create_page()
+        elif self.choice == 9:
             sge.joystick.refresh()
             play_sound(heal_sound)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 9:
+        elif self.choice == 10:
             if HAVE_TK:
                 play_sound(confirm_sound)
                 fname = tkinter_filedialog.askopenfilename(
@@ -6644,7 +6657,7 @@ class OptionsMenu(Menu):
                 e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
                 show_error(e)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 10:
+        elif self.choice == 11:
             if HAVE_TK:
                 play_sound(confirm_sound)
                 ExportLevelsetMenu.create_page(refreshlist=True)
@@ -7671,8 +7684,9 @@ def write_to_disk():
               "sneak": sneak_js, "menu": menu_js, "pause": pause_js}
 
     cfg = {"version": 1, "fullscreen": fullscreen,
-           "sound_enabled": sound_enabled, "music_enabled": music_enabled,
-           "stereo_enabled": stereo_enabled, "fps_enabled": fps_enabled,
+           "scale_method": scale_method, "sound_enabled": sound_enabled,
+           "music_enabled": music_enabled, "stereo_enabled": stereo_enabled,
+           "fps_enabled": fps_enabled,
            "joystick_threshold": joystick_threshold, "keys": keys_cfg,
            "joystick": js_cfg}
 
@@ -7898,9 +7912,8 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
 
 
 print(_("Initializing game system..."))
-Game(SCREEN_SIZE[0], SCREEN_SIZE[1], scale_method=SCALE_METHOD,
-     fps=FPS, delta=DELTA, delta_min=DELTA_MIN, delta_max=DELTA_MAX,
-     window_text="reTux {}".format(__version__),
+Game(SCREEN_SIZE[0], SCREEN_SIZE[1], fps=FPS, delta=DELTA, delta_min=DELTA_MIN,
+     delta_max=DELTA_MAX, window_text="reTux {}".format(__version__),
      window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 
 print(_("Initializing GUI system..."))
@@ -8489,6 +8502,8 @@ finally:
 
     fullscreen = cfg.get("fullscreen", fullscreen)
     sge.game.fullscreen = fullscreen
+    scale_method = cfg.get("scale_method", scale_method)
+    sge.game.scale_method = scale_method
     sound_enabled = cfg.get("sound_enabled", sound_enabled)
     music_enabled = cfg.get("music_enabled", music_enabled)
     stereo_enabled = cfg.get("stereo_enabled", stereo_enabled)

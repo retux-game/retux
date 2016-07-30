@@ -246,11 +246,6 @@ msgid "Manually choose a different language to use."
 msgstr "違った国語を選びます。"
 
 msgid ""
-"Use basic rather than smooth scaling. Faster if you're in fullscreen or "
-"resizing the window, but much uglier."
-msgstr "もっと早いけどもっと見苦しいスケーリングを使います。"
-
-msgid ""
 "Disable delta timing. Causes the game to slow down when it can't run at "
 "full speed instead of becoming choppier."
 msgstr "デルタタイミングしません。"
@@ -377,14 +372,17 @@ msgstr "geemu wo roodo dekimasen deshita."
 msgid "Next page"
 msgstr "tsugi no peeji"
 
-msgid "Fullscreen: {}"
-msgstr "furu sukuriin: {}"
-
 msgid "On"
 msgstr "hai"
 
 msgid "Off"
 msgstr "iie"
+
+msgid "Fullscreen: {}"
+msgstr "furu sukuriin: {}"
+
+msgid "Scale Method: {}"
+msgstr "SCALING: {}"
 
 msgid "Sound: {}"
 msgstr "oto: {}"
