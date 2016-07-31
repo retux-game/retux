@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="124">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="125">
  <properties>
   <property name="bgname" value="nightsky_castle"/>
   <property name="music" value="darkforestkeep.ogg"/>

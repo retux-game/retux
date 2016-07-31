@@ -3618,7 +3618,6 @@ class RaccotIcicle(Icicle):
 
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["visible"] = False
-        kwargs["tangible"] = False
         super(RaccotIcicle, self).__init__(x, y, z, **kwargs)
 
     def check_shake(self, raccot=False):
