@@ -319,8 +319,8 @@ DEATH_RESTART_WAIT = FPS
 
 WIN_COUNT_START_TIME = 120
 WIN_COUNT_CONTINUE_TIME = 45
-WIN_COUNT_MULT = 111
-WIN_COUNT_AMOUNT = 3
+WIN_COUNT_POINTS_MULT = 111
+WIN_COUNT_TIME_MULT = 311
 WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5
@@ -922,7 +922,7 @@ class Level(sge.dsp.Room):
             if self.win_count_points:
                 if self.points:
                     amt = int(math.copysign(
-                        min(WIN_COUNT_AMOUNT * delta_mult * WIN_COUNT_MULT,
+                        min(delta_mult * WIN_COUNT_POINTS_MULT,
                             abs(self.points)),
                         self.points))
                     score += amt
@@ -935,7 +935,7 @@ class Level(sge.dsp.Room):
                 time_bonus = level_timers.setdefault(main_area, 0)
                 if time_bonus:
                     amt = int(math.copysign(
-                        min(WIN_COUNT_AMOUNT * delta_mult * WIN_COUNT_MULT,
+                        min(delta_mult * WIN_COUNT_TIME_MULT,
                             abs(time_bonus)),
                         time_bonus))
                     score += amt
