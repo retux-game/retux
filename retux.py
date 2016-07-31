@@ -3614,6 +3614,8 @@ class SteadyIcicle(Icicle):
 
 class RaccotIcicle(Icicle):
 
+    never_tangible = True
+
     def __init__(self, x, y, z=0, **kwargs):
         kwargs["visible"] = False
         kwargs["tangible"] = False
