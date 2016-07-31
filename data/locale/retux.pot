@@ -160,6 +160,11 @@ msgid ""
 msgstr ""
 
 msgid ""
+"Did you know? It's possible to drop whatever you're carrying! Just hold the "
+"\"down\" button while pressing the \"action\" button."
+msgstr ""
+
+msgid ""
 "Traveller's Note:\n"
 "\n"
 "That pipe to the right is too high to be reached even by jumping off a "

@@ -420,8 +420,11 @@ class Game(sge.dsp.Game):
                               valign="bottom")
 
     def event_key_press(self, key, char):
+        global fullscreen
+
         if key == "f11":
-            self.fullscreen = not self.fullscreen
+            fullscreen = not fullscreen
+            self.fullscreen = fullscreen
 
     def event_mouse_button_press(self, button):
         if button == "middle":

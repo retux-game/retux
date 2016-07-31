@@ -187,6 +187,13 @@ msgstr ""
 "ochisaseru kamoshirenai kara, SLIMMERIST-san ni nobottenai de kudasai."
 
 msgid ""
+"Did you know? It's possible to drop whatever you're carrying! Just hold the "
+"\"down\" button while pressing the \"action\" button."
+msgstr ""
+"ne, shitteiru? motteiru mono wo rakka saserareru! shita no kii mo akushon no "
+"kii mo oshite."
+
+msgid ""
 "Traveller's Note:\n"
 "\n"
 "That pipe to the right is too high to be reached even by jumping off a "
