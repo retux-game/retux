@@ -3544,7 +3544,8 @@ class Icicle(InteractiveObject):
             crash_y = sge.game.current_room.height
             objects = (
                 sge.game.current_room.get_objects_at(
-                    self.bbox_left, self.bbox_bottom, self.bbox_width,
+                    self.bbox_left - ICICLE_LAX, self.bbox_bottom,
+                    self.bbox_width + 2 * ICICLE_LAX,
                     (sge.game.current_room.height - self.bbox_bottom +
                      sge.game.current_room.object_area_height)) |
                 sge.game.current_room.object_area_void)
