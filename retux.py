@@ -3707,7 +3707,8 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
                 crash_y = sge.game.current_room.height
                 objects = (
                     sge.game.current_room.get_objects_at(
-                        self.bbox_left, self.bbox_bottom, self.bbox_width,
+                        self.bbox_left - CRUSHER_LAX, self.bbox_bottom,
+                        self.bbox_width + 2 * CRUSHER_LAX,
                         (sge.game.current_room.height - self.bbox_bottom +
                          sge.game.current_room.object_area_height)) |
                     sge.game.current_room.object_area_void)
