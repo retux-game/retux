@@ -682,8 +682,10 @@ class Level(sge.dsp.Room):
         if main_area == self.fname:
             level_time_bonus = self.time_bonus
 
-        if main_area not in level_timers:
-            if main_area in levels and not GOD:
+        if GOD:
+            level_timers[main_area] = min(0, level_timers.get(main_area, 0))
+        elif main_area not in level_timers:
+            if main_area in levels:
                 level_timers[main_area] = level_time_bonus
             else:
                 level_timers[main_area] = 0
