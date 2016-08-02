@@ -3513,12 +3513,10 @@ class Explosion(InteractiveObject):
                         other.hit(detonator)
                     else:
                         other.hit(None)
-
-        # This is outside of the "friend" check because we *want* thin
-        # ice to be hit by the explosion repeatedly (to facilitate
-        # an instant shattering effect).
-        if isinstance(other, (Iceblock, ThinIce)):
-            other.burn()
+            if isinstance(other, (Iceblock)):
+                other.burn()
+            if isinstance(other, (ThinIce)):
+                other.shatter()
 
         super(Explosion, self).event_collision(other, xdirection, ydirection)
 
