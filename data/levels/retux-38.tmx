@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="350" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="175">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="350" height="14" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="177">
  <properties>
   <property name="bgname" value="nightsky"/>
   <property name="music" value="wisphunt.ogg"/>
@@ -96,7 +96,7 @@
  </objectgroup>
  <objectgroup name="Items">
   <object id="48" gid="485" x="4128" y="256" width="32" height="32"/>
-  <object id="49" gid="472" x="2624" y="192" width="32" height="32">
+  <object id="49" gid="472" x="2624" y="160" width="32" height="32">
    <properties>
     <property name="item" value="rusty_spring"/>
    </properties>
