@@ -11,7 +11,7 @@ without any warranty.
 Here you will find installers for Python 2.7 and Pygame 1.9.2a0.  First
 double-click on the Python installer and follow the instructions given,
 then double-click on the Pygame installer and follow the instructions
-given.  If you update Pacewar in the future, you can just download the
+given.  If you update the game in the future, you can just download the
 plain source code distribution; reinstalling Python and Pygame will not
 be necessary.
 
@@ -27,17 +27,10 @@ Python 2.7 installed, there are a few options:
 
 2. Install the 32-bit version of Python 2.7 alongside your existing
    64-bit Python 2.7 installation, leaving the 64-bit Python associated
-   with Python scripts, and create a shortcut which runs ReTux with
-   the 32-bit Python.  For example, if you install the 32-bit version of
-   Python 2.7 in "C:\Python27-32", you can set the starting location of
-   the shortcut to the ReTux directory, and set the command to the
-   following:
-
-   C:\Python27-32\python.exe retux.py
-
-   This option avoids touching the existing Python installation, but
-   it's a little dirty and has the potential to unnecessarily complicate
-   things in the future.
+   with Python scripts, and create a shortcut which runs the game with
+   the 32-bit Python.  This option avoids touching the existing Python
+   installation, but it's a little dirty and has the potential to
+   unnecessarily complicate things in the future.
 
 3. Download and install Pygame for the 64-bit version of Python 2.7.
    Such a build of Pygame can be found here:

@@ -7492,7 +7492,7 @@ def play_sound(sound, x=None, y=None):
             elif dist < SOUND_ZERO_RADIUS:
                 rng = SOUND_ZERO_RADIUS - SOUND_MAX_RADIUS
                 reldist = rng - (dist - SOUND_MAX_RADIUS)
-                volume = abs(reldist / rng)
+                volume = min(1, abs(reldist / rng))
             else:
                 # No point in continuing; it's too far away
                 return
