@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.1"
+__version__ = "1.1.1a0"
 
 import argparse
 import datetime
@@ -69,22 +69,8 @@ CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
 
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(CONFIG, "data")]
-for d in dirs:
-    if os.path.isdir(d):
-        for dirpath, dirnames, filenames in os.walk(d, True, None, True):
-            dirtail = os.path.relpath(dirpath, d)
-            nd = os.path.join(DATA, dirtail)
 
-            for dirname in dirnames:
-                dp = os.path.join(nd, dirname)
-                if not os.path.exists(dp):
-                    os.makedirs(dp)
-
-            for fname in filenames:
-                shutil.copy2(os.path.join(dirpath, fname), nd)
-del dirs
-
-gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
+gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -100,7 +86,7 @@ parser.add_argument(
     action="store_true")
 parser.add_argument(
     "-d", "--datadir",
-    help=_('Where to load the game data from (Default: "{}")').format(DATA))
+    help=_('Where to load the game data from (Default: "{}")').format(dirs[0]))
 parser.add_argument(
     "--level",
     help=_("Play the indicated level and then exit."))
@@ -121,12 +107,29 @@ args = parser.parse_args()
 PRINT_ERRORS = args.print_errors
 DELTA = not args.nodelta
 if args.datadir:
-    DATA = args.datadir
+    dirs[0] = args.datadir
 LEVEL = args.level
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
 GOD = (args.god and args.god.lower() == "plz4giv")
+
+for d in dirs:
+    if os.path.isdir(d):
+        for dirpath, dirnames, filenames in os.walk(d, True, None, True):
+            dirtail = os.path.relpath(dirpath, d)
+            nd = os.path.join(DATA, dirtail)
+
+            for dirname in dirnames:
+                dp = os.path.join(nd, dirname)
+                if not os.path.exists(dp):
+                    os.makedirs(dp)
+
+            for fname in filenames:
+                shutil.copy2(os.path.join(dirpath, fname), nd)
+del dirs
+
+gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
 
 if args.lang:
     lang = gettext.translation("retux",
