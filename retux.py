@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.1.2"
+__version__ = "1.1.3a0"
 
 import argparse
 import datetime
@@ -6718,6 +6718,7 @@ class KeyboardMenu(Menu):
                 if len(key) > 1:
                     key.remove(new_key)
             else:
+                refused = False
                 for other_key in [
                         left_key[self.page], right_key[self.page],
                         up_key[self.page], down_key[self.page],
@@ -6725,11 +6726,15 @@ class KeyboardMenu(Menu):
                         sneak_key[self.page], menu_key[self.page],
                         pause_key[self.page]]:
                     if new_key in other_key:
-                        other_key.remove(new_key)
+                        if len(other_key) > 1:
+                            other_key.remove(new_key)
+                        else:
+                            refused = True
 
-                key.append(new_key)
-                while len(key) > 2:
-                    key.pop(0)
+                if not refused:
+                    key.append(new_key)
+                    while len(key) > 2:
+                        key.pop(0)
 
         if self.choice == 0:
             play_sound(select_sound)
