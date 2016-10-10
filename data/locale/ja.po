@@ -492,6 +492,12 @@ msgid ""
 "Escape key to cancel."
 msgstr "toguru shitai botan ka joisutikku ka juuji kii wo oshite kudasai."
 
+msgid "Error"
+msgstr "ERROR MESSAGE"
+
+msgid "Ok"
+msgstr "OK"
+
 msgid ""
 "Preloading levels...\n"
 "\n"

@@ -435,6 +435,12 @@ msgid ""
 "Escape key to cancel."
 msgstr ""
 
+msgid "Error"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
 msgid ""
 "Preloading levels...\n"
 "\n"

@@ -7469,8 +7469,8 @@ def show_error(message):
         sge.game.pump_input()
         sge.game.input_events = []
         sge.game.mouse.visible = True
-        xsge_gui.show_message(message=message, title="Error", buttons=["Ok"],
-                              width=640)
+        xsge_gui.show_message(message=message, title=_("Error"),
+                              buttons=[_("Ok")], width=640)
         sge.game.mouse.visible = False
     else:
         print(message)
