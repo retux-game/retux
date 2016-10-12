@@ -511,7 +511,6 @@ Source: https://github.com/SuperTux/supertux/releases/download/v0.1.3/supertux-0
 
 images/misc/heart_empty.png
 images/misc/heart_full.png
-images/misc/heart_half.png
 
 Author: C.Nilsson <http://opengameart.org/users/cnilsson>
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>

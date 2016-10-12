@@ -7613,7 +7613,7 @@ def load_levelset(fname, preload_start=0):
 
         main_area = None
 
-        w = 400
+        w = 420
         h = 128
         margin = 16
         x = SCREEN_SIZE[0] / 2 - w / 2
@@ -8226,7 +8226,6 @@ light_sprite = sge.gfx.Sprite("light", d, origin_x=192, origin_y=192)
 light_small_sprite = sge.gfx.Sprite("light_small", d, origin_x=64, origin_y=64)
 light_tiny_sprite = sge.gfx.Sprite("light_tiny", d, origin_x=32, origin_y=32)
 heart_empty_sprite = sge.gfx.Sprite("heart_empty", d, origin_y=-1)
-heart_half_sprite = sge.gfx.Sprite("heart_half", d, origin_y=-1)
 heart_full_sprite = sge.gfx.Sprite("heart_full", d, origin_y=-1)
 
 fire_flower_light_sprite = light_small_sprite.copy()
