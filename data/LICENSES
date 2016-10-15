@@ -745,6 +745,15 @@ License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
 ------------------------------------------------------------------------
 
+locale/es.po
+
+Authors:
+  onpon4 <https://onpon4.github.io>
+  Heckyel <heckyel@openmailbox.org>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+
+------------------------------------------------------------------------
+
 levels/ericxdu.tmx
 levelsets/ericxdu.json
 
