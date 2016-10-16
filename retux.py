@@ -70,7 +70,11 @@ CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(CONFIG, "data")]
 
-gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
+if six.PY2:
+    gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")),
+                    unicode=True)
+else:
+    gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -129,13 +133,20 @@ for d in dirs:
                 shutil.copy2(os.path.join(dirpath, fname), nd)
 del dirs
 
-gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
+if six.PY2:
+    gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")),
+                    unicode=True)
+else:
+    gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
 
 if args.lang:
     lang = gettext.translation("retux",
                                os.path.abspath(os.path.join(DATA, "locale")),
                                [args.lang])
-    lang.install()
+    if six.PY2:
+        lang.install(unicode=True)
+    else:
+        lang.install()
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
