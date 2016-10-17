@@ -3687,6 +3687,7 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
     nonstick_top = True
     nonstick_bottom = True
     sticky_top = True
+    always_tangible = True
     burnable = True
     freezable = True
     gravity = 0
@@ -3749,6 +3750,10 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
                         self.crushing = True
                         self.gravity = CRUSHER_GRAVITY
                         break
+                else:
+                    if not self.get_top_touching_wall():
+                        self.yvelocity = -CRUSHER_RISE_SPEED
+                        self.crushing = True
 
     def event_alarm(self, alarm_id):
         if alarm_id == "crush_end":
