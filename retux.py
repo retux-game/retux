@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.1.3a0"
+__version__ = "1.2a0"
 
 import argparse
 import datetime
@@ -7362,6 +7362,16 @@ def get_scaled_copy(obj):
     s.rotate(obj.image_rotation)
     s.origin_x = obj.image_origin_x
     s.origin_y = obj.image_origin_y
+    if obj.image_blend:
+        blend_mode = obj.image_blend_mode
+        if blend_mode is None:
+            blend_mode = sge.BLEND_RGB_MULTIPLY
+        s.draw_rectangle(0, 0, s.width, s.height, fill=obj.image_blend,
+                         blend_mode=blend_mode)
+    if obj.image_alpha < 255:
+        c = sge.gfx.Color((255, 255, 255, obj.image_alpha))
+        s.draw_rectangle(0, 0, s.width, s.height, fill=c,
+                         blend_mode=sge.BLEND_RGBA_MULTIPLY)
     return s
 
 
