@@ -518,6 +518,12 @@ msgstr ""
 "Presione el botón de la palanca, axis, o la dirección sombrero que deseen alternar, o la "
 "tecla Escape para cancelar."
 
+msgid "Error"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
 msgid ""
 "Preloading levels...\n"
 "\n"
