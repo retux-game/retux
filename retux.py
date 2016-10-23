@@ -7640,7 +7640,7 @@ def load_levelset(fname, preload_start=0):
         main_area = None
 
         text = _("Preloading levels...\n\n(press any key to skip)")
-        label_w = 400
+        label_w = font.get_width("X" * 23)
         label_h = font.get_height(text, width=label_w)
         margin = 16
         w = label_w + 2 * margin
