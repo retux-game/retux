@@ -7639,9 +7639,12 @@ def load_levelset(fname, preload_start=0):
 
         main_area = None
 
-        w = 420
-        h = 128
+        text = _("Preloading levels...\n\n(press any key to skip)")
+        label_w = 400
+        label_h = font.get_height(text, width=label_w)
         margin = 16
+        w = label_w + 2 * margin
+        h = label_h + 3 * margin + xsge_gui.progressbar_container_sprite.height
         x = SCREEN_SIZE[0] / 2 - w / 2
         y = SCREEN_SIZE[1] / 2 - h / 2
         c = sge.gfx.Color("black")
@@ -7650,17 +7653,14 @@ def load_levelset(fname, preload_start=0):
 
         x = margin
         y = margin
-        text = _("Preloading levels...\n\n(press any key to skip)")
         c = sge.gfx.Color("white")
         xsge_gui.Label(
-            window, x, y, 1, text, font=font, width=(w - 2 * margin),
-            height=(h - 3 * margin -
-                    xsge_gui.progressbar_container_sprite.height), color=c)
+            window, x, y, 1, text, font=font, width=label_w, height=label_h,
+            color=c)
 
         x = margin
         y = h - margin - xsge_gui.progressbar_container_sprite.height
-        progressbar = xsge_gui.ProgressBar(window, x, y, 0,
-                                           width=(w - 2 * margin))
+        progressbar = xsge_gui.ProgressBar(window, x, y, 0, width=label_w)
 
         window.show()
         gui_handler.event_step(0, 0)
