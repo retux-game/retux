@@ -8428,7 +8428,7 @@ del castle_bottom_spr
 
 # Load fonts
 print(_("Loading fonts..."))
-chars = (['\x00'] + [six.unichr(i) for i in six.moves.range(33, 127)] +
+chars = ([None] + [six.unichr(i) for i in six.moves.range(33, 127)] +
          ['\u2190', ' '] + [six.unichr(i) for i in six.moves.range(161, 384)])
 
 font_sprite = sge.gfx.Sprite.from_tileset(
