@@ -367,7 +367,7 @@ msgid "Load Game"
 msgstr "Cargar Juego"
 
 msgid "Select Levelset"
-msgstr "Seleccione nivel definido"
+msgstr "Seleccione un nivel de la colección"
 
 msgid "Options"
 msgstr "Opciones"
@@ -382,10 +382,10 @@ msgid "-Empty-"
 msgstr "-Vacío-"
 
 msgid "-No Levelset-"
-msgstr "-Nivel no definido-"
+msgstr "-Sin niveles en la colección-"
 
 msgid "-Corrupt Levelset-"
-msgstr "-Nivel definido corrupto-"
+msgstr "-Niveles de la colección corruptos-"
 
 msgid "Back"
 msgstr "Atrás"
@@ -439,10 +439,10 @@ msgid "Detect joysticks"
 msgstr "Detectar mandos"
 
 msgid "Import levelset"
-msgstr "Importar nivel definido"
+msgstr "Importar nivel a la colección"
 
 msgid "Export levelset"
-msgstr "Exportar nivel definido"
+msgstr "Exportar nivel de la colección"
 
 msgid "ReTux levelset files"
 msgstr "Archivos de nivel definido de Retux"
@@ -451,7 +451,7 @@ msgid "all files"
 msgstr "Todos los archivos"
 
 msgid "Importing levelset..."
-msgstr "Importando nivel definido"
+msgstr "Importando nivel a la colección..."
 
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
@@ -494,7 +494,7 @@ msgid "None"
 msgstr "Ninguno"
 
 msgid "Exporting levelset..."
-msgstr "Exportando nivel definido..."
+msgstr "Exportando nivel de la colección..."
 
 msgid "Continue"
 msgstr "Continuar"

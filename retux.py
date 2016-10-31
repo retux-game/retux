@@ -34,6 +34,7 @@ import random
 import shutil
 import sys
 import tempfile
+import time
 import traceback
 import warnings
 import weakref
@@ -1173,7 +1174,6 @@ class LevelRecorder(LevelTester):
         if key == "f12":
             jt = self.recording
 
-            import time
             fname = "recording_{}.json".format(time.time())
             with open(fname, 'w') as f:
                 json.dump(jt, f, indent=4, sort_keys=True)
