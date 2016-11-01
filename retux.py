@@ -8456,11 +8456,12 @@ brick_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "brick.wav"))
 coin_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "coin.wav"))
 find_powerup_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
 tuxdoll_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "tuxdoll.wav"))
+s = sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav"))
 ice_crack_sounds = [
-    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav")),
-    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav")),
-    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav")),
-    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-3.wav"))]
+    s,
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav"), parent=s),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav"), parent=s),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-3.wav"), parent=s)]
 ice_shatter_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                "ice_shatter.wav"))
 heal_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "heal.wav"))
