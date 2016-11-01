@@ -195,7 +195,7 @@
   <object id="147" gid="479" x="7776" y="1056" width="32" height="32"/>
   <object id="148" gid="482" x="5152" y="1184" width="32" height="32">
    <properties>
-    <property name="text" value="Traveller's note:\n\nThat cave to the left appears to be inaccessible from here. There has to be another way inside!"/>
+    <property name="text" value="Traveler's Note:\n\nThat cave to the left appears to be inaccessible from here. There has to be another way inside!"/>
    </properties>
   </object>
   <object id="149" gid="485" x="1248" y="288" width="32" height="32"/>
