@@ -7502,10 +7502,10 @@ def show_error(message):
         print(message)
 
 
-def play_sound(sound, x=None, y=None):
+def play_sound(sound, x=None, y=None, force=True):
     if sound_enabled and sound:
         if x is None or y is None:
-            sound.play()
+            sound.play(force=force)
         else:
             current_view = None
             view_x = 0
@@ -7554,7 +7554,7 @@ def play_sound(sound, x=None, y=None):
             else:
                 balance = 0
 
-            sound.play(volume=volume, balance=balance)
+            sound.play(volume=volume, balance=balance, force=force)
 
 
 def play_music(music, force_restart=False):
