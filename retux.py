@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.3.1"
+__version__ = "1.3.2"
 
 import argparse
 import datetime
@@ -6399,7 +6399,7 @@ class NewGameMenu(Menu):
                 try:
                     with open(fname, 'r') as f:
                         data = json.load(f)
-                except (IOError, ValueError):
+                except (IOError, OSError, ValueError):
                     cls.items.append(_("-Corrupt Levelset-"))
                     continue
                 else:
@@ -6493,7 +6493,7 @@ class LevelsetMenu(Menu):
                 try:
                     with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
                         data = json.load(f)
-                except (IOError, ValueError):
+                except (IOError, OSError, ValueError):
                     continue
                 else:
                     cls.levelsets.append((fname, str(data.get("name", "???"))))
@@ -7044,7 +7044,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                     exclude_files.add(fd)
                     try:
                         tilemap = tmx.TileMap.load(fd)
-                    except IOError as e:
+                    except (IOError, OSError) as e:
                         show_error(str(e))
                         return extra_files
 
@@ -7565,7 +7565,7 @@ def play_music(music, force_restart=False):
             try:
                 music_object = sge.snd.Music(os.path.join(DATA, "music",
                                                           music))
-            except IOError:
+            except (IOError, OSError):
                 sge.snd.Music.clear_queue()
                 sge.snd.Music.stop()
                 return
@@ -7579,7 +7579,7 @@ def play_music(music, force_restart=False):
             try:
                 music_start_object = sge.snd.Music(os.path.join(DATA, "music",
                                                                 music_start))
-            except IOError:
+            except (IOError, OSError):
                 pass
             else:
                 loaded_music[music_start] = music_start_object
@@ -8223,7 +8223,7 @@ for fname in os.listdir(d):
     root, ext = os.path.splitext(fname)
     try:
         portrait = sge.gfx.Sprite(root, d)
-    except IOError:
+    except (IOError, OSError):
         pass
     else:
         portrait_sprites[root] = portrait
@@ -8547,7 +8547,7 @@ if not PRINT_ERRORS:
 try:
     with open(os.path.join(CONFIG, "config.json")) as f:
         cfg = json.load(f)
-except (IOError, ValueError):
+except (IOError, OSError, ValueError):
     cfg = {}
 finally:
     cfg_version = cfg.get("version", 0)
@@ -8635,7 +8635,7 @@ finally:
 try:
     with open(os.path.join(CONFIG, "save_slots.json")) as f:
         loaded_slots = json.load(f)
-except (IOError, ValueError):
+except (IOError, OSError, ValueError):
     pass
 else:
     for i in six.moves.range(min(len(loaded_slots), len(save_slots))):
