@@ -1,9 +1,7 @@
-Copyright (C) 2014-2016 onpon4 <onpon4@riseup.net>
-
-Copying and distribution of this file, with or without modification,
-are permitted in any medium without royalty provided the copyright
-notice and this notice are preserved.  This file is offered as-is,
-without any warranty.
+This file has been dedicated to the public domain, to the extent
+possible under applicable law, via CC0. See
+http://creativecommons.org/publicdomain/zero/1.0/ for more
+information. This file is offered as-is, without any warranty.
 
 ========================================================================
 
