@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 
 # reTux
-# Copyright (C) 2014-2016 onpon4 <onpon4@riseup.net>
+# Copyright (C) 2014-2017 onpon4 <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.3.3"
+__version__ = "1.3.4a0"
 
 import argparse
 import datetime
@@ -433,13 +433,6 @@ class Game(sge.dsp.Game):
                               self.height - 8, z=1000,
                               color=sge.gfx.Color("yellow"), halign="right",
                               valign="bottom")
-
-    def event_key_press(self, key, char):
-        global fullscreen
-
-        if key == "f11":
-            fullscreen = not fullscreen
-            self.fullscreen = fullscreen
 
     def event_mouse_button_press(self, button):
         if button == "middle":
