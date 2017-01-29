@@ -33,18 +33,13 @@ terminal with the "-h" command-line option for more information.
 
 HOW TO PLAY
 
-Use the arrow keys and Enter to navigate the menus. By default, Tux is
-is controlled by the arrow keys, Space, Left Ctrl, and Left Shift. You
-can change the controls in the Options menu.
+Use the directional controls and pause or jump key to navigate the
+menus. By default, Tux is is controlled by the arrow keys, Space,
+Left Ctrl, and Left Shift. You can change the controls in the Options
+menu.
 
-Other controls:
-- F11: Toggle fullscreen.
-- Escape: Return to the title screen.
-- Middle mouse button: Quit the game.
-
-The middle mouse button quitting the game is meant to work around a bug
-in Pygame which sometimes locks up the keyboard when toggling fullscreen
-or changing the window size. See this post on the SGE blog for more
-information:
+If, after entering fullscreen mode, the keyboard becomes unresponsive,
+you can exit the game by pressing the middle mouse button. This is a
+result of a rare bug in Pygame, explained in detail here:
 
 https://savannah.nongnu.org/forum/forum.php?forum_id=8113
