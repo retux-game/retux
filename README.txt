@@ -14,7 +14,7 @@ system, simply run the executable.
 To run the ReTux source code, you will need the following dependencies:
 
 - Python 2 (2.7 or later) or 3 (3.1 or later) <http://www.python.org>
-- Pygame 1.9.1 or later <http://pygame.org/download.shtml>
+- Pygame 1.9.1 or later <http://pygame.org>
 
 Once you have installed the dependencies, you can start ReTux by
 running retux.py. On most systems, this should be done by
