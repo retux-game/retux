@@ -31,7 +31,7 @@ if __name__ == "__main__":
             print("Building {}...".format(fname))
             d, root = os.path.split(root)
             os.makedirs(os.path.join(d, root, "LC_MESSAGES"), exist_ok=True)
-            oname = os.path.join(d, root, "LC_MESSAGES", "hexoshi.mo")
+            oname = os.path.join(d, root, "LC_MESSAGES", "retux.mo")
             subprocess.call(["msgfmt", "-o", oname, fname])
 
     print("Done.")
