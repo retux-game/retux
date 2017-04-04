@@ -19,7 +19,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.3\n"
+"Project-Id-Version: 1.3.5\n"
 "Report-Msgid-Bugs-To: http://retux.nongnu.org\n"
 "POT-Creation-Date: 2016-06-02 20:21-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -205,169 +205,234 @@ msgstr ""
 msgid "There must be a way to remove the fire flower from this room."
 msgstr ""
 
+# Explanation of what the "-p" command-line option does
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr ""
 
+# Explanation of what the "-l" command-line option does
 msgid "Manually choose a different language to use."
 msgstr ""
 
+# Explanation of what the "--nodelta" command-line option does
 msgid ""
 "Disable delta timing. Causes the game to slow down when it can't run at "
 "full speed instead of becoming choppier."
 msgstr ""
 
+# Explanation of what the "-d" command-line option does.
+# {} is replaced by the default value of this option.
 msgid "Where to load the game data from (Default: \"{}\")"
 msgstr ""
 
+# Explanation of what the "--level" command-line option does
 msgid "Play the indicated level and then exit."
 msgstr ""
 
+# Explanation of what the "--record" command-line option does
 msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
 msgstr ""
 
+# Explanation of what the "--no-backgrounds" command-line option does
 msgid "Only show solid colors for backgrounds (uses less RAM)."
 msgstr ""
 
+# Explanation of what the "--no-hud" command-line option does
 msgid "Don't show the player's heads-up display."
 msgstr ""
 
+# Shown just above the current score
 msgid "Score"
 msgstr ""
 
+# Shown just above the current time bonus (if applicable)
 msgid "Time Bonus"
 msgstr ""
 
+# Shown just above the current time penalty (if applicable)
 msgid "Time Penalty"
 msgstr ""
 
+# {} is replaced by an error message
 msgid ""
 "An error occurred in a timeline 'setattr' command:\n"
 "\n"
 "{}"
 msgstr ""
 
+# {} is replaced by an error message
 msgid ""
 "An error occurred in a timeline 'exec' command:\n"
 "\n"
 "{}"
 msgstr ""
 
+# {} is replaced by an error message
 msgid ""
 "An error occurred in a timeline 'if' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
+# {} is replaced by an error message
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
+# Printed to the terminal when a level is loaded before the game starts.
+# {} is replaced by the file name of the level being loaded.
 msgid "Loading \"{}\"..."
 msgstr ""
 
+# {} is replaced by an error message
 msgid ""
 "An error occurred when trying to load the level:\n"
 "\n"
 "{}"
 msgstr ""
 
+# Text shown at the bottom of the screen during skippable cutscenes
 msgid "Press the Menu button to skip..."
 msgstr ""
 
+# Text shown at the bottom of the screen during unskippable cutscenes
 msgid "Cinematic mode enabled"
 msgstr ""
 
+# Main menu option; shows the New Game menu
 msgid "New Game"
 msgstr ""
 
+# Main menu option; shows the Load Game menu
 msgid "Load Game"
 msgstr ""
 
+# Main menu option; shows the levelset selection menu
 msgid "Select Levelset"
 msgstr ""
 
+# Main menu option; shows the Options menu
 msgid "Options"
 msgstr ""
 
+# Main menu option; shows the credits screen
 msgid "Credits"
 msgstr ""
 
+# Main menu option; opens https://www.patreon.com/onpon4 in a Web browser
+msgid "Support on Patreon"
+msgstr ""
+
+# Main menu option; quits the game
 msgid "Quit"
 msgstr ""
 
+# Menu option; indicates that a save slot is empty
 msgid "-Empty-"
 msgstr ""
 
+# Menu option; indicates that a save slot is not using any levelset.
+# This should not happen.
 msgid "-No Levelset-"
 msgstr ""
 
+# Menu option; indicates that a save slot is using a corrupt levelset
 msgid "-Corrupt Levelset-"
 msgstr ""
 
+# Menu option; used in all sub-menus to go back to the previous menu
 msgid "Back"
 msgstr ""
 
+# Menu option; overwrite the chosen save file
 msgid "Overwrite this save file"
 msgstr ""
 
+# Menu option; cancel overwriting the chosen save file and return to previous menu
 msgid "Cancel"
 msgstr ""
 
+# Error message shown when a levelset does not properly start.
 msgid "An error occurred when trying to load the game."
 msgstr ""
 
+# Menu option; used to change to the next "page" (section) of the current menu
 msgid "Next page"
 msgstr ""
 
+# Used as a part of binary config menu options below.
 msgid "On"
 msgstr ""
 
+# Used as a part of binary config menu options below.
 msgid "Off"
 msgstr ""
 
+# Menu option; indicates whether or not fullscreen should be used.
+# {} is replaced by "On" or "Off".
 msgid "Fullscreen: {}"
 msgstr ""
 
+# Menu option; indicates what scale method ReTux should use.
+# {} is replaced by the name of a scale method.
 msgid "Scale Method: {}"
 msgstr ""
 
+# Menu option; indicates whether or not sound effects should play.
+# {} is replaced by "On" or "Off".
 msgid "Sound: {}"
 msgstr ""
 
+# Menu option; indicates whether or not music should play.
+# {} is replaced by "On" or "Off".
 msgid "Music: {}"
 msgstr ""
 
+# Menu option; indicates whether or not stereo sound should be used.
+# {} is replaced by "On" or "Off".
 msgid "Stereo: {}"
 msgstr ""
 
+# Menu option; indicates whether or not the frame rate should be shown.
+# {} is replaced by "On" or "Off".
 msgid "Show FPS: {}"
 msgstr ""
 
+# Menu option; {} is replaced by the percentage of joystick tilt ReTux
+# will treat as zero (a.k.a. deadzone).
 msgid "Joystick Threshold: {}%"
 msgstr ""
 
+# Menu option; leads to the keyboard config menu
 msgid "Configure keyboard"
 msgstr ""
 
+# Menu option; leads to the joystick config menu
 msgid "Configure joysticks"
 msgstr ""
 
+# Menu option; refreshes the game's knowledge of available joysticks
 msgid "Detect joysticks"
 msgstr ""
 
+# Menu option; imports a levelset from a ".rtz" file
 msgid "Import levelset"
 msgstr ""
 
+# Menu option; exports a levelset to a ".rtz" file
 msgid "Export levelset"
 msgstr ""
 
+# Used for the "file type" box of the Tkinter file selection dialog;
+# indicates to show only ".rtz" files.
 msgid "ReTux levelset files"
 msgstr ""
 
+# Used for the "file type" box of the Tkinter file selection dialog;
+# indicates to show files of any type
 msgid "all files"
 msgstr ""
 
@@ -379,8 +444,14 @@ msgid ""
 "make sure Tkinter is installed and try again."
 msgstr ""
 
+# Shown at the top of each control config menu. {} is replaced with the
+# player number.
 msgid "Player {}"
 msgstr ""
+
+
+# Action names with configurable controls, used in control config menus.
+# {} is replaced with the key(s) or joystick control(s) the action is set to.
 
 msgid "Left: {}"
 msgstr ""
@@ -409,21 +480,27 @@ msgstr ""
 msgid "Pause: {}"
 msgstr ""
 
+
+# Indicates that an action is not assigned to any joystick control
 msgid "None"
 msgstr ""
 
 msgid "Exporting levelset..."
 msgstr ""
 
+# In-game menu option; exits the menu and returns to the game
 msgid "Continue"
 msgstr ""
 
+# Used in single-level mode menu; quits the level (and consequently the game)
 msgid "Abort"
 msgstr ""
 
+# In-level menu option; returns to the worldmap
 msgid "Return to Map"
 msgstr ""
 
+# In-game menu option; quits the game and returns to the title screen
 msgid "Return to Title Screen"
 msgstr ""
 
@@ -435,9 +512,11 @@ msgid ""
 "Escape key to cancel."
 msgstr ""
 
+# Error message title
 msgid "Error"
 msgstr ""
 
+# Error message "Ok" button
 msgid "Ok"
 msgstr ""
 
@@ -447,17 +526,22 @@ msgid ""
 "(press any key to skip)"
 msgstr ""
 
+# Printed to the terminal as the game starts
 msgid "Initializing game system..."
 msgstr ""
 
+# Printed to the terminal as the game starts
 msgid "Initializing GUI system..."
 msgstr ""
 
+# Printed to the terminal as the game starts
 msgid "Loading images..."
 msgstr ""
 
+# Printed to the terminal as the game starts
 msgid "Loading fonts..."
 msgstr ""
 
+# Printed to the terminal as the game starts
 msgid "Starting game..."
 msgstr ""

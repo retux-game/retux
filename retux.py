@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.3.4"
+__version__ = "1.3.5a0"
 
 import argparse
 import datetime
@@ -38,6 +38,7 @@ import time
 import traceback
 import warnings
 import weakref
+import webbrowser
 import zipfile
 
 import sge
@@ -6354,7 +6355,7 @@ class Menu(xsge_gui.MenuWindow):
 class MainMenu(Menu):
 
     items = [_("New Game"), _("Load Game"), _("Select Levelset"), _("Options"),
-             _("Credits"), _("Quit")]
+             _("Credits"), _("Support on Patreon"), _("Quit")]
 
     def event_choose(self):
         if self.choice == 0:
@@ -6373,6 +6374,9 @@ class MainMenu(Menu):
             credits_room = CreditsScreen.load(os.path.join("special",
                                                            "credits.tmx"))
             credits_room.start()
+        elif self.choice == 5:
+            webbrowser.open("https://www.patreon.com/onpon4")
+            MainMenu.create(self.choice)
         else:
             sge.game.end()
 
