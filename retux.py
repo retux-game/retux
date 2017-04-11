@@ -1834,7 +1834,7 @@ class Player(xsge_physics.Collider):
             obj_image_xscale = self.held_object.image_xscale
             obj_image_yscale = self.held_object.image_yscale
 
-            i = (id(body_sprite), id(obj_sprite), obj_image_index,
+            i = (body_sprite, obj_sprite, obj_image_index,
                  obj_image_xscale, obj_image_yscale)
             if i in tux_grab_sprites:
                 return tux_grab_sprites[i]
