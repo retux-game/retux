@@ -267,6 +267,10 @@ msgstr ""
 msgid "There must be a way to remove the fire flower from this room."
 msgstr "Tiene que haber una manera de sacar la flor de fuego de esta habitación."
 
+# Explanation of what the "--version" command-line option does
+msgid "Output version information and exit."
+msgstr ""
+
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr "Errores se imprimen directamente a la salida estándar en lugar de guardar en un archivo."
 

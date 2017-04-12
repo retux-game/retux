@@ -246,6 +246,10 @@ msgid ""
 "lava!"
 msgstr "hi ga nai ka? kono yoku atsui yougan no furo ni haite kudasai!"
 
+# Explanation of what the "--version" command-line option does
+msgid "Output version information and exit."
+msgstr "ゲームの版とプリントします。"
+
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr "エラーメッセージはstdoutにプリントします。"
 
