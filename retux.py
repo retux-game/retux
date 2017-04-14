@@ -340,6 +340,8 @@ WIN_COUNT_START_TIME = 120
 WIN_COUNT_CONTINUE_TIME = 45
 WIN_COUNT_POINTS_MULT = 111
 WIN_COUNT_TIME_MULT = 311
+WIN_COUNT_POINTS_MAX = FPS
+WIN_COUNT_TIME_MAX = 5 * FPS
 WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5
@@ -684,6 +686,7 @@ class Level(sge.dsp.Room):
         self.won = False
         self.win_count_points = False
         self.win_count_time = False
+        self.count_mult = 1
         self.death_time = None
         self.alarms["timer"] = TIMER_FRAMES
         self.pause_delay = TRANSITION_TIME
@@ -940,8 +943,7 @@ class Level(sge.dsp.Room):
             if self.win_count_points:
                 if self.points:
                     amt = int(math.copysign(
-                        min(delta_mult * WIN_COUNT_POINTS_MULT,
-                            abs(self.points)),
+                        min(delta_mult * self.count_mult, abs(self.points)),
                         self.points))
                     score += amt
                     self.points -= amt
@@ -953,8 +955,7 @@ class Level(sge.dsp.Room):
                 time_bonus = level_timers.setdefault(main_area, 0)
                 if time_bonus:
                     amt = int(math.copysign(
-                        min(delta_mult * WIN_COUNT_TIME_MULT,
-                            abs(time_bonus)),
+                        min(delta_mult * self.count_mult, abs(time_bonus)),
                         time_bonus))
                     score += amt
                     level_timers[main_area] -= amt
@@ -1052,10 +1053,18 @@ class Level(sge.dsp.Room):
         elif alarm_id == "win_count_points":
             if self.points > 0:
                 self.win_count_points = True
+                self.count_mult = max(WIN_COUNT_POINTS_MULT,
+                                      self.points / WIN_COUNT_POINTS_MAX)
             else:
                 self.win_count_time = True
+                time_bonus = level_timers.setdefault(main_area, 0)
+                self.count_mult = max(WIN_COUNT_TIME_MULT,
+                                      time_bonus / WIN_COUNT_TIME_MAX)
         elif alarm_id == "win_count_time":
             self.win_count_time = True
+            time_bonus = level_timers.setdefault(main_area, 0)
+            self.count_mult = max(WIN_COUNT_TIME_MULT,
+                                  time_bonus / WIN_COUNT_TIME_MAX)
         elif alarm_id == "win_count_hp":
             if GOD:
                 self.alarms["win"] = WIN_FINISH_DELAY
