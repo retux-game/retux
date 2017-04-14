@@ -625,38 +625,39 @@ class Level(sge.dsp.Room):
     def win_level(self, victory_walk=True):
         global current_checkpoints
 
-        for obj in self.objects[:]:
-            if isinstance(obj, WinPuffObject) and obj.active:
-                obj.win_puff()
+        if self.death_time is None and "death" not in self.alarms:
+            for obj in self.objects[:]:
+                if isinstance(obj, WinPuffObject) and obj.active:
+                    obj.win_puff()
 
-        for obj in self.objects:
-            if isinstance(obj, Player):
-                obj.human = False
-                obj.left_pressed = False
-                obj.right_pressed = False
-                obj.up_pressed = False
-                obj.down_pressed = False
-                obj.jump_pressed = False
-                obj.action_pressed = False
-                obj.sneak_pressed = True
-                obj.jump_release()
+            for obj in self.objects:
+                if isinstance(obj, Player):
+                    obj.human = False
+                    obj.left_pressed = False
+                    obj.right_pressed = False
+                    obj.up_pressed = False
+                    obj.down_pressed = False
+                    obj.jump_pressed = False
+                    obj.action_pressed = False
+                    obj.sneak_pressed = True
+                    obj.jump_release()
 
-                if victory_walk:
-                    if obj.xvelocity >= 0:
-                        obj.right_pressed = True
-                    else:
-                        obj.left_pressed = True
+                    if victory_walk:
+                        if obj.xvelocity >= 0:
+                            obj.right_pressed = True
+                        else:
+                            obj.left_pressed = True
 
-        if "timer" in self.alarms:
-            del self.alarms["timer"]
+            if "timer" in self.alarms:
+                del self.alarms["timer"]
 
-        self.won = True
-        self.alarms["win_count_points"] = WIN_COUNT_START_TIME
-        current_checkpoints[main_area] = None
-        sge.snd.Music.clear_queue()
-        sge.snd.Music.stop()
-        if music_enabled:
-            level_win_music.play()
+            self.won = True
+            self.alarms["win_count_points"] = WIN_COUNT_START_TIME
+            current_checkpoints[main_area] = None
+            sge.snd.Music.clear_queue()
+            sge.snd.Music.stop()
+            if music_enabled:
+                level_win_music.play()
 
     def win_game(self):
         global current_level
