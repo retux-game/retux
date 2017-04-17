@@ -1,0 +1,549 @@
+# ReTux translatable text.
+# Copyright (C) 2016 onpon4 <onpon4@riseup.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Julie <onpon4@riseup.net>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.3\n"
+"Report-Msgid-Bugs-To: http://retux.nongnu.org\n"
+"POT-Creation-Date: 2017-04-09 09:35-0400\n"
+"PO-Revision-Date: 20167-04-09 09:65-0400\n"
+"Last-Translator: TheMightyGlider <themightyglider@gmx.de>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+msgstr "Was für ein wundervoll kalter Tag zum fischen! Was ich heute wohl fangen werde?"
+
+msgid "Oh, looks like I have a message!"
+msgstr "Oh, sieht wie eine Nachricht für mich aus!"
+
+msgid "What?! They're taking my fish?!"
+msgstr "Was?! Sie nehmen mir die Fische weg?!"
+
+msgid "I will not stand for this! Nobody takes away MY fish!"
+msgstr "Das nehme ich nicht hin! Niemand nimmt mir MEINE Fische weg!"
+
+msgid "What are you doing here? You're trespassing!"
+msgstr "Was machst du hier? Unbefugten ist der Zutritt verboten!"
+
+msgid "The reign of the Snow King is over!"
+msgstr "Die Herrschaft des Schneekönigs endet jetzt!"
+
+msgid "What are you talking about? His reign has only just begun!"
+msgstr "Wovon sprichst du? Seine Herrschaft hat gerade erst begonnen!"
+
+msgid ""
+"Yeah, and now it's going to end! He should have thought about that before "
+"taking away MY fish!"
+msgstr ""
+"Ja, und jetzt wird sie enden! Er hätte zweimal nachdenken sollen bevor "
+"er mir MEINE Fische wegnimmt!"
+
+msgid ""
+"Fish?! I will not allow you to overthrow the great king over a tax! Your "
+"conquest ends here!"
+msgstr ""
+"Fisch?! Ich werde dir nicht gestatten den König wegen einer Steuer zu stürzen! Dein "
+"Abenteuer endet hier!"
+
+msgid "Who are you?"
+msgstr "Wer bist du?"
+
+msgid ""
+"I am Tux, and I am putting an end to the Snow King's reign, one castle at a "
+"time!"
+msgstr ""
+"Ich bin Tux, und ich werde die Herrschafft des Schneekönigs beenden, Schloss für "
+"Schloss!"
+
+msgid "That's too bad, Tux. I would have liked to let you leave in peace."
+msgstr "Wie schade, Tux. Ich hätte dich so gerne davonkommen lassen."
+
+msgid ""
+"So it is you! The rebellious penguin who would see to it that our king's "
+"reign ends!"
+msgstr ""
+"Du bist es also! Der rebellische Pinguin der die Herrschaft unseres Königs "
+"beenden will!"
+
+msgid "I'm sorry to inform you, Tux, but your treason ends now."
+msgstr "Es tut mir leid, Tux, aber dein Verrat ended jetzt."
+
+msgid ""
+"You act as if you are rebelling against the Fish Tax, but we know what "
+"you're really up to!"
+msgstr ""
+"Du tust so als würdest du gegen die Fischsteuer rebellieren, doch wir wissen "
+"was du wirklich vor hast!"
+
+msgid ""
+"I don't know how you found out about our secret plans, but you will not stop "
+"us!"
+msgstr ""
+"Ich habe keine Ahnnung wie du von unserem geheimen Plan erfahren hast, aber"
+"du kannst uns nicht aufhalten!"
+
+msgid "I've been waiting for you, Tux. We meet again at last!"
+msgstr "Ich habe dich erwartet, Tux. Endlich treffen wir uns wieder!"
+
+msgid "Raccot the yeti! I should have known it was you!"
+msgstr "Raccot der Yeti! Ich hätte es wissen müssen!"
+
+msgid ""
+"You may have discovered my evil plan, my old nemesis, but you will not stop "
+"me!"
+msgstr ""
+"Du hast meinen bösen Plan aufgedeckt, mein alter Erzfeind, aber du kannst "
+"mich nicht aufhalen!"
+
+msgid ""
+"When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+msgstr ""
+"Als wir uns letztes mal trafen, war ich ein Schulrowdy. Jetzt bin ich der Schneekönig!"
+
+msgid ""
+"Citizens of Icy Island,\n"
+"\n"
+"Beginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow "
+"King. All residents must pay 5% of their fish in tax. Failure to pay this "
+"tax will be punished."
+msgstr ""
+"Bürger von Icy Island,\n"
+"\n"
+"Seit Eis-Tag 542-7-3, gehört Icy Island zu den Gebieten des Schnee"
+"königs. Alle Einwohner müsen 5% ihres Fisches als Steuer abgeben. "
+"Zahlungsverzug wird unverzüglich geahndet"
+
+msgid "Having trouble finding secret areas? The clue is in the name!"
+msgstr "Schwierigkeiten geheime Orte zu finden? Der Trick verbirgt sich im Name!"
+
+msgid "Sometimes, it's just better to go up."
+msgstr "Manchmal ist es besser nach oben zu gehen."
+
+msgid ""
+"Fire can be a great way to melt ice blocking access to certain Tux dolls. "
+"Now, where can one find a fire flower around here?"
+msgstr ""
+"Feuer kann ein guter Weg sein Eis zu schmelzen, das den Weg zu Tuxpuppen "
+"versperrt. Wo kann man hier nur eine Feuerblume finden?"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"I swear, there are no fire flowers anywhere in this level! How am I supposed "
+"to melt this ice?! What's more, that ledge over there is shaped like a grin, "
+"almost like it's taunting me!"
+msgstr ""
+"Notiz eines Reisenden:\n"
+"\n"
+"Ich schwöre, dass es keine Feuerblumen in diesem Level gibt! Wie soll ich nur dieses "
+"Eis je auftauen?! Schlimmer noch, dieser Felsen dort drüben sieht aus als würde er grinsen. "
+"Fast so, als wollte er mich verspotten!"
+
+msgid ""
+"Studies have shown that penguins have the ability to kick iceblocks, and "
+"possibly other items, straight up. They do this by holding down the \"up\" "
+"button while pressing the \"action\" button."
+msgstr ""
+"Eine Studie hat gezeigt,dass Pinguine die Fähigkeit besitzen Eisblöcke (und "
+"möglicherweise auch andere Dinge) gerade nach oben zu treten. Sie tun dies indem sie den \"up\""
+"-Knopf halten und dabei den \"action\"-Knopf drücken."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"It is said that this level contains 7 springs, but I have only managed to "
+"find 6. Could the seventh one be in a hidden block somewhere?"
+msgstr ""
+"Notiz eines Reisenden:\n"
+"\n"
+"Mir wurde gesagt, dass es in diesem Level 7 Sprungfedern gibt. Ich konnte jedoch nur "
+"6 finden. Könnte die siebte irgendwo in einem versteckten Block sein?"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That cave to the left appears to be inaccessible from here. There has to be "
+"another way inside!"
+msgstr ""
+"Notiz eines Reisenen:\n"
+"\n"
+"Die Höhle links von mier scheint von hier aus unbetretbar zu sein. Es muss noch "
+"einen aneren Weg hinein geben!"
+
+msgid ""
+"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
+"not climb on Mount Slimmerist; the extra weight may cause it to topple over."
+msgstr ""
+"Willkommen bei Mount Slimmerist, dem dünnsten Berg der Welt! Bitte nicht "
+"auf Mount Slimmerist klettern; er könnte durch das zusätzliche Gewicht kippen."
+
+msgid ""
+"Did you know? It's possible to drop whatever you're carrying! Just hold the "
+"\"down\" button while pressing the \"action\" button."
+msgstr ""
+"Schon gewusst? Es ist möglich alles was du mit dir trägst fallen zu lassen! Halte einfach den "
+"\"down\"-Knopf und drücke dabei den \"action\"-Knopf."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That pipe to the right is too high to be reached even by jumping off a "
+"spring. It would be possible if that Jumpy could be magically suspended in "
+"the air and the spring placed on top, but that would be silly!"
+msgstr ""
+"Notiz eines Reisenden:\n"
+"\n"
+"Die Röhre rechts von mir ist viel zu hoch um sie erreichen zu können, selbst mit einer "
+"Sprungfeder. Es wäre möglich wenn sich diese schreckhafte Wolke wie durch Geisterhand "
+"vergrößern könnte und man eine Sprungfeder darauf plazieren würde. Aber das wäre albern!"
+
+msgid ""
+"You'll need a friend to find the Tux doll in this castle, in more ways than "
+"one."
+msgstr ""
+"Du brauchst einen Freund um die Tuxpuppe in diesem Schloss zu finden. (In mehr als "
+"einer Hinsicht)"
+
+msgid ""
+"Please do NOT touch my rocks! For example, do NOT use them to build a bridge "
+"allowing you to cross spike pits, and do NOT use them to build a tower so "
+"that you can reach higher places."
+msgstr ""
+"Berühren meiner Steine VERBOTEN! Zum Beispiel: NICHT benutzen um eine Brücke zu bauen "
+"die es erlaubt die Dornengrube zu überqueren. Außerdem: NICHT benutzen um einen Turm zu errichten "
+"der erlaubt höher gelegene Regionen zu erreichen."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"If only I could reach those rocks on top of those crates, I could build a "
+"staircase to that pipe...."
+msgstr ""
+"Notiz eines Reisenden:\n"
+"\n"
+"Wenn ich nur die Steine auf diesen Kisten erreichen könnte, dann könnte ich "
+"eine Treppe zu dieser Röhre bauen...."
+
+msgid ""
+"Welcome to Concept Castle!\n"
+"\n"
+"This level was created to demonstrate what ReTux is capable of. It's a bit "
+"heavier than most of the actual game, so it may run slightly slower."
+msgstr ""
+"Willkommen im Konzeptschloss!\n"
+"\n"
+"Dieses Level wurde erstellt um die Möglichkeiten von ReTux zu demonstrieren. Es ist ein wenig "
+"schwergewichtiger als der Rest vom Spiel, deshalb könnte es ein wenig langsamer laufen."
+
+msgid ""
+"All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
+"lava!"
+msgstr ""
+"Kein Feuer mehr in dir? Nimm ein schönes, warmes Bad in geschmolzener Lava "
+"um dich zu regenerieren!"
+
+msgid "There must be a way to remove the fire flower from this room."
+msgstr "Es muss einen Weg geben diese Feuerblume aus dem Raum zu entfernen."
+
+msgid "Print errors directly to stdout rather than saving them in a file."
+msgstr "Gebe Fehlermeldungen direkt in stdout aus, anstatt sie in eine Datei zu speichern."
+
+msgid "Manually choose a different language to use."
+msgstr "Manuell eine andere Sprache wählen."
+
+msgid ""
+"Disable delta timing. Causes the game to slow down when it can't run at full "
+"speed instead of becoming choppier."
+msgstr ""
+"Delta timing verhindern. Lässt das Spiel langsamer werden wenn es nicht in voller "
+"Geschwindigkeit laufen kann anstatt zu ruckeln."
+
+msgid "Where to load the game data from (Default: \"{}\")"
+msgstr "Von wo die Spieldaten geladen werden (Default: \"{}\")"
+
+msgid "Play the indicated level and then exit."
+msgstr "Das angegebene Level spielen und danach beenden."
+
+msgid ""
+"Start the indicated level and record player actions in a timeline. Useful "
+"for making cutscenes."
+msgstr ""
+"Das angegebene Level starten und Spieleraktionen in einer Timeline aufzeichnen. "
+"Nützlich um Cutscenes anzufertigen."
+
+msgid "Only show solid colors for backgrounds (uses less RAM)."
+msgstr "Einfarbiger Hintergrund (benutzt weniger RAM)."
+
+msgid "Don't show the player's heads-up display."
+msgstr "Heads-Up Display verbergen."
+
+msgid "Score"
+msgstr "Punkte"
+
+msgid "Time Bonus"
+msgstr "Zeitbonus"
+
+msgid "Time Penalty"
+msgstr "Zeiteinbuße"
+
+msgid ""
+"An error occurred in a timeline 'setattr' command:\n"
+"\n"
+"{}"
+msgstr ""
+"Ein Fehler ist in einem Timeline-Kommando aufgetreten ('setattr'):\n"
+"\n"
+"{}"
+
+msgid ""
+"An error occurred in a timeline 'exec' command:\n"
+"\n"
+"{}"
+msgstr ""
+"Ein Fehler ist in einem Timeline-Kommando aufgetreten ('exec'):\n"
+"\n"
+"{}"
+
+msgid ""
+"An error occurred in a timeline 'if' statement:\n"
+"\n"
+"{}"
+msgstr ""
+"Ein Fehler ist in der Timeline aufgetreten('if'-Bedingung):\n"
+"\n"
+"{}"
+
+msgid ""
+"An error occurred in a timeline 'while' statement:\n"
+"\n"
+"{}"
+msgstr ""
+"Ein Fehler ist in der Timeline aufgetreten('while'-Bedingung):\n"
+"\n"
+"{}"
+
+msgid "Loading \"{}\"..."
+msgstr "Lade \"{}\"..."
+
+msgid ""
+"An error occurred when trying to load the level:\n"
+"\n"
+"{}"
+msgstr ""
+"Ein Fehler trat beim Laden des Levels auf:\n"
+"\n"
+"{}"
+
+msgid "Press the Menu button to skip..."
+msgstr "Drücke den Menü-Knopf zum überspringen..."
+
+msgid "Cinematic mode enabled"
+msgstr "Cinematic Mode aktiviert"
+
+msgid "New Game"
+msgstr "Neues Spiel"
+
+msgid "Load Game"
+msgstr "Spiel laden"
+
+msgid "Select Levelset"
+msgstr "Levelset wählen"
+
+msgid "Options"
+msgstr "Optionen"
+
+msgid "Credits"
+msgstr "Credits"
+
+msgid "Quit"
+msgstr "Ende"
+
+msgid "-Empty-"
+msgstr "-Leer-"
+
+msgid "-No Levelset-"
+msgstr "-Kein Levelset-"
+
+msgid "-Corrupt Levelset-"
+msgstr "-Beschädigtes Levelset-"
+
+msgid "Back"
+msgstr "Zurück"
+
+msgid "Overwrite this save file"
+msgstr "Spielstand überschreiben"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "An error occurred when trying to load the game."
+msgstr "Ein Fehler trat beim Laden des Spiels auf."
+
+msgid "Next page"
+msgstr "Nächste Seite"
+
+msgid "On"
+msgstr "An"
+
+msgid "Off"
+msgstr "Aus"
+
+msgid "Fullscreen: {}"
+msgstr "Vollbild: {}"
+
+msgid "Scale Method: {}"
+msgstr "Sklalierungsmethode: {}"
+
+msgid "Sound: {}"
+msgstr "Sound: {}"
+
+msgid "Music: {}"
+msgstr "MusiK: {}"
+
+msgid "Stereo: {}"
+msgstr "Stereo: {}"
+
+msgid "Show FPS: {}"
+msgstr "Zeige FPS: {}"
+
+msgid "Joystick Threshold: {}%"
+msgstr "Joystich Schwellwert: {}%"
+
+msgid "Configure keyboard"
+msgstr "Tastatur konfigurieren"
+
+msgid "Configure joysticks"
+msgstr "Joysticks konfigurieren"
+
+msgid "Detect joysticks"
+msgstr "Joysticks finden"
+
+msgid "Import levelset"
+msgstr "Levelset importieren"
+
+msgid "Export levelset"
+msgstr "Levelset exportieren"
+
+msgid "ReTux levelset files"
+msgstr "ReTux levelset Datein"
+
+msgid "all files"
+msgstr "alle Datein"
+
+msgid "Importing levelset..."
+msgstr "Importiere Levelset..."
+
+msgid ""
+"This feature requires Tkinter, which was not successfully imported. Please "
+"make sure Tkinter is installed and try again."
+msgstr ""
+"Diese Funktion benötigt Tkinter, welches nicht importiert werden konnte. Bitte "
+"gehen Sie sicher, dass Tkinter installiert ist und versuchen Sie es erneut."
+
+msgid "Player {}"
+msgstr "Spieler {}"
+
+msgid "Left: {}"
+msgstr "Links: {}"
+
+msgid "Right: {}"
+msgstr "Rechts: {}"
+
+msgid "Up: {}"
+msgstr "Hoch: {}"
+
+msgid "Down: {}"
+msgstr "Runter: {}"
+
+msgid "Jump: {}"
+msgstr "Sprung: {}"
+
+msgid "Action: {}"
+msgstr "Aktion: {}"
+
+msgid "Sneak: {}"
+msgstr "Schleichen: {}"
+
+msgid "Menu: {}"
+msgstr "Menü: {}"
+
+msgid "Pause: {}"
+msgstr "Pause: {}"
+
+msgid "None"
+msgstr "Nichts"
+
+msgid "Exporting levelset..."
+msgstr "Exportiere Levelset..."
+
+msgid "Continue"
+msgstr "Fortfahren"
+
+msgid "Abort"
+msgstr "Abbruch"
+
+msgid "Return to Map"
+msgstr "Zurück zur Karte"
+
+msgid "Return to Title Screen"
+msgstr "Zurück zum Titelbildschirm"
+
+msgid "Press the key you wish to toggle, or Escape to cancel."
+msgstr "Wähle eine Taste, oder drücke Escape zum Abbrechen."
+
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to toggle, or the "
+"Escape key to cancel."
+msgstr ""
+"Wähle einen Knopf, einen Joystick, oder richtung auf dem Steuerkreuz, oder drücke "
+"Escape zum Abbrechen."
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid ""
+"Preloading levels...\n"
+"\n"
+"(press any key to skip)"
+msgstr ""
+"Vorabladen der Levels...\n"
+"\n"
+"(Abbruch mit beliebiger Taste)"
+
+msgid "Initializing game system..."
+msgstr "Initialisiere Spielsystem..."
+
+msgid "Initializing GUI system..."
+msgstr "Initialisiere GUI-System..."
+
+msgid "Loading images..."
+msgstr "Lade Bilder..."
+
+msgid "Loading fonts..."
+msgstr "Lade Schrift..."
+
+msgid "Starting game..."
+msgstr "Starte Spiel..."
