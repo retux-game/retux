@@ -6848,7 +6848,7 @@ class KeyboardMenu(Menu):
             KeyboardMenu.create_page(default=self.choice, page=self.page)
         else:
             play_sound(cancel_sound)
-            OptionsMenu.create_page(default=5)
+            OptionsMenu.create_page(default=7)
 
 
 class JoystickMenu(Menu):
@@ -6990,7 +6990,7 @@ class JoystickMenu(Menu):
             JoystickMenu.create_page(default=self.choice, page=self.page)
         else:
             play_sound(cancel_sound)
-            OptionsMenu.create_page(default=6)
+            OptionsMenu.create_page(default=8)
 
 
 class ExportLevelsetMenu(LevelsetMenu):
