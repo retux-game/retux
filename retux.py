@@ -6542,7 +6542,7 @@ class LevelsetMenu(Menu):
     def event_choose(self):
         if self.choice == len(self.items) - 2:
             play_sound(select_sound)
-            self.create_page(default=-2, page=self.page)
+            self.create_page(default=-2, page=(self.page + 1))
         else:
             if self.choice is not None and self.choice < len(self.items) - 2:
                 play_sound(confirm_sound)
