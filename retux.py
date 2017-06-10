@@ -6535,8 +6535,9 @@ class LevelsetMenu(Menu):
         cls.items.append(_("Next page"))
         cls.items.append(_("Back"))
 
-        cls.page = page
-        return cls.create(default)
+        self = cls.create(default)
+        self.page = page
+        return self
 
     def event_choose(self):
         if self.choice == len(self.items) - 2:
