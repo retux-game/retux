@@ -21,25 +21,18 @@ running retux.py. On most systems, this should be done by
 double-clicking on it; if you are shown a dialog asking you if you want
 to display or run the file, choose to run it.
 
-Python 2 will be used by default. To run ReTux with Python 3 instead,
-you can either change the shebang on line 1 from "python2" to "python3",
-or explicitly run the Python 3 executable, e.g. with
-"python3 retux.py" (the exact command may be different depending on
-your system).
+To run ReTux with a particular Python version, open retux.py and change
+the shebang on line one to indicate the version you want to use, e.g.
+"python2" or "python3" instead of just "python".
 
 There are some command-line options that can be passed. Run ReTux in a
 terminal with the "-h" command-line option for more information.
 
 
-HOW TO PLAY
+SPECIAL CONTROLS
 
-Use the directional controls and pause or jump key to navigate the
-menus. By default, Tux is is controlled by the arrow keys, Space,
-Left Ctrl, and Left Shift. You can change the controls in the Options
-menu.
-
-If, after entering fullscreen mode, the keyboard becomes unresponsive,
-you can exit the game by pressing the middle mouse button. This is a
-result of a rare bug in Pygame, explained in detail here:
+You can exit the game by pressing the middle mouse button. This is a
+workaround for a rare bug in Pygame which can lock up the keyboard
+controls, explained in detail here:
 
 https://savannah.nongnu.org/forum/forum.php?forum_id=8113

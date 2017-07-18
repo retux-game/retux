@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 # reTux
 # Copyright (C) 2014-2017 onpon4 <onpon4@riseup.net>
