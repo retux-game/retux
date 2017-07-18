@@ -729,7 +729,6 @@ License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
 ------------------------------------------------------------------------
 
 locale/retux.pot
-locale/ja.po
 timelines/boss_start.json
 timelines/game_end.json
 timelines/retux_boss1.json
