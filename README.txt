@@ -8,25 +8,25 @@ information. This file is offered as-is, without any warranty.
 
 HOW TO RUN
 
-If you have downloaded a version of ReTux designated for a particular
+If you have downloaded a version of the game designated for a particular
 system, simply run the executable.
 
-To run the ReTux source code, you will need the following dependencies:
+To run the source code, you will need the following dependencies:
 
 - Python 2 (2.7 or later) or 3 (3.1 or later) <http://www.python.org>
 - Pygame 1.9.1 or later <http://pygame.org>
 
-Once you have installed the dependencies, you can start ReTux by
-running retux.py. On most systems, this should be done by
+Once you have installed the dependencies, you can start the game by
+running "retux.py". On most systems, this should be done by
 double-clicking on it; if you are shown a dialog asking you if you want
 to display or run the file, choose to run it.
 
-To run ReTux with a particular Python version, open retux.py and change
-the shebang on line one to indicate the version you want to use, e.g.
-"python2" or "python3" instead of just "python".
+To run the game with a particular Python version, open "retux.py" in a
+text editor and change the shebang on line one to indicate the version
+you want to use, e.g. "python2" or "python3" instead of just "python".
 
-There are some command-line options that can be passed. Run ReTux in a
-terminal with the "-h" command-line option for more information.
+There are some command-line options that can be passed. Run the game in
+a terminal with the "-h" command-line option for more information.
 
 
 SPECIAL CONTROLS
