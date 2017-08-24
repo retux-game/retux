@@ -754,6 +754,13 @@ License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
 ------------------------------------------------------------------------
 
+locale/de.po
+
+Author: TheMightyGlider <themightyglider@gmx.de>
+License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
+
+------------------------------------------------------------------------
+
 levels/ericxdu.tmx
 levelsets/ericxdu.json
 
