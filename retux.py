@@ -1090,7 +1090,7 @@ class Level(sge.dsp.Room):
             r = loaded_levels.pop(fname)
         else:
             if show_prompt:
-                text = "Loading level..."
+                text = _("Loading level...")
                 if isinstance(sge.game.current_room, Worldmap):
                     sge.game.refresh()
                     sge.game.current_room.level_text = text
@@ -4474,7 +4474,7 @@ class IceFlower(FallingObject, WinPuffObject):
                     bbox_x = (-ice_bullet_sprite.origin_x -
                               ice_bullet_sprite.bbox_width +
                               ice_bullet_sprite.width)
-                    
+
                 IceBullet.create(self.x, self.y, self.parent.z,
                                  sprite=ice_bullet_sprite,
                                  xvelocity=(ICEBULLET_SPEED * d),
@@ -5740,7 +5740,7 @@ class ObjectWarpSpawn(WarpSpawn):
 
         if in_view and self.cls is not None:
             self.__steps_passed += delta_mult
-            
+
             self.__objects = [ref for ref in self.__objects
                               if (ref() is not None and
                                   ref() in sge.game.current_room.objects)]

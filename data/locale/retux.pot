@@ -279,6 +279,9 @@ msgid ""
 "{}"
 msgstr ""
 
+msgid "Loading level..."
+msgstr ""
+
 # {} is replaced by an error message
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
