@@ -329,10 +329,6 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-# Main menu option; opens https://www.patreon.com/onpon4 in a Web browser
-msgid "Support on Patreon"
-msgstr ""
-
 # Main menu option; quits the game
 msgid "Quit"
 msgstr ""

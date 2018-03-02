@@ -6368,7 +6368,7 @@ class Menu(xsge_gui.MenuWindow):
 class MainMenu(Menu):
 
     items = [_("New Game"), _("Load Game"), _("Select Levelset"), _("Options"),
-             _("Credits"), _("Support on Patreon"), _("Quit")]
+             _("Credits"), _("Quit")]
 
     def event_choose(self):
         if self.choice == 0:
@@ -6387,9 +6387,6 @@ class MainMenu(Menu):
             credits_room = CreditsScreen.load(os.path.join("special",
                                                            "credits.tmx"))
             credits_room.start()
-        elif self.choice == 5:
-            webbrowser.open("https://www.patreon.com/onpon4")
-            MainMenu.create(self.choice)
         else:
             sge.game.end()
 
