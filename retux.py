@@ -7308,7 +7308,7 @@ class ModalKeyboardMenu(ModalMenu, KeyboardMenu):
     def event_choose(self):
         self.hide()
         sge.game.refresh()
-        if self.choice < len(self.items) - 1:
+        if self.choice is not None and self.choice < len(self.items) - 1:
             super(ModalKeyboardMenu, self).event_choose()
         else:
             play_sound(cancel_sound)
@@ -7319,7 +7319,7 @@ class ModalJoystickMenu(ModalMenu, JoystickMenu):
     def event_choose(self):
         self.hide()
         sge.game.refresh()
-        if self.choice < len(self.items) - 1:
+        if self.choice is not None and self.choice < len(self.items) - 1:
             super(ModalJoystickMenu, self).event_choose()
         else:
             play_sound(cancel_sound)
