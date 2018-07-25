@@ -1,0 +1,633 @@
+# ReTux translatable text.
+# Copyright (C) 2016-2017 Julie Marchant <onpon4@riseup.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Jorge Maldonado Ventura <jorgesumle@freakspot.net>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.4\n"
+"Report-Msgid-Bugs-To: http://retux.nongnu.org\n"
+"POT-Creation-Date: 2018-07-15 16:04+0200\n"
+"PO-Revision-Date: 2018-07-25 15:00+0200\n"
+"Language-Team: C <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: eo\n"
+
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+msgstr ""
+"Kia bela, malvarma tago por fiŝi! Mi demandas min, kion mi kaptos hodiaŭ."
+
+msgid "Oh, looks like I have a message!"
+msgstr "Ho, ŝaijnas, ke mi havas mesaĝon!"
+
+msgid "What?! They're taking my fish?!"
+msgstr "Kio?! Ili prenadas miajn fiŝojn?!"
+
+msgid "I will not stand for this! Nobody takes away MY fish!"
+msgstr "Mi ne toleros ĝin! Neniu forprenas MIAJN fiŝojn!"
+
+msgid "What are you doing here? You're trespassing!"
+msgstr "Kion vi faradas ĉi tie? Vi transpaŝas!"
+
+msgid "The reign of the Snow King is over!"
+msgstr "La regado de la Neĝa Reĝo estas finita!"
+
+msgid "What are you talking about? His reign has only just begun!"
+msgstr "Kion vi paroladas? Sia regado ĵus ekis!"
+
+msgid ""
+"Yeah, and now it's going to end! He should have thought about that before "
+"taking away MY fish!"
+msgstr ""
+"Jes, kaj nun ekĉesas! Li devis pensi pri ĝin, antaŭ ol li forprenis MIAJN "
+"fiŝojn!"
+
+msgid ""
+"Fish?! I will not allow you to overthrow the great king over a tax! Your "
+"conquest ends here!"
+msgstr ""
+"Fiŝojn! Mi ne konsentos ke vi faligos la granda reĝo pro imposto! Via "
+"konkero finiĝas ĉi tie!"
+
+msgid "Who are you?"
+msgstr "Kiu vi estas?"
+
+msgid ""
+"I am Tux, and I am putting an end to the Snow King's reign, one castle at a "
+"time!"
+msgstr ""
+"Mi estas Tukso, kaj mi finigadas la reĝon de Neĝa Reĝo, po kastelo por fojo!"
+
+msgid "That's too bad, Tux. I would have liked to let you leave in peace."
+msgstr "Tio estas aĉega, Tukso. Mi volus, lasi al vi, forlasinte pace."
+
+msgid ""
+"So it is you! The rebellious penguin who would see to it that our king's "
+"reign ends!"
+msgstr ""
+"Do ĝi estas vi! La rivelema pingveno, kiu vi ŝatus, ke la rego de nia reĝo "
+"finu."
+
+msgid "I'm sorry to inform you, Tux, but your treason ends now."
+msgstr "Mi bedaŭdas informi vin, Tukso, sed via perfido finas nun."
+
+msgid ""
+"You act as if you are rebelling against the Fish Tax, but we know what "
+"you're really up to!"
+msgstr ""
+"Vi agas kiel vi estus ribelanta kontraŭ la Fiŝan Imposton, sed ni scias, "
+"kion vi reale volas fari."
+
+msgid ""
+"I don't know how you found out about our secret plans, but you will not stop "
+"us!"
+msgstr ""
+"Mi ne scias kiel vi ekscias pri niaj sekretaj planoj, sed vi ne haltos nin."
+
+msgid "I've been waiting for you, Tux. We meet again at last!"
+msgstr "Mi atendadis vin, Tukso. Ni renkontas fine!"
+
+msgid "Raccot the yeti! I should have known it was you!"
+msgstr "Raccoto la jetio! Mi devis scii, ke ĝi estis vi!"
+
+msgid ""
+"You may have discovered my evil plan, my old nemesis, but you will not stop "
+"me!"
+msgstr ""
+"Vi eble kovris mian malbonan planon, mian antikvan ĝustpuno, sed vi ne "
+"haltos min!"
+
+msgid ""
+"When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+msgstr ""
+"Kiam vi laste renkontis, mi estis Neĝo-taga lerneja ĉikanulo. Nun, mi estas "
+"la Neĝa Reĝo!"
+
+msgid ""
+"Citizens of Icy Island,\n"
+"\n"
+"Beginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow "
+"King. All residents must pay 5% of their fish in tax. Failure to pay this "
+"tax will be punished."
+msgstr ""
+"Socianoj el Glacia Insulo,\n"
+"\n"
+"Ekde la Glacidato 542-7-3, la Glacia Insulo ekestas la bieno de la Neĝo "
+"reĝo. Ciŭ loĝanto devas pagi 5% el sia fiŝo imposte. Malplenumo por pagi ĉi "
+"tiun imposton estos punita."
+
+msgid "Having trouble finding secret areas? The clue is in the name!"
+msgstr ""
+"Havante problemojn trovante sekretajn areojn? La postsigno estas en la nomo!"
+
+msgid "Sometimes, it's just better to go up."
+msgstr "Iofoje, iri supren estas pli bona."
+
+msgid ""
+"Fire can be a great way to melt ice blocking access to certain Tux dolls. "
+"Now, where can one find a fire flower around here?"
+msgstr ""
+"Fajro povas esti bonega maniero per degeli glacian barantan iujn Tuksajn "
+"pupojn. Nun, kie oni povas trovi fajran floron ĉirkaŭe ĉi tie?"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"I swear, there are no fire flowers anywhere in this level! How am I supposed "
+"to melt this ice?! What's more, that ledge over there is shaped like a grin, "
+"almost like it's taunting me!"
+msgstr ""
+"Vojaĝanta Komento:\n"
+"\n"
+"Mi ĵuras, ke ne estas fajra floroj ien en ĉi tiu nivelo! Kiel mi devas "
+"degeli ĉi tiu glacio?! Krome, la kornico tie estas formita kiel rideto, kiel "
+"se ĝi moku min!"
+
+msgid ""
+"Studies have shown that penguins have the ability to kick iceblocks, and "
+"possibly other items, straight up. They do this by holding down the \"up\" "
+"button while pressing the \"action\" button."
+msgstr ""
+"Studoj montris, ke pingvenoj estas kapabla piedfrapi glacblokojn, kaj eble "
+"aliajn aferojn, rekte supren. Ili faras tion per premado de la \"supre\"-"
+"klavo dum oni premas la \"ago\"-klavon."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"It is said that this level contains 7 springs, but I have only managed to "
+"find 6. Could the seventh one be in a hidden block somewhere?"
+msgstr ""
+"Vojaĝanta Komento:\n"
+"\n"
+"Oni diras ke ĉi tiu nivelo enhavas 7 risortojn, sed mi nur klopodis eltrovi "
+"6. Povus la sepa esti ene kaŝita bloko ien?"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That cave to the left appears to be inaccessible from here. There has to be "
+"another way inside!"
+msgstr ""
+"Vojaĝanta Komento:\n"
+"\n"
+"Ĉi tiu kavo en la maldeksto aspektas nealirebla el tie ĉi. Devas ekzisti "
+"alia maniero eniri!"
+
+msgid ""
+"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
+"not climb on Mount Slimmerist; the extra weight may cause it to topple over."
+msgstr ""
+"Bonvenon al Montaro Slimmerist, la plej maldika montaro en la mondo! Bonvolu "
+"ne eskaladi en Montaro Slimmerist; la ekstra pero povas fali ĝin."
+
+msgid ""
+"Did you know? It's possible to drop whatever you're carrying! Just hold the "
+"\"down\" button while pressing the \"action\" button."
+msgstr ""
+"Ĉu vi sciis ĝin? Oni povas faligi, kion ajn vi portadas! Nur premu la \"sube"
+"\" klavon dum vi premas la \"agadon\" klavon."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That pipe to the right is too high to be reached even by jumping off a "
+"spring. It would be possible if that Jumpy could be magically suspended in "
+"the air and the spring placed on top, but that would be silly!"
+msgstr ""
+"Vojaĝanta Komento:\n"
+"\n"
+"Ĉi tiu dukto en la dekstra estas tre alta por suriri eĉ per salti kun "
+"risorto. Oni povus fari tion, se tiu Saltanto povu halteĝi magie je la aero "
+"kaj la risorto alloku sur ĝi, sed ĝi estus stulta!"
+
+msgid ""
+"You'll need a friend to find the Tux doll in this castle, in more ways than "
+"one."
+msgstr ""
+"Vi bezonos amikon por trovi la Tuksan pupon en ĉi tiu kastelo, en pli ol unu "
+"maniero."
+
+msgid ""
+"Please do NOT touch my rocks! For example, do NOT use them to build a bridge "
+"allowing you to cross spike pits, and do NOT use them to build a tower so "
+"that you can reach higher places."
+msgstr ""
+"Bonvolu NE tuŝi miajn rokojn! Ekzemple, NE uzi ilin por konstrui briĝo, kiu "
+"vin lasas transiri pintan puton, kaj NE uzi ilin por konstrui turon, por ke "
+"vi povas iri al pli altaj ejoj."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"If only I could reach those rocks on top of those crates, I could build a "
+"staircase to that pipe...."
+msgstr ""
+"Vojaĝanta Komento:\n"
+"\n"
+"Se nur mi povus iri sur tiuj rokoj sur tiuj krateroj, mi povus konstrui "
+"ŝtupo al ĉi tiu dukto..."
+
+msgid ""
+"Welcome to Concept Castle!\n"
+"\n"
+"This level was created to demonstrate what ReTux is capable of. It's a bit "
+"heavier than most of the actual game, so it may run slightly slower."
+msgstr ""
+"Bonvenon al Kastelo Koncepto\n"
+"\n"
+"Ĉi tiu nivelo estis kreita por montri, kion povas fari ReTux. Ĝi estas pli "
+"pezeta ol la plejparto de la reala ludo, do ĝi eblas plenumi pli lenteta."
+
+msgid ""
+"All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
+"lava!"
+msgstr "Vi mankas fajron? Juniĝi vi kun bona, varma bano en fandita lafo!"
+
+msgid "There must be a way to remove the fire flower from this room."
+msgstr "Oni devas ekzisti maniero forpreni la fajran floron el ĉi tia ĉambro."
+
+# Explanation of what the "--version" command-line option does
+msgid "Output version information and exit."
+msgstr "montri programversion kaj eliri."
+
+# Explanation of what the "-p" command-line option does
+msgid "Print errors directly to stdout rather than saving them in a file."
+msgstr "Printi erarojn direkte al stdout anstataŭ savi ĝin en dosiero."
+
+# Explanation of what the "-l" command-line option does
+msgid "Manually choose a different language to use."
+msgstr "Permane elekti alian lingvon por uzi."
+
+# Explanation of what the "--nodelta" command-line option does
+msgid ""
+"Disable delta timing. Causes the game to slow down when it can't run at full "
+"speed instead of becoming choppier."
+msgstr ""
+"Malŝalti delto-timadon. Kaŭzas, ke la ludo malrapidiĝas, kiam ĝi ne povas "
+"plenumi plene rapide anstataŭ aĝi intermita."
+
+# Explanation of what the "-d" command-line option does.
+# {} is replaced by the default value of this option.
+msgid "Where to load the game data from (Default: \"{}\")"
+msgstr "El kie ŝarĝi la ludaj datumoj (Defaŭlta: \"{}\")"
+
+# Explanation of what the "--level" command-line option does
+msgid "Play the indicated level and then exit."
+msgstr "Ludi la elektitan nivelon kaj poste eliri."
+
+# Explanation of what the "--record" command-line option does
+msgid ""
+"Start the indicated level and record player actions in a timeline. Useful "
+"for making cutscenes."
+msgstr ""
+"Eki la indikita nivelon kaj registri ludanta agoj en kronologio. Utila por "
+"fari "
+
+# Explanation of what the "--no-backgrounds" command-line option does
+msgid "Only show solid colors for backgrounds (uses less RAM)."
+msgstr "Nur montri opakaj koloroj por fonoj (uzas malpli ĉefmemoron)."
+
+# Explanation of what the "--no-hud" command-line option does
+msgid "Don't show the player's heads-up display."
+msgstr "Ne montri la ludanta HUD"
+
+# Shown just above the current score
+msgid "Score"
+msgstr "Poentoj"
+
+# Shown just above the current time bonus (if applicable)
+msgid "Time Bonus"
+msgstr "Tempa Donaĵo"
+
+# Shown just above the current time penalty (if applicable)
+msgid "Time Penalty"
+msgstr "Tempa Maldonaĵo"
+
+# {} is replaced by an error message
+msgid ""
+"An error occurred in a timeline 'setattr' command:\n"
+"\n"
+"{}"
+msgstr ""
+"Eraro okazis en kronologia 'setattr' komando:\n"
+"\n"
+"{}"
+
+# {} is replaced by an error message
+msgid ""
+"An error occurred in a timeline 'exec' command:\n"
+"\n"
+"{}"
+msgstr ""
+"Eraro okazis en kronologia 'exec' komando:\n"
+"\n"
+"{}"
+
+# {} is replaced by an error message
+msgid ""
+"An error occurred in a timeline 'if' statement:\n"
+"\n"
+"{}"
+msgstr ""
+"Eraro okazis en kronologia 'if' komando:\n"
+"\n"
+"{}"
+
+msgid "Loading level..."
+msgstr "Ŝargata nivelon..."
+
+# {} is replaced by an error message
+msgid ""
+"An error occurred in a timeline 'while' statement:\n"
+"\n"
+"{}"
+msgstr ""
+"Eraro okazis en kronologia 'while' komando:\n"
+"\n"
+"{}"
+
+# Printed to the terminal when a level is loaded before the game starts.
+# {} is replaced by the file name of the level being loaded.
+msgid "Loading \"{}\"..."
+msgstr "Ŝargata \"{}\"..."
+
+# {} is replaced by an error message
+msgid ""
+"An error occurred when trying to load the level:\n"
+"\n"
+"{}"
+msgstr ""
+"Eraro okazis dum la ŝargo de la nivelo:\n"
+"\n"
+"{}"
+
+# Text shown at the bottom of the screen during skippable cutscenes
+msgid "Press the Menu button to skip..."
+msgstr "Preni la Menuon klavon por daŭrigi..."
+
+# Text shown at the bottom of the screen during unskippable cutscenes
+msgid "Cinematic mode enabled"
+msgstr "Kina ago ŝaltita"
+
+# Main menu option; shows the New Game menu
+msgid "New Game"
+msgstr "Novan Ludon"
+
+# Main menu option; shows the Load Game menu
+msgid "Load Game"
+msgstr "Ŝargi Ludon"
+
+# Main menu option; shows the levelset selection menu
+msgid "Select Levelset"
+msgstr "Elekti Nivelaron"
+
+# Main menu option; shows the Options menu
+msgid "Options"
+msgstr "Agordoj"
+
+# Main menu option; shows the credits screen
+msgid "Credits"
+msgstr "Agnoskoj"
+
+# Main menu option; quits the game
+msgid "Quit"
+msgstr "Eliri"
+
+# Menu option; indicates that a save slot is empty
+msgid "-Empty-"
+msgstr "-Malplena-"
+
+# Menu option; indicates that a save slot is not using any levelset.
+# This should not happen.
+msgid "-No Levelset-"
+msgstr "-Neniu Nivelaro-"
+
+# Menu option; indicates that a save slot is using a corrupt levelset
+msgid "-Corrupt Levelset-"
+msgstr "-Korupta Nivelaro-"
+
+# Menu option; used in all sub-menus to go back to the previous menu
+msgid "Back"
+msgstr "Reen"
+
+# Menu option; overwrite the chosen save file
+msgid "Overwrite this save file"
+msgstr "Anstataŭigi ĉi tian dosieron"
+
+# Menu option; cancel overwriting the chosen save file and return to previous menu
+msgid "Cancel"
+msgstr "Nuligi"
+
+# Error message shown when a levelset does not properly start.
+msgid "An error occurred when trying to load the game."
+msgstr "Eraro okazis dum la ŝargo de la ludo."
+
+# Menu option; used to change to the next "page" (section) of the current menu
+msgid "Next page"
+msgstr "Sekva paĝo"
+
+# Used as a part of binary config menu options below.
+msgid "On"
+msgstr "Ek"
+
+# Used as a part of binary config menu options below.
+msgid "Off"
+msgstr "For"
+
+# Menu option; indicates whether or not fullscreen should be used.
+# {} is replaced by "On" or "Off".
+msgid "Fullscreen: {}"
+msgstr "Plena ekraro: {}"
+
+# Menu option; indicates what scale method ReTux should use.
+# {} is replaced by the name of a scale method.
+msgid "Scale Method: {}"
+msgstr "Skalo-metedo: {}"
+
+# Menu option; indicates whether or not sound effects should play.
+# {} is replaced by "On" or "Off".
+msgid "Sound: {}"
+msgstr "Sono: {}"
+
+# Menu option; indicates whether or not music should play.
+# {} is replaced by "On" or "Off".
+msgid "Music: {}"
+msgstr "Muziko: {}"
+
+# Menu option; indicates whether or not stereo sound should be used.
+# {} is replaced by "On" or "Off".
+msgid "Stereo: {}"
+msgstr "Stereofonie: {}"
+
+# Menu option; indicates whether or not the frame rate should be shown.
+# {} is replaced by "On" or "Off".
+msgid "Show FPS: {}"
+msgstr "Montri FPS: {}"
+
+# Menu option; {} is replaced by the percentage of joystick tilt ReTux
+# will treat as zero (a.k.a. deadzone).
+msgid "Joystick Threshold: {}%"
+msgstr "Stirstanga Sojlo: {}%"
+
+# Menu option; leads to the keyboard config menu
+msgid "Configure keyboard"
+msgstr "Konfiguri klavaron"
+
+# Menu option; leads to the joystick config menu
+msgid "Configure joysticks"
+msgstr "Konfiguri stirstangojn"
+
+# Menu option; refreshes the game's knowledge of available joysticks
+msgid "Detect joysticks"
+msgstr "Detekti stirtangojn"
+
+# Menu option; imports a levelset from a ".rtz" file
+msgid "Import levelset"
+msgstr "Enporti nivelaron"
+
+# Menu option; exports a levelset to a ".rtz" file
+msgid "Export levelset"
+msgstr "Eksporti nivelaron"
+
+# Used for the "file type" box of the Tkinter file selection dialog;
+# indicates to show only ".rtz" files.
+msgid "ReTux levelset files"
+msgstr "Nivelara dosieroj de ReTux"
+
+# Used for the "file type" box of the Tkinter file selection dialog;
+# indicates to show files of any type
+msgid "all files"
+msgstr "ĉiuj dosieroj"
+
+msgid "Importing levelset..."
+msgstr "importita nivelaro..."
+
+msgid ""
+"This feature requires Tkinter, which was not successfully imported. Please "
+"make sure Tkinter is installed and try again."
+msgstr ""
+"Ĉi tiu funkcio bezonas Tkinter, kiu ne estis sukcese importita. Bonvolu "
+"certigi, ke Tkinter estas instalita kaj provi ree."
+
+# Shown at the top of each control config menu. {} is replaced with the
+# player number.
+msgid "Player {}"
+msgstr "Ludanto {}"
+
+# Action names with configurable controls, used in control config menus.
+# {} is replaced with the key(s) or joystick control(s) the action is set to.
+msgid "Left: {}"
+msgstr "Maldekstren: {}"
+
+msgid "Right: {}"
+msgstr "Dekstren: {}"
+
+msgid "Up: {}"
+msgstr "Supren: {}"
+
+msgid "Down: {}"
+msgstr "Malsupren: {}"
+
+msgid "Jump: {}"
+msgstr "Salti: {}"
+
+msgid "Action: {}"
+msgstr "Ago: {}"
+
+msgid "Sneak: {}"
+msgstr "Rampi: {}"
+
+msgid "Menu: {}"
+msgstr "Menuo: {}"
+
+msgid "Pause: {}"
+msgstr "Paŭzo: {}"
+
+# Indicates that an action is not assigned to any joystick control
+msgid "None"
+msgstr "Nenio"
+
+msgid "Exporting levelset..."
+msgstr "Eksportado de nivelgrupon..."
+
+# In-game menu option; exits the menu and returns to the game
+msgid "Continue"
+msgstr "Adi"
+
+# Used in single-level mode menu; quits the level (and consequently the game)
+msgid "Abort"
+msgstr "Aborti"
+
+# In-level menu option; returns to the worldmap
+msgid "Return to Map"
+msgstr "Reveni al Karto"
+
+# In-game menu option; quits the game and returns to the title screen
+msgid "Return to Title Screen"
+msgstr "Reveni al Titola Ekrano"
+
+msgid "Press the key you wish to toggle, or Escape to cancel."
+msgstr "Premu la klavon, ke vi deziras baskuligi, aŭ Nuligi por nuligi."
+
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to toggle, or the "
+"Escape key to cancel."
+msgstr ""
+"Premu la stirstangan klavon, akson aŭ ĉapela direkto, kiu vi deziras "
+"baskuligi, aŭ la Nuligi-klavo por nuligi."
+
+# Error message title
+msgid "Error"
+msgstr "Eraro"
+
+# Error message "Ok" button
+msgid "Ok"
+msgstr "Bone"
+
+msgid ""
+"Preloading levels...\n"
+"\n"
+"(press any key to skip)"
+msgstr ""
+"Antaŭŝargado de niveloj...\n"
+"\n"
+"(prenu ajnan klavon por daŭrigi)"
+
+# Printed to the terminal as the game starts
+msgid "Initializing game system..."
+msgstr "Pravalorizintan ludan sistemon..."
+
+# Printed to the terminal as the game starts
+msgid "Initializing GUI system..."
+msgstr "Pravalorizado de grafika interfaca sistemo..."
+
+# Printed to the terminal as the game starts
+msgid "Loading images..."
+msgstr "Ŝargado de bildoj..."
+
+# Printed to the terminal as the game starts
+msgid "Loading fonts..."
+msgstr "Ŝargado de tiparoj..."
+
+# Printed to the terminal as the game starts
+msgid "Starting game..."
+msgstr "Komencado de ludo..."
