@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # reTux
-# Copyright (C) 2014-2017 Julie Marchant <onpon4@riseup.net>
+# Copyright (C) 2014-2018 Julie Marchant <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = "1.3.6a0"
+__version__ = "1.3.6"
 
 import argparse
 import datetime
