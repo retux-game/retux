@@ -1,7 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # reTux
-# Copyright (C) 2014-2018 Julie Marchant <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,12 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import unicode_literals
 
-__version__ = "1.3.6"
+__version__ = "1.3.7a0"
+
 
 import argparse
 import datetime
@@ -41,8 +37,8 @@ import weakref
 import zipfile
 
 import sge
-import six
 import tmx
+import ulvl
 import xsge_gui
 import xsge_lighting
 import xsge_path
@@ -50,12 +46,8 @@ import xsge_physics
 import xsge_tmx
 
 try:
-    from six.moves.tkinter import Tk
-    # six.moves.tkinter_filedialog doesn't work correctly.
-    if six.PY2:
-        import tkFileDialog as tkinter_filedialog
-    else:
-        import tkinter.filedialog as tkinter_filedialog
+    from tkinter import Tk
+    import tkinter.filedialog as tkinter_filedialog
 except ImportError:
     HAVE_TK = False
 else:
@@ -71,11 +63,7 @@ CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(CONFIG, "data")]
 
-if six.PY2:
-    gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")),
-                    unicode=True)
-else:
-    gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
+gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
 
 parser = argparse.ArgumentParser(prog="ReTux")
 parser.add_argument(
@@ -137,20 +125,13 @@ for d in dirs:
                 shutil.copy2(os.path.join(dirpath, fname), nd)
 del dirs
 
-if six.PY2:
-    gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")),
-                    unicode=True)
-else:
-    gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
+gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
 
 if args.lang:
     lang = gettext.translation("retux",
                                os.path.abspath(os.path.join(DATA, "locale")),
                                [args.lang])
-    if six.PY2:
-        lang.install(unicode=True)
-    else:
-        lang.install()
+    lang.install()
 
 SCREEN_SIZE = [800, 448]
 TILE_SIZE = 32
@@ -385,7 +366,7 @@ action_js = [[(0, "button", 0)]]
 sneak_js = [[(0, "button", 2)]]
 menu_js = [[(0, "button", 8)]]
 pause_js = [[(0, "button", 9)]]
-save_slots = [None for i in six.moves.range(SAVE_NSLOTS)]
+save_slots = [None for i in range(SAVE_NSLOTS)]
 
 abort = False
 
@@ -853,7 +834,7 @@ class Level(sge.dsp.Room):
                                 break
                         elif command == "exec":
                             try:
-                                six.exec_(arg)
+                                exec(arg)
                             except Exception as e:
                                 m = _("An error occurred in a timeline 'exec' command:\n\n{}").format(
                                     traceback.format_exc())
@@ -1684,12 +1665,12 @@ class Player(xsge_physics.Collider):
                            action_js, sneak_js]
             states = [0 for i in key_controls]
 
-            for i in six.moves.range(len(key_controls)):
+            for i in range(len(key_controls)):
                 for choice in key_controls[i][self.player]:
                     value = sge.keyboard.get_pressed(choice)
                     states[i] = max(states[i], value)
 
-            for i in six.moves.range(len(js_controls)):
+            for i in range(len(js_controls)):
                 for choice in js_controls[i][self.player]:
                     j, t, c = choice
                     value = min(sge.joystick.get_value(j, t, c), 1)
@@ -1816,7 +1797,7 @@ class Player(xsge_physics.Collider):
 
             x = 0
             y += 36
-            for i in six.moves.range(self.max_hp):
+            for i in range(self.max_hp):
                 if self.hp >= i + 1:
                     sge.game.project_sprite(heart_full_sprite, 0, x, y)
                 else:
@@ -1877,10 +1858,10 @@ class Player(xsge_physics.Collider):
                 grab_sprite = sge.gfx.Sprite(
                     width=width, height=height, origin_x=origin_x,
                     origin_y=origin_y)
-                for j in six.moves.range(1, body_sprite.frames):
+                for j in range(1, body_sprite.frames):
                     grab_sprite.append_frame()
                 grab_sprite.draw_lock()
-                for j in six.moves.range(grab_sprite.frames):
+                for j in range(grab_sprite.frames):
                     x = origin_x + obj_sprite.origin_x
                     y = (origin_y + self.carry_y + obj_sprite.origin_y -
                          obj_sprite.height)
@@ -1900,7 +1881,7 @@ class Player(xsge_physics.Collider):
             else:
                 grab_sprite = body_sprite.copy()
                 grab_sprite.draw_lock()
-                for j in six.moves.range(grab_sprite.frames):
+                for j in range(grab_sprite.frames):
                     grab_sprite.draw_sprite(arms_sprite, j,
                                             grab_sprite.origin_x,
                                             grab_sprite.origin_y, j)
@@ -2309,7 +2290,7 @@ class Player(xsge_physics.Collider):
                 hblock.hit(self)
 
         tmv = 0
-        for i in six.moves.range(CEILING_LAX):
+        for i in range(CEILING_LAX):
             if (not self.get_left_touching_wall() and
                     not self.get_left_touching_slope()):
                 self.x -= 1
@@ -2321,7 +2302,7 @@ class Player(xsge_physics.Collider):
         else:
             self.x -= tmv
             tmv = 0
-            for i in six.moves.range(CEILING_LAX):
+            for i in range(CEILING_LAX):
                 if (not self.get_left_touching_wall() and
                         not self.get_left_touching_slope()):
                     self.x += 1
@@ -5129,7 +5110,7 @@ class HittableBlock(sge.dsp.Object):
 class Brick(HittableBlock, xsge_physics.Solid):
 
     def event_hit(self, other):
-        for i in six.moves.range(BRICK_SHARD_NUM):
+        for i in range(BRICK_SHARD_NUM):
             xv = random.uniform(-BRICK_SHARD_SPEED, BRICK_SHARD_SPEED)
             yv = get_jump_speed(BRICK_SHARD_HEIGHT, BRICK_SHARD_GRAVITY)
             shard = DeadMan.create(
@@ -5978,14 +5959,14 @@ class MapPlayer(sge.dsp.Object):
             js_controls = [left_js, right_js, up_js, down_js, sneak_js]
             states = [0 for i in key_controls]
 
-            for i in six.moves.range(len(key_controls)):
-                for player in six.moves.range(len(key_controls[i])):
+            for i in range(len(key_controls)):
+                for player in range(len(key_controls[i])):
                     for choice in key_controls[i][player]:
                         value = sge.keyboard.get_pressed(choice)
                         states[i] = max(states[i], value)
 
-            for i in six.moves.range(len(js_controls)):
-                for player in six.moves.range(len(key_controls[i])):
+            for i in range(len(js_controls)):
+                for player in range(len(key_controls[i])):
                     for choice in js_controls[i][player]:
                         j, t, c = choice
                         value = min(sge.joystick.get_value(j, t, c), 1)
@@ -6424,7 +6405,7 @@ class NewGameMenu(Menu):
 
         abort = False
 
-        if self.choice in six.moves.range(len(save_slots)):
+        if self.choice in range(len(save_slots)):
             play_sound(confirm_sound)
             current_save_slot = self.choice
             if save_slots[current_save_slot] is None:
@@ -6470,7 +6451,7 @@ class LoadGameMenu(NewGameMenu):
 
         abort = False
 
-        if self.choice in six.moves.range(len(save_slots)):
+        if self.choice in range(len(save_slots)):
             play_sound(confirm_sound)
             current_save_slot = self.choice
             load_game()
@@ -6666,7 +6647,7 @@ class OptionsMenu(Menu):
 
                 with zipfile.ZipFile(fname, 'r') as rtz:
                     infolist = rtz.infolist()
-                    for i in six.moves.range(len(infolist)):
+                    for i in range(len(infolist)):
                         member = infolist[i]
                         rtz.extract(member, DATA)
                         rtz.extract(member, os.path.join(CONFIG, "data"))
@@ -7174,7 +7155,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                 inst_dir = os.path.join(os.path.dirname(__file__), "data")
 
                 with zipfile.ZipFile(fname, 'w') as rtz:
-                    for i in six.moves.range(len(files)):
+                    for i in range(len(files)):
                         fname = files[i]
                         aname = os.path.relpath(fname, DATA)
                         if not os.path.exists(os.path.join(inst_dir, aname)):
@@ -8046,7 +8027,7 @@ for bs, a in [(tux_stand_sprite, tux_arms_stand_sprite),
               (tux_jump_sprite, tux_arms_jump_sprite),
               (tux_fall_sprite, tux_arms_fall_sprite),
               (tux_kick_sprite, tux_arms_kick_sprite)]:
-    for i in six.moves.range(bs.frames):
+    for i in range(bs.frames):
         bs.draw_sprite(a, i, bs.origin_x, bs.origin_y, i)
 
 d = os.path.join(DATA, "images", "objects", "enemies")
@@ -8448,8 +8429,8 @@ del castle_bottom_spr
 
 # Load fonts
 print(_("Loading fonts..."))
-chars = ([None] + [six.unichr(i) for i in six.moves.range(33, 127)] +
-         ['\u2190', ' '] + [six.unichr(i) for i in six.moves.range(161, 384)])
+chars = ([None] + [chr(i) for i in range(33, 127)] + ['\u2190', ' ']
+         + [chr(i) for i in range(161, 384)])
 
 font_sprite = sge.gfx.Sprite.from_tileset(
     os.path.join(DATA, "images", "misc", "font.png"), columns=16, rows=20,
@@ -8658,7 +8639,7 @@ try:
 except (IOError, OSError, ValueError):
     pass
 else:
-    for i in six.moves.range(min(len(loaded_slots), len(save_slots))):
+    for i in range(min(len(loaded_slots), len(save_slots))):
         save_slots[i] = loaded_slots[i]
 
 
