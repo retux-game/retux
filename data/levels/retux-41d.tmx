@@ -5,9 +5,9 @@
   <property name="music" value="darkforestkeep.ogg"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="16" source="../tilesets/snow.tsx"/>
- <tileset firstgid="254" source="../tilesets/cave.tsx"/>
- <tileset firstgid="326" source="../tilesets/castle.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow_old.tsx"/>
+ <tileset firstgid="254" source="../tilesets/cave_old.tsx"/>
+ <tileset firstgid="326" source="../tilesets/castle_old.tsx"/>
  <tileset firstgid="356" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="380" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="468" source="../tilesets/special_blocks.tsx"/>

@@ -6,7 +6,7 @@
   <property name="name" value="Not exactly 1:1"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/creatures.tsx"/>
- <tileset firstgid="16" source="../tilesets/snow.tsx"/>
+ <tileset firstgid="16" source="../tilesets/snow_old.tsx"/>
  <tileset firstgid="254" source="../tilesets/blocks.tsx"/>
  <tileset firstgid="278" source="../tilesets/pipes.tsx"/>
  <tileset firstgid="366" source="../tilesets/special_blocks.tsx"/>
