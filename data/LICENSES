@@ -329,7 +329,7 @@ sounds/bell.wav
 sounds/kill.wav
 sounds/upgrade.wav
 
-Authors: SuperTux development team <http://supertux.lethargik.org>
+Authors: SuperTux development team <https://supertux.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
 
@@ -369,15 +369,15 @@ images/objects/tux/tux_body_run-14.png
 images/objects/tux/tux_body_run-15.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
   Connie Cartwright
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Details:
   New animation by Connie Cartwright based on the design of the Tux
   sprites by the SuperTux development team (from SuperTux 0.3.0).
 
-  Some slight modifications have been made by onpon4, including resizing
-  the images, adjusting their positions, and adding some small
+  Some slight modifications have been made by Layla Marchant, including
+  resizing the images, adjusting their positions, and adding some small
   touch-ups. The original version, as sent in by Connie Cartwright, can
   be found under the "sources" directory.
 
@@ -388,7 +388,7 @@ images/misc/icon.png
 images/misc/icon.svg
 images/misc/icon-is.svg
 
-Author: onpon4 <https://onpon4.github.io>
+Author: Layla Marchant <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Details:
   Made from frame 11 of the run animation placed on top of some vector
@@ -401,7 +401,7 @@ images/tiles/tileset_castle.png
 images/tiles/tileset_snow.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
@@ -422,7 +422,7 @@ images/objects/spring/rusty_spring_expand-4.png
 images/objects/spring/rusty_spring_expand-5.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
@@ -438,7 +438,7 @@ images/objects/enemies/flying_spiky-1.png
 
 Authors:
   SuperTux development team <http://supertux.github.io>
-  onpon4 <https://onpon4.github.io>
+  Layla Marchant <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
 Details:
@@ -450,8 +450,8 @@ Details:
 images/objects/enemies/flying_spiky_iced.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
-  onpon4 <https://onpon4.github.io>
+  SuperTux development team <https://supertux.github.io>
+  Layla Marchant <https://onpon4.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
@@ -460,7 +460,7 @@ License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 images/objects/bonus/brick_shard.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Details:
@@ -472,7 +472,7 @@ Details:
 images/misc/ice_bullet_break-strip5.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Details:
@@ -492,7 +492,7 @@ images/objects/misc/door-7.png
 
 Authors:
   SuperTux development team <http://supertux.github.io>
-  onpon4 <https://onpon4.github.io>
+  Layla Marchant <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
 Details:
@@ -521,8 +521,8 @@ Source: http://opengameart.org/content/simple-small-pixel-hearts
 images/misc/logo.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
-  onpon4 <https://onpon4.github.io>
+  SuperTux development team <https://supertux.github.io>
+  Layla Marchant <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
 Details:
@@ -542,8 +542,8 @@ images/objects/enemies/snowman_hurt_walk-7.png
 images/objects/enemies/snowman_hurt_walk-8.png
 
 Authors:
-  SuperTux development team <http://supertux.lethargik.org>
-  onpon4 <https://onpon4.github.io>
+  SuperTux development team <https://supertux.github.io>
+  Layla Marchant <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable
 Details:
@@ -610,7 +610,7 @@ tilesets/wm_thin_ice.tsx
 tilesets/wm_trees.tsx
 worldmaps/base.tmx
 
-Author: onpon4 <https://onpon4.github.io>
+Author: Layla Marchant <https://onpon4.github.io>
 License: CC0 <https://creativecommons.org/publicdomain/zero/1.0/>
 
 ------------------------------------------------------------------------
@@ -723,7 +723,7 @@ worldmaps/retux-3.tmx
 worldmaps/retux-4.tmx
 worldmaps/retux-5.tmx
 
-Author: onpon4 <https://onpon4.github.io>
+Author: Layla Marchant <https://onpon4.github.io>
 License: CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>
 
 ------------------------------------------------------------------------
@@ -739,7 +739,7 @@ timelines/retux_finalboss.json
 timelines/retux_intro.json
 timelines/title_demo.json
 
-Author: onpon4 <https://onpon4.github.io>
+Author: Layla Marchant <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
 ------------------------------------------------------------------------
@@ -747,7 +747,7 @@ License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 locale/es.po
 
 Authors:
-  onpon4 <https://onpon4.github.io>
+  Layla Marchant <https://onpon4.github.io>
   Heckyel <heckyel@openmailbox.org>
   Jorge Maldonado Ventura <jorgesumle@freakspot.net>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
@@ -813,7 +813,7 @@ music/greatgigantic.ogg
 
 Authors:
   Chris Huelsbeck
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
 License: GNU GPL <https://gnu.org/licenses/gpl.html>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
 
@@ -823,7 +823,7 @@ music/salcon.ogg
 
 Authors:
   Mystical
-  SuperTux development team <http://supertux.lethargik.org>
+  SuperTux development team <https://supertux.github.io>
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
 Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
 Details:
@@ -1003,6 +1003,6 @@ Source: https://github.com/FluXy/SMC/blob/master/smc/data/sounds/player/powerdow
 
 sounds/type.wav
 
-Author: onpon4 <https://onpon4.github.io>
+Author: Layla Marchant <https://onpon4.github.io>
 License: CC0 <http://creativecommons.org/publicdomain/zero/1.0/>
 Generated with Sfxr <http://www.drpetter.se/project_sfxr.html>

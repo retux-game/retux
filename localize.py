@@ -1,7 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # reTux File Localizer
-# Copyright (C) 2016 Julie Marchant <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,25 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import os
 import shutil
 import sys
 
-import six
-
-from six.moves.tkinter import Tk
-# six.moves.tkinter_filedialog doesn't work correctly.
-if six.PY2:
-    import tkFileDialog as tkinter_filedialog
-    import tkMessageBox as tkinter_messagebox
-else:
-    import tkinter.filedialog as tkinter_filedialog
-    import tkinter.messagebox as tkinter_messagebox
+import tkinter
 
 
 if getattr(sys, "frozen", False):
@@ -48,9 +34,9 @@ if __name__ == '__main__':
     if not os.path.exists(CONFIG):
         os.makedirs(CONFIG)
 
-    tkwindow = Tk()
+    tkwindow = tkinter.Tk()
     tkwindow.withdraw()
-    fnames = tkinter_filedialog.askopenfilenames(
+    fnames = tkinter.filedialog.askopenfilenames(
         filetypes=[("all files", ".*")], initialdir=FILEDIR)
     for fname in fnames:
         rp = os.path.relpath(fname, FILEDIR)
@@ -66,10 +52,10 @@ if __name__ == '__main__':
                 shutil.rmtree(new_name)
 
             shutil.move(fname, cd)
-            tkinter_messagebox.showinfo(
+            tkinter.messagebox.showinfo(
                 "Message", 'Moved "{}" to "{}"'.format(fname, cd))
         else:
-            tkinter_messagebox.showinfo(
+            tkinter.messagebox.showinfo(
                 "Message",
                 '"{}" was not localized (invalid location)'.format(fname))
     tkwindow.destroy()
