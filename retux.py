@@ -142,6 +142,14 @@ TRANSITION_TIME = 750
 DEFAULT_LEVELSET = "retux.json"
 DEFAULT_LEVEL_TIME_BONUS = 90000
 
+Z_BACK = 0
+Z_MIDDLE = 1
+Z_ITEMS = 2
+Z_BOSS = 3
+Z_ENEMIES = 4
+Z_PLAYER = 5
+Z_FRONT = 6
+
 TUX_ORIGIN_X = 28
 TUX_ORIGIN_Y = 16
 TUX_KICK_TIME = 10
@@ -1060,6 +1068,48 @@ class Level(sge.dsp.Room):
 
     @classmethod
     def load(cls, fname, show_prompt=False):
+        global tuxdolls_available
+
+        if fnamme in current_areas:
+            r = current_areas[fname]
+        elif fnamme in loaded_levels:
+            r = loaded_levels.pop(fname)
+        else:
+            if show_prompt:
+                text = _("Loading level...")
+                if isinstance(sge.game.current_room, Worldmap):
+                    sge.game.refresh()
+                    sge.game.current_room.level_text = text
+                    sge.game.current_room.event_step(0, 0)
+                    sge.game.refresh()
+                elif sge.game.current_room is not None:
+                    x = sge.game.width / 2
+                    y = sge.game.height / 2
+                    w = font.get_width(text) + 32
+                    h = font.get_height(text) + 32
+                    sge.game.project_rectangle(x - w / 2, y - h / 2, w, h,
+                                               fill=sge.gfx.Color("black"))
+                    sge.game.project_text(font, text, x, y,
+                                          color=sge.gfx.Color("white"),
+                                          halign="center", valign="middle")
+                    sge.game.refresh()
+                else:
+                    print(_("Loading \"{}\"...").format(fname))
+
+            try:
+                with open(fname) as f:
+                    jsl = ulvl.JSL.load(f)
+            except Exception as e:
+                m = _("An error occurred when trying to load the level:\n\n{}").format(
+                    traceback.format_exc())
+                show_error(m)
+                r = None
+            else:
+                # TODO
+                pass
+
+    @classmethod
+    def load(cls, fname, show_prompt=False):
         global level_names
         global tuxdolls_available
 
@@ -1231,7 +1281,7 @@ class SpecialScreen(Level):
 class TitleScreen(SpecialScreen):
 
     def show_hud(self):
-        sge.game.project_sprite(logo_sprite, 0, 260, 128)
+        sge.game.project_sprite(logo_sprite, 0, self.width / 2, 128)
 
     def event_room_resume(self):
         super().event_room_resume()
@@ -5284,25 +5334,31 @@ class ThinIce(xsge_physics.Solid):
             self.shatter()
 
 
-class Lava(xsge_tmx.Decoration):
+class Decoration(sge.dsp.Object):
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("tangible", False)
+
+
+class Lava(Decoration):
 
     def event_create(self):
         self.sprite = lava_body_sprite
 
 
-class LavaSurface(xsge_tmx.Decoration):
+class LavaSurface(Decoration):
 
     def event_create(self):
         self.sprite = lava_surface_sprite
 
 
-class Goal(xsge_tmx.Decoration):
+class Goal(Decoration):
 
     def event_create(self):
         self.sprite = goal_sprite
 
 
-class GoalTop(xsge_tmx.Decoration):
+class GoalTop(Decoration):
 
     def event_create(self):
         self.sprite = goal_top_sprite
@@ -7031,7 +7087,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                             for prop in properties:
                                 if prop.name == "cls":
                                     cls = TYPES.get(prop.value,
-                                                    xsge_tmx.Decoration)
+                                                    Decoration)
 
                         extra_files = set()
                         for prop in properties:
@@ -7357,8 +7413,31 @@ class DialogBox(xsge_gui.Dialog):
 
 
 def get_object(x, y, cls=None, **kwargs):
-    cls = TYPES.get(cls, xsge_tmx.Decoration)
+    cls = TYPES.get(cls, Decoration)
     return cls(x, y, **kwargs)
+
+
+def build_tmx(fname):
+    tmx = ulvl.TMX.load(fname)
+    jsl = ulvl.JSL()
+
+    jsl.meta = {
+        "width": tmx.meta.get("width"), "height": tmx.meta.get("height"),
+        "background": tmx.meta.get("background", tmx.meta.get("bgname")),
+        "background_x": tmx.meta.get("background_x", 0),
+        "background_y": tmx.meta.get("background_y", 0),
+        "name": tmx.meta.get("name"), "music": tmx.meta.get("music"),
+        "time_bonus": tmx.meta.get("time_bonus", DEFAULT_LEVEL_TIME_BONUS),
+        "spawn": tmx.meta.get("spawn"), "timeline": tmx.meta.get("timeline"),
+        "ambient_light": tmx.meta.get("ambient_light"),
+        "disable_lights": tmx.meta.get("disable_lights", False),
+        "persistent": tmx.meta.get("persistent", True)}
+    jsl.layers = tmx.layers
+    jsl.objects = tmx.objects
+
+    root, ext = os.path.splitext(fname)
+    with open(f"{root}.jsl", "w") as f:
+        jsl.save(f)
 
 
 def get_scaled_copy(obj):
@@ -8185,6 +8264,8 @@ lava_body_sprite = sge.gfx.Sprite("lava_body", d, transparent=False, fps=5)
 lava_surface_sprite = sge.gfx.Sprite("lava_surface", d, fps=5)
 goal_sprite = sge.gfx.Sprite("goal", d, fps=8)
 goal_top_sprite = sge.gfx.Sprite("goal_top", d, fps=8)
+igloo_back_sprite = sge.gfx.Sprite("igloo_back", d)
+igloo_front_sprite = sge.gfx.Sprite("igloo_front", d)
 
 d = os.path.join(DATA, "images", "objects", "spring")
 fixed_spring_sprite = sge.gfx.Sprite(
