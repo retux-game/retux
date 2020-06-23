@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="igloo" tilewidth="225" tileheight="195">
- <tile id="0">
-  <image width="128" height="195" source="../images/objects/decoration/igloo_back.png"/>
- </tile>
- <tile id="1">
-  <image width="225" height="195" source="../images/objects/decoration/igloo_front.png"/>
+<tileset version="1.2" tiledversion="1.3.4" name="igloo" tilewidth="321" tileheight="195" tilecount="1" columns="0">
+ <grid orientation="orthogonal" width="225" height="195"/>
+ <tile id="2">
+  <image width="321" height="195" source="../images/objects/decoration/igloo.png"/>
  </tile>
 </tileset>
