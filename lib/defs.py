@@ -20,6 +20,8 @@ Constant defs for ReTux.  Be sure to call :func:`init` after importing.
 
 import gettext
 import os
+import shutil
+import tempfile
 
 
 DATA = tempfile.mkdtemp("retux-data")
@@ -107,7 +109,6 @@ BLOCK_HIT_HEIGHT = 8
 ITEM_HIT_HEIGHT = 16
 COIN_COLLECT_TIME = 30
 COIN_COLLECT_SPEED = 2
-ITEM_SPAWN_SPEED = 1
 
 SECOND_POINTS = 100
 COIN_POINTS = 100
@@ -197,7 +198,6 @@ ENEMY_ACTIVE_RANGE = 32
 ICEBLOCK_ACTIVE_RANGE = 400
 BULLET_ACTIVE_RANGE = 96
 ROCK_ACTIVE_RANGE = 464
-TILE_ACTIVE_RANGE = 528
 DEATHZONE = 2 * TILE_SIZE
 
 DEATH_FADE_TIME = 3000
