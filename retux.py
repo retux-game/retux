@@ -50,20 +50,154 @@ import xsge_lighting
 import xsge_path
 import xsge_physics
 
-from lib import defs
-
 
 if getattr(sys, "frozen", False):
     __file__ = sys.executable
 
-defs.init(os.path.dirname(__file__))
+DATA = tempfile.mkdtemp("retux-data")
+CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
 
+dirs = [os.path.join(os.path.dirname(__file__), "data"),
+        os.path.join(CONFIG, "data")]
+
+gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
+
+parser = argparse.ArgumentParser(prog="ReTux")
+parser.add_argument(
+    "--version", action="version", version="%(prog)s " + __version__,
+    help=_("Output version information and exit."))
+parser.add_argument(
+    "-p", "--print-errors",
+    help=_("Print errors directly to stdout rather than saving them in a file."),
+    action="store_true")
+parser.add_argument(
+    "-l", "--lang",
+    help=_("Manually choose a different language to use."))
+parser.add_argument(
+    "--nodelta",
+    help=_("Disable delta timing. Causes the game to slow down when it can't run at full speed instead of becoming choppier."),
+    action="store_true")
+parser.add_argument(
+    "-d", "--datadir",
+    help=_('Where to load the game data from (Default: "{}")').format(dirs[0]))
+parser.add_argument(
+    "--level",
+    help=_("Play the indicated level and then exit."))
+parser.add_argument(
+    "--record",
+    help=_("Start the indicated level and record player actions in a timeline. Useful for making cutscenes."))
+parser.add_argument(
+    "--no-backgrounds",
+    help=_("Only show solid colors for backgrounds (uses less RAM)."),
+    action="store_true")
+parser.add_argument(
+    "--no-hud", help=_("Don't show the player's heads-up display."),
+    action="store_true")
+parser.add_argument("--scale-basic", action="store_true")
+parser.add_argument("--god")
+args = parser.parse_args()
+
+PRINT_ERRORS = args.print_errors
+DELTA = not args.nodelta
+if args.datadir:
+    dirs[0] = args.datadir
+LEVEL = args.level
+RECORD = args.record
+NO_BACKGROUNDS = args.no_backgrounds
+NO_HUD = args.no_hud
+GOD = (args.god and args.god.lower() == "plz4giv")
+
+for d in dirs:
+    if os.path.isdir(d):
+        for dirpath, dirnames, filenames in os.walk(d, True, None, True):
+            dirtail = os.path.relpath(dirpath, d)
+            nd = os.path.join(DATA, dirtail)
+
+            for dirname in dirnames:
+                dp = os.path.join(nd, dirname)
+                if not os.path.exists(dp):
+                    os.makedirs(dp)
+
+            for fname in filenames:
+                shutil.copy2(os.path.join(dirpath, fname), nd)
+del dirs
+
+gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
+
+if args.lang:
+    lang = gettext.translation("retux",
+                               os.path.abspath(os.path.join(DATA, "locale")),
+                               [args.lang])
+    lang.install()
+
+SCREEN_SIZE = [800, 448]
+TILE_SIZE = 32
+FPS = 56
+DELTA_MIN = FPS / 2
+DELTA_MAX = FPS * 4
+TRANSITION_TIME = 750
+
+DEFAULT_LEVELSET = "retux.json"
+DEFAULT_LEVEL_TIME_BONUS = 90000
+
+Z_BACK = 0
+Z_MIDDLE = 1
+Z_ITEMS = 2
+Z_BOSS = 3
+Z_ENEMIES = 4
+Z_PLAYER = 5
+Z_FRONT = 6
+
+TUX_ORIGIN_X = 28
+TUX_ORIGIN_Y = 16
+TUX_KICK_TIME = 10
+
+GRAVITY = 0.4
+
+PLAYER_MAX_HP = 5
+PLAYER_WALK_SPEED = 2
+PLAYER_SKID_THRESHOLD = 3
+PLAYER_RUN_SPEED = 4
+PLAYER_MAX_SPEED = 5
+PLAYER_ACCELERATION = 0.2
+PLAYER_AIR_ACCELERATION = 0.1
+PLAYER_FRICTION = 0.17
+PLAYER_AIR_FRICTION = 0.03
+PLAYER_JUMP_HEIGHT = 4 * TILE_SIZE + 2
+PLAYER_RUN_JUMP_HEIGHT = 5 * TILE_SIZE + 2
+PLAYER_STOMP_HEIGHT = TILE_SIZE / 2
+PLAYER_FALL_SPEED = 8
+PLAYER_SLIDE_ACCEL = 0.3
+PLAYER_SLIDE_SPEED = 1
+PLAYER_WALK_FRAMES_PER_PIXEL = 2 / 17
+PLAYER_RUN_FRAMES_PER_PIXEL = 1 / 10
+PLAYER_HITSTUN = 120
+PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
+PLAYER_DIE_FALL_SPEED = 8
+
+SNOWMAN_WALK_SPEED = 2
+SNOWMAN_STRONG_WALK_SPEED = 3
+SNOWMAN_FINAL_WALK_SPEED = 4
+SNOWMAN_STUNNED_WALK_SPEED = 6
+SNOWMAN_ACCELERATION = 0.1
+SNOWMAN_STRONG_ACCELERATION = 0.2
+SNOWMAN_FINAL_ACCELERATION = 0.5
+SNOWMAN_HOP_HEIGHT = 2 * TILE_SIZE
+SNOWMAN_JUMP_HEIGHT = 7 * TILE_SIZE
+SNOWMAN_JUMP_TRIGGER = 2 * TILE_SIZE
+SNOWMAN_STOMP_DELAY = 30
+SNOWMAN_WALK_FRAMES_PER_PIXEL = 1 / 4
+SNOWMAN_HP = 5
+SNOWMAN_STRONG_STAGE = 2
+SNOWMAN_FINAL_STAGE = 3
+SNOWMAN_HITSTUN = 120
+SNOWMAN_SHAKE_NUM = 3
 
 RACCOT_WALK_SPEED = 3
 RACCOT_ACCELERATION = 0.2
-RACCOT_HOP_HEIGHT = defs.TILE_SIZE
-RACCOT_JUMP_HEIGHT = 5 * defs.TILE_SIZE
-RACCOT_JUMP_TRIGGER = 2 * defs.TILE_SIZE
+RACCOT_HOP_HEIGHT = TILE_SIZE
+RACCOT_JUMP_HEIGHT = 5 * TILE_SIZE
+RACCOT_JUMP_TRIGGER = 2 * TILE_SIZE
 RACCOT_STOMP_SPEED = 4
 RACCOT_STOMP_DELAY = 15
 RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 22
@@ -77,7 +211,7 @@ RACCOT_CRUSH_LAX = -8 # A negative lax makes it have the opposite effect.
 RACCOT_CRUSH_GRAVITY = 0.6
 RACCOT_CRUSH_FALL_SPEED = 15
 RACCOT_CRUSH_SPEED = 12
-RACCOT_CRUSH_CHARGE = defs.TILE_SIZE
+RACCOT_CRUSH_CHARGE = TILE_SIZE
 RACCOT_SHAKE_NUM = 4
 
 HP_POINTS = 1000
@@ -102,49 +236,49 @@ TUXDOLL_POINTS = 5000
 CAMERA_HSPEED_FACTOR = 1 / 2
 CAMERA_VSPEED_FACTOR = 1 / 20
 CAMERA_OFFSET_FACTOR = 10
-CAMERA_MARGIN_TOP = 4 * defs.TILE_SIZE
-CAMERA_MARGIN_BOTTOM = 5 * defs.TILE_SIZE
-CAMERA_TARGET_MARGIN_BOTTOM = CAMERA_MARGIN_BOTTOM + defs.TILE_SIZE
+CAMERA_MARGIN_TOP = 4 * TILE_SIZE
+CAMERA_MARGIN_BOTTOM = 5 * TILE_SIZE
+CAMERA_TARGET_MARGIN_BOTTOM = CAMERA_MARGIN_BOTTOM + TILE_SIZE
 
 WARP_LAX = 12
 WARP_SPEED = 1.5
 
-SHAKE_FRAME_TIME = defs.FPS / defs.DELTA_MIN
+SHAKE_FRAME_TIME = FPS / DELTA_MIN
 SHAKE_AMOUNT = 3
 
 ENEMY_WALK_SPEED = 1
 ENEMY_FALL_SPEED = 7
 ENEMY_SLIDE_SPEED = 0.3
-ENEMY_HIT_BELOW_HEIGHT = defs.TILE_SIZE * 3 / 4
-SNOWBALL_BOUNCE_HEIGHT = defs.TILE_SIZE * 3 + 2
+ENEMY_HIT_BELOW_HEIGHT = TILE_SIZE * 3 / 4
+SNOWBALL_BOUNCE_HEIGHT = TILE_SIZE * 3 + 2
 KICK_FORWARD_SPEED = 6
-KICK_FORWARD_HEIGHT = defs.TILE_SIZE * 3 / 4
-KICK_UP_HEIGHT = 5.5 * defs.TILE_SIZE
+KICK_FORWARD_HEIGHT = TILE_SIZE * 3 / 4
+KICK_UP_HEIGHT = 5.5 * TILE_SIZE
 ICEBLOCK_GRAVITY = 0.6
 ICEBLOCK_FALL_SPEED = 9
 ICEBLOCK_FRICTION = 0.1
 ICEBLOCK_DASH_SPEED = 7
-JUMPY_BOUNCE_HEIGHT = defs.TILE_SIZE * 4
+JUMPY_BOUNCE_HEIGHT = TILE_SIZE * 4
 BOMB_GRAVITY = 0.6
 BOMB_TICK_TIME = 4
-EXPLOSION_TIME = defs.FPS * 3 / 4
-ICICLE_LAX = defs.TILE_SIZE * 3 / 4
-ICICLE_SHAKE_TIME = defs.FPS
+EXPLOSION_TIME = FPS * 3 / 4
+ICICLE_LAX = TILE_SIZE * 3 / 4
+ICICLE_SHAKE_TIME = FPS
 ICICLE_GRAVITY = 0.75
 ICICLE_FALL_SPEED = 12
-CRUSHER_LAX = defs.TILE_SIZE * 3 / 4
+CRUSHER_LAX = TILE_SIZE * 3 / 4
 CRUSHER_GRAVITY = 1
 CRUSHER_FALL_SPEED = 15
 CRUSHER_RISE_SPEED = 2
-CRUSHER_CRUSH_TIME = defs.FPS * 2 / 3
+CRUSHER_CRUSH_TIME = FPS * 2 / 3
 CRUSHER_SHAKE_NUM = 2
 THAW_FPS = 15
-THAW_TIME_DEFAULT = defs.FPS * 5
-THAW_WARN_TIME = defs.FPS
+THAW_TIME_DEFAULT = FPS * 5
+THAW_WARN_TIME = FPS
 
 BRICK_SHARD_NUM = 6
 BRICK_SHARD_SPEED = 3
-BRICK_SHARD_HEIGHT = defs.TILE_SIZE * 2
+BRICK_SHARD_HEIGHT = TILE_SIZE * 2
 BRICK_SHARD_GRAVITY = 0.75
 BRICK_SHARD_FALL_SPEED = 12
 
@@ -152,18 +286,18 @@ ROCK_GRAVITY = 0.6
 ROCK_FALL_SPEED = 10
 ROCK_FRICTION = 0.4
 
-SPRING_JUMP_HEIGHT = 8 * defs.TILE_SIZE + 11
+SPRING_JUMP_HEIGHT = 8 * TILE_SIZE + 11
 
 FLOWER_FALL_SPEED = 5
-FLOWER_THROW_HEIGHT = defs.TILE_SIZE / 2
-FLOWER_THROW_UP_HEIGHT = defs.TILE_SIZE * 3 / 2
+FLOWER_THROW_HEIGHT = TILE_SIZE / 2
+FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
 
 FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
 FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
-FIREBALL_BOUNCE_HEIGHT = defs.TILE_SIZE / 2
-FIREBALL_UP_HEIGHT = defs.TILE_SIZE * 3 / 2
+FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
+FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
 
 ICEBULLET_AMMO = 20
 ICEBULLET_SPEED = 16
@@ -182,17 +316,17 @@ ICEBLOCK_ACTIVE_RANGE = 400
 BULLET_ACTIVE_RANGE = 96
 ROCK_ACTIVE_RANGE = 464
 TILE_ACTIVE_RANGE = 528
-DEATHZONE = 2 * defs.TILE_SIZE
+DEATHZONE = 2 * TILE_SIZE
 
 DEATH_FADE_TIME = 3000
-DEATH_RESTART_WAIT = defs.FPS
+DEATH_RESTART_WAIT = FPS
 
 WIN_COUNT_START_TIME = 120
 WIN_COUNT_CONTINUE_TIME = 45
 WIN_COUNT_POINTS_MULT = 111
 WIN_COUNT_TIME_MULT = 311
-WIN_COUNT_POINTS_MAX = defs.FPS
-WIN_COUNT_TIME_MAX = 5 * defs.FPS
+WIN_COUNT_POINTS_MAX = FPS
+WIN_COUNT_TIME_MAX = 5 * FPS
 WIN_FINISH_DELAY = 120
 
 MAP_SPEED = 5
@@ -309,10 +443,10 @@ class Level(sge.dsp.Room):
 
     def __init__(self, objects=(), width=None, height=None, views=None,
                  background=None, background_x=0, background_y=0,
-                 object_area_width=defs.TILE_SIZE * 2,
-                 object_area_height=defs.TILE_SIZE * 2,
+                 object_area_width=TILE_SIZE * 2,
+                 object_area_height=TILE_SIZE * 2,
                  name=None, bgname=None, music=None,
-                 time_bonus=defs.defs.DEFAULT_LEVEL_TIME_BONUS, spawn=None,
+                 time_bonus=DEFAULT_LEVEL_TIME_BONUS, spawn=None,
                  timeline=None, ambient_light=None, disable_lights=False,
                  persistent=True):
         self.fname = None
@@ -325,7 +459,7 @@ class Level(sge.dsp.Room):
         self.timeline_objects = {}
         self.warps = []
         self.shake_queue = 0
-        self.pause_delay = defs.TRANSITION_TIME
+        self.pause_delay = TRANSITION_TIME
         self.game_won = False
         self.status_text = None
 
@@ -357,7 +491,7 @@ class Level(sge.dsp.Room):
         self.timeline_skip_target = None
         if timeline:
             self.timeline_name = timeline
-            fname = os.path.join(defs.DATA, "timelines", timeline)
+            fname = os.path.join(DATA, "timelines", timeline)
             with open(fname, 'r') as f:
                 jt = json.load(f)
 
@@ -383,11 +517,11 @@ class Level(sge.dsp.Room):
         # Show darkness
         if self.ambient_light:
             xsge_lighting.project_darkness(ambient_light=self.ambient_light,
-                                           buffer=defs.TILE_SIZE * 2)
+                                           buffer=TILE_SIZE * 2)
         else:
             xsge_lighting.clear_lights()
 
-        if not defs.NO_HUD:
+        if not NO_HUD:
             if self.points:
                 score_text = "{}+{}".format(score, self.points)
             else:
@@ -471,7 +605,7 @@ class Level(sge.dsp.Room):
         save_game()
         if current_worldmap:
             m = Worldmap.load(current_worldmap)
-            m.start(transition="iris_out", transition_time=defs.TRANSITION_TIME)
+            m.start(transition="iris_out", transition_time=TRANSITION_TIME)
         else:
             sge.game.start_room.start()
 
@@ -540,7 +674,7 @@ class Level(sge.dsp.Room):
         self.count_mult = 1
         self.death_time = None
         self.alarms["timer"] = TIMER_FRAMES
-        self.pause_delay = defs.TRANSITION_TIME
+        self.pause_delay = TRANSITION_TIME
         play_music(self.music)
 
         if main_area is None:
@@ -549,7 +683,7 @@ class Level(sge.dsp.Room):
         if main_area == self.fname:
             level_time_bonus = self.time_bonus
 
-        if defs.GOD:
+        if GOD:
             level_timers[main_area] = min(0, level_timers.get(main_area, 0))
         elif main_area not in level_timers:
             if main_area in levels:
@@ -917,7 +1051,7 @@ class Level(sge.dsp.Room):
             self.count_mult = max(WIN_COUNT_TIME_MULT,
                                   time_bonus / WIN_COUNT_TIME_MAX)
         elif alarm_id == "win_count_hp":
-            if defs.GOD:
+            if GOD:
                 self.alarms["win"] = WIN_FINISH_DELAY
             else:
                 for obj in self.objects:
@@ -970,15 +1104,15 @@ class Level(sge.dsp.Room):
                 r = None
             else:
                 objects = []
-                width = jsl.meta.get("width", 25) * defs.TILE_SIZE
-                height = jsl.meta.get("height", 14) * defs.TILE_SIZE
+                width = jsl.meta.get("width", 25) * TILE_SIZE
+                height = jsl.meta.get("height", 14) * TILE_SIZE
                 background_x = jsl.meta.get("background_x", 0)
                 background_y = jsl.meta.get("background_y", 0)
                 name = jsl.meta.get("name")
                 bgname = jsl.meta.get("background")
                 music = jsl.meta.get("music")
                 time_bonus = jsl.meta.get("time_bonus",
-                                          defs.DEFAULT_LEVEL_TIME_BONUS)
+                                          DEFAULT_LEVEL_TIME_BONUS)
                 spawn = jsl.meta.get("spawn")
                 timeline = jsl.meta.get("timeline")
                 ambient_light = jsl.meta.get("ambient_light")
@@ -1030,7 +1164,7 @@ class Level(sge.dsp.Room):
                     print(_("Loading \"{}\"...").format(fname))
 
             try:
-                r = xsge_tmx.load(os.path.join(defs.DATA, "levels", fname), cls=cls,
+                r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
                                   types=TYPES)
             except Exception as e:
                 m = _("An error occurred when trying to load the level:\n\n{}").format(
@@ -1192,7 +1326,7 @@ class CreditsScreen(SpecialScreen):
         if self.fname in loaded_levels:
             del loaded_levels[self.fname]
 
-        with open(os.path.join(defs.DATA, "credits.json"), 'r') as f:
+        with open(os.path.join(DATA, "credits.json"), 'r') as f:
             sections = json.load(f)
 
         logo_section = sge.dsp.Object.create(self.width / 2, self.height,
@@ -1213,7 +1347,7 @@ class CreditsScreen(SpecialScreen):
             if "lines" in section:
                 for line in section["lines"]:
                     list_sprite = sge.gfx.Sprite.from_text(
-                        font, line, width=self.width - 2 * defs.TILE_SIZE,
+                        font, line, width=self.width - 2 * TILE_SIZE,
                         color=sge.gfx.Color("white"), halign="center")
                     x = self.width / 2
                     y = self.sections[-1].bbox_bottom + font.size
@@ -1231,7 +1365,7 @@ class CreditsScreen(SpecialScreen):
 
         if self.sections[-1].bbox_bottom < 0 and "end" not in self.alarms:
             sge.snd.Music.stop(fade_time=3000)
-            self.alarms["end"] = 3.5 * defs.FPS
+            self.alarms["end"] = 3.5 * FPS
 
     def event_alarm(self, alarm_id):
         if alarm_id == "end":
@@ -1274,8 +1408,8 @@ class Worldmap(sge.dsp.Room):
 
     def __init__(self, objects=(), width=None, height=None, views=None,
                  background=None, background_x=0, background_y=0,
-                 object_area_width=defs.TILE_SIZE * 2,
-                 object_area_height=defs.TILE_SIZE * 2, music=None):
+                 object_area_width=TILE_SIZE * 2,
+                 object_area_height=TILE_SIZE * 2, music=None):
         self.music = music
         super().__init__(objects, width, height, views, background,
                          background_x, background_y, object_area_width,
@@ -1347,7 +1481,7 @@ class Worldmap(sge.dsp.Room):
         if fname in loaded_worldmaps:
             return loaded_worldmaps.pop(fname)
         else:
-            return xsge_tmx.load(os.path.join(defs.DATA, "worldmaps", fname),
+            return xsge_tmx.load(os.path.join(DATA, "worldmaps", fname),
                                  cls=cls, types=TYPES)
 
 
@@ -1509,22 +1643,22 @@ class LevelEnd(sge.dsp.Object):
 class Player(xsge_physics.Collider):
 
     name = "Tux"
-    max_hp = 5
-    walk_speed = 2
-    run_speed = 4
-    max_speed = 5
-    acceleration = 0.2
-    air_acceleration = 0.1
-    friction = 0.17
-    air_friction = 0.03
-    jump_height = 4 * defs.TILE_SIZE + 2
-    run_jump_height = 5 * defs.TILE_SIZE + 2
-    stomp_height = defs.TILE_SIZE / 2
-    gravity = defs.GRAVITY
-    fall_speed = 8
-    slide_accel = 0.3
-    slide_speed = 0.1
-    hitstun_time = 120
+    max_hp = PLAYER_MAX_HP
+    walk_speed = PLAYER_WALK_SPEED
+    run_speed = PLAYER_RUN_SPEED
+    max_speed = PLAYER_MAX_SPEED
+    acceleration = PLAYER_ACCELERATION
+    air_acceleration = PLAYER_AIR_ACCELERATION
+    friction = PLAYER_FRICTION
+    air_friction = PLAYER_AIR_FRICTION
+    jump_height = PLAYER_JUMP_HEIGHT
+    run_jump_height = PLAYER_RUN_JUMP_HEIGHT
+    stomp_height = PLAYER_STOMP_HEIGHT
+    gravity = GRAVITY
+    fall_speed = PLAYER_FALL_SPEED
+    slide_accel = PLAYER_SLIDE_ACCEL
+    slide_speed = PLAYER_SLIDE_SPEED
+    hitstun_time = PLAYER_HITSTUN
     carry_x = 0
     carry_y = 20
 
@@ -1578,7 +1712,7 @@ class Player(xsge_physics.Collider):
         self.facing = 1
         self.view = None
 
-        if defs.GOD:
+        if GOD:
             image_blend = sge.gfx.Color("yellow")
 
         super().__init__(
@@ -1671,11 +1805,11 @@ class Player(xsge_physics.Collider):
             self.yvelocity = get_jump_speed(jump_height, self.gravity)
         else:
             self.yvelocity = get_jump_speed(self.stomp_height, self.gravity)
-        T = math.floor(other.bbox_top / defs.TILE_SIZE) * defs.TILE_SIZE
+        T = math.floor(other.bbox_top / TILE_SIZE) * TILE_SIZE
         self.move_y(T - self.bbox_bottom)
 
     def hurt(self):
-        if not defs.GOD and not self.hitstun and not sge.game.current_room.won:
+        if not GOD and not self.hitstun and not sge.game.current_room.won:
             self.hp -= 1
             if self.hp <= 0:
                 self.kill()
@@ -1686,8 +1820,8 @@ class Player(xsge_physics.Collider):
                 self.alarms["hitstun"] = self.hitstun_time
 
     def kill(self, show_fall=True):
-        if defs.GOD:
-            self.yvelocity = get_jump_speed(defs.SCREEN_SIZE[1], self.gravity)
+        if GOD:
+            self.yvelocity = get_jump_speed(SCREEN_SIZE[1], self.gravity)
             play_sound(hurt_sound, self.x, self.y)
         else:
             if self.held_object is not None:
@@ -1695,7 +1829,7 @@ class Player(xsge_physics.Collider):
             play_sound(kill_sound, self.x, self.y)
             if show_fall:
                 DeadMan.create(self.x, self.y, 100000, sprite=tux_die_sprite,
-                               yvelocity=get_jump_speed(defs.PLAYER_DIE_HEIGHT))
+                               yvelocity=get_jump_speed(PLAYER_DIE_HEIGHT))
 
             if self.lose_on_death and not sge.game.current_room.won:
                 sge.game.current_room.die()
@@ -1718,7 +1852,7 @@ class Player(xsge_physics.Collider):
 
     def do_kick(self):
         play_sound(kick_sound, self.x, self.y)
-        self.alarms["fixed_sprite"] = defs.TUX_KICK_TIME
+        self.alarms["fixed_sprite"] = TUX_KICK_TIME
         if self.held_object is not None:
             self.sprite = self.get_grab_sprite(tux_body_kick_sprite)
         else:
@@ -1729,7 +1863,7 @@ class Player(xsge_physics.Collider):
         self.do_kick()
 
     def show_hud(self):
-        if not defs.NO_HUD:
+        if not NO_HUD:
             y = 0
             sge.game.project_text(font, self.name, 0, y,
                                   color=sge.gfx.Color("white"))
@@ -1839,7 +1973,7 @@ class Player(xsge_physics.Collider):
                 if xm != self.facing:
                     skidding = skid_sound.playing
                     if (not skidding and h_control and
-                            speed >= defs.PLAYER_SKID_THRESHOLD):
+                            speed >= PLAYER_SKID_THRESHOLD):
                         skidding = True
                         play_sound(skid_sound, self.x, self.y)
                 else:
@@ -1860,7 +1994,7 @@ class Player(xsge_physics.Collider):
                             self.sprite = self.get_grab_sprite(
                                 tux_body_walk_sprite)
 
-                        self.image_speed = speed * defs.PLAYER_WALK_FRAMES_PER_PIXEL
+                        self.image_speed = speed * PLAYER_WALK_FRAMES_PER_PIXEL
                         if xm != self.facing:
                             self.image_speed *= -1
                     else:
@@ -1870,7 +2004,7 @@ class Player(xsge_physics.Collider):
                             self.sprite = self.get_grab_sprite(
                                 tux_body_run_sprite)
 
-                        self.image_speed = speed * defs.PLAYER_RUN_FRAMES_PER_PIXEL
+                        self.image_speed = speed * PLAYER_RUN_FRAMES_PER_PIXEL
             else:
                 if hands_free:
                     self.sprite = tux_stand_sprite
@@ -1898,7 +2032,7 @@ class Player(xsge_physics.Collider):
             else:
                 self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
 
-            self.image_speed = WARP_SPEED * defs.PLAYER_WALK_FRAMES_PER_PIXEL
+            self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
             if self.xvelocity > 0:
                 self.image_xscale = abs(self.image_xscale)
             else:
@@ -2296,8 +2430,8 @@ class DeadMan(sge.dsp.Object):
 
     """Object which falls off the screen, then gets destroyed."""
 
-    gravity = defs.GRAVITY
-    fall_speed = defs.PLAYER_DIE_FALL_SPEED
+    gravity = GRAVITY
+    fall_speed = PLAYER_DIE_FALL_SPEED
 
     def event_begin_step(self, time_passed, delta_mult):
         if self.yvelocity < self.fall_speed:
@@ -2315,7 +2449,7 @@ class Corpse(xsge_physics.Collider):
 
     """Like DeadMan, but just falls to the floor, not off-screen."""
 
-    gravity = defs.GRAVITY
+    gravity = GRAVITY
     fall_speed = ENEMY_FALL_SPEED
 
     def event_create(self):
@@ -2567,7 +2701,7 @@ class FallingObject(InteractiveCollider):
     based on the steepness of the slope.
     """
 
-    gravity = defs.GRAVITY
+    gravity = GRAVITY
     fall_speed = ENEMY_FALL_SPEED
     slide_speed = ENEMY_SLIDE_SPEED
 
@@ -3737,7 +3871,7 @@ class CircoflameCenter(InteractiveObject):
     always_active = True
     never_tangible = True
 
-    def __init__(self, x, y, z=0, radius=(defs.TILE_SIZE * 4), pos=180,
+    def __init__(self, x, y, z=0, radius=(TILE_SIZE * 4), pos=180,
                  rvelocity=2):
         self.radius = radius
         self.pos = pos
@@ -3791,8 +3925,8 @@ class Snowman(FallingObject, Boss):
     knockable = True
     blastable = True
 
-    def __init__(self, x, y, hp=defs.SNOWMAN_HP, strong_stage=defs.SNOWMAN_STRONG_STAGE,
-                 final_stage=defs.SNOWMAN_FINAL_STAGE, **kwargs):
+    def __init__(self, x, y, hp=SNOWMAN_HP, strong_stage=SNOWMAN_STRONG_STAGE,
+                 final_stage=SNOWMAN_FINAL_STAGE, **kwargs):
         self.full_hp = hp
         self.hp = hp
         self.strong_stage = strong_stage
@@ -3807,7 +3941,7 @@ class Snowman(FallingObject, Boss):
     def jump(self):
         if self.was_on_floor:
             play_sound(bigjump_sound, self.x, self.y)
-            self.yvelocity = get_jump_speed(defs.SNOWMAN_JUMP_HEIGHT, self.gravity)
+            self.yvelocity = get_jump_speed(SNOWMAN_JUMP_HEIGHT, self.gravity)
 
     def stun(self):
         self.stunned = True
@@ -3818,7 +3952,7 @@ class Snowman(FallingObject, Boss):
         self.image_speed = 0
         if self.yvelocity < 0:
             self.yvelocity = 0
-        self.alarms["stun_start"] = defs.SNOWMAN_STOMP_DELAY
+        self.alarms["stun_start"] = SNOWMAN_STOMP_DELAY
 
     def next_stage(self):
         self.xvelocity = 0
@@ -3828,7 +3962,7 @@ class Snowman(FallingObject, Boss):
         else:
             if self.was_on_floor:
                 play_sound(bigjump_sound, self.x, self.y)
-                self.yvelocity = get_jump_speed(defs.SNOWMAN_HOP_HEIGHT,
+                self.yvelocity = get_jump_speed(SNOWMAN_HOP_HEIGHT,
                                                 self.gravity)
                 self.stage += 1
                 self.hp = self.full_hp
@@ -3853,15 +3987,15 @@ class Snowman(FallingObject, Boss):
                 if self.get_bottom_touching_wall():
                     can_jump = False
                     if self.stage >= self.final_stage:
-                        walk_speed = defs.SNOWMAN_FINAL_WALK_SPEED
-                        accel = defs.SNOWMAN_FINAL_ACCELERATION
+                        walk_speed = SNOWMAN_FINAL_WALK_SPEED
+                        accel = SNOWMAN_FINAL_ACCELERATION
                     elif self.stage >= self.strong_stage:
-                        walk_speed = defs.SNOWMAN_STRONG_WALK_SPEED
-                        accel = defs.SNOWMAN_STRONG_ACCELERATION
+                        walk_speed = SNOWMAN_STRONG_WALK_SPEED
+                        accel = SNOWMAN_STRONG_ACCELERATION
                         can_jump = True
                     else:
-                        walk_speed = defs.SNOWMAN_WALK_SPEED
-                        accel = defs.SNOWMAN_ACCELERATION
+                        walk_speed = SNOWMAN_WALK_SPEED
+                        accel = SNOWMAN_ACCELERATION
 
                     player = self.get_nearest_player()
                     if player is not None:
@@ -3873,7 +4007,7 @@ class Snowman(FallingObject, Boss):
                             self.xvelocity = math.copysign(walk_speed, d)
 
                         if (can_jump and self.yvelocity == 0 and
-                                self.y - player.y >= defs.SNOWMAN_JUMP_TRIGGER and
+                                self.y - player.y >= SNOWMAN_JUMP_TRIGGER and
                                 abs(self.xvelocity) >= walk_speed / 2):
                             self.jump()
             else:
@@ -3897,8 +4031,8 @@ class Snowman(FallingObject, Boss):
             self.yvelocity = 0
             self.xvelocity = 0
             self.xacceleration = 0
-            sge.game.current_room.shake(defs.SNOWMAN_SHAKE_NUM)
-            self.alarms["stomp_delay"] = defs.SNOWMAN_STOMP_DELAY
+            sge.game.current_room.shake(SNOWMAN_SHAKE_NUM)
+            self.alarms["stomp_delay"] = SNOWMAN_STOMP_DELAY
             if self.stun_end:
                 self.fixed_sprite = False
                 self.stunned = False
@@ -3947,7 +4081,7 @@ class Snowman(FallingObject, Boss):
                 speed = abs(self.xvelocity)
                 if speed > 0:
                     self.sprite = snowman_walk_sprite
-                    self.image_speed = (speed * defs.SNOWMAN_WALK_FRAMES_PER_PIXEL)
+                    self.image_speed = (speed * SNOWMAN_WALK_FRAMES_PER_PIXEL)
                 else:
                     self.sprite = snowman_stand_sprite
             else:
@@ -3959,11 +4093,11 @@ class Snowman(FallingObject, Boss):
 
     def event_alarm(self, alarm_id):
         if alarm_id == "stun_start":
-            self.image_speed = (defs.SNOWMAN_STUNNED_WALK_SPEED *
-                                defs.SNOWMAN_WALK_FRAMES_PER_PIXEL)
-            self.xvelocity = math.copysign(defs.SNOWMAN_STUNNED_WALK_SPEED,
+            self.image_speed = (SNOWMAN_STUNNED_WALK_SPEED *
+                                SNOWMAN_WALK_FRAMES_PER_PIXEL)
+            self.xvelocity = math.copysign(SNOWMAN_STUNNED_WALK_SPEED,
                                            self.image_xscale)
-            self.alarms["stun"] = defs.SNOWMAN_HITSTUN
+            self.alarms["stun"] = SNOWMAN_HITSTUN
         elif alarm_id == "stun":
             self.next_stage()
 
@@ -4299,7 +4433,7 @@ class FireFlower(FallingObject, WinPuffObject):
                                 image_xscale=self.image_xscale)
                 play_sound(shoot_sound, self.x, self.y)
 
-                if not defs.GOD:
+                if not GOD:
                     self.ammo -= 1
                     self.sprite = fire_flower_sprite.copy()
                     lightness = int((self.ammo / FIREBALL_AMMO) * 255)
@@ -4397,7 +4531,7 @@ class IceFlower(FallingObject, WinPuffObject):
                                  bbox_x=bbox_x)
                 play_sound(shoot_sound, self.x, self.y)
 
-                if not defs.GOD:
+                if not GOD:
                     self.ammo -= 1
                     self.sprite = ice_flower_sprite.copy()
                     lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
@@ -5027,7 +5161,7 @@ class HittableBlock(sge.dsp.Object):
             self.hit_obj = sge.dsp.Object.create(
                 self.x, self.y, self.z, sprite=s, tangible=False,
                 yvelocity=get_jump_speed(BLOCK_HIT_HEIGHT),
-                yacceleration=defs.GRAVITY, image_index=self.image_index,
+                yacceleration=GRAVITY, image_index=self.image_index,
                 image_origin_x=self.image_origin_x,
                 image_origin_y=self.image_origin_y,
                 image_fps=self.image_fps, image_xscale=self.image_xscale,
@@ -5184,7 +5318,7 @@ class ThinIce(xsge_physics.Solid):
         if self.sprite is thin_ice_sprite:
             players = self.collision(Player, y=(self.y - 1))
             if players:
-                if not defs.GOD:
+                if not GOD:
                     for player in players:
                         self.crack_time += delta_mult
                         while self.crack_time >= ICE_CRACK_TIME:
@@ -5787,8 +5921,8 @@ class CircoflamePath(xsge_path.Path):
 
     def __init__(self, x, y, z=0, points=(), rvelocity=2):
         self.rvelocity = rvelocity
-        x += defs.TILE_SIZE / 2
-        y += defs.TILE_SIZE / 2
+        x += TILE_SIZE / 2
+        y += TILE_SIZE / 2
         super().__init__(x, y, z=z, points=points)
 
     def event_create(self):
@@ -6152,7 +6286,7 @@ class MapSpace(sge.dsp.Object):
                     x += self.sprite.width / 2
                     y += self.sprite.height / 2
                 level.start(transition="iris_in",
-                            transition_time=defs.TRANSITION_TIME,
+                            transition_time=TRANSITION_TIME,
                             transition_arg=(x, y))
             else:
                 rush_save()
@@ -6201,7 +6335,7 @@ class MapWarp(MapSpace):
             mapdest = None
             mapdest_space = None
             m = Worldmap.load(current_worldmap)
-            m.start(transition="dissolve", transition_time=defs.TRANSITION_TIME)
+            m.start(transition="dissolve", transition_time=TRANSITION_TIME)
             play_sound(warp_sound)
 
 
@@ -6325,7 +6459,7 @@ class NewGameMenu(Menu):
             elif slot.get("levelset") is None:
                 cls.items.append(_("-No Levelset-"))
             else:
-                fname = os.path.join(defs.DATA, "levelsets", slot["levelset"])
+                fname = os.path.join(DATA, "levelsets", slot["levelset"])
                 try:
                     with open(fname, 'r') as f:
                         data = json.load(f)
@@ -6419,9 +6553,9 @@ class LevelsetMenu(Menu):
     def create_page(cls, default=0, page=0, refreshlist=False):
         if refreshlist or not cls.levelsets:
             cls.levelsets = []
-            for fname in os.listdir(os.path.join(defs.DATA, "levelsets")):
+            for fname in os.listdir(os.path.join(DATA, "levelsets")):
                 try:
-                    with open(os.path.join(defs.DATA, "levelsets", fname), 'r') as f:
+                    with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
                         data = json.load(f)
                 except (IOError, OSError, ValueError):
                     continue
@@ -6563,8 +6697,8 @@ class OptionsMenu(Menu):
                 w = 400
                 h = 128
                 margin = 16
-                x = defs.SCREEN_SIZE[0] / 2 - w / 2
-                y = defs.SCREEN_SIZE[1] / 2 - h / 2
+                x = SCREEN_SIZE[0] / 2 - w / 2
+                y = SCREEN_SIZE[1] / 2 - h / 2
                 c = sge.gfx.Color("black")
                 window = xsge_gui.Window(gui_handler, x, y, w, h,
                                          background_color=c, border=False)
@@ -6592,8 +6726,8 @@ class OptionsMenu(Menu):
                     infolist = rtz.infolist()
                     for i in range(len(infolist)):
                         member = infolist[i]
-                        rtz.extract(member, defs.DATA)
-                        rtz.extract(member, os.path.join(defs.CONFIG, "data"))
+                        rtz.extract(member, DATA)
+                        rtz.extract(member, os.path.join(CONFIG, "data"))
                         progressbar.progress = (i + 1) / len(infolist)
                         progressbar.redraw()
                         sge.game.pump_input()
@@ -6904,8 +7038,8 @@ class ExportLevelsetMenu(LevelsetMenu):
                 w = 400
                 h = 128
                 margin = 16
-                x = defs.SCREEN_SIZE[0] / 2 - w / 2
-                y = defs.SCREEN_SIZE[1] / 2 - h / 2
+                x = SCREEN_SIZE[0] / 2 - w / 2
+                y = SCREEN_SIZE[1] / 2 - h / 2
                 c = sge.gfx.Color("black")
                 window = xsge_gui.Window(gui_handler, x, y, w, h,
                                          background_color=c, border=False)
@@ -6930,7 +7064,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                 sge.game.refresh()
 
                 levelset = self.current_levelsets[self.choice]
-                levelset_fname = os.path.join(defs.DATA, "levelsets", levelset)
+                levelset_fname = os.path.join(DATA, "levelsets", levelset)
                 with open(levelset_fname, 'r') as f:
                     data = json.load(f)
                 start_cutscene = data.get("start_cutscene")
@@ -6942,7 +7076,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                     if fd in exclude_files:
                         return set()
 
-                    tmx_dir = os.path.relpath(os.path.dirname(fd), defs.DATA)
+                    tmx_dir = os.path.relpath(os.path.dirname(fd), DATA)
                     extra_files = {fd}
                     exclude_files.add(fd)
                     try:
@@ -6953,23 +7087,23 @@ class ExportLevelsetMenu(LevelsetMenu):
 
                     for prop in tilemap.properties:
                         if prop.name == "music":
-                            extra_files.add(os.path.join(defs.DATA, "music",
+                            extra_files.add(os.path.join(DATA, "music",
                                                          prop.value))
                         elif prop.name == "timeline":
-                            extra_files.add(os.path.join(defs.DATA, "timelines",
+                            extra_files.add(os.path.join(DATA, "timelines",
                                                          prop.value))
 
                     for tileset in tilemap.tilesets:
                         ts_dir = tmx_dir
                         if tileset.source is not None:
-                            extra_files.add(os.path.join(defs.DATA, tmx_dir,
+                            extra_files.add(os.path.join(DATA, tmx_dir,
                                                          tileset.source))
                             ts_dir = os.path.dirname(os.path.join(
                                 tmx_dir, tileset.source))
 
                         if (tileset.image is not None and
                                 tileset.image.source is not None):
-                            extra_files.add(os.path.join(defs.DATA, ts_dir,
+                            extra_files.add(os.path.join(DATA, ts_dir,
                                                          tileset.image.source))
 
                     def check_obj(cls, properties, exclude_files,
@@ -6997,14 +7131,14 @@ class ExportLevelsetMenu(LevelsetMenu):
                                     else:
                                         sdir = "levels"
 
-                                    fname = os.path.join(defs.DATA, sdir, level_f)
+                                    fname = os.path.join(DATA, sdir, level_f)
                                     extra_files |= get_extra_files(
                                         fname, exclude_files)
                             elif prop.name.endswith("timeline"):
                                 extra_files.add(
-                                    os.path.join(defs.DATA, "timelines", prop.value))
+                                    os.path.join(DATA, "timelines", prop.value))
                             elif prop.name == "level":
-                                fname = os.path.join(defs.DATA, "levels",
+                                fname = os.path.join(DATA, "levels",
                                                      prop.value)
                                 extra_files |= get_extra_files(fname,
                                                                exclude_files)
@@ -7075,7 +7209,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                             if (layer.image is not None and
                                     layer.image.source is not None):
                                 extra_files.add(
-                                    os.path.join(defs.DATA, tmx_dir,
+                                    os.path.join(DATA, tmx_dir,
                                                  layer.image.source))
 
                     return extra_files
@@ -7083,16 +7217,16 @@ class ExportLevelsetMenu(LevelsetMenu):
                 files = {levelset_fname}
                 exclude_files = set()
                 if start_cutscene:
-                    fd = os.path.join(defs.DATA, "levels", start_cutscene)
+                    fd = os.path.join(DATA, "levels", start_cutscene)
                     files |= get_extra_files(fd, exclude_files)
                 if worldmap:
-                    fd = os.path.join(defs.DATA, "worldmaps", worldmap)
+                    fd = os.path.join(DATA, "worldmaps", worldmap)
                     files |= get_extra_files(fd, exclude_files)
                 for level in levels:
-                    fd = os.path.join(defs.DATA, "levels", level)
+                    fd = os.path.join(DATA, "levels", level)
                     files |= get_extra_files(fd, exclude_files)
                 for include_file in include_files:
-                    files.add(os.path.join(defs.DATA, include_file))
+                    files.add(os.path.join(DATA, include_file))
 
                 files = list(files)
                 inst_dir = os.path.join(os.path.dirname(__file__), "data")
@@ -7100,7 +7234,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                 with zipfile.ZipFile(fname, 'w') as rtz:
                     for i in range(len(files)):
                         fname = files[i]
-                        aname = os.path.relpath(fname, defs.DATA)
+                        aname = os.path.relpath(fname, DATA)
                         if not os.path.exists(os.path.join(inst_dir, aname)):
                             rtz.write(fname, aname)
 
@@ -7150,7 +7284,7 @@ class PauseMenu(ModalMenu):
 
     @classmethod
     def create(cls, default=0):
-        if defs.LEVEL or defs.RECORD:
+        if LEVEL or RECORD:
             items = [_("Continue"), _("Configure keyboard"),
                      _("Configure joysticks"), _("Abort")]
         elif current_worldmap:
@@ -7318,7 +7452,7 @@ def build_tmx(fname):
         "background_x": tmx.meta.get("background_x", 0),
         "background_y": tmx.meta.get("background_y", 0),
         "name": tmx.meta.get("name"), "music": tmx.meta.get("music"),
-        "time_bonus": tmx.meta.get("time_bonus", defs.DEFAULT_LEVEL_TIME_BONUS),
+        "time_bonus": tmx.meta.get("time_bonus", DEFAULT_LEVEL_TIME_BONUS),
         "spawn": tmx.meta.get("spawn"), "timeline": tmx.meta.get("timeline"),
         "ambient_light": tmx.meta.get("ambient_light"),
         "disable_lights": tmx.meta.get("disable_lights", False),
@@ -7355,7 +7489,7 @@ def get_scaled_copy(obj):
     return s
 
 
-def get_jump_speed(height, gravity=defs.GRAVITY):
+def get_jump_speed(height, gravity=GRAVITY):
     # Get the speed to achieve a given height using a kinematic
     # equation: v[f]^2 = v[i]^2 + 2ad
     return -math.sqrt(2 * gravity * height)
@@ -7529,7 +7663,7 @@ def play_music(music, force_restart=False):
         music_object = loaded_music.get(music)
         if music_object is None:
             try:
-                music_object = sge.snd.Music(os.path.join(defs.DATA, "music",
+                music_object = sge.snd.Music(os.path.join(DATA, "music",
                                                           music))
             except (IOError, OSError):
                 sge.snd.Music.clear_queue()
@@ -7543,7 +7677,7 @@ def play_music(music, force_restart=False):
         music_start_object = loaded_music.get(music_start)
         if music_start_object is None:
             try:
-                music_start_object = sge.snd.Music(os.path.join(defs.DATA, "music",
+                music_start_object = sge.snd.Music(os.path.join(DATA, "music",
                                                                 music_start))
             except (IOError, OSError):
                 pass
@@ -7595,7 +7729,7 @@ def load_levelset(fname, preload_start=0):
     if current_levelset != fname:
         current_levelset = fname
 
-        with open(os.path.join(defs.DATA, "levelsets", fname), 'r') as f:
+        with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
             data = json.load(f)
 
         start_cutscene = data.get("start_cutscene")
@@ -7611,8 +7745,8 @@ def load_levelset(fname, preload_start=0):
         margin = 16
         w = label_w + 2 * margin
         h = label_h + 3 * margin + xsge_gui.progressbar_container_sprite.height
-        x = defs.SCREEN_SIZE[0] / 2 - w / 2
-        y = defs.SCREEN_SIZE[1] / 2 - h / 2
+        x = SCREEN_SIZE[0] / 2 - w / 2
+        y = SCREEN_SIZE[1] / 2 - h / 2
         c = sge.gfx.Color("black")
         window = xsge_gui.Window(gui_handler, x, y, w, h,
                                  background_color=c, border=False)
@@ -7680,7 +7814,7 @@ def set_new_game():
     global score
 
     if current_levelset is None:
-        load_levelset(defs.DEFAULT_LEVELSET)
+        load_levelset(DEFAULT_LEVELSET)
 
     level_timers = {}
     cleared_levels = []
@@ -7708,10 +7842,10 @@ def write_to_disk():
            "joystick_threshold": joystick_threshold, "keys": keys_cfg,
            "joystick": js_cfg}
 
-    with open(os.path.join(defs.CONFIG, "config.json"), 'w') as f:
+    with open(os.path.join(CONFIG, "config.json"), 'w') as f:
         json.dump(cfg, f, indent=4)
 
-    with open(os.path.join(defs.CONFIG, "save_slots.json"), 'w') as f:
+    with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
         json.dump(save_slots, f, indent=4)
 
 
@@ -7930,9 +8064,9 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
 
 
 print(_("Initializing game system..."))
-Game(defs.SCREEN_SIZE[0], defs.SCREEN_SIZE[1], fps=defs.FPS, delta=defs.DELTA, delta_min=defs.DELTA_MIN,
-     delta_max=defs.DELTA_MAX, window_text="reTux {}".format(__version__),
-     window_icon=os.path.join(defs.DATA, "images", "misc", "icon.png"))
+Game(SCREEN_SIZE[0], SCREEN_SIZE[1], fps=FPS, delta=DELTA, delta_min=DELTA_MIN,
+     delta_max=DELTA_MAX, window_text="reTux {}".format(__version__),
+     window_icon=os.path.join(DATA, "images", "misc", "icon.png"))
 
 print(_("Initializing GUI system..."))
 xsge_gui.init()
@@ -7943,51 +8077,51 @@ menu_color = sge.gfx.Color((128, 128, 255, 192))
 # Load images
 print(_("Loading images..."))
 
-d = os.path.join(defs.DATA, "images", "tiles")
+d = os.path.join(DATA, "images", "tiles")
 tilesets = {
     "snow": sge.gfx.Sprite.from_tileset(
         os.path.join(d, "tileset_snow.png"), columns=14, rows=28,
-        width=defs.TILE_SIZE, height=defs.TILE_SIZE).get_spritelist(),
+        width=TILE_SIZE, height=TILE_SIZE).get_spritelist(),
     "cave": sge.gfx.Sprite.from_tileset(
         os.path.join(d, "tileset_cave.png"), columns=12, rows=18,
-        width=defs.TILE_SIZE, height=defs.TILE_SIZE).get_spritelist(),
+        width=TILE_SIZE, height=TILE_SIZE).get_spritelist(),
     "castle": sge.gfx.Sprite.from_tileset(
         os.path.join(d, "tileset_castle.png"), columns=9, rows=17,
-        width=defs.TILE_SIZE, height=defs.TILE_SIZE).get_spritelist(),
+        width=TILE_SIZE, height=TILE_SIZE).get_spritelist(),
 }
 
-d = os.path.join(defs.DATA, "images", "objects", "tux")
+d = os.path.join(DATA, "images", "objects", "tux")
 tux_body_stand_sprite = sge.gfx.Sprite(
-    "tux_body_stand", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_body_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_stand_sprite = sge.gfx.Sprite(
-    "tux_arms_stand", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_stand", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_walk_sprite = sge.gfx.Sprite(
-    "tux_body_walk", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_body_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_walk_sprite = sge.gfx.Sprite(
-    "tux_arms_walk", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_walk", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_run_sprite = sge.gfx.Sprite(
-    "tux_body_run", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_body_run", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_run_sprite = sge.gfx.Sprite(
-    "tux_arms_run", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_run", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_skid_sprite = sge.gfx.Sprite(
-    "tux_body_skid", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_body_skid", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_skid_sprite = sge.gfx.Sprite(
-    "tux_arms_skid", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_skid", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_jump_sprite = sge.gfx.Sprite(
-    "tux_body_jump", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_body_jump", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_jump_sprite = sge.gfx.Sprite(
-    "tux_arms_jump", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_jump", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_fall_sprite = tux_body_jump_sprite.copy()
 tux_arms_fall_sprite = sge.gfx.Sprite(
-    "tux_arms_fall", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_fall", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_body_kick_sprite = sge.gfx.Sprite(
-    "tux_body_kick", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_body_kick", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_kick_sprite = sge.gfx.Sprite(
-    "tux_arms_kick", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_kick", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_grab_sprite = sge.gfx.Sprite(
-    "tux_arms_grab", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_arms_skid_grab_sprite = sge.gfx.Sprite(
-    "tux_arms_skid_grab", d, origin_x=defs.TUX_ORIGIN_X, origin_y=defs.TUX_ORIGIN_Y)
+    "tux_arms_skid_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_die_sprite = sge.gfx.Sprite("tux_die", d, origin_x=29, origin_y=11, fps=8)
 tux_offscreen_sprite = sge.gfx.Sprite("tux_offscreen", d, origin_x=16)
 
@@ -8009,7 +8143,7 @@ for bs, a in [(tux_stand_sprite, tux_arms_stand_sprite),
     for i in range(bs.frames):
         bs.draw_sprite(a, i, bs.origin_x, bs.origin_y, i)
 
-d = os.path.join(defs.DATA, "images", "objects", "enemies")
+d = os.path.join(DATA, "images", "objects", "enemies")
 snowball_walk_sprite = sge.gfx.Sprite("snowball", d, origin_x=19, origin_y=4,
                                       fps=8, bbox_x=-13, bbox_y=0,
                                       bbox_width=26, bbox_height=32)
@@ -8116,7 +8250,7 @@ raccot_jump_sprite = sge.gfx.Sprite("raccot_jump", d, origin_x=60, origin_y=72,
                                     bbox_x=-30, bbox_y=-64, bbox_width=60,
                                     bbox_height=96)
 
-d = os.path.join(defs.DATA, "images", "objects", "bonus")
+d = os.path.join(DATA, "images", "objects", "bonus")
 bonus_empty_sprite = sge.gfx.Sprite("bonus_empty", d)
 bonus_full_sprite = sge.gfx.Sprite("bonus_full", d, fps=8)
 brick_sprite = sge.gfx.Sprite("brick", d)
@@ -8150,7 +8284,7 @@ tuxdoll_shadow_sprite.draw_sprite(darkener, 0, 0, 0,
                                   blend_mode=sge.BLEND_RGB_MINIMUM)
 del darkener
 
-d = os.path.join(defs.DATA, "images", "objects", "decoration")
+d = os.path.join(DATA, "images", "objects", "decoration")
 lava_body_sprite = sge.gfx.Sprite("lava_body", d, transparent=False, fps=5)
 lava_surface_sprite = sge.gfx.Sprite("lava_surface", d, fps=5)
 goal_sprite = sge.gfx.Sprite("goal", d, fps=8)
@@ -8158,7 +8292,7 @@ goal_top_sprite = sge.gfx.Sprite("goal_top", d, fps=8)
 igloo_back_sprite = sge.gfx.Sprite("igloo_back", d)
 igloo_front_sprite = sge.gfx.Sprite("igloo_front", d)
 
-d = os.path.join(defs.DATA, "images", "objects", "spring")
+d = os.path.join(DATA, "images", "objects", "spring")
 fixed_spring_sprite = sge.gfx.Sprite(
     "fixed_spring", d, origin_x=16, origin_y=16, bbox_x=-16, bbox_y=-7,
     bbox_width=32, bbox_height=23)
@@ -8181,7 +8315,7 @@ rusty_spring_dead_sprite = sge.gfx.Sprite(
     "rusty_spring_dead", d, origin_x=16, origin_y=26, bbox_x=-16, bbox_y=-7,
     bbox_width=32, bbox_height=23)
 
-d = os.path.join(defs.DATA, "images", "objects", "misc")
+d = os.path.join(DATA, "images", "objects", "misc")
 platform_sprite = sge.gfx.Sprite("platform", d)
 rock_sprite = sge.gfx.Sprite("rock", d)
 lantern_sprite = sge.gfx.Sprite("lantern", d, origin_x=20, origin_y=9, fps=10,
@@ -8199,7 +8333,7 @@ door_sprite = sge.gfx.Sprite("door", d, origin_x=25, origin_y=68, fps=10)
 door_back_sprite = sge.gfx.Sprite("door_back", d, origin_x=21, origin_y=41,
                                   transparent=False)
 
-d = os.path.join(defs.DATA, "images", "portraits")
+d = os.path.join(DATA, "images", "portraits")
 portrait_sprites = {}
 for fname in os.listdir(d):
     root, ext = os.path.splitext(fname)
@@ -8210,7 +8344,7 @@ for fname in os.listdir(d):
     else:
         portrait_sprites[root] = portrait
 
-d = os.path.join(defs.DATA, "images", "misc")
+d = os.path.join(DATA, "images", "misc")
 logo_sprite = sge.gfx.Sprite("logo", d, origin_x=140)
 fire_bullet_sprite = sge.gfx.Sprite("fire_bullet", d, origin_x=8, origin_y=8,
                                     fps=8, bbox_x=-8, bbox_width=16)
@@ -8286,7 +8420,7 @@ coin_icon_sprite.width = 16
 coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
 
-d = os.path.join(defs.DATA, "images", "worldmap")
+d = os.path.join(DATA, "images", "worldmap")
 worldmap_tux_sprite = sge.gfx.Sprite("tux", d)
 worldmap_level_complete_sprite = sge.gfx.Sprite("level_complete", d)
 worldmap_level_incomplete_sprite = sge.gfx.Sprite("level_incomplete", d, fps=8)
@@ -8294,10 +8428,10 @@ worldmap_warp_sprite = sge.gfx.Sprite("warp", d, fps=3)
 worldmap_water_sprite = sge.gfx.Sprite("water", d, transparent=False, fps=8)
 
 # Load backgrounds
-d = os.path.join(defs.DATA, "images", "backgrounds")
+d = os.path.join(DATA, "images", "backgrounds")
 layers = []
 
-if not defs.NO_BACKGROUNDS:
+if not NO_BACKGROUNDS:
     layers = [
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("arctis1-middle", d), 0, 0, -100000,
@@ -8323,7 +8457,7 @@ if not defs.NO_BACKGROUNDS:
 backgrounds["arctis"] = sge.gfx.Background(layers,
                                            sge.gfx.Color((109, 92, 230)))
 
-if not defs.NO_BACKGROUNDS:
+if not NO_BACKGROUNDS:
     cave_edge_spr = sge.gfx.Sprite("cave-edge", d, transparent=False)
     layers = [
         sge.gfx.BackgroundLayer(
@@ -8340,7 +8474,7 @@ if not defs.NO_BACKGROUNDS:
 
 backgrounds["cave"] = sge.gfx.Background(layers, sge.gfx.Color("#024"))
 
-if not defs.NO_BACKGROUNDS:
+if not NO_BACKGROUNDS:
     nightsky_bottom_spr = sge.gfx.Sprite("nightsky-bottom", d,
                                          transparent=False)
     layers = [
@@ -8368,7 +8502,7 @@ if not defs.NO_BACKGROUNDS:
 
 backgrounds["nightsky"] = sge.gfx.Background(layers, sge.gfx.Color("#002"))
 
-if not defs.NO_BACKGROUNDS:
+if not NO_BACKGROUNDS:
     layers = [
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("bluemountain-middle", d, transparent=False), 0,
@@ -8389,7 +8523,7 @@ backgrounds["bluemountain"] = sge.gfx.Background(layers,
 castle_spr = sge.gfx.Sprite("castle", d)
 castle_bottom_spr = sge.gfx.Sprite("castle-bottom", d, transparent=False)
 for i in list(backgrounds.keys()):
-    if not defs.NO_BACKGROUNDS:
+    if not NO_BACKGROUNDS:
         layers = backgrounds[i].layers + [
             sge.gfx.BackgroundLayer(castle_spr, 0, -64, -99000,
                                     xscroll_rate=0.75, yscroll_rate=1,
@@ -8414,76 +8548,76 @@ chars = ([None] + [chr(i) for i in range(33, 127)] + ['\u2190', ' ']
          + [chr(i) for i in range(161, 384)])
 
 font_sprite = sge.gfx.Sprite.from_tileset(
-    os.path.join(defs.DATA, "images", "misc", "font.png"), columns=16, rows=20,
+    os.path.join(DATA, "images", "misc", "font.png"), columns=16, rows=20,
     width=16, height=18)
 font = sge.gfx.Font.from_sprite(font_sprite, chars, size=18)
 
 font_small_sprite = sge.gfx.Sprite.from_tileset(
-    os.path.join(defs.DATA, "images", "misc", "font_small.png"), columns=16,
+    os.path.join(DATA, "images", "misc", "font_small.png"), columns=16,
     rows=20, width=8, height=9)
 font_small = sge.gfx.Font.from_sprite(font_small_sprite, chars, size=9)
 
 font_big_sprite = sge.gfx.Sprite.from_tileset(
-    os.path.join(defs.DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
+    os.path.join(DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
     width=20, height=22)
 font_big = sge.gfx.Font.from_sprite(font_big_sprite, chars, size=22)
 
 # Load sounds
-jump_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "jump.wav"))
-bigjump_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "bigjump.wav"))
-skid_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "skid.wav"), 50)
-hurt_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "hurt.wav"))
-kill_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "kill.wav"))
-brick_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "brick.wav"))
-coin_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "coin.wav"))
-find_powerup_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "upgrade.wav"))
-tuxdoll_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "tuxdoll.wav"))
-s = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "ice_crack-0.wav"))
+jump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "jump.wav"))
+bigjump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "bigjump.wav"))
+skid_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "skid.wav"), 50)
+hurt_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "hurt.wav"))
+kill_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "kill.wav"))
+brick_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "brick.wav"))
+coin_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "coin.wav"))
+find_powerup_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "upgrade.wav"))
+tuxdoll_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "tuxdoll.wav"))
+s = sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-0.wav"))
 ice_crack_sounds = [
     s,
-    sge.snd.Sound(os.path.join(defs.DATA, "sounds", "ice_crack-1.wav"), parent=s),
-    sge.snd.Sound(os.path.join(defs.DATA, "sounds", "ice_crack-2.wav"), parent=s),
-    sge.snd.Sound(os.path.join(defs.DATA, "sounds", "ice_crack-3.wav"), parent=s)]
-ice_shatter_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-1.wav"), parent=s),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-2.wav"), parent=s),
+    sge.snd.Sound(os.path.join(DATA, "sounds", "ice_crack-3.wav"), parent=s)]
+ice_shatter_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                "ice_shatter.wav"))
-heal_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "heal.wav"))
-shoot_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "shoot.wav"))
-fire_dissipate_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+heal_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "heal.wav"))
+shoot_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "shoot.wav"))
+fire_dissipate_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                   "fire_dissipate.wav"))
-icebullet_break_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+icebullet_break_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                    "icebullet_break.wav"))
-squish_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "squish.wav"))
-stomp_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "stomp.wav"))
-sizzle_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "sizzle.ogg"))
-spring_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "spring.wav"))
-rusty_spring_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+squish_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "squish.wav"))
+stomp_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "stomp.wav"))
+sizzle_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "sizzle.ogg"))
+spring_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "spring.wav"))
+rusty_spring_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                 "rusty_spring.wav"))
-kick_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "kick.wav"))
-iceblock_bump_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+kick_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "kick.wav"))
+iceblock_bump_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                  "iceblock_bump.wav"))
-icicle_shake_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+icicle_shake_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                 "icicle_shake.wav"))
-icicle_crash_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds",
+icicle_crash_sound = sge.snd.Sound(os.path.join(DATA, "sounds",
                                                 "icicle_crash.wav"))
-explosion_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "explosion.wav"))
-fall_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "fall.wav"))
-yeti_gna_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "yeti_gna.wav"))
-yeti_roar_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "yeti_roar.wav"))
-pop_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "pop.wav"))
-bell_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "bell.wav"))
-pipe_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "pipe.ogg"))
-warp_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "warp.wav"))
-door_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "door.wav"))
-door_shut_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "door_shut.wav"))
-pause_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "select.ogg"))
-select_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "select.ogg"))
+explosion_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "explosion.wav"))
+fall_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "fall.wav"))
+yeti_gna_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "yeti_gna.wav"))
+yeti_roar_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "yeti_roar.wav"))
+pop_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "pop.wav"))
+bell_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "bell.wav"))
+pipe_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "pipe.ogg"))
+warp_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "warp.wav"))
+door_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "door.wav"))
+door_shut_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "door_shut.wav"))
+pause_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "select.ogg"))
+select_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "select.ogg"))
 confirm_sound = coin_sound
 cancel_sound = pop_sound
 error_sound = hurt_sound
-type_sound = sge.snd.Sound(os.path.join(defs.DATA, "sounds", "type.wav"))
+type_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "type.wav"))
 
 # Load music
-level_win_music = sge.snd.Music(os.path.join(defs.DATA, "music", "leveldone.ogg"))
+level_win_music = sge.snd.Music(os.path.join(DATA, "music", "leveldone.ogg"))
 loaded_music["leveldone.ogg"] = level_win_music
 
 # Create objects
@@ -8497,12 +8631,12 @@ goal_animation = sge.dsp.Object(0, 0, sprite=goal_sprite, visible=False,
                                 tangible=False)
 
 # Create rooms
-if defs.LEVEL:
-    sge.game.start_room = LevelTester.load(defs.LEVEL, True)
+if LEVEL:
+    sge.game.start_room = LevelTester.load(LEVEL, True)
     if sge.game.start_room is None:
         sys.exit()
-elif defs.RECORD:
-    sge.game.start_room = LevelRecorder.load(defs.RECORD, True)
+elif RECORD:
+    sge.game.start_room = LevelRecorder.load(RECORD, True)
     if sge.game.start_room is None:
         sys.exit()
 else:
@@ -8511,12 +8645,12 @@ else:
 
 sge.game.mouse.visible = False
 
-if not os.path.exists(defs.CONFIG):
-    os.makedirs(defs.CONFIG)
+if not os.path.exists(CONFIG):
+    os.makedirs(CONFIG)
 
 # Save error messages to a text file (so they aren't lost).
-if not defs.PRINT_ERRORS:
-    stderr = os.path.join(defs.CONFIG, "stderr.txt")
+if not PRINT_ERRORS:
+    stderr = os.path.join(CONFIG, "stderr.txt")
     if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
         sys.stderr = open(stderr, 'w')
     else:
@@ -8527,7 +8661,7 @@ if not defs.PRINT_ERRORS:
     del dt
 
 try:
-    with open(os.path.join(defs.CONFIG, "config.json")) as f:
+    with open(os.path.join(CONFIG, "config.json")) as f:
         cfg = json.load(f)
 except (OSError, ValueError):
     cfg = {}
@@ -8615,7 +8749,7 @@ finally:
     set_gui_controls()
 
 try:
-    with open(os.path.join(defs.CONFIG, "save_slots.json")) as f:
+    with open(os.path.join(CONFIG, "save_slots.json")) as f:
         loaded_slots = json.load(f)
 except (OSError, ValueError):
     pass
@@ -8635,4 +8769,4 @@ if __name__ == '__main__':
         sge.game.start()
     finally:
         write_to_disk()
-        shutil.rmtree(defs.DATA)
+        shutil.rmtree(DATA)
