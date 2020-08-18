@@ -6,9 +6,9 @@
   <property name="music" value="credits.ogg"/>
  </properties>
  <tileset firstgid="1" source="../../tilesets/creatures.tsx"/>
- <tileset firstgid="11" source="../../tilesets/snow_old.tsx"/>
- <tileset firstgid="249" source="../../tilesets/cave_old.tsx"/>
- <tileset firstgid="321" source="../../tilesets/castle_old.tsx"/>
+ <tileset firstgid="11" source="../../tilesets/snow.tsx"/>
+ <tileset firstgid="249" source="../../tilesets/cave.tsx"/>
+ <tileset firstgid="321" source="../../tilesets/castle.tsx"/>
  <tileset firstgid="351" source="../../tilesets/blocks.tsx"/>
  <tileset firstgid="375" source="../../tilesets/pipes.tsx"/>
  <tileset firstgid="463" source="../../tilesets/special_blocks.tsx"/>
