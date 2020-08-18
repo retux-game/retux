@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="500" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="153">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="500" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="153">
  <properties>
   <property name="bgname" value="arctis"/>
   <property name="music" value="theme.ogg"/>
@@ -9,6 +9,11 @@
  <tileset firstgid="16" source="../../tilesets/special_blocks.tsx"/>
  <tileset firstgid="41" source="../../tilesets/decoration_small.tsx"/>
  <tileset firstgid="45" source="../../tilesets/igloo.tsx"/>
+ <tileset firstgid="47" name="Logo" tilewidth="280" tileheight="93" tilecount="1" columns="0">
+  <tile id="0">
+   <image width="280" height="93" source="../../images/misc/logo.png"/>
+  </tile>
+ </tileset>
  <tileset firstgid="48" source="../../tilesets/krosh.tsx"/>
  <tileset firstgid="49" source="../../tilesets/krush.tsx"/>
  <tileset firstgid="50" source="../../tilesets/snow.tsx"/>
@@ -22,6 +27,11 @@
    eJzt1TERADAIBEHsBP8CI4ICfmZXwXVXBQAAAAAAAAC5ejsAABh72wEAwJifA0A+PweAfH4OAPn8HADy+TkA5PNzAAAAAAC44wMsJgFK
   </data>
  </layer>
+ <layer id="2" name="Middle Tiles (old)" width="500" height="14" opacity="0.25">
+  <data encoding="base64" compression="zlib">
+   eJzt2LENgDAMRcEsxBLZfygqJMoPBNmK7iQrbbqXeAwAAAAAAAAAgMwMBgDoLem5rgNAb0m/dR0Aepu3M+25tgNAL0/27ZoOAD2taLmmA0CtFf/z1QPAvo7qC2yqqtd6DgCZNx39s9P+5wCQq96Xf30PAMDlBG0aPlA=
+  </data>
+ </layer>
  <layer id="14" name="tiles_middle" width="500" height="14">
   <data encoding="base64" compression="zlib">
    eJztm7tyE0EQRVt/AhTFBxhDvLaJARMAgQEFQAIkQGAgB5OD+T3xzngYk9NbsKVhNO/pnZmV76m6VS5Z0s7O63b3rIgAOFlcZm1H6FqdZoIJ8oL1yKIHFDfvMPcAAMBNiJ/vEvZUIItv3j2kVe/H3ANAlg3WHY8+sD7WaiCIAvk5qIErd++1b3jvPgEAJNieEe2wOv5706MfrJ+s16znVVoLQjH5uZobufZZ0BYhsbZNFyu0FwBQh6vs5buzuHzuHeuA4OstYxpP5ODTpCN/rG3TpfLNBQBUIsXPex3S0tc/sT5Tm7nAgvWeTt5ZAfx8fYhdmxjzNHLqIKl1kw1qc98E0yTUz6/07zW83vv6EesX6wK1MzefsV6yvrG+0/KsQCL20Nd9K/esAj9fH9SxtK1D+Hk+HaXXQVLrJh2hhjJFfLFfLU/Q/Vx95lnVLdZty/8G7VB9Tx98/BXrDa22cYg9ctZQR+3XNE3jib19mqh+HrIOMeZp9P3sesZEUvvKNTFG06L38vMkc851l3VP0f3MtqXW232eLl2XGrDFRV9YX2np42897cxZQ3pfSa/HBf09I8jpr6nl58O4tljrqA3q7WUo5a3qHrZX6JpAhsHLt0hm3T1mPVH0NKNt59jHDwT9fMgLek+XrksNdJb3HbN+k9nHTTWHFv1cPyPI6a+afp5yDtnR6nif4nl52qAzs0I30gjwczMLSo97TbFjCT/Xc7utAtdcN0o942CSz8sHrwkd0+usG4puBnxmQeZ5v8n74uE/P99ztLGm9H6RqiPk+nluTVP1PL22IHFfpt8Bl/pNWkfxcciwRrC3rQI//x+JuNeUK4zt57bcboxrlny2r7RKPePg2qdseeKYYxoz7331g7Hk6hOfn/s+67renHV2liY99um/KyXOC6kt2GQ752vhd+Sx/pMSG63zfqUrJNa2rYV18nPfszG5c62PgcdaP6467ZzS5oXrbKqjur43plJ8pLTmhvFKVUi+57v/3P6R6t+x8vOcMwF9TaZ8V278NKf6PpPjP6HjbaNL6POpKmeuSPh57dgp9tmYFteQ7uXq/pi6F7meucrdJ2v745jXD/nunFwxZ0xNOqb4fK812c4hpPy81v1ISXK+lPCf0PsP9Z8pzoMae6SEn3dUdz7F7GcxfVxyDY1R/5xTeA2xFUmsgT+nDqVe
@@ -30,11 +40,6 @@
  <layer id="16" name="decoration_middle" width="500" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=
-  </data>
- </layer>
- <layer id="18" name="igloo" width="500" height="14">
-  <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6A1sn87C+z3EBKQAAAAAAAAAAAAAAAAAAAAAAAAAAAA0Mx1AAAAAAAAHlrD/AAw
   </data>
  </layer>
  <objectgroup color="#000000" id="3" name="solid">
@@ -219,6 +224,11 @@
    </properties>
   </object>
  </objectgroup>
+ <layer id="10" name="Front Tiles (old)" width="500" height="14" opacity="0.25">
+  <data encoding="base64" compression="zlib">
+   eJzt1TENACAQBMG3AwX+5eGAhoTPhRkF220VAAAAAAAAAOSb3QEAwLXRHQAAXPNzAMjn5wCQz88BIJ+fA0A+PweAfKefr2cVAAAAAADwtw1esgF4
+  </data>
+ </layer>
  <layer id="13" name="tiles_front" width="500" height="14">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+DG1gAAE=

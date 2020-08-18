@@ -44,11 +44,13 @@ else:
     HAVE_TK = True
 
 import sge
+import tmx
 import ulvl
 import xsge_gui
 import xsge_lighting
 import xsge_path
 import xsge_physics
+import xsge_tmx
 
 
 if getattr(sys, "frozen", False):
@@ -1103,34 +1105,8 @@ class Level(sge.dsp.Room):
                 show_error(m)
                 r = None
             else:
-                objects = []
-                width = jsl.meta.get("width", 25) * TILE_SIZE
-                height = jsl.meta.get("height", 14) * TILE_SIZE
-                background_x = jsl.meta.get("background_x", 0)
-                background_y = jsl.meta.get("background_y", 0)
-                name = jsl.meta.get("name")
-                bgname = jsl.meta.get("background")
-                music = jsl.meta.get("music")
-                time_bonus = jsl.meta.get("time_bonus",
-                                          DEFAULT_LEVEL_TIME_BONUS)
-                spawn = jsl.meta.get("spawn")
-                timeline = jsl.meta.get("timeline")
-                ambient_light = jsl.meta.get("ambient_light")
-                disable_lights = jsl.meta.get("disable_lights", False)
-                persistent = jsl.meta.get("persistent", True)
-
-                for layer in jsl.layers:
-                    pass
-
-                for obj in jsl.objects:
-                    pass
-                
-                r = cls(objects=objects, width=width, height=height,
-                        background_x=background_x, background_y=background_y,
-                        name=name, bgname=bgname, music=music,
-                        time_bonus=time_bonus, spawn=spawn, timeline=timeline,
-                        ambient_light=ambient_light,
-                        disable_lights=disable_lights, persistent=persistent)
+                # TODO
+                pass
 
     @classmethod
     def load(cls, fname, show_prompt=False):
@@ -5362,7 +5338,6 @@ class Decoration(sge.dsp.Object):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("tangible", False)
-        super().__init__(*args, **kwargs)
 
 
 class Lava(Decoration):
@@ -8663,7 +8638,7 @@ if not PRINT_ERRORS:
 try:
     with open(os.path.join(CONFIG, "config.json")) as f:
         cfg = json.load(f)
-except (OSError, ValueError):
+except (IOError, OSError, ValueError):
     cfg = {}
 finally:
     cfg_version = cfg.get("version", 0)
@@ -8751,7 +8726,7 @@ finally:
 try:
     with open(os.path.join(CONFIG, "save_slots.json")) as f:
         loaded_slots = json.load(f)
-except (OSError, ValueError):
+except (IOError, OSError, ValueError):
     pass
 else:
     for i in range(min(len(loaded_slots), len(save_slots))):
