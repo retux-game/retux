@@ -21,6 +21,7 @@ __version__ = "1.3.7a0"
 
 import argparse
 import datetime
+import gettext
 import itertools
 import json
 import math
@@ -28,6 +29,7 @@ import os
 import random
 import shutil
 import sys
+import tempfile
 import time
 import traceback
 import warnings
@@ -55,6 +57,156 @@ if getattr(sys, "frozen", False):
     __file__ = sys.executable
 
 defs.init(os.path.dirname(__file__))
+
+
+RACCOT_WALK_SPEED = 3
+RACCOT_ACCELERATION = 0.2
+RACCOT_HOP_HEIGHT = defs.TILE_SIZE
+RACCOT_JUMP_HEIGHT = 5 * defs.TILE_SIZE
+RACCOT_JUMP_TRIGGER = 2 * defs.TILE_SIZE
+RACCOT_STOMP_SPEED = 4
+RACCOT_STOMP_DELAY = 15
+RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 22
+RACCOT_HP = 5
+RACCOT_HOP_TIME = 5
+RACCOT_HOP_INTERVAL_MIN = 45
+RACCOT_HOP_INTERVAL_MAX = 120
+RACCOT_CHARGE_INTERVAL_MIN = 300
+RACCOT_CHARGE_INTERVAL_MAX = 600
+RACCOT_CRUSH_LAX = -8 # A negative lax makes it have the opposite effect.
+RACCOT_CRUSH_GRAVITY = 0.6
+RACCOT_CRUSH_FALL_SPEED = 15
+RACCOT_CRUSH_SPEED = 12
+RACCOT_CRUSH_CHARGE = defs.TILE_SIZE
+RACCOT_SHAKE_NUM = 4
+
+HP_POINTS = 1000
+TIMER_FRAMES = 40
+HEAL_COINS = 20
+
+CEILING_LAX = 10
+STOMP_LAX = 8
+
+BLOCK_HIT_HEIGHT = 8
+ITEM_HIT_HEIGHT = 16
+COIN_COLLECT_TIME = 30
+COIN_COLLECT_SPEED = 2
+ITEM_SPAWN_SPEED = 1
+
+SECOND_POINTS = 100
+COIN_POINTS = 100
+ENEMY_KILL_POINTS = 50
+AMMO_POINTS = 10
+TUXDOLL_POINTS = 5000
+
+CAMERA_HSPEED_FACTOR = 1 / 2
+CAMERA_VSPEED_FACTOR = 1 / 20
+CAMERA_OFFSET_FACTOR = 10
+CAMERA_MARGIN_TOP = 4 * defs.TILE_SIZE
+CAMERA_MARGIN_BOTTOM = 5 * defs.TILE_SIZE
+CAMERA_TARGET_MARGIN_BOTTOM = CAMERA_MARGIN_BOTTOM + defs.TILE_SIZE
+
+WARP_LAX = 12
+WARP_SPEED = 1.5
+
+SHAKE_FRAME_TIME = defs.FPS / defs.DELTA_MIN
+SHAKE_AMOUNT = 3
+
+ENEMY_WALK_SPEED = 1
+ENEMY_FALL_SPEED = 7
+ENEMY_SLIDE_SPEED = 0.3
+ENEMY_HIT_BELOW_HEIGHT = defs.TILE_SIZE * 3 / 4
+SNOWBALL_BOUNCE_HEIGHT = defs.TILE_SIZE * 3 + 2
+KICK_FORWARD_SPEED = 6
+KICK_FORWARD_HEIGHT = defs.TILE_SIZE * 3 / 4
+KICK_UP_HEIGHT = 5.5 * defs.TILE_SIZE
+ICEBLOCK_GRAVITY = 0.6
+ICEBLOCK_FALL_SPEED = 9
+ICEBLOCK_FRICTION = 0.1
+ICEBLOCK_DASH_SPEED = 7
+JUMPY_BOUNCE_HEIGHT = defs.TILE_SIZE * 4
+BOMB_GRAVITY = 0.6
+BOMB_TICK_TIME = 4
+EXPLOSION_TIME = defs.FPS * 3 / 4
+ICICLE_LAX = defs.TILE_SIZE * 3 / 4
+ICICLE_SHAKE_TIME = defs.FPS
+ICICLE_GRAVITY = 0.75
+ICICLE_FALL_SPEED = 12
+CRUSHER_LAX = defs.TILE_SIZE * 3 / 4
+CRUSHER_GRAVITY = 1
+CRUSHER_FALL_SPEED = 15
+CRUSHER_RISE_SPEED = 2
+CRUSHER_CRUSH_TIME = defs.FPS * 2 / 3
+CRUSHER_SHAKE_NUM = 2
+THAW_FPS = 15
+THAW_TIME_DEFAULT = defs.FPS * 5
+THAW_WARN_TIME = defs.FPS
+
+BRICK_SHARD_NUM = 6
+BRICK_SHARD_SPEED = 3
+BRICK_SHARD_HEIGHT = defs.TILE_SIZE * 2
+BRICK_SHARD_GRAVITY = 0.75
+BRICK_SHARD_FALL_SPEED = 12
+
+ROCK_GRAVITY = 0.6
+ROCK_FALL_SPEED = 10
+ROCK_FRICTION = 0.4
+
+SPRING_JUMP_HEIGHT = 8 * defs.TILE_SIZE + 11
+
+FLOWER_FALL_SPEED = 5
+FLOWER_THROW_HEIGHT = defs.TILE_SIZE / 2
+FLOWER_THROW_UP_HEIGHT = defs.TILE_SIZE * 3 / 2
+
+FIREBALL_AMMO = 20
+FIREBALL_SPEED = 8
+FIREBALL_GRAVITY = 0.5
+FIREBALL_FALL_SPEED = 5
+FIREBALL_BOUNCE_HEIGHT = defs.TILE_SIZE / 2
+FIREBALL_UP_HEIGHT = defs.TILE_SIZE * 3 / 2
+
+ICEBULLET_AMMO = 20
+ICEBULLET_SPEED = 16
+
+COINBRICK_COINS = 20
+COINBRICK_DECAY_TIME = 25
+
+ICE_CRACK_TIME = 20
+ICE_REFREEZE_RATE = 1 / 4
+
+LIGHT_RANGE = 600
+
+ACTIVATE_RANGE = 528
+ENEMY_ACTIVE_RANGE = 32
+ICEBLOCK_ACTIVE_RANGE = 400
+BULLET_ACTIVE_RANGE = 96
+ROCK_ACTIVE_RANGE = 464
+TILE_ACTIVE_RANGE = 528
+DEATHZONE = 2 * defs.TILE_SIZE
+
+DEATH_FADE_TIME = 3000
+DEATH_RESTART_WAIT = defs.FPS
+
+WIN_COUNT_START_TIME = 120
+WIN_COUNT_CONTINUE_TIME = 45
+WIN_COUNT_POINTS_MULT = 111
+WIN_COUNT_TIME_MULT = 311
+WIN_COUNT_POINTS_MAX = defs.FPS
+WIN_COUNT_TIME_MAX = 5 * defs.FPS
+WIN_FINISH_DELAY = 120
+
+MAP_SPEED = 5
+
+TEXT_SPEED = 1000
+
+SAVE_NSLOTS = 10
+MENU_MAX_ITEMS = 14
+
+SOUND_MAX_RADIUS = 400
+SOUND_ZERO_RADIUS = 1200
+SOUND_CENTERED_RADIUS = 150
+SOUND_TILTED_RADIUS = 1000
+SOUND_TILT_LIMIT = 0.75
 
 backgrounds = {}
 loaded_music = {}
@@ -85,7 +237,7 @@ action_js = [[(0, "button", 0)]]
 sneak_js = [[(0, "button", 2)]]
 menu_js = [[(0, "button", 8)]]
 pause_js = [[(0, "button", 9)]]
-save_slots = [None for i in range(defs.SAVE_NSLOTS)]
+save_slots = [None for i in range(SAVE_NSLOTS)]
 
 abort = False
 
@@ -293,12 +445,12 @@ class Level(sge.dsp.Room):
     def die(self):
         global current_areas
         current_areas = {}
-        self.death_time = defs.DEATH_FADE_TIME
+        self.death_time = DEATH_FADE_TIME
         self.death_time_bonus = level_timers.setdefault(main_area, 0)
         if "timer" in self.alarms:
             del self.alarms["timer"]
         sge.snd.Music.clear_queue()
-        sge.snd.Music.stop(defs.DEATH_FADE_TIME)
+        sge.snd.Music.stop(DEATH_FADE_TIME)
 
     def return_to_map(self, completed=False):
         global current_worldmap
@@ -353,7 +505,7 @@ class Level(sge.dsp.Room):
                 del self.alarms["timer"]
 
             self.won = True
-            self.alarms["win_count_points"] = defs.WIN_COUNT_START_TIME
+            self.alarms["win_count_points"] = WIN_COUNT_START_TIME
             current_checkpoints[main_area] = None
             sge.snd.Music.clear_queue()
             sge.snd.Music.stop()
@@ -387,7 +539,7 @@ class Level(sge.dsp.Room):
         self.win_count_time = False
         self.count_mult = 1
         self.death_time = None
-        self.alarms["timer"] = defs.TIMER_FRAMES
+        self.alarms["timer"] = TIMER_FRAMES
         self.pause_delay = defs.TRANSITION_TIME
         play_music(self.music)
 
@@ -432,13 +584,13 @@ class Level(sge.dsp.Room):
                 if player.view is not None:
                     player.view.x = player.x - player.view.width / 2
                     player.view.y = (player.y - player.view.height +
-                                     defs.CAMERA_TARGET_MARGIN_BOTTOM)
+                                     CAMERA_TARGET_MARGIN_BOTTOM)
 
                 if isinstance(spawn_point, WarpSpawn):
                     player.visible = False
                     player.tangible = False
                     player.warping = True
-                    spawn_point.follow_start(player, defs.WARP_SPEED)
+                    spawn_point.follow_start(player, WARP_SPEED)
                 else:
                     player.visible = True
                     player.tangible = True
@@ -458,9 +610,9 @@ class Level(sge.dsp.Room):
 
         # Handle inactive objects and lighting
         if self.ambient_light:
-            range_ = max(defs.ACTIVATE_RANGE, defs.LIGHT_RANGE)
+            range_ = max(ACTIVATE_RANGE, LIGHT_RANGE)
         else:
-            range_ = defs.ACTIVATE_RANGE
+            range_ = ACTIVATE_RANGE
 
         for view in self.views:
             for obj in self.get_objects_at(
@@ -612,7 +764,7 @@ class Level(sge.dsp.Room):
         self.timeline_step += delta_mult
 
         if self.death_time is not None:
-            a = int(255 * (defs.DEATH_FADE_TIME - self.death_time) / defs.DEATH_FADE_TIME)
+            a = int(255 * (DEATH_FADE_TIME - self.death_time) / DEATH_FADE_TIME)
             sge.game.project_rectangle(
                 0, 0, sge.game.width, sge.game.height, z=100,
                 fill=sge.gfx.Color((0, 0, 0, min(a, 255))))
@@ -621,7 +773,7 @@ class Level(sge.dsp.Room):
             if time_bonus < 0 and cleared_levels:
                 amt = int(math.copysign(
                     min(math.ceil(abs(self.death_time_bonus) * 3 * time_passed /
-                                  defs.DEATH_FADE_TIME),
+                                  DEATH_FADE_TIME),
                         abs(time_bonus)),
                     time_bonus))
                 if amt:
@@ -631,7 +783,7 @@ class Level(sge.dsp.Room):
 
             if self.death_time < 0:
                 self.death_time = None
-                self.alarms["death"] = defs.DEATH_RESTART_WAIT
+                self.alarms["death"] = DEATH_RESTART_WAIT
             else:
                 self.death_time -= time_passed
         elif "death" in self.alarms:
@@ -649,7 +801,7 @@ class Level(sge.dsp.Room):
                     play_sound(coin_sound)
                 else:
                     self.win_count_points = False
-                    self.alarms["win_count_time"] = defs.WIN_COUNT_CONTINUE_TIME
+                    self.alarms["win_count_time"] = WIN_COUNT_CONTINUE_TIME
             elif self.win_count_time:
                 time_bonus = level_timers.setdefault(main_area, 0)
                 if time_bonus:
@@ -662,9 +814,9 @@ class Level(sge.dsp.Room):
                 else:
                     self.win_count_time = False
                     if main_area not in cleared_levels:
-                        self.alarms["win_count_hp"] = defs.WIN_COUNT_CONTINUE_TIME
+                        self.alarms["win_count_hp"] = WIN_COUNT_CONTINUE_TIME
                     else:
-                        self.alarms["win"] = defs.WIN_FINISH_DELAY
+                        self.alarms["win"] = WIN_FINISH_DELAY
             elif (not level_win_music.playing and
                   "win_count_points" not in self.alarms and
                   "win_count_time" not in self.alarms and
@@ -694,9 +846,9 @@ class Level(sge.dsp.Room):
     def event_paused_step(self, time_passed, delta_mult):
         # Handle lighting
         if self.ambient_light:
-            range_ = max(defs.ACTIVATE_RANGE, defs.LIGHT_RANGE)
+            range_ = max(ACTIVATE_RANGE, LIGHT_RANGE)
         else:
-            range_ = defs.ACTIVATE_RANGE
+            range_ = ACTIVATE_RANGE
 
         for view in self.views:
             for obj in self.get_objects_at(
@@ -716,18 +868,18 @@ class Level(sge.dsp.Room):
             if main_area in levels:
                 level_timers.setdefault(main_area, 0)
                 if main_area not in cleared_levels:
-                    level_timers[main_area] -= defs.SECOND_POINTS
-                self.alarms["timer"] = defs.TIMER_FRAMES
+                    level_timers[main_area] -= SECOND_POINTS
+                self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "shake_down":
             self.shake_queue -= 1
             for view in self.views:
-                view.yport += defs.SHAKE_AMOUNT
-            self.alarms["shake_up"] = defs.SHAKE_FRAME_TIME
+                view.yport += SHAKE_AMOUNT
+            self.alarms["shake_up"] = SHAKE_FRAME_TIME
         elif alarm_id == "shake_up":
             for view in self.views:
-                view.yport -= defs.SHAKE_AMOUNT
+                view.yport -= SHAKE_AMOUNT
             if self.shake_queue:
-                self.alarms["shake_down"] = defs.SHAKE_FRAME_TIME
+                self.alarms["shake_down"] = SHAKE_FRAME_TIME
         elif alarm_id == "death":
             # Project a black rectangle to prevent showing the level on
             # the last frame.
@@ -752,31 +904,31 @@ class Level(sge.dsp.Room):
         elif alarm_id == "win_count_points":
             if self.points > 0:
                 self.win_count_points = True
-                self.count_mult = max(defs.WIN_COUNT_POINTS_MULT,
-                                      self.points / defs.WIN_COUNT_POINTS_MAX)
+                self.count_mult = max(WIN_COUNT_POINTS_MULT,
+                                      self.points / WIN_COUNT_POINTS_MAX)
             else:
                 self.win_count_time = True
                 time_bonus = level_timers.setdefault(main_area, 0)
-                self.count_mult = max(defs.WIN_COUNT_TIME_MULT,
-                                      time_bonus / defs.WIN_COUNT_TIME_MAX)
+                self.count_mult = max(WIN_COUNT_TIME_MULT,
+                                      time_bonus / WIN_COUNT_TIME_MAX)
         elif alarm_id == "win_count_time":
             self.win_count_time = True
             time_bonus = level_timers.setdefault(main_area, 0)
-            self.count_mult = max(defs.WIN_COUNT_TIME_MULT,
-                                  time_bonus / defs.WIN_COUNT_TIME_MAX)
+            self.count_mult = max(WIN_COUNT_TIME_MULT,
+                                  time_bonus / WIN_COUNT_TIME_MAX)
         elif alarm_id == "win_count_hp":
             if defs.GOD:
-                self.alarms["win"] = defs.WIN_FINISH_DELAY
+                self.alarms["win"] = WIN_FINISH_DELAY
             else:
                 for obj in self.objects:
                     if isinstance(obj, Player) and obj.hp > 0:
                         obj.hp -= 1
-                        score += defs.HP_POINTS
+                        score += HP_POINTS
                         play_sound(heal_sound)
-                        self.alarms["win_count_hp"] = defs.WIN_COUNT_CONTINUE_TIME
+                        self.alarms["win_count_hp"] = WIN_COUNT_CONTINUE_TIME
                         break
                 else:
-                    self.alarms["win"] = defs.WIN_FINISH_DELAY
+                    self.alarms["win"] = WIN_FINISH_DELAY
 
     @classmethod
     def load(cls, fname, show_prompt=False):
@@ -1504,7 +1656,7 @@ class Player(xsge_physics.Collider):
         if self.on_floor and self.was_on_floor:
             for door in sorted(self.collision(Door),
                                key=lambda o, x=self.x: -abs(x - o.x)):
-                if self.y == door.y and abs(self.x - door.x) <= defs.WARP_LAX:
+                if self.y == door.y and abs(self.x - door.x) <= WARP_LAX:
                     self.move_x(door.x - self.x)
                     if abs(self.x - door.x) < 1:
                         self.x = door.x
@@ -1740,13 +1892,13 @@ class Player(xsge_physics.Collider):
     def set_warp_image(self):
         hands_free = (self.held_object is None)
 
-        if abs(self.xvelocity) >= defs.WARP_SPEED / 2:
+        if abs(self.xvelocity) >= WARP_SPEED / 2:
             if hands_free:
                 self.sprite = tux_walk_sprite
             else:
                 self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
 
-            self.image_speed = defs.WARP_SPEED * defs.PLAYER_WALK_FRAMES_PER_PIXEL
+            self.image_speed = WARP_SPEED * defs.PLAYER_WALK_FRAMES_PER_PIXEL
             if self.xvelocity > 0:
                 self.image_xscale = abs(self.image_xscale)
             else:
@@ -1774,7 +1926,7 @@ class Player(xsge_physics.Collider):
 
         self.view = sge.game.current_room.views[self.player]
         self.view.x = self.x - self.view.width / 2
-        self.view.y = self.y - self.view.height + defs.CAMERA_TARGET_MARGIN_BOTTOM
+        self.view.y = self.y - self.view.height + CAMERA_TARGET_MARGIN_BOTTOM
 
     def event_update_position(self, delta_mult):
         super().event_update_position(delta_mult)
@@ -1863,22 +2015,22 @@ class Player(xsge_physics.Collider):
         # Move view
         if not self.view_frozen:
             view_target_x = (self.x - self.view.width / 2 +
-                             self.xvelocity * defs.CAMERA_OFFSET_FACTOR)
+                             self.xvelocity * CAMERA_OFFSET_FACTOR)
             if abs(view_target_x - self.view.x) > 0.5:
                 self.view.x += ((view_target_x - self.view.x) *
-                                defs.CAMERA_HSPEED_FACTOR)
+                                CAMERA_HSPEED_FACTOR)
             else:
                 self.view.x = view_target_x
 
-            view_min_y = self.y - self.view.height + defs.CAMERA_MARGIN_BOTTOM
-            view_max_y = self.y - defs.CAMERA_MARGIN_TOP
+            view_min_y = self.y - self.view.height + CAMERA_MARGIN_BOTTOM
+            view_max_y = self.y - CAMERA_MARGIN_TOP
 
             if self.warping or (self.on_floor and self.was_on_floor):
                 view_target_y = (self.y - self.view.height +
-                                 defs.CAMERA_TARGET_MARGIN_BOTTOM)
+                                 CAMERA_TARGET_MARGIN_BOTTOM)
                 if abs(view_target_y - self.view.y) > 0.5:
                     self.view.y += ((view_target_y - self.view.y) *
-                                    defs.CAMERA_VSPEED_FACTOR)
+                                    CAMERA_VSPEED_FACTOR)
                 else:
                     self.view.y = view_target_y
 
@@ -1894,13 +2046,13 @@ class Player(xsge_physics.Collider):
             sge.game.current_room.project_sprite(tux_offscreen_sprite, 0,
                                                  self.x, 0, self.z)
 
-        while self.coins >= defs.HEAL_COINS:
-            self.coins -= defs.HEAL_COINS
+        while self.coins >= HEAL_COINS:
+            self.coins -= HEAL_COINS
             play_sound(heal_sound)
             if self.hp < self.max_hp:
                 self.hp += 1
             else:
-                sge.game.current_room.add_points(defs.HP_POINTS)
+                sge.game.current_room.add_points(HP_POINTS)
 
         self.show_hud()
 
@@ -1924,26 +2076,26 @@ class Player(xsge_physics.Collider):
         if h_control > 0 and self.xvelocity >= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "right" and self.bbox_right == warp.x and
-                        abs(self.y - warp.y) < defs.WARP_LAX):
+                        abs(self.y - warp.y) < WARP_LAX):
                     self.y = warp.y
                     warp.warp(self)
         elif h_control < 0 and self.xvelocity <= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "left" and self.bbox_left == warp.x and
-                        abs(self.y - warp.y) < defs.WARP_LAX):
+                        abs(self.y - warp.y) < WARP_LAX):
                     self.y = warp.y
                     warp.warp(self)
 
         if v_control > 0 and self.yvelocity >= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "down" and self.bbox_bottom == warp.y and
-                        abs(self.x - warp.x) < defs.WARP_LAX):
+                        abs(self.x - warp.x) < WARP_LAX):
                     self.x = warp.x
                     warp.warp(self)
         elif v_control < 0 and self.yvelocity <= 0:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "up" and self.bbox_top == warp.y and
-                        abs(self.x - warp.x) < defs.WARP_LAX):
+                        abs(self.x - warp.x) < WARP_LAX):
                     self.x = warp.x
                     warp.warp(self)
 
@@ -1959,7 +2111,7 @@ class Player(xsge_physics.Collider):
 
         # Off-screen death
         if (not sge.game.current_room.won and
-                self.bbox_top > self.view.y + self.view.height + defs.DEATHZONE):
+                self.bbox_top > self.view.y + self.view.height + DEATHZONE):
             self.kill(False)
 
     def event_step_warp(self, time_passed, delta_mult):
@@ -2019,7 +2171,7 @@ class Player(xsge_physics.Collider):
         elif isinstance(other, InteractiveObject):
             if (ydirection == 1 or
                     (xdirection and not ydirection and
-                     self.bbox_bottom - other.bbox_top <= defs.STOMP_LAX)):
+                     self.bbox_bottom - other.bbox_top <= STOMP_LAX)):
                 other.stomp(self)
             # This check is necessary to allow the player to drop held
             # objects. It also has a nice side-effect of preventing the
@@ -2048,7 +2200,7 @@ class Player(xsge_physics.Collider):
         if self.left_pressed:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "left" and self.bbox_left == warp.x and
-                        abs(self.y - warp.y) < defs.WARP_LAX):
+                        abs(self.y - warp.y) < WARP_LAX):
                     warp.warp(self)
 
     def event_physics_collision_right(self, other, move_loss):
@@ -2066,7 +2218,7 @@ class Player(xsge_physics.Collider):
         if self.right_pressed:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "right" and self.bbox_right == warp.x and
-                        abs(self.y - warp.y) < defs.WARP_LAX):
+                        abs(self.y - warp.y) < WARP_LAX):
                     warp.warp(self)
 
     def event_physics_collision_top(self, other, move_loss):
@@ -2077,7 +2229,7 @@ class Player(xsge_physics.Collider):
                 hblock.hit(self)
 
         tmv = 0
-        for i in range(defs.CEILING_LAX):
+        for i in range(CEILING_LAX):
             if (not self.get_left_touching_wall() and
                     not self.get_left_touching_slope()):
                 self.x -= 1
@@ -2089,7 +2241,7 @@ class Player(xsge_physics.Collider):
         else:
             self.x -= tmv
             tmv = 0
-            for i in range(defs.CEILING_LAX):
+            for i in range(CEILING_LAX):
                 if (not self.get_left_touching_wall() and
                         not self.get_left_touching_slope()):
                     self.x += 1
@@ -2116,7 +2268,7 @@ class Player(xsge_physics.Collider):
         if self.up_pressed:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "up" and self.bbox_top == warp.y and
-                        abs(self.x - warp.x) < defs.WARP_LAX):
+                        abs(self.x - warp.x) < WARP_LAX):
                     warp.warp(self)
                     break
 
@@ -2136,7 +2288,7 @@ class Player(xsge_physics.Collider):
         if self.down_pressed:
             for warp in sge.game.current_room.warps:
                 if (warp.direction == "down" and self.bbox_bottom == warp.y and
-                        abs(self.x - warp.x) < defs.WARP_LAX):
+                        abs(self.x - warp.x) < WARP_LAX):
                     warp.warp(self)
 
 
@@ -2164,7 +2316,7 @@ class Corpse(xsge_physics.Collider):
     """Like DeadMan, but just falls to the floor, not off-screen."""
 
     gravity = defs.GRAVITY
-    fall_speed = defs.ENEMY_FALL_SPEED
+    fall_speed = ENEMY_FALL_SPEED
 
     def event_create(self):
         self.alarms["die"] = 90
@@ -2192,7 +2344,7 @@ class Smoke(sge.dsp.Object):
 
 class InteractiveObject(sge.dsp.Object):
 
-    active_range = defs.ENEMY_ACTIVE_RANGE
+    active_range = ENEMY_ACTIVE_RANGE
     killed_by_void = True
     always_active = False
     never_active = False
@@ -2393,7 +2545,7 @@ class InteractiveCollider(InteractiveObject, xsge_physics.Collider):
 
 class WinPuffObject(InteractiveObject):
 
-    win_puff_score = defs.ENEMY_KILL_POINTS
+    win_puff_score = ENEMY_KILL_POINTS
 
     def win_puff(self):
         play_sound(pop_sound, self.x, self.y)
@@ -2416,8 +2568,8 @@ class FallingObject(InteractiveCollider):
     """
 
     gravity = defs.GRAVITY
-    fall_speed = defs.ENEMY_FALL_SPEED
-    slide_speed = defs.ENEMY_SLIDE_SPEED
+    fall_speed = ENEMY_FALL_SPEED
+    slide_speed = ENEMY_SLIDE_SPEED
 
     was_on_floor = False
 
@@ -2450,7 +2602,7 @@ class WalkingObject(FallingObject):
     to turn around at ledges with the stayonplatform attribute.
     """
 
-    walk_speed = defs.ENEMY_WALK_SPEED
+    walk_speed = ENEMY_WALK_SPEED
     stayonplatform = False
 
     def deactivate(self):
@@ -2538,7 +2690,7 @@ class KnockableObject(InteractiveObject):
         play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
                        xvelocity=self.xvelocity,
-                       yvelocity=get_jump_speed(defs.ENEMY_HIT_BELOW_HEIGHT),
+                       yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
                        image_xscale=self.image_xscale,
                        image_yscale=-abs(self.image_yscale))
         self.destroy()
@@ -2566,7 +2718,7 @@ class FreezableObject(InteractiveObject):
 
     freezable = True
     frozen_sprite = None
-    frozen_time = defs.THAW_TIME_DEFAULT
+    frozen_time = THAW_TIME_DEFAULT
     frozen = False
 
     def update_active(self):
@@ -2586,7 +2738,7 @@ class FreezableObject(InteractiveObject):
             self.frozen_sprite = sge.gfx.Sprite(
                 width=self.sprite.width, height=self.sprite.height,
                 origin_x=self.sprite.origin_x, origin_y=self.sprite.origin_y,
-                fps=defs.THAW_FPS, bbox_x=self.sprite.bbox_x,
+                fps=THAW_FPS, bbox_x=self.sprite.bbox_x,
                 bbox_y=self.sprite.bbox_y, bbox_width=self.sprite.bbox_width,
                 bbox_height=self.sprite.bbox_height)
             self.frozen_sprite.append_frame()
@@ -2644,7 +2796,7 @@ class FrozenObject(InteractiveObject, xsge_physics.Solid):
         if self.unfrozen is not None:
             if alarm_id == "thaw_warn":
                 self.image_fps = None
-                self.alarms["thaw"] = defs.THAW_WARN_TIME
+                self.alarms["thaw"] = THAW_WARN_TIME
             elif alarm_id == "thaw":
                 self.thaw()
 
@@ -2664,7 +2816,7 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
     def stomp(self, other):
         other.stomp_jump(self)
         play_sound(squish_sound, self.x, self.y)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         Corpse.create(self.x, self.y, self.z, sprite=snowball_squished_sprite,
                       image_xscale=self.image_xscale,
                       image_yscale=self.image_yscale)
@@ -2672,11 +2824,11 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     def knock(self, other=None):
         super().knock(other)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
         super().burn()
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def freeze(self):
         self.burn()
@@ -2692,14 +2844,14 @@ class BouncingSnowball(WalkingSnowball):
         self.yvelocity = 0
 
     def stop_down(self):
-        self.yvelocity = get_jump_speed(defs.SNOWBALL_BOUNCE_HEIGHT, self.gravity)
+        self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
 
 
 class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
                       WinPuffObject):
 
-    gravity = defs.ICEBLOCK_GRAVITY
-    fall_speed = defs.ICEBLOCK_FALL_SPEED
+    gravity = ICEBLOCK_GRAVITY
+    fall_speed = ICEBLOCK_FALL_SPEED
     freezable = True
     stayonplatform = True
 
@@ -2714,7 +2866,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def init_flat(self):
         self.flat = True
         self.dashing = False
-        self.active_range = defs.ICEBLOCK_ACTIVE_RANGE
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
         self.walk_speed = self.__class__.walk_speed
         self.stayonplatform = False
         self.xvelocity = 0
@@ -2738,8 +2890,8 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def init_dash(self, direction):
         self.flat = True
         self.dashing = True
-        self.active_range = defs.ICEBLOCK_ACTIVE_RANGE
-        self.walk_speed = defs.ICEBLOCK_DASH_SPEED
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
+        self.walk_speed = ICEBLOCK_DASH_SPEED
         self.xvelocity = 0
         self.xdeceleration = 0
         self.sprite = iceblock_flat_sprite
@@ -2750,7 +2902,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def cancel_dash(self):
         self.flat = True
         self.dashing = False
-        self.active_range = defs.ICEBLOCK_ACTIVE_RANGE
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
         self.walk_speed = self.__class__.walk_speed
         self.sprite = iceblock_flat_sprite
         self.image_index = 0
@@ -2793,11 +2945,11 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
     def knock(self, other=None):
         if self.parent is None:
             super().knock(other)
-            sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+            sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
         super().burn()
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def freeze(self):
         if self.dashing:
@@ -2871,7 +3023,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
             play_sound(kick_sound, self.x, self.y)
             self.gravity = self.__class__.gravity
             self.xvelocity = self.parent.xvelocity
-            self.yvelocity = get_jump_speed(defs.KICK_UP_HEIGHT, self.gravity)
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, self.gravity)
             self.parent = None
 
     def event_create(self):
@@ -2884,7 +3036,7 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
             if (self.flat and not self.dashing and self.yvelocity >= 0 and
                 (self.get_bottom_touching_wall() or
                  self.get_bottom_touching_slope())):
-                self.xdeceleration = defs.ICEBLOCK_FRICTION
+                self.xdeceleration = ICEBLOCK_FRICTION
             else:
                 self.xdeceleration = 0
 
@@ -2939,7 +3091,7 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def knock(self, other=None):
         super().knock(other)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def blast(self):
         self.knock()
@@ -2973,8 +3125,8 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
 
     def init_ticking(self):
         self.ticking = True
-        self.active_range = defs.ICEBLOCK_ACTIVE_RANGE
-        self.normal_gravity = defs.BOMB_GRAVITY
+        self.active_range = ICEBLOCK_ACTIVE_RANGE
+        self.normal_gravity = BOMB_GRAVITY
         self.gravity = self.normal_gravity
         self.xvelocity = 0
         self.sprite = bomb_ticking_sprite
@@ -3034,14 +3186,14 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
             self.burn()
         elif isinstance(other, FallingIcicle):
             super().knock(other)
-            sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+            sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         else:
             self.burn()
 
     def burn(self):
         e = Explosion.create(self.x, self.y, self.z, sprite=explosion_sprite)
         e.detonator = self.thrower
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         self.destroy()
 
     def freeze(self):
@@ -3065,9 +3217,9 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            self.xvelocity = math.copysign(defs.KICK_FORWARD_SPEED,
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
                                            self.parent.image_xscale)
-            self.yvelocity = get_jump_speed(defs.KICK_FORWARD_HEIGHT,
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT,
                                             self.normal_gravity)
             self.parent = None
             self.gravity = self.normal_gravity
@@ -3076,7 +3228,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         if self.parent is not None:
             self.parent.kick_object()
             self.xvelocity = self.parent.xvelocity
-            self.yvelocity = get_jump_speed(defs.KICK_UP_HEIGHT,
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT,
                                             self.normal_gravity)
             self.parent = None
             self.gravity = self.normal_gravity
@@ -3110,7 +3262,7 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
         if (self.ticking and self.yvelocity >= 0 and
                 (self.get_bottom_touching_wall() or
                  self.get_bottom_touching_slope())):
-            self.xdeceleration = defs.ROCK_FRICTION
+            self.xdeceleration = ROCK_FRICTION
         else:
             self.xdeceleration = 0
 
@@ -3154,7 +3306,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def knock(self, other=None):
         super().knock(other)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def blast(self):
         self.knock()
@@ -3166,7 +3318,7 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
         self.yvelocity = 0
 
     def stop_down(self):
-        self.yvelocity = get_jump_speed(defs.JUMPY_BOUNCE_HEIGHT, self.gravity)
+        self.yvelocity = get_jump_speed(JUMPY_BOUNCE_HEIGHT, self.gravity)
 
     def event_create(self):
         super().event_create()
@@ -3209,7 +3361,7 @@ class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
     def stomp(self, other):
         other.stomp_jump(self)
         play_sound(squish_sound, self.x, self.y)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
         Corpse.create(self.x, self.y, self.z,
                       sprite=flying_snowball_squished_sprite,
                       image_xscale=self.image_xscale,
@@ -3218,11 +3370,11 @@ class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
 
     def knock(self, other=None):
         super().knock(other)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
         super().burn()
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def freeze(self):
         self.burn()
@@ -3250,7 +3402,7 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
 
     def knock(self, other=None):
         super().knock(other)
-        sge.game.current_room.add_points(defs.ENEMY_KILL_POINTS)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def event_create(self):
         super(FlyingSpiky, self).event_create()
@@ -3265,7 +3417,7 @@ class Explosion(InteractiveObject):
 
     def event_create(self):
         super().event_create()
-        self.__life = defs.EXPLOSION_TIME
+        self.__life = EXPLOSION_TIME
         self.__friends = set()
         play_sound(explosion_sound, self.x, self.y)
 
@@ -3318,12 +3470,12 @@ class Icicle(InteractiveObject):
         kwargs["sprite"] = icicle_sprite
         kwargs["checks_collisions"] = False
         sge.dsp.Object.__init__(self, x, y, z, **kwargs)
-        self.shake_counter = defs.SHAKE_FRAME_TIME
+        self.shake_counter = SHAKE_FRAME_TIME
 
     def do_shake(self):
         self.shaking = True
         play_sound(icicle_shake_sound, self.x, self.y)
-        self.alarms["fall"] = defs.ICICLE_SHAKE_TIME
+        self.alarms["fall"] = ICICLE_SHAKE_TIME
 
     def check_shake(self):
         if not self.warping:
@@ -3331,8 +3483,8 @@ class Icicle(InteractiveObject):
             crash_y = sge.game.current_room.height
             objects = (
                 sge.game.current_room.get_objects_at(
-                    self.bbox_left - defs.ICICLE_LAX, self.bbox_bottom,
-                    self.bbox_width + 2 * defs.ICICLE_LAX,
+                    self.bbox_left - ICICLE_LAX, self.bbox_bottom,
+                    self.bbox_width + 2 * ICICLE_LAX,
                     (sge.game.current_room.height - self.bbox_bottom +
                      sge.game.current_room.object_area_height)) |
                 sge.game.current_room.object_area_void)
@@ -3347,8 +3499,8 @@ class Icicle(InteractiveObject):
                     elif isinstance(obj, xsge_physics.SlopeTopRight):
                         crash_y = min(crash_y, obj.get_slope_y(self.bbox_left))
                 if (obj.bbox_bottom > self.bbox_top and
-                        self.bbox_right + defs.ICICLE_LAX > obj.bbox_left and
-                        self.bbox_left - defs.ICICLE_LAX < obj.bbox_right):
+                        self.bbox_right + ICICLE_LAX > obj.bbox_left and
+                        self.bbox_left - ICICLE_LAX < obj.bbox_right):
                     if isinstance(obj, Player):
                         players.append(obj)
 
@@ -3371,7 +3523,7 @@ class Icicle(InteractiveObject):
             if self.shaking:
                 self.shake_counter -= delta_mult
                 while self.shake_counter <= 0:
-                    self.shake_counter += defs.SHAKE_FRAME_TIME
+                    self.shake_counter += SHAKE_FRAME_TIME
                     if self.image_origin_x > self.sprite.origin_x:
                         self.image_origin_x = self.sprite.origin_x - 2
                     else:
@@ -3420,8 +3572,8 @@ class RaccotIcicle(Icicle):
 
 class FallingIcicle(FallingObject):
 
-    gravity = defs.ICICLE_GRAVITY
-    fall_speed = defs.ICICLE_FALL_SPEED
+    gravity = ICICLE_GRAVITY
+    fall_speed = ICICLE_FALL_SPEED
 
     def deactivate(self):
         self.destroy()
@@ -3463,7 +3615,7 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
     burnable = True
     freezable = True
     gravity = 0
-    fall_speed = defs.CRUSHER_FALL_SPEED
+    fall_speed = CRUSHER_FALL_SPEED
     crushing = False
 
     def touch(self, other):
@@ -3483,8 +3635,8 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
         play_sound(brick_sound, self.x, self.y)
         self.yvelocity = 0
         self.gravity = 0
-        sge.game.current_room.shake(defs.CRUSHER_SHAKE_NUM)
-        self.alarms["crush_end"] = defs.CRUSHER_CRUSH_TIME
+        sge.game.current_room.shake(CRUSHER_SHAKE_NUM)
+        self.alarms["crush_end"] = CRUSHER_CRUSH_TIME
 
     def event_step(self, time_passed, delta_mult):
         if not self.crushing:
@@ -3494,8 +3646,8 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
                 crash_y = sge.game.current_room.height
                 objects = (
                     sge.game.current_room.get_objects_at(
-                        self.bbox_left - defs.CRUSHER_LAX, self.bbox_bottom,
-                        self.bbox_width + 2 * defs.CRUSHER_LAX,
+                        self.bbox_left - CRUSHER_LAX, self.bbox_bottom,
+                        self.bbox_width + 2 * CRUSHER_LAX,
                         (sge.game.current_room.height - self.bbox_bottom +
                          sge.game.current_room.object_area_height)) |
                     sge.game.current_room.object_area_void)
@@ -3512,24 +3664,24 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
                     if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right + defs.CRUSHER_LAX > obj.bbox_left and
-                            self.bbox_left - defs.CRUSHER_LAX < obj.bbox_right):
+                            self.bbox_right + CRUSHER_LAX > obj.bbox_left and
+                            self.bbox_left - CRUSHER_LAX < obj.bbox_right):
                         if isinstance(obj, Player):
                             players.append(obj)
 
                 for player in players:
-                    if player.bbox_top < crash_y + defs.CRUSHER_LAX:
+                    if player.bbox_top < crash_y + CRUSHER_LAX:
                         self.crushing = True
-                        self.gravity = defs.CRUSHER_GRAVITY
+                        self.gravity = CRUSHER_GRAVITY
                         break
                 else:
                     if not self.get_top_touching_wall():
-                        self.yvelocity = -defs.CRUSHER_RISE_SPEED
+                        self.yvelocity = -CRUSHER_RISE_SPEED
                         self.crushing = True
 
     def event_alarm(self, alarm_id):
         if alarm_id == "crush_end":
-            self.yvelocity = -defs.CRUSHER_RISE_SPEED
+            self.yvelocity = -CRUSHER_RISE_SPEED
 
     def event_collision(self, other, xdirection, ydirection):
         if isinstance(other, InteractiveObject) and other.knockable:
@@ -3687,7 +3839,7 @@ class Snowman(FallingObject, Boss):
     def kill(self):
         play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=self.sprite,
-                       yvelocity=get_jump_speed(defs.ENEMY_HIT_BELOW_HEIGHT),
+                       yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
                        image_xscale=self.image_xscale,
                        image_yscale=-abs(self.image_yscale))
         self.destroy()
@@ -3844,11 +3996,11 @@ class Raccot(FallingObject, Boss):
                 if "charge_end" in self.alarms:
                     del self.alarms["charge_end"]
 
-    def __init__(self, x, y, hp=defs.RACCOT_HP, hop_time=defs.RACCOT_HOP_TIME,
-                 hop_interval_min=defs.RACCOT_HOP_INTERVAL_MIN,
-                 hop_interval_max=defs.RACCOT_HOP_INTERVAL_MAX,
-                 charge_interval_min=defs.RACCOT_CHARGE_INTERVAL_MIN,
-                 charge_interval_max=defs.RACCOT_CHARGE_INTERVAL_MAX, **kwargs):
+    def __init__(self, x, y, hp=RACCOT_HP, hop_time=RACCOT_HOP_TIME,
+                 hop_interval_min=RACCOT_HOP_INTERVAL_MIN,
+                 hop_interval_max=RACCOT_HOP_INTERVAL_MAX,
+                 charge_interval_min=RACCOT_CHARGE_INTERVAL_MIN,
+                 charge_interval_max=RACCOT_CHARGE_INTERVAL_MAX, **kwargs):
         self.hp = hp
         self.hop_time = hop_time
         self.hop_interval_min = hop_interval_min
@@ -3873,7 +4025,7 @@ class Raccot(FallingObject, Boss):
         if (self.was_on_floor and self.yvelocity == 0 and
                 "stomp_delay" not in self.alarms):
             play_sound(bigjump_sound, self.x, self.y)
-            self.yvelocity = get_jump_speed(defs.RACCOT_JUMP_HEIGHT, self.gravity)
+            self.yvelocity = get_jump_speed(RACCOT_JUMP_HEIGHT, self.gravity)
 
     def hop(self):
         if self.was_on_floor and self.yvelocity == 0:
@@ -3886,7 +4038,7 @@ class Raccot(FallingObject, Boss):
 
     def do_hop(self):
         self.xvelocity = 0
-        self.yvelocity = get_jump_speed(defs.RACCOT_HOP_HEIGHT, self.gravity)
+        self.yvelocity = get_jump_speed(RACCOT_HOP_HEIGHT, self.gravity)
         self.sprite = raccot_hop_sprite
         if self.stage > 1:
             self.alarms["hop"] = random.uniform(self.hop_interval_min,
@@ -3907,11 +4059,11 @@ class Raccot(FallingObject, Boss):
 
     def crush(self):
         self.crushing = True
-        self.gravity = defs.RACCOT_CRUSH_GRAVITY
-        self.fall_speed = defs.RACCOT_CRUSH_FALL_SPEED
+        self.gravity = RACCOT_CRUSH_GRAVITY
+        self.fall_speed = RACCOT_CRUSH_FALL_SPEED
         self.xacceleration = 0
         self.xvelocity = 0
-        self.yvelocity = get_jump_speed(defs.RACCOT_CRUSH_CHARGE, self.gravity)
+        self.yvelocity = get_jump_speed(RACCOT_CRUSH_CHARGE, self.gravity)
         play_sound(yeti_gna_sound, self.x, self.y)
 
     def hurt(self):
@@ -3925,7 +4077,7 @@ class Raccot(FallingObject, Boss):
         play_sound(fall_sound, self.x, self.y)
         DeadMan.create(self.x, self.y, self.z, sprite=raccot_hop_sprite,
                        xvelocity=self.xvelocity,
-                       yvelocity=get_jump_speed(defs.ENEMY_HIT_BELOW_HEIGHT),
+                       yvelocity=get_jump_speed(ENEMY_HIT_BELOW_HEIGHT),
                        image_xscale=self.image_xscale,
                        image_yscale=-abs(self.image_yscale))
         self.destroy()
@@ -3936,7 +4088,7 @@ class Raccot(FallingObject, Boss):
         if player is not None:
             if self.charging:
                 self.direction = player.x - self.x
-                if self.y - player.y >= defs.RACCOT_JUMP_TRIGGER:
+                if self.y - player.y >= RACCOT_JUMP_TRIGGER:
                     self.jump()
             elif self.stage > 1:
                 self.direction = 0
@@ -3949,12 +4101,12 @@ class Raccot(FallingObject, Boss):
             if "stomp_delay" not in self.alarms:
                 self.xacceleration = 0
                 if self.direction and not self.hopping:
-                    if (abs(self.xvelocity) < defs.RACCOT_WALK_SPEED or
+                    if (abs(self.xvelocity) < RACCOT_WALK_SPEED or
                             (self.xvelocity > 0) != (self.direction > 0)):
                         self.xacceleration = math.copysign(
-                            defs.RACCOT_ACCELERATION, self.direction)
+                            RACCOT_ACCELERATION, self.direction)
                     else:
-                        self.xvelocity = math.copysign(defs.RACCOT_WALK_SPEED,
+                        self.xvelocity = math.copysign(RACCOT_WALK_SPEED,
                                                        self.direction)
 
             if self.charging and not self.was_on_floor:
@@ -3980,9 +4132,9 @@ class Raccot(FallingObject, Boss):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
                     if (obj.bbox_top > self.bbox_bottom and
-                            (self.bbox_right + defs.RACCOT_CRUSH_LAX >
+                            (self.bbox_right + RACCOT_CRUSH_LAX >
                              obj.bbox_left) and
-                            (self.bbox_left - defs.RACCOT_CRUSH_LAX <
+                            (self.bbox_left - RACCOT_CRUSH_LAX <
                              obj.bbox_right)):
                         if isinstance(obj, Player):
                             players.append(obj)
@@ -4008,12 +4160,12 @@ class Raccot(FallingObject, Boss):
             self.stop_down()
 
     def stop_down(self):
-        if self.stage > 0 and self.yvelocity >= defs.RACCOT_STOMP_SPEED:
+        if self.stage > 0 and self.yvelocity >= RACCOT_STOMP_SPEED:
             crushed_brick = False
             self.xvelocity = 0
             self.xacceleration = 0
-            sge.game.current_room.shake(defs.RACCOT_SHAKE_NUM)
-            self.alarms["stomp_delay"] = defs.RACCOT_STOMP_DELAY
+            sge.game.current_room.shake(RACCOT_SHAKE_NUM)
+            self.alarms["stomp_delay"] = RACCOT_STOMP_DELAY
 
             if self.hopping:
                 self.hopping = False
@@ -4021,7 +4173,7 @@ class Raccot(FallingObject, Boss):
                     if isinstance(obj, RaccotIcicle):
                         obj.check_shake(True)
 
-            if self.crushing and self.yvelocity >= defs.RACCOT_CRUSH_SPEED:
+            if self.crushing and self.yvelocity >= RACCOT_CRUSH_SPEED:
                 for obj in self.get_bottom_touching_wall():
                     if isinstance(obj, Brick):
                         obj.hit(self)
@@ -4070,7 +4222,7 @@ class Raccot(FallingObject, Boss):
                 speed = abs(self.xvelocity)
                 if speed > 0:
                     self.sprite = raccot_walk_sprite
-                    self.image_speed = speed * defs.RACCOT_WALK_FRAMES_PER_PIXEL
+                    self.image_speed = speed * RACCOT_WALK_FRAMES_PER_PIXEL
                     if xm != facing:
                         self.image_speed *= -1
                 else:
@@ -4108,7 +4260,7 @@ class Raccot(FallingObject, Boss):
 
 class FireFlower(FallingObject, WinPuffObject):
 
-    fall_speed = defs.FLOWER_FALL_SPEED
+    fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
     win_puff_points = 0
 
@@ -4117,7 +4269,7 @@ class FireFlower(FallingObject, WinPuffObject):
         x += fire_flower_sprite.origin_x
         y += fire_flower_sprite.origin_y
         sge.dsp.Object.__init__(self, x, y, z, **kwargs)
-        self.ammo = defs.FIREBALL_AMMO
+        self.ammo = FIREBALL_AMMO
         self.light_sprite = fire_flower_light_sprite
 
     def touch(self, other):
@@ -4125,7 +4277,7 @@ class FireFlower(FallingObject, WinPuffObject):
             self.gravity = 0
 
     def knock(self, other=None):
-        self.yvelocity = get_jump_speed(defs.ITEM_HIT_HEIGHT)
+        self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
     def drop(self):
         if self.parent is not None:
@@ -4138,19 +4290,19 @@ class FireFlower(FallingObject, WinPuffObject):
             d = (self.image_xscale >= 0) - (self.image_xscale < 0)
             if self.ammo > 0:
                 if up:
-                    yv = get_jump_speed(defs.FIREBALL_UP_HEIGHT, Fireball.gravity)
+                    yv = get_jump_speed(FIREBALL_UP_HEIGHT, Fireball.gravity)
                 else:
-                    yv = defs.FIREBALL_FALL_SPEED
+                    yv = FIREBALL_FALL_SPEED
                 Fireball.create(self.x, self.y, self.parent.z,
                                 sprite=fire_bullet_sprite,
-                                xvelocity=(defs.FIREBALL_SPEED * d), yvelocity=yv,
+                                xvelocity=(FIREBALL_SPEED * d), yvelocity=yv,
                                 image_xscale=self.image_xscale)
                 play_sound(shoot_sound, self.x, self.y)
 
                 if not defs.GOD:
                     self.ammo -= 1
                     self.sprite = fire_flower_sprite.copy()
-                    lightness = int((self.ammo / defs.FIREBALL_AMMO) * 255)
+                    lightness = int((self.ammo / FIREBALL_AMMO) * 255)
                     darkener = sge.gfx.Sprite(width=self.sprite.width,
                                               height=self.sprite.height)
                     darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
@@ -4164,13 +4316,13 @@ class FireFlower(FallingObject, WinPuffObject):
                     self.light_sprite.draw_sprite(
                         darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
-                h = defs.FLOWER_THROW_UP_HEIGHT if up else defs.FLOWER_THROW_HEIGHT
+                h = FLOWER_THROW_UP_HEIGHT if up else FLOWER_THROW_HEIGHT
                 yv = get_jump_speed(h, ThrownFireFlower.gravity)
                 self.parent.kick_object()
                 play_sound(kick_sound, self.x, self.y)
                 ThrownFireFlower.create(self.parent, self.x, self.y, self.z,
                                         sprite=self.sprite,
-                                        xvelocity=(defs.FIREBALL_SPEED * d),
+                                        xvelocity=(FIREBALL_SPEED * d),
                                         yvelocity=yv,
                                         image_xscale=self.image_xscale)
                 self.parent = None
@@ -4193,7 +4345,7 @@ class FireFlower(FallingObject, WinPuffObject):
 
     def win_puff(self):
         super().win_puff()
-        sge.game.current_room.add_points(defs.AMMO_POINTS * (self.ammo + 1))
+        sge.game.current_room.add_points(AMMO_POINTS * (self.ammo + 1))
 
     def event_end_step(self, time_passed, delta_mult):
         if self.parent is not None:
@@ -4203,7 +4355,7 @@ class FireFlower(FallingObject, WinPuffObject):
 
 class IceFlower(FallingObject, WinPuffObject):
 
-    fall_speed = defs.FLOWER_FALL_SPEED
+    fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
     win_puff_points = 0
 
@@ -4212,7 +4364,7 @@ class IceFlower(FallingObject, WinPuffObject):
         x += ice_flower_sprite.origin_x
         y += ice_flower_sprite.origin_y
         sge.dsp.Object.__init__(self, x, y, z, **kwargs)
-        self.ammo = defs.ICEBULLET_AMMO
+        self.ammo = ICEBULLET_AMMO
         self.light_sprite = ice_flower_light_sprite
 
     def touch(self, other):
@@ -4220,7 +4372,7 @@ class IceFlower(FallingObject, WinPuffObject):
             self.gravity = 0
 
     def knock(self, other=None):
-        self.yvelocity = get_jump_speed(defs.ITEM_HIT_HEIGHT)
+        self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
     def drop(self):
         if self.parent is not None:
@@ -4241,14 +4393,14 @@ class IceFlower(FallingObject, WinPuffObject):
 
                 IceBullet.create(self.x, self.y, self.parent.z,
                                  sprite=ice_bullet_sprite,
-                                 xvelocity=(defs.ICEBULLET_SPEED * d),
+                                 xvelocity=(ICEBULLET_SPEED * d),
                                  bbox_x=bbox_x)
                 play_sound(shoot_sound, self.x, self.y)
 
                 if not defs.GOD:
                     self.ammo -= 1
                     self.sprite = ice_flower_sprite.copy()
-                    lightness = int((self.ammo / defs.ICEBULLET_AMMO) * 255)
+                    lightness = int((self.ammo / ICEBULLET_AMMO) * 255)
                     darkener = sge.gfx.Sprite(width=self.sprite.width,
                                               height=self.sprite.height)
                     darkener.draw_rectangle(0, 0, darkener.width, darkener.height,
@@ -4262,13 +4414,13 @@ class IceFlower(FallingObject, WinPuffObject):
                     self.light_sprite.draw_sprite(
                         darkener, 0, 0, 0, blend_mode=sge.BLEND_RGB_MULTIPLY)
             else:
-                yv = get_jump_speed(defs.FLOWER_THROW_HEIGHT,
+                yv = get_jump_speed(FLOWER_THROW_HEIGHT,
                                     ThrownIceFlower.gravity)
                 self.parent.kick_object()
                 play_sound(kick_sound, self.x, self.y)
                 ThrownIceFlower.create(self.parent, self.x, self.y, self.z,
                                        sprite=self.sprite,
-                                       xvelocity=(defs.FIREBALL_SPEED * d),
+                                       xvelocity=(FIREBALL_SPEED * d),
                                        yvelocity=yv,
                                        image_xscale=self.image_xscale)
                 self.parent = None
@@ -4288,7 +4440,7 @@ class IceFlower(FallingObject, WinPuffObject):
 
     def win_puff(self):
         super().win_puff()
-        sge.game.current_room.add_points(defs.AMMO_POINTS * (self.ammo + 1))
+        sge.game.current_room.add_points(AMMO_POINTS * (self.ammo + 1))
 
     def event_end_step(self, time_passed, delta_mult):
         if self.parent is not None:
@@ -4298,8 +4450,8 @@ class IceFlower(FallingObject, WinPuffObject):
 
 class ThrownFlower(FallingObject, WinPuffObject):
 
-    active_range = defs.BULLET_ACTIVE_RANGE
-    fall_speed = defs.FLOWER_FALL_SPEED
+    active_range = BULLET_ACTIVE_RANGE
+    fall_speed = FLOWER_FALL_SPEED
 
     def __init__(self, thrower, *args, **kwargs):
         self.thrower = thrower
@@ -4359,9 +4511,9 @@ class ThrownIceFlower(ThrownFlower):
 
 class Fireball(FallingObject):
 
-    active_range = defs.BULLET_ACTIVE_RANGE
-    gravity = defs.FIREBALL_GRAVITY
-    fall_speed = defs.FIREBALL_FALL_SPEED
+    active_range = BULLET_ACTIVE_RANGE
+    gravity = FIREBALL_GRAVITY
+    fall_speed = FIREBALL_FALL_SPEED
 
     def deactivate(self):
         self.destroy()
@@ -4388,7 +4540,7 @@ class Fireball(FallingObject):
         self.dissipate()
 
     def stop_down(self):
-        self.yvelocity = get_jump_speed(defs.FIREBALL_BOUNCE_HEIGHT, self.gravity)
+        self.yvelocity = get_jump_speed(FIREBALL_BOUNCE_HEIGHT, self.gravity)
 
     def event_collision(self, other, xdirection, ydirection):
         if ((isinstance(other, InteractiveObject) and other.burnable) or
@@ -4417,7 +4569,7 @@ class Fireball(FallingObject):
 
 class IceBullet(InteractiveObject, xsge_physics.Collider):
 
-    active_range = defs.BULLET_ACTIVE_RANGE
+    active_range = BULLET_ACTIVE_RANGE
 
     def deactivate(self):
         self.destroy()
@@ -4456,7 +4608,7 @@ class IceBullet(InteractiveObject, xsge_physics.Collider):
 
 class TuxDoll(FallingObject):
 
-    fall_speed = defs.FLOWER_FALL_SPEED
+    fall_speed = FLOWER_FALL_SPEED
     slide_speed = 0
 
     def __init__(self, x, y, z=0, **kwargs):
@@ -4467,14 +4619,14 @@ class TuxDoll(FallingObject):
 
     def touch(self, other):
         play_sound(tuxdoll_sound, self.x, self.y)
-        sge.game.current_room.add_points(defs.TUXDOLL_POINTS)
+        sge.game.current_room.add_points(TUXDOLL_POINTS)
         if main_area and main_area not in tuxdolls_found:
             tuxdolls_found.append(main_area)
 
         self.destroy()
 
     def knock(self, other=None):
-        self.yvelocity = get_jump_speed(defs.ITEM_HIT_HEIGHT)
+        self.yvelocity = get_jump_speed(ITEM_HIT_HEIGHT)
 
 
 class RockWall(xsge_physics.MobileWall, xsge_physics.Solid):
@@ -4494,9 +4646,9 @@ class RockWall(xsge_physics.MobileWall, xsge_physics.Solid):
 
 class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
 
-    active_range = defs.ROCK_ACTIVE_RANGE
-    gravity = defs.ROCK_GRAVITY
-    fall_speed = defs.ROCK_FALL_SPEED
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
     win_puff_score = 0
 
     def __init__(self, x, y, z=0, **kwargs):
@@ -4562,9 +4714,9 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
             self.parent.kick_object()
             self.active = True
             self.wall.tangible = True
-            self.xvelocity = math.copysign(defs.KICK_FORWARD_SPEED,
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
                                            self.parent.image_xscale)
-            self.yvelocity = get_jump_speed(defs.KICK_FORWARD_HEIGHT, Rock.gravity)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
             self.parent = None
 
     def kick_up(self):
@@ -4573,7 +4725,7 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
             self.active = True
             self.wall.tangible = True
             self.xvelocity = self.parent.xvelocity
-            self.yvelocity = get_jump_speed(defs.KICK_UP_HEIGHT, Rock.gravity)
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
             self.parent = None
 
     def event_create(self):
@@ -4584,7 +4736,7 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
         if (self.yvelocity >= 0 and
                 (self.get_bottom_touching_wall() or
                  self.get_bottom_touching_slope())):
-            self.xdeceleration = defs.ROCK_FRICTION
+            self.xdeceleration = ROCK_FRICTION
         else:
             self.xdeceleration = 0
 
@@ -4595,10 +4747,10 @@ class Rock(FallingObject, CrowdBlockingObject, WinPuffObject):
 
 class FixedSpring(FallingObject):
 
-    active_range = defs.ROCK_ACTIVE_RANGE
-    gravity = defs.ROCK_GRAVITY
-    fall_speed = defs.ROCK_FALL_SPEED
-    jump_height = defs.SPRING_JUMP_HEIGHT
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
+    jump_height = SPRING_JUMP_HEIGHT
 
     def set_sprite(self):
         # This is a function because the names referenced don't exist
@@ -4636,9 +4788,9 @@ class FixedSpring(FallingObject):
 
 class Spring(FixedSpring, WinPuffObject):
 
-    active_range = defs.ROCK_ACTIVE_RANGE
-    gravity = defs.ROCK_GRAVITY
-    fall_speed = defs.ROCK_FALL_SPEED
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
     win_puff_score = 0
 
     def set_sprite(self):
@@ -4660,9 +4812,9 @@ class Spring(FixedSpring, WinPuffObject):
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            self.xvelocity = math.copysign(defs.KICK_FORWARD_SPEED,
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
                                            self.parent.image_xscale)
-            self.yvelocity = get_jump_speed(defs.KICK_FORWARD_HEIGHT, Rock.gravity)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
             self.gravity = self.__class__.gravity
             self.parent = None
 
@@ -4670,7 +4822,7 @@ class Spring(FixedSpring, WinPuffObject):
         if self.parent is not None:
             self.parent.kick_object()
             self.xvelocity = self.parent.xvelocity
-            self.yvelocity = get_jump_speed(defs.KICK_UP_HEIGHT, Rock.gravity)
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
             self.gravity = self.__class__.gravity
             self.parent = None
 
@@ -4678,7 +4830,7 @@ class Spring(FixedSpring, WinPuffObject):
         if (self.yvelocity >= 0 and
                 (self.get_bottom_touching_wall() or
                  self.get_bottom_touching_slope())):
-            self.xdeceleration = defs.ROCK_FRICTION
+            self.xdeceleration = ROCK_FRICTION
         else:
             self.xdeceleration = 0
 
@@ -4703,9 +4855,9 @@ class RustySpring(Spring):
 
 class Lantern(FallingObject):
 
-    active_range = defs.ROCK_ACTIVE_RANGE
-    gravity = defs.ROCK_GRAVITY
-    fall_speed = defs.ROCK_FALL_SPEED
+    active_range = ROCK_ACTIVE_RANGE
+    gravity = ROCK_GRAVITY
+    fall_speed = ROCK_FALL_SPEED
 
     def __init__(self, x, y, color="white", **kwargs):
         kwargs["sprite"] = lantern_sprite
@@ -4737,9 +4889,9 @@ class Lantern(FallingObject):
     def kick(self):
         if self.parent is not None:
             self.parent.kick_object()
-            self.xvelocity = math.copysign(defs.KICK_FORWARD_SPEED,
+            self.xvelocity = math.copysign(KICK_FORWARD_SPEED,
                                            self.parent.image_xscale)
-            self.yvelocity = get_jump_speed(defs.KICK_FORWARD_HEIGHT, Rock.gravity)
+            self.yvelocity = get_jump_speed(KICK_FORWARD_HEIGHT, Rock.gravity)
             self.gravity = self.__class__.gravity
             self.parent = None
 
@@ -4747,7 +4899,7 @@ class Lantern(FallingObject):
         if self.parent is not None:
             self.parent.kick_object()
             self.xvelocity = self.parent.xvelocity
-            self.yvelocity = get_jump_speed(defs.KICK_UP_HEIGHT, Rock.gravity)
+            self.yvelocity = get_jump_speed(KICK_UP_HEIGHT, Rock.gravity)
             self.gravity = self.__class__.gravity
             self.parent = None
 
@@ -4766,7 +4918,7 @@ class Lantern(FallingObject):
         if (self.yvelocity >= 0 and
                 (self.get_bottom_touching_wall() or
                  self.get_bottom_touching_slope())):
-            self.xdeceleration = defs.ROCK_FRICTION
+            self.xdeceleration = ROCK_FRICTION
         else:
             self.xdeceleration = 0
 
@@ -4874,7 +5026,7 @@ class HittableBlock(sge.dsp.Object):
             self.visible = False
             self.hit_obj = sge.dsp.Object.create(
                 self.x, self.y, self.z, sprite=s, tangible=False,
-                yvelocity=get_jump_speed(defs.BLOCK_HIT_HEIGHT),
+                yvelocity=get_jump_speed(BLOCK_HIT_HEIGHT),
                 yacceleration=defs.GRAVITY, image_index=self.image_index,
                 image_origin_x=self.image_origin_x,
                 image_origin_y=self.image_origin_y,
@@ -4894,14 +5046,14 @@ class HittableBlock(sge.dsp.Object):
 class Brick(HittableBlock, xsge_physics.Solid):
 
     def event_hit(self, other):
-        for i in range(defs.BRICK_SHARD_NUM):
-            xv = random.uniform(-defs.BRICK_SHARD_SPEED, defs.BRICK_SHARD_SPEED)
-            yv = get_jump_speed(defs.BRICK_SHARD_HEIGHT, defs.BRICK_SHARD_GRAVITY)
+        for i in range(BRICK_SHARD_NUM):
+            xv = random.uniform(-BRICK_SHARD_SPEED, BRICK_SHARD_SPEED)
+            yv = get_jump_speed(BRICK_SHARD_HEIGHT, BRICK_SHARD_GRAVITY)
             shard = DeadMan.create(
                 self.x, self.y, self.z, sprite=brick_shard_sprite,
                 xvelocity=xv, yvelocity=yv)
-            shard.gravity = defs.BRICK_SHARD_GRAVITY
-            shard.fall_speed = defs.BRICK_SHARD_FALL_SPEED
+            shard.gravity = BRICK_SHARD_GRAVITY
+            shard.fall_speed = BRICK_SHARD_FALL_SPEED
 
         sge.game.current_room.add_points(10)
         self.destroy()
@@ -4909,7 +5061,7 @@ class Brick(HittableBlock, xsge_physics.Solid):
 
 class CoinBrick(Brick):
 
-    coins = defs.COINBRICK_COINS
+    coins = COINBRICK_COINS
 
     def __init__(self, x, y, disguised=False, **kwargs):
         if not disguised:
@@ -4925,7 +5077,7 @@ class CoinBrick(Brick):
     def event_alarm(self, alarm_id):
         if alarm_id == "decay":
             self.coins -= 1
-            self.alarms["decay"] = defs.COINBRICK_DECAY_TIME
+            self.alarms["decay"] = COINBRICK_DECAY_TIME
 
     def event_hit(self, other):
         if self.coins > 0:
@@ -4935,7 +5087,7 @@ class CoinBrick(Brick):
                 other.coins += 1
 
             if "decay" not in self.alarms:
-                self.alarms["decay"] = defs.COINBRICK_DECAY_TIME
+                self.alarms["decay"] = COINBRICK_DECAY_TIME
         else:
             super().event_hit(other)
 
@@ -5035,22 +5187,22 @@ class ThinIce(xsge_physics.Solid):
                 if not defs.GOD:
                     for player in players:
                         self.crack_time += delta_mult
-                        while self.crack_time >= defs.ICE_CRACK_TIME:
-                            self.crack_time -= defs.ICE_CRACK_TIME
+                        while self.crack_time >= ICE_CRACK_TIME:
+                            self.crack_time -= ICE_CRACK_TIME
                             self.crack()
             elif not self.permanent:
                 if self.image_index > 0:
-                    rfa = delta_mult * defs.ICE_REFREEZE_RATE
+                    rfa = delta_mult * ICE_REFREEZE_RATE
                     self.crack_time -= rfa
                     self.rfa = max(0, -self.crack_time)
                     self.crack_time = max(0, self.crack_time)
                     self.freeze_time += rfa
-                    while self.freeze_time >= defs.ICE_CRACK_TIME:
-                        self.freeze_time -= defs.ICE_CRACK_TIME
+                    while self.freeze_time >= ICE_CRACK_TIME:
+                        self.freeze_time -= ICE_CRACK_TIME
                         if self.image_index > 0:
                             self.image_index -= 1
                 else:
-                    self.crack_time -= delta_mult * defs.ICE_REFREEZE_RATE
+                    self.crack_time -= delta_mult * ICE_REFREEZE_RATE
                     self.crack_time = max(0, self.crack_time)
 
     def event_animation_end(self):
@@ -5130,13 +5282,13 @@ class CoinCollect(sge.dsp.Object):
 
     def event_create(self):
         play_sound(coin_sound, self.x, self.y)
-        sge.game.current_room.add_points(defs.COIN_POINTS)
-        self.alarms["destroy"] = defs.COIN_COLLECT_TIME
-        self.yvelocity = -defs.COIN_COLLECT_SPEED
+        sge.game.current_room.add_points(COIN_POINTS)
+        self.alarms["destroy"] = COIN_COLLECT_TIME
+        self.yvelocity = -COIN_COLLECT_SPEED
 
     def event_step(self, time_passed, delta_mult):
-        T = self.alarms.get("destroy", defs.COIN_COLLECT_TIME)
-        self.image_alpha = 255 * (T / defs.COIN_COLLECT_TIME)
+        T = self.alarms.get("destroy", COIN_COLLECT_TIME)
+        self.image_alpha = 255 * (T / COIN_COLLECT_TIME)
 
     def event_alarm(self, alarm_id):
         if alarm_id == "destroy":
@@ -5393,7 +5545,7 @@ class WarpSpawn(xsge_path.Path):
                 obj.y = y + obj.sprite.origin_y - obj.sprite.height
                 obj.move_direction = 90
 
-            obj.speed = defs.WARP_SPEED
+            obj.speed = WARP_SPEED
             obj.xacceleration = 0
             obj.yacceleration = 0
             obj.xdeceleration = 0
@@ -5420,7 +5572,7 @@ class Warp(WarpSpawn):
         other.warping = True
         other.move_direction = {"right": 0, "up": 270, "left": 180,
                                 "down": 90}.get(self.direction, 0)
-        other.speed = defs.WARP_SPEED
+        other.speed = WARP_SPEED
         other.xacceleration = 0
         other.yacceleration = 0
         other.xdeceleration = 0
@@ -5480,7 +5632,7 @@ class Warp(WarpSpawn):
         for obj in finished:
             obj.x = self.x
             obj.y = self.y
-            self.follow_start(obj, defs.WARP_SPEED)
+            self.follow_start(obj, WARP_SPEED)
             self.warps_in.remove(obj)
 
     def event_destroy(self):
@@ -5525,14 +5677,14 @@ class ObjectWarpSpawn(WarpSpawn):
                 obj.warping = True
                 obj.visible = False
                 obj.tangible = False
-                self.follow_start(obj, defs.WARP_SPEED)
+                self.follow_start(obj, WARP_SPEED)
                 self.__objects.append(weakref.ref(obj))
 
 
 class MovingObjectPath(xsge_path.PathLink):
 
     cls = None
-    default_speed = defs.ENEMY_WALK_SPEED
+    default_speed = ENEMY_WALK_SPEED
     default_accel = None
     default_decel = None
     default_loop = None
@@ -5664,7 +5816,7 @@ class MapPlayer(sge.dsp.Object):
             if target_space is not None:
                 if space.cleared or target_space.cleared:
                     self.moving = True
-                    path.follow_start(self, defs.MAP_SPEED)
+                    path.follow_start(self, MAP_SPEED)
             else:
                 print("Space at position ({}, {}) doesn't exist!".format(
                     path.x + x, path.y + y))
@@ -6288,7 +6440,7 @@ class LevelsetMenu(Menu):
         cls.current_levelsets = []
         cls.items = []
         if cls.levelsets:
-            page_size = defs.MENU_MAX_ITEMS - 2
+            page_size = MENU_MAX_ITEMS - 2
             n_pages = math.ceil(len(cls.levelsets) / page_size)
             page = int(page % n_pages)
             page_start = page * page_size
@@ -7105,7 +7257,7 @@ class DialogLabel(xsge_gui.ProgressiveLabel):
 
 class DialogBox(xsge_gui.Dialog):
 
-    def __init__(self, parent, text, portrait=None, rate=defs.TEXT_SPEED):
+    def __init__(self, parent, text, portrait=None, rate=TEXT_SPEED):
         width = sge.game.width / 2
         x_padding = 16
         y_padding = 16
@@ -7347,11 +7499,11 @@ def play_sound(sound, x=None, y=None, force=True):
                         view_y = obj.y
                         dist = new_dist
 
-            if dist <= defs.SOUND_MAX_RADIUS:
+            if dist <= SOUND_MAX_RADIUS:
                 volume = 1
-            elif dist < defs.SOUND_ZERO_RADIUS:
-                rng = defs.SOUND_ZERO_RADIUS - defs.SOUND_MAX_RADIUS
-                reldist = rng - (dist - defs.SOUND_MAX_RADIUS)
+            elif dist < SOUND_ZERO_RADIUS:
+                rng = SOUND_ZERO_RADIUS - SOUND_MAX_RADIUS
+                reldist = rng - (dist - SOUND_MAX_RADIUS)
                 volume = min(1, abs(reldist / rng))
             else:
                 # No point in continuing; it's too far away
@@ -7359,12 +7511,12 @@ def play_sound(sound, x=None, y=None, force=True):
 
             if stereo_enabled:
                 hdist = x - view_x
-                if abs(hdist) < defs.SOUND_CENTERED_RADIUS:
+                if abs(hdist) < SOUND_CENTERED_RADIUS:
                     balance = 0
                 else:
-                    rng = defs.SOUND_TILTED_RADIUS - defs.SOUND_CENTERED_RADIUS
-                    balance = max(-defs.SOUND_TILT_LIMIT,
-                                  min(hdist / rng, defs.SOUND_TILT_LIMIT))
+                    rng = SOUND_TILTED_RADIUS - SOUND_CENTERED_RADIUS
+                    balance = max(-SOUND_TILT_LIMIT,
+                                  min(hdist / rng, SOUND_TILT_LIMIT))
             else:
                 balance = 0
 
@@ -7877,7 +8029,7 @@ spiky_walk_sprite = sge.gfx.Sprite("spiky", d, origin_x=22, origin_y=10, fps=8,
                                    bbox_x=-13, bbox_y=0, bbox_width=26,
                                    bbox_height=32)
 spiky_iced_sprite = sge.gfx.Sprite("spiky_iced", d, origin_x=22, origin_y=10,
-                                   fps=defs.THAW_FPS, bbox_x=-13, bbox_y=0,
+                                   fps=THAW_FPS, bbox_x=-13, bbox_y=0,
                                    bbox_width=26, bbox_height=32)
 spiky_iced_sprite.append_frame()
 spiky_iced_sprite.draw_sprite(spiky_walk_sprite, 1, spiky_walk_sprite.origin_x,
@@ -7886,7 +8038,7 @@ bomb_walk_sprite = sge.gfx.Sprite("bomb", d, origin_x=21, origin_y=8, fps=8,
                                   bbox_x=-13, bbox_y=0, bbox_width=26,
                                   bbox_height=32)
 bomb_iced_sprite = sge.gfx.Sprite("bomb_iced", d, origin_x=21, origin_y=8,
-                                  fps=defs.THAW_FPS, bbox_x=-13, bbox_y=0,
+                                  fps=THAW_FPS, bbox_x=-13, bbox_y=0,
                                   bbox_width=26, bbox_height=32)
 bomb_iced_sprite.append_frame()
 bomb_iced_sprite.draw_sprite(bomb_walk_sprite, 1, bomb_iced_sprite.origin_x,
@@ -7894,14 +8046,14 @@ bomb_iced_sprite.draw_sprite(bomb_walk_sprite, 1, bomb_iced_sprite.origin_x,
 bomb_ticking_sprite = sge.gfx.Sprite(
     "bomb_ticking", d, origin_x=21, origin_y=5, bbox_x=-13, bbox_y=3,
     bbox_width=26, bbox_height=29)
-bomb_ticking_sprite.fps = bomb_ticking_sprite.frames / defs.BOMB_TICK_TIME
+bomb_ticking_sprite.fps = bomb_ticking_sprite.frames / BOMB_TICK_TIME
 jumpy_sprite = sge.gfx.Sprite("jumpy", d, origin_x=24, origin_y=13, bbox_x=-16,
                               bbox_y=0, bbox_width=32, bbox_height=32)
 jumpy_bounce_sprite = sge.gfx.Sprite(
     "jumpy_bounce", d, origin_x=24, origin_y=13, bbox_x=-16, bbox_y=0,
     bbox_width=32, bbox_height=32)
 jumpy_iced_sprite = sge.gfx.Sprite("jumpy_iced", d, origin_x=24, origin_y=13,
-                                   fps=defs.THAW_FPS, bbox_x=-16, bbox_y=0,
+                                   fps=THAW_FPS, bbox_x=-16, bbox_y=0,
                                    bbox_width=32, bbox_height=32)
 jumpy_iced_sprite.append_frame()
 jumpy_iced_sprite.draw_sprite(jumpy_sprite, 0, jumpy_sprite.origin_x,
@@ -7916,7 +8068,7 @@ flying_spiky_sprite = sge.gfx.Sprite("flying_spiky", d, origin_x=24,
                                      origin_y=14, fps=15, bbox_x=-13, bbox_y=0,
                                      bbox_width=26, bbox_height=32)
 flying_spiky_iced_sprite = sge.gfx.Sprite(
-    "flying_spiky_iced", d, origin_x=24, origin_y=14, fps=defs.THAW_FPS, bbox_x=-13,
+    "flying_spiky_iced", d, origin_x=24, origin_y=14, fps=THAW_FPS, bbox_x=-13,
     bbox_y=0, bbox_width=26, bbox_height=32)
 flying_spiky_iced_sprite.append_frame()
 flying_spiky_iced_sprite.draw_sprite(flying_spiky_sprite, 0,
