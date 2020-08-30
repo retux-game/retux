@@ -526,16 +526,16 @@ class Level(sge.dsp.Room):
                 _("Score"), score_text,
                 _("Time Bonus") if time_bonus >= 0 else _("Time Penalty"),
                 abs(time_bonus))
-            sge.game.project_text(font, text, sge.game.width / 2, 0,
+            sge.game.project_text(font, text, sge.game.width, 0,
                                   color=sge.gfx.Color("white"),
-                                  halign="center")
+                                  halign="right")
 
             if main_area in tuxdolls_available or main_area in tuxdolls_found:
                 if main_area in tuxdolls_found:
                     s = tuxdoll_sprite
                 else:
                     s = tuxdoll_transparent_sprite
-                sge.game.project_sprite(s, 0, sge.game.width / 2, font.size * 6)
+                sge.game.project_sprite(s, 0, sge.game.width / 2, 0)
 
             if self.status_text:
                 sge.game.project_text(font, self.status_text,
