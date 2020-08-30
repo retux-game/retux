@@ -5220,7 +5220,7 @@ class InfoBlock(HittableBlock, xsge_physics.Solid):
 
     def __init__(self, x, y, text="(null)", **kwargs):
         super(InfoBlock, self).__init__(x, y, **kwargs)
-        self.text = text.replace("\\n", "\n")
+        self.text = text
 
     def event_hit_end(self):
         DialogBox(gui_handler, _(self.text), self.sprite).show()
