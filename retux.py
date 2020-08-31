@@ -8147,7 +8147,7 @@ fire_flower_sprite = sge.gfx.Sprite("fire_flower", d, origin_x=16, origin_y=16,
                                     fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                     bbox_height=24)
 ice_flower_sprite = sge.gfx.Sprite("ice_flower", d, origin_x=16, origin_y=16,
-                                   fps=8, bbox_x=-8, bbox_y=-8, bbox_width=16,
+                                   fps=4, bbox_x=-8, bbox_y=-8, bbox_width=16,
                                    bbox_height=24)
 tuxdoll_sprite = sge.gfx.Sprite("tuxdoll", d, origin_x=16, origin_y=16,
                                 bbox_x=-16, bbox_y=-16, bbox_width=32,
