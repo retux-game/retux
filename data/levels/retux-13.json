@@ -967,8 +967,8 @@
                  "properties":[
                         {
                          "name":"rvelocity",
-                         "type":"string",
-                         "value":"-2"
+                         "type":"int",
+                         "value":-2
                         }],
                  "rotation":0,
                  "type":"circoflame",
@@ -993,8 +993,8 @@
                  "properties":[
                         {
                          "name":"rvelocity",
-                         "type":"string",
-                         "value":"-2"
+                         "type":"int",
+                         "value":-2
                         }],
                  "rotation":0,
                  "type":"circoflame",
@@ -1363,8 +1363,8 @@
                  "properties":[
                         {
                          "name":"rvelocity",
-                         "type":"string",
-                         "value":"-2"
+                         "type":"int",
+                         "value":-2
                         }],
                  "rotation":0,
                  "type":"circoflame",
@@ -1389,8 +1389,8 @@
                  "properties":[
                         {
                          "name":"rvelocity",
-                         "type":"string",
-                         "value":"-2"
+                         "type":"int",
+                         "value":-2
                         }],
                  "rotation":0,
                  "type":"circoflame",
@@ -1415,8 +1415,8 @@
                  "properties":[
                         {
                          "name":"rvelocity",
-                         "type":"string",
-                         "value":"-2"
+                         "type":"int",
+                         "value":-2
                         }],
                  "rotation":0,
                  "type":"circoflame",
@@ -1441,8 +1441,8 @@
                  "properties":[
                         {
                          "name":"rvelocity",
-                         "type":"string",
-                         "value":"-2"
+                         "type":"int",
+                         "value":-2
                         }],
                  "rotation":0,
                  "type":"circoflame",
