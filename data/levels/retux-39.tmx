@@ -41,7 +41,7 @@
  <objectgroup color="#00ff00" name="warp">
   <object id="6" x="448" y="352">
    <properties>
-    <property name="dest" value="retux-39b.tmx:enter"/>
+    <property name="dest" value="retux-39b.json:enter"/>
    </properties>
    <polyline points="0,0 64,0"/>
   </object>

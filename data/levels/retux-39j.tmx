@@ -56,13 +56,13 @@
   </object>
   <object gid="502" x="96" y="352">
    <properties>
-    <property name="dest" value="retux-39h.tmx:j"/>
+    <property name="dest" value="retux-39h.json:j"/>
     <property name="spawn_id" value="h"/>
    </properties>
   </object>
   <object gid="502" x="3904" y="416">
    <properties>
-    <property name="dest" value="retux-39m.tmx:j"/>
+    <property name="dest" value="retux-39m.json:j"/>
     <property name="spawn_id" value="m"/>
    </properties>
   </object>

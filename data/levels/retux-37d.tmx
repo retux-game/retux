@@ -40,7 +40,7 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="704" y="256">
    <properties>
-    <property name="dest" value="retux-37b.tmx:bonus_exit"/>
+    <property name="dest" value="retux-37b.json:bonus_exit"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>

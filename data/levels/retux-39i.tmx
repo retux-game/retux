@@ -48,19 +48,19 @@
  <objectgroup name="Collision Objects">
   <object gid="502" x="96" y="224">
    <properties>
-    <property name="dest" value="retux-39h.tmx:i"/>
+    <property name="dest" value="retux-39h.json:i"/>
     <property name="spawn_id" value="h"/>
    </properties>
   </object>
   <object gid="502" x="896" y="384">
    <properties>
-    <property name="dest" value="retux-39l.tmx:i"/>
+    <property name="dest" value="retux-39l.json:i"/>
     <property name="spawn_id" value="l"/>
    </properties>
   </object>
   <object gid="502" x="1504" y="384">
    <properties>
-    <property name="dest" value="retux-39k.tmx:i"/>
+    <property name="dest" value="retux-39k.json:i"/>
     <property name="spawn_id" value="k"/>
    </properties>
   </object>

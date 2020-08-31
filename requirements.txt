@@ -1,9 +1,7 @@
 pygame>=1.9.1
-sge-pygame>=1.4
-six>=1.4
+sge>=1.4
 xsge_gui>=1.0.2
 xsge_lighting>=1.0
 xsge_path>=1.0
 xsge_physics>=0.12
-tmx>=1.9
-xsge_tmx>=1.1
+xsge_tiled>=1.0

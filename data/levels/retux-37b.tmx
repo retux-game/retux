@@ -63,7 +63,7 @@
  <objectgroup name="Collision Objects">
   <object gid="502" x="96" y="352">
    <properties>
-    <property name="dest" value="retux-37.tmx:exit"/>
+    <property name="dest" value="retux-37.json:exit"/>
     <property name="spawn_id" value="enter"/>
    </properties>
   </object>
@@ -113,13 +113,13 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="7840" y="352">
    <properties>
-    <property name="dest" value="retux-37c.tmx:enter"/>
+    <property name="dest" value="retux-37c.json:enter"/>
    </properties>
    <polyline points="0,0 64,0"/>
   </object>
   <object x="7456" y="64">
    <properties>
-    <property name="dest" value="retux-37d.tmx:bonus_enter"/>
+    <property name="dest" value="retux-37d.json:bonus_enter"/>
    </properties>
    <polyline points="0,0 0,-64"/>
   </object>

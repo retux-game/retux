@@ -55,19 +55,19 @@
   </object>
   <object gid="502" x="96" y="1760">
    <properties>
-    <property name="dest" value="retux-39g.tmx:h"/>
+    <property name="dest" value="retux-39g.json:h"/>
     <property name="spawn_id" value="g"/>
    </properties>
   </object>
   <object gid="502" x="704" y="160">
    <properties>
-    <property name="dest" value="retux-39j.tmx:h"/>
+    <property name="dest" value="retux-39j.json:h"/>
     <property name="spawn_id" value="j"/>
    </properties>
   </object>
   <object gid="502" x="736" y="544">
    <properties>
-    <property name="dest" value="retux-39i.tmx:h"/>
+    <property name="dest" value="retux-39i.json:h"/>
     <property name="spawn_id" value="i"/>
    </properties>
   </object>

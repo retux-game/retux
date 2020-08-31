@@ -38,7 +38,7 @@
  <objectgroup name="Collision Objects">
   <object gid="502" x="96" y="416">
    <properties>
-    <property name="dest" value="retux-39j.tmx:m"/>
+    <property name="dest" value="retux-39j.json:m"/>
     <property name="spawn_id" value="j"/>
    </properties>
   </object>
@@ -47,7 +47,7 @@
  <objectgroup color="#00ff00" name="warp">
   <object x="640" y="320">
    <properties>
-    <property name="dest" value="retux-39n.tmx:m"/>
+    <property name="dest" value="retux-39n.json:m"/>
    </properties>
    <polyline points="0,0 0,64"/>
   </object>

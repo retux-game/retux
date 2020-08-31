@@ -50,13 +50,13 @@
  <objectgroup name="Collision Objects">
   <object gid="502" x="2272" y="320" width="32" height="96">
    <properties>
-    <property name="dest" value="retux-39d.tmx:e"/>
+    <property name="dest" value="retux-39d.json:e"/>
     <property name="spawn_id" value="d"/>
    </properties>
   </object>
   <object gid="502" x="96" y="352" width="32" height="96">
    <properties>
-    <property name="dest" value="retux-39f.tmx:e"/>
+    <property name="dest" value="retux-39f.json:e"/>
     <property name="spawn_id" value="f"/>
    </properties>
   </object>
