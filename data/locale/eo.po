@@ -17,9 +17,9 @@
 # Jorge Maldonado Ventura <jorgesumle@freakspot.net>, 2018.
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.3.7\n"
+"Project-Id-Version: 1.4\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2020-09-01 11:25-0400\n"
+"POT-Creation-Date: 2020-09-01 12:43-0400\n"
 "PO-Revision-Date: 2018-08-18 16:07+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
@@ -262,6 +262,40 @@ msgstr "Vi mankas fajron? Juniĝi vi kun bona, varma bano en fandita lafo!"
 
 msgid "There must be a way to remove the fire flower from this room."
 msgstr "Oni devas ekzisti maniero forpreni la fajran floron el ĉi tiu ĉambro."
+
+# Credits text
+msgid "Programming By"
+msgstr ""
+
+msgid "Graphics By"
+msgstr ""
+
+# Menu option; indicates whether or not sound effects should play.
+# {} is replaced by "On" or "Off".
+#, fuzzy
+msgid "Sounds By"
+msgstr "Sono: {}"
+
+# Menu option; indicates whether or not music should play.
+# {} is replaced by "On" or "Off".
+#, fuzzy
+msgid "Music By"
+msgstr "Muziko: {}"
+
+msgid "Level Design By"
+msgstr ""
+
+msgid "Bonus Level Design By"
+msgstr ""
+
+msgid "Translations By"
+msgstr ""
+
+msgid "Software Used"
+msgstr ""
+
+msgid "Thank you for playing!"
+msgstr ""
 
 # Explanation of what the "--version" command-line option does
 #: ../../retux.py:71
@@ -725,7 +759,18 @@ msgstr "Ŝargado de bildoj..."
 msgid "Loading fonts..."
 msgstr "Ŝargado de tiparoj..."
 
+#. / The default ReTux font is a sprite font which supports Latin
+#. / character sets. If your translation needs more characters (as would
+#. / be the case for Japanese or Chinese, for example), please add a font
+#. / file to the data/fonts directory for use with the language being
+#. / translated to and specify the font file name. This will cause the
+#. / font file to be used instead of the default sprite font. If the
+#. / sprite font is sufficient, leave this as-is.
+#: ../../retux.py:8445 ../../retux.py:8461
+msgid "font_file"
+msgstr ""
+
 # Printed to the terminal as the game starts
-#: ../../retux.py:8650
+#: ../../retux.py:8664
 msgid "Starting game..."
 msgstr "Komencado de ludo..."

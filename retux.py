@@ -8435,20 +8435,34 @@ print(_("Loading fonts..."))
 chars = ([None] + [chr(i) for i in range(33, 127)] + ['\u2190', ' ']
          + [chr(i) for i in range(161, 384)])
 
-font_sprite = sge.gfx.Sprite.from_tileset(
-    os.path.join(DATA, "images", "misc", "font.png"), columns=16, rows=20,
-    width=16, height=18)
-font = sge.gfx.Font.from_sprite(font_sprite, chars, size=18)
+#/ The default ReTux font is a sprite font which supports Latin
+#/ character sets. If your translation needs more characters (as would
+#/ be the case for Japanese or Chinese, for example), please add a font
+#/ file to the data/fonts directory for use with the language being
+#/ translated to and specify the font file name. This will cause the
+#/ font file to be used instead of the default sprite font. If the
+#/ sprite font is sufficient, leave this as-is.
+if _("font_file") == "font_file":
+    font_sprite = sge.gfx.Sprite.from_tileset(
+        os.path.join(DATA, "images", "misc", "font.png"), columns=16, rows=20,
+        width=16, height=18)
+    font = sge.gfx.Font.from_sprite(font_sprite, chars, size=18)
 
-font_small_sprite = sge.gfx.Sprite.from_tileset(
-    os.path.join(DATA, "images", "misc", "font_small.png"), columns=16,
-    rows=20, width=8, height=9)
-font_small = sge.gfx.Font.from_sprite(font_small_sprite, chars, size=9)
+    font_small_sprite = sge.gfx.Sprite.from_tileset(
+        os.path.join(DATA, "images", "misc", "font_small.png"), columns=16,
+        rows=20, width=8, height=9)
+    font_small = sge.gfx.Font.from_sprite(font_small_sprite, chars, size=9)
 
-font_big_sprite = sge.gfx.Sprite.from_tileset(
-    os.path.join(DATA, "images", "misc", "font_big.png"), columns=16, rows=20,
-    width=20, height=22)
-font_big = sge.gfx.Font.from_sprite(font_big_sprite, chars, size=22)
+    font_big_sprite = sge.gfx.Sprite.from_tileset(
+        os.path.join(DATA, "images", "misc", "font_big.png"), columns=16,
+        rows=20, width=20, height=22)
+    font_big = sge.gfx.Font.from_sprite(font_big_sprite, chars, size=22)
+else:
+    fname = os.path.join(DATA, "fonts", _("font_file")
+    font = sge.gfx.Font(fname), size=18)
+    font_small = sge.gfx.Font(fname, size=9)
+    font_big = sge.gfx.Font(fname, size=22)
+    del fname
 
 # Load sounds
 jump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "jump.wav"))
