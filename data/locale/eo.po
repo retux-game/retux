@@ -1,5 +1,4 @@
 # ReTux translatable text.
-# Copyright (C) 2016-2017 Julie Marchant <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,18 +17,18 @@
 # Jorge Maldonado Ventura <jorgesumle@freakspot.net>, 2018.
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.4\n"
-"Report-Msgid-Bugs-To: http://retux.nongnu.org\n"
-"POT-Creation-Date: 2018-07-15 16:04+0200\n"
+"Project-Id-Version: 1.3.7\n"
+"Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
+"POT-Creation-Date: 2020-09-01 11:25-0400\n"
 "PO-Revision-Date: 2018-08-18 16:07+0200\n"
-"Language-Team: C <kde-i18n-doc@kde.org>\n"
+"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
+"Language-Team: Esperanto\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: eo\n"
 
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
 msgstr ""
@@ -265,18 +264,22 @@ msgid "There must be a way to remove the fire flower from this room."
 msgstr "Oni devas ekzisti maniero forpreni la fajran floron el ĉi tiu ĉambro."
 
 # Explanation of what the "--version" command-line option does
+#: ../../retux.py:71
 msgid "Output version information and exit."
 msgstr "montri programversion kaj eliri."
 
 # Explanation of what the "-p" command-line option does
+#: ../../retux.py:74
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr "Printi erarojn direkte al stdout anstataŭ savi ĝin en dosiero."
 
 # Explanation of what the "-l" command-line option does
+#: ../../retux.py:78
 msgid "Manually choose a different language to use."
 msgstr "Permane elekti alian lingvon por uzi."
 
 # Explanation of what the "--nodelta" command-line option does
+#: ../../retux.py:81
 msgid ""
 "Disable delta timing. Causes the game to slow down when it can't run at full "
 "speed instead of becoming choppier."
@@ -286,14 +289,17 @@ msgstr ""
 
 # Explanation of what the "-d" command-line option does.
 # {} is replaced by the default value of this option.
+#: ../../retux.py:85
 msgid "Where to load the game data from (Default: \"{}\")"
 msgstr "El kie ŝarĝi la ludaj datumoj (Defaŭlta: \"{}\")"
 
 # Explanation of what the "--level" command-line option does
+#: ../../retux.py:88
 msgid "Play the indicated level and then exit."
 msgstr "Ludi la elektitan nivelon kaj poste eliri."
 
 # Explanation of what the "--record" command-line option does
+#: ../../retux.py:91
 msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
@@ -302,26 +308,32 @@ msgstr ""
 "fari "
 
 # Explanation of what the "--no-backgrounds" command-line option does
+#: ../../retux.py:94
 msgid "Only show solid colors for backgrounds (uses less RAM)."
 msgstr "Nur montri opakaj koloroj por fonoj (uzas malpli ĉefmemoron)."
 
 # Explanation of what the "--no-hud" command-line option does
+#: ../../retux.py:97
 msgid "Don't show the player's heads-up display."
 msgstr "Ne montri la ludanta HUD"
 
 # Shown just above the current score
+#: ../../retux.py:526
 msgid "Score"
 msgstr "Poentoj"
 
 # Shown just above the current time bonus (if applicable)
+#: ../../retux.py:527
 msgid "Time Bonus"
 msgstr "Tempa Donaĵo"
 
 # Shown just above the current time penalty (if applicable)
+#: ../../retux.py:527
 msgid "Time Penalty"
 msgstr "Tempa Maldonaĵo"
 
 # {} is replaced by an error message
+#: ../../retux.py:791
 msgid ""
 "An error occurred in a timeline 'setattr' command:\n"
 "\n"
@@ -332,6 +344,7 @@ msgstr ""
 "{}"
 
 # {} is replaced by an error message
+#: ../../retux.py:839
 msgid ""
 "An error occurred in a timeline 'exec' command:\n"
 "\n"
@@ -342,6 +355,7 @@ msgstr ""
 "{}"
 
 # {} is replaced by an error message
+#: ../../retux.py:846
 msgid ""
 "An error occurred in a timeline 'if' statement:\n"
 "\n"
@@ -351,10 +365,8 @@ msgstr ""
 "\n"
 "{}"
 
-msgid "Loading level..."
-msgstr "Ŝargata nivelon..."
-
 # {} is replaced by an error message
+#: ../../retux.py:866
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
 "\n"
@@ -364,12 +376,18 @@ msgstr ""
 "\n"
 "{}"
 
+#: ../../retux.py:1073
+msgid "Loading level..."
+msgstr "Ŝargata nivelon..."
+
 # Printed to the terminal when a level is loaded before the game starts.
 # {} is replaced by the file name of the level being loaded.
+#: ../../retux.py:1091
 msgid "Loading \"{}\"..."
 msgstr "Ŝargata \"{}\"..."
 
 # {} is replaced by an error message
+#: ../../retux.py:1098
 msgid ""
 "An error occurred when trying to load the level:\n"
 "\n"
@@ -380,146 +398,185 @@ msgstr ""
 "{}"
 
 # Text shown at the bottom of the screen during skippable cutscenes
+#: ../../retux.py:1820
 msgid "Press the Menu button to skip..."
 msgstr "Prenu la Menuon klavon por daŭrigi..."
 
 # Text shown at the bottom of the screen during unskippable cutscenes
+#: ../../retux.py:1822
 msgid "Cinematic mode enabled"
 msgstr "Kina ago ŝaltita"
 
 # Main menu option; shows the New Game menu
+#: ../../retux.py:6353
 msgid "New Game"
 msgstr "Novan Ludon"
 
 # Main menu option; shows the Load Game menu
+#: ../../retux.py:6353
 msgid "Load Game"
 msgstr "Ŝargi Ludon"
 
 # Main menu option; shows the levelset selection menu
+#: ../../retux.py:6353
 msgid "Select Levelset"
 msgstr "Elekti Nivelaron"
 
 # Main menu option; shows the Options menu
+#: ../../retux.py:6353
 msgid "Options"
 msgstr "Agordoj"
 
 # Main menu option; shows the credits screen
+#: ../../retux.py:6354
 msgid "Credits"
 msgstr "Agnoskoj"
 
 # Main menu option; quits the game
+#: ../../retux.py:6354
 msgid "Quit"
 msgstr "Eliri"
 
 # Menu option; indicates that a save slot is empty
+#: ../../retux.py:6384
 msgid "-Empty-"
 msgstr "-Malplena-"
 
 # Menu option; indicates that a save slot is not using any levelset.
 # This should not happen.
+#: ../../retux.py:6386
 msgid "-No Levelset-"
 msgstr "-Neniu Nivelaro-"
 
 # Menu option; indicates that a save slot is using a corrupt levelset
+#: ../../retux.py:6393
 msgid "-Corrupt Levelset-"
 msgstr "-Korupta Nivelaro-"
 
 # Menu option; used in all sub-menus to go back to the previous menu
+#: ../../retux.py:6401 ../../retux.py:6516 ../../retux.py:6550
+#: ../../retux.py:6715 ../../retux.py:6847
 msgid "Back"
 msgstr "Reen"
 
 # Menu option; overwrite the chosen save file
+#: ../../retux.py:6429
 msgid "Overwrite this save file"
 msgstr "Anstataŭigi ĉi tiun dosieron"
 
 # Menu option; cancel overwriting the chosen save file and return to previous menu
+#: ../../retux.py:6429
 msgid "Cancel"
 msgstr "Nuligi"
 
 # Error message shown when a levelset does not properly start.
+#: ../../retux.py:6465
 msgid "An error occurred when trying to load the game."
 msgstr "Eraro okazis dum la ŝargo de la ludo."
 
 # Menu option; used to change to the next "page" (section) of the current menu
+#: ../../retux.py:6515
 msgid "Next page"
 msgstr "Sekva paĝo"
 
+# Menu option; indicates whether or not fullscreen should be used.
+# {} is replaced by "On" or "Off".
+#: ../../retux.py:6541
+msgid "Fullscreen: {}"
+msgstr "Plena ekraro: {}"
+
 # Used as a part of binary config menu options below.
+#: ../../retux.py:6541 ../../retux.py:6543 ../../retux.py:6544
+#: ../../retux.py:6545 ../../retux.py:6546
 msgid "On"
 msgstr "Ek"
 
 # Used as a part of binary config menu options below.
+#: ../../retux.py:6541 ../../retux.py:6543 ../../retux.py:6544
+#: ../../retux.py:6545 ../../retux.py:6546
 msgid "Off"
 msgstr "For"
 
-# Menu option; indicates whether or not fullscreen should be used.
-# {} is replaced by "On" or "Off".
-msgid "Fullscreen: {}"
-msgstr "Plena ekraro: {}"
-
 # Menu option; indicates what scale method ReTux should use.
 # {} is replaced by the name of a scale method.
+#: ../../retux.py:6542
 msgid "Scale Method: {}"
 msgstr "Skalo-metedo: {}"
 
 # Menu option; indicates whether or not sound effects should play.
 # {} is replaced by "On" or "Off".
+#: ../../retux.py:6543
 msgid "Sound: {}"
 msgstr "Sono: {}"
 
 # Menu option; indicates whether or not music should play.
 # {} is replaced by "On" or "Off".
+#: ../../retux.py:6544
 msgid "Music: {}"
 msgstr "Muziko: {}"
 
 # Menu option; indicates whether or not stereo sound should be used.
 # {} is replaced by "On" or "Off".
+#: ../../retux.py:6545
 msgid "Stereo: {}"
 msgstr "Stereofonie: {}"
 
 # Menu option; indicates whether or not the frame rate should be shown.
 # {} is replaced by "On" or "Off".
+#: ../../retux.py:6546
 msgid "Show FPS: {}"
 msgstr "Montri FPS: {}"
 
 # Menu option; {} is replaced by the percentage of joystick tilt ReTux
 # will treat as zero (a.k.a. deadzone).
+#: ../../retux.py:6547
 msgid "Joystick Threshold: {}%"
 msgstr "Stirstanga Sojlo: {}%"
 
 # Menu option; leads to the keyboard config menu
+#: ../../retux.py:6548 ../../retux.py:7214 ../../retux.py:7217
+#: ../../retux.py:7221 ../../retux.py:7287
 msgid "Configure keyboard"
 msgstr "Konfiguri klavaron"
 
 # Menu option; leads to the joystick config menu
+#: ../../retux.py:6548 ../../retux.py:7215 ../../retux.py:7218
+#: ../../retux.py:7222 ../../retux.py:7287
 msgid "Configure joysticks"
 msgstr "Konfiguri stirstangojn"
 
 # Menu option; refreshes the game's knowledge of available joysticks
+#: ../../retux.py:6549
 msgid "Detect joysticks"
 msgstr "Detekti stirtangojn"
 
 # Menu option; imports a levelset from a ".rtz" file
+#: ../../retux.py:6549
 msgid "Import levelset"
 msgstr "Enporti nivelaron"
 
 # Menu option; exports a levelset to a ".rtz" file
+#: ../../retux.py:6549
 msgid "Export levelset"
 msgstr "Eksporti nivelaron"
 
 # Used for the "file type" box of the Tkinter file selection dialog;
 # indicates to show only ".rtz" files.
+#: ../../retux.py:6620 ../../retux.py:6961
 msgid "ReTux levelset files"
 msgstr "Nivelara dosieroj de ReTux"
 
 # Used for the "file type" box of the Tkinter file selection dialog;
 # indicates to show files of any type
+#: ../../retux.py:6621 ../../retux.py:6962
 msgid "all files"
 msgstr "ĉiuj dosieroj"
 
+#: ../../retux.py:6634
 msgid "Importing levelset..."
 msgstr "importita nivelaro..."
 
+#: ../../retux.py:6671 ../../retux.py:6680
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
 "make sure Tkinter is installed and try again."
@@ -529,64 +586,98 @@ msgstr ""
 
 # Shown at the top of each control config menu. {} is replaced with the
 # player number.
+#: ../../retux.py:6705 ../../retux.py:6837
 msgid "Player {}"
 msgstr "Ludanto {}"
 
 # Action names with configurable controls, used in control config menus.
 # {} is replaced with the key(s) or joystick control(s) the action is set to.
+#: ../../retux.py:6706 ../../retux.py:6838
 msgid "Left: {}"
 msgstr "Maldekstren: {}"
 
+#: ../../retux.py:6707 ../../retux.py:6839
 msgid "Right: {}"
 msgstr "Dekstren: {}"
 
+#: ../../retux.py:6708 ../../retux.py:6840
 msgid "Up: {}"
 msgstr "Supren: {}"
 
+#: ../../retux.py:6709 ../../retux.py:6841
 msgid "Down: {}"
 msgstr "Malsupren: {}"
 
+#: ../../retux.py:6710 ../../retux.py:6842
 msgid "Jump: {}"
 msgstr "Salti: {}"
 
+#: ../../retux.py:6711 ../../retux.py:6843
 msgid "Action: {}"
 msgstr "Ago: {}"
 
+#: ../../retux.py:6712 ../../retux.py:6844
 msgid "Sneak: {}"
 msgstr "Rampi: {}"
 
+#: ../../retux.py:6713 ../../retux.py:6845
 msgid "Menu: {}"
 msgstr "Menuo: {}"
 
+#: ../../retux.py:6714 ../../retux.py:6846
 msgid "Pause: {}"
 msgstr "Paŭzo: {}"
 
+#: ../../retux.py:6735
+#, fuzzy
+msgid ""
+"Press the key you wish to bind to this function, or the Escape key to cancel."
+msgstr "Premu la klavon, ke vi deziras baskuligi, aŭ Nuligi por nuligi."
+
 # Indicates that an action is not assigned to any joystick control
+#: ../../retux.py:6835
 msgid "None"
 msgstr "Nenio"
 
+#: ../../retux.py:6867
+#, fuzzy
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to bind to this "
+"function, or the Escape key to cancel."
+msgstr ""
+"Premu la stirstangan klavon, akson aŭ ĉapela direkto, kiu vi deziras "
+"baskuligi, aŭ la Nuligi-klavo por nuligi."
+
+#: ../../retux.py:6975
 msgid "Exporting levelset..."
 msgstr "Eksportado de nivelgrupon..."
 
 # In-game menu option; exits the menu and returns to the game
+#: ../../retux.py:7214 ../../retux.py:7217 ../../retux.py:7221
+#: ../../retux.py:7287
 msgid "Continue"
 msgstr "Daŭrigi"
 
 # Used in single-level mode menu; quits the level (and consequently the game)
+#: ../../retux.py:7215
 msgid "Abort"
 msgstr "Aborti"
 
 # In-level menu option; returns to the worldmap
+#: ../../retux.py:7218
 msgid "Return to Map"
 msgstr "Reveni al Karto"
 
 # In-game menu option; quits the game and returns to the title screen
+#: ../../retux.py:7219 ../../retux.py:7222 ../../retux.py:7288
 msgid "Return to Title Screen"
 msgstr "Reveni al Titola Ekrano"
 
+#: ../../retux.py:7448
 msgid "Press the key you wish to toggle, or Escape to cancel."
 msgstr "Premu la klavon, ke vi deziras baskuligi, aŭ Nuligi por nuligi."
 
+#: ../../retux.py:7486
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to toggle, or the "
 "Escape key to cancel."
@@ -595,13 +686,16 @@ msgstr ""
 "baskuligi, aŭ la Nuligi-klavo por nuligi."
 
 # Error message title
+#: ../../retux.py:7502
 msgid "Error"
 msgstr "Eraro"
 
 # Error message "Ok" button
+#: ../../retux.py:7503
 msgid "Ok"
 msgstr "Bone"
 
+#: ../../retux.py:7646
 msgid ""
 "Preloading levels...\n"
 "\n"
@@ -612,21 +706,26 @@ msgstr ""
 "(prenu ajnan klavon por daŭrigi)"
 
 # Printed to the terminal as the game starts
+#: ../../retux.py:7970
 msgid "Initializing game system..."
 msgstr "Pravalorizintan ludan sistemon..."
 
 # Printed to the terminal as the game starts
+#: ../../retux.py:7975
 msgid "Initializing GUI system..."
 msgstr "Pravalorizado de grafika interfaca sistemo..."
 
 # Printed to the terminal as the game starts
+#: ../../retux.py:7982
 msgid "Loading images..."
 msgstr "Ŝargado de bildoj..."
 
 # Printed to the terminal as the game starts
+#: ../../retux.py:8434
 msgid "Loading fonts..."
 msgstr "Ŝargado de tiparoj..."
 
 # Printed to the terminal as the game starts
+#: ../../retux.py:8650
 msgid "Starting game..."
 msgstr "Komencado de ludo..."

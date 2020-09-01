@@ -1,5 +1,4 @@
 # ReTux translatable text.
-# Copyright (C) 2016-2017 Julie Marchant <onpon4@riseup.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,9 +18,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.4\n"
-"Report-Msgid-Bugs-To: http://retux.nongnu.org\n"
-"POT-Creation-Date: 2017-04-12 13:08-0400\n"
+"Project-Id-Version: 1.3.7\n"
+"Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
+"POT-Creation-Date: 2020-09-01 11:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,8 +51,8 @@ msgid "What are you talking about? His reign has only just begun!"
 msgstr ""
 
 msgid ""
-"Yeah, and now it's going to end! He should have thought about that "
-"before taking away MY fish!"
+"Yeah, and now it's going to end! He should have thought about that before "
+"taking away MY fish!"
 msgstr ""
 
 msgid ""
@@ -65,8 +64,8 @@ msgid "Who are you?"
 msgstr ""
 
 msgid ""
-"I am Tux, and I am putting an end to the Snow King's reign, one castle at "
-"a time!"
+"I am Tux, and I am putting an end to the Snow King's reign, one castle at a "
+"time!"
 msgstr ""
 
 msgid "That's too bad, Tux. I would have liked to let you leave in peace."
@@ -86,8 +85,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"I don't know how you found out about our secret plans, but you will not "
-"stop us!"
+"I don't know how you found out about our secret plans, but you will not stop "
+"us!"
 msgstr ""
 
 msgid "I've been waiting for you, Tux. We meet again at last!"
@@ -97,13 +96,12 @@ msgid "Raccot the yeti! I should have known it was you!"
 msgstr ""
 
 msgid ""
-"You may have discovered my evil plan, my old nemesis, but you will not "
-"stop me!"
+"You may have discovered my evil plan, my old nemesis, but you will not stop "
+"me!"
 msgstr ""
 
 msgid ""
-"When we last met, I was but a Snow-day school bully. Now, I am the Snow "
-"King!"
+"When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
 msgstr ""
 
 msgid ""
@@ -128,9 +126,9 @@ msgstr ""
 msgid ""
 "Traveler's Note:\n"
 "\n"
-"I swear, there are no fire flowers anywhere in this level! How am I "
-"supposed to melt this ice?! What's more, that ledge over there is shaped "
-"like a grin, almost like it's taunting me!"
+"I swear, there are no fire flowers anywhere in this level! How am I supposed "
+"to melt this ice?! What's more, that ledge over there is shaped like a grin, "
+"almost like it's taunting me!"
 msgstr ""
 
 msgid ""
@@ -149,14 +147,13 @@ msgstr ""
 msgid ""
 "Traveler's Note:\n"
 "\n"
-"That cave to the left appears to be inaccessible from here. There has to "
-"be another way inside!"
+"That cave to the left appears to be inaccessible from here. There has to be "
+"another way inside!"
 msgstr ""
 
 msgid ""
-"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please "
-"do not climb on Mount Slimmerist; the extra weight may cause it to topple "
-"over."
+"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
+"not climb on Mount Slimmerist; the extra weight may cause it to topple over."
 msgstr ""
 
 msgid ""
@@ -173,378 +170,393 @@ msgid ""
 msgstr ""
 
 msgid ""
-"You'll need a friend to find the Tux doll in this castle, in more ways "
-"than one."
+"You'll need a friend to find the Tux doll in this castle, in more ways than "
+"one."
 msgstr ""
 
 msgid ""
-"Please do NOT touch my rocks! For example, do NOT use them to build a "
-"bridge allowing you to cross spike pits, and do NOT use them to build a "
-"tower so that you can reach higher places."
+"Please do NOT touch my rocks! For example, do NOT use them to build a bridge "
+"allowing you to cross spike pits, and do NOT use them to build a tower so "
+"that you can reach higher places."
 msgstr ""
 
 msgid ""
 "Traveler's Note:\n"
 "\n"
-"If only I could reach those rocks on top of those crates, I could build "
-"a staircase to that pipe...."
+"If only I could reach those rocks on top of those crates, I could build a "
+"staircase to that pipe...."
 msgstr ""
 
 msgid ""
 "Welcome to Concept Castle!\n"
 "\n"
-"This level was created to demonstrate what ReTux is capable of. It's a "
-"bit heavier than most of the actual game, so it may run slightly slower."
+"This level was created to demonstrate what ReTux is capable of. It's a bit "
+"heavier than most of the actual game, so it may run slightly slower."
 msgstr ""
 
 msgid ""
-"All out of fire? Rejuvinate yourself by taking a nice, warm bath in "
-"molten lava!"
+"All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
+"lava!"
 msgstr ""
 
 msgid "There must be a way to remove the fire flower from this room."
 msgstr ""
 
-# Explanation of what the "--version" command-line option does
+#: ../../retux.py:71
 msgid "Output version information and exit."
 msgstr ""
 
-# Explanation of what the "-p" command-line option does
+#: ../../retux.py:74
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr ""
 
-# Explanation of what the "-l" command-line option does
+#: ../../retux.py:78
 msgid "Manually choose a different language to use."
 msgstr ""
 
-# Explanation of what the "--nodelta" command-line option does
+#: ../../retux.py:81
 msgid ""
-"Disable delta timing. Causes the game to slow down when it can't run at "
-"full speed instead of becoming choppier."
+"Disable delta timing. Causes the game to slow down when it can't run at full "
+"speed instead of becoming choppier."
 msgstr ""
 
-# Explanation of what the "-d" command-line option does.
-# {} is replaced by the default value of this option.
+#: ../../retux.py:85
 msgid "Where to load the game data from (Default: \"{}\")"
 msgstr ""
 
-# Explanation of what the "--level" command-line option does
+#: ../../retux.py:88
 msgid "Play the indicated level and then exit."
 msgstr ""
 
-# Explanation of what the "--record" command-line option does
+#: ../../retux.py:91
 msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
 msgstr ""
 
-# Explanation of what the "--no-backgrounds" command-line option does
+#: ../../retux.py:94
 msgid "Only show solid colors for backgrounds (uses less RAM)."
 msgstr ""
 
-# Explanation of what the "--no-hud" command-line option does
+#: ../../retux.py:97
 msgid "Don't show the player's heads-up display."
 msgstr ""
 
-# Shown just above the current score
+#: ../../retux.py:526
 msgid "Score"
 msgstr ""
 
-# Shown just above the current time bonus (if applicable)
+#: ../../retux.py:527
 msgid "Time Bonus"
 msgstr ""
 
-# Shown just above the current time penalty (if applicable)
+#: ../../retux.py:527
 msgid "Time Penalty"
 msgstr ""
 
-# {} is replaced by an error message
+#: ../../retux.py:791
 msgid ""
 "An error occurred in a timeline 'setattr' command:\n"
 "\n"
 "{}"
 msgstr ""
 
-# {} is replaced by an error message
+#: ../../retux.py:839
 msgid ""
 "An error occurred in a timeline 'exec' command:\n"
 "\n"
 "{}"
 msgstr ""
 
-# {} is replaced by an error message
+#: ../../retux.py:846
 msgid ""
 "An error occurred in a timeline 'if' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
-msgid "Loading level..."
-msgstr ""
-
-# {} is replaced by an error message
+#: ../../retux.py:866
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
-# Printed to the terminal when a level is loaded before the game starts.
-# {} is replaced by the file name of the level being loaded.
+#: ../../retux.py:1073
+msgid "Loading level..."
+msgstr ""
+
+#: ../../retux.py:1091
 msgid "Loading \"{}\"..."
 msgstr ""
 
-# {} is replaced by an error message
+#: ../../retux.py:1098
 msgid ""
 "An error occurred when trying to load the level:\n"
 "\n"
 "{}"
 msgstr ""
 
-# Text shown at the bottom of the screen during skippable cutscenes
+#: ../../retux.py:1820
 msgid "Press the Menu button to skip..."
 msgstr ""
 
-# Text shown at the bottom of the screen during unskippable cutscenes
+#: ../../retux.py:1822
 msgid "Cinematic mode enabled"
 msgstr ""
 
-# Main menu option; shows the New Game menu
+#: ../../retux.py:6353
 msgid "New Game"
 msgstr ""
 
-# Main menu option; shows the Load Game menu
+#: ../../retux.py:6353
 msgid "Load Game"
 msgstr ""
 
-# Main menu option; shows the levelset selection menu
+#: ../../retux.py:6353
 msgid "Select Levelset"
 msgstr ""
 
-# Main menu option; shows the Options menu
+#: ../../retux.py:6353
 msgid "Options"
 msgstr ""
 
-# Main menu option; shows the credits screen
+#: ../../retux.py:6354
 msgid "Credits"
 msgstr ""
 
-# Main menu option; quits the game
+#: ../../retux.py:6354
 msgid "Quit"
 msgstr ""
 
-# Menu option; indicates that a save slot is empty
+#: ../../retux.py:6384
 msgid "-Empty-"
 msgstr ""
 
-# Menu option; indicates that a save slot is not using any levelset.
-# This should not happen.
+#: ../../retux.py:6386
 msgid "-No Levelset-"
 msgstr ""
 
-# Menu option; indicates that a save slot is using a corrupt levelset
+#: ../../retux.py:6393
 msgid "-Corrupt Levelset-"
 msgstr ""
 
-# Menu option; used in all sub-menus to go back to the previous menu
+#: ../../retux.py:6401 ../../retux.py:6516 ../../retux.py:6550
+#: ../../retux.py:6715 ../../retux.py:6847
 msgid "Back"
 msgstr ""
 
-# Menu option; overwrite the chosen save file
+#: ../../retux.py:6429
 msgid "Overwrite this save file"
 msgstr ""
 
-# Menu option; cancel overwriting the chosen save file and return to previous menu
+#: ../../retux.py:6429
 msgid "Cancel"
 msgstr ""
 
-# Error message shown when a levelset does not properly start.
+#: ../../retux.py:6465
 msgid "An error occurred when trying to load the game."
 msgstr ""
 
-# Menu option; used to change to the next "page" (section) of the current menu
+#: ../../retux.py:6515
 msgid "Next page"
 msgstr ""
 
-# Used as a part of binary config menu options below.
-msgid "On"
-msgstr ""
-
-# Used as a part of binary config menu options below.
-msgid "Off"
-msgstr ""
-
-# Menu option; indicates whether or not fullscreen should be used.
-# {} is replaced by "On" or "Off".
+#: ../../retux.py:6541
 msgid "Fullscreen: {}"
 msgstr ""
 
-# Menu option; indicates what scale method ReTux should use.
-# {} is replaced by the name of a scale method.
+#: ../../retux.py:6541 ../../retux.py:6543 ../../retux.py:6544
+#: ../../retux.py:6545 ../../retux.py:6546
+msgid "On"
+msgstr ""
+
+#: ../../retux.py:6541 ../../retux.py:6543 ../../retux.py:6544
+#: ../../retux.py:6545 ../../retux.py:6546
+msgid "Off"
+msgstr ""
+
+#: ../../retux.py:6542
 msgid "Scale Method: {}"
 msgstr ""
 
-# Menu option; indicates whether or not sound effects should play.
-# {} is replaced by "On" or "Off".
+#: ../../retux.py:6543
 msgid "Sound: {}"
 msgstr ""
 
-# Menu option; indicates whether or not music should play.
-# {} is replaced by "On" or "Off".
+#: ../../retux.py:6544
 msgid "Music: {}"
 msgstr ""
 
-# Menu option; indicates whether or not stereo sound should be used.
-# {} is replaced by "On" or "Off".
+#: ../../retux.py:6545
 msgid "Stereo: {}"
 msgstr ""
 
-# Menu option; indicates whether or not the frame rate should be shown.
-# {} is replaced by "On" or "Off".
+#: ../../retux.py:6546
 msgid "Show FPS: {}"
 msgstr ""
 
-# Menu option; {} is replaced by the percentage of joystick tilt ReTux
-# will treat as zero (a.k.a. deadzone).
+#: ../../retux.py:6547
 msgid "Joystick Threshold: {}%"
 msgstr ""
 
-# Menu option; leads to the keyboard config menu
+#: ../../retux.py:6548 ../../retux.py:7214 ../../retux.py:7217
+#: ../../retux.py:7221 ../../retux.py:7287
 msgid "Configure keyboard"
 msgstr ""
 
-# Menu option; leads to the joystick config menu
+#: ../../retux.py:6548 ../../retux.py:7215 ../../retux.py:7218
+#: ../../retux.py:7222 ../../retux.py:7287
 msgid "Configure joysticks"
 msgstr ""
 
-# Menu option; refreshes the game's knowledge of available joysticks
+#: ../../retux.py:6549
 msgid "Detect joysticks"
 msgstr ""
 
-# Menu option; imports a levelset from a ".rtz" file
+#: ../../retux.py:6549
 msgid "Import levelset"
 msgstr ""
 
-# Menu option; exports a levelset to a ".rtz" file
+#: ../../retux.py:6549
 msgid "Export levelset"
 msgstr ""
 
-# Used for the "file type" box of the Tkinter file selection dialog;
-# indicates to show only ".rtz" files.
+#: ../../retux.py:6620 ../../retux.py:6961
 msgid "ReTux levelset files"
 msgstr ""
 
-# Used for the "file type" box of the Tkinter file selection dialog;
-# indicates to show files of any type
+#: ../../retux.py:6621 ../../retux.py:6962
 msgid "all files"
 msgstr ""
 
+#: ../../retux.py:6634
 msgid "Importing levelset..."
 msgstr ""
 
+#: ../../retux.py:6671 ../../retux.py:6680
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
 "make sure Tkinter is installed and try again."
 msgstr ""
 
-# Shown at the top of each control config menu. {} is replaced with the
-# player number.
+#: ../../retux.py:6705 ../../retux.py:6837
 msgid "Player {}"
 msgstr ""
 
-
-# Action names with configurable controls, used in control config menus.
-# {} is replaced with the key(s) or joystick control(s) the action is set to.
-
+#: ../../retux.py:6706 ../../retux.py:6838
 msgid "Left: {}"
 msgstr ""
 
+#: ../../retux.py:6707 ../../retux.py:6839
 msgid "Right: {}"
 msgstr ""
 
+#: ../../retux.py:6708 ../../retux.py:6840
 msgid "Up: {}"
 msgstr ""
 
+#: ../../retux.py:6709 ../../retux.py:6841
 msgid "Down: {}"
 msgstr ""
 
+#: ../../retux.py:6710 ../../retux.py:6842
 msgid "Jump: {}"
 msgstr ""
 
+#: ../../retux.py:6711 ../../retux.py:6843
 msgid "Action: {}"
 msgstr ""
 
+#: ../../retux.py:6712 ../../retux.py:6844
 msgid "Sneak: {}"
 msgstr ""
 
+#: ../../retux.py:6713 ../../retux.py:6845
 msgid "Menu: {}"
 msgstr ""
 
+#: ../../retux.py:6714 ../../retux.py:6846
 msgid "Pause: {}"
 msgstr ""
 
+#: ../../retux.py:6735
+msgid ""
+"Press the key you wish to bind to this function, or the Escape key to cancel."
+msgstr ""
 
-# Indicates that an action is not assigned to any joystick control
+#: ../../retux.py:6835
 msgid "None"
 msgstr ""
 
+#: ../../retux.py:6867
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to bind to this "
+"function, or the Escape key to cancel."
+msgstr ""
+
+#: ../../retux.py:6975
 msgid "Exporting levelset..."
 msgstr ""
 
-# In-game menu option; exits the menu and returns to the game
+#: ../../retux.py:7214 ../../retux.py:7217 ../../retux.py:7221
+#: ../../retux.py:7287
 msgid "Continue"
 msgstr ""
 
-# Used in single-level mode menu; quits the level (and consequently the game)
+#: ../../retux.py:7215
 msgid "Abort"
 msgstr ""
 
-# In-level menu option; returns to the worldmap
+#: ../../retux.py:7218
 msgid "Return to Map"
 msgstr ""
 
-# In-game menu option; quits the game and returns to the title screen
+#: ../../retux.py:7219 ../../retux.py:7222 ../../retux.py:7288
 msgid "Return to Title Screen"
 msgstr ""
 
+#: ../../retux.py:7448
 msgid "Press the key you wish to toggle, or Escape to cancel."
 msgstr ""
 
+#: ../../retux.py:7486
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to toggle, or the "
 "Escape key to cancel."
 msgstr ""
 
-# Error message title
+#: ../../retux.py:7502
 msgid "Error"
 msgstr ""
 
-# Error message "Ok" button
+#: ../../retux.py:7503
 msgid "Ok"
 msgstr ""
 
+#: ../../retux.py:7646
 msgid ""
 "Preloading levels...\n"
 "\n"
 "(press any key to skip)"
 msgstr ""
 
-# Printed to the terminal as the game starts
+#: ../../retux.py:7970
 msgid "Initializing game system..."
 msgstr ""
 
-# Printed to the terminal as the game starts
+#: ../../retux.py:7975
 msgid "Initializing GUI system..."
 msgstr ""
 
-# Printed to the terminal as the game starts
+#: ../../retux.py:7982
 msgid "Loading images..."
 msgstr ""
 
-# Printed to the terminal as the game starts
+#: ../../retux.py:8434
 msgid "Loading fonts..."
 msgstr ""
 
-# Printed to the terminal as the game starts
+#: ../../retux.py:8650
 msgid "Starting game..."
 msgstr ""

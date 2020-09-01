@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -13,8 +12,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import os
+import shutil
 import subprocess
 
 
@@ -22,11 +21,4 @@ if __name__ == "__main__":
     for fname in os.listdir():
         root, ext = os.path.splitext(fname)
         if ext == ".po":
-            print("Building {}...".format(fname))
-            d, root = os.path.split(root)
-            os.makedirs(os.path.join(d, root, "LC_MESSAGES"), exist_ok=True)
-            oname = os.path.join(d, root, "LC_MESSAGES", "retux.mo")
-            subprocess.call(["msgfmt", "-o", oname, fname])
-
-    print("Done.")
-
+            subprocess.call(["msgmerge", "-U", fname, "retux.pot"])
