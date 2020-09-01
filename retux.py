@@ -43,7 +43,7 @@ import xsge_gui
 import xsge_lighting
 import xsge_path
 import xsge_physics
-import xsge_tmx
+import xsge_tiled
 
 try:
     from tkinter import Tk
@@ -646,7 +646,7 @@ class Level(sge.dsp.Room):
         current_level = 0
         save_game()
         credits_room = CreditsScreen.load(os.path.join("special",
-                                                       "credits.tmx"))
+                                                       "credits.json"))
         credits_room.start()
 
     def event_room_start(self):
@@ -1091,8 +1091,9 @@ class Level(sge.dsp.Room):
                     print(_("Loading \"{}\"...").format(fname))
 
             try:
-                r = xsge_tmx.load(os.path.join(DATA, "levels", fname), cls=cls,
-                                  types=TYPES)
+                with open(fname, 'r') as f:
+                    r = xsge_tiled.load(
+                        os.path.join(DATA, "levels", f), cls=cls, types=TYPES)
             except Exception as e:
                 m = _("An error occurred when trying to load the level:\n\n{}").format(
                     traceback.format_exc())
@@ -1408,8 +1409,10 @@ class Worldmap(sge.dsp.Room):
         if fname in loaded_worldmaps:
             return loaded_worldmaps.pop(fname)
         else:
-            return xsge_tmx.load(os.path.join(DATA, "worldmaps", fname),
-                                 cls=cls, types=TYPES)
+            with open(fname, 'r') as f:
+                return xsge_tiled.load(
+                    os.path.join(DATA, "worldmaps", fname), cls=cls,
+                    types=TYPES)
 
 
 class SolidLeft(xsge_physics.SolidLeft):
@@ -5288,25 +5291,25 @@ class ThinIce(xsge_physics.Solid):
             self.shatter()
 
 
-class Lava(xsge_tmx.Decoration):
+class Lava(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = lava_body_sprite
 
 
-class LavaSurface(xsge_tmx.Decoration):
+class LavaSurface(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = lava_surface_sprite
 
 
-class Goal(xsge_tmx.Decoration):
+class Goal(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = goal_sprite
 
 
-class GoalTop(xsge_tmx.Decoration):
+class GoalTop(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = goal_top_sprite
@@ -6365,7 +6368,7 @@ class MainMenu(Menu):
             OptionsMenu.create_page()
         elif self.choice == 4:
             credits_room = CreditsScreen.load(os.path.join("special",
-                                                           "credits.tmx"))
+                                                           "credits.json"))
             credits_room.start()
         else:
             sge.game.end()
@@ -6999,7 +7002,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                     if fd in exclude_files:
                         return set()
 
-                    tmx_dir = os.path.relpath(os.path.dirname(fd), DATA)
+                    lvl_dir = os.path.relpath(os.path.dirname(fd), DATA)
                     extra_files = {fd}
                     exclude_files.add(fd)
                     try:
@@ -7017,12 +7020,12 @@ class ExportLevelsetMenu(LevelsetMenu):
                                                          prop.value))
 
                     for tileset in tilemap.tilesets:
-                        ts_dir = tmx_dir
+                        ts_dir = lvl_dir
                         if tileset.source is not None:
-                            extra_files.add(os.path.join(DATA, tmx_dir,
+                            extra_files.add(os.path.join(DATA, lvl_dir,
                                                          tileset.source))
                             ts_dir = os.path.dirname(os.path.join(
-                                tmx_dir, tileset.source))
+                                lvl_dir, tileset.source))
 
                         if (tileset.image is not None and
                                 tileset.image.source is not None):
@@ -7035,7 +7038,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                             for prop in properties:
                                 if prop.name == "cls":
                                     cls = TYPES.get(prop.value,
-                                                    xsge_tmx.Decoration)
+                                                    xsge_tiled.Decoration)
 
                         extra_files = set()
                         for prop in properties:
@@ -7132,7 +7135,7 @@ class ExportLevelsetMenu(LevelsetMenu):
                             if (layer.image is not None and
                                     layer.image.source is not None):
                                 extra_files.add(
-                                    os.path.join(DATA, tmx_dir,
+                                    os.path.join(DATA, lvl_dir,
                                                  layer.image.source))
 
                     return extra_files
@@ -7362,7 +7365,7 @@ class DialogBox(xsge_gui.Dialog):
 
 
 def get_object(x, y, cls=None, **kwargs):
-    cls = TYPES.get(cls, xsge_tmx.Decoration)
+    cls = TYPES.get(cls, xsge_tiled.Decoration)
     return cls(x, y, **kwargs)
 
 
@@ -8526,7 +8529,7 @@ elif RECORD:
         sys.exit()
 else:
     sge.game.start_room = TitleScreen.load(
-        os.path.join("special", "title_screen.tmx"), True)
+        os.path.join("special", "title_screen.json"), True)
 
 sge.game.mouse.visible = False
 
