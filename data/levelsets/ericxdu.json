@@ -1,9 +1,9 @@
 {
     "name": "EricxDu's Bonus Level",
     "levels": [
-        "ericxdu.tmx"
+        "ericxdu.json"
     ],
     "tuxdolls_available": [
-        "ericxdu.tmx"
+        "ericxdu.json"
     ]
 }

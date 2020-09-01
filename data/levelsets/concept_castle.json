@@ -1,9 +1,9 @@
 {
     "name": "Concept Castle",
     "levels": [
-        "concept_castle.tmx"
+        "concept_castle.json"
     ],
     "tuxdolls_available": [
-        "concept_castle.tmx"
+        "concept_castle.json"
     ]
 }
