@@ -1264,7 +1264,7 @@ class CreditsScreen(SpecialScreen):
         for section in sections:
             if "title" in section:
                 head_sprite = sge.gfx.Sprite.from_text(
-                    font_big, section["title"], width=self.width,
+                    font_big, _(section["title"]), width=self.width,
                     color=sge.gfx.Color("white"), halign="center")
                 x = self.width / 2
                 y = self.sections[-1].bbox_bottom + font_big.size * 3
@@ -1275,7 +1275,7 @@ class CreditsScreen(SpecialScreen):
             if "lines" in section:
                 for line in section["lines"]:
                     list_sprite = sge.gfx.Sprite.from_text(
-                        font, line, width=self.width - 2 * TILE_SIZE,
+                        font, _(line), width=self.width - 2 * TILE_SIZE,
                         color=sge.gfx.Color("white"), halign="center")
                     x = self.width / 2
                     y = self.sections[-1].bbox_bottom + font.size

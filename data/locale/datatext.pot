@@ -29,6 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# Timeline text
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
 msgstr ""
 
@@ -105,6 +106,7 @@ msgid ""
 "King!"
 msgstr ""
 
+# Level text
 msgid ""
 "Citizens of Icy Island,\n"
 "\n"
@@ -202,4 +204,32 @@ msgid ""
 msgstr ""
 
 msgid "There must be a way to remove the fire flower from this room."
+msgstr ""
+
+# Credits text
+msgid "Programming By"
+msgstr ""
+
+msgid "Graphics By"
+msgstr ""
+
+msgid "Sounds By"
+msgstr ""
+
+msgid "Music By"
+msgstr ""
+
+msgid "Level Design By"
+msgstr ""
+
+msgid "Bonus Level Design By"
+msgstr ""
+
+msgid "Translations By"
+msgstr ""
+
+msgid "Software Used"
+msgstr ""
+
+msgid "Thank you for playing!"
 msgstr ""

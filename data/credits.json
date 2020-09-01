@@ -5,13 +5,13 @@
         ]
     },
     {
-        "title": "Programming",
+        "title": "Programming By",
         "lines": [
             "The Diligent Circle"
         ]
     },
     {
-        "title": "Graphics",
+        "title": "Graphics By",
         "lines": [
             "SuperTux development team",
             "Connie Cartwright",
@@ -22,7 +22,7 @@
         ]
     },
     {
-        "title": "Sounds",
+        "title": "Sounds By",
         "lines": [
             "wansti",
             "MatzeB",
@@ -43,7 +43,7 @@
         ]
     },
     {
-        "title": "Music",
+        "title": "Music By",
         "lines": [
             "SuperTux development team",
             "wansti",
@@ -54,19 +54,19 @@
         ]
     },
     {
-        "title": "Level Design",
+        "title": "Level Design By",
         "lines": [
             "The Diligent Circle"
         ]
     },
     {
-        "title": "Bonus Level Design",
+        "title": "Bonus Level Design By",
         "lines": [
             "EricxDu"
         ]
     },
     {
-        "title": "Translations",
+        "title": "Translations By",
         "lines": [
             "Heckyel",
             "Jorge Maldonado Ventura",
