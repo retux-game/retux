@@ -37,8 +37,6 @@ import weakref
 import zipfile
 
 import sge
-import tmx
-import ulvl
 import xsge_gui
 import xsge_lighting
 import xsge_path
@@ -1091,9 +1089,8 @@ class Level(sge.dsp.Room):
                     print(_("Loading \"{}\"...").format(fname))
 
             try:
-                with open(fname, 'r') as f:
-                    r = xsge_tiled.load(
-                        os.path.join(DATA, "levels", f), cls=cls, types=TYPES)
+                r = xsge_tiled.load(
+                    os.path.join(DATA, "levels", fname), cls=cls, types=TYPES)
             except Exception as e:
                 m = _("An error occurred when trying to load the level:\n\n{}").format(
                     traceback.format_exc())
@@ -1409,10 +1406,9 @@ class Worldmap(sge.dsp.Room):
         if fname in loaded_worldmaps:
             return loaded_worldmaps.pop(fname)
         else:
-            with open(fname, 'r') as f:
-                return xsge_tiled.load(
-                    os.path.join(DATA, "worldmaps", fname), cls=cls,
-                    types=TYPES)
+            return xsge_tiled.load(
+                os.path.join(DATA, "worldmaps", fname), cls=cls,
+                types=TYPES)
 
 
 class SolidLeft(xsge_physics.SolidLeft):
@@ -6389,7 +6385,7 @@ class NewGameMenu(Menu):
                 try:
                     with open(fname, 'r') as f:
                         data = json.load(f)
-                except (IOError, OSError, ValueError):
+                except (OSError, ValueError):
                     cls.items.append(_("-Corrupt Levelset-"))
                     continue
                 else:
@@ -6483,7 +6479,7 @@ class LevelsetMenu(Menu):
                 try:
                     with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
                         data = json.load(f)
-                except (IOError, OSError, ValueError):
+                except (OSError, ValueError):
                     continue
                 else:
                     cls.levelsets.append((fname, str(data.get("name", "???"))))
@@ -6546,8 +6542,7 @@ class OptionsMenu(Menu):
             _("Show FPS: {}").format(_("On") if fps_enabled else _("Off")),
             _("Joystick Threshold: {}%").format(int(joystick_threshold * 100)),
             _("Configure keyboard"), _("Configure joysticks"),
-            _("Detect joysticks"), _("Import levelset"), _("Export levelset"),
-            _("Back")]
+            _("Detect joysticks"), _("Import levelset"), _("Back")]
         return cls.create(default)
 
     def event_choose(self):
@@ -6671,15 +6666,6 @@ class OptionsMenu(Menu):
                 e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
                 show_error(e)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 11:
-            if HAVE_TK:
-                play_sound(confirm_sound)
-                ExportLevelsetMenu.create_page(refreshlist=True)
-            else:
-                play_sound(kill_sound)
-                e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
-                show_error(e)
-                OptionsMenu.create_page(default=self.choice)
         else:
             play_sound(cancel_sound)
             write_to_disk()
@@ -6944,242 +6930,6 @@ class JoystickMenu(Menu):
         else:
             play_sound(cancel_sound)
             OptionsMenu.create_page(default=8)
-
-
-class ExportLevelsetMenu(LevelsetMenu):
-
-    def event_choose(self):
-        if self.choice == len(self.items) - 2:
-            play_sound(select_sound)
-            self.create_page(default=-2, page=self.page)
-        else:
-            if self.choice is not None and self.choice < len(self.items) - 2:
-                play_sound(confirm_sound)
-
-                fname = tkinter_filedialog.asksaveasfilename(
-                    defaultextension=".rtz",
-                    filetypes=[(_("ReTux levelset files"), ".rtz"),
-                               (_("all files"), ".*")])
-
-                w = 400
-                h = 128
-                margin = 16
-                x = SCREEN_SIZE[0] / 2 - w / 2
-                y = SCREEN_SIZE[1] / 2 - h / 2
-                c = sge.gfx.Color("black")
-                window = xsge_gui.Window(gui_handler, x, y, w, h,
-                                         background_color=c, border=False)
-
-                x = margin
-                y = margin
-                text = _("Exporting levelset...")
-                c = sge.gfx.Color("white")
-                xsge_gui.Label(
-                    window, x, y, 1, text, font=font, width=(w - 2 * margin),
-                    height=(h - 3 * margin -
-                            xsge_gui.progressbar_container_sprite.height),
-                    color=c)
-
-                x = margin
-                y = h - margin - xsge_gui.progressbar_container_sprite.height
-                progressbar = xsge_gui.ProgressBar(window, x, y, 0,
-                                                   width=(w - 2 * margin))
-
-                window.show()
-                gui_handler.event_step(0, 0)
-                sge.game.refresh()
-
-                levelset = self.current_levelsets[self.choice]
-                levelset_fname = os.path.join(DATA, "levelsets", levelset)
-                with open(levelset_fname, 'r') as f:
-                    data = json.load(f)
-                start_cutscene = data.get("start_cutscene")
-                worldmap = data.get("worldmap")
-                levels = data.get("levels", [])
-                include_files = data.get("include_files", [])
-
-                def get_extra_files(fd, exclude_files):
-                    if fd in exclude_files:
-                        return set()
-
-                    lvl_dir = os.path.relpath(os.path.dirname(fd), DATA)
-                    extra_files = {fd}
-                    exclude_files.add(fd)
-                    try:
-                        tilemap = tmx.TileMap.load(fd)
-                    except (IOError, OSError) as e:
-                        show_error(str(e))
-                        return extra_files
-
-                    for prop in tilemap.properties:
-                        if prop.name == "music":
-                            extra_files.add(os.path.join(DATA, "music",
-                                                         prop.value))
-                        elif prop.name == "timeline":
-                            extra_files.add(os.path.join(DATA, "timelines",
-                                                         prop.value))
-
-                    for tileset in tilemap.tilesets:
-                        ts_dir = lvl_dir
-                        if tileset.source is not None:
-                            extra_files.add(os.path.join(DATA, lvl_dir,
-                                                         tileset.source))
-                            ts_dir = os.path.dirname(os.path.join(
-                                lvl_dir, tileset.source))
-
-                        if (tileset.image is not None and
-                                tileset.image.source is not None):
-                            extra_files.add(os.path.join(DATA, ts_dir,
-                                                         tileset.image.source))
-
-                    def check_obj(cls, properties, exclude_files,
-                                  get_extra_files=get_extra_files):
-                        if cls == get_object:
-                            for prop in properties:
-                                if prop.name == "cls":
-                                    cls = TYPES.get(prop.value,
-                                                    xsge_tiled.Decoration)
-
-                        extra_files = set()
-                        for prop in properties:
-                            if prop.name == "dest":
-                                if ":" in prop.value:
-                                    level_f, _ = prop.value.split(':', 1)
-                                elif cls in {Warp, MapWarp}:
-                                    level_f = prop.value
-                                else:
-                                    level_f = None
-
-                                if level_f and level_f not in {
-                                        "__main__", "__map__"}:
-                                    if cls == MapWarp:
-                                        sdir = "worldmaps"
-                                    else:
-                                        sdir = "levels"
-
-                                    fname = os.path.join(DATA, sdir, level_f)
-                                    extra_files |= get_extra_files(
-                                        fname, exclude_files)
-                            elif prop.name.endswith("timeline"):
-                                extra_files.add(
-                                    os.path.join(DATA, "timelines", prop.value))
-                            elif prop.name == "level":
-                                fname = os.path.join(DATA, "levels",
-                                                     prop.value)
-                                extra_files |= get_extra_files(fname,
-                                                               exclude_files)
-
-                        return extra_files
-
-                    for layer in tilemap.layers:
-                        if isinstance(layer, tmx.Layer):
-                            layer_cls = TYPES.get(layer.name)
-                            layer_prop = layer.properties
-                            for tile in layer.tiles:
-                                if tile.gid:
-                                    tile_ts = None
-                                    for ts in sorted(tilemap.tilesets,
-                                                     key=lambda x: x.firstgid):
-                                        if ts.firstgid <= tile.gid:
-                                            tile_ts = ts
-                                        else:
-                                            break
-
-                                    if tile_ts is not None:
-                                        ts_cls = TYPES.get(tile_ts.name)
-                                        ts_prop = tile_ts.properties
-                                        tile_prop = []
-                                        i = tile.gid - tile_ts.firstgid
-                                        for tile_def in tile_ts.tiles:
-                                            if tile_def.id == i:
-                                                tile_prop = tile_def.properties
-                                                break
-                                        cls = ts_cls or layer_cls
-                                        prop = layer_prop + ts_prop + tile_prop
-                                        extra_files |= check_obj(cls, prop,
-                                                                 exclude_files)
-                        elif isinstance(layer, tmx.ObjectGroup):
-                            layer_cls = TYPES.get(layer.name)
-                            layer_prop = layer.properties
-                            for obj in layer.objects:
-                                cls = TYPES.get(obj.name) or TYPES.get(obj.type)
-                                prop = obj.properties
-                                if obj.gid:
-                                    obj_ts = None
-                                    for ts in sorted(tilemap.tilesets,
-                                                     key=lambda x: x.firstgid):
-                                        if ts.firstgid <= obj.gid:
-                                            obj_ts = ts
-                                        else:
-                                            break
-
-                                    if obj_ts is not None:
-                                        ts_cls = TYPES.get(obj_ts.name)
-                                        ts_prop = obj_ts.properties
-                                        tile_prop = []
-                                        i = obj.gid - obj_ts.firstgid
-                                        for tile_def in obj_ts.tiles:
-                                            if tile_def.id == i:
-                                                tile_prop = tile_def.properties
-                                                break
-                                        cls = cls or ts_cls
-                                        prop = tile_prop + prop
-                                cls = cls or layer_cls
-                                prop = layer_prop + prop
-                                extra_files |= check_obj(cls, prop,
-                                                         exclude_files)
-                        elif isinstance(layer, tmx.ImageLayer):
-                            extra_files |= check_obj(TYPES.get(layer.name),
-                                                     layer.properties,
-                                                     exclude_files)
-                            if (layer.image is not None and
-                                    layer.image.source is not None):
-                                extra_files.add(
-                                    os.path.join(DATA, lvl_dir,
-                                                 layer.image.source))
-
-                    return extra_files
-
-                files = {levelset_fname}
-                exclude_files = set()
-                if start_cutscene:
-                    fd = os.path.join(DATA, "levels", start_cutscene)
-                    files |= get_extra_files(fd, exclude_files)
-                if worldmap:
-                    fd = os.path.join(DATA, "worldmaps", worldmap)
-                    files |= get_extra_files(fd, exclude_files)
-                for level in levels:
-                    fd = os.path.join(DATA, "levels", level)
-                    files |= get_extra_files(fd, exclude_files)
-                for include_file in include_files:
-                    files.add(os.path.join(DATA, include_file))
-
-                files = list(files)
-                inst_dir = os.path.join(os.path.dirname(__file__), "data")
-
-                with zipfile.ZipFile(fname, 'w') as rtz:
-                    for i in range(len(files)):
-                        fname = files[i]
-                        aname = os.path.relpath(fname, DATA)
-                        if not os.path.exists(os.path.join(inst_dir, aname)):
-                            rtz.write(fname, aname)
-
-                        progressbar.progress = (i + 1) / len(files)
-                        progressbar.redraw()
-                        sge.game.pump_input()
-                        gui_handler.event_step(0, 0)
-                        sge.game.refresh()
-
-                window.destroy()
-                sge.game.pump_input()
-                gui_handler.event_step(0, 0)
-                sge.game.refresh()
-                sge.game.pump_input()
-                sge.game.input_events = []
-            else:
-                play_sound(cancel_sound)
-
-            OptionsMenu.create(default=10)
 
 
 class ModalMenu(xsge_gui.MenuDialog):
@@ -7569,7 +7319,7 @@ def play_music(music, force_restart=False):
             try:
                 music_object = sge.snd.Music(os.path.join(DATA, "music",
                                                           music))
-            except (IOError, OSError):
+            except OSError:
                 sge.snd.Music.clear_queue()
                 sge.snd.Music.stop()
                 return
@@ -7583,7 +7333,7 @@ def play_music(music, force_restart=False):
             try:
                 music_start_object = sge.snd.Music(os.path.join(DATA, "music",
                                                                 music_start))
-            except (IOError, OSError):
+            except OSError:
                 pass
             else:
                 loaded_music[music_start] = music_start_object
@@ -7928,6 +7678,47 @@ def warp(dest):
             sge.game.start_room.start()
 
 
+def _data_decode(data, encoding, compression):
+    # Decode encoded data and return a list of integers it represents.
+    #
+    # Arguments:
+    #
+    # - ``data`` -- The data to decode.
+    # - ``encoding`` -- The encoding of the data.  Can be ``"base64"``
+    #   or ``"csv"``.
+    # - ``compression`` -- The compression method used.  Valid
+    #   compression methods are ``"gzip"`` and ``"zlib"``.
+    #   Set to ``None`` for no compression.
+    if isinstance(data, str):
+        if encoding == "csv":
+            return [int(i) for i in data.strip().split(",")]
+        elif encoding == "base64":
+            data = base64.b64decode(data.strip().encode("latin1"))
+
+            if compression == "gzip":
+                data = gzip.decompress(data)
+            elif compression == "zlib":
+                data = zlib.decompress(data)
+            elif compression:
+                e = 'Compression type "{}" not supported.'.format(compression)
+                raise ValueError(e)
+
+            ndata = [i for i in data]
+
+            data = []
+            for i in range(0, len(ndata), 4):
+                n = (ndata[i]  + ndata[i + 1] * (2 ** 8) +
+                     ndata[i + 2] * (2 ** 16) + ndata[i + 3] * (2 ** 24))
+                data.append(n)
+
+            return data
+        else:
+            e = 'Encoding type "{}" not supported.'.format(encoding)
+            raise ValueError(e)
+    else:
+        return data
+
+
 TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "solid_top": SolidTop, "solid_bottom": SolidBottom, "solid": Solid,
          "slope_topleft": SlopeTopLeft, "slope_topright": SlopeTopRight,
@@ -8227,7 +8018,7 @@ for fname in os.listdir(d):
     root, ext = os.path.splitext(fname)
     try:
         portrait = sge.gfx.Sprite(root, d)
-    except (IOError, OSError):
+    except OSError:
         pass
     else:
         portrait_sprites[root] = portrait
@@ -8565,7 +8356,7 @@ if not PRINT_ERRORS:
 try:
     with open(os.path.join(CONFIG, "config.json")) as f:
         cfg = json.load(f)
-except (IOError, OSError, ValueError):
+except (OSError, ValueError):
     cfg = {}
 finally:
     cfg_version = cfg.get("version", 0)
@@ -8653,7 +8444,7 @@ finally:
 try:
     with open(os.path.join(CONFIG, "save_slots.json")) as f:
         loaded_slots = json.load(f)
-except (IOError, OSError, ValueError):
+except (OSError, ValueError):
     pass
 else:
     for i in range(min(len(loaded_slots), len(save_slots))):
