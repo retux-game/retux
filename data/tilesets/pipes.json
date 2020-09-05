@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"..\/images\/tiles\/tileset_pipes.png",
+ "imageheight":352,
+ "imagewidth":256,
+ "margin":0,
+ "name":"pipes",
+ "spacing":0,
+ "tilecount":88,
+ "tiledversion":"1.3.4",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}

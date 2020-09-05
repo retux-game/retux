@@ -1,0 +1,14 @@
+{ "columns":4,
+ "image":"..\/images\/tiles\/tileset_cave.png",
+ "imageheight":576,
+ "imagewidth":128,
+ "margin":0,
+ "name":"cave",
+ "spacing":0,
+ "tilecount":72,
+ "tiledversion":"1.3.4",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}

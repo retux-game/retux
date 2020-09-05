@@ -796,51 +796,51 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/tilesets\/map_objects.tsx"
+         "source":"..\/tilesets\/map_objects.json"
         }, 
         {
          "firstgid":5,
-         "source":"..\/tilesets\/wm_roads.tsx"
+         "source":"..\/tilesets\/wm_roads.json"
         }, 
         {
          "firstgid":25,
-         "source":"..\/tilesets\/wm_bridge.tsx"
+         "source":"..\/tilesets\/wm_bridge.json"
         }, 
         {
          "firstgid":37,
-         "source":"..\/tilesets\/wm_pier.tsx"
+         "source":"..\/tilesets\/wm_pier.json"
         }, 
         {
          "firstgid":45,
-         "source":"..\/tilesets\/wm_snow.tsx"
+         "source":"..\/tilesets\/wm_snow.json"
         }, 
         {
          "firstgid":90,
-         "source":"..\/tilesets\/wm_mountain.tsx"
+         "source":"..\/tilesets\/wm_mountain.json"
         }, 
         {
          "firstgid":118,
-         "source":"..\/tilesets\/wm_thin_ice.tsx"
+         "source":"..\/tilesets\/wm_thin_ice.json"
         }, 
         {
          "firstgid":133,
-         "source":"..\/tilesets\/wm_shallow_water.tsx"
+         "source":"..\/tilesets\/wm_shallow_water.json"
         }, 
         {
          "firstgid":148,
-         "source":"..\/tilesets\/wm_trees.tsx"
+         "source":"..\/tilesets\/wm_trees.json"
         }, 
         {
          "firstgid":163,
-         "source":"..\/tilesets\/wm_icecave.tsx"
+         "source":"..\/tilesets\/wm_icecave.json"
         }, 
         {
          "firstgid":190,
-         "source":"..\/tilesets\/wm_cave_cracks.tsx"
+         "source":"..\/tilesets\/wm_cave_cracks.json"
         }, 
         {
          "firstgid":205,
-         "source":"..\/tilesets\/wm_castle.tsx"
+         "source":"..\/tilesets\/wm_castle.json"
         }],
  "tilewidth":32,
  "type":"map",

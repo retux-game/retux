@@ -1,0 +1,19 @@
+{ "columns":1,
+ "image":"..\/images\/tiles\/tileset_raccot.png",
+ "imageheight":96,
+ "imagewidth":82,
+ "margin":0,
+ "name":"raccot",
+ "spacing":0,
+ "tilecount":1,
+ "tiledversion":"1.3.4",
+ "tileheight":96,
+ "tileoffset":
+    {
+     "x":-41,
+     "y":-64
+    },
+ "tilewidth":82,
+ "type":"tileset",
+ "version":1.2
+}

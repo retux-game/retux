@@ -2052,35 +2052,35 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/..\/tilesets\/creatures.tsx"
+         "source":"..\/..\/tilesets\/creatures.json"
         }, 
         {
          "firstgid":16,
-         "source":"..\/..\/tilesets\/snow.tsx"
+         "source":"..\/..\/tilesets\/snow.json"
         }, 
         {
          "firstgid":254,
-         "source":"..\/..\/tilesets\/cave.tsx"
+         "source":"..\/..\/tilesets\/cave.json"
         }, 
         {
          "firstgid":326,
-         "source":"..\/..\/tilesets\/blocks.tsx"
+         "source":"..\/..\/tilesets\/blocks.json"
         }, 
         {
          "firstgid":350,
-         "source":"..\/..\/tilesets\/pipes.tsx"
+         "source":"..\/..\/tilesets\/pipes.json"
         }, 
         {
          "firstgid":438,
-         "source":"..\/..\/tilesets\/special_blocks.tsx"
+         "source":"..\/..\/tilesets\/special_blocks.json"
         }, 
         {
          "firstgid":463,
-         "source":"..\/..\/tilesets\/decoration_small.tsx"
+         "source":"..\/..\/tilesets\/decoration_small.json"
         }, 
         {
          "firstgid":467,
-         "source":"..\/..\/tilesets\/igloo.tsx"
+         "source":"..\/..\/tilesets\/igloo.json"
         }, 
         {
          "columns":0,
@@ -2101,11 +2101,11 @@
         }, 
         {
          "firstgid":470,
-         "source":"..\/..\/tilesets\/krosh.tsx"
+         "source":"..\/..\/tilesets\/krosh.json"
         }, 
         {
          "firstgid":471,
-         "source":"..\/..\/tilesets\/krush.tsx"
+         "source":"..\/..\/tilesets\/krush.json"
         }],
  "tilewidth":32,
  "type":"map",

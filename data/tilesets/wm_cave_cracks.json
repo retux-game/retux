@@ -1,0 +1,14 @@
+{ "columns":3,
+ "image":"..\/images\/tiles\/tileset_wm_cave_cracks.png",
+ "imageheight":160,
+ "imagewidth":96,
+ "margin":0,
+ "name":"wm_cave_cracks",
+ "spacing":0,
+ "tilecount":15,
+ "tiledversion":"1.3.4",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}

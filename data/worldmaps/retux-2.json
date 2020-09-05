@@ -491,27 +491,27 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/tilesets\/map_objects.tsx"
+         "source":"..\/tilesets\/map_objects.json"
         }, 
         {
          "firstgid":5,
-         "source":"..\/tilesets\/wm_roads.tsx"
+         "source":"..\/tilesets\/wm_roads.json"
         }, 
         {
          "firstgid":25,
-         "source":"..\/tilesets\/wm_snow.tsx"
+         "source":"..\/tilesets\/wm_snow.json"
         }, 
         {
          "firstgid":70,
-         "source":"..\/tilesets\/wm_trees.tsx"
+         "source":"..\/tilesets\/wm_trees.json"
         }, 
         {
          "firstgid":85,
-         "source":"..\/tilesets\/wm_mountain.tsx"
+         "source":"..\/tilesets\/wm_mountain.json"
         }, 
         {
          "firstgid":113,
-         "source":"..\/tilesets\/wm_castle.tsx"
+         "source":"..\/tilesets\/wm_castle.json"
         }],
  "tilewidth":32,
  "type":"map",

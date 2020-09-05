@@ -1,0 +1,72 @@
+{ "columns":3,
+ "image":"..\/images\/tiles\/tileset_wm_shallow_water.png",
+ "imageheight":160,
+ "imagewidth":96,
+ "margin":0,
+ "name":"wm_shallow_water",
+ "spacing":0,
+ "terrains":[
+        {
+         "name":"shallow_water",
+         "tile":14
+        }],
+ "tilecount":15,
+ "tiledversion":"1.3.4",
+ "tileheight":32,
+ "tiles":[
+        {
+         "id":0,
+         "terrain":[-1, -1, -1, 0]
+        }, 
+        {
+         "id":1,
+         "terrain":[-1, -1, 0, 0]
+        }, 
+        {
+         "id":2,
+         "terrain":[-1, -1, 0, -1]
+        }, 
+        {
+         "id":3,
+         "terrain":[-1, 0, -1, 0]
+        }, 
+        {
+         "id":4,
+         "terrain":[0, 0, 0, 0]
+        }, 
+        {
+         "id":5,
+         "terrain":[0, -1, 0, -1]
+        }, 
+        {
+         "id":6,
+         "terrain":[-1, 0, -1, -1]
+        }, 
+        {
+         "id":7,
+         "terrain":[0, 0, -1, -1]
+        }, 
+        {
+         "id":8,
+         "terrain":[0, -1, -1, -1]
+        }, 
+        {
+         "id":9,
+         "terrain":[0, 0, 0, -1]
+        }, 
+        {
+         "id":10,
+         "terrain":[0, 0, -1, 0]
+        }, 
+        {
+         "id":12,
+         "terrain":[0, -1, 0, 0]
+        }, 
+        {
+         "id":13,
+         "terrain":[-1, 0, 0, 0]
+        }],
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}

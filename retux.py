@@ -8249,8 +8249,8 @@ if _("font_file") == "font_file":
         rows=20, width=20, height=22)
     font_big = sge.gfx.Font.from_sprite(font_big_sprite, chars, size=22)
 else:
-    fname = os.path.join(DATA, "fonts", _("font_file")
-    font = sge.gfx.Font(fname), size=18)
+    fname = os.path.join(DATA, "fonts", _("font_file"))
+    font = sge.gfx.Font(fname, size=18)
     font_small = sge.gfx.Font(fname, size=9)
     font_big = sge.gfx.Font(fname, size=22)
     del fname

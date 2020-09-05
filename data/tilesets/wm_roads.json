@@ -1,0 +1,14 @@
+{ "columns":4,
+ "image":"..\/images\/tiles\/tileset_wm_roads.png",
+ "imageheight":160,
+ "imagewidth":128,
+ "margin":0,
+ "name":"wm_roads",
+ "spacing":0,
+ "tilecount":20,
+ "tiledversion":"1.3.4",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}

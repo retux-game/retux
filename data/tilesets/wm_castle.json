@@ -1,0 +1,18 @@
+{ "columns":0,
+ "margin":0,
+ "name":"wm_castle",
+ "spacing":0,
+ "tilecount":1,
+ "tiledversion":"1.3.4",
+ "tileheight":96,
+ "tiles":[
+        {
+         "id":0,
+         "image":"..\/images\/worldmap\/castle.png",
+         "imageheight":96,
+         "imagewidth":96
+        }],
+ "tilewidth":96,
+ "type":"tileset",
+ "version":1.2
+}

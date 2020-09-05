@@ -1,0 +1,14 @@
+{ "columns":4,
+ "image":"..\/images\/tiles\/tileset_blocks.png",
+ "imageheight":192,
+ "imagewidth":128,
+ "margin":0,
+ "name":"blocks",
+ "spacing":0,
+ "tilecount":24,
+ "tiledversion":"1.3.4",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":1.2
+}
