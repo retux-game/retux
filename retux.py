@@ -337,6 +337,8 @@ SOUND_CENTERED_RADIUS = 150
 SOUND_TILTED_RADIUS = 1000
 SOUND_TILT_LIMIT = 0.75
 
+text_outline_thickness = 0
+
 backgrounds = {}
 loaded_music = {}
 tux_grab_sprites = {}
@@ -418,7 +420,8 @@ class Game(sge.dsp.Game):
             self.project_text(font_small, self.fps_text, self.width - 8,
                               self.height - 8, z=1000,
                               color=sge.gfx.Color("yellow"), halign="right",
-                              valign="bottom")
+                              valign="bottom", outline=sge.gfx.Color("black"),
+                              outline_thickness=text_outline_thickness)
 
     def event_mouse_button_press(self, button):
         if button == "middle":
@@ -527,8 +530,9 @@ class Level(sge.dsp.Room):
                 _("Time Bonus") if time_bonus >= 0 else _("Time Penalty"),
                 abs(time_bonus))
             sge.game.project_text(font, text, sge.game.width, 0,
-                                  color=sge.gfx.Color("white"),
-                                  halign="right")
+                                  color=sge.gfx.Color("white"), halign="right",
+                                  outline=sge.gfx.Color("black"),
+                                  outline_thickness=text_outline_thickness)
 
             if main_area in tuxdolls_available or main_area in tuxdolls_found:
                 if main_area in tuxdolls_found:
@@ -542,7 +546,9 @@ class Level(sge.dsp.Room):
                 sge.game.project_text(font, self.status_text,
                                       sge.game.width / 2, sge.game.height - 16,
                                       color=sge.gfx.Color("white"),
-                                      halign="center", valign="middle")
+                                      halign="center", valign="middle",
+                                      outline=sge.gfx.Color("black"),
+                                      outline_thickness=text_outline_thickness)
                 self.status_text = None
 
     def shake(self, num=1):
@@ -1084,9 +1090,11 @@ class Level(sge.dsp.Room):
                     h = font.get_height(text) + 32
                     sge.game.project_rectangle(x - w / 2, y - h / 2, w, h,
                                                fill=sge.gfx.Color("black"))
-                    sge.game.project_text(font, text, x, y,
-                                          color=sge.gfx.Color("white"),
-                                          halign="center", valign="middle")
+                    sge.game.project_text(
+                        font, text, x, y, color=sge.gfx.Color("white"),
+                        halign="center", valign="middle",
+                        outline=sge.gfx.Color("black"),
+                        outline_thickness=text_outline_thickness)
                     sge.game.refresh()
                 else:
                     print(_("Loading \"{}\"...").format(fname))
@@ -1265,7 +1273,12 @@ class CreditsScreen(SpecialScreen):
             if "title" in section:
                 head_sprite = sge.gfx.Sprite.from_text(
                     font_big, _(section["title"]), width=self.width,
-                    color=sge.gfx.Color("white"), halign="center")
+                    color=sge.gfx.Color("white"), halign="center",
+                    outline_normal=sge.gfx.Color("black"),
+                    outline_selected=sge.gfx.Color("black"),
+                    outline_thickness_normal=text_outline_thickness,
+                    outline_thickness_selected=text_outline_thickness,
+                    selection_prefix="<", selection_suffix=">")
                 x = self.width / 2
                 y = self.sections[-1].bbox_bottom + font_big.size * 3
                 head_section = sge.dsp.Object.create(x, y, sprite=head_sprite,
@@ -1276,7 +1289,12 @@ class CreditsScreen(SpecialScreen):
                 for line in section["lines"]:
                     list_sprite = sge.gfx.Sprite.from_text(
                         font, _(line), width=self.width - 2 * TILE_SIZE,
-                        color=sge.gfx.Color("white"), halign="center")
+                        color=sge.gfx.Color("white"), halign="center",
+                        outline_normal=sge.gfx.Color("black"),
+                        outline_selected=sge.gfx.Color("black"),
+                        outline_thickness_normal=text_outline_thickness,
+                        outline_thickness_selected=text_outline_thickness,
+                        selection_prefix="<", selection_suffix=">")
                     x = self.width / 2
                     y = self.sections[-1].bbox_bottom + font.size
                     list_section = sge.dsp.Object.create(
@@ -1383,7 +1401,9 @@ class Worldmap(sge.dsp.Room):
                               color=sge.gfx.Color("black"), halign="left",
                               valign="middle")
         sge.game.project_text(font, text, x, y, color=sge.gfx.Color("white"),
-                              halign="left", valign="middle")
+                              halign="left", valign="middle",
+                              outline=sge.gfx.Color("black"),
+                              outline_thickness=text_outline_thickness)
 
         if self.level_text:
             x = sge.game.width / 2
@@ -1393,7 +1413,9 @@ class Worldmap(sge.dsp.Room):
                                   halign="center", valign="bottom")
             sge.game.project_text(font, self.level_text, x, y,
                                   color=sge.gfx.Color("white"),
-                                  halign="center", valign="bottom")
+                                  halign="center", valign="bottom",
+                                  outline=sge.gfx.Color("black"),
+                                  outline_thickness=text_outline_thickness)
 
         if self.level_tuxdoll_available:
             x = sge.game.width / 2
@@ -1795,7 +1817,9 @@ class Player(xsge_physics.Collider):
         if not NO_HUD:
             y = 0
             sge.game.project_text(font, self.name, 0, y,
-                                  color=sge.gfx.Color("white"))
+                                  color=sge.gfx.Color("white"),
+                                  outline=sge.gfx.Color("black"),
+                                  outline_thickness=text_outline_thickness)
 
             x = 0
             y += 36
@@ -1809,8 +1833,10 @@ class Player(xsge_physics.Collider):
             y += 18
             sge.game.project_sprite(coin_icon_sprite,
                                     coin_animation.image_index, 0, y)
-            sge.game.project_text(font, "x{}".format(self.coins), 16, y,
-                                  color=sge.gfx.Color("white"))
+            sge.game.project_text(font, f"x{self.coins}", 16, y,
+                                  color=sge.gfx.Color("white"),
+                                  outline=sge.gfx.Color("black"),
+                                  outline_thickness=text_outline_thickness)
 
             if not self.human:
                 room = sge.game.current_room
@@ -6347,7 +6373,11 @@ class Menu(xsge_gui.MenuWindow):
                 color_normal=sge.gfx.Color("white"),
                 color_selected=sge.gfx.Color((0, 128, 255)),
                 background_color=menu_color, margin=9, halign="center",
-                valign="middle")
+                valign="middle", outline_normal=sge.gfx.Color("black"),
+                outline_selected=sge.gfx.Color("black"),
+                outline_thickness_normal=text_outline_thickness,
+                outline_thickness_selected=text_outline_thickness,
+                selection_prefix="<", selection_suffix=">")
             default %= len(self.widgets)
             self.keyboard_focused_widget = self.widgets[default]
             self.show()
@@ -6958,7 +6988,11 @@ class ModalMenu(xsge_gui.MenuDialog):
                 color_normal=sge.gfx.Color("white"),
                 color_selected=sge.gfx.Color((0, 128, 255)),
                 background_color=menu_color, margin=9, halign="center",
-                valign="middle")
+                valign="middle", outline_normal=sge.gfx.Color("black"),
+                outline_selected=sge.gfx.Color("black"),
+                outline_thickness_normal=text_outline_thickness,
+                outline_thickness_selected=text_outline_thickness,
+                selection_prefix="<", selection_suffix=">")
             default %= len(self.widgets)
             self.keyboard_focused_widget = self.widgets[default]
             sge.game.refresh()
@@ -6989,7 +7023,11 @@ class PauseMenu(ModalMenu):
             items, font_normal=font, color_normal=sge.gfx.Color("white"),
             color_selected=sge.gfx.Color((0, 128, 255)),
             background_color=menu_color, margin=9, halign="center",
-            valign="middle")
+            valign="middle", outline_normal=sge.gfx.Color("black"),
+                outline_selected=sge.gfx.Color("black"),
+                outline_thickness_normal=text_outline_thickness,
+                outline_thickness_selected=text_outline_thickness,
+                selection_prefix="<", selection_suffix=">")
         default %= len(self.widgets)
         self.keyboard_focused_widget = self.widgets[default]
         sge.game.refresh()
@@ -7213,7 +7251,9 @@ def wait_key(text):
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
                               color=sge.gfx.Color("white"),
-                              halign="center", valign="middle")
+                              halign="center", valign="middle",
+                              outline=sge.gfx.Color("black"),
+                              outline_thickness=text_outline_thickness)
 
         # Refresh
         sge.game.refresh()
@@ -7251,7 +7291,9 @@ def wait_js(text):
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
                               color=sge.gfx.Color("white"),
-                              halign="center", valign="middle")
+                              halign="center", valign="middle",
+                              outline=sge.gfx.Color("black"),
+                              outline_thickness=text_outline_thickness)
 
         # Refresh
         sge.game.refresh()
@@ -8262,6 +8304,7 @@ if _("font_file") == "font_file":
         rows=20, width=20, height=22)
     font_big = sge.gfx.Font.from_sprite(font_big_sprite, chars, size=22)
 else:
+    text_outline_thickness = 1
     fname = os.path.join(DATA, "fonts", _("font_file"))
     font = sge.gfx.Font(fname, size=18)
     font_small = sge.gfx.Font(fname, size=9)
