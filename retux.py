@@ -8322,19 +8322,19 @@ backgrounds["snowmountains"] = sge.gfx.Background(layers,
 if not NO_BACKGROUNDS:
     layers = [
         sge.gfx.BackgroundLayer(
-            sge.gfx.Sprite("cloud-mountains-midground", d), 0, 366, -100010,
+            sge.gfx.Sprite("cloud-mountains-midground", d), 0, -366, -100010,
             xscroll_rate=0.25, yscroll_rate=0.1, repeat_left=True,
             repeat_right=True),
         sge.gfx.BackgroundLayer(
-            sge.gfx.Sprite("cloud-mountains-bottom", d), 0, 1455, -100000,
+            sge.gfx.Sprite("cloud-mountains-bottom", d), 0, 723, -100000,
             xscroll_rate=0.25, yscroll_rate=0.1, repeat_left=True,
             repeat_right=True, repeat_down=True),
         sge.gfx.BackgroundLayer(
-            sge.gfx.Sprite("cloud-mountains-foreground", d), 0, 366, -100000,
+            sge.gfx.Sprite("cloud-mountains-foreground", d), 0, -366, -100000,
             xscroll_rate=0.2, yscroll_rate=0.1, repeat_left=True,
             repeat_right=True),
         sge.gfx.BackgroundLayer(
-            sge.gfx.Sprite("cloud-mountains-background", d), 0, 366, -100020,
+            sge.gfx.Sprite("cloud-mountains-background", d), 0, -366, -100020,
             xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
             repeat_right=True)]
 
