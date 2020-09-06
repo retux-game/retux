@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-__version__ = "1.3.7a0"
+__version__ = "1.4a0"
 
 
 import argparse
@@ -234,7 +234,7 @@ CAMERA_MARGIN_BOTTOM = 5 * TILE_SIZE
 CAMERA_TARGET_MARGIN_BOTTOM = CAMERA_MARGIN_BOTTOM + TILE_SIZE
 
 WARP_LAX = 12
-WARP_SPEED = 1.5
+WARP_SPEED = 3
 
 SHAKE_FRAME_TIME = FPS / DELTA_MIN
 SHAKE_AMOUNT = 3
@@ -516,7 +516,7 @@ class Level(sge.dsp.Room):
 
         if not NO_HUD:
             if self.points:
-                score_text = "{}+{}".format(score, self.points)
+                score_text = f"{self.points}+{score}"
             else:
                 score_text = str(score)
             time_bonus = level_timers.get(main_area, 0)
@@ -533,7 +533,8 @@ class Level(sge.dsp.Room):
                     s = tuxdoll_sprite
                 else:
                     s = tuxdoll_transparent_sprite
-                sge.game.project_sprite(s, 0, sge.game.width / 2, 0)
+                sge.game.project_sprite(s, 0, sge.game.width / 2,
+                                        s.height/2 + 8)
 
             if self.status_text:
                 sge.game.project_text(font, self.status_text,

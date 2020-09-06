@@ -115,6 +115,10 @@ images/objects/enemies/bouncing_snowball-2.png
 images/objects/enemies/bouncing_snowball-3.png
 images/objects/enemies/bouncing_snowball-4.png
 images/objects/enemies/bouncing_snowball-5.png
+images/objects/enemies/crystallo-0.png
+images/objects/enemies/crystallo-1.png
+images/objects/enemies/crystallo-2.png
+images/objects/enemies/crystallo_squished.png
 images/objects/enemies/circoflame-0.png
 images/objects/enemies/circoflame-1.png
 images/objects/enemies/flying_snowball-0.png
@@ -331,7 +335,7 @@ sounds/upgrade.wav
 
 Authors: SuperTux development team <https://supertux.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -404,7 +408,7 @@ Authors:
   SuperTux development team <https://supertux.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 Details:
   2D-Retroperspectives made some improvements to these tiles so that
   they would tile better, especially the castle tileset, which was
@@ -425,7 +429,7 @@ Authors:
   SuperTux development team <https://supertux.github.io>
   2D-Retroperspectives <http://opengameart.org/users/2d-retroperspectives>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 Details:
   2D-Retroperspectives re-did the expanding animation, based on the
   original simplistic expand animation and the regular spring expand
@@ -440,7 +444,7 @@ Authors:
   SuperTux development team <http://supertux.github.io>
   The Diligent Circle <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 Details:
   Made by replacing the spring in the "snowjumpy" sprite with the
   helicopter blade from the "flying snowball" sprite.
@@ -494,7 +498,7 @@ Authors:
   SuperTux development team <http://supertux.github.io>
   The Diligent Circle <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 Details:
   Made by replacing the black in SuperTux's door with transparency, then
   pasting that over door_shadow.png.
@@ -524,7 +528,7 @@ Authors:
   SuperTux development team <https://supertux.github.io>
   The Diligent Circle <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Source: https://github.com/SuperTux/supertux
 Details:
   SuperTux logo is by the SuperTux development team.  Letters from the
   SuperTux logo were re-arranged to spell "reTux" by Diligent Circle.
@@ -545,7 +549,7 @@ Authors:
   SuperTux development team <https://supertux.github.io>
   The Diligent Circle <https://onpon4.github.io>
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 Details:
   This is the result of pasting the dead snowball sprite onto the
   snowman body. This work was done by Diligent Circle; everything else
@@ -793,7 +797,7 @@ music/sources/wisphunt.ogg
 
 Author: wansti
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -805,7 +809,7 @@ Authors:
   Lukas Nystrand
   Mortimer Twang
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -815,7 +819,7 @@ Authors:
   Chris Huelsbeck
   SuperTux development team <https://supertux.github.io>
 License: GNU GPL <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -825,7 +829,7 @@ Authors:
   Mystical
   SuperTux development team <https://supertux.github.io>
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.3
+Source: https://github.com/SuperTux/supertux
 Details:
   Original Salsa Con Carne by Mystical. This is a remix done by someone
   in the SuperTux development team.
@@ -842,7 +846,7 @@ sounds/willowisp.wav
 
 Author: wansti
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -854,7 +858,7 @@ Authors:
   The Diligent Circle
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 Sources:
-  http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+  https://github.com/SuperTux/supertux
   http://freesound.org/people/jih/sounds/57641/
 Details:
   Made by combining the spring sound effect by wansti ("spring.wav")
@@ -868,7 +872,7 @@ sounds/brick.wav
 
 Author: Yaniel
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -879,7 +883,7 @@ sounds/phone.wav
 
 Author: gwater
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -897,7 +901,7 @@ sounds/shoot.wav
 
 Author: Nathan McCoy
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -907,7 +911,7 @@ sounds/waterfall.wav
 
 Author: Bastian Zapf
 License: GNU GPL <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -915,7 +919,7 @@ sounds/warp.wav
 
 Author: Ricardo Cruz
 License: GNU GPL <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -930,7 +934,7 @@ sounds/yeti_roar.wav
 
 Author: MatzeB
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -940,7 +944,7 @@ sounds/sizzle.ogg
 
 Author: lmh.0013@gmail.com
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
@@ -953,7 +957,7 @@ sounds/thunder.wav
 
 Author: Some_Person
 License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
-Source: http://supertux.lethargik.org/wiki/Download/Unstable#Release_0.3.4
+Source: https://github.com/SuperTux/supertux
 
 ------------------------------------------------------------------------
 
