@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":14,
  "infinite":false,
  "layers":[
@@ -19,7 +26,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmkEOwiAQAPUHxng2xrOJfsDXqXf1p\/5ANDbWxoWyhQJlJtnU2HRbwJ0W6mwGAAAAAAC5czJxN3FJfSEAhfCqmfMn7q3P1NA4XIXvm3FpxoTxAPhFqp2Gttu6fqOmdLj63LUfoFZ8a4NaGg6+AtCBr8YHXwHoyMFXvutppa\/z1Oar7pqCbX2BtYayiV2bOfhKm7\/Uuq7NVzZqamtNxBrXmL76d1\/9dz9tOzilr8Z6b4qvvtTU1lLQ1G2XEn2lOT6X56t27hDjJ+X22a95V5v73Dm1r2xzVdd8VerPhYljgHjM+7VBm3\/VL\/0brSek\/pX61fX7nJqvQrkl5jNQqNyp3X4Ttj6k9pULzfWtTSwLiK1Hm0J7QjvuU\/PV0Jx9j5mSr7T\/sbsKWx+m6KudiY0Qe8u+WCGd8+DRJnw1PD++CnfOIefHV7\/YfBUqug56AjFnoLA=",
+         "data":"eJztmkEOgjAQAPEHxng2xrOJfsDXqXfDT\/2B1UhEQildtrSlM8kmRmChrTvQYlUBAAAAAEDqXE3UJu6xLwQgE941c\/tG3fpMDc3Dw\/J9My7NmDAeAP\/Yaqeh7bau36gpGa4+d20HKBXf2qCWpoOvAGTgq\/nBVwAyUvCV73pa7us8pfmqu6YwtL7AWkPehK7NFHwlzZ9rXZfmqyFKamtJhBrXkL7qu6\/23U\/bDo7pq7nem+KrHyW1NRckddslR19Jjk\/l+aqdW2P8bLl9tkve1aY+d47tq6G5qmu+auvPtYmLQjxX49ogzb8dl\/6D1BO2\/rX1q+v3uTRfabkl5DOQVu7YbtdwYWxfuZBc387EJoM4eLRJ2xPScV+ar6bmHHvMknw19T92IfsiNpLrO5rYW+I0sC1U2M559mgTvpqeH1\/pnVO6r2R\/rWPnQNtXWtF10AutQp9f",
          "encoding":"base64",
          "height":14,
          "id":2,
@@ -169,30 +176,8 @@
                  "rotation":0,
                  "type":"solid_top",
                  "visible":true,
-                 "width":32,
+                 "width":160,
                  "x":6432,
-                 "y":352
-                }, 
-                {
-                 "height":32,
-                 "id":10,
-                 "name":"",
-                 "rotation":0,
-                 "type":"solid_top",
-                 "visible":true,
-                 "width":32,
-                 "x":6496,
-                 "y":352
-                }, 
-                {
-                 "height":32,
-                 "id":11,
-                 "name":"",
-                 "rotation":0,
-                 "type":"solid_top",
-                 "visible":true,
-                 "width":32,
-                 "x":6560,
                  "y":352
                 }, 
                 {

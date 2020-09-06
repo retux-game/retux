@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":84,
  "infinite":false,
  "layers":[
@@ -1471,8 +1478,8 @@
  "properties":[
         {
          "name":"background_y",
-         "type":"string",
-         "value":"1056"
+         "type":"int",
+         "value":1056
         }, 
         {
          "name":"bgname",
