@@ -1399,7 +1399,8 @@ class Worldmap(sge.dsp.Room):
         x += tuxdoll_sprite.width - tuxdoll_sprite.origin_x
         sge.game.project_text(font, text, x + 2, y + 2,
                               color=sge.gfx.Color("black"), halign="left",
-                              valign="middle")
+                              valign="middle", outline=sge.gfx.Color("black"),
+                              outline_thickness=text_outline_thickness)
         sge.game.project_text(font, text, x, y, color=sge.gfx.Color("white"),
                               halign="left", valign="middle",
                               outline=sge.gfx.Color("black"),

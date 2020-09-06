@@ -1,0 +1,593 @@
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Layla <diligentcircle@riseup.net>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.4\n"
+"Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
+"POT-Creation-Date: 2020-09-06 10:46-0400\n"
+"PO-Revision-Date: 2020-09-06 10:49-0400\n"
+"Last-Translator: Layla <diligentcircle@riseup.net>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# Timeline text
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+msgstr ""
+
+msgid "Oh, looks like I have a message!"
+msgstr ""
+
+msgid "What?! They're taking my fish?!"
+msgstr ""
+
+msgid "I will not stand for this! Nobody takes away MY fish!"
+msgstr ""
+
+msgid "What are you doing here? You're trespassing!"
+msgstr ""
+
+msgid "The reign of the Snow King is over!"
+msgstr ""
+
+msgid "What are you talking about? His reign has only just begun!"
+msgstr ""
+
+msgid ""
+"Yeah, and now it's going to end! He should have thought about that before "
+"taking away MY fish!"
+msgstr ""
+
+msgid ""
+"Fish?! I will not allow you to overthrow the great king over a tax! Your "
+"conquest ends here!"
+msgstr ""
+
+msgid "Who are you?"
+msgstr ""
+
+msgid ""
+"I am Tux, and I am putting an end to the Snow King's reign, one castle at a "
+"time!"
+msgstr ""
+
+msgid "That's too bad, Tux. I would have liked to let you leave in peace."
+msgstr ""
+
+msgid ""
+"So it is you! The rebellious penguin who would see to it that our king's "
+"reign ends!"
+msgstr ""
+
+msgid "I'm sorry to inform you, Tux, but your treason ends now."
+msgstr ""
+
+msgid ""
+"You act as if you are rebelling against the Fish Tax, but we know what "
+"you're really up to!"
+msgstr ""
+
+msgid ""
+"I don't know how you found out about our secret plans, but you will not stop "
+"us!"
+msgstr ""
+
+msgid "I've been waiting for you, Tux. We meet again at last!"
+msgstr ""
+
+msgid "Raccot the yeti! I should have known it was you!"
+msgstr ""
+
+msgid ""
+"You may have discovered my evil plan, my old nemesis, but you will not stop "
+"me!"
+msgstr ""
+
+msgid ""
+"When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+msgstr ""
+
+# Level text
+msgid ""
+"Citizens of Icy Island,\n"
+"\n"
+"Beginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow "
+"King. All residents must pay 5% of their fish in tax. Failure to pay this "
+"tax will be punished."
+msgstr ""
+
+msgid "Having trouble finding secret areas? The clue is in the name!"
+msgstr ""
+
+msgid "Sometimes, it's just better to go up."
+msgstr ""
+
+msgid ""
+"Fire can be a great way to melt ice blocking access to certain Tux dolls. "
+"Now, where can one find a fire flower around here?"
+msgstr ""
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"I swear, there are no fire flowers anywhere in this level! How am I supposed "
+"to melt this ice?! What's more, that ledge over there is shaped like a grin, "
+"almost like it's taunting me!"
+msgstr ""
+
+msgid ""
+"Studies have shown that penguins have the ability to kick iceblocks, and "
+"possibly other items, straight up. They do this by holding down the \"up\" "
+"button while pressing the \"action\" button."
+msgstr ""
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"It is said that this level contains 7 springs, but I have only managed to "
+"find 6. Could the seventh one be in a hidden block somewhere?"
+msgstr ""
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That cave to the left appears to be inaccessible from here. There has to be "
+"another way inside!"
+msgstr ""
+
+msgid ""
+"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
+"not climb on Mount Slimmerist; the extra weight may cause it to topple over."
+msgstr ""
+
+msgid ""
+"Did you know? It's possible to drop whatever you're carrying! Just hold the "
+"\"down\" button while pressing the \"action\" button."
+msgstr ""
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That pipe to the right is too high to be reached even by jumping off a "
+"spring. It would be possible if that Jumpy could be magically suspended in "
+"the air and the spring placed on top, but that would be silly!"
+msgstr ""
+
+msgid ""
+"You'll need a friend to find the Tux doll in this castle, in more ways than "
+"one."
+msgstr ""
+
+msgid ""
+"Please do NOT touch my rocks! For example, do NOT use them to build a bridge "
+"allowing you to cross spike pits, and do NOT use them to build a tower so "
+"that you can reach higher places."
+msgstr ""
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"If only I could reach those rocks on top of those crates, I could build a "
+"staircase to that pipe...."
+msgstr ""
+
+msgid ""
+"Welcome to Concept Castle!\n"
+"\n"
+"This level was created to demonstrate what ReTux is capable of. It's a bit "
+"heavier than most of the actual game, so it may run slightly slower."
+msgstr ""
+
+msgid ""
+"All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
+"lava!"
+msgstr ""
+
+msgid "There must be a way to remove the fire flower from this room."
+msgstr ""
+
+# Credits text
+msgid "Programming By"
+msgstr ""
+
+msgid "Graphics By"
+msgstr ""
+
+msgid "Sounds By"
+msgstr ""
+
+msgid "Music By"
+msgstr ""
+
+msgid "Level Design By"
+msgstr ""
+
+msgid "Bonus Level Design By"
+msgstr ""
+
+msgid "Translations By"
+msgstr ""
+
+msgid "Software Used"
+msgstr ""
+
+msgid "Thank you for playing!"
+msgstr ""
+
+#: ../../retux.py:69
+msgid "Output version information and exit."
+msgstr ""
+
+#: ../../retux.py:72
+msgid "Print errors directly to stdout rather than saving them in a file."
+msgstr ""
+
+#: ../../retux.py:76
+msgid "Manually choose a different language to use."
+msgstr ""
+
+#: ../../retux.py:79
+msgid ""
+"Disable delta timing. Causes the game to slow down when it can't run at full "
+"speed instead of becoming choppier."
+msgstr ""
+
+#: ../../retux.py:83
+msgid "Where to load the game data from (Default: \"{}\")"
+msgstr ""
+
+#: ../../retux.py:86
+msgid "Play the indicated level and then exit."
+msgstr ""
+
+#: ../../retux.py:89
+msgid ""
+"Start the indicated level and record player actions in a timeline. Useful "
+"for making cutscenes."
+msgstr ""
+
+#: ../../retux.py:92
+msgid "Only show solid colors for backgrounds (uses less RAM)."
+msgstr ""
+
+#: ../../retux.py:95
+msgid "Don't show the player's heads-up display."
+msgstr ""
+
+#: ../../retux.py:529
+msgid "Score"
+msgstr ""
+
+#: ../../retux.py:530
+msgid "Time Bonus"
+msgstr ""
+
+#: ../../retux.py:530
+msgid "Time Penalty"
+msgstr ""
+
+#: ../../retux.py:798
+msgid ""
+"An error occurred in a timeline 'setattr' command:\n"
+"\n"
+"{}"
+msgstr ""
+
+#: ../../retux.py:846
+msgid ""
+"An error occurred in a timeline 'exec' command:\n"
+"\n"
+"{}"
+msgstr ""
+
+#: ../../retux.py:853
+msgid ""
+"An error occurred in a timeline 'if' statement:\n"
+"\n"
+"{}"
+msgstr ""
+
+#: ../../retux.py:873
+msgid ""
+"An error occurred in a timeline 'while' statement:\n"
+"\n"
+"{}"
+msgstr ""
+
+#: ../../retux.py:1080
+msgid "Loading level..."
+msgstr ""
+
+#: ../../retux.py:1100
+msgid "Loading \"{}\"..."
+msgstr ""
+
+#: ../../retux.py:1106
+msgid ""
+"An error occurred when trying to load the level:\n"
+"\n"
+"{}"
+msgstr ""
+
+#: ../../retux.py:1845
+msgid "Press the Menu button to skip..."
+msgstr ""
+
+#: ../../retux.py:1847
+msgid "Cinematic mode enabled"
+msgstr ""
+
+#: ../../retux.py:6392
+msgid "New Game"
+msgstr "最初から"
+
+#: ../../retux.py:6392
+msgid "Load Game"
+msgstr "ロード"
+
+#: ../../retux.py:6392
+msgid "Select Levelset"
+msgstr ""
+
+#: ../../retux.py:6392
+msgid "Options"
+msgstr "オプション"
+
+#: ../../retux.py:6393
+msgid "Credits"
+msgstr "クレジット"
+
+#: ../../retux.py:6393
+msgid "Quit"
+msgstr "終りょう"
+
+#: ../../retux.py:6423
+msgid "-Empty-"
+msgstr ""
+
+#: ../../retux.py:6425
+msgid "-No Levelset-"
+msgstr ""
+
+#: ../../retux.py:6432
+msgid "-Corrupt Levelset-"
+msgstr ""
+
+#: ../../retux.py:6440 ../../retux.py:6555 ../../retux.py:6588
+#: ../../retux.py:6744 ../../retux.py:6876
+msgid "Back"
+msgstr "もどる"
+
+#: ../../retux.py:6468
+msgid "Overwrite this save file"
+msgstr ""
+
+#: ../../retux.py:6468
+msgid "Cancel"
+msgstr "取り消し"
+
+#: ../../retux.py:6504
+msgid "An error occurred when trying to load the game."
+msgstr ""
+
+#: ../../retux.py:6554
+msgid "Next page"
+msgstr ""
+
+#: ../../retux.py:6580
+msgid "Fullscreen: {}"
+msgstr "フルスクリーン：{}"
+
+#: ../../retux.py:6580 ../../retux.py:6582 ../../retux.py:6583
+#: ../../retux.py:6584 ../../retux.py:6585
+msgid "On"
+msgstr "オン"
+
+#: ../../retux.py:6580 ../../retux.py:6582 ../../retux.py:6583
+#: ../../retux.py:6584 ../../retux.py:6585
+msgid "Off"
+msgstr "オフ"
+
+#: ../../retux.py:6581
+msgid "Scale Method: {}"
+msgstr ""
+
+#: ../../retux.py:6582
+msgid "Sound: {}"
+msgstr "こうか音：{}"
+
+#: ../../retux.py:6583
+msgid "Music: {}"
+msgstr "音楽：{}"
+
+#: ../../retux.py:6584
+msgid "Stereo: {}"
+msgstr ""
+
+#: ../../retux.py:6585
+msgid "Show FPS: {}"
+msgstr ""
+
+#: ../../retux.py:6586
+msgid "Joystick Threshold: {}%"
+msgstr ""
+
+#: ../../retux.py:6587 ../../retux.py:7011 ../../retux.py:7014
+#: ../../retux.py:7018 ../../retux.py:7088
+msgid "Configure keyboard"
+msgstr ""
+
+#: ../../retux.py:6587 ../../retux.py:7012 ../../retux.py:7015
+#: ../../retux.py:7019 ../../retux.py:7088
+msgid "Configure joysticks"
+msgstr ""
+
+#: ../../retux.py:6588
+msgid "Detect joysticks"
+msgstr ""
+
+#: ../../retux.py:6588
+msgid "Import levelset"
+msgstr ""
+
+#: ../../retux.py:6658
+msgid "ReTux levelset files"
+msgstr ""
+
+#: ../../retux.py:6659
+msgid "all files"
+msgstr ""
+
+#: ../../retux.py:6672
+msgid "Importing levelset..."
+msgstr ""
+
+#: ../../retux.py:6709
+msgid ""
+"This feature requires Tkinter, which was not successfully imported. Please "
+"make sure Tkinter is installed and try again."
+msgstr ""
+
+#: ../../retux.py:6734 ../../retux.py:6866
+msgid "Player {}"
+msgstr ""
+
+#: ../../retux.py:6735 ../../retux.py:6867
+msgid "Left: {}"
+msgstr "左：{}"
+
+#: ../../retux.py:6736 ../../retux.py:6868
+msgid "Right: {}"
+msgstr "右：{}"
+
+#: ../../retux.py:6737 ../../retux.py:6869
+msgid "Up: {}"
+msgstr "上：{}"
+
+#: ../../retux.py:6738 ../../retux.py:6870
+msgid "Down: {}"
+msgstr "下：{}"
+
+#: ../../retux.py:6739 ../../retux.py:6871
+msgid "Jump: {}"
+msgstr ""
+
+#: ../../retux.py:6740 ../../retux.py:6872
+msgid "Action: {}"
+msgstr ""
+
+#: ../../retux.py:6741 ../../retux.py:6873
+msgid "Sneak: {}"
+msgstr ""
+
+#: ../../retux.py:6742 ../../retux.py:6874
+msgid "Menu: {}"
+msgstr "メニュー：{}"
+
+#: ../../retux.py:6743 ../../retux.py:6875
+msgid "Pause: {}"
+msgstr "ポーズ：{}"
+
+#: ../../retux.py:6764
+msgid ""
+"Press the key you wish to bind to this function, or the Escape key to cancel."
+msgstr ""
+
+#: ../../retux.py:6864
+msgid "None"
+msgstr "なし"
+
+#: ../../retux.py:6896
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to bind to this "
+"function, or the Escape key to cancel."
+msgstr ""
+
+#: ../../retux.py:7011 ../../retux.py:7014 ../../retux.py:7018
+#: ../../retux.py:7088
+msgid "Continue"
+msgstr "続き"
+
+#: ../../retux.py:7012
+msgid "Abort"
+msgstr ""
+
+#: ../../retux.py:7015
+msgid "Return to Map"
+msgstr ""
+
+#: ../../retux.py:7016 ../../retux.py:7019 ../../retux.py:7089
+msgid "Return to Title Screen"
+msgstr ""
+
+#: ../../retux.py:7249
+msgid "Press the key you wish to toggle, or Escape to cancel."
+msgstr ""
+
+#: ../../retux.py:7289
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to toggle, or the "
+"Escape key to cancel."
+msgstr ""
+
+#: ../../retux.py:7307
+msgid "Error"
+msgstr ""
+
+#: ../../retux.py:7308
+msgid "Ok"
+msgstr "OK"
+
+#: ../../retux.py:7451
+msgid ""
+"Preloading levels...\n"
+"\n"
+"(press any key to skip)"
+msgstr ""
+
+#: ../../retux.py:7816
+msgid "Initializing game system..."
+msgstr ""
+
+#: ../../retux.py:7821
+msgid "Initializing GUI system..."
+msgstr ""
+
+#: ../../retux.py:7828
+msgid "Loading images..."
+msgstr ""
+
+#: ../../retux.py:8280
+msgid "Loading fonts..."
+msgstr ""
+
+#. / The default ReTux font is a sprite font which supports Latin
+#. / character sets. If your translation needs more characters (as would
+#. / be the case for Japanese or Chinese, for example), please add a font
+#. / file to the data/fonts directory for use with the language being
+#. / translated to and specify the font file name. This will cause the
+#. / font file to be used instead of the default sprite font. If the
+#. / sprite font is sufficient, leave this as-is.
+#: ../../retux.py:8291 ../../retux.py:8308
+msgid "font_file"
+msgstr "TakaoPGothic.ttf"
+
+#: ../../retux.py:8511
+msgid "Starting game..."
+msgstr ""

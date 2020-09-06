@@ -1,5 +1,3 @@
-# ReTux translatable text.
-#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.4\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2020-09-01 12:43-0400\n"
+"POT-Creation-Date: 2020-09-06 10:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,358 +230,350 @@ msgstr ""
 msgid "Thank you for playing!"
 msgstr ""
 
-#: ../../retux.py:71
+#: ../../retux.py:69
 msgid "Output version information and exit."
 msgstr ""
 
-#: ../../retux.py:74
+#: ../../retux.py:72
 msgid "Print errors directly to stdout rather than saving them in a file."
 msgstr ""
 
-#: ../../retux.py:78
+#: ../../retux.py:76
 msgid "Manually choose a different language to use."
 msgstr ""
 
-#: ../../retux.py:81
+#: ../../retux.py:79
 msgid ""
 "Disable delta timing. Causes the game to slow down when it can't run at full "
 "speed instead of becoming choppier."
 msgstr ""
 
-#: ../../retux.py:85
+#: ../../retux.py:83
 msgid "Where to load the game data from (Default: \"{}\")"
 msgstr ""
 
-#: ../../retux.py:88
+#: ../../retux.py:86
 msgid "Play the indicated level and then exit."
 msgstr ""
 
-#: ../../retux.py:91
+#: ../../retux.py:89
 msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
 msgstr ""
 
-#: ../../retux.py:94
+#: ../../retux.py:92
 msgid "Only show solid colors for backgrounds (uses less RAM)."
 msgstr ""
 
-#: ../../retux.py:97
+#: ../../retux.py:95
 msgid "Don't show the player's heads-up display."
 msgstr ""
 
-#: ../../retux.py:526
+#: ../../retux.py:529
 msgid "Score"
 msgstr ""
 
-#: ../../retux.py:527
+#: ../../retux.py:530
 msgid "Time Bonus"
 msgstr ""
 
-#: ../../retux.py:527
+#: ../../retux.py:530
 msgid "Time Penalty"
 msgstr ""
 
-#: ../../retux.py:791
+#: ../../retux.py:798
 msgid ""
 "An error occurred in a timeline 'setattr' command:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: ../../retux.py:839
+#: ../../retux.py:846
 msgid ""
 "An error occurred in a timeline 'exec' command:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: ../../retux.py:846
+#: ../../retux.py:853
 msgid ""
 "An error occurred in a timeline 'if' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: ../../retux.py:866
+#: ../../retux.py:873
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: ../../retux.py:1073
+#: ../../retux.py:1080
 msgid "Loading level..."
 msgstr ""
 
-#: ../../retux.py:1091
+#: ../../retux.py:1100
 msgid "Loading \"{}\"..."
 msgstr ""
 
-#: ../../retux.py:1098
+#: ../../retux.py:1106
 msgid ""
 "An error occurred when trying to load the level:\n"
 "\n"
 "{}"
 msgstr ""
 
-#: ../../retux.py:1820
+#: ../../retux.py:1845
 msgid "Press the Menu button to skip..."
 msgstr ""
 
-#: ../../retux.py:1822
+#: ../../retux.py:1847
 msgid "Cinematic mode enabled"
 msgstr ""
 
-#: ../../retux.py:6353
+#: ../../retux.py:6392
 msgid "New Game"
 msgstr ""
 
-#: ../../retux.py:6353
+#: ../../retux.py:6392
 msgid "Load Game"
 msgstr ""
 
-#: ../../retux.py:6353
+#: ../../retux.py:6392
 msgid "Select Levelset"
 msgstr ""
 
-#: ../../retux.py:6353
+#: ../../retux.py:6392
 msgid "Options"
 msgstr ""
 
-#: ../../retux.py:6354
+#: ../../retux.py:6393
 msgid "Credits"
 msgstr ""
 
-#: ../../retux.py:6354
+#: ../../retux.py:6393
 msgid "Quit"
 msgstr ""
 
-#: ../../retux.py:6384
+#: ../../retux.py:6423
 msgid "-Empty-"
 msgstr ""
 
-#: ../../retux.py:6386
+#: ../../retux.py:6425
 msgid "-No Levelset-"
 msgstr ""
 
-#: ../../retux.py:6393
+#: ../../retux.py:6432
 msgid "-Corrupt Levelset-"
 msgstr ""
 
-#: ../../retux.py:6401 ../../retux.py:6516 ../../retux.py:6550
-#: ../../retux.py:6715 ../../retux.py:6847
+#: ../../retux.py:6440 ../../retux.py:6555 ../../retux.py:6588
+#: ../../retux.py:6744 ../../retux.py:6876
 msgid "Back"
 msgstr ""
 
-#: ../../retux.py:6429
+#: ../../retux.py:6468
 msgid "Overwrite this save file"
 msgstr ""
 
-#: ../../retux.py:6429
+#: ../../retux.py:6468
 msgid "Cancel"
 msgstr ""
 
-#: ../../retux.py:6465
+#: ../../retux.py:6504
 msgid "An error occurred when trying to load the game."
 msgstr ""
 
-#: ../../retux.py:6515
+#: ../../retux.py:6554
 msgid "Next page"
 msgstr ""
 
-#: ../../retux.py:6541
+#: ../../retux.py:6580
 msgid "Fullscreen: {}"
 msgstr ""
 
-#: ../../retux.py:6541 ../../retux.py:6543 ../../retux.py:6544
-#: ../../retux.py:6545 ../../retux.py:6546
+#: ../../retux.py:6580 ../../retux.py:6582 ../../retux.py:6583
+#: ../../retux.py:6584 ../../retux.py:6585
 msgid "On"
 msgstr ""
 
-#: ../../retux.py:6541 ../../retux.py:6543 ../../retux.py:6544
-#: ../../retux.py:6545 ../../retux.py:6546
+#: ../../retux.py:6580 ../../retux.py:6582 ../../retux.py:6583
+#: ../../retux.py:6584 ../../retux.py:6585
 msgid "Off"
 msgstr ""
 
-#: ../../retux.py:6542
+#: ../../retux.py:6581
 msgid "Scale Method: {}"
 msgstr ""
 
-#: ../../retux.py:6543
+#: ../../retux.py:6582
 msgid "Sound: {}"
 msgstr ""
 
-#: ../../retux.py:6544
+#: ../../retux.py:6583
 msgid "Music: {}"
 msgstr ""
 
-#: ../../retux.py:6545
+#: ../../retux.py:6584
 msgid "Stereo: {}"
 msgstr ""
 
-#: ../../retux.py:6546
+#: ../../retux.py:6585
 msgid "Show FPS: {}"
 msgstr ""
 
-#: ../../retux.py:6547
+#: ../../retux.py:6586
 msgid "Joystick Threshold: {}%"
 msgstr ""
 
-#: ../../retux.py:6548 ../../retux.py:7214 ../../retux.py:7217
-#: ../../retux.py:7221 ../../retux.py:7287
+#: ../../retux.py:6587 ../../retux.py:7011 ../../retux.py:7014
+#: ../../retux.py:7018 ../../retux.py:7088
 msgid "Configure keyboard"
 msgstr ""
 
-#: ../../retux.py:6548 ../../retux.py:7215 ../../retux.py:7218
-#: ../../retux.py:7222 ../../retux.py:7287
+#: ../../retux.py:6587 ../../retux.py:7012 ../../retux.py:7015
+#: ../../retux.py:7019 ../../retux.py:7088
 msgid "Configure joysticks"
 msgstr ""
 
-#: ../../retux.py:6549
+#: ../../retux.py:6588
 msgid "Detect joysticks"
 msgstr ""
 
-#: ../../retux.py:6549
+#: ../../retux.py:6588
 msgid "Import levelset"
 msgstr ""
 
-#: ../../retux.py:6549
-msgid "Export levelset"
-msgstr ""
-
-#: ../../retux.py:6620 ../../retux.py:6961
+#: ../../retux.py:6658
 msgid "ReTux levelset files"
 msgstr ""
 
-#: ../../retux.py:6621 ../../retux.py:6962
+#: ../../retux.py:6659
 msgid "all files"
 msgstr ""
 
-#: ../../retux.py:6634
+#: ../../retux.py:6672
 msgid "Importing levelset..."
 msgstr ""
 
-#: ../../retux.py:6671 ../../retux.py:6680
+#: ../../retux.py:6709
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
 "make sure Tkinter is installed and try again."
 msgstr ""
 
-#: ../../retux.py:6705 ../../retux.py:6837
+#: ../../retux.py:6734 ../../retux.py:6866
 msgid "Player {}"
 msgstr ""
 
-#: ../../retux.py:6706 ../../retux.py:6838
+#: ../../retux.py:6735 ../../retux.py:6867
 msgid "Left: {}"
 msgstr ""
 
-#: ../../retux.py:6707 ../../retux.py:6839
+#: ../../retux.py:6736 ../../retux.py:6868
 msgid "Right: {}"
 msgstr ""
 
-#: ../../retux.py:6708 ../../retux.py:6840
+#: ../../retux.py:6737 ../../retux.py:6869
 msgid "Up: {}"
 msgstr ""
 
-#: ../../retux.py:6709 ../../retux.py:6841
+#: ../../retux.py:6738 ../../retux.py:6870
 msgid "Down: {}"
 msgstr ""
 
-#: ../../retux.py:6710 ../../retux.py:6842
+#: ../../retux.py:6739 ../../retux.py:6871
 msgid "Jump: {}"
 msgstr ""
 
-#: ../../retux.py:6711 ../../retux.py:6843
+#: ../../retux.py:6740 ../../retux.py:6872
 msgid "Action: {}"
 msgstr ""
 
-#: ../../retux.py:6712 ../../retux.py:6844
+#: ../../retux.py:6741 ../../retux.py:6873
 msgid "Sneak: {}"
 msgstr ""
 
-#: ../../retux.py:6713 ../../retux.py:6845
+#: ../../retux.py:6742 ../../retux.py:6874
 msgid "Menu: {}"
 msgstr ""
 
-#: ../../retux.py:6714 ../../retux.py:6846
+#: ../../retux.py:6743 ../../retux.py:6875
 msgid "Pause: {}"
 msgstr ""
 
-#: ../../retux.py:6735
+#: ../../retux.py:6764
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
 msgstr ""
 
-#: ../../retux.py:6835
+#: ../../retux.py:6864
 msgid "None"
 msgstr ""
 
-#: ../../retux.py:6867
+#: ../../retux.py:6896
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
 "function, or the Escape key to cancel."
 msgstr ""
 
-#: ../../retux.py:6975
-msgid "Exporting levelset..."
-msgstr ""
-
-#: ../../retux.py:7214 ../../retux.py:7217 ../../retux.py:7221
-#: ../../retux.py:7287
+#: ../../retux.py:7011 ../../retux.py:7014 ../../retux.py:7018
+#: ../../retux.py:7088
 msgid "Continue"
 msgstr ""
 
-#: ../../retux.py:7215
+#: ../../retux.py:7012
 msgid "Abort"
 msgstr ""
 
-#: ../../retux.py:7218
+#: ../../retux.py:7015
 msgid "Return to Map"
 msgstr ""
 
-#: ../../retux.py:7219 ../../retux.py:7222 ../../retux.py:7288
+#: ../../retux.py:7016 ../../retux.py:7019 ../../retux.py:7089
 msgid "Return to Title Screen"
 msgstr ""
 
-#: ../../retux.py:7448
+#: ../../retux.py:7249
 msgid "Press the key you wish to toggle, or Escape to cancel."
 msgstr ""
 
-#: ../../retux.py:7486
+#: ../../retux.py:7289
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to toggle, or the "
 "Escape key to cancel."
 msgstr ""
 
-#: ../../retux.py:7502
+#: ../../retux.py:7307
 msgid "Error"
 msgstr ""
 
-#: ../../retux.py:7503
+#: ../../retux.py:7308
 msgid "Ok"
 msgstr ""
 
-#: ../../retux.py:7646
+#: ../../retux.py:7451
 msgid ""
 "Preloading levels...\n"
 "\n"
 "(press any key to skip)"
 msgstr ""
 
-#: ../../retux.py:7970
+#: ../../retux.py:7816
 msgid "Initializing game system..."
 msgstr ""
 
-#: ../../retux.py:7975
+#: ../../retux.py:7821
 msgid "Initializing GUI system..."
 msgstr ""
 
-#: ../../retux.py:7982
+#: ../../retux.py:7828
 msgid "Loading images..."
 msgstr ""
 
-#: ../../retux.py:8434
+#: ../../retux.py:8280
 msgid "Loading fonts..."
 msgstr ""
 
@@ -594,10 +584,10 @@ msgstr ""
 #. / translated to and specify the font file name. This will cause the
 #. / font file to be used instead of the default sprite font. If the
 #. / sprite font is sufficient, leave this as-is.
-#: ../../retux.py:8445 ../../retux.py:8461
+#: ../../retux.py:8291 ../../retux.py:8308
 msgid "font_file"
 msgstr ""
 
-#: ../../retux.py:8664
+#: ../../retux.py:8511
 msgid "Starting game..."
 msgstr ""

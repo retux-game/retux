@@ -748,6 +748,17 @@ License: GNU GPLv3 or later <https://gnu.org/licenses/gpl.html>
 
 ------------------------------------------------------------------------
 
+data/fonts/TakaoPGothic.ttf
+
+Source: https://packages.debian.org/sid/fonts-takao-gothic
+
+Copyright (C) 2007-2015 Information-technology Promotion Agency, Japan.
+Copyright (C) 2010-2015 Takao Fonts Maintainers Team
+
+License: IPA Font License (Full text found under data/ipa_font_license.txt)
+
+------------------------------------------------------------------------
+
 locale/es.po
 
 Authors:
