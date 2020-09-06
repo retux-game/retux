@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":14,
  "infinite":false,
  "layers":[
@@ -2378,8 +2385,8 @@
                         }, 
                         {
                          "name":"limit",
-                         "type":"string",
-                         "value":"5"
+                         "type":"int",
+                         "value":5
                         }],
                  "rotation":0,
                  "type":"object_warp_spawn",

@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":56,
  "infinite":false,
  "layers":[
@@ -798,7 +805,7 @@
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"Traveler's Note:\\n\\nIf only I could reach those rocks on top of those crates, I could build a staircase to that pipe...."
+                         "value":"Traveler's Note:\n\nIf only I could reach those rocks on top of those crates, I could build a staircase to that pipe...."
                         }],
                  "rotation":0,
                  "type":"",
