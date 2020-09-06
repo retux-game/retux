@@ -1,4 +1,12 @@
 { "columns":5,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"",
+         "target":"."
+        }
+    },
  "image":"..\/images\/tiles\/tileset_creatures.png",
  "imageheight":96,
  "imagewidth":160,
@@ -138,6 +146,15 @@
                  "name":"cls",
                  "type":"string",
                  "value":"circoflame_center"
+                }]
+        }, 
+        {
+         "id":14,
+         "properties":[
+                {
+                 "name":"cls",
+                 "type":"string",
+                 "value":"crystallo"
                 }]
         }],
  "tilewidth":32,

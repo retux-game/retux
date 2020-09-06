@@ -2924,11 +2924,11 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
         self.destroy()
 
     def knock(self, other=None):
-        super(WalkingSnowball, self).knock(other)
+        super().knock(other)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
-        super(WalkingSnowball, self).burn()
+        super().burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def freeze(self):
@@ -2946,6 +2946,33 @@ class BouncingSnowball(WalkingSnowball):
 
     def stop_down(self):
         self.yvelocity = get_jump_speed(SNOWBALL_BOUNCE_HEIGHT, self.gravity)
+
+
+class Crystallo(CrowdObject, KnockableObject, WinPuffObject):
+
+    burnable = True
+    freezable = True
+    stayonplatform = True
+
+    def __init__(self, x, y, z=0, **kwargs):
+        kwargs["sprite"] = crystallo_walk_sprite
+        sge.dsp.Object.__init__(self, x, y, z, **kwargs)
+
+    def touch(self, other):
+        other.hurt()
+
+    def stomp(self, other):
+        other.stomp_jump(self)
+        play_sound(stomp_sound, self.x, self.y)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+        Corpse.create(self.x, self.y, self.z, sprite=crystallo_squished_sprite,
+                      image_xscale=self.image_xscale,
+                      image_yscale=self.image_yscale)
+        self.destroy()
+
+    def knock(self, other=None):
+        super().knock(other)
+        sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
 
 class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
@@ -3045,11 +3072,11 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
 
     def knock(self, other=None):
         if self.parent is None:
-            super(WalkingIceblock, self).knock(other)
+            super().knock(other)
             sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def burn(self):
-        super(WalkingIceblock, self).burn()
+        super().burn()
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
 
     def freeze(self):
@@ -7787,7 +7814,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "special_blocks": get_object, "decoration_small": get_object,
          "map_objects": get_object, "player": Player,
          "walking_snowball": WalkingSnowball,
-         "bouncing_snowball": BouncingSnowball,
+         "bouncing_snowball": BouncingSnowball, "crystallo": Crystallo,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
          "flying_snowball": FlyingSnowball, "flying_spiky": FlyingSpiky,
@@ -7890,6 +7917,12 @@ bouncing_snowball_sprite = sge.gfx.Sprite(
 snowball_squished_sprite = sge.gfx.Sprite("snowball_squished", d, origin_x=17,
                                           origin_y=-19, bbox_x=-13, bbox_y=19,
                                           bbox_width=26, bbox_height=13)
+crystallo_walk_sprite = sge.gfx.Sprite(
+    "crystallo", d, origin_x=23, origin_y=-5, fps=8, bbox_x=-20, bbox_y=8,
+    bbox_width=40, bbox_height=24)
+crystallo_squished_sprite = sge.gfx.Sprite(
+    "crystallo_squished", d, origin_x=23, origin_y=-17, bbox_x=-20, bbox_y=19,
+    bbox_width=40, bbox_height=13)
 iceblock_walk_sprite = sge.gfx.Sprite(
     "iceblock", d, origin_x=18, origin_y=6, fps=10, bbox_x=-13, bbox_y=1,
     bbox_width=25, bbox_height=31)
