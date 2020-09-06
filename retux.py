@@ -235,6 +235,7 @@ CAMERA_TARGET_MARGIN_BOTTOM = CAMERA_MARGIN_BOTTOM + TILE_SIZE
 
 WARP_LAX = 12
 WARP_SPEED = 3
+WARP_EDGE_SPEED = 1.5
 
 SHAKE_FRAME_TIME = FPS / DELTA_MIN
 SHAKE_AMOUNT = 3
@@ -1953,13 +1954,13 @@ class Player(xsge_physics.Collider):
     def set_warp_image(self):
         hands_free = (self.held_object is None)
 
-        if abs(self.xvelocity) >= WARP_SPEED / 2:
+        if abs(self.xvelocity) >= WARP_EDGE_SPEED / 2:
             if hands_free:
                 self.sprite = tux_walk_sprite
             else:
                 self.sprite = self.get_grab_sprite(tux_body_walk_sprite)
 
-            self.image_speed = WARP_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
+            self.image_speed = WARP_EDGE_SPEED * PLAYER_WALK_FRAMES_PER_PIXEL
             if self.xvelocity > 0:
                 self.image_xscale = abs(self.image_xscale)
             else:
@@ -5602,7 +5603,7 @@ class WarpSpawn(xsge_path.Path):
                 obj.y = y + obj.sprite.origin_y - obj.sprite.height
                 obj.move_direction = 90
 
-            obj.speed = WARP_SPEED
+            obj.speed = WARP_EDGE_SPEED
             obj.xacceleration = 0
             obj.yacceleration = 0
             obj.xdeceleration = 0
@@ -5629,7 +5630,7 @@ class Warp(WarpSpawn):
         other.warping = True
         other.move_direction = {"right": 0, "up": 270, "left": 180,
                                 "down": 90}.get(self.direction, 0)
-        other.speed = WARP_SPEED
+        other.speed = WARP_EDGE_SPEED
         other.xacceleration = 0
         other.yacceleration = 0
         other.xdeceleration = 0
