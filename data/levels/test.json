@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":14,
  "infinite":false,
  "layers":[
@@ -202,7 +209,7 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"arctis"
+         "value":"snowmountains"
         }, 
         {
          "name":"music",

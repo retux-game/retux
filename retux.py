@@ -8301,6 +8301,24 @@ if not NO_BACKGROUNDS:
 backgrounds["bluemountain"] = sge.gfx.Background(layers,
                                                  sge.gfx.Color((86, 142, 206)))
 
+if not NO_BACKGROUNDS:
+    layers = [
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("snowmountains", d), 0, 0, -100000,
+            xscroll_rate=0.1, yscroll_rate=0, repeat_left=True,
+            repeat_right=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("snowmountains-bottom", d, transparent=False), 0,
+            720, -100000, xscroll_rate=0.1, yscroll_rate=0, repeat_left=True,
+            repeat_right=True, repeat_down=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("snowmountains-sky", d, transparent=False), 0, 0,
+            -100010, xscroll_rate=0, yscroll_rate=0, repeat_left=True,
+            repeat_right=True)]
+
+backgrounds["snowmountains"] = sge.gfx.Background(layers,
+                                                  sge.gfx.Color("#DAD8F5"))
+
 castle_spr = sge.gfx.Sprite("castle", d)
 castle_bottom_spr = sge.gfx.Sprite("castle-bottom", d, transparent=False)
 for i in list(backgrounds.keys()):
