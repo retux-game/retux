@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":14,
  "infinite":false,
  "layers":[
@@ -19,7 +26,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmc0OgjAQhOHx9CAXfxKUgPE19KbPq49gPZAQ3C60BTramWQSRUPa0q+zq02eZQ1N06LPxhTlq03+\/boQrknfs723XVtaJfmgAiWx4MpHAczHCWAcVNpCzY8aLD8qM5a9xQegcVLTSmJBypSlhZYfFfskKlDbgX0y9HlXaP2HxsdayRbNzB3KV4h8HCc2Uj5OoZ3nOdGeFa+ebfdL8Vy5mjnfOvNG7D\/Ih12fvbxSMnbMb\/nPnmslr1Nj5G7m++jMGbH\/IB+yWjZC1kKqUbV7psZIn4\/asmax6nmt\/\/i3\/z9d66RQNkKYQmMkpMZ0XXPX\/TbneqXEh62uQTQaI+VE7I+x73ohMTvExwXQv8TH3M889h7RHCOzl64PYj9PpHqJdvMbMJiDAg==",
+         "data":"eJztmU0OgjAQheF4upCNPwlKwHgN3el59QjWBUmD00J\/KE\/7XvISBUPaab\/OjHRlUXQ0TYs+K1OUrzbl9+dKuCb9zvTddC21avJBBUpiwZWPCpiPE8A4qLyFmj9asPzRqLHsDT4AjZOKK4kFKaekFlr+aNgnUYHajuyTsfu60PoPGx9rS26xmXmH8hUiH8fIRsqPMbTzPCf6s+I1sOl5OZ4rVzXnmzZvxP6DfJj12csrS46d8l\/+c+DWkq9zY+Su5vvQ5ozYf5APWT0bIbGQalTbM3NjZMhHa4jZUvW8rf\/4t\/efrnVSKBshTKExElJjusbcdb\/NGa+c+DDVNYhGY6SOxP4U+8YLidkxPi6A\/iU+5l7zqXVL3z+njN0SOTt1fbDkuqLVS79qfR1Txu4NgSuDOQ==",
          "encoding":"base64",
          "height":14,
          "id":2,
@@ -726,18 +733,6 @@
          "name":"Items",
          "objects":[
                 {
-                 "gid":486,
-                 "height":32,
-                 "id":55,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5504,
-                 "y":384
-                }, 
-                {
                  "gid":477,
                  "height":32,
                  "id":56,
@@ -760,6 +755,42 @@
                  "width":32,
                  "x":608,
                  "y":64
+                }, 
+                {
+                 "height":0,
+                 "id":121,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":-64
+                        }],
+                 "properties":[
+                        {
+                         "name":"cls",
+                         "type":"string",
+                         "value":"rusty_spring"
+                        }, 
+                        {
+                         "name":"interval",
+                         "type":"int",
+                         "value":30
+                        }, 
+                        {
+                         "name":"limit",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"object_warp_spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":5504,
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2055,7 +2086,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":121,
+ "nextobjectid":122,
  "orientation":"orthogonal",
  "properties":[
         {
