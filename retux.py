@@ -8305,11 +8305,11 @@ if not NO_BACKGROUNDS:
     layers = [
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("snowmountains", d), 0, 0, -100000,
-            xscroll_rate=0.1, yscroll_rate=0, repeat_left=True,
+            xscroll_rate=0.25, yscroll_rate=0, repeat_left=True,
             repeat_right=True),
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("snowmountains-bottom", d, transparent=False), 0,
-            720, -100000, xscroll_rate=0.1, yscroll_rate=0, repeat_left=True,
+            720, -100000, xscroll_rate=0.25, yscroll_rate=0, repeat_left=True,
             repeat_right=True, repeat_down=True),
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("snowmountains-sky", d, transparent=False), 0, 0,
@@ -8318,6 +8318,28 @@ if not NO_BACKGROUNDS:
 
 backgrounds["snowmountains"] = sge.gfx.Background(layers,
                                                   sge.gfx.Color("#DAD8F5"))
+
+if not NO_BACKGROUNDS:
+    layers = [
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("cloud-mountains-midground", d), 0, 366, -100010,
+            xscroll_rate=0.25, yscroll_rate=0.1, repeat_left=True,
+            repeat_right=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("cloud-mountains-bottom", d), 0, 1455, -100000,
+            xscroll_rate=0.25, yscroll_rate=0.1, repeat_left=True,
+            repeat_right=True, repeat_down=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("cloud-mountains-foreground", d), 0, 366, -100000,
+            xscroll_rate=0.2, yscroll_rate=0.1, repeat_left=True,
+            repeat_right=True),
+        sge.gfx.BackgroundLayer(
+            sge.gfx.Sprite("cloud-mountains-background", d), 0, 366, -100020,
+            xscroll_rate=0.1, yscroll_rate=0.1, repeat_left=True,
+            repeat_right=True)]
+
+backgrounds["cloudmountains"] = sge.gfx.Background(layers,
+                                                   sge.gfx.Color("#769094"))
 
 castle_spr = sge.gfx.Sprite("castle", d)
 castle_bottom_spr = sge.gfx.Sprite("castle-bottom", d, transparent=False)
