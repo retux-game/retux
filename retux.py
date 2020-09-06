@@ -6324,7 +6324,8 @@ class MapWarp(MapSpace):
             mapdest = None
             mapdest_space = None
             m = Worldmap.load(current_worldmap)
-            m.start(transition="dissolve", transition_time=TRANSITION_TIME)
+            m.start(transition="pixelate", transition_time=TRANSITION_TIME,
+                    transition_arg=100)
             play_sound(warp_sound)
 
 
