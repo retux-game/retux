@@ -8197,9 +8197,12 @@ coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
 
 d = os.path.join(DATA, "images", "worldmap")
-worldmap_tux_sprite = sge.gfx.Sprite("tux", d, origin_x=1, origin_y=12)
-worldmap_tux_walk_sprite = sge.gfx.Sprite("tux_walk", d, origin_x=1,
-                                          origin_y=12, fps=16)
+worldmap_tux_sprite = sge.gfx.Sprite(
+    "tux", d, origin_x=1, origin_y=12, bbox_x=0, bbox_y=0, bbox_width=32,
+    bbox_height=32)
+worldmap_tux_walk_sprite = sge.gfx.Sprite(
+    "tux_walk", d, origin_x=1, origin_y=12, fps=16, bbox_x=0, bbox_y=0,
+    bbox_width=32, bbox_height=32)
 worldmap_level_complete_sprite = sge.gfx.Sprite("level_complete", d)
 worldmap_level_incomplete_sprite = sge.gfx.Sprite("level_incomplete", d, fps=8)
 worldmap_warp_sprite = sge.gfx.Sprite("warp", d, fps=3)
@@ -8229,7 +8232,7 @@ if not NO_BACKGROUNDS:
             repeat_right=True, repeat_down=True),
         sge.gfx.BackgroundLayer(
             sge.gfx.Sprite("arctis3", d, transparent=False), 0, 0, -100020,
-            xscroll_rate=0, yscroll_rate=0.25, repeat_left=True,
+            xscroll_rate=0, yscroll_rate=0, repeat_left=True,
             repeat_right=True)]
 
 backgrounds["arctis"] = sge.gfx.Background(layers,
