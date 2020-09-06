@@ -167,6 +167,7 @@ PLAYER_RUN_FRAMES_PER_PIXEL = 1 / 10
 PLAYER_HITSTUN = 120
 PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
 PLAYER_DIE_FALL_SPEED = 8
+PLAYER_OFF_FLOOR_THRESHOLD = 2
 
 SNOWMAN_WALK_SPEED = 2
 SNOWMAN_STRONG_WALK_SPEED = 3
@@ -1985,6 +1986,7 @@ class Player(xsge_physics.Collider):
         self.on_slope = self.get_bottom_touching_slope()
         self.on_floor = self.get_bottom_touching_wall() + self.on_slope
         self.was_on_floor = self.on_floor
+        self.off_floor_counter = 0
 
         self.view = sge.game.current_room.views[self.player]
         self.view.x = self.x - self.view.width / 2
@@ -2121,7 +2123,16 @@ class Player(xsge_physics.Collider):
     def event_step_normal(self, time_passed, delta_mult):
         on_floor = self.get_bottom_touching_wall()
         self.on_slope = self.get_bottom_touching_slope() if not on_floor else []
-        self.was_on_floor = self.on_floor
+
+        if self.on_floor:
+            self.was_on_floor = self.on_floor
+            self.off_floor_counter = 0
+        else:
+            self.off_floor_counter += delta_mult
+            if self.off_floor_counter >= PLAYER_OFF_FLOOR_THRESHOLD:
+                self.was_on_floor = []
+                self.off_floor_counter = 0
+
         self.on_floor = on_floor + self.on_slope
         h_control = bool(self.right_pressed) - bool(self.left_pressed)
         v_control = bool(self.down_pressed) - bool(self.up_pressed)
