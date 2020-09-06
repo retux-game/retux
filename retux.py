@@ -324,7 +324,7 @@ WIN_COUNT_POINTS_MAX = FPS
 WIN_COUNT_TIME_MAX = 5 * FPS
 WIN_FINISH_DELAY = 120
 
-MAP_SPEED = 5
+MAP_SPEED = 4
 
 TEXT_SPEED = 1000
 
@@ -6007,6 +6007,13 @@ class MapPlayer(sge.dsp.Object):
         room = sge.game.current_room
         space = MapSpace.get_at(self.x, self.y)
 
+        if self.moving:
+            self.sprite = worldmap_tux_walk_sprite
+        else:
+            self.sprite = worldmap_tux_sprite
+
+        self.image_fps = self.sprite.fps
+
         if space is not None:
             if space.level and space.level not in level_names:
                 r = Level.load(space.level, True)
@@ -8190,7 +8197,9 @@ coin_icon_sprite.height = 16
 coin_icon_sprite.origin_y = -1
 
 d = os.path.join(DATA, "images", "worldmap")
-worldmap_tux_sprite = sge.gfx.Sprite("tux", d)
+worldmap_tux_sprite = sge.gfx.Sprite("tux", d, origin_x=1, origin_y=12)
+worldmap_tux_walk_sprite = sge.gfx.Sprite("tux_walk", d, origin_x=1,
+                                          origin_y=12, fps=16)
 worldmap_level_complete_sprite = sge.gfx.Sprite("level_complete", d)
 worldmap_level_incomplete_sprite = sge.gfx.Sprite("level_incomplete", d, fps=8)
 worldmap_warp_sprite = sge.gfx.Sprite("warp", d, fps=3)
