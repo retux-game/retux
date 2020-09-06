@@ -1834,7 +1834,7 @@ class Player(xsge_physics.Collider):
             y += 18
             sge.game.project_sprite(coin_icon_sprite,
                                     coin_animation.image_index, 0, y)
-            sge.game.project_text(font, f"x{self.coins}", 16, y,
+            sge.game.project_text(font, f"{self.coins}", 16, y,
                                   color=sge.gfx.Color("white"),
                                   outline=sge.gfx.Color("black"),
                                   outline_thickness=text_outline_thickness)
