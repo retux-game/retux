@@ -6725,17 +6725,20 @@ class OptionsMenu(Menu):
                     gui_handler.event_step(0, 0)
                     sge.game.refresh()
 
-                    with zipfile.ZipFile(fname, 'r') as rtz:
-                        infolist = rtz.infolist()
-                        for i in range(len(infolist)):
-                            member = infolist[i]
-                            rtz.extract(member, DATA)
-                            rtz.extract(member, os.path.join(LOCAL, "data"))
-                            progressbar.progress = (i + 1) / len(infolist)
-                            progressbar.redraw()
-                            sge.game.pump_input()
-                            gui_handler.event_step(0, 0)
-                            sge.game.refresh()
+                    try:
+                        with zipfile.ZipFile(fname, 'r') as rtz:
+                            infolist = rtz.infolist()
+                            for i in range(len(infolist)):
+                                member = infolist[i]
+                                rtz.extract(member, DATA)
+                                rtz.extract(member, os.path.join(LOCAL, "data"))
+                                progressbar.progress = (i + 1) / len(infolist)
+                                progressbar.redraw()
+                                sge.game.pump_input()
+                                gui_handler.event_step(0, 0)
+                                sge.game.refresh()
+                    except Exception as e:
+                        show_error(str(e))
 
                     window.destroy()
                     sge.game.pump_input()
