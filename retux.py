@@ -1276,11 +1276,8 @@ class CreditsScreen(SpecialScreen):
                 head_sprite = sge.gfx.Sprite.from_text(
                     font_big, _(section["title"]), width=self.width,
                     color=sge.gfx.Color("white"), halign="center",
-                    outline_normal=sge.gfx.Color("black"),
-                    outline_selected=sge.gfx.Color("black"),
-                    outline_thickness_normal=text_outline_thickness,
-                    outline_thickness_selected=text_outline_thickness,
-                    selection_prefix="<", selection_suffix=">")
+                    outline=sge.gfx.Color("black"),
+                    outline_thickness=text_outline_thickness)
                 x = self.width / 2
                 y = self.sections[-1].bbox_bottom + font_big.size * 3
                 head_section = sge.dsp.Object.create(x, y, sprite=head_sprite,
@@ -1292,11 +1289,8 @@ class CreditsScreen(SpecialScreen):
                     list_sprite = sge.gfx.Sprite.from_text(
                         font, _(line), width=self.width - 2 * TILE_SIZE,
                         color=sge.gfx.Color("white"), halign="center",
-                        outline_normal=sge.gfx.Color("black"),
-                        outline_selected=sge.gfx.Color("black"),
-                        outline_thickness_normal=text_outline_thickness,
-                        outline_thickness_selected=text_outline_thickness,
-                        selection_prefix="<", selection_suffix=">")
+                        outline=sge.gfx.Color("black"),
+                        outline_thickness=text_outline_thickness)
                     x = self.width / 2
                     y = self.sections[-1].bbox_bottom + font.size
                     list_section = sge.dsp.Object.create(
