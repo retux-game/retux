@@ -6016,13 +6016,19 @@ class MapPlayer(sge.dsp.Object):
 
         if space is not None:
             if space.level and space.level not in level_names:
-                r = Level.load(space.level, True)
-                if r is not None:
-                    loaded_levels[space.level] = r
-                    current_areas = {}
-                else:
+                fname = os.path.join(DATA, "levels", space.level)
+                try:
+                    with open(fname) as f:
+                        data = json.load(f)
+                except (OSError, ValueError) as e:
+                    play_sound(error_sound)
+                    show_error(_("An error occurred when trying to load the level:\n\n{}").format(e))
                     rush_save()
                     sge.game.start_room.start()
+                else:
+                    room_properties = xsge_tiled.t_get_properties(
+                        data.get("properties", {}))
+                    level_names[space.level] = room_properties.get("name")
 
             room.level_text = level_names.get(space.level)
             room.level_tuxdoll_available = space.level in tuxdolls_available
@@ -6379,11 +6385,6 @@ class MapPath(xsge_path.Path):
         space = MapSpace.get_at(obj.x, obj.y)
         if space is not None and space.ID is not None:
             current_worldmap_space = space.ID
-
-            # Save the current worldmap space as the current level.
-            # This will make preloading start there next time.
-            if current_worldmap_space in levels:
-                current_level = levels.index(current_worldmap_space)
 
         save_game()
 
@@ -7444,7 +7445,7 @@ def play_music(music, force_restart=False):
         sge.snd.Music.stop()
 
 
-def load_levelset(fname, preload_start=0):
+def load_levelset(fname):
     global current_levelset
     global start_cutscene
     global worldmap
@@ -7483,69 +7484,6 @@ def load_levelset(fname, preload_start=0):
         tuxdolls_available = data.get("tuxdolls_available", [])
 
         main_area = None
-
-        text = _("Preloading levels...\n\n(press any key to skip)")
-        label_w = font.get_width("X" * 23)
-        label_h = font.get_height(text, width=label_w)
-        margin = 16
-        w = label_w + 2 * margin
-        h = label_h + 3 * margin + xsge_gui.progressbar_container_sprite.height
-        x = SCREEN_SIZE[0] / 2 - w / 2
-        y = SCREEN_SIZE[1] / 2 - h / 2
-        c = sge.gfx.Color("black")
-        window = xsge_gui.Window(gui_handler, x, y, w, h,
-                                 background_color=c, border=False)
-
-        x = margin
-        y = margin
-        c = sge.gfx.Color("white")
-        xsge_gui.Label(
-            window, x, y, 1, text, font=font, width=label_w, height=label_h,
-            color=c)
-
-        x = margin
-        y = h - margin - xsge_gui.progressbar_container_sprite.height
-        progressbar = xsge_gui.ProgressBar(window, x, y, 0, width=label_w)
-
-        window.show()
-        gui_handler.event_step(0, 0)
-        sge.game.refresh()
-
-        sorted_levels = levels[preload_start:] + levels[:preload_start]
-        for level in sorted_levels:
-            subrooms = [level]
-            already_checked = []
-            done = False
-
-            while subrooms:
-                subroom = subrooms.pop(0)
-                already_checked.append(subroom)
-                r = Level.load(subroom)
-                if r is not None:
-                    loaded_levels[subroom] = r
-                    for obj in r.objects:
-                        if isinstance(obj, (Door, Warp)):
-                            if obj.dest and ':' in obj.dest:
-                                map_f = obj.dest.split(':', 1)[0]
-                                if (map_f not in subrooms and
-                                        map_f not in already_checked and
-                                        map_f not in {"__main__", "__map__"}):
-                                    subrooms.append(map_f)
-                if do_refresh():
-                    done = True
-                    break
-            else:
-                progressbar.progress = ((sorted_levels.index(level) + 1) /
-                                        len(sorted_levels))
-                progressbar.redraw()
-
-            if done or do_refresh():
-                break
-
-        window.destroy()
-        do_refresh()
-        sge.game.pump_input()
-        sge.game.input_events = []
 
 
 def set_new_game():
@@ -7650,7 +7588,7 @@ def load_game():
         current_level = slot.get("current_level", 0)
         current_checkpoints = slot.get("current_checkpoints", {})
         score = slot.get("score", 0)
-        load_levelset(slot["levelset"], current_level)
+        load_levelset(slot["levelset"])
     else:
         set_new_game()
 
