@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":30,
  "infinite":false,
  "layers":[
@@ -225,7 +232,7 @@
                  "y":0
                 }, 
                 {
-                 "height":64,
+                 "height":192,
                  "id":18,
                  "name":"",
                  "rotation":0,
@@ -233,10 +240,10 @@
                  "visible":true,
                  "width":768,
                  "x":5024,
-                 "y":0
+                 "y":-128
                 }, 
                 {
-                 "height":160,
+                 "height":288,
                  "id":19,
                  "name":"",
                  "rotation":0,
@@ -244,7 +251,7 @@
                  "visible":true,
                  "width":928,
                  "x":4096,
-                 "y":0
+                 "y":-128
                 }, 
                 {
                  "height":64,
