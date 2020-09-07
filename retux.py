@@ -471,13 +471,10 @@ class Level(sge.dsp.Room):
 
         self.load_timeline(timeline)
 
-        if ambient_light:
-            self.ambient_light = sge.gfx.Color(ambient_light)
-            if (self.ambient_light.red >= 255 and
-                    self.ambient_light.green >= 255 and
-                    self.ambient_light.blue >= 255):
-                self.ambient_light = None
-        else:
+        self.ambient_light = ambient_light
+        if (self.ambient_light and self.ambient_light.red >= 255
+                and self.ambient_light.green >= 255
+                and self.ambient_light.blue >= 255):
             self.ambient_light = None
 
         self.disable_lights = disable_lights or self.ambient_light is None
@@ -2977,6 +2974,9 @@ class Crystallo(CrowdObject, KnockableObject, WinPuffObject):
     def knock(self, other=None):
         super().knock(other)
         sge.game.current_room.add_points(ENEMY_KILL_POINTS)
+
+    def touch_hurt(self):
+        pass
 
 
 class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
@@ -6693,56 +6693,56 @@ class OptionsMenu(Menu):
         elif self.choice == 10:
             if HAVE_TK:
                 play_sound(confirm_sound)
-                fname = tkinter_filedialog.askopenfilename(
+                fnames = tkinter_filedialog.askopenfilenames(
                     filetypes=[(_("ReTux levelset files"), ".rtz"),
                                (_("all files"), ".*")])
+                for fname in fnames:
+                    w = 400
+                    h = 128
+                    margin = 16
+                    x = SCREEN_SIZE[0] / 2 - w / 2
+                    y = SCREEN_SIZE[1] / 2 - h / 2
+                    c = sge.gfx.Color("black")
+                    window = xsge_gui.Window(gui_handler, x, y, w, h,
+                                             background_color=c, border=False)
 
-                w = 400
-                h = 128
-                margin = 16
-                x = SCREEN_SIZE[0] / 2 - w / 2
-                y = SCREEN_SIZE[1] / 2 - h / 2
-                c = sge.gfx.Color("black")
-                window = xsge_gui.Window(gui_handler, x, y, w, h,
-                                         background_color=c, border=False)
+                    x = margin
+                    y = margin
+                    text = _(f"Importing {fname}...")
+                    c = sge.gfx.Color("white")
+                    xsge_gui.Label(
+                        window, x, y, 1, text, font=font, width=(w - 2 * margin),
+                        height=(h - 3 * margin -
+                                xsge_gui.progressbar_container_sprite.height),
+                        color=c)
 
-                x = margin
-                y = margin
-                text = _("Importing levelset...")
-                c = sge.gfx.Color("white")
-                xsge_gui.Label(
-                    window, x, y, 1, text, font=font, width=(w - 2 * margin),
-                    height=(h - 3 * margin -
-                            xsge_gui.progressbar_container_sprite.height),
-                    color=c)
+                    x = margin
+                    y = h - margin - xsge_gui.progressbar_container_sprite.height
+                    progressbar = xsge_gui.ProgressBar(window, x, y, 0,
+                                                       width=(w - 2 * margin))
 
-                x = margin
-                y = h - margin - xsge_gui.progressbar_container_sprite.height
-                progressbar = xsge_gui.ProgressBar(window, x, y, 0,
-                                                   width=(w - 2 * margin))
+                    window.show()
+                    gui_handler.event_step(0, 0)
+                    sge.game.refresh()
 
-                window.show()
-                gui_handler.event_step(0, 0)
-                sge.game.refresh()
+                    with zipfile.ZipFile(fname, 'r') as rtz:
+                        infolist = rtz.infolist()
+                        for i in range(len(infolist)):
+                            member = infolist[i]
+                            rtz.extract(member, DATA)
+                            rtz.extract(member, os.path.join(LOCAL, "data"))
+                            progressbar.progress = (i + 1) / len(infolist)
+                            progressbar.redraw()
+                            sge.game.pump_input()
+                            gui_handler.event_step(0, 0)
+                            sge.game.refresh()
 
-                with zipfile.ZipFile(fname, 'r') as rtz:
-                    infolist = rtz.infolist()
-                    for i in range(len(infolist)):
-                        member = infolist[i]
-                        rtz.extract(member, DATA)
-                        rtz.extract(member, os.path.join(LOCAL, "data"))
-                        progressbar.progress = (i + 1) / len(infolist)
-                        progressbar.redraw()
-                        sge.game.pump_input()
-                        gui_handler.event_step(0, 0)
-                        sge.game.refresh()
-
-                window.destroy()
-                sge.game.pump_input()
-                gui_handler.event_step(0, 0)
-                sge.game.refresh()
-                sge.game.pump_input()
-                sge.game.input_events = []
+                    window.destroy()
+                    sge.game.pump_input()
+                    gui_handler.event_step(0, 0)
+                    sge.game.refresh()
+                    sge.game.pump_input()
+                    sge.game.input_events = []
             else:
                 play_sound(kill_sound)
                 e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")

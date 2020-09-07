@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":14,
  "infinite":false,
  "layers":[
@@ -539,8 +546,8 @@
  "properties":[
         {
          "name":"ambient_light",
-         "type":"string",
-         "value":"black"
+         "type":"color",
+         "value":"#ff000000"
         }, 
         {
          "name":"background_x",
