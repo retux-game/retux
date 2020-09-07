@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":28,
  "infinite":false,
  "layers":[
@@ -1164,7 +1171,7 @@
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"Traveler's Note:\\n\\nI swear, there are no fire flowers anywhere in this level! How am I supposed to melt this ice?! What's more, that ledge over there is shaped like a grin, almost like it's taunting me!"
+                         "value":"Traveler's Note:\n\nI swear, there are no fire flowers anywhere in this level! How am I supposed to melt this ice?! What's more, that ledge over there is shaped like a grin, almost like it's taunting me!"
                         }],
                  "rotation":0,
                  "type":"",
