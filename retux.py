@@ -56,10 +56,15 @@ if getattr(sys, "frozen", False):
     __file__ = sys.executable
 
 DATA = tempfile.mkdtemp("retux-data")
-CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
+CONFIG = os.path.join(
+    os.getenv("XDG_CONFIG_HOME", os.path.join(os.path.expanduser("~"),
+                                              ".config")), "retux")
+LOCAL = os.path.join(
+    os.getenv("XDG_DATA_HOME", os.path.join(os.path.expanduser("~"), ".local",
+                                            "share")), "retux")
 
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
-        os.path.join(CONFIG, "data")]
+        os.path.join(LOCAL, "data")]
 
 gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
 
@@ -6296,10 +6301,8 @@ class MapSpace(sge.dsp.Object):
         for obj in sge.game.current_room.get_objects_at(x - 1, y - 1, 2, 2):
             if (isinstance(obj, MapSpace) and abs(x - obj.x) < 1 and
                     abs(y - obj.y) < 1):
-                print(obj, " is at the right position")
                 return obj
 
-        print("No space found")
         return None
 
 
@@ -6727,7 +6730,7 @@ class OptionsMenu(Menu):
                     for i in range(len(infolist)):
                         member = infolist[i]
                         rtz.extract(member, DATA)
-                        rtz.extract(member, os.path.join(CONFIG, "data"))
+                        rtz.extract(member, os.path.join(LOCAL, "data"))
                         progressbar.progress = (i + 1) / len(infolist)
                         progressbar.redraw()
                         sge.game.pump_input()
@@ -7526,7 +7529,7 @@ def write_to_disk():
     with open(os.path.join(CONFIG, "config.json"), 'w') as f:
         json.dump(cfg, f, indent=4)
 
-    with open(os.path.join(CONFIG, "save_slots.json"), 'w') as f:
+    with open(os.path.join(LOCAL, "save_slots.json"), 'w') as f:
         json.dump(save_slots, f, indent=4)
 
 
@@ -8420,9 +8423,12 @@ sge.game.mouse.visible = False
 if not os.path.exists(CONFIG):
     os.makedirs(CONFIG)
 
+if not os.path.exists(LOCAL):
+    os.makedirs(LOCAL)
+
 # Save error messages to a text file (so they aren't lost).
 if not PRINT_ERRORS:
-    stderr = os.path.join(CONFIG, "stderr.txt")
+    stderr = os.path.join(LOCAL, "stderr.txt")
     if not os.path.isfile(stderr) or os.path.getsize(stderr) > 1000000:
         sys.stderr = open(stderr, 'w')
     else:
@@ -8521,7 +8527,7 @@ finally:
     set_gui_controls()
 
 try:
-    with open(os.path.join(CONFIG, "save_slots.json")) as f:
+    with open(os.path.join(LOCAL, "save_slots.json")) as f:
         loaded_slots = json.load(f)
 except (OSError, ValueError):
     pass
