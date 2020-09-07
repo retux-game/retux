@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":30,
  "infinite":false,
  "layers":[
@@ -19,7 +26,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztm7uKFUEQhmvewBVNXVdTQU2FNRdfQDTaxEviJl4SzdaHMfQNvGDoDRSMFTR1QfOtYhhYRo87p6e6p7r3++BjkhNUD93\/6emLCAAAAAAAAAAAAAAAAAAAwPHmSSfytFu6CgCAo9nTrHpGXgFABZBXAFAL5BUA1ELpvDqhbjt5q1zZABCA0nl1Rj3p5D0hswBa5ab8PUe53\/UeNZc55VTDBfWsk49lXmaxNwoQE8uqu5I+lznnVIdnXplzMou1O4B4DFn1SNJz4ZJTLd55ZQ6Zte7619S5pYf7E3Nxe9rPAJrEI6vMyHllWmZ5rYstLcBxxCurzOh51ZIANZN6BsArq0zyiryCnrlncl6qr0oXXQh7NxuS9l3hlVUmeUVeQc\/cMznv1Q\/qHfVG4dpzMmTVpiw\/hsgr8gp6PPrwA\/WheluWzy2vM9xRssokr8irVFo75+bZhw\/n1mf1S7aqV+N1hjtKVplXxSeDrwRoS3Rbo7Vzbjn+cy23vqnfpfydjRbnEFvSXgZHtTXIq2n+UvelP0v4NUfhK2gxr7Cc0Zi7vjE+lzvc7To9enqso5SYm+Qe33aW8If6073yf9NCXu2o11d4LUB9LRuJOfvTqxzudp0fPT3WUUrcgS8xvn+rf6TMWnztebWj7jbcvuhGIdf+9LB3c3n09OhXqXez1rnPX6r\/l9pDrHE823z9ufq2+39W1dq+mvTY1xiPv5RvrVz70znzyky5m7XOff7S\/f9wbr1W34hv36hxPFtevVDfdWl7fBcDtKEVPb+5BlK+tXLtjeTOqzk1TWGpOi23PqqfxLdv1JhXW2u0lz2++I7HX6Q+SV7FeP+ttAeX9QCaeqna",
+         "data":"eJztm7tqFVEUhte8gYq2MdFW0LRC7MUXEK3SeGlM46XRTh\/G0jcwSsp4AQVrBW0NJL1rMQyEMSdnzp6196zZ+T74mCbF2oe9\/+yrCAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDZ42Uj8qqZugoAgOW81qx6UzCvzqlbTt4vVzYABKB0Xq2pF5x8LGQWQK3ck\/\/nKE+a1mVzmYtONVxT1518IeMyi7UwQEwsqx5J+lzmilMdnnlljsms0nNLAFhOl1XPJT0XbjjV4p1XZpdZq+5\/DZ1bengwMBe3hv0ZQJV4ZJUZOa9MyyyvfbGpBTiLeGWVGT2vahJgzqTeAfDKKpO8Iq+gZeydnPfqbumiC2G\/zXlJW1d4ZZVJXpFX0DL2Ts4n9bP6UL1buPacdFl1WaYfQ+QVeQUtHn34qfpMfSDT55bXHe4oWWWSV+RVKrXdc\/Psw8dz65v6PVvVi\/G6wx0lq8xb4pPBNwO0Jbq1Uds9txz\/cy23fqq\/pPybjRrnEBtSXwZHtTbIq2H+VQ+kvUv4I0fhC6gxr7Cc0Ri7v9G\/l9u97brU+3rso5SYm+Qe33aX8Lf6x73yk6khr7bVOwu8HaC+mo3EmPPpRXZvu672vh77KCXewJcY34fqkZTZi597Xm2rOxW3L7pRyHU+3Z3dbPa+Hv0q9W3WKu\/5S\/X\/UmeIcxzPNl9\/q+41p2fVXNs3Jz3ONfrjL2Wtlet8OmdemSlvs1Z5z1+6\/x\/PrQ\/qR\/HtG3Mcz5ZX79T9Ju2M73qANtSi55qrI2WtletsJHdejalpCFPVabn1Rf0qvn1jjnm1sUJ7OeOLb3\/8ReqT5FWM37+W9uC0\/gPTa6a5",
          "encoding":"base64",
          "height":30,
          "id":2,
@@ -490,7 +497,7 @@
                  "visible":true,
                  "width":64,
                  "x":6368,
-                 "y":192
+                 "y":288
                 }, 
                 {
                  "height":128,
@@ -567,7 +574,7 @@
                         }, 
                         {
                          "x":-128,
-                         "y":-672
+                         "y":-576
                         }],
                  "rotation":0,
                  "type":"",
@@ -583,7 +590,7 @@
                  "polyline":[
                         {
                          "x":0,
-                         "y":0
+                         "y":96
                         }, 
                         {
                          "x":0,
