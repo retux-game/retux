@@ -30,7 +30,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 # Timeline text
-msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
 msgstr ""
 
 msgid "Oh, looks like I have a message!"

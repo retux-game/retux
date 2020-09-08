@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.4\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2020-09-07 20:42-0400\n"
+"POT-Creation-Date: 2020-09-08 12:57-0400\n"
 "PO-Revision-Date: 2020-09-06 10:49-0400\n"
 "Last-Translator: Layla <diligentcircle@riseup.net>\n"
 "Language-Team: Japanese\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 # Timeline text
-msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
 msgstr ""
 
 msgid "Oh, looks like I have a message!"

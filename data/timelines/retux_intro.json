@@ -20,7 +20,7 @@
         "setattr player sneak_pressed True"
     ],
     "101": [
-        "dialog tux What a nice, cold day for fishing! I wonder what I'll catch today?",
+        "dialog tux What a nice, cold day for fishing! I wonder what I'll catch today...",
         "setattr player left_pressed 1"
     ],
     "200": [

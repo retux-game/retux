@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.4\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2020-09-07 20:42-0400\n"
+"POT-Creation-Date: 2020-09-08 12:57-0400\n"
 "PO-Revision-Date: 2018-08-18 16:07+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
@@ -30,7 +30,8 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "What a nice, cold day for fishing! I wonder what I'll catch today?"
+#, fuzzy
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
 msgstr ""
 "Kia bela, malvarma tago por fiŝi! Mi demandas min, kion mi kaptos hodiaŭ."
 
