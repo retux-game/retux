@@ -77,10 +77,10 @@
         "title": "Software Used",
         "lines": [
             "Python",
-            "SGE Game Engine",
+            "Seclusion Game Engine",
             "xSGE",
             "Tiled",
-            "GIMP",
+            "GNU Image Manipulation Program",
             "KolourPaint",
             "Sfxr"
         ]

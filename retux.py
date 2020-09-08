@@ -6598,6 +6598,8 @@ class LevelsetMenu(Menu):
             if self.choice is not None and self.choice < len(self.items) - 2:
                 play_sound(confirm_sound)
                 load_levelset(self.current_levelsets[self.choice])
+                DialogBox(gui_handler,
+                          _("Levelset loaded successfully.")).show()
             else:
                 play_sound(cancel_sound)
 
@@ -7473,8 +7475,11 @@ def load_levelset(fname):
     if current_levelset != fname:
         current_levelset = fname
 
-        with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
-            data = json.load(f)
+        try:
+            with open(os.path.join(DATA, "levelsets", fname), 'r') as f:
+                data = json.load(f)
+        except Exception as e:
+            show_error(str(e))
 
         start_cutscene = data.get("start_cutscene")
         worldmap = data.get("worldmap")
