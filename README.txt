@@ -11,10 +11,12 @@ HOW TO RUN
 If you have downloaded a version of the game designated for a particular
 system, simply run the executable.
 
-To run the source code, you will need the following dependencies:
+To run the source code, you will need Python 3.6 or later
+<https://www.python.org>. You will also need the dependencies listed in
+requirements.txt, which you can install automatically by using the
+following command:
 
-- Python 3.6 or later <https://www.python.org>
-- Pygame 1.9.1 or later <https://pygame.org>
+    python3 -m pip install -r requirements.txt
 
 Once you have installed the dependencies, you can start the game by
 running "retux.py". On most systems, this should be done by
