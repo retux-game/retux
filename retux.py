@@ -2073,7 +2073,7 @@ class Player(xsge_physics.Collider):
                     else:
                         dc = self.air_friction
 
-                    if abs(self.xvelocity) - dc * delta_mult > target_speed:
+                    if abs(self.xvelocity) - dc*delta_mult > target_speed:
                         self.xdeceleration = dc
                     else:
                         self.xvelocity = target_speed * current_h_movement
@@ -2090,9 +2090,9 @@ class Player(xsge_physics.Collider):
                 else:
                     self.yvelocity = self.fall_speed
             elif self.on_slope:
-                self.yvelocity = (self.slide_speed *
-                                  (self.on_slope[0].bbox_height /
-                                   self.on_slope[0].bbox_width))
+                self.yvelocity = (self.slide_speed
+                                  * (self.on_slope[0].bbox_height
+                                     / self.on_slope[0].bbox_width))
 
     def event_step(self, time_passed, delta_mult):
         if self.warping:
@@ -2110,8 +2110,9 @@ class Player(xsge_physics.Collider):
                 if self.xvelocity:
                     self.view.x += camera_xvel
                 else:
-                    self.view.x += max(-CAMERA_STOPPED_HSPEED_MAX, min(
-                                       camera_xvel, CAMERA_STOPPED_HSPEED_MAX))
+                    self.view.x += max(-CAMERA_STOPPED_HSPEED_MAX,
+                                       min(camera_xvel,
+                                           CAMERA_STOPPED_HSPEED_MAX))
             else:
                 self.view.x = view_target_x
 
