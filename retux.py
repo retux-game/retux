@@ -3340,6 +3340,9 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
     def touch_hurt(self):
         pass
 
+    def touch_death(self):
+        self.burn()
+
     def drop(self):
         if self.parent is not None:
             self.parent.drop_object()
@@ -3562,6 +3565,9 @@ class Explosion(InteractiveObject):
 
     def touch(self, other):
         other.hurt()
+
+    def touch_death(self):
+        pass
 
     def project_light(self):
         xsge_lighting.project_light(self.x, self.y, explosion_light_sprite)
