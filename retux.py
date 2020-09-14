@@ -232,7 +232,8 @@ ENEMY_KILL_POINTS = 50
 AMMO_POINTS = 10
 TUXDOLL_POINTS = 5000
 
-CAMERA_STOPPED_HSPEED_MAX = 2
+CAMERA_STOPPED_THRESHOLD = PLAYER_WALK_SPEED
+CAMERA_STOPPED_HSPEED_MAX = 4
 CAMERA_HSPEED_FACTOR = 1 / 2
 CAMERA_VSPEED_FACTOR = 1 / 20
 CAMERA_OFFSET_FACTOR = 10
@@ -2106,13 +2107,12 @@ class Player(xsge_physics.Collider):
                              + self.xvelocity*CAMERA_OFFSET_FACTOR)
             if abs(view_target_x - self.view.x) > 0.5:
                 camera_xvel = ((view_target_x - self.view.x)
-                               * CAMERA_HSPEED_FACTOR)
-                if self.xvelocity:
+                               * CAMERA_HSPEED_FACTOR * delta_mult)
+                if abs(self.xvelocity) > CAMERA_STOPPED_THRESHOLD:
                     self.view.x += camera_xvel
                 else:
-                    self.view.x += max(-CAMERA_STOPPED_HSPEED_MAX,
-                                       min(camera_xvel,
-                                           CAMERA_STOPPED_HSPEED_MAX))
+                    xvel_max = CAMERA_STOPPED_HSPEED_MAX * delta_mult
+                    self.view.x += max(-xvel_max, min(camera_xvel, xvel_max))
             else:
                 self.view.x = view_target_x
 
@@ -2124,7 +2124,7 @@ class Player(xsge_physics.Collider):
                                  + CAMERA_TARGET_MARGIN_BOTTOM)
                 if abs(view_target_y - self.view.y) > 0.5:
                     self.view.y += ((view_target_y - self.view.y)
-                                    * CAMERA_VSPEED_FACTOR)
+                                    * CAMERA_VSPEED_FACTOR * delta_mult)
                 else:
                     self.view.y = view_target_y
 
