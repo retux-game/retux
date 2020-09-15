@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-__version__ = "1.4"
+__version__ = "1.4.1"
 
 
 import argparse
@@ -7509,7 +7509,9 @@ def set_new_game():
     global watched_timelines
     global current_worldmap
     global current_worldmap_space
+    global worldmap_entry_space
     global current_level
+    global current_checkpoints
     global score
 
     if current_levelset is None:
@@ -7521,7 +7523,9 @@ def set_new_game():
     watched_timelines = []
     current_worldmap = worldmap
     current_worldmap_space = None
+    worldmap_entry_space = None
     current_level = None
+    current_checkpoints = {}
     score = 0
 
 
@@ -7662,6 +7666,10 @@ def start_levelset():
         if current_level < len(levels):
             level = Level.load(levels[current_level], True)
             if level is not None:
+                checkpoint = current_checkpoints.get(level.fname)
+                if checkpoint is not None:
+                    area_name, area_spawn = checkpoint.split(':', 1)
+                    level.spawn = area_spawn
                 level.start()
             else:
                 return False
