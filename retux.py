@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-__version__ = "1.4.1"
+__version__ = "1.4.2a0"
 
 
 import argparse
@@ -68,9 +68,9 @@ dirs = [os.path.join(os.path.dirname(__file__), "data"),
 
 gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
 
-parser = argparse.ArgumentParser(prog="ReTux")
+parser = argparse.ArgumentParser()
 parser.add_argument(
-    "--version", action="version", version="%(prog)s " + __version__,
+    "--version", action="version", version=f"ReTux {__version__}",
     help=_("Output version information and exit."))
 parser.add_argument(
     "-p", "--print-errors",
