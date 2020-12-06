@@ -6725,7 +6725,7 @@ class OptionsMenu(Menu):
 
                     x = margin
                     y = margin
-                    text = _(f"Importing {fname}...")
+                    text = _("Importing {}...").format(fname)
                     c = sge.gfx.Color("white")
                     xsge_gui.Label(
                         window, x, y, 1, text, font=font, width=(w - 2 * margin),
