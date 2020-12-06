@@ -6039,7 +6039,7 @@ class MapPlayer(sge.dsp.Object):
                 except (OSError, ValueError) as e:
                     play_sound(error_sound)
                     show_error(_("An error occurred when trying to load the "
-                                 "level:\n\n{}".format(e)))
+                                 "level:\n\n{}").format(e))
                     rush_save()
                     sge.game.start_room.start()
                 else:
