@@ -81,7 +81,8 @@ parser.add_argument(
     help=_("Manually choose a different language to use."))
 parser.add_argument(
     "--nodelta",
-    help=_("Disable delta timing. Causes the game to slow down when it can't run at full speed instead of becoming choppier."),
+    help=_("Disable delta timing. Causes the game to slow down when it can't "
+           "run at full speed instead of becoming choppier."),
     action="store_true")
 parser.add_argument(
     "-d", "--datadir",
@@ -91,7 +92,8 @@ parser.add_argument(
     help=_("Play the indicated level and then exit."))
 parser.add_argument(
     "--record",
-    help=_("Start the indicated level and record player actions in a timeline. Useful for making cutscenes."))
+    help=_("Start the indicated level and record player actions in a "
+           "timeline. Useful for making cutscenes."))
 parser.add_argument(
     "--no-backgrounds",
     help=_("Only show solid colors for backgrounds (uses less RAM)."),
@@ -799,8 +801,9 @@ class Level(sge.dsp.Room):
                                 try:
                                     value = eval(value)
                                 except Exception as e:
-                                    m = _("An error occurred in a timeline 'setattr' command:\n\n{}").format(
-                                    traceback.format_exc())
+                                    m = _("An error occurred in a timeline "
+                                          "'setattr' command:\n\n{}").format(
+                                              traceback.format_exc())
                                     show_error(m)
                                 else:
                                     if obj in self.timeline_objects:
@@ -847,15 +850,17 @@ class Level(sge.dsp.Room):
                             try:
                                 exec(arg)
                             except Exception as e:
-                                m = _("An error occurred in a timeline 'exec' command:\n\n{}").format(
-                                    traceback.format_exc())
+                                m = _("An error occurred in a timeline 'exec' "
+                                      "command:\n\n{}").format(
+                                          traceback.format_exc())
                                 show_error(m)
                         elif command == "if":
                             try:
                                 r = eval(arg)
                             except Exception as e:
-                                m = _("An error occurred in a timeline 'if' statement:\n\n{}").format(
-                                    traceback.format_exc())
+                                m = _("An error occurred in a timeline 'if' "
+                                      "statement:\n\n{}").format(
+                                          traceback.format_exc())
                                 show_error(m)
                                 r = False
                             finally:
@@ -874,8 +879,9 @@ class Level(sge.dsp.Room):
                             try:
                                 r = eval(arg)
                             except Exception as e:
-                                m = _("An error occurred in a timeline 'while' statement:\n\n{}").format(
-                                    traceback.format_exc())
+                                m = _("An error occurred in a timeline "
+                                      "'while' statement:\n\n{}").format(
+                                          traceback.format_exc())
                                 show_error(m)
                                 r = False
                             finally:
@@ -912,8 +918,8 @@ class Level(sge.dsp.Room):
             time_bonus = level_timers.setdefault(main_area, 0)
             if time_bonus < 0 and cleared_levels:
                 amt = int(math.copysign(
-                    min(math.ceil(abs(self.death_time_bonus) * 3 * time_passed /
-                                  DEATH_FADE_TIME),
+                    min(math.ceil(abs(self.death_time_bonus) * 3 * time_passed
+                                  / DEATH_FADE_TIME),
                         abs(time_bonus)),
                     time_bonus))
                 if amt:
@@ -1107,8 +1113,8 @@ class Level(sge.dsp.Room):
                 r = xsge_tiled.load(
                     os.path.join(DATA, "levels", fname), cls=cls, types=TYPES)
             except Exception as e:
-                m = _("An error occurred when trying to load the level:\n\n{}").format(
-                    traceback.format_exc())
+                m = _("An error occurred when trying to load the level:\n\n"
+                      "{}").format(traceback.format_exc())
                 show_error(m)
                 r = None
             else:
@@ -5570,7 +5576,7 @@ class WarpSpawn(xsge_path.Path):
             elif ym:
                 self.direction = "down" if ym > 0 else "up"
             else:
-                warnings.warn("Warp at position ({}, {}) has no direction".format(x, y))
+                warnings.warn(f"Warp at position ({x}, {y}) has no direction")
 
             if len(points) >= 2:
                 x1, y1 = points[-2]
@@ -5582,7 +5588,8 @@ class WarpSpawn(xsge_path.Path):
                 elif ym:
                     self.end_direction = "down" if ym > 0 else "up"
                 else:
-                    warnings.warn("Warp at position ({}, {}) has no end direction".format(x, y))
+                    warnings.warn(f"Warp at position ({x}, {y}) has no end "
+                                  "direction")
             else:
                 self.end_direction = self.direction
 
@@ -6031,7 +6038,8 @@ class MapPlayer(sge.dsp.Object):
                         data = json.load(f)
                 except (OSError, ValueError) as e:
                     play_sound(error_sound)
-                    show_error(_("An error occurred when trying to load the level:\n\n{}").format(e))
+                    show_error(_("An error occurred when trying to load the "
+                                 "level:\n\n{}".format(e)))
                     rush_save()
                     sge.game.start_room.start()
                 else:
@@ -6192,8 +6200,8 @@ class MapSpace(sge.dsp.Object):
                     if up_exit is None:
                         up_exit = obj
                 else:
-                    warnings.warn("Path at ({}, {}) has no direction!".format(
-                        obj.x, obj.y))
+                    warnings.warn(f"Path at ({obj.x}, {obj.y}) has no "
+                                  "direction!")
             elif y == 0:
                 if x > 0:
                     if right_exit is None:
@@ -6202,8 +6210,8 @@ class MapSpace(sge.dsp.Object):
                     if left_exit is None:
                         left_exit = obj
                 else:
-                    warnings.warn("Path at ({}, {}) has no direction!".format(
-                        obj.x, obj.y))
+                    warnings.warn(f"Path at ({obj.x}, {obj.y}) has no "
+                                  "direction!")
             else:
                 diagonal_exits.append(obj)
 
@@ -6374,8 +6382,8 @@ class MapPath(xsge_path.Path):
             if MapSpace.get_at(self.x, self.y) is None:
                 MapSpace.create(self.x, self.y)
         else:
-            warnings.warn("MapPath at ({}, {}) has only one point!".format(
-                self.x, self.y))
+            warnings.warn(f"MapPath at ({self.x}, {self.y}) has only one "
+                          "point!")
 
     def event_follow_end(self, obj):
         global current_worldmap_space
@@ -6757,7 +6765,9 @@ class OptionsMenu(Menu):
                     sge.game.input_events = []
             else:
                 play_sound(kill_sound)
-                e = _("This feature requires Tkinter, which was not successfully imported. Please make sure Tkinter is installed and try again.")
+                e = _("This feature requires Tkinter, which was not "
+                      "successfully imported. Please make sure Tkinter is "
+                      "installed and try again.")
                 show_error(e)
             OptionsMenu.create_page(default=self.choice)
         else:
@@ -6812,7 +6822,8 @@ class KeyboardMenu(Menu):
             while len(key) > 2:
                 key.pop(0)
 
-        text = _("Press the key you wish to bind to this function, or the Escape key to cancel.")
+        text = _("Press the key you wish to bind to this function, or the "
+                 "Escape key to cancel.")
 
         if self.choice == 0:
             play_sound(select_sound)
@@ -6944,7 +6955,8 @@ class JoystickMenu(Menu):
             while len(js) > 2:
                 js.pop(0)
 
-        text = _("Press the joystick button, axis, or hat direction you wish to bind to this function, or the Escape key to cancel.")
+        text = _("Press the joystick button, axis, or hat direction you wish "
+                 "to bind to this function, or the Escape key to cancel.")
 
         if self.choice == 0:
             play_sound(select_sound)
@@ -7336,7 +7348,8 @@ def wait_js(text):
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = _("Press the joystick button, axis, or hat direction you wish to toggle, or the Escape key to cancel.")
+        text = _("Press the joystick button, axis, or hat direction you wish "
+                 "to toggle, or the Escape key to cancel.")
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
