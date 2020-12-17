@@ -25,10 +25,3 @@ to display or run the file, choose to run it.
 
 There are some command-line options that can be passed. Run the game in
 a terminal with the "-h" command-line option for more information.
-
-
-SPECIAL CONTROLS
-
-You can exit the game by pressing the middle mouse button. This is a
-workaround for a rare bug in SDL 1.2 which can lock up the keyboard
-controls.

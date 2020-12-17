@@ -432,10 +432,6 @@ class Game(sge.dsp.Game):
                               valign="bottom", outline=sge.gfx.Color("black"),
                               outline_thickness=text_outline_thickness)
 
-    def event_mouse_button_press(self, button):
-        if button == "middle":
-            self.event_close()
-
     def event_close(self):
         rush_save()
         self.end()
