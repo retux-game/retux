@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJyzY2Rg4KchtgdiHiCmJeAatWPUjlE76GZHDdCsWjTzqG1HC9CsVix2OAHxfwbq4CpGCEYWcwbyHYCYnYbYEYgBGAscoQ==",
+         "data":"eJyzY2Rg4KchtgdiHiCmJeAatWPUjlE7hpUdNUCzatHMo7YdLUCzWrHY4QTE\/xmog6sYIRhZzBnIdwBidhpiRyAGAFj4HLk=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -49,7 +56,7 @@
                  "y":0
                 }, 
                 {
-                 "height":384,
+                 "height":416,
                  "id":2,
                  "name":"",
                  "rotation":0,
@@ -68,10 +75,10 @@
                  "visible":true,
                  "width":64,
                  "x":608,
-                 "y":384
+                 "y":416
                 }, 
                 {
-                 "height":384,
+                 "height":416,
                  "id":4,
                  "name":"",
                  "rotation":0,
@@ -90,7 +97,7 @@
                  "visible":true,
                  "width":800,
                  "x":0,
-                 "y":416
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -124,7 +131,7 @@
                  "visible":true,
                  "width":32,
                  "x":96,
-                 "y":416
+                 "y":448
                 }, 
                 {
                  "height":32,
@@ -135,7 +142,7 @@
                  "visible":true,
                  "width":64,
                  "x":608,
-                 "y":320
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -173,7 +180,7 @@
                  "visible":true,
                  "width":0,
                  "x":640,
-                 "y":320
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -208,7 +215,7 @@
                  "visible":true,
                  "width":32,
                  "x":224,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":470,
@@ -220,7 +227,7 @@
                  "visible":true,
                  "width":32,
                  "x":480,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":470,
@@ -232,7 +239,7 @@
                  "visible":true,
                  "width":32,
                  "x":320,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":470,
@@ -244,7 +251,7 @@
                  "visible":true,
                  "width":32,
                  "x":384,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":470,
@@ -256,7 +263,7 @@
                  "visible":true,
                  "width":32,
                  "x":256,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":470,
@@ -268,7 +275,7 @@
                  "visible":true,
                  "width":32,
                  "x":448,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":477,
@@ -280,7 +287,7 @@
                  "visible":true,
                  "width":32,
                  "x":416,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":477,
@@ -292,7 +299,7 @@
                  "visible":true,
                  "width":32,
                  "x":288,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "gid":477,
@@ -304,7 +311,7 @@
                  "visible":true,
                  "width":32,
                  "x":352,
-                 "y":320
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -327,7 +334,7 @@
                  "visible":true,
                  "width":32,
                  "x":480,
-                 "y":288
+                 "y":320
                 }, 
                 {
                  "gid":5,
@@ -339,7 +346,7 @@
                  "visible":true,
                  "width":32,
                  "x":416,
-                 "y":288
+                 "y":320
                 }, 
                 {
                  "gid":5,
@@ -351,7 +358,7 @@
                  "visible":true,
                  "width":32,
                  "x":352,
-                 "y":288
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -374,7 +381,7 @@
                  "visible":true,
                  "width":32,
                  "x":160,
-                 "y":416
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -384,9 +391,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

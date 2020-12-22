@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztkksKgDAMBePBvJf2AFUX7vycsp7BhEZwI2QRqZU3MLzuWoYSAQAA+BJHU\/oF9ZDQygxa2fFqNbIbu+r+Ea9WgV0oN5OVZsPNyeeaoni2kibypzrKvcSejezOzj5XFcOrVVSlTdC9zlG39l5PrVqjALzFCZpRG+M=",
+         "data":"eJztkksKgDAMBePBvJf2AFUX7vycUs9gQiO4EbKIlMgbGF53LUOJAAAAgJicTe0XxOFAKzNoZcer1chu7Kr7R7xaJXah0kxWmg0PJ59rquLZSprIn+qo9BJ7NrM7O\/tcVQ2vVlmVNkn3Pmfd6L3eWrVGAfiKC5t9G+M=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztljEKgDAMReMNRJ01Ojs4C7qru+D9T+AN7KBUMEqhNm0hD96czxOkAIIg+GQgLLwuCpeMMAfpRYGENfD2Shlv2YAvcvYqlQ3DHVvwQ65erbJzfOMPUDkrl9MJnr1cf\/OYWt13bqC7Xa6ON8TaygcxtRqBfmdx2XvcsCdmnQbQ\/yTqncVlFcAGE1E09gBR9SpK",
+         "data":"eJztljEKgDAMReMNRJ01Ojs4C7qru+D9T+AN7KBUMEqhNm0hD96czxOkAIIgCHEwEBZeF4VLRpiD9KJAwhp4e6WMt2zAFzl7lcqG4Y4t+CFXr1bZOb7xB6iclcvpBM9err95TK3uOzfQ3S5XxxtibeWDmFqNQL+zuOw9btgTs04D6H8S9c7isgpgg4koGnsAUyEqSg==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -46,7 +53,7 @@
                  "visible":true,
                  "width":64,
                  "x":2336,
-                 "y":256
+                 "y":288
                 }, 
                 {
                  "height":64,
@@ -57,7 +64,7 @@
                  "visible":true,
                  "width":2336,
                  "x":64,
-                 "y":384
+                 "y":416
                 }, 
                 {
                  "height":192,
@@ -68,7 +75,7 @@
                  "visible":true,
                  "width":64,
                  "x":1056,
-                 "y":192
+                 "y":224
                 }, 
                 {
                  "height":32,
@@ -79,7 +86,7 @@
                  "visible":true,
                  "width":192,
                  "x":128,
-                 "y":256
+                 "y":288
                 }, 
                 {
                  "height":32,
@@ -90,7 +97,7 @@
                  "visible":true,
                  "width":192,
                  "x":0,
-                 "y":128
+                 "y":160
                 }, 
                 {
                  "height":32,
@@ -101,7 +108,7 @@
                  "visible":true,
                  "width":224,
                  "x":0,
-                 "y":160
+                 "y":192
                 }, 
                 {
                  "height":32,
@@ -112,7 +119,7 @@
                  "visible":true,
                  "width":256,
                  "x":0,
-                 "y":192
+                 "y":224
                 }, 
                 {
                  "height":32,
@@ -123,7 +130,7 @@
                  "visible":true,
                  "width":288,
                  "x":0,
-                 "y":224
+                 "y":256
                 }, 
                 {
                  "height":192,
@@ -134,7 +141,7 @@
                  "visible":true,
                  "width":64,
                  "x":0,
-                 "y":256
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -148,7 +155,7 @@
          "name":"Collision Objects",
          "objects":[
                 {
-                 "height":384,
+                 "height":416,
                  "id":10,
                  "name":"",
                  "rotation":0,
@@ -179,7 +186,7 @@
                  "visible":true,
                  "width":32,
                  "x":96,
-                 "y":384
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -226,7 +233,7 @@
                  "visible":true,
                  "width":32,
                  "x":1056,
-                 "y":96
+                 "y":128
                 }, 
                 {
                  "gid":489,
@@ -238,7 +245,7 @@
                  "visible":true,
                  "width":32,
                  "x":1056,
-                 "y":64
+                 "y":96
                 }, 
                 {
                  "gid":489,
@@ -250,7 +257,7 @@
                  "visible":true,
                  "width":32,
                  "x":1088,
-                 "y":64
+                 "y":96
                 }, 
                 {
                  "gid":489,
@@ -262,7 +269,7 @@
                  "visible":true,
                  "width":32,
                  "x":1088,
-                 "y":96
+                 "y":128
                 }, 
                 {
                  "gid":489,
@@ -274,7 +281,7 @@
                  "visible":true,
                  "width":32,
                  "x":1056,
-                 "y":128
+                 "y":160
                 }, 
                 {
                  "gid":489,
@@ -286,7 +293,7 @@
                  "visible":true,
                  "width":32,
                  "x":1088,
-                 "y":128
+                 "y":160
                 }, 
                 {
                  "gid":489,
@@ -298,7 +305,7 @@
                  "visible":true,
                  "width":32,
                  "x":1088,
-                 "y":160
+                 "y":192
                 }, 
                 {
                  "gid":489,
@@ -310,7 +317,7 @@
                  "visible":true,
                  "width":32,
                  "x":1056,
-                 "y":160
+                 "y":192
                 }, 
                 {
                  "gid":489,
@@ -322,7 +329,7 @@
                  "visible":true,
                  "width":32,
                  "x":1056,
-                 "y":192
+                 "y":224
                 }, 
                 {
                  "gid":489,
@@ -334,7 +341,7 @@
                  "visible":true,
                  "width":32,
                  "x":1088,
-                 "y":192
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -357,7 +364,7 @@
                  "visible":true,
                  "width":32,
                  "x":992,
-                 "y":384
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -380,7 +387,7 @@
                  "visible":true,
                  "width":32,
                  "x":64,
-                 "y":128
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -390,9 +397,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt0EENACAQBLHDv1Z4oAAHZH8HSatgMlUAvGiN7oJ\/TK9iXuW8ynmV8yrnVe72avtIgwMkOwhl",
+         "data":"eJzt0MEJACAMBMHYf636sAI7kPuFwEwFy1YBwGxndRfMsb2KeZXzKudVzqucV7nfq+sjDR4lZwhl",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

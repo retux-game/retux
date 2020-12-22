@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt0LENACAMA8EwWPafJsxAQ4tEGkPgT3JvvRkAADX1dvrBH4LOEnTWoLMGnTXorHFTZ5+rIPt11dk3B7xmAAMiCsg=",
+         "data":"eJzt0LENwCAAA0EyGPtPAzOkoY0UKBxQ7iT31pcCAGfq19cP\/qHpHKFzhs4ZOmfonLFT5zp2gtmvT53rywGsuAEtQwrI",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztl80OwiAMgLs3MMazOs\/qPPuzJ9ObPrBvYDkQk6WVDWhpmE2+A2Eb9NvKAEAu9sjWCKekTOzGAjkDnfMBOTJ9EnRQr+c1sgE67wtyZfpCdJH39cgqLSWTYWnNcLTILj4ds2HNs6PGtYPyHFvzuZiLZwpN93P2rMnfM83U\/V+oNmrwfG8AHs23ncNzyv6PogbPT3T8YjyX+P9RteA9D78Jjbhlwnv2be4sqAVVCz0z11jeI9+Vu3YpBHcWLEkrmG+IX\/Mqtd\/VGldynOGzP9D3Xjw=",
+         "data":"eJztl8EOwiAMQLs\/MMazOs\/qPE\/dl+lNP9g\/sByIiWlFgZYGbPIOhC3Qx8oAQC62yNoIh6RM7MYMGYHOeYfsmT4JBqjX8xJZAZ33ETkxfSGGyPcmZJGWksmwtGc4emQTn47ZsObZUePeQXmOrflctOKZQtN9y541+Xum+fX8F6qNGjxfOoBr92rn8Jxy\/qOowfMNHd8ZzyX+f1QteM\/v34RGnDPhPfs2dxfUgqqFiZlrLI8v18o9OxeCuwuWpBfMN8SneZU672qNKzlO6btCqzwBXRppfA==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -49,7 +56,7 @@
                  "y":256
                 }, 
                 {
-                 "height":64,
+                 "height":96,
                  "id":2,
                  "name":"",
                  "rotation":0,
@@ -265,9 +272,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt0UENACAQA8HDv1Z4oAAHPEvIzShotlUA8Lc1Xi\/oYeocoXOGzhk6Z+icoXPGrfP2AY0cMn0IZQ==",
+         "data":"eJzt0UENACAQA8HDv1Z4oAAHvEgJYUZBs60CgLeNdnvBH7rOETpn6Jyhc4bOGTpn7DpPHwCHLQE5CGU=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

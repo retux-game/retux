@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBh+oIWRgaGVcaBdMQpGwSgYBdgBANqmAQw=",
+         "data":"eJxjYBgF5IAWRgaGVsaBdsUoGAWjYBRgBwDbCgEM",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJyNlFkKAjEQRCdfghGELNdxvZf+6Lk1Ayl4U5MRA0WWTm+VTtcwTbEhN5SO3M+0TpBVnI\/uxX6nmixDt3QZ72vO0OE+wZ7W9D\/j1HA0nM0v46Ev2qRMuYiDQ8M8Xm1+9\/UesVSzEy1Wxqz8ZD\/1vXw82vyED+YvPelWs8m8KiAO5INDeTAXj5NnHkuBv\/jDRwrrt9NZsbMKWQrrXG8Nn2mJ+4Ajxhwx+1vTvnxeGnaGK\/JUrKohIoXl23rds95YF8lk5JXvwX\/pevJFm1t\/i\/b\/6QHJ9Lh2\/pxT58trLA\/usSb5V8kJefdaYk2RA+2jzcqD3HsvGvUz9pKtPjXvv74\/H1w=",
+         "data":"eJy1lMkOAiEQRIeTiZiYsPyO63\/pRb9bmYRK3pSM8SJJpYGmt6IhhmmKf0btMjeUjtz3NE\/QVeyPzslnNV2Gbek6npfMsOE6wZ\/mjD\/j0LA3HC0u82Es+qROtYiDXcM8Hk0++3yLXKr5iWGZK3NWffKf+loxbk3eEYP1y0621XyyrgqIA8XgUB2sxfPknudSEC9+iZHC591pr9hehS6Fz1ovDa9pieuAI+YcIf2u6V8xTw0bwxl1Klf1EJHC8m6979lv7ItkOvLK++C7dDvFos+1t0X\/v\/wByew4d\/6cU+fLeywPzrEn+VbJCXn3XmJPkQOto0nVQe79Lxr9Z\/xL1v6pef0GZIMgiA==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -38,7 +45,7 @@
          "name":"solid",
          "objects":[
                 {
-                 "height":96,
+                 "height":128,
                  "id":1,
                  "name":"",
                  "rotation":0,
@@ -57,7 +64,7 @@
                  "visible":true,
                  "width":64,
                  "x":0,
-                 "y":96
+                 "y":128
                 }, 
                 {
                  "height":160,
@@ -68,7 +75,7 @@
                  "visible":true,
                  "width":608,
                  "x":192,
-                 "y":96
+                 "y":128
                 }, 
                 {
                  "height":192,
@@ -79,7 +86,7 @@
                  "visible":true,
                  "width":800,
                  "x":0,
-                 "y":256
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -101,7 +108,7 @@
                  "visible":true,
                  "width":64,
                  "x":96,
-                 "y":128
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -139,7 +146,7 @@
                  "visible":true,
                  "width":0,
                  "x":128,
-                 "y":160
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -177,7 +184,7 @@
                  "visible":true,
                  "width":0,
                  "x":128,
-                 "y":96
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -200,7 +207,7 @@
                  "visible":true,
                  "width":32,
                  "x":96,
-                 "y":224
+                 "y":256
                 }, 
                 {
                  "gid":479,
@@ -212,7 +219,7 @@
                  "visible":true,
                  "width":32,
                  "x":128,
-                 "y":224
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -246,7 +253,7 @@
                  "visible":true,
                  "width":32,
                  "x":128,
-                 "y":256
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -256,9 +263,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

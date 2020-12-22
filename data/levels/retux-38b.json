@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB",
+         "data":"eJztwTEBAAAAwqD1T20LL6AAAAAAeBsRlAAB",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztVEtOwzAQjVdILVIlx7kAnw0HaIwUWj63ygI2cEtOwAm6ZKzOiFcrdseRAYH6pKdG85\/XSTamaUbmSsElsWOG500ibkt0xJbZAS2wY7\/leMc2B3kO+lp+XkKMhTnEZyP7CuztxNxb6IV5ok3wnxOfiS9EDS4o7pLzr4jXibw115fdnDncU3YUm8yHdX2UI9pKPdEw5PU8h480uYX5PPREe26vV\/p9Iy5YqznYKWLW8L\/g7U7dhMyHdYdI25S+vTnMaaHXXeSTOdCe26uGVlrsIgZobzPAm6\/3curd6CdyPfs+MvNo8ZNa5aCZeQBt8IZyOw8ZrUoh36ff1kqL9yZ9QymU3I4GNbW6qVMmidq7C7Rz19Rq\/AP3OQXt3P9Jq7l3XVMr7Qy1tSrdfW7\/mlppa9XWqrTeSavviy\/NC1o9mv29pzge8ZfGaVlab25\/bd4Txd0Tz048ygfiJxWqTLw=",
+         "data":"eJztV0tqwzAQtVaFphCw5Qv0s+kBYhfcpJ9bedFu0lv2BD1Blh3RGfIiJHlk1JYWP3jEzH9exoFsTVWNzLWCK2LLdM\/bSNyOaIkNswXWwJb9NcdbtlnIs9C35ucVxNQwh\/hqz74GexOYewe9ME+0cf4L4gvxlajBJcVdcf418SaSt+H6sps1p3vKjmKT+bBu7+WItlJPNHR5Hc\/Re5rcwXw99ER7aq89fb4Rz1mrOTgoYjbwveDthm5C5sO6g6dtTN\/OnOY00Ove88kcaE\/tVUIrLQ4eHbS36dCb43sZeje6QG7Pvo\/EPFr8pFYpaGYeQBu8odTOQ0KrXMjv029rpcV7Fb+hGHJuR4OSWt2WKRNF6d0F2rlLajX+gfsMQTv3f9Jq7l2X1Eo7Q2mtcnef27+kVtpapbXKrbdo9X3xuXlOqyfzde8xjhP+3Dgtc+vN7a\/Ne6a4B+LZwkk+muP\/rYXT\/AQdc1BA",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -38,7 +45,7 @@
          "name":"solid",
          "objects":[
                 {
-                 "height":448,
+                 "height":480,
                  "id":1,
                  "name":"",
                  "rotation":0,
@@ -104,7 +111,7 @@
                  "y":224
                 }, 
                 {
-                 "height":448,
+                 "height":480,
                  "id":7,
                  "name":"",
                  "rotation":0,
@@ -456,7 +463,7 @@
                  "y":32
                 }, 
                 {
-                 "height":64,
+                 "height":96,
                  "id":38,
                  "name":"",
                  "rotation":0,
@@ -2020,9 +2027,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB",
+         "data":"eJztwTEBAAAAwqD1T20LL6AAAAAAeBsRlAAB",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

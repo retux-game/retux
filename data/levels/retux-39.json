@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2BogJWMtLdjIx3sGAWowBYPHq4AABCBAwg=",
+         "data":"eJxjYBgFo2BogJWMtLdjIx3sGAWowBYPHgXkAwA\/sAMI",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYKAc5AFxAhAr4MDUAvjsoSYA2eMNxJ40tAMGdIahHfpUNruNkYGhnZG2\/ugDmt9PYztagOa3DjE7jgDNWomGZwDxTCx22JKJzwDN2oiGFwDxQiC2QrNDiAZYHs0OdKxPQJ5YjGwOADTgH7E=",
+         "data":"eJxjYKAc5AFxAhAr4MDUAvjsoSYA2eMNxJ40tAMGdIahHfpUNruNkYGhnZG2\/ugDmt9PYztagOa3DjE7jgDNWomGZwDxTCx22JKJzwDN2oiGFwDxQiC2QrNDiAZYHs0OdKxPQJ5YTC1ziMUAOUci0Q==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -49,7 +56,7 @@
                  "y":0
                 }, 
                 {
-                 "height":384,
+                 "height":416,
                  "id":2,
                  "name":"",
                  "rotation":0,
@@ -60,7 +67,7 @@
                  "y":64
                 }, 
                 {
-                 "height":64,
+                 "height":96,
                  "id":3,
                  "name":"",
                  "rotation":0,
@@ -206,9 +213,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

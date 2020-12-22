@@ -1,13 +1,20 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2BwgJWMEEwt8I6KZoHARiqb95bK5lEbjLqPMjDqPsrAUHWfLRF6iVEzCggDAFvlCfI=",
+         "data":"eJxjYBgFo2AUEANWMkIwtcA7KpoFAhupbN5bKptHbTDqPsrAqPsoA0PVfbZE6CVGzSggDABchQny",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxTYGBgUKAiNmCgLiBkXxwQxwOxNx6cxwjBIHYYndwHc1cOEWbUAd1Wz0hlh0EBJe6iB1BAwl4MEHcdpVFYkAMUGFDT9kag284OYvcNNqDAMOo+SoACw6j7KAEKSNgOiG3pgD8SWT7YorlPEYiFBhlWGOQYAD5QIxI=",
+         "data":"eJxTYGBgUKAiNmCgLqCm2wbCfXFAHA\/E3nhwHiMEg9hhdHIfzF05RJhRB3RbPSOVHQYFlLiLHkABCXsxQNx1lEZhQQ5QYEBN2xuBbjs7iN032IACw6j7KAEKDKPuowQoIGE7ILalA\/5IZPlgi+Y+RSAWGmRYYZBjAARnJcI=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -46,7 +53,7 @@
                  "visible":true,
                  "width":64,
                  "x":1216,
-                 "y":256
+                 "y":288
                 }, 
                 {
                  "height":64,
@@ -57,7 +64,7 @@
                  "visible":true,
                  "width":1152,
                  "x":128,
-                 "y":384
+                 "y":416
                 }, 
                 {
                  "height":416,
@@ -68,10 +75,10 @@
                  "visible":true,
                  "width":128,
                  "x":0,
-                 "y":32
+                 "y":64
                 }, 
                 {
-                 "height":32,
+                 "height":64,
                  "id":4,
                  "name":"",
                  "rotation":0,
@@ -90,7 +97,7 @@
                  "visible":true,
                  "width":64,
                  "x":544,
-                 "y":32
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -104,7 +111,7 @@
          "name":"Collision Objects",
          "objects":[
                 {
-                 "height":384,
+                 "height":416,
                  "id":6,
                  "name":"",
                  "rotation":0,
@@ -123,7 +130,7 @@
                  "visible":true,
                  "width":192,
                  "x":128,
-                 "y":32
+                 "y":64
                 }, 
                 {
                  "height":32,
@@ -134,7 +141,7 @@
                  "visible":true,
                  "width":64,
                  "x":544,
-                 "y":64
+                 "y":96
                 }, 
                 {
                  "height":64,
@@ -145,7 +152,7 @@
                  "visible":true,
                  "width":32,
                  "x":160,
-                 "y":128
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -195,7 +202,7 @@
                  "visible":true,
                  "width":0,
                  "x":576,
-                 "y":32
+                 "y":64
                 }, 
                 {
                  "height":0,
@@ -221,7 +228,7 @@
                  "visible":true,
                  "width":0,
                  "x":128,
-                 "y":160
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -266,7 +273,7 @@
                  "visible":true,
                  "width":32,
                  "x":576,
-                 "y":384
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -276,9 +283,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2B4g3eMA+0C\/ODtqPsoAqPuowyMuo8ygM99nwa524c6AACtlwhl",
+         "data":"eJxjYBgFo2AUDCR4xzjQLsAP3o66jyIw6j7KwKj7KAP43PdpkLt9qAMArjcIZQ==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

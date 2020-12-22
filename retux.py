@@ -138,7 +138,7 @@ if args.lang:
                                [args.lang])
     lang.install()
 
-SCREEN_SIZE = [800, 448]
+SCREEN_SIZE = [800, 480]
 TILE_SIZE = 32
 FPS = 56
 DELTA_MIN = FPS / 2

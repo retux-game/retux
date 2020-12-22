@@ -7,14 +7,14 @@
          "target":"."
         }
     },
- "height":14,
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -26,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjILhB\/IYicfk6iMXAwDB5A+d",
+         "data":"eJxjYBgFo2AUjIJRQA7IYyQek6uPXAwAwkgPnQ==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -53,7 +53,7 @@
                  "visible":true,
                  "width":800,
                  "x":0,
-                 "y":416
+                 "y":448
                 }, 
                 {
                  "height":32,
@@ -64,7 +64,7 @@
                  "visible":true,
                  "width":352,
                  "x":352,
-                 "y":384
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -122,7 +122,7 @@
                  "visible":true,
                  "width":32,
                  "x":128,
-                 "y":416
+                 "y":448
                 }, 
                 {
                  "gid":482,
@@ -134,7 +134,7 @@
                  "visible":true,
                  "width":32,
                  "x":224,
-                 "y":416
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -157,7 +157,7 @@
                  "visible":true,
                  "width":32,
                  "x":608,
-                 "y":384
+                 "y":416
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -180,7 +180,7 @@
                  "visible":true,
                  "width":32,
                  "x":64,
-                 "y":416
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -190,9 +190,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

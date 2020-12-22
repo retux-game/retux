@@ -1,12 +1,19 @@
 { "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJzt0DEKACAMBMH4MP9f6pPsAwGrDeIOXH9shCRJUm2P7gd\/WHZG2JlhZ4adGXZmdHaeaa+6+V91zg2qiXMA5SMKUg==",
+         "data":"eJzt0DEKwCAUREE9WO5fJkeyFz5YrWhmYPvltQYAUPv67gf\/8OocoXOGzhk6Z+icsbPzM+1UK\/+rznODanCbAWlUClI=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -18,9 +25,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYKAO0AFiBSSsj8YfbNiAFM8NIhAJxDFAHMtAnD8JxYMuEOsRaRaxZiLjoRrOMJANxJ4MlKc3ayC2oYI5uPBQD2cQQC9DBhv2AuIw0r016ACucB7oMhtWFg2HtAwCoLLam4E65QcypjSeYGXRcAlnGCCl\/CCn3iMXj+Rwpla9R0yaH4rhHMfIwBDPiF1usNaHQzGc04BhnE7ncKa0jBkNZ\/qUMUMpnJcBw7YbiNtIDGdC5Set2n7I5iKHM75yj5rAlky8Dui2yUDcBw1nbGqsGGhf1pKD7ZDcCMuP5ITBZSLjB6RWiIZYnk7hRipWpLG\/sWEAAK1hXw==",
+         "data":"eJxjYKAO0AFiBSSsj8YfbNiAFM8NIhAJxDFAHMtAnD8JxYMuEOsRaRaxZiLjoRrOMJANxJ4MlKc3ayC2oYI5uPBQD2cQQC9DBhv2AuIw0r016ACucB7oMhtWFg2HtAwCoLLam4E65QcypjSeYGXRcAlnGCCl\/CCn3iMXj+Rwpla9R0yaH4rhHMfIwBDPiF1usNaHQzGc04BhnE7ncKa0jBkNZ\/qUMUMpnJcBw7YbiNtIDGdC5Set2n7I5iKHM75yj5rAlky8Dui2yUDcBw1nbGqsGGhf1pKD7ZDcCMuP5ITBZSLjB6RWiIZYnk7hRipWpLG\/seGB9vNIwQD2NWyf",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -37,7 +44,7 @@
          "name":"solid",
          "objects":[
                 {
-                 "height":32,
+                 "height":64,
                  "id":1,
                  "name":"",
                  "rotation":0,
@@ -323,9 +330,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzt0UENACAQA8HDvzh4IAgH8CskzChotlUAAGej3V7wh65zhM4ZOmfonKFzhs4Zu87TB09YD98HVw==",
+         "data":"eJzt0TERACAQA8HHvzgoEIQD6ELxuwoylyoAgLc1fi\/oYeocoXOGzhk6Z+icoXPGrfP2AY0cYs0HVw==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,

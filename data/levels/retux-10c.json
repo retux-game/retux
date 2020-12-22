@@ -1,13 +1,20 @@
 { "backgroundcolor":"#808080",
  "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjAL6gP8k4OEMAHeSCvY=",
+         "data":"eJxjYBgFo2AUjILhA\/6TgIczAAB39gr2",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Back Tiles",
          "opacity":1,
@@ -19,9 +26,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJzFlE0KwjAQhZOV0AhC0l7H3yspqOhOQXd6B1249IT6CvNwjKYWSnDgY9JpM49pJuOtMRVwQr0ugVe+jofE2kd7K7VX5xqCQQZGSqsPclih6s6pwf+VU8P\/SWNt3+mqwd6jRpy\/q04hNfDM52DR4GPbILb9oU8NJxpLsGrwse0Q27fQiPsqVcPtCxdwVc8HcLSfGk40puBh0jXcW3ACZ8lDZuqej0EvAxM5b84xzrSg+o09EexrtgXlS\/UNc+h5yndPRFEwHA==",
+         "data":"eJzFlE0KwjAQRpuV0ApC0l7H3yspqOhOQXd6B7tw6Qn1C+SjYzS1UAYDj6RpM48h07EmyypQBPy6BFbMft8l1jY6W4mzMtYYjBSYBIf3D4HGyEV+2g6n7OCdaDrsnxxb805fB+ubjjh+X08ecuCdL8GqZY7HDnv7H346+H+swaZljscBe8cOjriuUjncv3ADtXg+gbP5dBTBMQfPLJ3DowMXcA1xyMI0fWsKBgrMwn2zV7KvOFFvrAlnmv7pxFyKbxhD9my+ewGkjzBM",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Middle Tiles",
          "opacity":1,
@@ -57,10 +64,10 @@
                  "visible":true,
                  "width":800,
                  "x":0,
-                 "y":384
+                 "y":416
                 }, 
                 {
-                 "height":320,
+                 "height":352,
                  "id":3,
                  "name":"",
                  "rotation":0,
@@ -71,7 +78,7 @@
                  "y":64
                 }, 
                 {
-                 "height":320,
+                 "height":352,
                  "id":4,
                  "name":"",
                  "rotation":0,
@@ -90,7 +97,7 @@
                  "visible":true,
                  "width":192,
                  "x":96,
-                 "y":320
+                 "y":352
                 }, 
                 {
                  "height":64,
@@ -101,7 +108,7 @@
                  "visible":true,
                  "width":256,
                  "x":64,
-                 "y":256
+                 "y":288
                 }, 
                 {
                  "height":32,
@@ -112,7 +119,7 @@
                  "visible":true,
                  "width":192,
                  "x":96,
-                 "y":224
+                 "y":256
                 }, 
                 {
                  "height":32,
@@ -123,7 +130,7 @@
                  "visible":true,
                  "width":128,
                  "x":128,
-                 "y":192
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -145,7 +152,7 @@
                  "visible":true,
                  "width":64,
                  "x":448,
-                 "y":256
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -183,7 +190,7 @@
                  "visible":true,
                  "width":0,
                  "x":480,
-                 "y":256
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -221,7 +228,7 @@
                  "visible":true,
                  "width":0,
                  "x":480,
-                 "y":320
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -244,7 +251,7 @@
                  "visible":true,
                  "width":32,
                  "x":672,
-                 "y":288
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -278,7 +285,7 @@
                  "visible":true,
                  "width":32,
                  "x":480,
-                 "y":256
+                 "y":288
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -288,9 +295,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":10,
          "name":"Front Tiles",
          "opacity":1,
