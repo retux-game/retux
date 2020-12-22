@@ -354,6 +354,7 @@ tux_grab_sprites = {}
 
 fullscreen = False
 scale_method = None
+scale_proportional = True
 sound_enabled = True
 music_enabled = True
 stereo_enabled = True
@@ -6631,6 +6632,8 @@ class OptionsMenu(Menu):
         cls.items = [
             _("Fullscreen: {}").format(_("On") if fullscreen else _("Off")),
             _("Scale Method: {}").format(smt),
+            _("Scale Proportional: {}").format(
+                _("On") if scale_proportional else _("Off")),
             _("Sound: {}").format(_("On") if sound_enabled else _("Off")),
             _("Music: {}").format(_("On") if music_enabled else _("Off")),
             _("Stereo: {}").format(_("On") if stereo_enabled else _("Off")),
@@ -6643,6 +6646,7 @@ class OptionsMenu(Menu):
     def event_choose(self):
         global fullscreen
         global scale_method
+        global scale_proportional
         global sound_enabled
         global music_enabled
         global stereo_enabled
@@ -6668,22 +6672,27 @@ class OptionsMenu(Menu):
             sge.game.scale_method = scale_method
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 2:
+            play_sound(select_sound)
+            scale_proportional = not scale_proportional
+            sge.game.scale_proportional = scale_proportional
+            OptionsMenu.create_page(default=self.choice)
+        elif self.choice == 3:
             sound_enabled = not sound_enabled
             play_sound(bell_sound)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 3:
+        elif self.choice == 4:
             music_enabled = not music_enabled
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 4:
+        elif self.choice == 5:
             stereo_enabled = not stereo_enabled
             play_sound(confirm_sound)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 5:
+        elif self.choice == 6:
             play_sound(select_sound)
             fps_enabled = not fps_enabled
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 6:
+        elif self.choice == 7:
             play_sound(select_sound)
             # This somewhat complicated method is to prevent rounding
             # irregularities.
@@ -6693,17 +6702,17 @@ class OptionsMenu(Menu):
             joystick_threshold = threshold
             xsge_gui.joystick_threshold = threshold
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 7:
-            play_sound(confirm_sound)
-            KeyboardMenu.create_page()
         elif self.choice == 8:
             play_sound(confirm_sound)
-            JoystickMenu.create_page()
+            KeyboardMenu.create_page()
         elif self.choice == 9:
+            play_sound(confirm_sound)
+            JoystickMenu.create_page()
+        elif self.choice == 10:
             sge.joystick.refresh()
             play_sound(heal_sound)
             OptionsMenu.create_page(default=self.choice)
-        elif self.choice == 10:
+        elif self.choice == 11:
             if HAVE_TK:
                 play_sound(confirm_sound)
                 fnames = tkinter_filedialog.askopenfilenames(
@@ -7548,9 +7557,10 @@ def write_to_disk():
               "sneak": sneak_js, "menu": menu_js, "pause": pause_js}
 
     cfg = {"version": 1, "fullscreen": fullscreen,
-           "scale_method": scale_method, "sound_enabled": sound_enabled,
-           "music_enabled": music_enabled, "stereo_enabled": stereo_enabled,
-           "fps_enabled": fps_enabled,
+           "scale_method": scale_method,
+           "scale_proportional": scale_proportional,
+           "sound_enabled": sound_enabled, "music_enabled": music_enabled,
+           "stereo_enabled": stereo_enabled, "fps_enabled": fps_enabled,
            "joystick_threshold": joystick_threshold, "keys": keys_cfg,
            "joystick": js_cfg}
 
@@ -8482,6 +8492,8 @@ finally:
     sge.game.fullscreen = fullscreen
     scale_method = cfg.get("scale_method", scale_method)
     sge.game.scale_method = scale_method
+    scale_proportional = cfg.get("scale_proportional", scale_proportional)
+    sge.game.scale_proportional = scale_proportional
     sound_enabled = cfg.get("sound_enabled", sound_enabled)
     music_enabled = cfg.get("music_enabled", music_enabled)
     stereo_enabled = cfg.get("stereo_enabled", stereo_enabled)
