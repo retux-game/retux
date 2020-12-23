@@ -1,12 +1,19 @@
 { "compressionlevel":-1,
- "height":14,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
+ "height":15,
  "infinite":false,
  "layers":[
         {
          "compression":"zlib",
-         "data":"eJxjYBgFo2AUjIJRQE8AAAV4AAE=",
+         "data":"eJxjYBgFo2AUjIJRMNwAAAXcAAE=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":1,
          "name":"Water",
          "opacity":1,
@@ -18,9 +25,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJyTZ2BgkB\/Fo3gUj+JRTDcMAEUAKmM=",
+         "data":"eJyTZ2BgkB\/Fo3gUj+JRPKwwAHIXLWo=",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":2,
          "name":"Land",
          "opacity":1,
@@ -32,9 +39,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJxjYBh+gBWI+aGYjUKz+HCICyCxOZHsg2EOLGIwzI3G5yLCDnLkiQHDxQ52BtzhjS+MSQHUcOdgsANbeiUWU5qfiAH0CANBOtiBDwAAFicDLQ==",
+         "data":"eJxjYBh+gBWI+aGYjUKz+HCICyCxOZHsg2EOLGIwzI3G5yLCDnLkiQHDxQ52BtzhjS+MSQHUcOdgsANbeiUWU5qfiAH0CANBOtgx0AAAU8oDLQ==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":3,
          "name":"Roads",
          "opacity":1,
@@ -46,9 +53,9 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJwLYsAEkUAcBcQxQJyCRZ4aIBaI44A4AYgzaGTHYASFA+2AIQBsgNgYC7aloh2OQGyBhO2BWB6IzahoBy47nWhox0ACDzrY4UsHO\/wYaO8XAPaMCJU=",
+         "data":"eJwLYsAEkUAcBcQxQJyCRZ4aIBaI44A4AYgzaGTHYASFA+2AIQBsgNgYC7aloh2OQGyBhO2BWB6IzahoBy47nWhox0ACDzrY4UsHO\/wYaO8XHwba+wUAi4wJLg==",
          "encoding":"base64",
-         "height":14,
+         "height":15,
          "id":4,
          "name":"Decorations",
          "opacity":1,
