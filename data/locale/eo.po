@@ -20,20 +20,19 @@ msgstr ""
 "Project-Id-Version: 1.4.1\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2020-12-06 17:00-0500\n"
-"PO-Revision-Date: 2018-08-18 16:07+0200\n"
+"PO-Revision-Date: 2021-01-03 00:58+0100\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#, fuzzy
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
 msgstr ""
-"Kia bela, malvarma tago por fiŝi! Mi demandas min, kion mi kaptos hodiaŭ."
+"Kia bela, malvarma tago por fiŝi! Mi demandas min, kion mi kaptos hodiaŭ..."
 
 msgid "Oh, looks like I have a message!"
 msgstr "Ho, ŝaijnas, ke mi havas mesaĝon!"
@@ -93,13 +92,13 @@ msgid ""
 "you're really up to!"
 msgstr ""
 "Vi agas kiel vi estus ribelanta kontraŭ la Fiŝa Imposto, sed ni scias, kion "
-"vi reale volas fari."
+"vi reale volas fari!"
 
 msgid ""
 "I don't know how you found out about our secret plans, but you will not stop "
 "us!"
 msgstr ""
-"Mi ne scias kiel vi ekscias pri niaj sekretaj planoj, sed vi ne haltos nin."
+"Mi ne scias kiel vi ekscias pri niaj sekretaj planoj, sed vi ne haltos nin!"
 
 msgid "I've been waiting for you, Tux. We meet again at last!"
 msgstr "Mi estis atendanta vin, Tukso. Ni renkontas fine!"
@@ -145,7 +144,7 @@ msgid ""
 "Now, where can one find a fire flower around here?"
 msgstr ""
 "Fajro povas esti bonega maniero per degeli glacian barantan iujn Tuksajn "
-"pupojn. Nun, kie oni povas trovi fajran floron ĉirkaŭe ĉi tie?"
+"pupojn. Nu, kie oni povas trovi fajran floron ĉirkaŭe ĉi tie?"
 
 msgid ""
 "Traveler's Note:\n"
@@ -178,7 +177,7 @@ msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
 "Oni diras ke ĉi tiu nivelo enhavas 7 risortojn, sed mi nur klopodis eltrovi "
-"6. Povus la sepa esti ene kaŝita bloko ien?"
+"6. Povus la sepa esti en kaŝita bloko ie?"
 
 msgid ""
 "Traveler's Note:\n"
@@ -188,15 +187,15 @@ msgid ""
 msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
-"Ĉi tiu kavo en la maldeksto aspektas nealirebla el tie ĉi. Devas ekzisti "
-"alia maniero eniri!"
+"Ĉi tiu kavo maldekste aspektas nealirebla el tie ĉi. Devas ekzisti alia "
+"maniero eniri!"
 
 msgid ""
 "Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
 "not climb on Mount Slimmerist; the extra weight may cause it to topple over."
 msgstr ""
 "Bonvenon al Montaro Slimmerist, la plej maldika montaro en la mondo! Bonvolu "
-"ne eskaladi en Montaro Slimmerist; la ekstra pero povas fali ĝin."
+"ne grimpi al Montaro Slimmerist; la ekstra pezo povas fali ĝin."
 
 msgid ""
 "Did you know? It's possible to drop whatever you're carrying! Just hold the "
@@ -214,9 +213,9 @@ msgid ""
 msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
-"Ĉi tiu dukto en la dekstro estas tre alta por suriri eĉ per salti kun "
-"risorto. Oni povus fari tion, se tiu Saltanto povu halteĝi magie en la aero "
-"kaj la risorto alloku sur ĝi, sed tio estus stulta!"
+"Ĉi tiu dukto dekstre estas tre alta por suriri eĉ saltante per risorto. Oni "
+"povus fari tion, se tiu Saltanto povu esti haltigita magie en la aero kaj la "
+"risorto lokita sur ĝin, sed tio estus stulta!"
 
 msgid ""
 "You'll need a friend to find the Tux doll in this castle, in more ways than "
@@ -230,9 +229,9 @@ msgid ""
 "allowing you to cross spike pits, and do NOT use them to build a tower so "
 "that you can reach higher places."
 msgstr ""
-"Bonvolu NE tuŝi miajn rokojn! Ekzemple, NE uzi ilin por konstrui briĝon, kiu "
-"vin lasas transiri pintan puton, kaj NE uzi ilin por konstrui turon, por ke "
-"vi povas iri al pli altaj ejoj."
+"Bonvolu NE tuŝi miajn rokojn! Ekzemple, NE uzi ilin por konstrui ponton, kiu "
+"al vi lasas transiri pintan puton, kaj NE uzi ilin por konstrui turon, por "
+"ke vi povas iri al pli altaj ejoj."
 
 msgid ""
 "Traveler's Note:\n"
@@ -242,8 +241,8 @@ msgid ""
 msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
-"Se nur mi povus iri sur tiuj rokoj sur tiuj krateroj, mi povus konstrui "
-"ŝtupo al ĉi tiu dukto..."
+"Se nur mi povus iri sur tiujn rokojn sur tiuj krateroj, mi povus konstrui "
+"ŝtuparon al ĉi tiu dukto..."
 
 msgid ""
 "Welcome to Concept Castle!\n"
@@ -254,7 +253,7 @@ msgstr ""
 "Bonvenon al Kastelo Koncepto\n"
 "\n"
 "Ĉi tiu nivelo estis kreita por montri, kion povas fari ReTux. Ĝi estas pli "
-"pezeta ol la plejparto de la reala ludo, do ĝi eblas plenumi pli lenteta."
+"peza ol la plejparto de la reala ludo, do ĝi eblas plenumi pli malrapide."
 
 msgid ""
 "All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
@@ -262,46 +261,44 @@ msgid ""
 msgstr "Vi mankas fajron? Juniĝi vi kun bona, varma bano en fandita lafo!"
 
 msgid "There must be a way to remove the fire flower from this room."
-msgstr "Oni devas ekzisti maniero forpreni la fajran floron el ĉi tiu ĉambro."
+msgstr "Devas ekzisti maniero forpreni la fajran floron el ĉi tiu ĉambro."
 
 # Credits text
 msgid "Programming By"
-msgstr ""
+msgstr "Programado De"
 
 msgid "Graphics By"
-msgstr ""
+msgstr "Bildoj De"
 
 # Menu option; indicates whether or not sound effects should play.
 # {} is replaced by "On" or "Off".
-#, fuzzy
 msgid "Sounds By"
-msgstr "Sono: {}"
+msgstr "Sonoj De"
 
 # Menu option; indicates whether or not music should play.
 # {} is replaced by "On" or "Off".
-#, fuzzy
 msgid "Music By"
-msgstr "Muziko: {}"
+msgstr "Muziko De"
 
 msgid "Level Design By"
-msgstr ""
+msgstr "Nivel Fasonado De"
 
 msgid "Bonus Level Design By"
-msgstr ""
+msgstr "Fasonado de Kroma Nivelo De"
 
 msgid "Translations By"
-msgstr ""
+msgstr "Tradukoj De"
 
 msgid "Software Used"
-msgstr ""
+msgstr "Programaro Uzata"
 
 msgid "Thank you for playing!"
-msgstr ""
+msgstr "Dankon al vi pro ludi!"
 
 # Explanation of what the "--version" command-line option does
 #: ../../retux.py:74
 msgid "Output version information and exit."
-msgstr "montri programversion kaj eliri."
+msgstr "Montri programversion kaj eliri."
 
 # Explanation of what the "-p" command-line option does
 #: ../../retux.py:77
@@ -339,8 +336,8 @@ msgid ""
 "Start the indicated level and record player actions in a timeline. Useful "
 "for making cutscenes."
 msgstr ""
-"Eki la indikita nivelon kaj registri ludanta agoj en kronologio. Utila por "
-"fari "
+"Eki la indikitan nivelon kaj registri ludantajn agojn en kronologio. Utila "
+"por krei tranĉscenojn."
 
 # Explanation of what the "--no-backgrounds" command-line option does
 #: ../../retux.py:99
@@ -350,7 +347,7 @@ msgstr "Nur montri opakaj koloroj por fonoj (uzas malpli ĉefmemoron)."
 # Explanation of what the "--no-hud" command-line option does
 #: ../../retux.py:102
 msgid "Don't show the player's heads-up display."
-msgstr "Ne montri la ludanta HUD"
+msgstr "Ne montri la ludantan HUD-n."
 
 # Shown just above the current score
 #: ../../retux.py:535
@@ -516,7 +513,7 @@ msgstr "Sekva paĝo"
 
 #: ../../retux.py:6623
 msgid "Levelset loaded successfully."
-msgstr ""
+msgstr "Nivelaro sukcese ŝarĝita."
 
 # Menu option; indicates whether or not fullscreen should be used.
 # {} is replaced by "On" or "Off".
@@ -607,9 +604,9 @@ msgid "all files"
 msgstr "ĉiuj dosieroj"
 
 #: ../../retux.py:6728
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Importing {fname}..."
-msgstr "importita nivelaro..."
+msgstr "Importante {fname}..."
 
 #: ../../retux.py:6768
 msgid ""
@@ -664,10 +661,11 @@ msgid "Pause: {}"
 msgstr "Paŭzo: {}"
 
 #: ../../retux.py:6825
-#, fuzzy
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
-msgstr "Premu la klavon, ke vi deziras baskuligi, aŭ Nuligi por nuligi."
+msgstr ""
+"Premu la klavon, kiun vi deziras bindi al ĉi tiu funkcio, aŭ la Nuligi-"
+"klavon por nuligi."
 
 # Indicates that an action is not assigned to any joystick control
 #: ../../retux.py:6926
@@ -675,13 +673,12 @@ msgid "None"
 msgstr "Nenio"
 
 #: ../../retux.py:6958
-#, fuzzy
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
 "function, or the Escape key to cancel."
 msgstr ""
-"Premu la stirstangan klavon, akson aŭ ĉapela direkto, kiu vi deziras "
-"baskuligi, aŭ la Nuligi-klavo por nuligi."
+"Premu la stirstangan klavon, akson aŭ ĉapelan direkton, kiun vi deziras "
+"bindi al ĉi tiu funkcio, aŭ la Nuligi-klavon por nuligi."
 
 # In-game menu option; exits the menu and returns to the game
 #: ../../retux.py:7074 ../../retux.py:7077 ../../retux.py:7081
@@ -755,7 +752,7 @@ msgstr "Ŝargado de tiparoj..."
 #. / sprite font is sufficient, leave this as-is.
 #: ../../retux.py:8353 ../../retux.py:8370
 msgid "font_file"
-msgstr ""
+msgstr "fonta_dosiero"
 
 # Printed to the terminal as the game starts
 #: ../../retux.py:8576
