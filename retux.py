@@ -445,14 +445,13 @@ class Level(sge.dsp.Room):
 
     """Handles levels."""
 
-    def __init__(self, objects=(), width=None, height=None, views=None,
-                 background=None, background_x=0, background_y=0,
+    def __init__(self, objects=(), *, background=None,
                  object_area_width=TILE_SIZE * 2,
                  object_area_height=TILE_SIZE * 2,
                  name=None, bgname=None, music=None,
                  time_bonus=DEFAULT_LEVEL_TIME_BONUS, spawn=None,
                  timeline=None, ambient_light=None, disable_lights=False,
-                 persistent=True):
+                 persistent=True, **kwargs):
         self.fname = None
         self.name = name
         self.music = music
@@ -480,9 +479,9 @@ class Level(sge.dsp.Room):
 
         self.disable_lights = disable_lights or self.ambient_light is None
 
-        super().__init__(objects, width, height, views, background,
-                         background_x, background_y, object_area_width,
-                         object_area_height)
+        super().__init__(objects, background=background,
+                         object_area_width=object_area_width,
+                         object_area_height=object_area_height, **kwargs)
         self.add(gui_handler)
 
     def load_timeline(self, timeline):
@@ -1353,14 +1352,11 @@ class Worldmap(sge.dsp.Room):
 
     """Handles worldmaps."""
 
-    def __init__(self, objects=(), width=None, height=None, views=None,
-                 background=None, background_x=0, background_y=0,
-                 object_area_width=TILE_SIZE * 2,
-                 object_area_height=TILE_SIZE * 2, music=None):
+    def __init__(self, objects=(), *, object_area_width=TILE_SIZE * 2,
+                 object_area_height=TILE_SIZE * 2, music=None, **kwargs):
         self.music = music
-        super().__init__(objects, width, height, views, background,
-                         background_x, background_y, object_area_width,
-                         object_area_height)
+        super().__init__(objects, object_area_width=object_area_width,
+                         object_area_height=object_area_height, **kwargs)
 
     def show_menu(self):
         sge.snd.Music.pause()
@@ -1632,17 +1628,10 @@ class Player(xsge_physics.Collider):
                 if self.image_xscale < 0:
                     self.held_object.x -= self.held_object.sprite.width
 
-    def __init__(self, x, y, z=0, sprite=None, visible=True, active=True,
-                 checks_collisions=True, tangible=True, bbox_x=-13, bbox_y=2,
-                 bbox_width=26, bbox_height=30, regulate_origin=True,
-                 collision_ellipse=False, collision_precise=False, xvelocity=0,
-                 yvelocity=0, xacceleration=0, yacceleration=0,
-                 xdeceleration=0, ydeceleration=0, image_index=0,
-                 image_origin_x=None, image_origin_y=None, image_fps=None,
-                 image_xscale=1, image_yscale=1, image_rotation=0,
-                 image_alpha=255, image_blend=None, ID="player", player=0,
+    def __init__(self, x, y, z=0, *, bbox_x=-13, bbox_y=2, bbox_width=26,
+                 bbox_height=30, regulate_origin=True, ID="player", player=0,
                  human=True, lose_on_death=True, view_frozen=False,
-                 view_is_barrier=True):
+                 view_is_barrier=True, **kwargs):
         self.ID = ID
         self.player = player
         self.human = human
@@ -1669,19 +1658,8 @@ class Player(xsge_physics.Collider):
             image_blend = sge.gfx.Color("yellow")
 
         super().__init__(
-            x, y, z=z, sprite=sprite, visible=visible, active=active,
-            checks_collisions=checks_collisions, tangible=tangible,
-            bbox_x=bbox_x, bbox_y=bbox_y, bbox_width=bbox_width,
-            bbox_height=bbox_height, regulate_origin=regulate_origin,
-            collision_ellipse=collision_ellipse,
-            collision_precise=collision_precise, xvelocity=xvelocity,
-            yvelocity=yvelocity, xacceleration=xacceleration,
-            yacceleration=yacceleration, xdeceleration=xdeceleration,
-            ydeceleration=ydeceleration, image_index=image_index,
-            image_origin_x=image_origin_x, image_origin_y=image_origin_y,
-            image_fps=image_fps, image_xscale=image_xscale,
-            image_yscale=image_yscale, image_rotation=image_rotation,
-            image_alpha=image_alpha, image_blend=image_blend)
+            x, y, z=z, bbox_x=bbox_x, bbox_y=bbox_y, bbox_width=bbox_width,
+            bbox_height=bbox_height, regulate_origin=regulate_origin, **kwargs)
 
     def refresh_input(self):
         if self.human:
@@ -2065,8 +2043,8 @@ class Player(xsge_physics.Collider):
                 target_speed = min(h_factor * self.max_speed, self.max_speed)
                 if self.sneak_pressed:
                     target_speed = min(target_speed, self.walk_speed)
-                if (abs(self.xvelocity) < target_speed or
-                        h_control != current_h_movement):
+                if (abs(self.xvelocity) < target_speed
+                        or h_control != current_h_movement):
                     if self.on_floor or self.was_on_floor:
                         self.xacceleration = self.acceleration * h_control
                     else:
@@ -2181,27 +2159,27 @@ class Player(xsge_physics.Collider):
         # Enter warp pipes
         if h_control > 0 and self.xvelocity >= 0:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "right" and self.bbox_right == warp.x and
-                        abs(self.y - warp.y) < WARP_LAX):
+                if (warp.direction == "right" and self.bbox_right == warp.x
+                        and abs(self.y - warp.y) < WARP_LAX):
                     self.y = warp.y
                     warp.warp(self)
         elif h_control < 0 and self.xvelocity <= 0:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "left" and self.bbox_left == warp.x and
-                        abs(self.y - warp.y) < WARP_LAX):
+                if (warp.direction == "left" and self.bbox_left == warp.x
+                        and abs(self.y - warp.y) < WARP_LAX):
                     self.y = warp.y
                     warp.warp(self)
 
         if v_control > 0 and self.yvelocity >= 0:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "down" and self.bbox_bottom == warp.y and
-                        abs(self.x - warp.x) < WARP_LAX):
+                if (warp.direction == "down" and self.bbox_bottom == warp.y
+                        and abs(self.x - warp.x) < WARP_LAX):
                     self.x = warp.x
                     warp.warp(self)
         elif v_control < 0 and self.yvelocity <= 0:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "up" and self.bbox_top == warp.y and
-                        abs(self.x - warp.x) < WARP_LAX):
+                if (warp.direction == "up" and self.bbox_top == warp.y
+                        and abs(self.x - warp.x) < WARP_LAX):
                     self.x = warp.x
                     warp.warp(self)
 
@@ -2216,8 +2194,8 @@ class Player(xsge_physics.Collider):
                 self.bbox_right = self.view.x + self.view.width
 
         # Off-screen death
-        if (not sge.game.current_room.won and
-                self.bbox_top > self.view.y + self.view.height + DEATHZONE):
+        if (not sge.game.current_room.won
+                and self.bbox_top > self.view.y + self.view.height + DEATHZONE):
             self.kill(False)
 
     def event_step_warp(self, time_passed, delta_mult):
@@ -2241,8 +2219,8 @@ class Player(xsge_physics.Collider):
                 self.press_up()
 
         if not isinstance(sge.game.current_room, SpecialScreen):
-            if (key == "escape" or key in pause_key[self.player] or
-                    key in menu_key[self.player]):
+            if (key == "escape" or key in pause_key[self.player]
+                    or key in menu_key[self.player]):
                 sge.game.current_room.pause()
 
     def event_key_release(self, key):
@@ -2275,9 +2253,9 @@ class Player(xsge_physics.Collider):
         elif isinstance(other, Explosion):
             other.touch(self)
         elif isinstance(other, InteractiveObject):
-            if (ydirection == 1 or
-                    (xdirection and not ydirection and
-                     self.bbox_bottom - other.bbox_top <= STOMP_LAX)):
+            if (ydirection == 1
+                    or (xdirection and not ydirection
+                        and self.bbox_bottom - other.bbox_top <= STOMP_LAX)):
                 other.stomp(self)
             # This check is necessary to allow the player to drop held
             # objects. It also has a nice side-effect of preventing the
@@ -2305,8 +2283,8 @@ class Player(xsge_physics.Collider):
 
         if self.left_pressed:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "left" and self.bbox_left == warp.x and
-                        abs(self.y - warp.y) < WARP_LAX):
+                if (warp.direction == "left" and self.bbox_left == warp.x
+                        and abs(self.y - warp.y) < WARP_LAX):
                     warp.warp(self)
 
     def event_physics_collision_right(self, other, move_loss):
@@ -2323,8 +2301,8 @@ class Player(xsge_physics.Collider):
 
         if self.right_pressed:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "right" and self.bbox_right == warp.x and
-                        abs(self.y - warp.y) < WARP_LAX):
+                if (warp.direction == "right" and self.bbox_right == warp.x
+                        and abs(self.y - warp.y) < WARP_LAX):
                     warp.warp(self)
 
     def event_physics_collision_top(self, other, move_loss):
@@ -2336,24 +2314,24 @@ class Player(xsge_physics.Collider):
 
         tmv = 0
         for i in range(CEILING_LAX):
-            if (not self.get_left_touching_wall() and
-                    not self.get_left_touching_slope()):
+            if (not self.get_left_touching_wall()
+                    and not self.get_left_touching_slope()):
                 self.x -= 1
                 tmv -= 1
-                if (not self.get_top_touching_wall() and
-                        not self.get_top_touching_slope()):
+                if (not self.get_top_touching_wall()
+                        and not self.get_top_touching_slope()):
                     self.move_y(-move_loss)
                     break
         else:
             self.x -= tmv
             tmv = 0
             for i in range(CEILING_LAX):
-                if (not self.get_left_touching_wall() and
-                        not self.get_left_touching_slope()):
+                if (not self.get_left_touching_wall()
+                        and not self.get_left_touching_slope()):
                     self.x += 1
                     tmv += 1
-                    if (not self.get_top_touching_wall() and
-                            not self.get_top_touching_slope()):
+                    if (not self.get_top_touching_wall()
+                            and not self.get_top_touching_slope()):
                         self.move_y(-move_loss)
                         break
             else:
@@ -2373,8 +2351,8 @@ class Player(xsge_physics.Collider):
 
         if self.up_pressed:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "up" and self.bbox_top == warp.y and
-                        abs(self.x - warp.x) < WARP_LAX):
+                if (warp.direction == "up" and self.bbox_top == warp.y
+                        and abs(self.x - warp.x) < WARP_LAX):
                     warp.warp(self)
                     break
 
@@ -2393,8 +2371,8 @@ class Player(xsge_physics.Collider):
 
         if self.down_pressed:
             for warp in sge.game.current_room.warps:
-                if (warp.direction == "down" and self.bbox_bottom == warp.y and
-                        abs(self.x - warp.x) < WARP_LAX):
+                if (warp.direction == "down" and self.bbox_bottom == warp.y
+                        and abs(self.x - warp.x) < WARP_LAX):
                     warp.warp(self)
 
 
@@ -2481,12 +2459,11 @@ class InteractiveObject(sge.dsp.Object):
     def update_active(self):
         if not self.warping:
             for view in sge.game.current_room.views:
-                if (self.bbox_left <= (view.x + view.width +
-                                       self.active_range) and
-                        self.bbox_right >= view.x - self.active_range and
-                        self.bbox_top <= (view.y + view.height +
-                                          self.active_range) and
-                        self.bbox_bottom >= view.y - self.active_range):
+                if (self.bbox_left <= (view.x + view.width + self.active_range)
+                        and self.bbox_right >= view.x - self.active_range
+                        and self.bbox_top <= (view.y + view.height
+                                              + self.active_range)
+                        and self.bbox_bottom >= view.y - self.active_range):
                     if not self.activated:
                         self.activate()
                     break
@@ -2659,8 +2636,8 @@ class WinPuffObject(InteractiveObject):
             x = self.x
             y = self.y
         else:
-            x = self.x - self.image_origin_x + self.sprite.width / 2
-            y = self.y - self.image_origin_y + self.sprite.height / 2
+            x = self.x - self.image_origin_x + self.sprite.width/2
+            y = self.y - self.image_origin_y + self.sprite.height/2
         Smoke.create(x, y, self.z, sprite=smoke_plume_sprite)
         self.destroy()
         sge.game.current_room.add_points(self.win_puff_score)
@@ -2689,8 +2666,8 @@ class FallingObject(InteractiveCollider):
                     self.yvelocity = 0
                     self.stop_down()
             elif on_slope:
-                self.yvelocity = self.slide_speed * (on_slope[0].bbox_height /
-                                                     on_slope[0].bbox_width)
+                self.yvelocity = self.slide_speed * (on_slope[0].bbox_height
+                                                     / on_slope[0].bbox_width)
         else:
             if self.yvelocity < self.fall_speed:
                 self.yacceleration = self.gravity
@@ -3169,9 +3146,9 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
 
     def event_end_step(self, time_passed, delta_mult):
         if self.parent is None:
-            if (self.flat and not self.dashing and self.yvelocity >= 0 and
-                (self.get_bottom_touching_wall() or
-                 self.get_bottom_touching_slope())):
+            if (self.flat and not self.dashing and self.yvelocity >= 0
+                    and (self.get_bottom_touching_wall()
+                         or self.get_bottom_touching_slope())):
                 self.xdeceleration = ICEBLOCK_FRICTION
             else:
                 self.xdeceleration = 0
@@ -3180,9 +3157,10 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
         if self.parent is None:
             if self.flat:
                 if isinstance(other, InteractiveObject) and other.knockable:
-                    if (self.dashing or abs(self.xvelocity) > 0.05 or
-                            self.yvelocity < 0 or (not self.was_on_floor and
-                                                   self.yvelocity > 0.05)):
+                    if (self.dashing or abs(self.xvelocity) > 0.05
+                            or self.yvelocity < 0
+                            or (not self.was_on_floor
+                                and self.yvelocity > 0.05)):
                         other.knock(self)
                 elif isinstance(other, Coin):
                     other.event_collision(self.thrower, -xdirection,
@@ -3397,9 +3375,9 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
             self.permafreeze()
 
     def event_end_step(self, time_passed, delta_mult):
-        if (self.ticking and self.yvelocity >= 0 and
-                (self.get_bottom_touching_wall() or
-                 self.get_bottom_touching_slope())):
+        if (self.ticking and self.yvelocity >= 0
+                and (self.get_bottom_touching_wall()
+                     or self.get_bottom_touching_slope())):
             self.xdeceleration = ROCK_FRICTION
         else:
             self.xdeceleration = 0
@@ -3625,23 +3603,23 @@ class Icicle(InteractiveObject):
             objects = (
                 sge.game.current_room.get_objects_at(
                     self.bbox_left - ICICLE_LAX, self.bbox_bottom,
-                    self.bbox_width + 2 * ICICLE_LAX,
-                    (sge.game.current_room.height - self.bbox_bottom +
-                     sge.game.current_room.object_area_height)) |
-                sge.game.current_room.object_area_void)
+                    self.bbox_width + 2*ICICLE_LAX,
+                    (sge.game.current_room.height-self.bbox_bottom
+                     + sge.game.current_room.object_area_height))
+                | sge.game.current_room.object_area_void)
             for obj in objects:
-                if (obj.bbox_top > self.bbox_bottom and
-                        self.bbox_right > obj.bbox_left and
-                        self.bbox_left < obj.bbox_right):
+                if (obj.bbox_top > self.bbox_bottom
+                        and self.bbox_right > obj.bbox_left
+                        and self.bbox_left < obj.bbox_right):
                     if isinstance(obj, xsge_physics.SolidTop):
                         crash_y = min(crash_y, obj.bbox_top)
                     elif isinstance(obj, xsge_physics.SlopeTopLeft):
                         crash_y = min(crash_y, obj.get_slope_y(self.bbox_right))
                     elif isinstance(obj, xsge_physics.SlopeTopRight):
                         crash_y = min(crash_y, obj.get_slope_y(self.bbox_left))
-                if (obj.bbox_bottom > self.bbox_top and
-                        self.bbox_right + ICICLE_LAX > obj.bbox_left and
-                        self.bbox_left - ICICLE_LAX < obj.bbox_right):
+                if (obj.bbox_bottom > self.bbox_top
+                        and self.bbox_right + ICICLE_LAX > obj.bbox_left
+                        and self.bbox_left - ICICLE_LAX < obj.bbox_right):
                     if isinstance(obj, Player):
                         players.append(obj)
 
@@ -3794,9 +3772,9 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
                          sge.game.current_room.object_area_height)) |
                     sge.game.current_room.object_area_void)
                 for obj in objects:
-                    if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right > obj.bbox_left and
-                            self.bbox_left < obj.bbox_right):
+                    if (obj.bbox_top > self.bbox_bottom
+                            and self.bbox_right > obj.bbox_left
+                            and self.bbox_left < obj.bbox_right):
                         if isinstance(obj, xsge_physics.SolidTop):
                             crash_y = min(crash_y, obj.bbox_top)
                         elif isinstance(obj, xsge_physics.SlopeTopLeft):
@@ -3805,9 +3783,9 @@ class Crusher(FallingObject, xsge_physics.MobileColliderWall,
                         elif isinstance(obj, xsge_physics.SlopeTopRight):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
-                    if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right + CRUSHER_LAX > obj.bbox_left and
-                            self.bbox_left - CRUSHER_LAX < obj.bbox_right):
+                    if (obj.bbox_top > self.bbox_bottom
+                            and self.bbox_right + CRUSHER_LAX > obj.bbox_left
+                            and self.bbox_left - CRUSHER_LAX < obj.bbox_right):
                         if isinstance(obj, Player):
                             players.append(obj)
 
@@ -4008,15 +3986,15 @@ class Snowman(FallingObject, Boss):
                     player = self.get_nearest_player()
                     if player is not None:
                         d = player.x - self.x
-                        if (abs(self.xvelocity) < walk_speed or
-                                (self.xvelocity > 0) != (d > 0)):
+                        if (abs(self.xvelocity) < walk_speed
+                                or (self.xvelocity > 0) != (d > 0)):
                             self.xacceleration = math.copysign(accel, d)
                         else:
                             self.xvelocity = math.copysign(walk_speed, d)
 
-                        if (can_jump and self.yvelocity == 0 and
-                                self.y - player.y >= SNOWMAN_JUMP_TRIGGER and
-                                abs(self.xvelocity) >= walk_speed / 2):
+                        if (can_jump and self.yvelocity == 0
+                                and self.y - player.y >= SNOWMAN_JUMP_TRIGGER
+                                and abs(self.xvelocity) >= walk_speed / 2):
                             self.jump()
             else:
                 player = self.get_nearest_player()
@@ -4101,8 +4079,8 @@ class Snowman(FallingObject, Boss):
 
     def event_alarm(self, alarm_id):
         if alarm_id == "stun_start":
-            self.image_speed = (SNOWMAN_STUNNED_WALK_SPEED *
-                                SNOWMAN_WALK_FRAMES_PER_PIXEL)
+            self.image_speed = (SNOWMAN_STUNNED_WALK_SPEED
+                                * SNOWMAN_WALK_FRAMES_PER_PIXEL)
             self.xvelocity = math.copysign(SNOWMAN_STUNNED_WALK_SPEED,
                                            self.image_xscale)
             self.alarms["stun"] = SNOWMAN_HITSTUN
@@ -4164,8 +4142,8 @@ class Raccot(FallingObject, Boss):
                                                    self.charge_interval_max)
 
     def jump(self):
-        if (self.was_on_floor and self.yvelocity == 0 and
-                "stomp_delay" not in self.alarms):
+        if (self.was_on_floor and self.yvelocity == 0
+                and "stomp_delay" not in self.alarms):
             play_sound(bigjump_sound, self.x, self.y)
             self.yvelocity = get_jump_speed(RACCOT_JUMP_HEIGHT, self.gravity)
 
@@ -4243,8 +4221,8 @@ class Raccot(FallingObject, Boss):
             if "stomp_delay" not in self.alarms:
                 self.xacceleration = 0
                 if self.direction and not self.hopping:
-                    if (abs(self.xvelocity) < RACCOT_WALK_SPEED or
-                            (self.xvelocity > 0) != (self.direction > 0)):
+                    if (abs(self.xvelocity) < RACCOT_WALK_SPEED
+                            or (self.xvelocity > 0) != (self.direction > 0)):
                         self.xacceleration = math.copysign(
                             RACCOT_ACCELERATION, self.direction)
                     else:
@@ -4262,9 +4240,9 @@ class Raccot(FallingObject, Boss):
                     sge.game.current_room.object_area_void)
 
                 for obj in objects:
-                    if (obj.bbox_top > self.bbox_bottom and
-                            self.bbox_right > obj.bbox_left and
-                            self.bbox_left < obj.bbox_right):
+                    if (obj.bbox_top > self.bbox_bottom
+                            and self.bbox_right > obj.bbox_left
+                            and self.bbox_left < obj.bbox_right):
                         if isinstance(obj, xsge_physics.SolidTop):
                             crash_y = min(crash_y, obj.bbox_top)
                         elif isinstance(obj, xsge_physics.SlopeTopLeft):
@@ -4273,11 +4251,11 @@ class Raccot(FallingObject, Boss):
                         elif isinstance(obj, xsge_physics.SlopeTopRight):
                             crash_y = min(crash_y,
                                           obj.get_slope_y(self.bbox_left))
-                    if (obj.bbox_top > self.bbox_bottom and
-                            (self.bbox_right + RACCOT_CRUSH_LAX >
-                             obj.bbox_left) and
-                            (self.bbox_left - RACCOT_CRUSH_LAX <
-                             obj.bbox_right)):
+                    if (obj.bbox_top > self.bbox_bottom
+                            and (self.bbox_right + RACCOT_CRUSH_LAX
+                                 > obj.bbox_left)
+                            and (self.bbox_left - RACCOT_CRUSH_LAX
+                                 < obj.bbox_right)):
                         if isinstance(obj, Player):
                             players.append(obj)
 
@@ -7180,7 +7158,7 @@ class WorldmapMenu(ModalMenu):
 class DialogLabel(xsge_gui.ProgressiveLabel):
 
     def event_add_character(self):
-        if self.text[-1] not in (' ', '\n', '\t'):
+        if self.text[-1].isspace():
             play_sound(type_sound)
 
 
