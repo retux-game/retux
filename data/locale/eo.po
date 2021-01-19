@@ -519,7 +519,7 @@ msgstr "Nivelaro sukcese ŝarĝita."
 # {} is replaced by "On" or "Off".
 #: ../../retux.py:6636
 msgid "Fullscreen: {}"
-msgstr "Plena ekraro: {}"
+msgstr "Plena ekrano: {}"
 
 # Used as a part of binary config menu options below.
 #: ../../retux.py:6636 ../../retux.py:6638 ../../retux.py:6639
