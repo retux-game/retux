@@ -7158,7 +7158,7 @@ class WorldmapMenu(ModalMenu):
 class DialogLabel(xsge_gui.ProgressiveLabel):
 
     def event_add_character(self):
-        if self.text[-1].isspace():
+        if not self.text[-1].isspace():
             play_sound(type_sound)
 
 
