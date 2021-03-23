@@ -5348,24 +5348,28 @@ class Lava(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = lava_body_sprite
+        self.image_fps = None
 
 
 class LavaSurface(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = lava_surface_sprite
+        self.image_fps = None
 
 
 class Goal(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = goal_sprite
+        self.image_fps = None
 
 
 class GoalTop(xsge_tiled.Decoration):
 
     def event_create(self):
         self.sprite = goal_top_sprite
+        self.image_fps = None
 
 
 class Coin(sge.dsp.Object):

@@ -810,6 +810,8 @@ music/darkforestkeep.ogg
 music/forestmap.ogg
 music/fortress.ogg
 music/fortress-start.ogg
+music/fortressremix.ogg
+music/fortressremix-start.ogg
 music/ghostforest2.ogg
 music/intro.ogg
 music/leveldone.ogg
@@ -818,10 +820,6 @@ music/treeboss.ogg
 music/treeboss-start.ogg
 music/wisphunt.ogg
 music/wisphunt-start.ogg
-music/sources/bossattack.ogg
-music/sources/fortress.ogg
-music/sources/treeboss.ogg
-music/sources/wisphunt.ogg
 
 Author: wansti
 License: CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>
