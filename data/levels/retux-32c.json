@@ -480,7 +480,7 @@
         {
          "name":"music",
          "type":"string",
-         "value":"cave.ogg"
+         "value":"greatgigantic.ogg"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.3.4",
