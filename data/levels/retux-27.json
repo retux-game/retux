@@ -2029,12 +2029,12 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"nightsky"
+         "value":"arctis"
         }, 
         {
          "name":"music",
          "type":"string",
-         "value":"wisphunt.ogg"
+         "value":"chipdisko.ogg"
         }, 
         {
          "name":"name",

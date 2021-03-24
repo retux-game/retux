@@ -2843,12 +2843,12 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"nightsky"
+         "value":"bluemountain"
         }, 
         {
          "name":"music",
          "type":"string",
-         "value":"wisphunt.ogg"
+         "value":"chipdisko.ogg"
         }, 
         {
          "name":"name",

@@ -836,7 +836,7 @@
         {
          "name":"music",
          "type":"string",
-         "value":"wisphunt.ogg"
+         "value":"cave.ogg"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.4.3",
