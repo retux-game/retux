@@ -2230,12 +2230,12 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"bluemountain"
+         "value":"nightsky"
         }, 
         {
          "name":"music",
          "type":"string",
-         "value":"chipdisko.ogg"
+         "value":"wisphunt.ogg"
         }, 
         {
          "name":"name",
