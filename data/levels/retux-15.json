@@ -1961,7 +1961,7 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"arctis"
+         "value":"bluemountain"
         }, 
         {
          "name":"music",
@@ -1974,7 +1974,7 @@
          "value":"There Might Be Some Momentary Discomfort"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.4.3",
  "tileheight":32,
  "tilesets":[
         {
@@ -2031,6 +2031,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":300
 }

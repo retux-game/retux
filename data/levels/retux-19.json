@@ -1,5 +1,12 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":42,
  "infinite":false,
  "layers":[
@@ -1995,12 +2002,12 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"bluemountain"
+         "value":"nightsky"
         }, 
         {
          "name":"music",
          "type":"string",
-         "value":"chipdisko.ogg"
+         "value":"wisphunt.ogg"
         }, 
         {
          "name":"name",
@@ -2008,7 +2015,7 @@
          "value":"In Need of a Lift"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.4.3",
  "tileheight":32,
  "tilesets":[
         {
@@ -2065,6 +2072,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":300
 }

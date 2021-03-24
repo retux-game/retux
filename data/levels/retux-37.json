@@ -2361,7 +2361,7 @@
         {
          "name":"bgname",
          "type":"string",
-         "value":"arctis_castle"
+         "value":"nightsky_castle"
         }, 
         {
          "name":"music",
@@ -2379,7 +2379,7 @@
          "value":150000
         }],
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.4.3",
  "tileheight":32,
  "tilesets":[
         {
@@ -2436,6 +2436,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":1.4,
  "width":250
 }
