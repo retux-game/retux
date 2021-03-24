@@ -676,6 +676,7 @@ class Level(sge.dsp.Room):
         self.win_count_points = False
         self.win_count_time = False
         self.count_mult = 1
+        self.count_time = 0
         self.death_time = None
         self.alarms["timer"] = TIMER_FRAMES
         self.pause_delay = TRANSITION_TIME
@@ -913,15 +914,18 @@ class Level(sge.dsp.Room):
 
             time_bonus = level_timers.setdefault(main_area, 0)
             if time_bonus < 0 and cleared_levels:
-                amt = int(math.copysign(
-                    min(math.ceil(abs(self.death_time_bonus) * 3 * time_passed
-                                  / DEATH_FADE_TIME),
-                        abs(time_bonus)),
-                    time_bonus))
-                if amt:
-                    score += amt
-                    level_timers[main_area] -= amt
-                    play_sound(coin_sound)
+                self.count_time += time_passed
+                if self.count_time >= 1000 / FPS:
+                    amt = int(math.copysign(
+                        min(math.ceil(abs(self.death_time_bonus) * 3
+                                      * self.count_time / DEATH_FADE_TIME),
+                            abs(time_bonus)),
+                        time_bonus))
+                    self.count_time = 0
+                    if amt:
+                        score += amt
+                        level_timers[main_area] -= amt
+                        play_sound(coin_sound)
 
             if self.death_time < 0:
                 self.death_time = None
@@ -935,24 +939,32 @@ class Level(sge.dsp.Room):
         if self.won:
             if self.win_count_points:
                 if self.points:
-                    amt = int(math.copysign(
-                        min(delta_mult * self.count_mult, abs(self.points)),
-                        self.points))
-                    score += amt
-                    self.points -= amt
-                    play_sound(coin_sound)
+                    self.count_time += delta_mult
+                    if self.count_time >= 1:
+                        amt = int(math.copysign(
+                            min(self.count_time * self.count_mult,
+                                abs(self.points)),
+                            self.points))
+                        self.count_time = 0
+                        score += amt
+                        self.points -= amt
+                        play_sound(coin_sound)
                 else:
                     self.win_count_points = False
                     self.alarms["win_count_time"] = WIN_COUNT_CONTINUE_TIME
             elif self.win_count_time:
                 time_bonus = level_timers.setdefault(main_area, 0)
                 if time_bonus:
-                    amt = int(math.copysign(
-                        min(delta_mult * self.count_mult, abs(time_bonus)),
-                        time_bonus))
-                    score += amt
-                    level_timers[main_area] -= amt
-                    play_sound(coin_sound)
+                    self.count_time += delta_mult
+                    if self.count_time >= 1:
+                        amt = int(math.copysign(
+                            min(self.count_time * self.count_mult,
+                                abs(time_bonus)),
+                            time_bonus))
+                        self.count_time = 0
+                        score += amt
+                        level_timers[main_area] -= amt
+                        play_sound(coin_sound)
                 else:
                     self.win_count_time = False
                     if main_area not in cleared_levels:
@@ -1044,6 +1056,7 @@ class Level(sge.dsp.Room):
                     r.spawn = area_spawn
                 r.start()
         elif alarm_id == "win_count_points":
+            self.count_time = 0
             if self.points > 0:
                 self.win_count_points = True
                 self.count_mult = max(WIN_COUNT_POINTS_MULT,
@@ -1054,6 +1067,7 @@ class Level(sge.dsp.Room):
                 self.count_mult = max(WIN_COUNT_TIME_MULT,
                                       time_bonus / WIN_COUNT_TIME_MAX)
         elif alarm_id == "win_count_time":
+            self.count_time = 0
             self.win_count_time = True
             time_bonus = level_timers.setdefault(main_area, 0)
             self.count_mult = max(WIN_COUNT_TIME_MULT,
