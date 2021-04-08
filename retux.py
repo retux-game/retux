@@ -570,7 +570,7 @@ class Level(sge.dsp.Room):
 
         if self.death_time is not None or "death" in self.alarms:
             if level_timers.setdefault(main_area, 0) >= 0:
-                sge.snd.Music.stop()
+                sge.snd.stop_all_music()
                 self.alarms["death"] = 0
         elif (self.timeline_skip_target is not None and
               self.timeline_step < self.timeline_skip_target):
@@ -588,7 +588,7 @@ class Level(sge.dsp.Room):
         if "timer" in self.alarms:
             del self.alarms["timer"]
         sge.snd.Music.clear_queue()
-        sge.snd.Music.stop(DEATH_FADE_TIME)
+        sge.snd.stop_all_music(DEATH_FADE_TIME)
 
     def return_to_map(self, completed=False):
         global current_worldmap
@@ -646,7 +646,7 @@ class Level(sge.dsp.Room):
             self.alarms["win_count_points"] = WIN_COUNT_START_TIME
             current_checkpoints[main_area] = None
             sge.snd.Music.clear_queue()
-            sge.snd.Music.stop()
+            sge.snd.stop_all_music()
             if music_enabled:
                 level_win_music.play()
 
@@ -1324,7 +1324,7 @@ class CreditsScreen(SpecialScreen):
                 obj.yvelocity = 0
 
         if self.sections[-1].bbox_bottom < 0 and "end" not in self.alarms:
-            sge.snd.Music.stop(fade_time=3000)
+            sge.snd.stop_all_music(fade_time=3000)
             self.alarms["end"] = 3.5 * FPS
 
     def event_alarm(self, alarm_id):
@@ -7440,7 +7440,7 @@ def play_music(music, force_restart=False):
                                                           music))
             except OSError:
                 sge.snd.Music.clear_queue()
-                sge.snd.Music.stop()
+                sge.snd.stop_all_music()
                 return
             else:
                 loaded_music[music] = music_object
@@ -7461,7 +7461,7 @@ def play_music(music, force_restart=False):
                               (music_start_object is None or
                                not music_start_object.playing))):
             sge.snd.Music.clear_queue()
-            sge.snd.Music.stop()
+            sge.snd.stop_all_music()
             if music_start_object is not None:
                 music_start_object.play()
                 music_object.queue(loops=None)
@@ -7469,7 +7469,7 @@ def play_music(music, force_restart=False):
                 music_object.play(loops=None)
     else:
         sge.snd.Music.clear_queue()
-        sge.snd.Music.stop()
+        sge.snd.stop_all_music()
 
 
 def load_levelset(fname):
