@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":15,
  "infinite":false,
  "layers":[
@@ -608,18 +601,6 @@
                  "visible":true,
                  "width":32,
                  "x":480,
-                 "y":320
-                }, 
-                {
-                 "gid":470,
-                 "height":32,
-                 "id":46,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":512,
                  "y":320
                 }, 
                 {
@@ -1257,6 +1238,24 @@
                  "width":32,
                  "x":2816,
                  "y":96
+                }, 
+                {
+                 "gid":482,
+                 "height":32,
+                 "id":152,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Traveler's Note:\n\nI have found that if, when holding a fire flower, I hold down the \"up\" button while pressing the \"action\" button, my fireballs shoot higher up into the air. That may prove to be a useful technique."
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":512,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1985,7 +1984,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":152,
+ "nextobjectid":153,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2004,7 +2003,7 @@
          "value":"Explosive Sharpshooting"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -2061,6 +2060,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":"1.6",
  "width":350
 }
