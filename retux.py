@@ -1022,7 +1022,8 @@ class Level(sge.dsp.Room):
             if main_area in levels:
                 level_timers.setdefault(main_area, 0)
                 if main_area not in cleared_levels:
-                    level_timers[main_area] -= SECOND_POINTS
+                    level_timers[main_area] = max(
+                        0, level_timers[main_area] - SECOND_POINTS)
                 self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "shake_down":
             self.shake_queue -= 1
