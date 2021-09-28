@@ -113,10 +113,18 @@ LEVEL = args.level
 RECORD = args.record
 NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
-GOD = (args.god and args.god.lower() == "plz4giv")
+GOD = False
+HELL = False
+if args.god:
+    if args.god.lower() == "nano":
+        GOD = True
+    elif args.god.lower() == "emacs" or args.god.lower() == "vi":
+        HELL = True
 
 if GOD:
-    print("God mode enabled.")
+    print("The text editor god smiles upon you. God mode enabled.")
+elif HELL:
+    print("The text editor god has sent you to hell for your heresy!")
 
 for d in dirs:
     if os.path.isdir(d):
@@ -420,7 +428,15 @@ class Game(sge.dsp.Game):
     fps_frames = 0
     fps_text = ""
 
+    def show_hell(self):
+        if HELL:
+            self.project_rectangle(0, 0, self.width, self.height, 20000,
+                                   fill=sge.gfx.Color((255, 128, 128)),
+                                   blend_mode=sge.BLEND_RGB_MULTIPLY)
+
     def event_step(self, time_passed, delta_mult):
+        self.show_hell()
+
         if fps_enabled:
             self.fps_time += time_passed
             self.fps_frames += 1
@@ -435,6 +451,9 @@ class Game(sge.dsp.Game):
                               color=sge.gfx.Color("yellow"), halign="right",
                               valign="bottom", outline=sge.gfx.Color("black"),
                               outline_thickness=text_outline_thickness)
+
+    def event_paused_step(self, time_passed, delta_mult):
+        self.show_hell()
 
     def event_close(self):
         rush_save()
