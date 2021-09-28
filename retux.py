@@ -1630,7 +1630,7 @@ class LevelEnd(sge.dsp.Object):
 
 class Player(xsge_physics.Collider):
 
-    name = "Super Tux" if GOD else "Heretic Tux" if HELL else "Tux"
+    name = "Super-Penguin Tux" if GOD else "Heretic Tux" if HELL else "Tux"
     max_hp = PLAYER_MAX_HP
     walk_speed = PLAYER_WALK_SPEED
     run_speed = PLAYER_RUN_SPEED
