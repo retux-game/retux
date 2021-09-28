@@ -214,7 +214,7 @@ RACCOT_STOMP_DELAY = 15
 RACCOT_WALK_FRAMES_PER_PIXEL = 1 / 22
 RACCOT_HP = 20 if HELL else 5
 RACCOT_HOP_TIME = 5
-RACCOT_HOP_INTERVAL_MIN = 15 if HELL else 45
+RACCOT_HOP_INTERVAL_MIN = 45
 RACCOT_HOP_INTERVAL_MAX = 60 if HELL else 120
 RACCOT_CHARGE_INTERVAL_MIN = 300
 RACCOT_CHARGE_INTERVAL_MAX = 600
@@ -3953,6 +3953,8 @@ class Snowman(FallingObject, Boss):
         self.hp = hp
         self.strong_stage = strong_stage
         self.final_stage = final_stage
+        if HELL:
+            self.final_stage += 1
         self.stunned = False
         self.stun_end = False
         self.stun_time = 0
