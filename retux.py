@@ -1672,9 +1672,6 @@ class Player(xsge_physics.Collider):
         self.facing = 1
         self.view = None
 
-        if GOD:
-            kwargs["image_blend"] = sge.gfx.Color("yellow")
-
         super().__init__(
             x, y, z=z, bbox_x=bbox_x, bbox_y=bbox_y, bbox_width=bbox_width,
             bbox_height=bbox_height, regulate_origin=regulate_origin, **kwargs)
@@ -7877,6 +7874,25 @@ tux_arms_skid_grab_sprite = sge.gfx.Sprite(
     "tux_arms_skid_grab", d, origin_x=TUX_ORIGIN_X, origin_y=TUX_ORIGIN_Y)
 tux_die_sprite = sge.gfx.Sprite("tux_die", d, origin_x=29, origin_y=11, fps=8)
 tux_offscreen_sprite = sge.gfx.Sprite("tux_offscreen", d, origin_x=16)
+
+if GOD:
+    def supertux_shader(x, y, red, green, blue, alpha):
+        threshold = 55
+        if (abs(red - green) < threshold and abs(red - blue) < threshold
+                and abs(green - blue) < threshold):
+            red = int(68 + 185*red/255)
+            green = int(82 + 173*green/255)
+            blue = int(253 * blue / 255)
+        return (red, green, blue, alpha)
+
+    for s in [tux_body_stand_sprite, tux_body_walk_sprite, tux_body_run_sprite,
+              tux_body_skid_sprite, tux_body_jump_sprite, tux_body_fall_sprite,
+              tux_body_kick_sprite, tux_arms_stand_sprite, tux_arms_walk_sprite,
+              tux_arms_run_sprite, tux_arms_skid_sprite, tux_arms_jump_sprite,
+              tux_arms_fall_sprite, tux_arms_kick_sprite,
+              tux_arms_grab_sprite, tux_arms_skid_grab_sprite, tux_die_sprite,
+              tux_offscreen_sprite]:
+        s.draw_shader(0, 0, s.width, s.height, supertux_shader)
 
 tux_stand_sprite = tux_body_stand_sprite.copy()
 tux_walk_sprite = tux_body_walk_sprite.copy()
