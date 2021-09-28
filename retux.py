@@ -1124,9 +1124,9 @@ class Level(sge.dsp.Room):
                 if isinstance(sge.game.current_room, Worldmap):
                     sge.game.refresh()
                     sge.game.current_room.level_text = text
-                    sge.game.current_room.event_step(0, 0)
-                    sge.game.refresh()
+                    _refresh_screen(0, 0)
                 elif sge.game.current_room is not None:
+                    sge.game.refresh()
                     x = sge.game.width / 2
                     y = sge.game.height / 2
                     w = font.get_width(text) + 32
@@ -1138,7 +1138,7 @@ class Level(sge.dsp.Room):
                         halign="center", valign="middle",
                         outline=sge.gfx.Color("black"),
                         outline_thickness=text_outline_thickness)
-                    sge.game.refresh()
+                    _refresh_screen(0, 0)
                 else:
                     print(_("Loading \"{}\"...").format(fname))
 
@@ -6761,7 +6761,7 @@ class OptionsMenu(Menu):
 
                     window.show()
                     gui_handler.event_step(0, 0)
-                    sge.game.refresh()
+                    _refresh_screen(0, 0)
 
                     try:
                         with zipfile.ZipFile(fname, 'r') as rtz:
@@ -6774,14 +6774,14 @@ class OptionsMenu(Menu):
                                 progressbar.redraw()
                                 sge.game.pump_input()
                                 gui_handler.event_step(0, 0)
-                                sge.game.refresh()
+                                _refresh_screen(0, 0)
                     except Exception as e:
                         show_error(str(e))
 
                     window.destroy()
                     sge.game.pump_input()
                     gui_handler.event_step(0, 0)
-                    sge.game.refresh()
+                    _refresh_screen(0, 0)
                     sge.game.pump_input()
                     sge.game.input_events = []
             else:
@@ -7079,7 +7079,7 @@ class ModalMenu(xsge_gui.MenuDialog):
                 selection_prefix="<", selection_suffix=">")
             default %= len(self.widgets)
             self.keyboard_focused_widget = self.widgets[default]
-            sge.game.refresh()
+            _refresh_screen(0, 0)
             self.show()
             return self
 
@@ -7114,13 +7114,13 @@ class PauseMenu(ModalMenu):
                 selection_prefix="<", selection_suffix=">")
         default %= len(self.widgets)
         self.keyboard_focused_widget = self.widgets[default]
-        sge.game.refresh()
+        _refresh_screen(0, 0)
         self.show()
         return self
 
     def event_choose(self):
         self.hide()
-        sge.game.refresh()
+        _refresh_screen(0, 0)
 
         if self.choice == 1:
             play_sound(confirm_sound)
@@ -7149,7 +7149,7 @@ class ModalKeyboardMenu(ModalMenu, KeyboardMenu):
 
     def event_choose(self):
         self.hide()
-        sge.game.refresh()
+        _refresh_screen(0, 0)
         if self.choice is not None and self.choice < len(self.items) - 1:
             super().event_choose()
         else:
@@ -7160,7 +7160,7 @@ class ModalJoystickMenu(ModalMenu, JoystickMenu):
 
     def event_choose(self):
         self.hide()
-        sge.game.refresh()
+        _refresh_screen(0, 0)
         if self.choice is not None and self.choice < len(self.items) - 1:
             super().event_choose()
         else:
@@ -7174,7 +7174,7 @@ class WorldmapMenu(ModalMenu):
 
     def event_choose(self):
         self.hide()
-        sge.game.refresh()
+        _refresh_screen(0, 0)
 
         if self.choice == 1:
             play_sound(confirm_sound)
@@ -7339,7 +7339,7 @@ def wait_key(text):
                               outline_thickness=text_outline_thickness)
 
         # Refresh
-        sge.game.refresh()
+        _refresh_screen(0, 0)
 
 
 def wait_js(text):
@@ -7380,7 +7380,7 @@ def wait_js(text):
                               outline_thickness=text_outline_thickness)
 
         # Refresh
-        sge.game.refresh()
+        _refresh_screen(0, 0)
 
 
 def show_error(message):
@@ -7516,7 +7516,7 @@ def load_levelset(fname):
                 r = True
 
         gui_handler.event_step(0, 0)
-        sge.game.refresh()
+        _refresh_screen(0, 0)
         return r
 
     if current_levelset != fname:
@@ -7805,6 +7805,18 @@ def _data_decode(data, encoding, compression):
             raise ValueError(e)
     else:
         return data
+
+
+def _refresh_screen(time_passed, delta_mult):
+    # Wrapper for sge.game.refresh() which also calls the paused step
+    # events, in case they make any changes to the screen by way of
+    # window projections. Prevents flickering bugs.
+    sge.game.event_step(time_passed, delta_mult)
+    sge.game.current_room.event_step(time_passed, delta_mult)
+    for obj in sge.game.current_room.objects[:]:
+        obj.event_step(time_passed, delta_mult)
+
+    sge.game.refresh()
 
 
 TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
