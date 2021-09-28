@@ -306,14 +306,14 @@ FLOWER_FALL_SPEED = 5
 FLOWER_THROW_HEIGHT = TILE_SIZE / 2
 FLOWER_THROW_UP_HEIGHT = TILE_SIZE * 3 / 2
 
-FIREBALL_AMMO = 15 if HELL else 20
+FIREBALL_AMMO = 20
 FIREBALL_SPEED = 8
 FIREBALL_GRAVITY = 0.5
 FIREBALL_FALL_SPEED = 5
 FIREBALL_BOUNCE_HEIGHT = TILE_SIZE / 2
 FIREBALL_UP_HEIGHT = TILE_SIZE * 3 / 2
 
-ICEBULLET_AMMO = 15 if HELL else 20
+ICEBULLET_AMMO = 20
 ICEBULLET_SPEED = 16
 
 COINBRICK_COINS = 5 if HELL else 20
@@ -1046,8 +1046,10 @@ class Level(sge.dsp.Room):
             if main_area in levels:
                 level_timers.setdefault(main_area, 0)
                 if main_area not in cleared_levels:
-                    level_timers[main_area] = max(
-                        0, level_timers[main_area] - SECOND_POINTS)
+                    level_timers[main_area] -= SECOND_POINTS
+                    if not HELL:
+                        level_timers[main_area] = max(
+                            0, level_timers[main_area])
                 self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "shake_down":
             self.shake_queue -= 1
@@ -7832,7 +7834,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "creatures": get_object, "hazards": get_object,
          "special_blocks": get_object, "decoration_small": get_object,
          "map_objects": get_object, "player": Player,
-         "walking_snowball": WalkingSnowball,
+         "walking_snowball": Crystallo if HELL else WalkingSnowball,
          "bouncing_snowball": BouncingSnowball, "crystallo": Crystallo,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
