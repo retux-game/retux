@@ -7872,7 +7872,7 @@ if HELL:
     sel_color = sge.gfx.Color((255, 0, 0))
 else:
     menu_color = sge.gfx.Color((128, 128, 255, 192))
-    sel_col = sge.gfx.Color((0, 128, 255))
+    sel_color = sge.gfx.Color((0, 128, 255))
 
 # Load sprites
 print(_("Loading images..."))
