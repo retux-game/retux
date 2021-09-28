@@ -115,6 +115,9 @@ NO_BACKGROUNDS = args.no_backgrounds
 NO_HUD = args.no_hud
 GOD = (args.god and args.god.lower() == "plz4giv")
 
+if GOD:
+    print("God mode enabled.")
+
 for d in dirs:
     if os.path.isdir(d):
         for dirpath, dirnames, filenames in os.walk(d, True, None, True):
@@ -1670,7 +1673,7 @@ class Player(xsge_physics.Collider):
         self.view = None
 
         if GOD:
-            image_blend = sge.gfx.Color("yellow")
+            kwargs["image_blend"] = sge.gfx.Color("yellow")
 
         super().__init__(
             x, y, z=z, bbox_x=bbox_x, bbox_y=bbox_y, bbox_width=bbox_width,
