@@ -101,8 +101,7 @@ parser.add_argument(
 parser.add_argument(
     "--no-hud", help=_("Don't show the player's heads-up display."),
     action="store_true")
-parser.add_argument("--scale-basic", action="store_true")
-parser.add_argument("--god")
+parser.add_argument("--god", help=_("Pray to your god. Choose wisely…"))
 args = parser.parse_args()
 
 PRINT_ERRORS = args.print_errors
@@ -6437,8 +6436,7 @@ class Menu(xsge_gui.MenuWindow):
             self = cls.from_text(
                 gui_handler, sge.game.width / 2, sge.game.height * 2 / 3,
                 cls.items, font_normal=font,
-                color_normal=sge.gfx.Color("white"),
-                color_selected=sge.gfx.Color((0, 128, 255)),
+                color_normal=sge.gfx.Color("white"), color_selected=sel_color,
                 background_color=menu_color, margin=9, halign="center",
                 valign="middle", outline_normal=sge.gfx.Color("black"),
                 outline_selected=sge.gfx.Color("black"),
@@ -7069,8 +7067,7 @@ class ModalMenu(xsge_gui.MenuDialog):
             self = cls.from_text(
                 gui_handler, sge.game.width / 2, sge.game.height / 2,
                 cls.items, font_normal=font,
-                color_normal=sge.gfx.Color("white"),
-                color_selected=sge.gfx.Color((0, 128, 255)),
+                color_normal=sge.gfx.Color("white"), color_selected=sel_color,
                 background_color=menu_color, margin=9, halign="center",
                 valign="middle", outline_normal=sge.gfx.Color("black"),
                 outline_selected=sge.gfx.Color("black"),
@@ -7105,13 +7102,13 @@ class PauseMenu(ModalMenu):
         self = cls.from_text(
             gui_handler, sge.game.width / 2, sge.game.height / 2,
             items, font_normal=font, color_normal=sge.gfx.Color("white"),
-            color_selected=sge.gfx.Color((0, 128, 255)),
-            background_color=menu_color, margin=9, halign="center",
-            valign="middle", outline_normal=sge.gfx.Color("black"),
-                outline_selected=sge.gfx.Color("black"),
-                outline_thickness_normal=text_outline_thickness,
-                outline_thickness_selected=text_outline_thickness,
-                selection_prefix="<", selection_suffix=">")
+            color_selected=sel_color, background_color=menu_color, margin=9,
+            halign="center", valign="middle",
+            outline_normal=sge.gfx.Color("black"),
+            outline_selected=sge.gfx.Color("black"),
+            outline_thickness_normal=text_outline_thickness,
+            outline_thickness_selected=text_outline_thickness,
+            selection_prefix="<", selection_suffix=">")
         default %= len(self.widgets)
         self.keyboard_focused_widget = self.widgets[default]
         _refresh_screen(0, 0)
@@ -7867,7 +7864,12 @@ print(_("Initializing GUI system..."))
 xsge_gui.init()
 gui_handler = xsge_gui.Handler()
 
-menu_color = sge.gfx.Color((128, 128, 255, 192))
+if HELL:
+    menu_color = sge.gfx.Color((255, 64, 0, 192))
+    sel_color = sge.gfx.Color((255, 0, 0))
+else:
+    menu_color = sge.gfx.Color((128, 128, 255, 192))
+    sel_col = sge.gfx.Color((0, 128, 255))
 
 # Load sprites
 print(_("Loading images..."))
