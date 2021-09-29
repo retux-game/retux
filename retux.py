@@ -144,9 +144,9 @@ if args.lang:
     lang.install()
 
 if GOD:
-    print(_("The text editor gods smile upon you. God mode enabled!"))
+    print(_("The text editor god of nano smiles upon you. God mode enabled!"))
 elif HELL:
-    print(_("The text editor gods have sent you to hell for your heresy!"))
+    print(_("The true text editor god has sent you to hell for your heresy!"))
 
 SCREEN_SIZE = [800, 480]
 TILE_SIZE = 32
