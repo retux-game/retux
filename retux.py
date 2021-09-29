@@ -181,7 +181,7 @@ PLAYER_SLIDE_ACCEL = 0.3
 PLAYER_SLIDE_SPEED = 1
 PLAYER_WALK_FRAMES_PER_PIXEL = 2 / 17
 PLAYER_RUN_FRAMES_PER_PIXEL = 1 / 10
-PLAYER_HITSTUN = 120
+PLAYER_HITSTUN = 30 if HELL else 120
 PLAYER_DIE_HEIGHT = 6 * TILE_SIZE
 PLAYER_DIE_FALL_SPEED = 8
 PLAYER_OFF_FLOOR_THRESHOLD = 2
@@ -191,8 +191,8 @@ SNOWMAN_STRONG_WALK_SPEED = 4 if HELL else 3
 SNOWMAN_FINAL_WALK_SPEED = 6 if HELL else 4
 SNOWMAN_STUNNED_WALK_SPEED = 8 if HELL else 6
 SNOWMAN_ACCELERATION = 0.5 if HELL else 0.1
-SNOWMAN_STRONG_ACCELERATION = 0.2
-SNOWMAN_FINAL_ACCELERATION = 0.5
+SNOWMAN_STRONG_ACCELERATION = 0.5 if HELL else 0.2
+SNOWMAN_FINAL_ACCELERATION = 1 if HELL else 0.5
 SNOWMAN_HOP_HEIGHT = 2 * TILE_SIZE
 SNOWMAN_JUMP_HEIGHT = 7 * TILE_SIZE
 SNOWMAN_JUMP_TRIGGER = 2 * TILE_SIZE
@@ -7835,7 +7835,7 @@ TYPES = {"solid_left": SolidLeft, "solid_right": SolidRight,
          "creatures": get_object, "hazards": get_object,
          "special_blocks": get_object, "decoration_small": get_object,
          "map_objects": get_object, "player": Player,
-         "walking_snowball": Crystallo if HELL else WalkingSnowball,
+         "walking_snowball": WalkingSnowball,
          "bouncing_snowball": BouncingSnowball, "crystallo": Crystallo,
          "walking_iceblock": WalkingIceblock, "spiky": Spiky,
          "bomb": WalkingBomb, "jumpy": Jumpy,
