@@ -117,13 +117,8 @@ HELL = False
 if args.god:
     if args.god.lower() == "nano":
         GOD = True
-    elif args.god.lower() == "emacs" or args.god.lower() == "vi":
+    elif args.god.lower() in {"emacs", "vi", "ed"}:
         HELL = True
-
-if GOD:
-    print("The text editor god smiles upon you. God mode enabled.")
-elif HELL:
-    print("The text editor god has sent you to hell for your heresy!")
 
 for d in dirs:
     if os.path.isdir(d):
@@ -147,6 +142,11 @@ if args.lang:
                                os.path.abspath(os.path.join(DATA, "locale")),
                                [args.lang])
     lang.install()
+
+if GOD:
+    print(_("The text editor gods smile upon you. God mode enabled!"))
+elif HELL:
+    print(_("The text editor gods have sent you to hell for your heresy!"))
 
 SCREEN_SIZE = [800, 480]
 TILE_SIZE = 32
