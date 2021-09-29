@@ -1838,17 +1838,18 @@ class Player(xsge_physics.Collider):
                                   color=sge.gfx.Color("white"),
                                   outline=sge.gfx.Color("black"),
                                   outline_thickness=text_outline_thickness)
-
-            x = 0
             y += 36
-            for i in range(self.max_hp):
-                if self.hp >= i + 1:
-                    sge.game.project_sprite(heart_full_sprite, 0, x, y)
-                else:
-                    sge.game.project_sprite(heart_empty_sprite, 0, x, y)
-                x += heart_empty_sprite.width
 
-            y += 18
+            if not GOD:
+                x = 0
+                for i in range(self.max_hp):
+                    if self.hp >= i + 1:
+                        sge.game.project_sprite(heart_full_sprite, 0, x, y)
+                    else:
+                        sge.game.project_sprite(heart_empty_sprite, 0, x, y)
+                    x += heart_empty_sprite.width
+                y += 18
+
             sge.game.project_sprite(coin_icon_sprite,
                                     coin_animation.image_index, 0, y)
             sge.game.project_text(font, f"{self.coins}", 16, y,
