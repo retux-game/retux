@@ -18,12 +18,17 @@ import os
 import shutil
 
 
-CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
+CONFIG = os.path.join(
+    os.getenv("XDG_CONFIG_HOME", os.path.join(os.path.expanduser("~"),
+                                              ".config")), "retux")
+LOCAL = os.path.join(
+    os.getenv("XDG_DATA_HOME", os.path.join(os.path.expanduser("~"), ".local",
+                                            "share")), "retux")
 
 
 if __name__ == "__main__":
     try:
-        shutil.copy(os.path.join(CONFIG, "stderr.txt"), os.getcwd())
+        shutil.copy(os.path.join(LOCAL, "stderr.txt"), os.getcwd())
     except IOError:
         print("No errors have been logged.")
         input("Press Enter to exit.")
