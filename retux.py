@@ -938,18 +938,21 @@ class Level(sge.dsp.Room):
 
             time_bonus = level_timers.setdefault(main_area, 0)
             if time_bonus < 0 and cleared_levels:
-                self.count_time += time_passed
-                if self.count_time >= 1000 / FPS:
-                    amt = int(math.copysign(
-                        min(math.ceil(abs(self.death_time_bonus) * 3
-                                      * self.count_time / DEATH_FADE_TIME),
-                            abs(time_bonus)),
-                        time_bonus))
-                    self.count_time = 0
-                    if amt:
-                        score += amt
-                        level_timers[main_area] -= amt
-                        play_sound(coin_sound)
+                if HELL:
+                    self.count_time += time_passed
+                    if self.count_time >= 1000 / FPS:
+                        amt = int(math.copysign(
+                            min(math.ceil(abs(self.death_time_bonus) * 3
+                                          * self.count_time / DEATH_FADE_TIME),
+                                abs(time_bonus)),
+                            time_bonus))
+                        self.count_time = 0
+                        if amt:
+                            score += amt
+                            level_timers[main_area] -= amt
+                            play_sound(coin_sound)
+                else:
+                    level_timers[main_area] = 0
 
             if self.death_time < 0:
                 self.death_time = None
@@ -1049,7 +1052,7 @@ class Level(sge.dsp.Room):
                     level_timers[main_area] -= SECOND_POINTS
                     if not HELL:
                         level_timers[main_area] = max(
-                            0, level_timers[main_area])
+                            -self.points, level_timers[main_area])
                 self.alarms["timer"] = TIMER_FRAMES
         elif alarm_id == "shake_down":
             self.shake_queue -= 1
