@@ -27,12 +27,17 @@ if getattr(sys, "frozen", False):
     __file__ = sys.executable
 
 FILEDIR = os.path.dirname(__file__)
-CONFIG = os.path.join(os.path.expanduser("~"), ".config", "retux")
+CONFIG = os.path.join(
+    os.getenv("XDG_CONFIG_HOME", os.path.join(os.path.expanduser("~"),
+                                              ".config")), "retux")
+LOCAL = os.path.join(
+    os.getenv("XDG_DATA_HOME", os.path.join(os.path.expanduser("~"), ".local",
+                                            "share")), "retux")
 
 
 if __name__ == '__main__':
-    if not os.path.exists(CONFIG):
-        os.makedirs(CONFIG)
+    if not os.path.exists(LOCAL):
+        os.makedirs(LOCAL)
 
     tkwindow = tkinter.Tk()
     tkwindow.withdraw()
@@ -41,7 +46,7 @@ if __name__ == '__main__':
     for fname in fnames:
         rp = os.path.relpath(fname, FILEDIR)
         if not rp.startswith(os.pardir):
-            cd = os.path.dirname(os.path.join(CONFIG, rp))
+            cd = os.path.dirname(os.path.join(LOCAL, rp))
             if not os.path.exists(cd):
                 os.makedirs(cd)
 
