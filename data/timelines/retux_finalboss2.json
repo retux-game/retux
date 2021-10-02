@@ -1,6 +1,6 @@
 {
     "-1": [
-        "# ReTux Final Boss Cutscene Timeline",
+        "# Boss Start Timeline",
         "# ",
         "# This program is free software: you can redistribute it and/or modify",
         "# it under the terms of the GNU General Public License as published by",
@@ -16,6 +16,7 @@
         "# along with this program.  If not, see <http://www.gnu.org/licenses/>."
     ],
     "0": [
+        "setattr player human False",
         "setattr player left_pressed 0",
         "setattr player right_pressed 0",
         "setattr player up_pressed False",
@@ -23,26 +24,31 @@
         "setattr player jump_pressed False",
         "setattr player action_pressed False",
         "setattr player sneak_pressed False",
-        "setattr player image_xscale 1",
-        "setattr __level__ timeline_skip_target 30",
-        "if_watched",
-        "skip_to 30"
-    ],
-    "25": [
-        "dialog raccot I've been waiting for you, Tux. We meet again at last!",
-        "dialog tux Raccot the yeti! I should have known it was you!",
-        "dialog raccot You may have discovered my evil plan, my old nemesis, but you will not stop me!",
-        "dialog raccot When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+        "setattr player xvelocity 0"
     ],
     "30": [
-        "play_music treeboss.ogg",
-        "setattr boss stage 1"
+        "call boss jump"
     ],
-    "59": [
-        "call boss hop",
-        "setattr boss direction 1"
+    "60": [
+        "setattr boss direction 0",
+        "call boss crush"
     ],
-    "383": [
+    "160": [
+        "call bossblock1 activate"
+    ],
+    "180": [
+        "call bossblock2 activate"
+    ],
+    "200": [
+        "call bossblock3 activate"
+    ],
+    "220": [
+        "call bossblock4 activate",
+        "setattr player view_frozen True",
         "setattr player human True"
+    ],
+    "300": [
+        "call boss hop",
+        "setattr boss stage 2"
     ]
 }

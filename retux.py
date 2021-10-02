@@ -5420,6 +5420,9 @@ class Coin(sge.dsp.Object):
         kwargs["checks_collisions"] = False
         super().__init__(x, y, **kwargs)
 
+    def activate(self):
+        self.event_step(0, 0)
+
     def event_step(self, time_passed, delta_mult):
         self.image_index = coin_animation.image_index
 
