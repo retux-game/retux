@@ -117,7 +117,7 @@ HELL = False
 if args.god:
     if args.god.lower() == "nano":
         GOD = True
-    elif args.god.lower() in {"emacs", "vi", "ed"}:
+    elif args.god.lower() in {"emacs", "vi", "vim", "ed"}:
         HELL = True
 
 for d in dirs:
