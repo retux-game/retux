@@ -607,12 +607,20 @@ class Level(sge.dsp.Room):
     def die(self):
         global current_areas
         current_areas = {}
+
         self.death_time = DEATH_FADE_TIME
         self.death_time_bonus = level_timers.setdefault(main_area, 0)
         if "timer" in self.alarms:
             del self.alarms["timer"]
+
+        fade_time = DEATH_FADE_TIME
+        for m in loaded_music.values():
+            if m.playing:
+                fade_time = min(fade_time, round(m.length - m.position))
+                break
+
         sge.snd.Music.clear_queue()
-        sge.snd.Music.stop(DEATH_FADE_TIME)
+        sge.snd.Music.stop(fade_time)
 
     def return_to_map(self, completed=False):
         global current_worldmap
