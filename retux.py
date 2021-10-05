@@ -616,7 +616,9 @@ class Level(sge.dsp.Room):
         fade_time = DEATH_FADE_TIME
         for m in loaded_music.values():
             if m.playing:
-                fade_time = min(fade_time, round(m.length - m.position))
+                name, ext = os.path.splitext(m.fname)
+                if name.endswith("-start"):
+                    fade_time = min(fade_time, round(m.length - m.position))
                 break
 
         sge.snd.Music.clear_queue()

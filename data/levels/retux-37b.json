@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":15,
  "infinite":false,
  "layers":[
@@ -26,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztml1OQjEQhWFzooCgBiW5oPizD12Pj+6BRxfFNNGkGdoypdN7p3q+5DzQtE0z7WmnvWzGo9EGgiAIggxpS1qQOEsq6wyMz6JeAvHy8eO5GB\/\/DsU61sdve94PALmk1pmEUF2NNbk84Y9c3qmPj8J+dj97Y4pcn6fKtGMAgM9f9LkGncDnuZw6z3kZAFpY8LlFOkHenktpPgXAucDnYSR5O2ifN8Eca9UB9thVOM+BLR5pflekp8Q8a9UBNqmRt7eOW8\/3pIcCrY3F9FUwHq06PhdUf3KGLo3Fr3VqvMO1jvN56TfYqUGvW2JGsZmTrhGjXsD9\/BgNn9fweijPWDeaR9\/QmG9Jdw2OvUWk93P+3dy9qYfe1SWk2rp3npj6wvnJxeVZQdPC\/J\/riu0l20Z9jvO8LnuK66enrsJaLLnDxs7RWM4h3Q9S+wdvo+nz2hpq7oYS7kIyvilOX56G\/C9wyLsxf8VyDj7+2H6Q8i3vWytvh\/T13\/Y1LfE8sE\/B5xDUnw7JB+Jd",
+         "data":"eJztmutOAyEQhbsv56Vqq0Ztsq3Wy3vo8\/jTd\/CnD+WQ2ITMAh3KsDvY8yUn6RKWkIEDA9t1N5utIQiCIMiQNqQFibOkst5A\/yzqJRAvHz+ei274HIp1rI3d+7wdcDy807h\/dMPfuaTmmYRQXY05udzjj1xKYrRj+7c2psj1eapMOwYA+PxHn2vQC3yey779nJcBoIUFn1ukF+TtuZTmUwAcCnweRpK3g\/Z5E4yxVh1gj22F\/RzY4pHG9470lBhnrTrAJjXy9tZx8\/me9FCglbGYvgr6o1XH54Tqnx6gM2Pxa50a93Ct43xe+g12btDrlrig2FySrhCjUcD5fIiGz2t4PZRnrBrNo6+pzzek2wb73iLS8zn\/bu7u1EP36hJS77p7npjGwvnJxeVZQfPC\/J\/rnK0lm0Z9jv28Lt8U109PfYW5WHKGje2jsZxDuh6k1g\/+jqbPa2uqsZtKOAvJ+KE4fXma8r\/AIe\/G\/BXLOXj\/Y+tByre8ba28HdLXsa1rWuJ54JiCzyFoPP0CDg7kWw==",
          "encoding":"base64",
          "height":15,
          "id":2,
@@ -922,6 +915,28 @@
                  "width":1216,
                  "x":992,
                  "y":448
+                }, 
+                {
+                 "height":32,
+                 "id":193,
+                 "name":"",
+                 "rotation":0,
+                 "type":"solid_bottom",
+                 "visible":true,
+                 "width":64,
+                 "x":4992,
+                 "y":64
+                }, 
+                {
+                 "height":32,
+                 "id":194,
+                 "name":"",
+                 "rotation":0,
+                 "type":"solid_bottom",
+                 "visible":true,
+                 "width":64,
+                 "x":5088,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1539,42 +1554,6 @@
          "id":8,
          "name":"NPCs",
          "objects":[
-                {
-                 "gid":6,
-                 "height":32,
-                 "id":119,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5280,
-                 "y":256
-                }, 
-                {
-                 "gid":6,
-                 "height":32,
-                 "id":120,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5088,
-                 "y":256
-                }, 
-                {
-                 "gid":6,
-                 "height":32,
-                 "id":121,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5024,
-                 "y":256
-                }, 
                 {
                  "gid":5,
                  "height":32,
@@ -2296,18 +2275,6 @@
                  "y":224
                 }, 
                 {
-                 "gid":6,
-                 "height":32,
-                 "id":168,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5216,
-                 "y":256
-                }, 
-                {
                  "gid":9,
                  "height":32,
                  "id":169,
@@ -2594,6 +2561,68 @@
                  "width":32,
                  "x":7680,
                  "y":96
+                }, 
+                {
+                 "height":0,
+                 "id":195,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":64
+                        }],
+                 "properties":[
+                        {
+                         "name":"cls",
+                         "type":"string",
+                         "value":"bomb"
+                        }, 
+                        {
+                         "name":"limit",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"object_warp_spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":5024,
+                 "y":32
+                }, 
+                {
+                 "height":0,
+                 "id":196,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":64
+                        }],
+                 "properties":[
+                        {
+                         "name":"cls",
+                         "type":"string",
+                         "value":"bomb"
+                        }, 
+                        {
+                         "name":"limit",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"object_warp_spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":5120,
+                 "y":32
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2639,7 +2668,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":193,
+ "nextobjectid":197,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2653,7 +2682,7 @@
          "value":"fortress.ogg"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -2710,6 +2739,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":250
 }
