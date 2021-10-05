@@ -680,7 +680,7 @@ class Level(sge.dsp.Room):
             sge.snd.Music.clear_queue()
             sge.snd.Music.stop()
             if music_volume:
-                play_music(level_win_music)
+                play_music(level_win_music.fname, True)
 
     def win_game(self):
         global current_level
