@@ -365,8 +365,8 @@ tux_grab_sprites = {}
 fullscreen = False
 scale_method = None
 scale_proportional = True
-sound_enabled = True
-music_enabled = True
+sound_volume = 1
+music_volume = 1
 stereo_enabled = True
 fps_enabled = False
 joystick_threshold = 0.1
@@ -679,8 +679,8 @@ class Level(sge.dsp.Room):
             current_checkpoints[main_area] = None
             sge.snd.Music.clear_queue()
             sge.snd.Music.stop()
-            if music_enabled:
-                level_win_music.play()
+            if music_volume:
+                play_music(level_win_music)
 
     def win_game(self):
         global current_level
@@ -6670,8 +6670,8 @@ class OptionsMenu(Menu):
             _("Scale Method: {}").format(smt),
             _("Scale Proportional: {}").format(
                 _("On") if scale_proportional else _("Off")),
-            _("Sound: {}").format(_("On") if sound_enabled else _("Off")),
-            _("Music: {}").format(_("On") if music_enabled else _("Off")),
+            _("Sound Volume: {}%").format(int(sound_volume * 100)),
+            _("Music Volume: {}%").format(int(music_volume * 100)),
             _("Stereo: {}").format(_("On") if stereo_enabled else _("Off")),
             _("Show FPS: {}").format(_("On") if fps_enabled else _("Off")),
             _("Joystick Threshold: {}%").format(int(joystick_threshold * 100)),
@@ -6683,8 +6683,8 @@ class OptionsMenu(Menu):
         global fullscreen
         global scale_method
         global scale_proportional
-        global sound_enabled
-        global music_enabled
+        global sound_volume
+        global music_volume
         global stereo_enabled
         global fps_enabled
         global joystick_threshold
@@ -6713,11 +6713,21 @@ class OptionsMenu(Menu):
             sge.game.scale_proportional = scale_proportional
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 3:
-            sound_enabled = not sound_enabled
-            play_sound(bell_sound)
+            # This somewhat complicated method is to prevent rounding
+            # irregularities.
+            v = int(sound_volume * 100) + 5
+            if v > 100:
+                v = 0
+            sound_volume = v / 100
+            play_sound(coin_sound)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 4:
-            music_enabled = not music_enabled
+            # This somewhat complicated method is to prevent rounding
+            # irregularities.
+            v = int(music_volume * 100) + 5
+            if v > 100:
+                v = 0
+            music_volume = v / 100
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 5:
@@ -7415,9 +7425,9 @@ def show_error(message):
 
 
 def play_sound(sound, x=None, y=None, force=True):
-    if sound_enabled and sound:
+    if sound_volume and sound:
         if x is None or y is None:
-            sound.play(force=force)
+            sound.play(volume=sound_volume, force=force)
         else:
             current_view = None
             view_x = 0
@@ -7466,12 +7476,13 @@ def play_sound(sound, x=None, y=None, force=True):
             else:
                 balance = 0
 
-            sound.play(volume=volume, balance=balance, force=force)
+            sound.play(volume=(volume * sound_volume), balance=balance,
+                       force=force)
 
 
 def play_music(music, force_restart=False):
     """Play the given music file, starting with its start piece."""
-    if music_enabled and music:
+    if music_volume and music:
         music_object = loaded_music.get(music)
         if music_object is None:
             try:
@@ -7484,6 +7495,9 @@ def play_music(music, force_restart=False):
             else:
                 loaded_music[music] = music_object
 
+        assert music_object is not None
+        music_object.volume = music_volume
+
         name, ext = os.path.splitext(music)
         music_start = ''.join([name, "-start", ext])
         music_start_object = loaded_music.get(music_start)
@@ -7495,6 +7509,9 @@ def play_music(music, force_restart=False):
                 pass
             else:
                 loaded_music[music_start] = music_start_object
+
+        if music_start_object is not None:
+            music_start_object.volume = music_volume
 
         if (force_restart or (not music_object.playing and
                               (music_start_object is None or
@@ -7594,7 +7611,7 @@ def write_to_disk():
     cfg = {"version": 1, "fullscreen": fullscreen,
            "scale_method": scale_method,
            "scale_proportional": scale_proportional,
-           "sound_enabled": sound_enabled, "music_enabled": music_enabled,
+           "sound_volume": sound_volume, "music_volume": music_volume,
            "stereo_enabled": stereo_enabled, "fps_enabled": fps_enabled,
            "joystick_threshold": joystick_threshold, "keys": keys_cfg,
            "joystick": js_cfg}
@@ -8453,7 +8470,7 @@ else:
 # Load sounds
 jump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "jump.wav"))
 bigjump_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "bigjump.wav"))
-skid_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "skid.wav"), 50)
+skid_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "skid.wav"))
 hurt_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "hurt.wav"))
 kill_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "kill.wav"))
 brick_sound = sge.snd.Sound(os.path.join(DATA, "sounds", "brick.wav"))
@@ -8565,8 +8582,8 @@ finally:
     sge.game.scale_method = scale_method
     scale_proportional = cfg.get("scale_proportional", scale_proportional)
     sge.game.scale_proportional = scale_proportional
-    sound_enabled = cfg.get("sound_enabled", sound_enabled)
-    music_enabled = cfg.get("music_enabled", music_enabled)
+    sound_volume = cfg.get("sound_volume", sound_volume)
+    music_volume = cfg.get("music_volume", music_volume)
     stereo_enabled = cfg.get("stereo_enabled", stereo_enabled)
     fps_enabled = cfg.get("fps_enabled", fps_enabled)
     joystick_threshold = cfg.get("joystick_threshold", joystick_threshold)
