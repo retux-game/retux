@@ -792,7 +792,7 @@ class Level(sge.dsp.Room):
             for obj in self.get_objects_at(
                     view.x - range_, view.y - range_, view.width + range_ * 2,
                     view.height + range_ * 2):
-                if isinstance(obj, InteractiveObject):
+                if isinstance(obj, (Player, InteractiveObject)):
                     if not self.disable_lights:
                         obj.project_light()
 
@@ -2036,6 +2036,10 @@ class Player(xsge_physics.Collider):
                     self.sprite = tux_jump_sprite
                 else:
                     self.sprite = self.get_grab_sprite(tux_body_jump_sprite)
+
+    def project_light(self):
+        if GOD:
+            xsge_lighting.project_light(self.x, self.y, light_sprite)
 
     def event_create(self):
         sge.game.current_room.add_timeline_object(self)
