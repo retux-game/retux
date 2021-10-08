@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":15,
  "infinite":false,
  "layers":[
@@ -26,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztl11OwzAQhOOXAjEVkn+ERCV47wF4BEJuxVk5AYco2JJHnSyOnYQIIZRIo1T+2Y6\/3U1arZpGb5qkp6CbTUX5IBN0HbRd5etxYzXraldgdQr6TGr+Mfc1WO3C\/ouky41VNUZ89rk\/3s8\/rf81WekFsdQvsi3VPziWGM5lxbk5JvVhv11YV1crsjpW5kv1vxthKPfPOR\/nBurS+9QuYLWn9XNq7Fadcxb1HvQWxj6a4TirTz59xmc7oS\/mskJMS3f0X\/Txqsa95mqcWU2pscjoLuiQyVlNXfKb+52Ec5X89xPOJ9d7YmXS3aX7S8WvrHFmtRdz8eKeB6P7oIfkAT7YA8bh0yVZWjPGquS\/m3A+uR7ekCMjPoMfxuE1l88aK+55MPIU21Ndu8wc179W4++glvbE\/fy\/75nOIfvIqWEuOD+a4sGbpzlNY1bM556pNVat8IPvMOp7ffM5eMzSeijHitdzr+E559Swjjkv3GPMC2c3QsyW+TG3JayMiIEacjRuxTqub1nbJVaIyb3WUZwv4GJUBg==",
+         "data":"eJztl0tOwzAQhuNNgRiE5IeQigT7LFiwYAlNy6l6Vk7AIShjaUb8GVwnLllUKJZ+pfVjPP5mxmmtaRq7aJJeSbeLiookR7omLa3cXhZWVa2dgdUX6cBq\/jH3OVitaP0F63JhNWoj3X3hzOv5r\/k\/Jyt75qxK+S8cSwxrWWFsOtaO1vsT8srMzLUbGS\/l\/2rCHVLLCmMj6vl96ittXam5NezuzE\/Mkj5Ie+r7bIb9qB37GTN+thPqopaV2PTwlPpLfmzNMJc7dSbM8Ru1r2aXa4nRmnSfidmYevY39ztJzrU1Zdal8dz8CKwcPwM\/N+zXO9t8Uv5ijmtW+ntqWPPC6IH0yD6IH+iD9IufgeVhzjFWG1NmXRrPzRffJEZOfXZg8xl81fGcwgprXhhF2DNCXofMGOa\/NcffQS2sSevxf98bcNZ1FMwwFhgfC\/bEtwhjFvq8Gtd36hRWrfJH9nDmd37jObDPw3xRjhXOx1qTey6YYR5jXLDGkJec3SkhW+SH3E5h5ZQNyaEA\/V7NE58kpzC3S6zEJtZaD3a+AbmDUss=",
          "encoding":"base64",
          "height":15,
          "id":2,
@@ -155,15 +148,15 @@
                  "y":320
                 }, 
                 {
-                 "height":224,
+                 "height":192,
                  "id":11,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":992,
-                 "y":256
+                 "x":960,
+                 "y":288
                 }, 
                 {
                  "height":320,
@@ -194,7 +187,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":256,
+                 "width":64,
                  "x":640,
                  "y":352
                 }, 
@@ -219,6 +212,17 @@
                  "width":288,
                  "x":352,
                  "y":288
+                }, 
+                {
+                 "height":32,
+                 "id":35,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":768,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -342,6 +346,17 @@
                  "width":32,
                  "x":2336,
                  "y":64
+                }, 
+                {
+                 "height":32,
+                 "id":36,
+                 "name":"",
+                 "rotation":0,
+                 "type":"slope_topleft",
+                 "visible":true,
+                 "width":32,
+                 "x":736,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -541,7 +556,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":35,
+ "nextobjectid":37,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -565,7 +580,7 @@
          "value":"greatgigantic.ogg"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -622,6 +637,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":"1.6",
  "width":75
 }
