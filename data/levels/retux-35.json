@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":20,
  "infinite":false,
  "layers":[
@@ -26,7 +19,7 @@
         }, 
         {
          "compression":"zlib",
-         "data":"eJztmrtKA0EUhs++gXhp1WgnFtZCtBaxFi20SSRCYqFipZ2+iY1g4wt4jV28gxa2ClqqoK3\/oosxuMnu7OzMrPk\/+JqQSWZ35\/xzMkSEkPaj5IkserZnQQghzVlCTpVhhXlFCHEcP6\/YXxFCXMfPKvZXhBAXKSCTiiEuMK8IIYQQQgghhBBCCFFm3RPZ4BkbISQDbCKrtphXxADcG+2yDw\/gITzS9JkdMG\/Q4L8XccZ0a7pW0l5wb7TDLbyDNXgGz+EFPIYnkqz2e2Gn43b9MW9CWsG8Ms8sfICPcAX2f7sKL+GVxKv9gYbPH4ZzcB5OGnai7nqamRNmlosE\/X7aPbnqc2demeUeluArfJNotd3KkYbvmIFlWNE683Dq19CwRJ83M8sdpmFBfvp9E\/21qbMHnk+o8QSf4ZroyanAxrwyjWpe+QaZZfK8TdWXiPt6PtrbnCDIqSJclt\/9fpr6z932mUSz3yhZRcfZdRWewnf4IfqffZbzyte1tatD29kadU2azilXDauhpPWv2rf1KI7TcXZ9DW8kvTVhK6+qyKgduJ0wr\/6jtvPS9prMmmE1lLT+Vfu2QcVxWai\/MbGzR9c8kT24633llf\/aqAP3g9K4huVV0vr3a3NIwXHFcVmov5zY368D+xy4H5TGNa28yolaHU0pjmP9URU\/ARJqGKs=",
+         "data":"eJztnLtKA0EUhs++gXhp1WgnFtZCtBaxFi20SSRCYqFipZ2+iY1g4wt4jV28gxa2ClqqoK3\/oIsxuMnu7O7MrPk\/+JqQSfYy55+TIawIIe1HyRNZ9GwfBSGENGcJOVWGFeYVIcRxqh77K0JINqixvyKEOEgBmVQMcIF5RQghhBBCCCGEEEKINuueyAb32AghGWATWbXFvCIG4Npol314AA\/hUUKf2QHzBlX\/a1VGGdOd0LmS9oJrox1u4R2swTN4Di\/gMTyReLXfCzsdt+uP4yakFcwr88zCB\/gIV2D\/t6vwEl5JtNofaPj8YTgH5+GkYSfqzqeZOWFmuYjf76fdk+ved+aVWe5hCb7CNwlX260cafiOGViGlUSPPJj6OTQs4Y+bmeUO07AgP\/2+if7a1N4D9yf0eILPcE2SySnfxrwyjW5eKf3MMrnfputLyHU9H+5tTuDnVBEuy+9+P03Vfbe9J9HsN0pWSWLvugpP4Tv8kOTvfZbzSuna3E1C29kadk6azilXDaqhuPWv27f1aI5LYu\/6Gt5IenPCVl6p50fswO2YefUftZ2Xtudk1gyqobj1r9u3DWqOy0L9jYmdNVo9P2IP7npfeaVeG3XgelAa1aC8ilv\/qjaHNBzXHJeF+suJ\/fXat8+B60FpVNPKq5zo1dGU5jjWH9XxE1PFGPA=",
          "encoding":"base64",
          "height":20,
          "id":2,
@@ -67,18 +60,7 @@
                  "y":128
                 }, 
                 {
-                 "height":32,
-                 "id":3,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":6016,
-                 "y":96
-                }, 
-                {
-                 "height":64,
+                 "height":96,
                  "id":4,
                  "name":"",
                  "rotation":0,
@@ -1724,18 +1706,6 @@
          "name":"NPCs",
          "objects":[
                 {
-                 "gid":6,
-                 "height":32,
-                 "id":138,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5984,
-                 "y":128
-                }, 
-                {
                  "gid":7,
                  "height":32,
                  "id":139,
@@ -2394,6 +2364,37 @@
                  "width":32,
                  "x":2176,
                  "y":448
+                }, 
+                {
+                 "height":0,
+                 "id":195,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-64,
+                         "y":0
+                        }],
+                 "properties":[
+                        {
+                         "name":"cls",
+                         "type":"string",
+                         "value":"bomb"
+                        }, 
+                        {
+                         "name":"limit",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"object_warp_spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":6112,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2439,7 +2440,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":195,
+ "nextobjectid":196,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2463,7 +2464,7 @@
          "value":"The Uplifted Bomb"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -2520,6 +2521,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":300
 }
