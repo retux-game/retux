@@ -6899,6 +6899,11 @@ class KeyboardMenu(Menu):
 
     def event_choose(self):
         def bind_key(key, new_key, self=self):
+            # Allow making a control exclusively one key.
+            if new_key in key:
+                while key:
+                    key.pop(0)
+
             for other_key in [
                     left_key[self.page], right_key[self.page],
                     up_key[self.page], down_key[self.page],
@@ -7032,6 +7037,11 @@ class JoystickMenu(Menu):
 
     def event_choose(self):
         def bind_js(js, new_js, self=self):
+            # Allow making a control exclusively one key.
+            if new_js in js:
+                while js:
+                    js.pop(0)
+
             for other_js in [
                     left_js[self.page], right_js[self.page],
                     up_js[self.page], down_js[self.page],
@@ -7398,7 +7408,6 @@ def wait_key(text):
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = _("Press the key you wish to toggle, or Escape to cancel.")
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
@@ -7438,8 +7447,6 @@ def wait_js(text):
         sge.game.regulate_speed(fps=10)
 
         # Project text
-        text = _("Press the joystick button, axis, or hat direction you wish "
-                 "to toggle, or the Escape key to cancel.")
         sge.game.project_text(font, text, sge.game.width / 2,
                               sge.game.height / 2, width=sge.game.width,
                               height=sge.game.height,
