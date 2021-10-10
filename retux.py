@@ -6471,7 +6471,7 @@ class Menu(xsge_gui.MenuWindow):
                 outline_selected=sge.gfx.Color("black"),
                 outline_thickness_normal=text_outline_thickness,
                 outline_thickness_selected=text_outline_thickness,
-                selection_prefix="<", selection_suffix=">")
+                selection_prefix="«", selection_suffix="»")
             default %= len(self.widgets)
             self.keyboard_focused_widget = self.widgets[default]
             self.show()
@@ -6479,6 +6479,12 @@ class Menu(xsge_gui.MenuWindow):
 
     def event_change_keyboard_focus(self):
         play_sound(select_sound)
+
+    def event_press_left(self):
+        self.event_press_enter()
+
+    def event_press_right(self):
+        self.event_press_enter()
 
 
 class MainMenu(Menu):
@@ -6686,7 +6692,19 @@ class OptionsMenu(Menu):
             _("Detect joysticks"), _("Import levelset"), _("Back")]
         return cls.create(default)
 
-    def event_choose(self):
+    def event_press_left(self):
+        # Variant of event_press_enter which passes True to the custom
+        # ``left`` parameter.
+        try:
+            self.choice = self.widgets.index(self.keyboard_focused_widget)
+        except ValueError:
+            pass
+
+        self.destroy()
+        _refresh_screen(0, 0)
+        self.event_choose(True)
+
+    def event_choose(self, left=False):
         global fullscreen
         global scale_method
         global scale_proportional
@@ -6709,7 +6727,7 @@ class OptionsMenu(Menu):
                 i = 0
 
             play_sound(select_sound)
-            i += 1
+            i += -1 if left else 1
             i %= len(choices)
             scale_method = choices[i]
             sge.game.scale_method = scale_method
@@ -6722,18 +6740,28 @@ class OptionsMenu(Menu):
         elif self.choice == 3:
             # This somewhat complicated method is to prevent rounding
             # irregularities.
-            v = int(sound_volume * 100) + 5
-            if v > 100:
-                v = 0
+            if left:
+                v = int(sound_volume*100) - 5
+                if v < 0:
+                    v = 100
+            else:
+                v = int(sound_volume*100) + 5
+                if v > 100:
+                    v = 0
             sound_volume = v / 100
             play_sound(coin_sound)
             OptionsMenu.create_page(default=self.choice)
         elif self.choice == 4:
             # This somewhat complicated method is to prevent rounding
             # irregularities.
-            v = int(music_volume * 100) + 5
-            if v > 100:
-                v = 0
+            if left:
+                v = int(music_volume*100) - 5
+                if v < 0:
+                    v = 100
+            else:
+                v = int(music_volume*100) + 5
+                if v > 100:
+                    v = 0
             music_volume = v / 100
             play_music(sge.game.current_room.music)
             OptionsMenu.create_page(default=self.choice)
@@ -6749,7 +6777,10 @@ class OptionsMenu(Menu):
             play_sound(select_sound)
             # This somewhat complicated method is to prevent rounding
             # irregularities.
-            threshold = ((int(joystick_threshold * 100) + 5) % 100) / 100
+            if left:
+                threshold = ((int(joystick_threshold*100) - 5) % 100) / 100
+            else:
+                threshold = ((int(joystick_threshold*100) + 5) % 100) / 100
             if not threshold:
                 threshold = 0.0001
             joystick_threshold = threshold
