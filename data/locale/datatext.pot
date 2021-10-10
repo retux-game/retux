@@ -69,6 +69,9 @@ msgid ""
 "a time!"
 msgstr ""
 
+msgid "..."
+msgstr ""
+
 msgid "That's too bad, Tux. I would have liked to let you leave in peace."
 msgstr ""
 
@@ -174,14 +177,17 @@ msgid ""
 msgstr ""
 
 msgid ""
-"You'll need a friend to find the Tux doll in this castle, in more ways "
-"than one."
+"Traveler's Note:\n"
+"\n"
+"I have found that if, when holding a fire flower, I hold down the \"up\" "
+"button while pressing the \"action\" button, my fireballs shoot higher up "
+"into the air. That may prove to be a useful technique."
 msgstr ""
 
 msgid ""
-"Please do NOT touch my rocks! For example, do NOT use them to build a "
-"bridge allowing you to cross spike pits, and do NOT use them to build a "
-"tower so that you can reach higher places."
+"Please do NOT touch my rock collection! For example, do NOT use them to
+build a bridge allowing you to cross spike pits, and do NOT use them to "
+"build a tower so that you can reach higher places."
 msgstr ""
 
 msgid ""
