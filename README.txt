@@ -25,3 +25,17 @@ to display or run the file, choose to run it.
 
 There are some command-line options that can be passed. Run the game in
 a terminal with the "-h" command-line option for more information.
+
+
+BUILDING LOCALES (FOR DEVELOPERS AND PACKAGERS)
+
+If you have cloned the source code directly from Git, locales will need
+to be built for languages other than English to work.  This step is only
+necessary if you are a developer, translator, or packager running the
+source code taken directly from the Git repository.
+
+To build locales, ensure your system has the msgfmt command (which is a
+part of gettext), then do the following from the data/locale directory:
+
+    ./build.py
+
