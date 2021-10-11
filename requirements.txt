@@ -1,6 +1,6 @@
-pygame>=1.9.1
+pygame>=2.0
 uniseg>=0.7
-sge>=1.7, <3.0
+sge>=2.0, <3.0
 xsge_gui>=1.2
 xsge_lighting>=1.0
 xsge_path>=1.0
