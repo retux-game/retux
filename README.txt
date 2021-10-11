@@ -61,7 +61,7 @@ the game's root directory:
 
 For Windows, we instead use the following command (utilizing -w and -i):
 
-    pyinstaller -Fw -i data/images/misc/icon.ico
+    pyinstaller -Fw -i data/images/misc/icon.ico retux.py
 
 A binary will be produced and placed in the dist directory. You can then
 move the binary out to the game's root directory and it should run just
