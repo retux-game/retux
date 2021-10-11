@@ -39,3 +39,48 @@ part of gettext), then do the following from the data/locale directory:
 
     ./build.py
 
+
+CREATING FROZEN EXECUTABLES (FOR DEVELOPERS AND PACKAGERS)
+
+This game is written in Python, so it is run directly as a script with
+the Python interpreter. However, it can be and is "frozen" with certain
+tools to make it possible to run on systems which don't have Python
+installed, or which are missing one or more of the game's dependencies.
+Of course, all dependencies required to run ReTux from source code are
+also required to freeze an executable.
+
+This game supports two methods of freezing: PyInstaller and cx_Freeze.
+In general, PyInstaller is preferred since it is easier to use and
+generally better in our experience. However, cx_Freeze can also be used
+as a fallback if you can't get PyInstaller to work.
+
+To build with PyInstaller on Linux, we use the following command within
+the game's root directory:
+
+    pyinstaller -F retux.py
+
+For Windows, we instead use the following command (utilizing -w and -i):
+
+    pyinstaller -Fw -i data/images/misc/icon.ico
+
+A binary will be produced and placed in the dist directory. You can then
+move the binary out to the game's root directory and it should run just
+as retux.py runs. The left-over build and dist directories, as well as
+the retux.spec file, can then be deleted.
+
+If the -F option does not work or a single executable file is
+undesirable, the -F option can be omitted, in which case a binary and
+several other files (including shared object files) will be produced,
+all of which must be moved to the game's root directory.
+
+To build with cx_Freeze, the command used is the same regardless of
+the system:
+
+    python3 setup.py build
+
+This will produce a usable binary along with several other files needed
+by the binary within a subdirectory named based on your architecture
+under the build directory. Move all of these files to the game's root
+directory and the binary produced should run the same as the source code
+does.
+
