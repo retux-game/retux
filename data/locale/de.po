@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.6\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2021-10-10 02:37-0400\n"
+"POT-Creation-Date: 2021-10-11 17:38-0400\n"
 "PO-Revision-Date: 2017-10-27 01:57-0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: German\n"
@@ -480,7 +480,7 @@ msgid "-Corrupt Levelset-"
 msgstr "-Beschädigtes Levelset-"
 
 #: ../../retux.py:6541 ../../retux.py:6656 ../../retux.py:6693
-#: ../../retux.py:6895 ../../retux.py:7028
+#: ../../retux.py:6895 ../../retux.py:7033
 msgid "Back"
 msgstr "Zurück"
 
@@ -548,13 +548,13 @@ msgstr "Zeige FPS: {}"
 msgid "Joystick Threshold: {}%"
 msgstr "Joystich Schwellwert: {}%"
 
-#: ../../retux.py:6692 ../../retux.py:7164 ../../retux.py:7167
-#: ../../retux.py:7171 ../../retux.py:7241
+#: ../../retux.py:6692 ../../retux.py:7174 ../../retux.py:7177
+#: ../../retux.py:7181 ../../retux.py:7251
 msgid "Configure keyboard"
 msgstr "Tastatur konfigurieren"
 
-#: ../../retux.py:6692 ../../retux.py:7165 ../../retux.py:7168
-#: ../../retux.py:7172 ../../retux.py:7241
+#: ../../retux.py:6692 ../../retux.py:7175 ../../retux.py:7178
+#: ../../retux.py:7182 ../../retux.py:7251
 msgid "Configure joysticks"
 msgstr "Joysticks konfigurieren"
 
@@ -587,57 +587,57 @@ msgstr ""
 "Bitte gehen Sie sicher, dass Tkinter installiert ist und versuchen Sie es "
 "erneut."
 
-#: ../../retux.py:6885 ../../retux.py:7018
+#: ../../retux.py:6885 ../../retux.py:7023
 msgid "Player {}"
 msgstr "Spieler {}"
 
-#: ../../retux.py:6886 ../../retux.py:7019
+#: ../../retux.py:6886 ../../retux.py:7024
 msgid "Left: {}"
 msgstr "Links: {}"
 
-#: ../../retux.py:6887 ../../retux.py:7020
+#: ../../retux.py:6887 ../../retux.py:7025
 msgid "Right: {}"
 msgstr "Rechts: {}"
 
-#: ../../retux.py:6888 ../../retux.py:7021
+#: ../../retux.py:6888 ../../retux.py:7026
 msgid "Up: {}"
 msgstr "Hoch: {}"
 
-#: ../../retux.py:6889 ../../retux.py:7022
+#: ../../retux.py:6889 ../../retux.py:7027
 msgid "Down: {}"
 msgstr "Runter: {}"
 
-#: ../../retux.py:6890 ../../retux.py:7023
+#: ../../retux.py:6890 ../../retux.py:7028
 msgid "Jump: {}"
 msgstr "Sprung: {}"
 
-#: ../../retux.py:6891 ../../retux.py:7024
+#: ../../retux.py:6891 ../../retux.py:7029
 msgid "Action: {}"
 msgstr "Aktion: {}"
 
-#: ../../retux.py:6892 ../../retux.py:7025
+#: ../../retux.py:6892 ../../retux.py:7030
 msgid "Sneak: {}"
 msgstr "Schleichen: {}"
 
-#: ../../retux.py:6893 ../../retux.py:7026
+#: ../../retux.py:6893 ../../retux.py:7031
 msgid "Menu: {}"
 msgstr "Menü: {}"
 
-#: ../../retux.py:6894 ../../retux.py:7027
+#: ../../retux.py:6894 ../../retux.py:7032
 msgid "Pause: {}"
 msgstr "Pause: {}"
 
-#: ../../retux.py:6915
+#: ../../retux.py:6920
 #, fuzzy
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
 msgstr "Wähle eine Taste, oder drücke Escape zum Abbrechen."
 
-#: ../../retux.py:7016
+#: ../../retux.py:7021
 msgid "None"
 msgstr "Nichts"
 
-#: ../../retux.py:7048
+#: ../../retux.py:7058
 #, fuzzy
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
@@ -646,56 +646,44 @@ msgstr ""
 "Wähle einen Knopf, einen Joystick, oder richtung auf dem Steuerkreuz, oder "
 "drücke Escape zum Abbrechen."
 
-#: ../../retux.py:7164 ../../retux.py:7167 ../../retux.py:7171
-#: ../../retux.py:7241
+#: ../../retux.py:7174 ../../retux.py:7177 ../../retux.py:7181
+#: ../../retux.py:7251
 msgid "Continue"
 msgstr "Fortfahren"
 
-#: ../../retux.py:7165
+#: ../../retux.py:7175
 msgid "Abort"
 msgstr "Abbruch"
 
-#: ../../retux.py:7168
+#: ../../retux.py:7178
 msgid "Return to Map"
 msgstr "Zurück zur Karte"
 
-#: ../../retux.py:7169 ../../retux.py:7172 ../../retux.py:7242
+#: ../../retux.py:7179 ../../retux.py:7182 ../../retux.py:7252
 msgid "Return to Title Screen"
 msgstr "Zurück zum Titelbildschirm"
 
-#: ../../retux.py:7401
-msgid "Press the key you wish to toggle, or Escape to cancel."
-msgstr "Wähle eine Taste, oder drücke Escape zum Abbrechen."
-
-#: ../../retux.py:7441
-msgid ""
-"Press the joystick button, axis, or hat direction you wish to toggle, or the "
-"Escape key to cancel."
-msgstr ""
-"Wähle einen Knopf, einen Joystick, oder richtung auf dem Steuerkreuz, oder "
-"drücke Escape zum Abbrechen."
-
-#: ../../retux.py:7460
+#: ../../retux.py:7467
 msgid "Error"
 msgstr "Fehler"
 
-#: ../../retux.py:7461
+#: ../../retux.py:7468
 msgid "Ok"
 msgstr "Ok"
 
-#: ../../retux.py:7937
+#: ../../retux.py:7944
 msgid "Initializing game system..."
 msgstr "Initialisiere Spielsystem..."
 
-#: ../../retux.py:7942
+#: ../../retux.py:7949
 msgid "Initializing GUI system..."
 msgstr "Initialisiere GUI-System..."
 
-#: ../../retux.py:7954
+#: ../../retux.py:7961
 msgid "Loading images..."
 msgstr "Lade Bilder..."
 
-#: ../../retux.py:8476
+#: ../../retux.py:8483
 msgid "Loading fonts..."
 msgstr "Lade Schrift..."
 
@@ -706,10 +694,10 @@ msgstr "Lade Schrift..."
 #. / translated to and specify the font file name. This will cause the
 #. / font file to be used instead of the default sprite font. If the
 #. / sprite font is sufficient, leave this as-is.
-#: ../../retux.py:8487 ../../retux.py:8504
+#: ../../retux.py:8494 ../../retux.py:8511
 msgid "font_file"
 msgstr ""
 
-#: ../../retux.py:8712
+#: ../../retux.py:8719
 msgid "Starting game..."
 msgstr "Starte Spiel..."

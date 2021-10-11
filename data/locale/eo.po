@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.6\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2021-10-10 02:37-0400\n"
+"POT-Creation-Date: 2021-10-11 17:38-0400\n"
 "PO-Revision-Date: 2021-03-31 16:58+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
@@ -504,7 +504,7 @@ msgstr "-Korupta Nivelaro-"
 
 # Menu option; used in all sub-menus to go back to the previous menu
 #: ../../retux.py:6541 ../../retux.py:6656 ../../retux.py:6693
-#: ../../retux.py:6895 ../../retux.py:7028
+#: ../../retux.py:6895 ../../retux.py:7033
 msgid "Back"
 msgstr "Reen"
 
@@ -595,14 +595,14 @@ msgid "Joystick Threshold: {}%"
 msgstr "Stirstanga Sojlo: {}%"
 
 # Menu option; leads to the keyboard config menu
-#: ../../retux.py:6692 ../../retux.py:7164 ../../retux.py:7167
-#: ../../retux.py:7171 ../../retux.py:7241
+#: ../../retux.py:6692 ../../retux.py:7174 ../../retux.py:7177
+#: ../../retux.py:7181 ../../retux.py:7251
 msgid "Configure keyboard"
 msgstr "Konfiguri klavaron"
 
 # Menu option; leads to the joystick config menu
-#: ../../retux.py:6692 ../../retux.py:7165 ../../retux.py:7168
-#: ../../retux.py:7172 ../../retux.py:7241
+#: ../../retux.py:6692 ../../retux.py:7175 ../../retux.py:7178
+#: ../../retux.py:7182 ../../retux.py:7251
 msgid "Configure joysticks"
 msgstr "Konfiguri stirstangojn"
 
@@ -643,49 +643,49 @@ msgstr ""
 
 # Shown at the top of each control config menu. {} is replaced with the
 # player number.
-#: ../../retux.py:6885 ../../retux.py:7018
+#: ../../retux.py:6885 ../../retux.py:7023
 msgid "Player {}"
 msgstr "Ludanto {}"
 
 # Action names with configurable controls, used in control config menus.
 # {} is replaced with the key(s) or joystick control(s) the action is set to.
-#: ../../retux.py:6886 ../../retux.py:7019
+#: ../../retux.py:6886 ../../retux.py:7024
 msgid "Left: {}"
 msgstr "Maldekstren: {}"
 
-#: ../../retux.py:6887 ../../retux.py:7020
+#: ../../retux.py:6887 ../../retux.py:7025
 msgid "Right: {}"
 msgstr "Dekstren: {}"
 
-#: ../../retux.py:6888 ../../retux.py:7021
+#: ../../retux.py:6888 ../../retux.py:7026
 msgid "Up: {}"
 msgstr "Supren: {}"
 
-#: ../../retux.py:6889 ../../retux.py:7022
+#: ../../retux.py:6889 ../../retux.py:7027
 msgid "Down: {}"
 msgstr "Malsupren: {}"
 
-#: ../../retux.py:6890 ../../retux.py:7023
+#: ../../retux.py:6890 ../../retux.py:7028
 msgid "Jump: {}"
 msgstr "Salti: {}"
 
-#: ../../retux.py:6891 ../../retux.py:7024
+#: ../../retux.py:6891 ../../retux.py:7029
 msgid "Action: {}"
 msgstr "Ago: {}"
 
-#: ../../retux.py:6892 ../../retux.py:7025
+#: ../../retux.py:6892 ../../retux.py:7030
 msgid "Sneak: {}"
 msgstr "Rampi: {}"
 
-#: ../../retux.py:6893 ../../retux.py:7026
+#: ../../retux.py:6893 ../../retux.py:7031
 msgid "Menu: {}"
 msgstr "Menuo: {}"
 
-#: ../../retux.py:6894 ../../retux.py:7027
+#: ../../retux.py:6894 ../../retux.py:7032
 msgid "Pause: {}"
 msgstr "Paŭzo: {}"
 
-#: ../../retux.py:6915
+#: ../../retux.py:6920
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
 msgstr ""
@@ -693,11 +693,11 @@ msgstr ""
 "klavon por nuligi."
 
 # Indicates that an action is not assigned to any joystick control
-#: ../../retux.py:7016
+#: ../../retux.py:7021
 msgid "None"
 msgstr "Nenio"
 
-#: ../../retux.py:7048
+#: ../../retux.py:7058
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
 "function, or the Escape key to cancel."
@@ -706,65 +706,53 @@ msgstr ""
 "bindi al ĉi tiu funkcio, aŭ la Nuligi-klavon por nuligi."
 
 # In-game menu option; exits the menu and returns to the game
-#: ../../retux.py:7164 ../../retux.py:7167 ../../retux.py:7171
-#: ../../retux.py:7241
+#: ../../retux.py:7174 ../../retux.py:7177 ../../retux.py:7181
+#: ../../retux.py:7251
 msgid "Continue"
 msgstr "Daŭrigi"
 
 # Used in single-level mode menu; quits the level (and consequently the game)
-#: ../../retux.py:7165
+#: ../../retux.py:7175
 msgid "Abort"
 msgstr "Aborti"
 
 # In-level menu option; returns to the worldmap
-#: ../../retux.py:7168
+#: ../../retux.py:7178
 msgid "Return to Map"
 msgstr "Reveni al Karto"
 
 # In-game menu option; quits the game and returns to the title screen
-#: ../../retux.py:7169 ../../retux.py:7172 ../../retux.py:7242
+#: ../../retux.py:7179 ../../retux.py:7182 ../../retux.py:7252
 msgid "Return to Title Screen"
 msgstr "Reveni al Titola Ekrano"
 
-#: ../../retux.py:7401
-msgid "Press the key you wish to toggle, or Escape to cancel."
-msgstr "Premu la klavon, ke vi deziras baskuligi, aŭ Nuligi por nuligi."
-
-#: ../../retux.py:7441
-msgid ""
-"Press the joystick button, axis, or hat direction you wish to toggle, or the "
-"Escape key to cancel."
-msgstr ""
-"Premu la stirstangan klavon, akson aŭ ĉapela direkto, kiu vi deziras "
-"baskuligi, aŭ la Nuligi-klavo por nuligi."
-
 # Error message title
-#: ../../retux.py:7460
+#: ../../retux.py:7467
 msgid "Error"
 msgstr "Eraro"
 
 # Error message "Ok" button
-#: ../../retux.py:7461
+#: ../../retux.py:7468
 msgid "Ok"
 msgstr "Bone"
 
 # Printed to the terminal as the game starts
-#: ../../retux.py:7937
+#: ../../retux.py:7944
 msgid "Initializing game system..."
 msgstr "Pravalorizintan ludan sistemon..."
 
 # Printed to the terminal as the game starts
-#: ../../retux.py:7942
+#: ../../retux.py:7949
 msgid "Initializing GUI system..."
 msgstr "Pravalorizado de grafika interfaca sistemo..."
 
 # Printed to the terminal as the game starts
-#: ../../retux.py:7954
+#: ../../retux.py:7961
 msgid "Loading images..."
 msgstr "Ŝargado de bildoj..."
 
 # Printed to the terminal as the game starts
-#: ../../retux.py:8476
+#: ../../retux.py:8483
 msgid "Loading fonts..."
 msgstr "Ŝargado de tiparoj..."
 
@@ -775,11 +763,11 @@ msgstr "Ŝargado de tiparoj..."
 #. / translated to and specify the font file name. This will cause the
 #. / font file to be used instead of the default sprite font. If the
 #. / sprite font is sufficient, leave this as-is.
-#: ../../retux.py:8487 ../../retux.py:8504
+#: ../../retux.py:8494 ../../retux.py:8511
 msgid "font_file"
 msgstr "fonta_dosiero"
 
 # Printed to the terminal as the game starts
-#: ../../retux.py:8712
+#: ../../retux.py:8719
 msgid "Starting game..."
 msgstr "Komencado de ludo..."
