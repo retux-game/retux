@@ -560,13 +560,23 @@ class Level(sge.dsp.Room):
                                   outline=sge.gfx.Color("black"),
                                   outline_thickness=text_outline_thickness)
 
+            y = 0
+            if self.name:
+                sge.game.project_text(
+                    font, self.name, sge.game.width / 2, y,
+                    width=sge.game.width * 2 / 5, color=sge.gfx.Color("white"),
+                    halign="center", outline=sge.gfx.Color("black"),
+                    outline_thickness=text_outline_thickness)
+                y += font.get_height(self.name, sge.game.width * 2 / 5,
+                                     outline_thickness=text_outline_thickness)
+
             if main_area in tuxdolls_available or main_area in tuxdolls_found:
                 if main_area in tuxdolls_found:
                     s = tuxdoll_sprite
                 else:
                     s = tuxdoll_transparent_sprite
                 sge.game.project_sprite(s, 0, sge.game.width / 2,
-                                        s.height/2 + 8)
+                                        s.height/2 + 8 + y)
 
             if self.status_text:
                 sge.game.project_text(font, self.status_text,
@@ -1180,7 +1190,7 @@ class Level(sge.dsp.Room):
                 if name:
                     level_names[fname] = name
                 elif fname in levels:
-                    level_names[fname] = "Level {}".format(
+                    level_names[fname] = _("Level {}").format(
                         levels.index(fname) + 1)
                 else:
                     level_names[fname] = "???"
@@ -1852,7 +1862,7 @@ class Player(xsge_physics.Collider):
                                   color=sge.gfx.Color("white"),
                                   outline=sge.gfx.Color("black"),
                                   outline_thickness=text_outline_thickness)
-            y += 36
+            y += font.size * 2
 
             if not GOD:
                 x = 0
@@ -7820,6 +7830,7 @@ def warp(dest):
 
         if level is not None:
             level.spawn = spawn
+            level.name = cr.name
             level.points = cr.points
 
             for nobj in level.objects[:]:
