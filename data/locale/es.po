@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 1.6\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2021-10-11 17:38-0400\n"
-"PO-Revision-Date: 2017-10-08 00:27-0000\n"
+"PO-Revision-Date: 2021-10-17 19:52+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -30,11 +30,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "First Translator: <heckyel@openmailbox.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.3\n"
 
-#, fuzzy
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
-msgstr "¡Qué agradable y frío día para la pesca! Me pregunto qué cazaré hoy"
+msgstr "¡Qué agradable y frío día para pescar! Me pregunto qué cazaré hoy..."
 
 msgid "Oh, looks like I have a message!"
 msgstr "¡Oh, parece que tengo un mensaje!"
@@ -79,7 +78,7 @@ msgstr ""
 "castillo!"
 
 msgid "..."
-msgstr ""
+msgstr "..."
 
 msgid "That's too bad, Tux. I would have liked to let you leave in peace."
 msgstr "Eso es muy malo, Tux. Me hubiera gustado dejarte marchar en paz."
@@ -236,16 +235,21 @@ msgid ""
 "button while pressing the \"action\" button, my fireballs shoot higher up "
 "into the air. That may prove to be a useful technique."
 msgstr ""
+"Nota del Viajero:\n"
+"\n"
+"Me he dado cuenta de que si mientras tengo una flor de fuego mantengo "
+"pulsado el botón \"arriba\" al mismo tiempo que pulsa el botón de \"acción"
+"\", mis bolas de fuego se disparan más alto hacia el cielo. Esto puede "
+"resultar ser una técnica útil."
 
-#, fuzzy
 msgid ""
 "Please do NOT touch my rock collection! For example, do NOT use them to "
 "build a bridge allowing you to cross spike pits, and do NOT use them to "
 "build a tower so that you can reach higher places."
 msgstr ""
-"¡Por favor, no toques mis rocas! Por ejemplo, NO las utilices para construir "
-"un puenteque te permita cruzar pozos, y no las utilices para construir una "
-"torre para que puedas llegar a lugares más altos."
+"¡Por favor, NO toques mi colección de rocas! Por ejemplo, NO las utilices "
+"para construir un puenteque te permita cruzar pozos, y NO las utilices para "
+"construir una torre para que puedas llegar a lugares más altos."
 
 msgid ""
 "Traveler's Note:\n"
@@ -283,33 +287,31 @@ msgstr ""
 
 # Credits text
 msgid "Programming By"
-msgstr ""
+msgstr "Programación Por"
 
 msgid "Graphics By"
-msgstr ""
+msgstr "Gráficos Por"
 
-#, fuzzy
 msgid "Sounds By"
-msgstr "Sonido"
+msgstr "Sonidos Por"
 
-#, fuzzy
 msgid "Music By"
-msgstr "Música"
+msgstr "Música Por"
 
 msgid "Level Design By"
-msgstr ""
+msgstr "Diseño de Niveles Por"
 
 msgid "Bonus Level Design By"
-msgstr ""
+msgstr "Diseño de Nivel Adicional Por"
 
 msgid "Translations By"
-msgstr ""
+msgstr "Traducciones Por"
 
 msgid "Software Used"
-msgstr ""
+msgstr "Software Usado"
 
 msgid "Thank you for playing!"
-msgstr ""
+msgstr "¡Gracias por jugar!"
 
 # Explanation of what the "--version" command-line option does
 #: ../../retux.py:74
@@ -362,15 +364,17 @@ msgstr "No mostrar avisos a los jugadores en la pantalla."
 
 #: ../../retux.py:104
 msgid "Pray to your god. Choose wisely…"
-msgstr ""
+msgstr "Reza a tu dios. Elige sabiamente…"
 
 #: ../../retux.py:147
 msgid "The text editor god of nano smiles upon you. God mode enabled!"
-msgstr ""
+msgstr "El dios del editor de texto de nano te sonríe. ¡Modo dios activado!"
 
 #: ../../retux.py:149
 msgid "The true text editor god has sent you to hell for your heresy!"
 msgstr ""
+"¡El verdadero dios de editor de texto te ha enviado al infierno por tu "
+"herejía!"
 
 #: ../../retux.py:555
 msgid "Score"
@@ -509,7 +513,7 @@ msgstr "Siguiente página"
 
 #: ../../retux.py:6670
 msgid "Levelset loaded successfully."
-msgstr ""
+msgstr "Conjunto de niveles cargado con éxito."
 
 #: ../../retux.py:6683
 msgid "Fullscreen: {}"
@@ -531,17 +535,15 @@ msgstr "Método de escala: {}"
 
 #: ../../retux.py:6685
 msgid "Scale Proportional: {}"
-msgstr ""
+msgstr "Escala Proporcional: {}"
 
 #: ../../retux.py:6687
-#, fuzzy
 msgid "Sound Volume: {}%"
-msgstr "Sonido: {}"
+msgstr "Volumen de Sonido: {}"
 
 #: ../../retux.py:6688
-#, fuzzy
 msgid "Music Volume: {}%"
-msgstr "Música: {}"
+msgstr "Volumen de Música: {}"
 
 #: ../../retux.py:6689
 msgid "Stereo: {}"
@@ -579,12 +581,11 @@ msgstr "Archivos de la colección de niveles de ReTux"
 
 #: ../../retux.py:6805
 msgid "all files"
-msgstr "Todos los archivos"
+msgstr "todos los archivos"
 
 #: ../../retux.py:6818
-#, fuzzy
 msgid "Importing {}..."
-msgstr "Importando colección de niveles..."
+msgstr "Importando {}..."
 
 #: ../../retux.py:6858
 msgid ""
@@ -635,23 +636,23 @@ msgid "Pause: {}"
 msgstr "Pausa: {}"
 
 #: ../../retux.py:6920
-#, fuzzy
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
-msgstr "Presione la tecla que desea cambiar, o Esc para cancelar."
+msgstr ""
+"Presiona la tecla a la que deseas asignar esta función, o la tecla de Escape "
+"para cancelar."
 
 #: ../../retux.py:7021
 msgid "None"
 msgstr "Ninguno"
 
 #: ../../retux.py:7058
-#, fuzzy
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
 "function, or the Escape key to cancel."
 msgstr ""
-"Presione el botón de la palanca, axis, o la dirección sombrero que deseen "
-"alternar, o la tecla Escape para cancelar."
+"Presiona el botón de la palanca, eje o la dirección sombrero que deseas "
+"asignar a esta función, o la tecla Escape para cancelar."
 
 #: ../../retux.py:7174 ../../retux.py:7177 ../../retux.py:7181
 #: ../../retux.py:7251
@@ -703,7 +704,7 @@ msgstr "Cargando fuentes..."
 #. / sprite font is sufficient, leave this as-is.
 #: ../../retux.py:8494 ../../retux.py:8511
 msgid "font_file"
-msgstr ""
+msgstr "font_file"
 
 #: ../../retux.py:8719
 msgid "Starting game..."
