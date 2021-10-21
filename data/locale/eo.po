@@ -20,14 +20,14 @@ msgstr ""
 "Project-Id-Version: 1.6\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2021-10-11 17:38-0400\n"
-"PO-Revision-Date: 2021-03-31 16:58+0200\n"
+"PO-Revision-Date: 2021-10-21 11:41+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
@@ -76,7 +76,7 @@ msgstr ""
 "Mi estas Tukso, kaj mi finigas la reĝon de Neĝa Reĝo, po kastelo por fojo!"
 
 msgid "..."
-msgstr ""
+msgstr "..."
 
 msgid "That's too bad, Tux. I would have liked to let you leave in peace."
 msgstr "Tio estas aĉega, Tukso. Mi volus, lasi al vi, forlasinte pace."
@@ -227,16 +227,20 @@ msgid ""
 "button while pressing the \"action\" button, my fireballs shoot higher up "
 "into the air. That may prove to be a useful technique."
 msgstr ""
+"Vojaĝula Komento:\n"
+"\n"
+"Mi trovis, ke se kiam mi tenas fajran floron, mi premas la \"supra\"n "
+"butonon dum mi premas la \"aga\"n butonon, miaj fajraj pilkoj pafiĝas pli "
+"alte al la aero. Tio povas esti utila tekniko."
 
-#, fuzzy
 msgid ""
 "Please do NOT touch my rock collection! For example, do NOT use them to "
 "build a bridge allowing you to cross spike pits, and do NOT use them to "
 "build a tower so that you can reach higher places."
 msgstr ""
-"Bonvolu NE tuŝi miajn rokojn! Ekzemple, NE uzi ilin por konstrui ponton, kiu "
+"Bonvolu NE tuŝi miajn rokojn! Ekzemple, NE uzu ilin por konstrui ponton, kiu "
 "al vi lasas transiri pintan puton, kaj NE uzi ilin por konstrui turon, por "
-"ke vi povas iri al pli altaj ejoj."
+"ke vi povas atingi pli altajn ejojn."
 
 msgid ""
 "Traveler's Note:\n"
@@ -356,15 +360,15 @@ msgstr "Ne montri la ludantan HUD-n."
 
 #: ../../retux.py:104
 msgid "Pray to your god. Choose wisely…"
-msgstr ""
+msgstr "Preĝu al via dio. Elektu saĝe…"
 
 #: ../../retux.py:147
 msgid "The text editor god of nano smiles upon you. God mode enabled!"
-msgstr ""
+msgstr "La dio de teksta redaktilo de nano ridetas al vi. Dia reĝimo ebligita!"
 
 #: ../../retux.py:149
 msgid "The true text editor god has sent you to hell for your heresy!"
-msgstr ""
+msgstr "La vera dio de teksta redaktilo sendas vin al infero pro via herezo!"
 
 # Shown just above the current score
 #: ../../retux.py:555
@@ -560,21 +564,19 @@ msgstr "Skalo-metedo: {}"
 # {} is replaced by the name of a scale method.
 #: ../../retux.py:6685
 msgid "Scale Proportional: {}"
-msgstr ""
+msgstr "Proporcia Skalo: {}"
 
 # Menu option; indicates whether or not sound effects should play.
 # {} is replaced by "On" or "Off".
 #: ../../retux.py:6687
-#, fuzzy
 msgid "Sound Volume: {}%"
-msgstr "Sono: {}"
+msgstr "Sona Laŭteco: {}%"
 
 # Menu option; indicates whether or not music should play.
 # {} is replaced by "On" or "Off".
 #: ../../retux.py:6688
-#, fuzzy
 msgid "Music Volume: {}%"
-msgstr "Muziko: {}"
+msgstr "Muzika Laŭteco: {}%"
 
 # Menu option; indicates whether or not stereo sound should be used.
 # {} is replaced by "On" or "Off".
@@ -629,7 +631,6 @@ msgid "all files"
 msgstr "ĉiuj dosieroj"
 
 #: ../../retux.py:6818
-#, fuzzy
 msgid "Importing {}..."
 msgstr "Importante {}..."
 
