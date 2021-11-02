@@ -1752,7 +1752,7 @@ class Player(xsge_physics.Collider):
             self.sneak_pressed = states[6]
 
     def jump(self):
-        if not self.warping and (GOD or self.on_floor or self.was_on_floor):
+        if not self.warping and (self.on_floor or self.was_on_floor):
             for thin_ice in self.collision(ThinIce, y=(self.y + 1)):
                 thin_ice.crack()
                 thin_ice.crack()
