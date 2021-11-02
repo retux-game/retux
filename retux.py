@@ -6491,12 +6491,6 @@ class Menu(xsge_gui.MenuWindow):
     def event_change_keyboard_focus(self):
         play_sound(select_sound)
 
-    def event_press_left(self):
-        self.event_press_enter()
-
-    def event_press_right(self):
-        self.event_press_enter()
-
 
 class MainMenu(Menu):
 
@@ -6714,6 +6708,9 @@ class OptionsMenu(Menu):
         self.destroy()
         _refresh_screen(0, 0)
         self.event_choose(True)
+
+    def event_press_right(self):
+        self.event_press_enter()
 
     def event_choose(self, left=False):
         global fullscreen
