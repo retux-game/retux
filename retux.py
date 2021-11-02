@@ -2962,6 +2962,8 @@ class WalkingSnowball(CrowdObject, KnockableObject, BurnableObject,
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.stomp_jump(self)
@@ -3009,6 +3011,8 @@ class Crystallo(CrowdObject, KnockableObject, WinPuffObject):
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.stomp_jump(self)
@@ -3101,7 +3105,10 @@ class WalkingIceblock(CrowdObject, KnockableObject, BurnableObject,
             super().deactivate()
 
     def touch(self, other):
-        if self.flat and not self.dashing:
+        if GOD and not self.flat:
+            self.init_flat()
+
+        if GOD or (self.flat and not self.dashing):
             if self.parent is None:
                 self.thrower = other
                 if other.pickup(self):
@@ -3265,9 +3272,13 @@ class Spiky(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def knock(self, other=None):
         super().knock(other)
@@ -3337,6 +3348,10 @@ class WalkingBomb(CrowdObject, KnockableObject, FreezableObject,
             FallingObject.move(self)
 
     def touch(self, other):
+        if GOD and not self.ticking:
+            self.init_ticking()
+            self.thrower = other
+
         if self.ticking:
             if other.pickup(self):
                 self.thrower = other
@@ -3483,9 +3498,13 @@ class Jumpy(CrowdObject, KnockableObject, FreezableObject, WinPuffObject):
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def knock(self, other=None):
         super().knock(other)
@@ -3540,6 +3559,8 @@ class FlyingSnowball(FlyingEnemy, KnockableObject, BurnableObject,
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.stomp_jump(self)
@@ -3579,9 +3600,13 @@ class FlyingSpiky(FlyingEnemy, KnockableObject, FreezableObject,
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def knock(self, other=None):
         super().knock(other)
@@ -3766,6 +3791,8 @@ class FallingIcicle(FallingObject):
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.touch_death()
 
     def touch_death(self):
         play_sound(sizzle_sound, self.x, self.y)
@@ -3906,6 +3933,8 @@ class Circoflame(InteractiveObject):
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.freeze()
 
     def freeze(self):
         play_sound(sizzle_sound, self.x, self.y)
@@ -4095,6 +4124,8 @@ class Snowman(FallingObject, Boss):
 
     def touch(self, other):
         other.hurt()
+        if GOD:
+            self.knock()
 
     def stomp(self, other):
         other.stomp_jump(self)
@@ -4382,6 +4413,8 @@ class Raccot(FallingObject, Boss):
     def touch(self, other):
         if self.stage > 0:
             other.hurt()
+            if GOD:
+                self.hurt()
 
     def stomp(self, other):
         other.stomp_jump(self)
