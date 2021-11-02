@@ -5373,12 +5373,11 @@ class ThinIce(xsge_physics.Solid):
         if self.sprite is thin_ice_sprite:
             players = self.collision(Player, y=(self.y - 1))
             if players:
-                if not GOD:
-                    for player in players:
-                        self.crack_time += delta_mult
-                        while self.crack_time >= ICE_CRACK_TIME:
-                            self.crack_time -= ICE_CRACK_TIME
-                            self.crack()
+                for player in players:
+                    self.crack_time += delta_mult
+                    while self.crack_time >= ICE_CRACK_TIME:
+                        self.crack_time -= ICE_CRACK_TIME
+                        self.crack()
             elif not self.permanent:
                 if self.image_index > 0:
                     rfa = delta_mult * ICE_REFREEZE_RATE
