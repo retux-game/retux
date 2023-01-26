@@ -1,11 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":15,
  "infinite":false,
  "layers":[
@@ -955,6 +948,24 @@
                  "width":32,
                  "x":6368,
                  "y":320
+                }, 
+                {
+                 "gid":482,
+                 "height":32,
+                 "id":100,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Minion's Note:\n\nThe security system protecting the Tux Doll can be thwarted by any penguin who knows that they can drop any item they're holding by holding the \"down\" button while pressing the \"action\" button. Requesting immediate measures to protect against this technique."
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":6336,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1335,7 +1346,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":100,
+ "nextobjectid":101,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1354,7 +1365,7 @@
          "value":"Snowman's Castle"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.3.4",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -1407,6 +1418,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.2,
+ "version":"1.6",
  "width":250
 }
