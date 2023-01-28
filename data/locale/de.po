@@ -17,9 +17,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.6\n"
+"Project-Id-Version: retux 1.6.2\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2021-10-11 17:38-0400\n"
+"POT-Creation-Date: 2023-01-27 19:18-0500\n"
 "PO-Revision-Date: 2017-10-27 01:57-0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: German\n"
@@ -44,28 +44,23 @@ msgstr "Was?! Sie nehmen mir die Fische weg?!"
 msgid "I will not stand for this! Nobody takes away MY fish!"
 msgstr "Das nehme ich nicht hin! Niemand nimmt mir MEINE Fische weg!"
 
-msgid "What are you doing here? You're trespassing!"
-msgstr "Was machst du hier? Unbefugten ist der Zutritt verboten!"
+msgid "Why are you intruding upon the great Snow King's castle, penguin?"
+msgstr ""
 
 msgid "The reign of the Snow King is over!"
 msgstr "Die Herrschaft des Schneekönigs endet jetzt!"
 
-msgid "What are you talking about? His reign has only just begun!"
-msgstr "Wovon sprichst du? Seine Herrschaft hat gerade erst begonnen!"
-
-msgid ""
-"Yeah, and now it's going to end! He should have thought about that before "
-"taking away MY fish!"
+msgid "What?"
 msgstr ""
-"Ja, und jetzt wird sie enden! Er hätte zweimal nachdenken sollen bevor er "
-"mir MEINE Fische wegnimmt!"
 
-msgid ""
-"Fish?! I will not allow you to overthrow the great king over a tax! Your "
-"conquest ends here!"
+msgid "I'm taking him out! There's no way I'm letting him take away my fish!"
 msgstr ""
-"Fisch?! Ich werde dir nicht gestatten den König wegen einer Steuer zu "
-"stürzen! Dein Abenteuer endet hier!"
+
+msgid "That's all you care about? A measly tax?"
+msgstr ""
+
+msgid "I was going to let you leave in peace, but you leave me no choice."
+msgstr ""
 
 msgid "Who are you?"
 msgstr "Wer bist du?"
@@ -139,14 +134,28 @@ msgstr ""
 "Alle Einwohner müsen 5% ihres Fisches als Steuer abgeben. Zahlungsverzug "
 "wird unverzüglich geahndet"
 
-msgid "Having trouble finding secret areas? The clue is in the name!"
+#, fuzzy
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"In my search for the elusive Tux Dolls, I have learned that the name of each "
+"level often hides a clue. Perhaps, if I can decipher these clues, I can "
+"obtain a complete collection."
 msgstr ""
 "Schwierigkeiten geheime Orte zu finden? Der Trick verbirgt sich im Name!"
 
-msgid "Sometimes, it's just better to go up."
+#, fuzzy
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"There appears to be something important up above, but it is unfortunately "
+"out of reach. There must be a path that I cannot see."
 msgstr "Manchmal ist es besser nach oben zu gehen."
 
+#, fuzzy
 msgid ""
+"Traveler's Note:\n"
+"\n"
 "Fire can be a great way to melt ice blocking access to certain Tux dolls. "
 "Now, where can one find a fire flower around here?"
 msgstr ""
@@ -166,14 +175,31 @@ msgstr ""
 "nur dieses Eis je auftauen?! Schlimmer noch, dieser Felsen dort drüben sieht "
 "aus als würde er grinsen. Fast so, als wollte er mich verspotten!"
 
+#, fuzzy
 msgid ""
-"Studies have shown that penguins have the ability to kick iceblocks, and "
-"possibly other items, straight up. They do this by holding down the \"up\" "
-"button while pressing the \"action\" button."
+"Traveler's Note:\n"
+"\n"
+"I have finally begun to get the hang of kicking iceblocks straight up by "
+"holding the \"up\" button while pressing the \"action\" button. I believe "
+"this technique may prove useful for finding the Tux Doll."
 msgstr ""
-"Eine Studie hat gezeigt,dass Pinguine die Fähigkeit besitzen Eisblöcke (und "
-"möglicherweise auch andere Dinge) gerade nach oben zu treten. Sie tun dies "
-"indem sie den \"up\"-Knopf halten und dabei den \"action\"-Knopf drücken."
+"Eine Studie hat gezeigt,dass Pinguine die Fähigkeit besitzen Eisblöcke "
+"(und möglicherweise auch andere Dinge) gerade nach oben zu treten. Sie "
+"tun dies indem sie den \"up\"-Knopf halten und dabei den \"action\"-Knopf "
+"drücken."
+
+#, fuzzy
+msgid ""
+"Minion's Note:\n"
+"\n"
+"The security system protecting the Tux Doll can be thwarted by any penguin "
+"who knows that they can drop any item they're holding by holding the \"down"
+"\" button while pressing the \"action\" button. Requesting immediate "
+"measures to protect against this technique."
+msgstr ""
+"Schon gewusst? Es ist möglich alles was du mit dir trägst fallen zu "
+"lassen! Halte einfach den \"down\"-Knopf und drücke dabei den \"action\"-"
+"Knopf."
 
 msgid ""
 "Traveler's Note:\n"
@@ -199,20 +225,6 @@ msgstr ""
 "noch einen aneren Weg hinein geben!"
 
 msgid ""
-"Welcome to Mount Slimmerist, the skinniest mountain in the world! Please do "
-"not climb on Mount Slimmerist; the extra weight may cause it to topple over."
-msgstr ""
-"Willkommen bei Mount Slimmerist, dem dünnsten Berg der Welt! Bitte nicht auf "
-"Mount Slimmerist klettern; er könnte durch das zusätzliche Gewicht kippen."
-
-msgid ""
-"Did you know? It's possible to drop whatever you're carrying! Just hold the "
-"\"down\" button while pressing the \"action\" button."
-msgstr ""
-"Schon gewusst? Es ist möglich alles was du mit dir trägst fallen zu lassen! "
-"Halte einfach den \"down\"-Knopf und drücke dabei den \"action\"-Knopf."
-
-msgid ""
 "Traveler's Note:\n"
 "\n"
 "That pipe to the right is too high to be reached even by jumping off a "
@@ -236,6 +248,8 @@ msgstr ""
 
 #, fuzzy
 msgid ""
+"Minion's Note:\n"
+"\n"
 "Please do NOT touch my rock collection! For example, do NOT use them to "
 "build a bridge allowing you to cross spike pits, and do NOT use them to "
 "build a tower so that you can reach higher places."
@@ -377,7 +391,7 @@ msgstr "Zeitbonus"
 msgid "Time Penalty"
 msgstr "Zeiteinbuße"
 
-#: ../../retux.py:836
+#: ../../retux.py:846
 msgid ""
 "An error occurred in a timeline 'setattr' command:\n"
 "\n"
@@ -387,7 +401,7 @@ msgstr ""
 "\n"
 "{}"
 
-#: ../../retux.py:885
+#: ../../retux.py:895
 msgid ""
 "An error occurred in a timeline 'exec' command:\n"
 "\n"
@@ -397,7 +411,7 @@ msgstr ""
 "\n"
 "{}"
 
-#: ../../retux.py:893
+#: ../../retux.py:903
 msgid ""
 "An error occurred in a timeline 'if' statement:\n"
 "\n"
@@ -407,7 +421,7 @@ msgstr ""
 "\n"
 "{}"
 
-#: ../../retux.py:914
+#: ../../retux.py:924
 msgid ""
 "An error occurred in a timeline 'while' statement:\n"
 "\n"
@@ -417,15 +431,15 @@ msgstr ""
 "\n"
 "{}"
 
-#: ../../retux.py:1141
+#: ../../retux.py:1151
 msgid "Loading level..."
 msgstr "Level lädt..."
 
-#: ../../retux.py:1161
+#: ../../retux.py:1171
 msgid "Loading \"{}\"..."
 msgstr "Lade \"{}\"..."
 
-#: ../../retux.py:1167 ../../retux.py:6082
+#: ../../retux.py:1177 ../../retux.py:6091
 msgid ""
 "An error occurred when trying to load the level:\n"
 "\n"
@@ -435,150 +449,154 @@ msgstr ""
 "\n"
 "{}"
 
-#: ../../retux.py:1878
+#: ../../retux.py:1193
+msgid "Level {}"
+msgstr ""
+
+#: ../../retux.py:1888
 msgid "Press the Menu button to skip..."
 msgstr "Drücke den Menü-Knopf zum überspringen..."
 
-#: ../../retux.py:1880
+#: ../../retux.py:1890
 msgid "Cinematic mode enabled"
 msgstr "Cinematic Mode aktiviert"
 
-#: ../../retux.py:6493
+#: ../../retux.py:6496
 msgid "New Game"
 msgstr "Neues Spiel"
 
-#: ../../retux.py:6493
+#: ../../retux.py:6496
 msgid "Load Game"
 msgstr "Spiel laden"
 
-#: ../../retux.py:6493
+#: ../../retux.py:6496
 msgid "Select Levelset"
 msgstr "Levelset wählen"
 
-#: ../../retux.py:6493
+#: ../../retux.py:6496
 msgid "Options"
 msgstr "Optionen"
 
-#: ../../retux.py:6494
+#: ../../retux.py:6497
 msgid "Credits"
 msgstr "Credits"
 
-#: ../../retux.py:6494
+#: ../../retux.py:6497
 msgid "Quit"
 msgstr "Ende"
 
-#: ../../retux.py:6524
+#: ../../retux.py:6527
 msgid "-Empty-"
 msgstr "-Leer-"
 
-#: ../../retux.py:6526
+#: ../../retux.py:6529
 msgid "-No Levelset-"
 msgstr "-Kein Levelset-"
 
-#: ../../retux.py:6533
+#: ../../retux.py:6536
 msgid "-Corrupt Levelset-"
 msgstr "-Beschädigtes Levelset-"
 
-#: ../../retux.py:6541 ../../retux.py:6656 ../../retux.py:6693
-#: ../../retux.py:6895 ../../retux.py:7033
+#: ../../retux.py:6544 ../../retux.py:6659 ../../retux.py:6696
+#: ../../retux.py:6901 ../../retux.py:7039
 msgid "Back"
 msgstr "Zurück"
 
-#: ../../retux.py:6569
+#: ../../retux.py:6572
 msgid "Overwrite this save file"
 msgstr "Spielstand überschreiben"
 
-#: ../../retux.py:6569
+#: ../../retux.py:6572
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../../retux.py:6605
+#: ../../retux.py:6608
 msgid "An error occurred when trying to load the game."
 msgstr "Ein Fehler trat beim Laden des Spiels auf."
 
-#: ../../retux.py:6655
+#: ../../retux.py:6658
 msgid "Next page"
 msgstr "Nächste Seite"
 
-#: ../../retux.py:6670
+#: ../../retux.py:6673
 msgid "Levelset loaded successfully."
 msgstr ""
 
-#: ../../retux.py:6683
+#: ../../retux.py:6686
 msgid "Fullscreen: {}"
 msgstr "Vollbild: {}"
 
-#: ../../retux.py:6683 ../../retux.py:6686 ../../retux.py:6689
-#: ../../retux.py:6690
+#: ../../retux.py:6686 ../../retux.py:6689 ../../retux.py:6692
+#: ../../retux.py:6693
 msgid "On"
 msgstr "An"
 
-#: ../../retux.py:6683 ../../retux.py:6686 ../../retux.py:6689
-#: ../../retux.py:6690
+#: ../../retux.py:6686 ../../retux.py:6689 ../../retux.py:6692
+#: ../../retux.py:6693
 msgid "Off"
 msgstr "Aus"
 
-#: ../../retux.py:6684
+#: ../../retux.py:6687
 msgid "Scale Method: {}"
 msgstr "Sklalierungsmethode: {}"
 
-#: ../../retux.py:6685
+#: ../../retux.py:6688
 msgid "Scale Proportional: {}"
 msgstr ""
 
-#: ../../retux.py:6687
+#: ../../retux.py:6690
 #, fuzzy
 msgid "Sound Volume: {}%"
 msgstr "Sound: {}"
 
-#: ../../retux.py:6688
+#: ../../retux.py:6691
 #, fuzzy
 msgid "Music Volume: {}%"
 msgstr "MusiK: {}"
 
-#: ../../retux.py:6689
+#: ../../retux.py:6692
 msgid "Stereo: {}"
 msgstr "Stereo: {}"
 
-#: ../../retux.py:6690
+#: ../../retux.py:6693
 msgid "Show FPS: {}"
 msgstr "Zeige FPS: {}"
 
-#: ../../retux.py:6691
+#: ../../retux.py:6694
 msgid "Joystick Threshold: {}%"
 msgstr "Joystich Schwellwert: {}%"
 
-#: ../../retux.py:6692 ../../retux.py:7174 ../../retux.py:7177
-#: ../../retux.py:7181 ../../retux.py:7251
+#: ../../retux.py:6695 ../../retux.py:7180 ../../retux.py:7183
+#: ../../retux.py:7187 ../../retux.py:7257
 msgid "Configure keyboard"
 msgstr "Tastatur konfigurieren"
 
-#: ../../retux.py:6692 ../../retux.py:7175 ../../retux.py:7178
-#: ../../retux.py:7182 ../../retux.py:7251
+#: ../../retux.py:6695 ../../retux.py:7181 ../../retux.py:7184
+#: ../../retux.py:7188 ../../retux.py:7257
 msgid "Configure joysticks"
 msgstr "Joysticks konfigurieren"
 
-#: ../../retux.py:6693
+#: ../../retux.py:6696
 msgid "Detect joysticks"
 msgstr "Joysticks finden"
 
-#: ../../retux.py:6693
+#: ../../retux.py:6696
 msgid "Import levelset"
 msgstr "Levelset importieren"
 
-#: ../../retux.py:6804
+#: ../../retux.py:6810
 msgid "ReTux levelset files"
 msgstr "ReTux levelset Datein"
 
-#: ../../retux.py:6805
+#: ../../retux.py:6811
 msgid "all files"
 msgstr "alle Datein"
 
-#: ../../retux.py:6818
+#: ../../retux.py:6824
 msgid "Importing {}..."
 msgstr "Importiere {}..."
 
-#: ../../retux.py:6858
+#: ../../retux.py:6864
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
 "make sure Tkinter is installed and try again."
@@ -587,57 +605,57 @@ msgstr ""
 "Bitte gehen Sie sicher, dass Tkinter installiert ist und versuchen Sie es "
 "erneut."
 
-#: ../../retux.py:6885 ../../retux.py:7023
+#: ../../retux.py:6891 ../../retux.py:7029
 msgid "Player {}"
 msgstr "Spieler {}"
 
-#: ../../retux.py:6886 ../../retux.py:7024
+#: ../../retux.py:6892 ../../retux.py:7030
 msgid "Left: {}"
 msgstr "Links: {}"
 
-#: ../../retux.py:6887 ../../retux.py:7025
+#: ../../retux.py:6893 ../../retux.py:7031
 msgid "Right: {}"
 msgstr "Rechts: {}"
 
-#: ../../retux.py:6888 ../../retux.py:7026
+#: ../../retux.py:6894 ../../retux.py:7032
 msgid "Up: {}"
 msgstr "Hoch: {}"
 
-#: ../../retux.py:6889 ../../retux.py:7027
+#: ../../retux.py:6895 ../../retux.py:7033
 msgid "Down: {}"
 msgstr "Runter: {}"
 
-#: ../../retux.py:6890 ../../retux.py:7028
+#: ../../retux.py:6896 ../../retux.py:7034
 msgid "Jump: {}"
 msgstr "Sprung: {}"
 
-#: ../../retux.py:6891 ../../retux.py:7029
+#: ../../retux.py:6897 ../../retux.py:7035
 msgid "Action: {}"
 msgstr "Aktion: {}"
 
-#: ../../retux.py:6892 ../../retux.py:7030
+#: ../../retux.py:6898 ../../retux.py:7036
 msgid "Sneak: {}"
 msgstr "Schleichen: {}"
 
-#: ../../retux.py:6893 ../../retux.py:7031
+#: ../../retux.py:6899 ../../retux.py:7037
 msgid "Menu: {}"
 msgstr "Menü: {}"
 
-#: ../../retux.py:6894 ../../retux.py:7032
+#: ../../retux.py:6900 ../../retux.py:7038
 msgid "Pause: {}"
 msgstr "Pause: {}"
 
-#: ../../retux.py:6920
+#: ../../retux.py:6926
 #, fuzzy
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
 msgstr "Wähle eine Taste, oder drücke Escape zum Abbrechen."
 
-#: ../../retux.py:7021
+#: ../../retux.py:7027
 msgid "None"
 msgstr "Nichts"
 
-#: ../../retux.py:7058
+#: ../../retux.py:7064
 #, fuzzy
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
@@ -646,44 +664,44 @@ msgstr ""
 "Wähle einen Knopf, einen Joystick, oder richtung auf dem Steuerkreuz, oder "
 "drücke Escape zum Abbrechen."
 
-#: ../../retux.py:7174 ../../retux.py:7177 ../../retux.py:7181
-#: ../../retux.py:7251
+#: ../../retux.py:7180 ../../retux.py:7183 ../../retux.py:7187
+#: ../../retux.py:7257
 msgid "Continue"
 msgstr "Fortfahren"
 
-#: ../../retux.py:7175
+#: ../../retux.py:7181
 msgid "Abort"
 msgstr "Abbruch"
 
-#: ../../retux.py:7178
+#: ../../retux.py:7184
 msgid "Return to Map"
 msgstr "Zurück zur Karte"
 
-#: ../../retux.py:7179 ../../retux.py:7182 ../../retux.py:7252
+#: ../../retux.py:7185 ../../retux.py:7188 ../../retux.py:7258
 msgid "Return to Title Screen"
 msgstr "Zurück zum Titelbildschirm"
 
-#: ../../retux.py:7467
+#: ../../retux.py:7473
 msgid "Error"
 msgstr "Fehler"
 
-#: ../../retux.py:7468
+#: ../../retux.py:7474
 msgid "Ok"
 msgstr "Ok"
 
-#: ../../retux.py:7944
+#: ../../retux.py:7951
 msgid "Initializing game system..."
 msgstr "Initialisiere Spielsystem..."
 
-#: ../../retux.py:7949
+#: ../../retux.py:7956
 msgid "Initializing GUI system..."
 msgstr "Initialisiere GUI-System..."
 
-#: ../../retux.py:7961
+#: ../../retux.py:7968
 msgid "Loading images..."
 msgstr "Lade Bilder..."
 
-#: ../../retux.py:8483
+#: ../../retux.py:8490
 msgid "Loading fonts..."
 msgstr "Lade Schrift..."
 
@@ -694,10 +712,30 @@ msgstr "Lade Schrift..."
 #. / translated to and specify the font file name. This will cause the
 #. / font file to be used instead of the default sprite font. If the
 #. / sprite font is sufficient, leave this as-is.
-#: ../../retux.py:8494 ../../retux.py:8511
+#: ../../retux.py:8501 ../../retux.py:8518
 msgid "font_file"
 msgstr ""
 
-#: ../../retux.py:8719
+#: ../../retux.py:8726
 msgid "Starting game..."
 msgstr "Starte Spiel..."
+
+#~ msgid "What are you doing here? You're trespassing!"
+#~ msgstr "Was machst du hier? Unbefugten ist der Zutritt verboten!"
+
+#~ msgid "What are you talking about? His reign has only just begun!"
+#~ msgstr "Wovon sprichst du? Seine Herrschaft hat gerade erst begonnen!"
+
+#~ msgid ""
+#~ "Yeah, and now it's going to end! He should have thought about that before "
+#~ "taking away MY fish!"
+#~ msgstr ""
+#~ "Ja, und jetzt wird sie enden! Er hätte zweimal nachdenken sollen bevor er "
+#~ "mir MEINE Fische wegnimmt!"
+
+#~ msgid ""
+#~ "Fish?! I will not allow you to overthrow the great king over a tax! Your "
+#~ "conquest ends here!"
+#~ msgstr ""
+#~ "Fisch?! Ich werde dir nicht gestatten den König wegen einer Steuer zu "
+#~ "stürzen! Dein Abenteuer endet hier!"

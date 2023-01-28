@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":15,
  "infinite":false,
  "layers":[
@@ -1088,7 +1081,7 @@
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"Studies have shown that penguins have the ability to kick iceblocks, and possibly other items, straight up. They do this by holding down the \"up\" button while pressing the \"action\" button."
+                         "value":"Traveler's Note:\n\nI have finally begun to get the hang of kicking iceblocks straight up by holding the \"up\" button while pressing the \"action\" button. I believe this technique may prove useful for finding the Tux Doll."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1579,7 +1572,7 @@
          "value":"Over the Five Pillars of Snow"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -1628,6 +1621,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":300
 }

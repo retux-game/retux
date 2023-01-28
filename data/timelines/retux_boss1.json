@@ -31,11 +31,12 @@
         "skip_to 35"
     ],
     "30": [
-        "dialog snowman What are you doing here? You're trespassing!",
+        "dialog snowman Why are you intruding upon the great Snow King's castle, penguin?",
         "dialog tux The reign of the Snow King is over!",
-        "dialog snowman What are you talking about? His reign has only just begun!",
-        "dialog tux Yeah, and now it's going to end! He should have thought about that before taking away MY fish!",
-        "dialog snowman Fish?! I will not allow you to overthrow the great king over a tax! Your conquest ends here!"
+        "dialog snowman What?",
+        "dialog tux I'm taking him out! There's no way I'm letting him take away my fish!",
+        "dialog snowman That's all you care about? A measly tax?",
+        "dialog snowman I was going to let you leave in peace, but you leave me no choice."
     ],
     "35": [
         "timeline boss_start.json"

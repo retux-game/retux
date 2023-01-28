@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":30,
  "infinite":false,
  "layers":[
@@ -1530,16 +1523,10 @@
                  "y":320
                 }, 
                 {
-                 "gid":482,
+                 "gid":478,
                  "height":32,
-                 "id":153,
+                 "id":156,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"text",
-                         "type":"string",
-                         "value":"Did you know? It's possible to drop whatever you're carrying! Just hold the \"down\" button while pressing the \"action\" button."
-                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1950,7 +1937,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":156,
+ "nextobjectid":157,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1974,7 +1961,7 @@
          "value":"There Might Be Some Momentary Discomfort"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -2031,6 +2018,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":300
 }

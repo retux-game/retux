@@ -1209,13 +1209,13 @@
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"Having trouble finding secret areas? The clue is in the name!"
+                         "value":"Traveler's Note:\n\nIn my search for the elusive Tux Dolls, I have learned that the name of each level often hides a clue. Perhaps, if I can decipher these clues, I can obtain a complete collection."
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1504,
+                 "x":1440,
                  "y":352
                 }],
          "opacity":1,

@@ -1,12 +1,5 @@
 { "backgroundcolor":"#ffffff",
  "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "target":"."
-        }
-    },
  "height":30,
  "infinite":false,
  "layers":[
@@ -776,7 +769,7 @@
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"Please do NOT touch my rock collection! For example, do NOT use them to build a bridge allowing you to cross spike pits, and do NOT use them to build a tower so that you can reach higher places."
+                         "value":"Minion's Note:\n\nPlease do NOT touch my rock collection! For example, do NOT use them to build a bridge allowing you to cross spike pits, and do NOT use them to build a tower so that you can reach higher places."
                         }],
                  "rotation":0,
                  "type":"",
@@ -1380,7 +1373,7 @@
          "value":"Building Blocks of Life"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.2",
  "tileheight":32,
  "tilesets":[
         {
@@ -1437,6 +1430,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":300
 }
