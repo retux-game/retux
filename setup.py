@@ -19,7 +19,7 @@ if sys.platform == "win32":
     icon = os.path.join("data", "images", "misc", "icon.ico")
 
 setup(name = "ReTux",
-      version = "1.6.1",
+      version = "1.6.2",
       description = "Libre open source side-scrolling platformer starring Tux the penguin.",
       options = {"build_exe": build_exe_options},
       executables = [Executable("retux.py", base=base, icon=icon)])
