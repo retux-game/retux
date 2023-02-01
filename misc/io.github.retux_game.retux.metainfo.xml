@@ -1,15 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop">
   <id>io.github.retux_game.retux</id>
+  <metadata_license>CC0-1.0</metadata_license>
+
   <name>ReTux</name>
   <summary>Action platformer starring the Linux mascot, Tux</summary>
-  <developer_name></developer_name>
-  <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <description>
     <p>Tux is just getting ready to go fishing when all of a sudden, he receives a message. The message states that his home, Icy Island, has been taken over by the Snow King, and a new Fish Tax will be imposed. Tux is furious! How dare the Snow King take away his fish?! Help Tux overthrow the Snow King and stop him from taking Tux's fish away!</p>
-    <p>ReTux is a libre open source action platformer loosely inspired by the Mario games, utilizing the art assets from the SuperTux project. The name "ReTux" is a play on the words "redux" and "Tux".</p>
+    <p>ReTux is an open source action platformer loosely inspired by the Mario games, utilizing the art assets from the SuperTux project. The name "ReTux" is a play on the words "redux" and "Tux".</p>
   </description>
+
+  <categories>
+    <category>Game</category>
+    <category>ActionGame</category>
+    <category>KidsGame</category>
+  </categories>
+
+  <url type="homepage">https://retux-game.github.io</url>
+  <url type="bugtracker">https://github.com/retux-game/retux/issues</url>
+  <url type="donation">https://www.patreon.com/diligentcircle</url>
+  <url type="vcs-browser">https://github.com/retux-game/retux</url>
+
   <screenshots>
     <screenshot type="default">
       <image type="source">https://retux-game.github.io/images/screenshot1.png</image>
@@ -42,14 +54,20 @@
       <image type="source">https://retux-game.github.io/images/screenshot10.png</image>
     </screenshot>
   </screenshots>
+
   <releases>
-    <release version="1.6.1" date="2021-10-11" type="stable"><description>
+    <release version="1.6.2" date="2023-02-01" type="stable">
+      <description>
+        <p>Slightly improved info blocks' text.</p>
+      </description>
+    </release>
+    <release version="1.6.1" date="2021-10-11" type="stable">
+      <description>
         <p>Fixes game controller issues, updated Spanish and Esperanto translations, added level name to level HUD.</p>
       </description>
     </release>
   </releases>
-  <url type="homepage">https://retux-game.github.io</url>
-  <url type="bugtracker">https://github.com/retux-game/retux/issues</url>
+
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">mild</content_attribute>
   </content_rating>
