@@ -18,7 +18,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: retux 1.6.2\n"
+"Project-Id-Version: retux 1.6.3\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -225,29 +225,38 @@ msgid "There must be a way to remove the fire flower from this room."
 msgstr ""
 
 # Credits text
-msgid "Programming By"
+msgctxt "credits_title"
+msgid "Programming"
 msgstr ""
 
-msgid "Graphics By"
+msgctxt "credits_title"
+msgid "Graphics"
 msgstr ""
 
-msgid "Sounds By"
+msgctxt "credits_title"
+msgid "Sounds"
 msgstr ""
 
-msgid "Music By"
+msgctxt "credits_title"
+msgid "Music"
 msgstr ""
 
-msgid "Level Design By"
+msgctxt "credits_title"
+msgid "Level Design"
 msgstr ""
 
-msgid "Bonus Level Design By"
+msgctxt "credits_title"
+msgid "Bonus Level Design"
 msgstr ""
 
-msgid "Translations By"
+msgctxt "credits_title"
+msgid "Translations"
 msgstr ""
 
+msgctxt "credits_title"
 msgid "Software Used"
 msgstr ""
 
+msgctxt "credits_title"
 msgid "Thank you for playing!"
 msgstr ""

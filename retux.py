@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-__version__ = "1.6.2"
+__version__ = "1.6.3a0"
 
 
 import argparse
@@ -563,12 +563,15 @@ class Level(sge.dsp.Room):
             y = 0
             if self.name:
                 sge.game.project_text(
-                    font, self.name, sge.game.width / 2, y,
-                    width=sge.game.width * 2 / 5, color=sge.gfx.Color("white"),
-                    halign="center", outline=sge.gfx.Color("black"),
+                    font, gettext.pgettext("level_name", self.name),
+                    sge.game.width / 2, y, width=sge.game.width * 2 / 5,
+                    color=sge.gfx.Color("white"), halign="center",
+                    outline=sge.gfx.Color("black"),
                     outline_thickness=text_outline_thickness)
-                y += font.get_height(self.name, sge.game.width * 2 / 5,
-                                     outline_thickness=text_outline_thickness)
+                y += font.get_height(
+                    gettext.pgettext("level_name", self.name),
+                    sge.game.width * 2 / 5,
+                    outline_thickness=text_outline_thickness)
 
             if main_area in tuxdolls_available or main_area in tuxdolls_found:
                 if main_area in tuxdolls_found:
@@ -1186,12 +1189,13 @@ class Level(sge.dsp.Room):
                 current_areas[fname] = r
 
             if fname not in level_names:
-                name = r.name
+                name = gettext.pgettext("level_name", r.name)
                 if name:
                     level_names[fname] = name
                 elif fname in levels:
-                    level_names[fname] = _("Level {}").format(
-                        levels.index(fname) + 1)
+                    level_names[fname] = gettext.pgettext(
+                        "level_name", "Level {}").format(
+                            levels.index(fname) + 1)
                 else:
                     level_names[fname] = "???"
 
@@ -1343,9 +1347,10 @@ class CreditsScreen(SpecialScreen):
         for section in sections:
             if "title" in section:
                 head_sprite = sge.gfx.Sprite.from_text(
-                    font_big, _(section["title"]), width=self.width,
-                    color=sge.gfx.Color("white"), halign="center",
-                    outline=sge.gfx.Color("black"),
+                    font_big,
+                    gettext.pgettext("credits_title", section["title"]),
+                    width=self.width, color=sge.gfx.Color("white"),
+                    halign="center", outline=sge.gfx.Color("black"),
                     outline_thickness=text_outline_thickness)
                 x = self.width / 2
                 y = self.sections[-1].bbox_bottom + font_big.size * 3
@@ -1356,7 +1361,8 @@ class CreditsScreen(SpecialScreen):
             if "lines" in section:
                 for line in section["lines"]:
                     list_sprite = sge.gfx.Sprite.from_text(
-                        font, _(line), width=self.width - 2 * TILE_SIZE,
+                        font, gettext.pgettext("credits_line", line),
+                        width=self.width - 2 * TILE_SIZE,
                         color=sge.gfx.Color("white"), halign="center",
                         outline=sge.gfx.Color("black"),
                         outline_thickness=text_outline_thickness)

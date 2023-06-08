@@ -11,7 +11,7 @@ HOW TO RUN
 If you have downloaded a version of the game designated for a particular
 system, simply run the executable.
 
-To run the source code, you will need Python 3.6 or later
+To run the source code, you will need Python 3.8 or later
 <https://www.python.org>. You will also need the dependencies listed in
 requirements.txt, which you can install automatically by using the
 following command:
