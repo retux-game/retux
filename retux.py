@@ -6101,7 +6101,8 @@ class MapPlayer(sge.dsp.Object):
                 else:
                     room_properties = xsge_tiled.t_get_properties(
                         data.get("properties", {}))
-                    level_names[space.level] = room_properties.get("name")
+                    level_names[space.level] = gettext.pgettext(
+                        room_properties.get("name"))
 
             room.level_text = level_names.get(space.level)
             room.level_tuxdoll_available = space.level in tuxdolls_available
