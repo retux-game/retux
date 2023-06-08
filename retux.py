@@ -1189,9 +1189,9 @@ class Level(sge.dsp.Room):
                 current_areas[fname] = r
 
             if fname not in level_names:
-                name = gettext.pgettext("level_name", r.name)
+                name = r.name
                 if name:
-                    level_names[fname] = name
+                    level_names[fname] = gettext.pgettext("level_name", name)
                 elif fname in levels:
                     level_names[fname] = gettext.pgettext(
                         "level_name", "Level {}").format(
