@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: retux 1.6.2\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2023-06-08 22:31-0400\n"
-"PO-Revision-Date: 2023-06-08 21:23+0200\n"
+"PO-Revision-Date: 2023-06-09 10:11+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -133,222 +133,221 @@ msgstr ""
 # design of World 1-1 of Super Mario Bros.
 msgctxt "level_name"
 msgid "Not exactly 1:1"
-msgstr ""
+msgstr "No exactamente 1:1"
 
 # Tux doll is found by following a hidden vertical path.
 msgctxt "level_name"
 msgid "Two Dimensions are Better than One"
-msgstr ""
+msgstr "Mejor que una, dos dimensiones"
 
 msgctxt "level_name"
 msgid "Take a Third Pipe"
-msgstr ""
+msgstr "Coge una tercera tubería"
 
 msgctxt "level_name"
 msgid "May The Fourth Be With You"
-msgstr ""
+msgstr "Que la fuerza te acompañe"
 
 # Tux doll is found in a hidden block above one of five narrow snow pile
 # type decoration things.
 msgctxt "level_name"
 msgid "Over the Five Pillars of Snow"
-msgstr ""
+msgstr "Sobre los cinco pilares de nieve"
 
 msgctxt "level_name"
 msgid "Snowman's Castle"
-msgstr ""
+msgstr "Castillo del muñeco de nieve"
 
 msgctxt "level_name"
 msgid "The Seven Deadly Springs"
-msgstr ""
+msgstr "Los siete muelles de la muerte"
 
-#, fuzzy
 msgctxt "level_name"
 msgid "Trace your Spring"
-msgstr "¡Gracias por jugar!"
+msgstr "Vuelve con la tubería"
 
 # Finding the Tux doll requires picking up, rather than jumping on, a
 # spring that is placed deceptively to make it seem like it's needed to
 # reach a ledge that you can actually jump to normally.
 msgctxt "level_name"
 msgid "To spring, or not to spring?"
-msgstr ""
+msgstr "¿Saltar o no saltar?"
 
 # Tux doll is located in a pipe in the ceiling that infinitely spawns
 # springs. One of these springs is needed to complete the level.
 msgctxt "level_name"
 msgid "Spring Factory"
-msgstr ""
+msgstr "Fábrica de muelles"
 
 # Tux doll is found in a hidden block reached from a ledge of a skinny
 # "mountain" that has to be jumped over to complete the level.
 msgctxt "level_name"
 msgid "Scaling Mount Slimmerist"
-msgstr ""
+msgstr "Escalando Monte Flaco"
 
 # Getting to the Tux doll requires jumping into what looks like a
 # bottomless pit at first glance; a pipe to the left of it reveals its
 # true nature as a deep valley that can safely be jumped into.
 msgctxt "level_name"
 msgid "Leap of Faith?"
-msgstr ""
+msgstr "¿Salto de fe?"
 
 # The Tux doll is found in a hidden block marked by a bunch of coins
 # depicting a four-leaf clover.
 msgctxt "level_name"
 msgid "Lucky Level 13"
-msgstr ""
+msgstr "Nivel 13 de la suerte"
 
 # Getting the Tux doll requires use of the Ice Flower to jump onto
 # enemies.
 msgctxt "level_name"
 msgid "The Cold Shoulder"
-msgstr ""
+msgstr "La ducha fría"
 
 # Getting the Tux doll requires use of a spring which sits on top of
 # damaging spikes. (It's possible, but extremely difficult, to obtain
 # without getting damaged by precisely using the Ice Flower.)
 msgctxt "level_name"
 msgid "There Might Be Some Momentary Discomfort"
-msgstr ""
+msgstr "Podría haber alguna molestia momentánea"
 
 # Getting the Tux doll requires use of both the Ice Flower and a walking
 # ice block.
 msgctxt "level_name"
 msgid "An Icy Blend"
-msgstr ""
+msgstr "Una mezcla helada"
 
 # Requires use of the Ice Flower to jump onto enemies both to complete
 # the level and to get the Tux doll.
 msgctxt "level_name"
 msgid "Ice Climber"
-msgstr ""
+msgstr "Trepahielos"
 
 # Requires use of a combination of the Ice Flower and Fire Flower both
 # to complete the level and to get the Tux doll.
 msgctxt "level_name"
 msgid "The Element Barrier"
-msgstr ""
+msgstr "La barrera de elementos"
 
 msgctxt "level_name"
 msgid "In Need of a Lift"
-msgstr ""
+msgstr "Necesidad de subir"
 
 msgctxt "level_name"
 msgid "Verti-Go-Round"
-msgstr ""
+msgstr "Tiovi-vértigo"
 
 msgctxt "level_name"
 msgid "Going In Circles"
-msgstr ""
+msgstr "Yendo en círculos"
 
 msgctxt "level_name"
 msgid "One Is Not Enough"
-msgstr ""
+msgstr "Uno no basta"
 
 # Getting the Tux doll requires throwing a spring up to a ledge that it
 # could otherwise help you reach and taking a pipe to get to the top of
 # the ledge instead.
 msgctxt "level_name"
 msgid "Spring Before You Leap"
-msgstr ""
+msgstr "Lanza el muelle antes de saltar"
 
 msgctxt "level_name"
 msgid "Prickly Ascent"
-msgstr ""
+msgstr "Ascenso espinoso"
 
 msgctxt "level_name"
 msgid "The Game of Ice"
-msgstr ""
+msgstr "El juego del hielo"
 
 msgctxt "level_name"
 msgid "Buster Baddies"
-msgstr ""
+msgstr "Malotes que explotan"
 
 # Getting the Tux doll requires using bombs to blow up a chunk of ice.
 msgctxt "level_name"
 msgid "That Blasted Ice"
-msgstr ""
+msgstr "Ese hielo reventado"
 
 msgctxt "level_name"
 msgid "Bomb's Away"
-msgstr ""
+msgstr "A distancia de bomba"
 
 # Getting the Tux doll requires using the fire flower to trigger an
 # explosion of a bomb.
 msgctxt "level_name"
 msgid "Explosive Sharpshooting"
-msgstr ""
+msgstr "Francotirador explosivo"
 
 # Getting the Tux doll requires using rocks to create a makeshift
 # staircase to a hidden block.
 msgctxt "level_name"
 msgid "Building Blocks of Life"
-msgstr ""
+msgstr "Los bloques creadores de la vida"
 
 # Getting the Tux doll requires use of a single-use spring.
 msgctxt "level_name"
 msgid "Lose Your Spring"
-msgstr ""
+msgstr "Pierde tu muelle"
 
 # Requires navigating a maze of pipes both to complete the level and to
 # get the Tux doll.
 msgctxt "level_name"
 msgid "Wacky Warps"
-msgstr ""
+msgstr "Tuberías locas"
 
 # Getting the Tux doll requires triggering an explosion in a dangerous
 # area.
 msgctxt "level_name"
 msgid "A Step Through a Minefield"
-msgstr ""
+msgstr "Paso por el campo de minas"
 
 # Getting the Tux doll requires carefully making sure that a bomb's
 # explosion sequence doesn't start too early.
 msgctxt "level_name"
 msgid "Explosive Conscience"
-msgstr ""
+msgstr "Consciencia explosiva"
 
 # Getting the Tux doll requires throwing a rock in just the right way so
 # a bomb walks onto it, causing it to lower to where you are when the
 # rock falls back down again.
 msgctxt "level_name"
 msgid "The Uplifted Bomb"
-msgstr ""
+msgstr "La bomba elevada"
 
 msgctxt "level_name"
 msgid "Close Encounters of the Third Spring"
-msgstr ""
+msgstr "Encuentros cercanos del tercer muelle"
 
 msgctxt "level_name"
 msgid "Snowman's Wreckening"
-msgstr ""
+msgstr "Destrucción del muñeco de nieve"
 
 msgctxt "level_name"
 msgid "Suspension of Belief"
-msgstr ""
+msgstr "Suspensión de la creencia"
 
 # Requires navigating a maze of doors both to complete the level and to
 # get the Tux doll.
 msgctxt "level_name"
 msgid "Danger Doors"
-msgstr ""
+msgstr "Puertas peligrosas"
 
 msgctxt "level_name"
 msgid "Final Frost"
-msgstr ""
+msgstr "Helada final"
 
 msgctxt "level_name"
 msgid "Making a Raccot"
-msgstr ""
+msgstr "Creando un Raccot"
 
 msgctxt "level_name"
 msgid "Concept Castle"
-msgstr ""
+msgstr "Concepto de castillo"
 
 msgctxt "level_name"
 msgid "EricxDu's Level"
-msgstr ""
+msgstr "Nivel de EricxDu"
 
 msgid ""
 "Citizens of Icy Island,\n"
@@ -427,8 +426,8 @@ msgid ""
 "Minion's Note:\n"
 "\n"
 "The security system protecting the Tux Doll can be thwarted by any penguin "
-"who knows that they can drop any item they're holding by holding the \"down"
-"\" button while pressing the \"action\" button. Requesting immediate "
+"who knows that they can drop any item they're holding by holding the "
+"\"down\" button while pressing the \"action\" button. Requesting immediate "
 "measures to protect against this technique."
 msgstr ""
 "Nota de Lacayo:\n"
@@ -484,9 +483,9 @@ msgstr ""
 "Nota del Viajero:\n"
 "\n"
 "Me he dado cuenta de que si mientras tengo una flor de fuego mantengo "
-"pulsado el botón \"arriba\" al mismo tiempo que pulsa el botón de \"acción"
-"\", mis bolas de fuego se disparan más alto hacia el cielo. Esto puede "
-"resultar ser una técnica útil."
+"pulsado el botón \"arriba\" al mismo tiempo que pulsa el botón de "
+"\"acción\", mis bolas de fuego se disparan más alto hacia el cielo. Esto "
+"puede resultar ser una técnica útil."
 
 msgid ""
 "Minion's Note:\n"
@@ -536,47 +535,38 @@ msgstr ""
 "Tiene que haber una manera de sacar la flor de fuego de esta habitación."
 
 # Credits text
-#, fuzzy
 msgctxt "credits_title"
 msgid "Programming"
-msgstr "Programación Por"
+msgstr "Programación"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Graphics"
-msgstr "Gráficos Por"
+msgstr "Gráficos"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Sounds"
-msgstr "Sonidos Por"
+msgstr "Sonidos"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Music"
-msgstr "Música Por"
+msgstr "Música"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Level Design"
-msgstr "Diseño de Niveles Por"
+msgstr "Diseño de Niveles"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Bonus Level Design"
-msgstr "Diseño de Nivel Adicional Por"
+msgstr "Diseño de Nivel Adicional"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Translations"
-msgstr "Traducciones Por"
+msgstr "Traducciones"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Software Used"
 msgstr "Software Usado"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Thank you for playing!"
 msgstr "¡Gracias por jugar!"
@@ -715,7 +705,6 @@ msgstr ""
 "{}"
 
 #: ../../retux.py:1197
-#, fuzzy
 msgctxt "level_name"
 msgid "Level {}"
 msgstr "Nivel {}"
