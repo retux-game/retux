@@ -66,7 +66,8 @@ LOCAL = os.path.join(
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(LOCAL, "data")]
 
-gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")), names=['pgettext'])
+gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")),
+                names=["ngettext", "pgettext"])
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
