@@ -108,6 +108,235 @@ msgid ""
 "King!"
 msgstr ""
 
+# Level names
+# Some of these include hints at how to find the Tux doll in the level,
+# or occasionally, how to complete the level itself. Where applicable,
+# explanations of these hints are included here as comments. Level names
+# without corresponding comments can be assumed to just be flavor.
+
+# Tux doll is found by finding a hidden block in a section mirroring the
+# design of World 1-1 of Super Mario Bros.
+msgctxt "level_name"
+msgid "Not exactly 1:1"
+msgstr ""
+
+# Tux doll is found by following a hidden vertical path.
+msgctxt "level_name"
+msgid "Two Dimensions are Better than One"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Take a Third Pipe"
+msgstr ""
+
+msgctxt "level_name"
+msgid "May The Fourth Be With You"
+msgstr ""
+
+# Tux doll is found in a hidden block above one of five narrow snow pile
+# type decoration things.
+msgctxt "level_name"
+msgid "Over the Five Pillars of Snow"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Snowman's Castle"
+msgstr ""
+
+msgctxt "level_name"
+msgid "The Seven Deadly Springs"
+msgstr ""
+
+# Finding the Tux doll requires returning to the start of the level
+# ("tracing your steps" as the English phrase goes) with a carryable
+# spring.
+msgctxt "level_name"
+msgid "Trace your Spring"
+msgstr ""
+
+# Finding the Tux doll requires picking up, rather than jumping on, a
+# spring that is placed deceptively to make it seem like it's needed to
+# reach a ledge that you can actually jump to normally.
+msgctxt "level_name"
+msgid "To spring, or not to spring?"
+msgstr ""
+
+# Tux doll is located in a pipe in the ceiling that infinitely spawns
+# springs. One of these springs is needed to complete the level.
+msgctxt "level_name"
+msgid "Spring Factory"
+msgstr ""
+
+# Tux doll is found in a hidden block reached from a ledge of a skinny
+# "mountain" that has to be jumped over to complete the level.
+msgctxt "level_name"
+msgid "Scaling Mount Slimmerist"
+msgstr ""
+
+# Getting to the Tux doll requires jumping into what looks like a
+# bottomless pit at first glance; a pipe to the left of it reveals its
+# true nature as a deep valley that can safely be jumped into.
+msgctxt "level_name"
+msgid "Leap of Faith?"
+msgstr ""
+
+# The Tux doll is found in a hidden block marked by a bunch of coins
+# depicting a four-leaf clover.
+msgctxt "level_name"
+msgid "Lucky Level 13"
+msgstr ""
+
+# Getting the Tux doll requires use of the Ice Flower to jump onto
+# enemies.
+msgctxt "level_name"
+msgid "The Cold Shoulder"
+msgstr ""
+
+# Getting the Tux doll requires use of a spring which sits on top of
+# damaging spikes. (It's possible, but extremely difficult, to obtain
+# without getting damaged by precisely using the Ice Flower.)
+msgctxt "level_name"
+msgid "There Might Be Some Momentary Discomfort"
+msgstr ""
+
+# Getting the Tux doll requires use of both the Ice Flower and a walking
+# ice block.
+msgctxt "level_name"
+msgid "An Icy Blend"
+msgstr ""
+
+# Requires use of the Ice Flower to jump onto enemies both to complete
+# the level and to get the Tux doll.
+msgctxt "level_name"
+msgid "Ice Climber"
+msgstr ""
+
+# Requires use of a combination of the Ice Flower and Fire Flower both
+# to complete the level and to get the Tux doll.
+msgctxt "level_name"
+msgid "The Element Barrier"
+msgstr ""
+
+msgctxt "level_name"
+msgid "In Need of a Lift"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Verti-Go-Round"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Going In Circles"
+msgstr ""
+
+msgctxt "level_name"
+msgid "One Is Not Enough"
+msgstr ""
+
+# Getting the Tux doll requires throwing a spring up to a ledge that it
+# could otherwise help you reach and taking a pipe to get to the top of
+# the ledge instead.
+msgctxt "level_name"
+msgid "Spring Before You Leap"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Prickly Ascent"
+msgstr ""
+
+msgctxt "level_name"
+msgid "The Game of Ice"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Buster Baddies"
+msgstr ""
+
+# Getting the Tux doll requires using bombs to blow up a chunk of ice.
+msgctxt "level_name"
+msgid "That Blasted Ice"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Bomb's Away"
+msgstr ""
+
+# Getting the Tux doll requires using the fire flower to trigger an
+# explosion of a bomb.
+msgctxt "level_name"
+msgid "Explosive Sharpshooting"
+msgstr ""
+
+# Getting the Tux doll requires using rocks to create a makeshift
+# staircase to a hidden block.
+msgctxt "level_name"
+msgid "Building Blocks of Life"
+msgstr ""
+
+# Getting the Tux doll requires use of a single-use spring.
+msgctxt "level_name"
+msgid "Lose Your Spring"
+msgstr ""
+
+# Requires navigating a maze of pipes both to complete the level and to
+# get the Tux doll.
+msgctxt "level_name"
+msgid "Wacky Warps"
+msgstr ""
+
+# Getting the Tux doll requires triggering an explosion in a dangerous
+# area.
+msgctxt "level_name"
+msgid "A Step Through a Minefield"
+msgstr ""
+
+# Getting the Tux doll requires carefully making sure that a bomb's
+# explosion sequence doesn't start too early.
+msgctxt "level_name"
+msgid "Explosive Conscience"
+msgstr ""
+
+# Getting the Tux doll requires throwing a rock in just the right way so
+# a bomb walks onto it, causing it to lower to where you are when the
+# rock falls back down again.
+msgctxt "level_name"
+msgid "The Uplifted Bomb"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Close Encounters of the Third Spring"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Snowman's Wreckening"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Suspension of Belief"
+msgstr ""
+
+# Requires navigating a maze of doors both to complete the level and to
+# get the Tux doll.
+msgctxt "level_name"
+msgid "Danger Doors"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Final Frost"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Making a Raccot"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Concept Castle"
+msgstr ""
+
+msgctxt "level_name"
+msgid "EricxDu's Level"
+msgstr ""
+
 # Level text
 msgid ""
 "Citizens of Icy Island,\n"

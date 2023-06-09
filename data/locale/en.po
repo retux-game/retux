@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: retux 1.6.2\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
-"POT-Creation-Date: 2023-06-08 17:06-0400\n"
+"POT-Creation-Date: 2023-06-08 22:31-0400\n"
 "PO-Revision-Date: 2021-10-10 02:41-0400\n"
 "Last-Translator: The Diligent Circle <diligentcircle@riseup.net>\n"
 "Language-Team: English\n"
@@ -105,6 +105,234 @@ msgstr ""
 
 msgid ""
 "When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+msgstr ""
+
+# Level names
+# Some of these include hints at how to find the Tux doll in the level,
+# or occasionally, how to complete the level itself. Where applicable,
+# explanations of these hints are included here as comments. Level names
+# without corresponding comments can be assumed to just be flavor.
+# Tux doll is found by finding a hidden block in a section mirroring the
+# design of World 1-1 of Super Mario Bros.
+msgctxt "level_name"
+msgid "Not exactly 1:1"
+msgstr ""
+
+# Tux doll is found by following a hidden vertical path.
+msgctxt "level_name"
+msgid "Two Dimensions are Better than One"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Take a Third Pipe"
+msgstr ""
+
+msgctxt "level_name"
+msgid "May The Fourth Be With You"
+msgstr ""
+
+# Tux doll is found in a hidden block above one of five narrow snow pile
+# type decoration things.
+msgctxt "level_name"
+msgid "Over the Five Pillars of Snow"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Snowman's Castle"
+msgstr ""
+
+msgctxt "level_name"
+msgid "The Seven Deadly Springs"
+msgstr ""
+
+# Finding the Tux doll requires returning to the start of the level
+# ("tracing your steps" as the English phrase goes) with a carryable
+# spring.
+msgctxt "level_name"
+msgid "Trace your Spring"
+msgstr ""
+
+# Finding the Tux doll requires picking up, rather than jumping on, a
+# spring that is placed deceptively to make it seem like it's needed to
+# reach a ledge that you can actually jump to normally.
+msgctxt "level_name"
+msgid "To spring, or not to spring?"
+msgstr ""
+
+# Tux doll is located in a pipe in the ceiling that infinitely spawns
+# springs. One of these springs is needed to complete the level.
+msgctxt "level_name"
+msgid "Spring Factory"
+msgstr ""
+
+# Tux doll is found in a hidden block reached from a ledge of a skinny
+# "mountain" that has to be jumped over to complete the level.
+msgctxt "level_name"
+msgid "Scaling Mount Slimmerist"
+msgstr ""
+
+# Getting to the Tux doll requires jumping into what looks like a
+# bottomless pit at first glance; a pipe to the left of it reveals its
+# true nature as a deep valley that can safely be jumped into.
+msgctxt "level_name"
+msgid "Leap of Faith?"
+msgstr ""
+
+# The Tux doll is found in a hidden block marked by a bunch of coins
+# depicting a four-leaf clover.
+msgctxt "level_name"
+msgid "Lucky Level 13"
+msgstr ""
+
+# Getting the Tux doll requires use of the Ice Flower to jump onto
+# enemies.
+msgctxt "level_name"
+msgid "The Cold Shoulder"
+msgstr ""
+
+# Getting the Tux doll requires use of a spring which sits on top of
+# damaging spikes. (It's possible, but extremely difficult, to obtain
+# without getting damaged by precisely using the Ice Flower.)
+msgctxt "level_name"
+msgid "There Might Be Some Momentary Discomfort"
+msgstr ""
+
+# Getting the Tux doll requires use of both the Ice Flower and a walking
+# ice block.
+msgctxt "level_name"
+msgid "An Icy Blend"
+msgstr ""
+
+# Requires use of the Ice Flower to jump onto enemies both to complete
+# the level and to get the Tux doll.
+msgctxt "level_name"
+msgid "Ice Climber"
+msgstr ""
+
+# Requires use of a combination of the Ice Flower and Fire Flower both
+# to complete the level and to get the Tux doll.
+msgctxt "level_name"
+msgid "The Element Barrier"
+msgstr ""
+
+msgctxt "level_name"
+msgid "In Need of a Lift"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Verti-Go-Round"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Going In Circles"
+msgstr ""
+
+msgctxt "level_name"
+msgid "One Is Not Enough"
+msgstr ""
+
+# Getting the Tux doll requires throwing a spring up to a ledge that it
+# could otherwise help you reach and taking a pipe to get to the top of
+# the ledge instead.
+msgctxt "level_name"
+msgid "Spring Before You Leap"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Prickly Ascent"
+msgstr ""
+
+msgctxt "level_name"
+msgid "The Game of Ice"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Buster Baddies"
+msgstr ""
+
+# Getting the Tux doll requires using bombs to blow up a chunk of ice.
+msgctxt "level_name"
+msgid "That Blasted Ice"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Bomb's Away"
+msgstr ""
+
+# Getting the Tux doll requires using the fire flower to trigger an
+# explosion of a bomb.
+msgctxt "level_name"
+msgid "Explosive Sharpshooting"
+msgstr ""
+
+# Getting the Tux doll requires using rocks to create a makeshift
+# staircase to a hidden block.
+msgctxt "level_name"
+msgid "Building Blocks of Life"
+msgstr ""
+
+# Getting the Tux doll requires use of a single-use spring.
+msgctxt "level_name"
+msgid "Lose Your Spring"
+msgstr ""
+
+# Requires navigating a maze of pipes both to complete the level and to
+# get the Tux doll.
+msgctxt "level_name"
+msgid "Wacky Warps"
+msgstr ""
+
+# Getting the Tux doll requires triggering an explosion in a dangerous
+# area.
+msgctxt "level_name"
+msgid "A Step Through a Minefield"
+msgstr ""
+
+# Getting the Tux doll requires carefully making sure that a bomb's
+# explosion sequence doesn't start too early.
+msgctxt "level_name"
+msgid "Explosive Conscience"
+msgstr ""
+
+# Getting the Tux doll requires throwing a rock in just the right way so
+# a bomb walks onto it, causing it to lower to where you are when the
+# rock falls back down again.
+msgctxt "level_name"
+msgid "The Uplifted Bomb"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Close Encounters of the Third Spring"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Snowman's Wreckening"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Suspension of Belief"
+msgstr ""
+
+# Requires navigating a maze of doors both to complete the level and to
+# get the Tux doll.
+msgctxt "level_name"
+msgid "Danger Doors"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Final Frost"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Making a Raccot"
+msgstr ""
+
+msgctxt "level_name"
+msgid "Concept Castle"
+msgstr ""
+
+msgctxt "level_name"
+msgid "EricxDu's Level"
 msgstr ""
 
 msgid ""
@@ -379,238 +607,238 @@ msgstr ""
 msgid "Cinematic mode enabled"
 msgstr ""
 
-#: ../../retux.py:6502
+#: ../../retux.py:6503
 msgid "New Game"
 msgstr ""
 
-#: ../../retux.py:6502
+#: ../../retux.py:6503
 msgid "Load Game"
 msgstr ""
 
-#: ../../retux.py:6502
+#: ../../retux.py:6503
 msgid "Select Levelset"
 msgstr ""
 
-#: ../../retux.py:6502
+#: ../../retux.py:6503
 msgid "Options"
 msgstr ""
 
-#: ../../retux.py:6503
+#: ../../retux.py:6504
 msgid "Credits"
 msgstr ""
 
-#: ../../retux.py:6503
+#: ../../retux.py:6504
 msgid "Quit"
 msgstr ""
 
-#: ../../retux.py:6533
+#: ../../retux.py:6534
 msgid "-Empty-"
 msgstr ""
 
-#: ../../retux.py:6535
+#: ../../retux.py:6536
 msgid "-No Levelset-"
 msgstr ""
 
-#: ../../retux.py:6542
+#: ../../retux.py:6543
 msgid "-Corrupt Levelset-"
 msgstr ""
 
-#: ../../retux.py:6550 ../../retux.py:6665 ../../retux.py:6702
-#: ../../retux.py:6907 ../../retux.py:7045
+#: ../../retux.py:6551 ../../retux.py:6666 ../../retux.py:6703
+#: ../../retux.py:6908 ../../retux.py:7046
 msgid "Back"
 msgstr ""
 
-#: ../../retux.py:6578
+#: ../../retux.py:6579
 msgid "Overwrite this save file"
 msgstr ""
 
-#: ../../retux.py:6578
+#: ../../retux.py:6579
 msgid "Cancel"
 msgstr ""
 
-#: ../../retux.py:6614
+#: ../../retux.py:6615
 msgid "An error occurred when trying to load the game."
 msgstr ""
 
-#: ../../retux.py:6664
+#: ../../retux.py:6665
 msgid "Next page"
 msgstr ""
 
-#: ../../retux.py:6679
+#: ../../retux.py:6680
 msgid "Levelset loaded successfully."
 msgstr ""
 
-#: ../../retux.py:6692
+#: ../../retux.py:6693
 msgid "Fullscreen: {}"
 msgstr ""
 
-#: ../../retux.py:6692 ../../retux.py:6695 ../../retux.py:6698
-#: ../../retux.py:6699
+#: ../../retux.py:6693 ../../retux.py:6696 ../../retux.py:6699
+#: ../../retux.py:6700
 msgid "On"
 msgstr ""
 
-#: ../../retux.py:6692 ../../retux.py:6695 ../../retux.py:6698
-#: ../../retux.py:6699
+#: ../../retux.py:6693 ../../retux.py:6696 ../../retux.py:6699
+#: ../../retux.py:6700
 msgid "Off"
 msgstr ""
 
-#: ../../retux.py:6693
+#: ../../retux.py:6694
 msgid "Scale Method: {}"
 msgstr ""
 
-#: ../../retux.py:6694
+#: ../../retux.py:6695
 msgid "Scale Proportional: {}"
 msgstr ""
 
-#: ../../retux.py:6696
+#: ../../retux.py:6697
 msgid "Sound Volume: {}%"
 msgstr ""
 
-#: ../../retux.py:6697
+#: ../../retux.py:6698
 msgid "Music Volume: {}%"
 msgstr ""
 
-#: ../../retux.py:6698
+#: ../../retux.py:6699
 msgid "Stereo: {}"
 msgstr ""
 
-#: ../../retux.py:6699
+#: ../../retux.py:6700
 msgid "Show FPS: {}"
 msgstr ""
 
-#: ../../retux.py:6700
+#: ../../retux.py:6701
 msgid "Joystick Threshold: {}%"
 msgstr ""
 
-#: ../../retux.py:6701 ../../retux.py:7186 ../../retux.py:7189
-#: ../../retux.py:7193 ../../retux.py:7263
+#: ../../retux.py:6702 ../../retux.py:7187 ../../retux.py:7190
+#: ../../retux.py:7194 ../../retux.py:7264
 msgid "Configure keyboard"
 msgstr ""
 
-#: ../../retux.py:6701 ../../retux.py:7187 ../../retux.py:7190
-#: ../../retux.py:7194 ../../retux.py:7263
+#: ../../retux.py:6702 ../../retux.py:7188 ../../retux.py:7191
+#: ../../retux.py:7195 ../../retux.py:7264
 msgid "Configure joysticks"
 msgstr ""
 
-#: ../../retux.py:6702
+#: ../../retux.py:6703
 msgid "Detect joysticks"
 msgstr ""
 
-#: ../../retux.py:6702
+#: ../../retux.py:6703
 msgid "Import levelset"
 msgstr ""
 
-#: ../../retux.py:6816
+#: ../../retux.py:6817
 msgid "ReTux levelset files"
 msgstr ""
 
-#: ../../retux.py:6817
+#: ../../retux.py:6818
 msgid "all files"
 msgstr ""
 
-#: ../../retux.py:6830
+#: ../../retux.py:6831
 msgid "Importing {}..."
 msgstr ""
 
-#: ../../retux.py:6870
+#: ../../retux.py:6871
 msgid ""
 "This feature requires Tkinter, which was not successfully imported. Please "
 "make sure Tkinter is installed and try again."
 msgstr ""
 
-#: ../../retux.py:6897 ../../retux.py:7035
+#: ../../retux.py:6898 ../../retux.py:7036
 msgid "Player {}"
 msgstr ""
 
-#: ../../retux.py:6898 ../../retux.py:7036
+#: ../../retux.py:6899 ../../retux.py:7037
 msgid "Left: {}"
 msgstr ""
 
-#: ../../retux.py:6899 ../../retux.py:7037
+#: ../../retux.py:6900 ../../retux.py:7038
 msgid "Right: {}"
 msgstr ""
 
-#: ../../retux.py:6900 ../../retux.py:7038
+#: ../../retux.py:6901 ../../retux.py:7039
 msgid "Up: {}"
 msgstr ""
 
-#: ../../retux.py:6901 ../../retux.py:7039
+#: ../../retux.py:6902 ../../retux.py:7040
 msgid "Down: {}"
 msgstr ""
 
-#: ../../retux.py:6902 ../../retux.py:7040
+#: ../../retux.py:6903 ../../retux.py:7041
 msgid "Jump: {}"
 msgstr ""
 
-#: ../../retux.py:6903 ../../retux.py:7041
+#: ../../retux.py:6904 ../../retux.py:7042
 msgid "Action: {}"
 msgstr ""
 
-#: ../../retux.py:6904 ../../retux.py:7042
+#: ../../retux.py:6905 ../../retux.py:7043
 msgid "Sneak: {}"
 msgstr ""
 
-#: ../../retux.py:6905 ../../retux.py:7043
+#: ../../retux.py:6906 ../../retux.py:7044
 msgid "Menu: {}"
 msgstr ""
 
-#: ../../retux.py:6906 ../../retux.py:7044
+#: ../../retux.py:6907 ../../retux.py:7045
 msgid "Pause: {}"
 msgstr ""
 
-#: ../../retux.py:6932
+#: ../../retux.py:6933
 msgid ""
 "Press the key you wish to bind to this function, or the Escape key to cancel."
 msgstr ""
 
-#: ../../retux.py:7033
+#: ../../retux.py:7034
 msgid "None"
 msgstr ""
 
-#: ../../retux.py:7070
+#: ../../retux.py:7071
 msgid ""
 "Press the joystick button, axis, or hat direction you wish to bind to this "
 "function, or the Escape key to cancel."
 msgstr ""
 
-#: ../../retux.py:7186 ../../retux.py:7189 ../../retux.py:7193
-#: ../../retux.py:7263
+#: ../../retux.py:7187 ../../retux.py:7190 ../../retux.py:7194
+#: ../../retux.py:7264
 msgid "Continue"
 msgstr ""
 
-#: ../../retux.py:7187
+#: ../../retux.py:7188
 msgid "Abort"
 msgstr ""
 
-#: ../../retux.py:7190
+#: ../../retux.py:7191
 msgid "Return to Map"
 msgstr ""
 
-#: ../../retux.py:7191 ../../retux.py:7194 ../../retux.py:7264
+#: ../../retux.py:7192 ../../retux.py:7195 ../../retux.py:7265
 msgid "Return to Title Screen"
 msgstr ""
 
-#: ../../retux.py:7479
+#: ../../retux.py:7480
 msgid "Error"
 msgstr ""
 
-#: ../../retux.py:7480
+#: ../../retux.py:7481
 msgid "Ok"
 msgstr ""
 
-#: ../../retux.py:7957
+#: ../../retux.py:7958
 msgid "Initializing game system..."
 msgstr ""
 
-#: ../../retux.py:7962
+#: ../../retux.py:7963
 msgid "Initializing GUI system..."
 msgstr ""
 
-#: ../../retux.py:7974
+#: ../../retux.py:7975
 msgid "Loading images..."
 msgstr ""
 
-#: ../../retux.py:8496
+#: ../../retux.py:8497
 msgid "Loading fonts..."
 msgstr ""
 
@@ -621,10 +849,10 @@ msgstr ""
 #. / translated to and specify the font file name. This will cause the
 #. / font file to be used instead of the default sprite font. If the
 #. / sprite font is sufficient, leave this as-is.
-#: ../../retux.py:8507 ../../retux.py:8524
+#: ../../retux.py:8508 ../../retux.py:8525
 msgid "font_file"
 msgstr ""
 
-#: ../../retux.py:8732
+#: ../../retux.py:8733
 msgid "Starting game..."
 msgstr ""
