@@ -136,7 +136,8 @@ for d in dirs:
                 shutil.copy2(os.path.join(dirpath, fname), nd)
 del dirs
 
-gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")), names=['pgettext'])
+gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")),
+                names=["ngettext", "pgettext"])
 
 if args.lang:
     lang = gettext.translation("retux",
