@@ -66,7 +66,7 @@ LOCAL = os.path.join(
 dirs = [os.path.join(os.path.dirname(__file__), "data"),
         os.path.join(LOCAL, "data")]
 
-gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")))
+gettext.install("retux", os.path.abspath(os.path.join(dirs[0], "locale")), names=['pgettext'])
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -135,7 +135,7 @@ for d in dirs:
                 shutil.copy2(os.path.join(dirpath, fname), nd)
 del dirs
 
-gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")))
+gettext.install("retux", os.path.abspath(os.path.join(DATA, "locale")), names=['pgettext'])
 
 if args.lang:
     lang = gettext.translation("retux",
@@ -563,13 +563,13 @@ class Level(sge.dsp.Room):
             y = 0
             if self.name:
                 sge.game.project_text(
-                    font, gettext.pgettext("level_name", self.name),
+                    font, pgettext("level_name", self.name),
                     sge.game.width / 2, y, width=sge.game.width * 2 / 5,
                     color=sge.gfx.Color("white"), halign="center",
                     outline=sge.gfx.Color("black"),
                     outline_thickness=text_outline_thickness)
                 y += font.get_height(
-                    gettext.pgettext("level_name", self.name),
+                    pgettext("level_name", self.name),
                     sge.game.width * 2 / 5,
                     outline_thickness=text_outline_thickness)
 
@@ -1191,9 +1191,9 @@ class Level(sge.dsp.Room):
             if fname not in level_names:
                 name = r.name
                 if name:
-                    level_names[fname] = gettext.pgettext("level_name", name)
+                    level_names[fname] = pgettext("level_name", name)
                 elif fname in levels:
-                    level_names[fname] = gettext.pgettext(
+                    level_names[fname] = pgettext(
                         "level_name", "Level {}").format(
                             levels.index(fname) + 1)
                 else:
@@ -1348,7 +1348,7 @@ class CreditsScreen(SpecialScreen):
             if "title" in section:
                 head_sprite = sge.gfx.Sprite.from_text(
                     font_big,
-                    gettext.pgettext("credits_title", section["title"]),
+                    pgettext("credits_title", section["title"]),
                     width=self.width, color=sge.gfx.Color("white"),
                     halign="center", outline=sge.gfx.Color("black"),
                     outline_thickness=text_outline_thickness)
@@ -1361,7 +1361,7 @@ class CreditsScreen(SpecialScreen):
             if "lines" in section:
                 for line in section["lines"]:
                     list_sprite = sge.gfx.Sprite.from_text(
-                        font, gettext.pgettext("credits_line", line),
+                        font, pgettext("credits_line", line),
                         width=self.width - 2 * TILE_SIZE,
                         color=sge.gfx.Color("white"), halign="center",
                         outline=sge.gfx.Color("black"),
@@ -6101,7 +6101,7 @@ class MapPlayer(sge.dsp.Object):
                 else:
                     room_properties = xsge_tiled.t_get_properties(
                         data.get("properties", {}))
-                    level_names[space.level] = gettext.pgettext(
+                    level_names[space.level] = pgettext(
                         "level_name", room_properties.get("name"))
 
             room.level_text = level_names.get(space.level)
