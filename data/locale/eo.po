@@ -20,15 +20,15 @@ msgstr ""
 "Project-Id-Version: retux 1.6.2\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2023-06-08 22:31-0400\n"
-"PO-Revision-Date: 2021-10-21 11:41+0200\n"
+"PO-Revision-Date: 2023-06-11 01:42+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
 msgstr ""
@@ -45,21 +45,22 @@ msgstr "Mi ne toleros tion! Neniu forprenas MIAJN fiŝojn!"
 
 msgid "Why are you intruding upon the great Snow King's castle, penguin?"
 msgstr ""
+"Kial vi senpermese eniras en la grandan kastelon de la Neĝa Reĝo, pingveno?"
 
 msgid "The reign of the Snow King is over!"
 msgstr "La regado de la Neĝa Reĝo estas finita!"
 
 msgid "What?"
-msgstr ""
+msgstr "Kio?"
 
 msgid "I'm taking him out! There's no way I'm letting him take away my fish!"
-msgstr ""
+msgstr "Mi forigos lin! Neniel mi lasos, ke li forprenu miajn fiŝojn!"
 
 msgid "That's all you care about? A measly tax?"
-msgstr ""
+msgstr "Ĉu vi nur zorgas pri tio? Eta imposto?"
 
 msgid "I was going to let you leave in peace, but you leave me no choice."
-msgstr ""
+msgstr "Mi volis lasi vin pace eliri, sed vi ne lasas al mi elekton."
 
 msgid "Who are you?"
 msgstr "Kiu vi estas?"
@@ -102,7 +103,7 @@ msgid "I've been waiting for you, Tux. We meet again at last!"
 msgstr "Mi estis atendanta vin, Tukso. Ni renkontas fine!"
 
 msgid "Raccot the yeti! I should have known it was you!"
-msgstr "Raccoto la jetio! Mi devis scii, ke ĝi estis vi!"
+msgstr "Rakkoto la jetio! Mi devis scii, ke ĝi estis vi!"
 
 msgid ""
 "You may have discovered my evil plan, my old nemesis, but you will not stop "
@@ -126,222 +127,221 @@ msgstr ""
 # design of World 1-1 of Super Mario Bros.
 msgctxt "level_name"
 msgid "Not exactly 1:1"
-msgstr ""
+msgstr "Ne ekzakte 1:1"
 
 # Tux doll is found by following a hidden vertical path.
 msgctxt "level_name"
 msgid "Two Dimensions are Better than One"
-msgstr ""
+msgstr "Du dimensioj pli bonas ol unu"
 
 msgctxt "level_name"
 msgid "Take a Third Pipe"
-msgstr ""
+msgstr "Elektu trian tubon"
 
 msgctxt "level_name"
 msgid "May The Fourth Be With You"
-msgstr ""
+msgstr "La forto estu kun vi"
 
 # Tux doll is found in a hidden block above one of five narrow snow pile
 # type decoration things.
 msgctxt "level_name"
 msgid "Over the Five Pillars of Snow"
-msgstr ""
+msgstr "Super la kvin neĝaj kolonoj"
 
 msgctxt "level_name"
 msgid "Snowman's Castle"
-msgstr ""
+msgstr "Neĝhoma kastelo"
 
 msgctxt "level_name"
 msgid "The Seven Deadly Springs"
-msgstr ""
+msgstr "La sep mortigaj risortoj"
 
-#, fuzzy
 msgctxt "level_name"
 msgid "Trace your Spring"
-msgstr "Dankon al vi pro ludi!"
+msgstr "Revenu kun via risorto"
 
 # Finding the Tux doll requires picking up, rather than jumping on, a
 # spring that is placed deceptively to make it seem like it's needed to
 # reach a ledge that you can actually jump to normally.
 msgctxt "level_name"
 msgid "To spring, or not to spring?"
-msgstr ""
+msgstr "Ĉu salti aŭ ne salti?"
 
 # Tux doll is located in a pipe in the ceiling that infinitely spawns
 # springs. One of these springs is needed to complete the level.
 msgctxt "level_name"
 msgid "Spring Factory"
-msgstr ""
+msgstr "Risorto-fabriko"
 
 # Tux doll is found in a hidden block reached from a ledge of a skinny
 # "mountain" that has to be jumped over to complete the level.
 msgctxt "level_name"
 msgid "Scaling Mount Slimmerist"
-msgstr ""
+msgstr "Grimpi Maldikan Monton"
 
 # Getting to the Tux doll requires jumping into what looks like a
 # bottomless pit at first glance; a pipe to the left of it reveals its
 # true nature as a deep valley that can safely be jumped into.
 msgctxt "level_name"
 msgid "Leap of Faith?"
-msgstr ""
+msgstr "Ĉu fide salti?"
 
 # The Tux doll is found in a hidden block marked by a bunch of coins
 # depicting a four-leaf clover.
 msgctxt "level_name"
 msgid "Lucky Level 13"
-msgstr ""
+msgstr "Bonŝanca 13-a nivelo"
 
 # Getting the Tux doll requires use of the Ice Flower to jump onto
 # enemies.
 msgctxt "level_name"
 msgid "The Cold Shoulder"
-msgstr ""
+msgstr "La malvarma trakto"
 
 # Getting the Tux doll requires use of a spring which sits on top of
 # damaging spikes. (It's possible, but extremely difficult, to obtain
 # without getting damaged by precisely using the Ice Flower.)
 msgctxt "level_name"
 msgid "There Might Be Some Momentary Discomfort"
-msgstr ""
+msgstr "Povus esti iu momenta malkomforto"
 
 # Getting the Tux doll requires use of both the Ice Flower and a walking
 # ice block.
 msgctxt "level_name"
 msgid "An Icy Blend"
-msgstr ""
+msgstr "Frosta mikso"
 
 # Requires use of the Ice Flower to jump onto enemies both to complete
 # the level and to get the Tux doll.
 msgctxt "level_name"
 msgid "Ice Climber"
-msgstr ""
+msgstr "Glacigrimpisto"
 
 # Requires use of a combination of the Ice Flower and Fire Flower both
 # to complete the level and to get the Tux doll.
 msgctxt "level_name"
 msgid "The Element Barrier"
-msgstr ""
+msgstr "La elementa bariero"
 
 msgctxt "level_name"
 msgid "In Need of a Lift"
-msgstr ""
+msgstr "Bezono supreniri"
 
 msgctxt "level_name"
 msgid "Verti-Go-Round"
-msgstr ""
+msgstr "Kapturna karuselo"
 
 msgctxt "level_name"
 msgid "Going In Circles"
-msgstr ""
+msgstr "Rondirante"
 
 msgctxt "level_name"
 msgid "One Is Not Enough"
-msgstr ""
+msgstr "Unu ne sufiĉas"
 
 # Getting the Tux doll requires throwing a spring up to a ledge that it
 # could otherwise help you reach and taking a pipe to get to the top of
 # the ledge instead.
 msgctxt "level_name"
 msgid "Spring Before You Leap"
-msgstr ""
+msgstr "Ĵetu la risorton antaŭ salti"
 
 msgctxt "level_name"
 msgid "Prickly Ascent"
-msgstr ""
+msgstr "Pika supreniro"
 
 msgctxt "level_name"
 msgid "The Game of Ice"
-msgstr ""
+msgstr "La glacia ludo"
 
 msgctxt "level_name"
 msgid "Buster Baddies"
-msgstr ""
+msgstr "Eksplodantaj malbonuloj"
 
 # Getting the Tux doll requires using bombs to blow up a chunk of ice.
 msgctxt "level_name"
 msgid "That Blasted Ice"
-msgstr ""
+msgstr "Tiu eksplodigita glacio"
 
 msgctxt "level_name"
 msgid "Bomb's Away"
-msgstr ""
+msgstr "Proksime al bombo"
 
 # Getting the Tux doll requires using the fire flower to trigger an
 # explosion of a bomb.
 msgctxt "level_name"
 msgid "Explosive Sharpshooting"
-msgstr ""
+msgstr "Eksploda paflertulo"
 
 # Getting the Tux doll requires using rocks to create a makeshift
 # staircase to a hidden block.
 msgctxt "level_name"
 msgid "Building Blocks of Life"
-msgstr ""
+msgstr "La konstrublokoj de la vivo"
 
 # Getting the Tux doll requires use of a single-use spring.
 msgctxt "level_name"
 msgid "Lose Your Spring"
-msgstr ""
+msgstr "Perdu vian risorton"
 
 # Requires navigating a maze of pipes both to complete the level and to
 # get the Tux doll.
 msgctxt "level_name"
 msgid "Wacky Warps"
-msgstr ""
+msgstr "Frenezaj tuboj"
 
 # Getting the Tux doll requires triggering an explosion in a dangerous
 # area.
 msgctxt "level_name"
 msgid "A Step Through a Minefield"
-msgstr ""
+msgstr "Paŝado tra minkampo"
 
 # Getting the Tux doll requires carefully making sure that a bomb's
 # explosion sequence doesn't start too early.
 msgctxt "level_name"
 msgid "Explosive Conscience"
-msgstr ""
+msgstr "Eksploda konscio"
 
 # Getting the Tux doll requires throwing a rock in just the right way so
 # a bomb walks onto it, causing it to lower to where you are when the
 # rock falls back down again.
 msgctxt "level_name"
 msgid "The Uplifted Bomb"
-msgstr ""
+msgstr "La suprenigita bombo"
 
 msgctxt "level_name"
 msgid "Close Encounters of the Third Spring"
-msgstr ""
+msgstr "Proksimaj renkontoj de la tria risorto"
 
 msgctxt "level_name"
 msgid "Snowman's Wreckening"
-msgstr ""
+msgstr "Neĝhoma detruo"
 
 msgctxt "level_name"
 msgid "Suspension of Belief"
-msgstr ""
+msgstr "Ceŝigo de kredo"
 
 # Requires navigating a maze of doors both to complete the level and to
 # get the Tux doll.
 msgctxt "level_name"
 msgid "Danger Doors"
-msgstr ""
+msgstr "Danĝeraj pordoj"
 
 msgctxt "level_name"
 msgid "Final Frost"
-msgstr ""
+msgstr "Fina frosto"
 
 msgctxt "level_name"
 msgid "Making a Raccot"
-msgstr ""
+msgstr "Kreante Rakkoton"
 
 msgctxt "level_name"
 msgid "Concept Castle"
-msgstr ""
+msgstr "Koncepto de kastelo"
 
 msgctxt "level_name"
 msgid "EricxDu's Level"
-msgstr ""
+msgstr "Nivelo de EricxDu"
 
 msgid ""
 "Citizens of Icy Island,\n"
@@ -356,7 +356,6 @@ msgstr ""
 "reĝo. Ciŭ loĝanto devas pagi 5% el sia fiŝo imposte. Malplenumo por pagi ĉi "
 "tiun imposton estos punita."
 
-#, fuzzy
 msgid ""
 "Traveler's Note:\n"
 "\n"
@@ -364,24 +363,30 @@ msgid ""
 "level often hides a clue. Perhaps, if I can decipher these clues, I can "
 "obtain a complete collection."
 msgstr ""
-"Havante problemojn trovante sekretajn areojn? La postsigno estas en la nomo!"
+"Vojaĝula Komento:\n"
+"\n"
+"Dum mia serĉado de la kaŝemaj Tuks-pupoj mi lernis, ke la nomo de ĉiu nivelo "
+"ofte kaŝas indikon. Eble, se mi povas malĉifri ĉi tiujn indikojn, mi povas "
+"akiri tutan kolekton."
 
-#, fuzzy
 msgid ""
 "Traveler's Note:\n"
 "\n"
 "There appears to be something important up above, but it is unfortunately "
 "out of reach. There must be a path that I cannot see."
-msgstr "Foje iri supren estas pli bone."
+msgstr ""
+"Vojaĝula Komento:\n"
+"\n"
+"Ŝajnas, ke io grava estas supre, sed malbonŝance ĝi estas nealirebla. Devas "
+"esti vojo, kiun mi ne povas vidi."
 
-#, fuzzy
 msgid ""
 "Traveler's Note:\n"
 "\n"
 "Fire can be a great way to melt ice blocking access to certain Tux dolls. "
 "Now, where can one find a fire flower around here?"
 msgstr ""
-"Fajro povas esti bonega maniero per degeli glacian barantan iujn Tuksajn "
+"Fajro povas esti bonega maniero per degeli glacian barantan iujn Tuks-"
 "pupojn. Nu, kie oni povas trovi fajran floron ĉirkaŭe ĉi tie?"
 
 msgid ""
@@ -397,7 +402,6 @@ msgstr ""
 "degeli ĉi tiun glacion?! Krome, la kornico tie estas formita kiel rideto, "
 "kiel se ĝi moku min!"
 
-#, fuzzy
 msgid ""
 "Traveler's Note:\n"
 "\n"
@@ -408,20 +412,23 @@ msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
 "Studoj montris, ke pingvenoj estas kapabla piedfrapi glacblokojn, kaj eble "
-"aliajn aferojn, rekte supren. Ili faras tion per premado de la \"supre\"-"
+"aliajn aferojn, rekte supren. Ili faras tion per premado de la \"supren\"-"
 "klavo dum oni premas la \"ago\"-klavon."
 
-#, fuzzy
 msgid ""
 "Minion's Note:\n"
 "\n"
 "The security system protecting the Tux Doll can be thwarted by any penguin "
-"who knows that they can drop any item they're holding by holding the \"down"
-"\" button while pressing the \"action\" button. Requesting immediate "
+"who knows that they can drop any item they're holding by holding the "
+"\"down\" button while pressing the \"action\" button. Requesting immediate "
 "measures to protect against this technique."
 msgstr ""
-"Ĉu vi sciis tion? Oni povas faligi, kion ajn vi portas! Nur premu la "
-"\"malsupren\" klavon dum vi premas la \"agadon\" klavon."
+"Servista Komento:\n"
+"\n"
+"La sekureca sistemo, kiu protektas la Tuks-pupon povas esti evitita per iu "
+"ajn pingveno, kiu scias, ke ri povas faligi ĉiun ajn aĵon, kiun ri tenas "
+"premante la \"malsupren\"-butonon dum ri premas la \"ago\"-butonon. Mi petas "
+"tujajn rimedojn por protektiĝi kontraŭ ĉi tiu tekniko."
 
 msgid ""
 "Traveler's Note:\n"
@@ -468,10 +475,9 @@ msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
 "Mi trovis, ke se kiam mi tenas fajran floron, mi premas la \"supra\"n "
-"butonon dum mi premas la \"aga\"n butonon, miaj fajraj pilkoj pafiĝas pli "
+"butonon dum mi premas la \"ago\"-butonon, miaj fajraj pilkoj pafiĝas pli "
 "alte al la aero. Tio povas esti utila tekniko."
 
-#, fuzzy
 msgid ""
 "Minion's Note:\n"
 "\n"
@@ -479,9 +485,11 @@ msgid ""
 "build a bridge allowing you to cross spike pits, and do NOT use them to "
 "build a tower so that you can reach higher places."
 msgstr ""
-"Bonvolu NE tuŝi miajn rokojn! Ekzemple, NE uzu ilin por konstrui ponton, kiu "
-"al vi lasas transiri pintan puton, kaj NE uzi ilin por konstrui turon, por "
-"ke vi povas atingi pli altajn ejojn."
+"Servista Komento:\n"
+"\n"
+"Bonvolu NE tuŝi mian kolekton de rokoj! Ekzemple, NE uzu ilin por konstrui "
+"ponton, kiu lasu al vi transiri kavojn kun pikiloj, kaj NE uzu ilin por "
+"konstrui turon, por ke vi povas atingi pli altajn ejojn."
 
 msgid ""
 "Traveler's Note:\n"
@@ -492,7 +500,7 @@ msgstr ""
 "Vojaĝula Komento:\n"
 "\n"
 "Se nur mi povus iri sur tiujn rokojn sur tiuj krateroj, mi povus konstrui "
-"ŝtuparon al ĉi tiu dukto..."
+"ŝtuparon al ĉi tiu tubo..."
 
 msgid ""
 "Welcome to Concept Castle!\n"
@@ -514,54 +522,45 @@ msgid "There must be a way to remove the fire flower from this room."
 msgstr "Devas ekzisti maniero forpreni la fajran floron el ĉi tiu ĉambro."
 
 # Credits text
-#, fuzzy
 msgctxt "credits_title"
 msgid "Programming"
-msgstr "Programado De"
+msgstr "Programado"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Graphics"
-msgstr "Bildoj De"
+msgstr "Bildoj"
 
 # Menu option; indicates whether or not sound effects should play.
 # {} is replaced by "On" or "Off".
-#, fuzzy
 msgctxt "credits_title"
 msgid "Sounds"
-msgstr "Sonoj De"
+msgstr "Sonoj"
 
 # Menu option; indicates whether or not music should play.
 # {} is replaced by "On" or "Off".
-#, fuzzy
 msgctxt "credits_title"
 msgid "Music"
-msgstr "Muziko De"
+msgstr "Muziko"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Level Design"
-msgstr "Nivel Fasonado De"
+msgstr "Nivel-Fasonado"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Bonus Level Design"
-msgstr "Fasonado de Kroma Nivelo De"
+msgstr "Fasonado de Kroma Nivelo"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Translations"
-msgstr "Tradukoj De"
+msgstr "Tradukoj"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Software Used"
-msgstr "Programaro Uzata"
+msgstr "Programaro Uzita"
 
-#, fuzzy
 msgctxt "credits_title"
 msgid "Thank you for playing!"
-msgstr "Dankon al vi pro ludi!"
+msgstr "Dankon pro ludi!"
 
 # Explanation of what the "--version" command-line option does
 #: ../../retux.py:74
@@ -690,13 +689,13 @@ msgstr ""
 
 #: ../../retux.py:1154
 msgid "Loading level..."
-msgstr "Ŝargata nivelon..."
+msgstr "Ŝarĝata nivelon..."
 
 # Printed to the terminal when a level is loaded before the game starts.
 # {} is replaced by the file name of the level being loaded.
 #: ../../retux.py:1174
 msgid "Loading \"{}\"..."
-msgstr "Ŝargata \"{}\"..."
+msgstr "Ŝarĝata \"{}\"..."
 
 # {} is replaced by an error message
 #: ../../retux.py:1180 ../../retux.py:6097
@@ -705,19 +704,19 @@ msgid ""
 "\n"
 "{}"
 msgstr ""
-"Eraro okazis dum la ŝargo de la nivelo:\n"
+"Eraro okazis dum la ŝarĝo de la nivelo:\n"
 "\n"
 "{}"
 
 #: ../../retux.py:1197
 msgctxt "level_name"
 msgid "Level {}"
-msgstr ""
+msgstr "Nivelo {}"
 
 # Text shown at the bottom of the screen during skippable cutscenes
 #: ../../retux.py:1894
 msgid "Press the Menu button to skip..."
-msgstr "Prenu la Menuon klavon por daŭrigi..."
+msgstr "Prenu la Menuo-klavon por daŭrigi..."
 
 # Text shown at the bottom of the screen during unskippable cutscenes
 #: ../../retux.py:1896
@@ -732,7 +731,7 @@ msgstr "Novan Ludon"
 # Main menu option; shows the Load Game menu
 #: ../../retux.py:6503
 msgid "Load Game"
-msgstr "Ŝargi Ludon"
+msgstr "Ŝarĝi Ludon"
 
 # Main menu option; shows the levelset selection menu
 #: ../../retux.py:6503
@@ -789,7 +788,7 @@ msgstr "Nuligi"
 # Error message shown when a levelset does not properly start.
 #: ../../retux.py:6615
 msgid "An error occurred when trying to load the game."
-msgstr "Eraro okazis dum la ŝargo de la ludo."
+msgstr "Eraro okazis dum la ŝarĝo de la ludo."
 
 # Menu option; used to change to the next "page" (section) of the current menu
 #: ../../retux.py:6665
@@ -1014,12 +1013,12 @@ msgstr "Pravalorizado de grafika interfaca sistemo..."
 # Printed to the terminal as the game starts
 #: ../../retux.py:7975
 msgid "Loading images..."
-msgstr "Ŝargado de bildoj..."
+msgstr "Ŝarĝado de bildoj..."
 
 # Printed to the terminal as the game starts
 #: ../../retux.py:8497
 msgid "Loading fonts..."
-msgstr "Ŝargado de tiparoj..."
+msgstr "Ŝarĝado de tiparoj..."
 
 #. / The default ReTux font is a sprite font which supports Latin
 #. / character sets. If your translation needs more characters (as would
