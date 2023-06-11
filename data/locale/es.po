@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: retux 1.6.3\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2023-06-10 20:42-0400\n"
-"PO-Revision-Date: 2023-06-11 10:30+0200\n"
+"PO-Revision-Date: 2023-06-11 10:33+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -713,7 +713,7 @@ msgstr "Nivel {}"
 #. / Reference to the Super Saiyan form in Dragon Ball.
 #: ../../retux.py:1669
 msgid "S.Penguin Tux"
-msgstr "San Pingüino Tux"
+msgstr "Súper Pingüino Tux"
 
 #: ../../retux.py:1669
 msgid "Heretic Tux"
