@@ -1664,7 +1664,9 @@ class LevelEnd(sge.dsp.Object):
 
 class Player(xsge_physics.Collider):
 
-    name = "S.Penguin Tux" if GOD else "Heretic Tux" if HELL else "Tux"
+    #/ "S.Penguin" is short for "Super-Penguin" (shortened for space).
+    #/ Reference to the Super Saiyan form in Dragon Ball.
+    name = _("S.Penguin Tux") if GOD else _("Heretic Tux") if HELL else _("Tux")
     max_hp = PLAYER_MAX_HP
     walk_speed = PLAYER_WALK_SPEED
     run_speed = PLAYER_RUN_SPEED
