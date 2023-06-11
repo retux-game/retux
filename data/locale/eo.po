@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: ReTux 1.6.3\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2023-06-10 20:42-0400\n"
-"PO-Revision-Date: 2023-06-11 01:42+0200\n"
+"PO-Revision-Date: 2023-06-11 10:25+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Esperanto\n"
 "Language: eo\n"
@@ -717,15 +717,15 @@ msgstr "Nivelo {}"
 #. / Reference to the Super Saiyan form in Dragon Ball.
 #: ../../retux.py:1669
 msgid "S.Penguin Tux"
-msgstr ""
+msgstr "Sankta Pingveno Tukso"
 
 #: ../../retux.py:1669
 msgid "Heretic Tux"
-msgstr ""
+msgstr "Hereza Tukso"
 
 #: ../../retux.py:1669
 msgid "Tux"
-msgstr ""
+msgstr "Tukso"
 
 # Text shown at the bottom of the screen during skippable cutscenes
 #: ../../retux.py:1898
