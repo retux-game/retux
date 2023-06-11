@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: retux 1.6.3\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2023-06-10 20:42-0400\n"
-"PO-Revision-Date: 2023-06-09 10:11+0200\n"
+"PO-Revision-Date: 2023-06-11 01:25+0200\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -164,7 +164,7 @@ msgstr "Los siete muelles de la muerte"
 
 msgctxt "level_name"
 msgid "Trace your Spring"
-msgstr "Vuelve con la tubería"
+msgstr "Vuelve con el muelle"
 
 # Finding the Tux doll requires picking up, rather than jumping on, a
 # spring that is placed deceptively to make it seem like it's needed to
@@ -202,7 +202,7 @@ msgstr "Nivel 13 de la suerte"
 # enemies.
 msgctxt "level_name"
 msgid "The Cold Shoulder"
-msgstr "La ducha fría"
+msgstr "El trato frío"
 
 # Getting the Tux doll requires use of a spring which sits on top of
 # damaging spikes. (It's possible, but extremely difficult, to obtain
@@ -497,8 +497,8 @@ msgstr ""
 "Nota de Lacayo:\n"
 "\n"
 "¡Por favor, NO toques mi colección de rocas! Por ejemplo, NO las utilices "
-"para construir un puente que te permita cruzar pozos, y NO las utilices para "
-"construir una torre para que puedas llegar a lugares más altos."
+"para construir un puente que te permita cruzar hoyos con pinchos NI las "
+"utilices para construir una torre para que puedas llegar a lugares más altos."
 
 msgid ""
 "Traveler's Note:\n"
