@@ -471,6 +471,10 @@ class Level(sge.dsp.Room):
 
     """Handles levels."""
 
+    @property
+    def name_width(self):
+        return sge.game.width * 2 / 5
+
     def __init__(self, objects=(), *, background=None,
                  object_area_width=TILE_SIZE * 2,
                  object_area_height=TILE_SIZE * 2,
@@ -566,7 +570,7 @@ class Level(sge.dsp.Room):
             if self.name:
                 sge.game.project_text(
                     font, pgettext("level_name", self.name),
-                    sge.game.width / 2, y, width=sge.game.width * 2 / 5,
+                    sge.game.width / 2, y, width=self.name_width,
                     color=sge.gfx.Color("white"), halign="center",
                     outline=sge.gfx.Color("black"),
                     outline_thickness=text_outline_thickness)
@@ -1868,11 +1872,13 @@ class Player(xsge_physics.Collider):
     def show_hud(self):
         if not NO_HUD:
             y = 0
-            sge.game.project_text(font, self.name, 0, y,
-                                  color=sge.gfx.Color("white"),
-                                  outline=sge.gfx.Color("black"),
-                                  outline_thickness=text_outline_thickness)
-            y += font.size * 2
+            w = (sge.game.width-sge.game.current_room.name_width)/2 - 8
+            name_sprite = sge.gfx.Sprite.from_text(
+                font, self.name, width=w,
+                color=sge.gfx.Color("white"), outline=sge.gfx.Color("black"),
+                outline_thickness=text_outline_thickness)
+            sge.game.project_sprite(name_sprite, 0, 0, y)
+            y += name_sprite.height + font.size
 
             if not GOD:
                 x = 0
