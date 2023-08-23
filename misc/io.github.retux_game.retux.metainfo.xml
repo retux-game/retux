@@ -56,6 +56,13 @@
   </screenshots>
 
   <releases>
+    <release version="1.6.3">
+      <description>
+        <ul>
+          <li>Updated Spanish and Esperanto translations.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.6.2" date="2023-02-01" type="stable">
       <description>
         <p>Slightly improved info blocks' text.</p>
