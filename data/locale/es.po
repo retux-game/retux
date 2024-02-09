@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: retux 1.6.3\n"
 "Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
 "POT-Creation-Date: 2024-02-09 00:34+0100\n"
-"PO-Revision-Date: 2023-06-11 12:42+0200\n"
+"PO-Revision-Date: 2024-02-09 08:31+0100\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "First Translator: <heckyel@openmailbox.org>\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
 msgstr "¡Qué agradable y frío día para pescar! Me pregunto qué cazaré hoy..."
@@ -359,8 +359,8 @@ msgstr ""
 "Ciudadanos de Isla Helada,\n"
 "\n"
 "A partir de la fecha de hielo 542-7-3, la Isla Helada es ahora el dominio "
-"del Rey de la Nieve. Todos los residentes deben pagar un 5% de sus peces en "
-"impuestos. La falta de pago de este impuesto, será castigada."
+"del Rey de la Nieve. Todos los residentes deben pagar un 5 % de sus peces en "
+"impuestos. La falta de pago de este impuesto será castigada."
 
 msgid ""
 "Traveler's Note:\n"
@@ -519,6 +519,12 @@ msgid ""
 "it. If you can manage to find that Tux Doll and obtain it in one piece, hats "
 "off to you!"
 msgstr ""
+"Nota del Viajero:\n"
+"\n"
+"Supuestamente hay un muñeco Tux cerca, sobre los pinchos más adelante. Hice "
+"una búsqueda rápida y no pude encontrarlo, creo que no vale la pena. Si "
+"logras encontrar ese muñeco Tux y lo coges sin hacerte un rasguño, me quito "
+"el sombrero."
 
 msgid ""
 "Welcome to Concept Castle!\n"
@@ -825,11 +831,11 @@ msgstr "Escala Proporcional: {}"
 
 #: ../../retux.py:6707
 msgid "Sound Volume: {}%"
-msgstr "Volumen de Sonido: {}"
+msgstr "Volumen de Sonido: {} %"
 
 #: ../../retux.py:6708
 msgid "Music Volume: {}%"
-msgstr "Volumen de Música: {}"
+msgstr "Volumen de Música: {} %"
 
 #: ../../retux.py:6709
 msgid "Stereo: {}"
@@ -841,7 +847,7 @@ msgstr "Mostrar FPS: {}"
 
 #: ../../retux.py:6711
 msgid "Joystick Threshold: {}%"
-msgstr "Umbral de la palanca de mando: {}"
+msgstr "Umbral de la palanca de mando: {} %"
 
 #: ../../retux.py:6712 ../../retux.py:7197 ../../retux.py:7200
 #: ../../retux.py:7204 ../../retux.py:7274
