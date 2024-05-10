@@ -1,0 +1,985 @@
+# ReTux translatable text.
+# This file is put in the public domain.
+msgid ""
+msgstr ""
+"Project-Id-Version: ReTux 1.6.3\n"
+"Report-Msgid-Bugs-To: diligentcircle@riseup.net\n"
+"POT-Creation-Date: 2024-02-09 00:34+0100\n"
+"PO-Revision-Date: 2024-05-10 13:32+0200\n"
+"Last-Translator: \n"
+"Language-Team: Swedish\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+# Timeline text
+msgid "What a nice, cold day for fishing! I wonder what I'll catch today..."
+msgstr ""
+"Vilken trevlig, kall dag för att fiska! I undrar vad jag kommer att fånga "
+"idag..."
+
+msgid "Oh, looks like I have a message!"
+msgstr "Åh, det ser ut som om jag har ett meddelande!"
+
+msgid "What?! They're taking my fish?!"
+msgstr "Vad?! De tar min fisk?!"
+
+msgid "I will not stand for this! Nobody takes away MY fish!"
+msgstr "Det här tänker jag inte tolerera! Ingen tar ifrån mig MIN fisk!"
+
+msgid "Why are you intruding upon the great Snow King's castle, penguin?"
+msgstr "Varför inkräktar du på den store Snökungens slott, pinving?"
+
+msgid "The reign of the Snow King is over!"
+msgstr "Snökungens styre är över!"
+
+msgid "What?"
+msgstr "Vad?"
+
+msgid "I'm taking him out! There's no way I'm letting him take away my fish!"
+msgstr ""
+"Jag tänker förgöra honom! Aldrig att jag låter honom ta ifrån mig min fisk!"
+
+msgid "That's all you care about? A measly tax?"
+msgstr "Är det allt du bryr dig om? En ynklig beskattning?"
+
+msgid "I was going to let you leave in peace, but you leave me no choice."
+msgstr "Jag tänkte lämna dig ifred, men du ger mig inget val."
+
+msgid "Who are you?"
+msgstr "Vem är du?"
+
+msgid ""
+"I am Tux, and I am putting an end to the Snow King's reign, one castle at a "
+"time!"
+msgstr ""
+"Jag är Tux, och jag tänker göra slut på Snökungens styre, ett slott i taget!"
+
+msgid "..."
+msgstr "..."
+
+msgid "That's too bad, Tux. I would have liked to let you leave in peace."
+msgstr "Det är synd, Tux. Jag skulle ha tyckt om att låta lämna dig ifred."
+
+msgid ""
+"So it is you! The rebellious penguin who would see to it that our king's "
+"reign ends!"
+msgstr ""
+"Så det är du! Den upproriske pingvinen som skulle vilja se ett slut på vår "
+"kungs styre!"
+
+msgid "I'm sorry to inform you, Tux, but your treason ends now."
+msgstr ""
+"Jag är ledsen att behöva säga dig det, Tux, men ditt förräderi slutar nu."
+
+msgid ""
+"You act as if you are rebelling against the Fish Tax, but we know what "
+"you're really up to!"
+msgstr ""
+"Du agerar som om du gör uppror mot fiskbeskattningen, men vi vet vad du "
+"egentligen är ute efter!"
+
+msgid ""
+"I don't know how you found out about our secret plans, but you will not stop "
+"us!"
+msgstr ""
+"Jag vet inte hur du upptäckte våra hemliga planer, men du kommer inte att "
+"stoppa oss!"
+
+msgid "I've been waiting for you, Tux. We meet again at last!"
+msgstr "Jag har väntat på dig, Tux. Vi möts till slut!"
+
+msgid "Raccot the yeti! I should have known it was you!"
+msgstr "Yetin Raccot! Jag borde ha vetat att det var du!"
+
+msgid ""
+"You may have discovered my evil plan, my old nemesis, but you will not stop "
+"me!"
+msgstr ""
+"Du må ha upptäckt min ondskefulla plan, min gamla ärkerival, men du kommer "
+"inte att stoppa mig!"
+
+msgid ""
+"When we last met, I was but a Snow-day school bully. Now, I am the Snow King!"
+msgstr ""
+"När vi möttes senast var jag endast som en skolmobbare i Snow-day. Nu är jag "
+"Snökungen!"
+
+# Level names
+# Some of these include hints at how to find the Tux doll in the level,
+# or occasionally, how to complete the level itself. Where applicable,
+# explanations of these hints are included here as comments. Level names
+# without corresponding comments can be assumed to just be flavor.
+# Tux doll is found by finding a hidden block in a section mirroring the
+# design of World 1-1 of Super Mario Bros.
+msgctxt "level_name"
+msgid "Not exactly 1:1"
+msgstr "Inte exakt 1:1"
+
+# Tux doll is found by following a hidden vertical path.
+msgctxt "level_name"
+msgid "Two Dimensions are Better than One"
+msgstr "Två dimensioner är bättre än en"
+
+msgctxt "level_name"
+msgid "Take a Third Pipe"
+msgstr "Ta ett tredje rör"
+
+msgctxt "level_name"
+msgid "May The Fourth Be With You"
+msgstr "Må den fjärde vara med dig"
+
+# Tux doll is found in a hidden block above one of five narrow snow pile
+# type decoration things.
+msgctxt "level_name"
+msgid "Over the Five Pillars of Snow"
+msgstr "Över de fem snöhögarna"
+
+msgctxt "level_name"
+msgid "Snowman's Castle"
+msgstr "Snömannens slott"
+
+msgctxt "level_name"
+msgid "The Seven Deadly Springs"
+msgstr "De sju dödliga fjädrarna"
+
+# Finding the Tux doll requires returning to the start of the level
+# ("tracing your steps" as the English phrase goes) with a carryable
+# spring.
+msgctxt "level_name"
+msgid "Trace your Spring"
+msgstr "Återvandring med fjäder"
+
+# Finding the Tux doll requires picking up, rather than jumping on, a
+# spring that is placed deceptively to make it seem like it's needed to
+# reach a ledge that you can actually jump to normally.
+msgctxt "level_name"
+msgid "To spring, or not to spring?"
+msgstr "Att använda fjäder, eller inte använda fjäder?"
+
+# Tux doll is located in a pipe in the ceiling that infinitely spawns
+# springs. One of these springs is needed to complete the level.
+msgctxt "level_name"
+msgid "Spring Factory"
+msgstr "Fjäderfabrik"
+
+# Tux doll is found in a hidden block reached from a ledge of a skinny
+# "mountain" that has to be jumped over to complete the level.
+msgctxt "level_name"
+msgid "Scaling Mount Slimmerist"
+msgstr "Att klättra uppför spinkiga berget"
+
+# Getting to the Tux doll requires jumping into what looks like a
+# bottomless pit at first glance; a pipe to the left of it reveals its
+# true nature as a deep valley that can safely be jumped into.
+msgctxt "level_name"
+msgid "Leap of Faith?"
+msgstr "Trosprång?"
+
+# The Tux doll is found in a hidden block marked by a bunch of coins
+# depicting a four-leaf clover.
+msgctxt "level_name"
+msgid "Lucky Level 13"
+msgstr "Turliga bana 13"
+
+# Getting the Tux doll requires use of the Ice Flower to jump onto
+# enemies.
+msgctxt "level_name"
+msgid "The Cold Shoulder"
+msgstr "Den kalla axeln"
+
+# Getting the Tux doll requires use of a spring which sits on top of
+# damaging spikes. (It's possible, but extremely difficult, to obtain
+# without getting damaged by precisely using the Ice Flower.)
+msgctxt "level_name"
+msgid "There Might Be Some Momentary Discomfort"
+msgstr "Det kan förekomma temporärt obehag"
+
+# Getting the Tux doll requires use of both the Ice Flower and a walking
+# ice block.
+msgctxt "level_name"
+msgid "An Icy Blend"
+msgstr "En iskall blandning"
+
+# Requires use of the Ice Flower to jump onto enemies both to complete
+# the level and to get the Tux doll.
+msgctxt "level_name"
+msgid "Ice Climber"
+msgstr "Isklättrare"
+
+# Requires use of a combination of the Ice Flower and Fire Flower both
+# to complete the level and to get the Tux doll.
+msgctxt "level_name"
+msgid "The Element Barrier"
+msgstr "Elementbarriären"
+
+msgctxt "level_name"
+msgid "In Need of a Lift"
+msgstr "I behov av ett lyft"
+
+msgctxt "level_name"
+msgid "Verti-Go-Round"
+msgstr "Snurrigt värre"
+
+msgctxt "level_name"
+msgid "Going In Circles"
+msgstr "Att gå runt i cirklar"
+
+msgctxt "level_name"
+msgid "One Is Not Enough"
+msgstr "En räcker inte"
+
+# Getting the Tux doll requires throwing a spring up to a ledge that it
+# could otherwise help you reach and taking a pipe to get to the top of
+# the ledge instead.
+msgctxt "level_name"
+msgid "Spring Before You Leap"
+msgstr "Använd fjäder innan du hoppar"
+
+msgctxt "level_name"
+msgid "Prickly Ascent"
+msgstr "Taggig stigning"
+
+msgctxt "level_name"
+msgid "The Game of Ice"
+msgstr "Isspelet"
+
+msgctxt "level_name"
+msgid "Buster Baddies"
+msgstr "Buster Baddies"
+
+# Getting the Tux doll requires using bombs to blow up a chunk of ice.
+msgctxt "level_name"
+msgid "That Blasted Ice"
+msgstr "Den där rackarns isen"
+
+msgctxt "level_name"
+msgid "Bomb's Away"
+msgstr "Bomber på väg"
+
+# Getting the Tux doll requires using the fire flower to trigger an
+# explosion of a bomb.
+msgctxt "level_name"
+msgid "Explosive Sharpshooting"
+msgstr "Explosivt prickskytte"
+
+# Getting the Tux doll requires using rocks to create a makeshift
+# staircase to a hidden block.
+msgctxt "level_name"
+msgid "Building Blocks of Life"
+msgstr "Livets byggstenar"
+
+# Getting the Tux doll requires use of a single-use spring.
+msgctxt "level_name"
+msgid "Lose Your Spring"
+msgstr "Gör dig av med fjädern"
+
+# Requires navigating a maze of pipes both to complete the level and to
+# get the Tux doll.
+msgctxt "level_name"
+msgid "Wacky Warps"
+msgstr "Knäppa vändningar"
+
+# Getting the Tux doll requires triggering an explosion in a dangerous
+# area.
+msgctxt "level_name"
+msgid "A Step Through a Minefield"
+msgstr "Ett kliv genom ett minfält"
+
+# Getting the Tux doll requires carefully making sure that a bomb's
+# explosion sequence doesn't start too early.
+msgctxt "level_name"
+msgid "Explosive Conscience"
+msgstr "Explosivt samvete"
+
+# Getting the Tux doll requires throwing a rock in just the right way so
+# a bomb walks onto it, causing it to lower to where you are when the
+# rock falls back down again.
+msgctxt "level_name"
+msgid "The Uplifted Bomb"
+msgstr "Den upphöjda bomben"
+
+msgctxt "level_name"
+msgid "Close Encounters of the Third Spring"
+msgstr "Närkontakt av tredje fjädern"
+
+msgctxt "level_name"
+msgid "Snowman's Wreckening"
+msgstr "Snömannens undergång"
+
+msgctxt "level_name"
+msgid "Suspension of Belief"
+msgstr "Inställande av tro"
+
+# Requires navigating a maze of doors both to complete the level and to
+# get the Tux doll.
+msgctxt "level_name"
+msgid "Danger Doors"
+msgstr "Farliga dörrar"
+
+msgctxt "level_name"
+msgid "Final Frost"
+msgstr "Sista frosten"
+
+msgctxt "level_name"
+msgid "Making a Raccot"
+msgstr "Att göra en Raccot"
+
+msgctxt "level_name"
+msgid "Concept Castle"
+msgstr "Konceptslott"
+
+msgctxt "level_name"
+msgid "EricxDu's Level"
+msgstr "EricxDus bana"
+
+msgid ""
+"Citizens of Icy Island,\n"
+"\n"
+"Beginning on Ice-date 542-7-3, Icy Island is now the domain of the Snow "
+"King. All residents must pay 5% of their fish in tax. Failure to pay this "
+"tax will be punished."
+msgstr ""
+"Medborgare av Isiga ön,\n"
+"\n"
+"med start från och med isdatum 542-7-3 kommer Isiga ön att tillhöra "
+"Snökungen. Alla invånare måste betala fem procent av sin fisk i skatt. Den "
+"som inte gör det här kommer att bestraffas."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"In my search for the elusive Tux Dolls, I have learned that the name of each "
+"level often hides a clue. Perhaps, if I can decipher these clues, I can "
+"obtain a complete collection."
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"I mitt sökande efter de flyktiga Tux-dockorna har jag lärt mig att namnet på "
+"varje bana ofta döljer en ledtråd. Kanske kan jag få ihop en komplett "
+"samling om jag lyckas klura ut dessa gåtor."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"There appears to be something important up above, but it is unfortunately "
+"out of reach. There must be a path that I cannot see."
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Det verkar som om det finns något viktigt ovanför, men tyvärr är det utom "
+"räckhåll. Det måste finnas en väg som jag inte kan se."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"Fire can be a great way to melt ice blocking access to certain Tux dolls. "
+"Now, where can one find a fire flower around here?"
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Eld fungerar utmärkt för att smälta is som blockerar vägen till vissa Tux-"
+"dockor. Låt se, var kan man då hitta en eldblomma här omkring?"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"I swear, there are no fire flowers anywhere in this level! How am I supposed "
+"to melt this ice?! What's more, that ledge over there is shaped like a grin, "
+"almost like it's taunting me!"
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Jag svär, det finns inga eldblommor någonstans på den här banan! Hur är det "
+"tänkt att jag ska smälta den här isen?! Och dessutom ser det ut som om "
+"avsatsen där borta är format som ett leende, nästan som om det hånar mig!"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"I have finally begun to get the hang of kicking iceblocks straight up by "
+"holding the \"up\" button while pressing the \"action\" button. I believe "
+"this technique may prove useful for finding the Tux Doll."
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Jag har till sist börjat få kläm på hur man sparkar isblock rakt upp genom "
+"att hålla \"upp\"-knappen nedtryckt samtidigt som man trycker \"handlings\"-"
+"knappen. Jag tror att denna teknik kan visa sig vara användbar i sökandet "
+"efter Tux-dockan."
+
+msgid ""
+"Minion's Note:\n"
+"\n"
+"The security system protecting the Tux Doll can be thwarted by any penguin "
+"who knows that they can drop any item they're holding by holding the "
+"\"down\" button while pressing the \"action\" button. Requesting immediate "
+"measures to protect against this technique."
+msgstr ""
+"Underhuggarens anteckning:\n"
+"\n"
+"Säkerhetssystemet som beskyddar Tux-dockan kan motverkas av vilken pingvin "
+"som helst som vet att man kan släppa vilket objekt som helst som man håller "
+"genom att hålla \"ner\"-knappen tryckt samtidigt som man trycker "
+"\"handlings\"-knappen. Begär omedelbara åtgärder för att skydda mot den här "
+"tekniken."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"It is said that this level contains 7 springs, but I have only managed to "
+"find 6. Could the seventh one be in a hidden block somewhere?"
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Det sägs att den här banan innehåller sju fjädrar, men jag har enbart "
+"lyckats hitta sex stycken. Kan den sjunde finnas dold i ett block någonstans?"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That cave to the left appears to be inaccessible from here. There has to be "
+"another way inside!"
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Den där grottan till vänster ser ut att inte kunna nås härifrån. Det måste "
+"finnas en annan väg in!"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"That pipe to the right is too high to be reached even by jumping off a "
+"spring. It would be possible if that Jumpy could be magically suspended in "
+"the air and the spring placed on top, but that would be silly!"
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Det där röret till höger ligger för högt upp för att kunna nås även om man "
+"hoppar via en fjäder. Det skulle vara möjligt om Jumpy där borta magiskt "
+"kunde stanna kvar i luften och fjädern placeras ovanpå denne, men det vore "
+"fånigt!"
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"I have found that if, when holding a fire flower, I hold down the \"up\" "
+"button while pressing the \"action\" button, my fireballs shoot higher up "
+"into the air. That may prove to be a useful technique."
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Jag har förstått att när man håller en eldblomma och håller ner \"upp\"-"
+"knappen samtidigt som man trycker \"handlings\"-knappen skjuter eldkloten "
+"högre upp i luften. Det kan visa sig vara en användbar teknik."
+
+msgid ""
+"Minion's Note:\n"
+"\n"
+"Please do NOT touch my rock collection! For example, do NOT use them to "
+"build a bridge allowing you to cross spike pits, and do NOT use them to "
+"build a tower so that you can reach higher places."
+msgstr ""
+"Underhuggarens anteckning:\n"
+"\n"
+"Var god och rör INTE min stensamling! Använd dem till exempel INTE till att "
+"bygga en brygga som gör att du kan korsta ormgropar, och använd dem INTE "
+"till att bygga ett torn så att du kan nå högre platser."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"If only I could reach those rocks on top of those crates, I could build a "
+"staircase to that pipe...."
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Om jag bara kunde nå de där stenarna på toppen av de där backarna, då skulle "
+"jag kunna bygga en trappa till det där röret..."
+
+msgid ""
+"Traveler's Note:\n"
+"\n"
+"Supposedly there is a Tux Doll nearby, atop the spikes up ahead. I did a "
+"cursory search and couldn't find it, but frankly, I don't think it's worth "
+"it. If you can manage to find that Tux Doll and obtain it in one piece, hats "
+"off to you!"
+msgstr ""
+"Resenärens anteckning:\n"
+"\n"
+"Tydligen finns det en Tux-docka i närheten, ovanför taggarna framöver. Jag "
+"sökte hastigt och kunde inte hitta den, men ärligt talat, jag tycker inte "
+"att det är värt det. Hatten av för dig om du lyckas hitta den där Tux-dockan "
+"i ett stycke!"
+
+msgid ""
+"Welcome to Concept Castle!\n"
+"\n"
+"This level was created to demonstrate what ReTux is capable of. It's a bit "
+"heavier than most of the actual game, so it may run slightly slower."
+msgstr ""
+"Välkommen till Konceptslottet!\n"
+"\n"
+"Den här banan gjordes för att demonstrera vad ReTux är kapabelt till. Den är "
+"något tyngre än det mesta av själva spelet och därför kanske den körs "
+"långsammare."
+
+msgid ""
+"All out of fire? Rejuvinate yourself by taking a nice, warm bath in molten "
+"lava!"
+msgstr ""
+"Har du totalt slut på eld? Återuppliva dig själv genom att ta ett ljuvligt, "
+"varmt bad i smält lava!"
+
+msgid "There must be a way to remove the fire flower from this room."
+msgstr "Det måste finnas ett sätt att ta bort eldblomman från det här rummet."
+
+# Credits text
+msgctxt "credits_title"
+msgid "Programming"
+msgstr "Programmering"
+
+msgctxt "credits_title"
+msgid "Graphics"
+msgstr "Grafik"
+
+msgctxt "credits_title"
+msgid "Sounds"
+msgstr "Ljud"
+
+msgctxt "credits_title"
+msgid "Music"
+msgstr "Musik"
+
+msgctxt "credits_title"
+msgid "Level Design"
+msgstr "Bandesign"
+
+msgctxt "credits_title"
+msgid "Bonus Level Design"
+msgstr "Bonusbandesign"
+
+msgctxt "credits_title"
+msgid "Translations"
+msgstr "Översättningar"
+
+msgctxt "credits_title"
+msgid "Software Used"
+msgstr "Program som använts"
+
+msgctxt "credits_title"
+msgid "Thank you for playing!"
+msgstr "Du ska ha tack för att du spelade!"
+
+#: ../../retux.py:75
+msgid "Output version information and exit."
+msgstr "Information om utdataversion och avsluta."
+
+#: ../../retux.py:78
+msgid "Print errors directly to stdout rather than saving them in a file."
+msgstr "Skriv ut fel direkt till stdout hellre än att spara dem i en fil."
+
+#: ../../retux.py:82
+msgid "Manually choose a different language to use."
+msgstr "Välj manuellt ett annat språk att använda."
+
+#: ../../retux.py:85
+msgid ""
+"Disable delta timing. Causes the game to slow down when it can't run at full "
+"speed instead of becoming choppier."
+msgstr ""
+"Avaktivera deltatajming. Det här gör att spelet saktar ner när det inte kan "
+"köras för full hastighet istället för att bli hackigt."
+
+#: ../../retux.py:90
+msgid "Where to load the game data from (Default: \"{}\")"
+msgstr "Varifrån speldata ska läsas in (Standard: \"{}\")"
+
+#: ../../retux.py:93
+msgid "Play the indicated level and then exit."
+msgstr "Spela den markerade banan och avsluta sedan."
+
+#: ../../retux.py:96
+msgid ""
+"Start the indicated level and record player actions in a timeline. Useful "
+"for making cutscenes."
+msgstr ""
+"Starta den markerade banan och spela in spelarens handlingar i en tidslinje. "
+"Användbart för att göra mellansekvenser."
+
+#: ../../retux.py:100
+msgid "Only show solid colors for backgrounds (uses less RAM)."
+msgstr "Visa endast solida färger för bakgrunder (använder mindre RAM)."
+
+#: ../../retux.py:103
+msgid "Don't show the player's heads-up display."
+msgstr "Visa inte spelarens heads-up-skärm."
+
+#: ../../retux.py:105
+msgid "Pray to your god. Choose wisely…"
+msgstr "Be till din gud. Välj klokt…"
+
+#: ../../retux.py:149
+msgid "The text editor god of nano smiles upon you. God mode enabled!"
+msgstr "Textredigerarguden nano ler mot dig. Gudsläge aktiverat!"
+
+#: ../../retux.py:151
+msgid "The true text editor god has sent you to hell for your heresy!"
+msgstr ""
+"Den sanna textredigerarguden har skickat dig till helvetet för ditt kätteri!"
+
+#: ../../retux.py:561
+msgid "Score"
+msgstr "Poäng"
+
+#: ../../retux.py:562
+msgid "Time Bonus"
+msgstr "Tidsbonus"
+
+#: ../../retux.py:562
+msgid "Time Penalty"
+msgstr "Tidsstraff"
+
+#: ../../retux.py:855
+msgid ""
+"An error occurred in a timeline 'setattr' command:\n"
+"\n"
+"{}"
+msgstr ""
+"Ett fel uppstod i tidslinjekommando 'setattr':\n"
+"\n"
+"{}"
+
+#: ../../retux.py:904
+msgid ""
+"An error occurred in a timeline 'exec' command:\n"
+"\n"
+"{}"
+msgstr ""
+"Ett fel uppstod i tidslinjekommando 'exec':\n"
+"\n"
+"{}"
+
+#: ../../retux.py:912
+msgid ""
+"An error occurred in a timeline 'if' statement:\n"
+"\n"
+"{}"
+msgstr ""
+"Ett fel uppstod i tidslinjeuttryck 'if':\n"
+"\n"
+"{}"
+
+#: ../../retux.py:933
+msgid ""
+"An error occurred in a timeline 'while' statement:\n"
+"\n"
+"{}"
+msgstr ""
+"Ett fel uppstod i tidslinjeuttryck 'while':\n"
+"\n"
+"{}"
+
+#: ../../retux.py:1160
+msgid "Loading level..."
+msgstr "Läser in bana..."
+
+#: ../../retux.py:1180
+msgid "Loading \"{}\"..."
+msgstr "Läser in \"{}\"..."
+
+#: ../../retux.py:1186 ../../retux.py:6107
+msgid ""
+"An error occurred when trying to load the level:\n"
+"\n"
+"{}"
+msgstr ""
+"Ett fel uppstod vid inläsning av banan:\n"
+"\n"
+"{}"
+
+#: ../../retux.py:1203
+msgctxt "level_name"
+msgid "Level {}"
+msgstr "Bana {}"
+
+#. / "S.Penguin" is short for "Super-Penguin" (shortened for space).
+#. / Reference to the Super Saiyan form in Dragon Ball.
+#: ../../retux.py:1673
+msgid "S.Penguin Tux"
+msgstr "Sankt pingvin Tux"
+
+#: ../../retux.py:1673
+msgid "Heretic Tux"
+msgstr "Kättaren Tux"
+
+#: ../../retux.py:1673
+msgid "Tux"
+msgstr "Tux"
+
+#: ../../retux.py:1904
+msgid "Press the Menu button to skip..."
+msgstr "Tryck på menyknappen för att hoppa över..."
+
+#: ../../retux.py:1906
+msgid "Cinematic mode enabled"
+msgstr "Filmiskt läge aktiverat"
+
+#: ../../retux.py:6513
+msgid "New Game"
+msgstr "Nytt spel"
+
+#: ../../retux.py:6513
+msgid "Load Game"
+msgstr "Läs in spel"
+
+#: ../../retux.py:6513
+msgid "Select Levelset"
+msgstr "Markera banuppsättning"
+
+#: ../../retux.py:6513
+msgid "Options"
+msgstr "Inställningar"
+
+#: ../../retux.py:6514
+msgid "Credits"
+msgstr "Tack till"
+
+#: ../../retux.py:6514
+msgid "Quit"
+msgstr "Avsluta"
+
+#: ../../retux.py:6544
+msgid "-Empty-"
+msgstr "-Tomt-"
+
+#: ../../retux.py:6546
+msgid "-No Levelset-"
+msgstr "-Ingen banuppsättning-"
+
+#: ../../retux.py:6553
+msgid "-Corrupt Levelset-"
+msgstr "-Skadad banuppsättning-"
+
+#: ../../retux.py:6561 ../../retux.py:6676 ../../retux.py:6713
+#: ../../retux.py:6918 ../../retux.py:7056
+msgid "Back"
+msgstr "Tillbaka"
+
+#: ../../retux.py:6589
+msgid "Overwrite this save file"
+msgstr "Skriv över den här sparfilen"
+
+#: ../../retux.py:6589
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: ../../retux.py:6625
+msgid "An error occurred when trying to load the game."
+msgstr "Ett fel uppstod vid inläsning av spelet."
+
+#: ../../retux.py:6675
+msgid "Next page"
+msgstr "Nästa sida"
+
+#: ../../retux.py:6690
+msgid "Levelset loaded successfully."
+msgstr "Banuppsättning lästes in framgångsrikt."
+
+#: ../../retux.py:6703
+msgid "Fullscreen: {}"
+msgstr "Helskärmsläge: {}"
+
+#: ../../retux.py:6703 ../../retux.py:6706 ../../retux.py:6709
+#: ../../retux.py:6710
+msgid "On"
+msgstr "På"
+
+#: ../../retux.py:6703 ../../retux.py:6706 ../../retux.py:6709
+#: ../../retux.py:6710
+msgid "Off"
+msgstr "Av"
+
+#: ../../retux.py:6704
+msgid "Scale Method: {}"
+msgstr "Skalmetod: {}"
+
+#: ../../retux.py:6705
+msgid "Scale Proportional: {}"
+msgstr "Skalproportionering: {}"
+
+#: ../../retux.py:6707
+msgid "Sound Volume: {}%"
+msgstr "Ljudvolym: {}%"
+
+#: ../../retux.py:6708
+msgid "Music Volume: {}%"
+msgstr "Musikvolym: {}%"
+
+#: ../../retux.py:6709
+msgid "Stereo: {}"
+msgstr "Stereo: {}"
+
+#: ../../retux.py:6710
+msgid "Show FPS: {}"
+msgstr "Visa bilder per sekund: {}"
+
+#: ../../retux.py:6711
+msgid "Joystick Threshold: {}%"
+msgstr "Styrspakströskel: {}%"
+
+#: ../../retux.py:6712 ../../retux.py:7197 ../../retux.py:7200
+#: ../../retux.py:7204 ../../retux.py:7274
+msgid "Configure keyboard"
+msgstr "Konfigurera tangentbord"
+
+#: ../../retux.py:6712 ../../retux.py:7198 ../../retux.py:7201
+#: ../../retux.py:7205 ../../retux.py:7274
+msgid "Configure joysticks"
+msgstr "Konfigurera styrspakar"
+
+#: ../../retux.py:6713
+msgid "Detect joysticks"
+msgstr "Detektera styrspakar"
+
+#: ../../retux.py:6713
+msgid "Import levelset"
+msgstr "Importera banuppsättning"
+
+#: ../../retux.py:6827
+msgid "ReTux levelset files"
+msgstr "ReTux banuppsättningsfiler"
+
+#: ../../retux.py:6828
+msgid "all files"
+msgstr "alla filer"
+
+#: ../../retux.py:6841
+msgid "Importing {}..."
+msgstr "Importerar {}..."
+
+#: ../../retux.py:6881
+msgid ""
+"This feature requires Tkinter, which was not successfully imported. Please "
+"make sure Tkinter is installed and try again."
+msgstr ""
+"Den här funktionen behöver Tkinter, vilket inte framgångsrikt importerades. "
+"Var god se till att Tkinter är installerat och försök igen."
+
+#: ../../retux.py:6908 ../../retux.py:7046
+msgid "Player {}"
+msgstr "Spelare {}"
+
+#: ../../retux.py:6909 ../../retux.py:7047
+msgid "Left: {}"
+msgstr "Vänster: {}"
+
+#: ../../retux.py:6910 ../../retux.py:7048
+msgid "Right: {}"
+msgstr "Höger: {}"
+
+#: ../../retux.py:6911 ../../retux.py:7049
+msgid "Up: {}"
+msgstr "Upp: {}"
+
+#: ../../retux.py:6912 ../../retux.py:7050
+msgid "Down: {}"
+msgstr "Ner: {}"
+
+#: ../../retux.py:6913 ../../retux.py:7051
+msgid "Jump: {}"
+msgstr "Hoppa: {}"
+
+#: ../../retux.py:6914 ../../retux.py:7052
+msgid "Action: {}"
+msgstr "Handling: {}"
+
+#: ../../retux.py:6915 ../../retux.py:7053
+msgid "Sneak: {}"
+msgstr "Smyg: {}"
+
+#: ../../retux.py:6916 ../../retux.py:7054
+msgid "Menu: {}"
+msgstr "Meny: {}"
+
+#: ../../retux.py:6917 ../../retux.py:7055
+msgid "Pause: {}"
+msgstr "Pausa: {}"
+
+#: ../../retux.py:6943
+msgid ""
+"Press the key you wish to bind to this function, or the Escape key to cancel."
+msgstr ""
+"Tryck tangenten du önskar binda till den här funktionen, eller tryck Escape-"
+"tangenten för att avbryta."
+
+#: ../../retux.py:7044
+msgid "None"
+msgstr "Ingen"
+
+#: ../../retux.py:7081
+msgid ""
+"Press the joystick button, axis, or hat direction you wish to bind to this "
+"function, or the Escape key to cancel."
+msgstr ""
+"Tryck styrspaksknappen, axel, eller styrkorsriktning du önskar binda till "
+"den här funktionen, eller tryck Escape-tangenten för att avbryta."
+
+#: ../../retux.py:7197 ../../retux.py:7200 ../../retux.py:7204
+#: ../../retux.py:7274
+msgid "Continue"
+msgstr "Fortsätt"
+
+#: ../../retux.py:7198
+msgid "Abort"
+msgstr "Avbryt"
+
+#: ../../retux.py:7201
+msgid "Return to Map"
+msgstr "Återgå till karta"
+
+#: ../../retux.py:7202 ../../retux.py:7205 ../../retux.py:7275
+msgid "Return to Title Screen"
+msgstr "Återgå till menyskärm"
+
+#: ../../retux.py:7490
+msgid "Error"
+msgstr "Fel"
+
+#: ../../retux.py:7491
+msgid "Ok"
+msgstr "Okej"
+
+#: ../../retux.py:7968
+msgid "Initializing game system..."
+msgstr "Initierarar spelsystem..."
+
+#: ../../retux.py:7973
+msgid "Initializing GUI system..."
+msgstr "Initierar system för användargränssnitt..."
+
+#: ../../retux.py:7985
+msgid "Loading images..."
+msgstr "Läser in bilder..."
+
+#: ../../retux.py:8507
+msgid "Loading fonts..."
+msgstr "Läser in typsnitt..."
+
+#. / The default ReTux font is a sprite font which supports Latin
+#. / character sets. If your translation needs more characters (as would
+#. / be the case for Japanese or Chinese, for example), please add a font
+#. / file to the data/fonts directory for use with the language being
+#. / translated to and specify the font file name. This will cause the
+#. / font file to be used instead of the default sprite font. If the
+#. / sprite font is sufficient, leave this as-is.
+#: ../../retux.py:8518 ../../retux.py:8535
+msgid "font_file"
+msgstr "font_file"
+
+#: ../../retux.py:8743
+msgid "Starting game..."
+msgstr "Startar spel..."
